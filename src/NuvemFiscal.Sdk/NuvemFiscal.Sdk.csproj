@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>NuvemFiscal.Sdk</AssemblyName>
+    <PackageId>NuvemFiscal.Sdk</PackageId>
+    <OutputType>Library</OutputType>
+    <Authors>Nuvem Fiscal</Authors>
+    <Company>Nuvem Fiscal</Company>
+    <AssemblyTitle>Nuvem Fiscal SDK</AssemblyTitle>
+    <Description>Biblioteca .NET para uso da API da Nuvem Fiscal</Description>
+    <Copyright>Copyright WA2 Tecnologia</Copyright>
+    <RootNamespace>NuvemFiscal.Sdk</RootNamespace>
+    <Version>1.0.0</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NuvemFiscal.Sdk.xml</DocumentationFile>
+    <RepositoryUrl>https://github.com/nuvem-fiscal/nuvemfiscal-sdk-net.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Minor update</PackageReleaseNotes>
+    <PackageTags>API;NFe;NFSe;CNPJ;Sefaz;Nota Fiscal</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonSubTypes" Version="1.8.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
