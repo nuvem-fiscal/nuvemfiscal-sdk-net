@@ -2,7 +2,7 @@
 
 Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
-| Método | Verbo HTTP | Descrição |
+| Método | Endpoint | Descrição |
 |--------|--------------|-------------|
 | [**BaixarXmlNfse**](NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml |  |
 | [**CancelarNfse**](NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento |  |

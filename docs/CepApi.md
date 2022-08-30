@@ -2,7 +2,7 @@
 
 Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
-| Método | Verbo HTTP | Descrição |
+| Método | Endpoint | Descrição |
 |--------|--------------|-------------|
 | [**ConsultarCep**](CepApi.md#consultarcep) | **GET** /cep/{Cep} | Consultar endereço através do CEP |
 

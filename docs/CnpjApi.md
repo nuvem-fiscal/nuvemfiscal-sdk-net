@@ -2,7 +2,7 @@
 
 Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
-| Método | Verbo HTTP | Descrição |
+| Método | Endpoint | Descrição |
 |--------|--------------|-------------|
 | [**ConsultarCnpj**](CnpjApi.md#consultarcnpj) | **GET** /cnpj/{Cnpj} | Consultar dados do CNPJ |
 

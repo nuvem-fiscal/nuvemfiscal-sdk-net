@@ -2,7 +2,7 @@
 
 Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
-| Método | Verbo HTTP | Descrição |
+| Método | Endpoint | Descrição |
 |--------|--------------|-------------|
 | [**BaixarXmlCancelamentoMdfe**](MdfeApi.md#baixarxmlcancelamentomdfe) | **GET** /mdfe/{id}/cancelamento/xml | Baixar XML do cancelamento |
 | [**BaixarXmlEncerramentoMdfe**](MdfeApi.md#baixarxmlencerramentomdfe) | **GET** /mdfe/{id}/encerramento/xml | Baixar XML do encerramento |

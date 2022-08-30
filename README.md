@@ -134,7 +134,7 @@ namespace Example
 
 Todas as URIs são relativas a *https://api.nuvemfiscal.com.br*
 
-Classe | Método | Verbo HTTP | Descrição
+Classe | Método | Endpoint | Descrição
 ------------ | ------------- | ------------- | -------------
 *CepApi* | [**ConsultarCep**](docs/CepApi.md#consultarcep) | **GET** /cep/{Cep} | Consultar endereço através do CEP
 *CnpjApi* | [**ConsultarCnpj**](docs/CnpjApi.md#consultarcnpj) | **GET** /cnpj/{Cnpj} | Consultar dados do CNPJ
