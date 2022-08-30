@@ -365,3 +365,4 @@ FodyWeavers.xsd
 .openapi-generator
 .DS_Store
 .openapi-generator-ignore
+.idea
