@@ -12,42 +12,36 @@ Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfi
 - .NET Framework >=4.6
 - Mono/Xamarin >=vNext
 
-<a name="dependencies"></a>
-## Dependências
-
-- [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 13.0.1 ou posterior
-- [JsonSubTypes](https://www.nuget.org/packages/JsonSubTypes/) - 1.8.0 ou posterior
-- [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 ou posterior
-
-As DLLs incluídas no package podem não estar em sua última versão. 
-Recomendamos usar o [NuGet](https://docs.nuget.org/consume/installing-nuget) para obter a última versão dos packages:
-```
-Install-Package Newtonsoft.Json
-Install-Package JsonSubTypes
-Install-Package System.ComponentModel.Annotations
-```
 <a name="installation"></a>
 ## Instalação
-Gere a DLL usando a ferramenta de build .NET de sua preferência (e.g. `dotnet build`)
 
-Adicione a DLL (localizada na pasta `bin`) como dependência do seu projeto C#, and use os namespaces:
+O SDK da Nuvem Fiscal para .NET está [disponível no Nuget](https://www.nuget.org/packages/NuvemFiscal.Sdk). 
+Para adicionar o SDK ao seu projeto, basta instalar o package `NuvemFiscal.Sdk` utilizando sua ferramenta preferida de gerenciamento de packages do Nuget.
+
+Se preferir instalar a partir do console/terminal:
+
+```
+PM> Install-Package NuvemFiscal.Sdk
+```
+
+Ou a partir do .NET CLI (cross-platform:
+
+```
+dotnet add package NuvemFiscal.Sdk
+```
+
+<a name="usage"></a>
+## Utilização
+
+Após adicionar o package `NuvemFiscal.Sdk` ao seu projeto C#, use os namespaces:
 ```csharp
 using NuvemFiscal.Sdk.Api;
 using NuvemFiscal.Sdk.Client;
 using NuvemFiscal.Sdk.Model;
 ```
-<a name="usage"></a>
-## Utilização
 
-Para usar o client da API com um proxy HTTP, configure um `System.Net.WebProxy`
-```csharp
-Configuration c = new Configuration();
-System.Net.WebProxy webProxy = new System.Net.WebProxy("http://myProxyUrl:80/");
-webProxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
-c.Proxy = webProxy;
-```
 
-### Conexões
+### Instanciando a API 
 Cada ApiClass (mais especificamente o ApiClient dentro dela) irá criar uma instância de HttpClient, e irá usá-la 
 durante todo o ciclo de vida da ApiClass, e fará um dispose quando o método Dispose for chamado.
 
@@ -78,6 +72,16 @@ services.AddHttpClient<CepApi>(httpClient =>
    new CepApi(httpClient));
 ```
 
+
+### Uso opcional de proxy
+
+Para usar o client da API com um proxy HTTP, configure um `System.Net.WebProxy`
+```csharp
+Configuration c = new Configuration();
+System.Net.WebProxy webProxy = new System.Net.WebProxy("http://myProxyUrl:80/");
+webProxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+c.Proxy = webProxy;
+```
 
 <a name="getting-started"></a>
 ## Exemplo
