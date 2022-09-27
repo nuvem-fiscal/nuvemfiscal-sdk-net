@@ -69,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CNPJ.  Informar o CNPJ da Ferrovia Envolvida. Caso a Ferrovia envolvida não seja inscrita no CNPJ o campo deverá preenchido com zeros.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ.  Informar o CNPJ da Ferrovia Envolvida. Caso a Ferrovia envolvida não seja inscrita no CNPJ o campo deverá preenchido com zeros.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
@@ -90,13 +90,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Razão Social ou Nome.
         /// </summary>
         /// <value>Razão Social ou Nome.</value>
-        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Gets or Sets enderFerro
         /// </summary>
-        [DataMember(Name = "enderFerro", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "enderFerro", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazEnderFer enderFerro { get; set; }
 
         /// <summary>

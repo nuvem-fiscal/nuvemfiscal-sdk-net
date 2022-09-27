@@ -66,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Forma de Pagamento:.
         /// </summary>
         /// <value>Forma de Pagamento:.</value>
-        [DataMember(Name = "tPag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tPag", IsRequired = true, EmitDefaultValue = true)]
         public string tPag { get; set; }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do Pagamento. Esta tag poderá ser omitida quando a tag tPag&#x3D;90 (Sem Pagamento), caso contrário deverá ser preenchida.
         /// </summary>
         /// <value>Valor do Pagamento. Esta tag poderá ser omitida quando a tag tPag&#x3D;90 (Sem Pagamento), caso contrário deverá ser preenchida.</value>
-        [DataMember(Name = "vPag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPag", IsRequired = true, EmitDefaultValue = true)]
         public decimal vPag { get; set; }
 
         /// <summary>

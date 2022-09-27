@@ -59,35 +59,35 @@ namespace NuvemFiscal.Sdk.Model
         /// Classificação Tributária do serviço.  20 - tributação com BC reduzida do ICMS.
         /// </summary>
         /// <value>Classificação Tributária do serviço.  20 - tributação com BC reduzida do ICMS.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
         /// Percentual de redução da BC.
         /// </summary>
         /// <value>Percentual de redução da BC.</value>
-        [DataMember(Name = "pRedBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pRedBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal pRedBC { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS.
         /// </summary>
         /// <value>Valor da BC do ICMS.</value>
-        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBC { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS.
         /// </summary>
         /// <value>Alíquota do ICMS.</value>
-        [DataMember(Name = "pICMS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMS", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMS { get; set; }
 
         /// <summary>
         /// Valor do ICMS.
         /// </summary>
         /// <value>Valor do ICMS.</value>
-        [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMS { get; set; }
 
         /// <summary>

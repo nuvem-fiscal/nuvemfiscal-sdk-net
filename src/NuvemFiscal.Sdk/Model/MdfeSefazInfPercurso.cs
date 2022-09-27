@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla das Unidades da Federação do percurso do veículo.  Não é necessário repetir as UF de Início e Fim.
         /// </summary>
         /// <value>Sigla das Unidades da Federação do percurso do veículo.  Não é necessário repetir as UF de Início e Fim.</value>
-        [DataMember(Name = "UFPer", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFPer", IsRequired = true, EmitDefaultValue = true)]
         public string UFPer { get; set; }
 
         /// <summary>

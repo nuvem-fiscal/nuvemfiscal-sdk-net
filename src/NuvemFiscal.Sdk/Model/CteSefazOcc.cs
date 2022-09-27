@@ -59,14 +59,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da Ordem de coleta.
         /// </summary>
         /// <value>Número da Ordem de coleta.</value>
-        [DataMember(Name = "nOcc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nOcc", IsRequired = true, EmitDefaultValue = true)]
         public int nOcc { get; set; }
 
         /// <summary>
         /// Data de emissão da ordem de coleta.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data de emissão da ordem de coleta.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dEmi { get; set; }
 

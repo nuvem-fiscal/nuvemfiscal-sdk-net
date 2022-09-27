@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de hora.  0- Sem hora definida.
         /// </summary>
         /// <value>Tipo de hora.  0- Sem hora definida.</value>
-        [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
         public int tpHor { get; set; }
 
         /// <summary>

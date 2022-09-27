@@ -52,28 +52,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Base da BC do Imposto de Importação.
         /// </summary>
         /// <value>Base da BC do Imposto de Importação.</value>
-        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBC { get; set; }
 
         /// <summary>
         /// Valor das despesas aduaneiras.
         /// </summary>
         /// <value>Valor das despesas aduaneiras.</value>
-        [DataMember(Name = "vDespAdu", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vDespAdu", IsRequired = true, EmitDefaultValue = true)]
         public decimal vDespAdu { get; set; }
 
         /// <summary>
         /// Valor do Imposto de Importação.
         /// </summary>
         /// <value>Valor do Imposto de Importação.</value>
-        [DataMember(Name = "vII", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vII", IsRequired = true, EmitDefaultValue = true)]
         public decimal vII { get; set; }
 
         /// <summary>
         /// Valor do Imposto sobre Operações Financeiras.
         /// </summary>
         /// <value>Valor do Imposto sobre Operações Financeiras.</value>
-        [DataMember(Name = "vIOF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vIOF", IsRequired = true, EmitDefaultValue = true)]
         public decimal vIOF { get; set; }
 
         /// <summary>

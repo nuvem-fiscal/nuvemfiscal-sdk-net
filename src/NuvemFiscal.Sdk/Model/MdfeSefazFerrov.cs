@@ -57,14 +57,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets trem
         /// </summary>
-        [DataMember(Name = "trem", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "trem", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazTrem trem { get; set; }
 
         /// <summary>
         /// informações dos Vagões.
         /// </summary>
         /// <value>informações dos Vagões.</value>
-        [DataMember(Name = "vag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vag", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazVag> vag { get; set; }
 
         /// <summary>

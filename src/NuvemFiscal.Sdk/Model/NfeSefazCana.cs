@@ -79,42 +79,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação da safra.
         /// </summary>
         /// <value>Identificação da safra.</value>
-        [DataMember(Name = "safra", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "safra", IsRequired = true, EmitDefaultValue = true)]
         public string safra { get; set; }
 
         /// <summary>
         /// Mês e Ano de Referência, formato: MM/AAAA.
         /// </summary>
         /// <value>Mês e Ano de Referência, formato: MM/AAAA.</value>
-        [DataMember(Name = "ref", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ref", IsRequired = true, EmitDefaultValue = true)]
         public string _ref { get; set; }
 
         /// <summary>
         /// Fornecimentos diários.
         /// </summary>
         /// <value>Fornecimentos diários.</value>
-        [DataMember(Name = "forDia", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "forDia", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazForDia> forDia { get; set; }
 
         /// <summary>
         /// Total do mês.
         /// </summary>
         /// <value>Total do mês.</value>
-        [DataMember(Name = "qTotMes", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qTotMes", IsRequired = true, EmitDefaultValue = true)]
         public decimal qTotMes { get; set; }
 
         /// <summary>
         /// Total Anterior.
         /// </summary>
         /// <value>Total Anterior.</value>
-        [DataMember(Name = "qTotAnt", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qTotAnt", IsRequired = true, EmitDefaultValue = true)]
         public decimal qTotAnt { get; set; }
 
         /// <summary>
         /// Total Geral.
         /// </summary>
         /// <value>Total Geral.</value>
-        [DataMember(Name = "qTotGer", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qTotGer", IsRequired = true, EmitDefaultValue = true)]
         public decimal qTotGer { get; set; }
 
         /// <summary>
@@ -128,21 +128,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor  dos fornecimentos.
         /// </summary>
         /// <value>Valor  dos fornecimentos.</value>
-        [DataMember(Name = "vFor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFor", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFor { get; set; }
 
         /// <summary>
         /// Valor Total das Deduções.
         /// </summary>
         /// <value>Valor Total das Deduções.</value>
-        [DataMember(Name = "vTotDed", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vTotDed", IsRequired = true, EmitDefaultValue = true)]
         public decimal vTotDed { get; set; }
 
         /// <summary>
         /// Valor Líquido dos fornecimentos.
         /// </summary>
         /// <value>Valor Líquido dos fornecimentos.</value>
-        [DataMember(Name = "vLiqFor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vLiqFor", IsRequired = true, EmitDefaultValue = true)]
         public decimal vLiqFor { get; set; }
 
         /// <summary>

@@ -58,14 +58,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome do condutor.
         /// </summary>
         /// <value>Nome do condutor.</value>
-        [DataMember(Name = "nome_condutor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nome_condutor", IsRequired = true, EmitDefaultValue = true)]
         public string nome_condutor { get; set; }
 
         /// <summary>
         /// CPF do condutor.
         /// </summary>
         /// <value>CPF do condutor.</value>
-        [DataMember(Name = "cpf_condutor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cpf_condutor", IsRequired = true, EmitDefaultValue = true)]
         public string cpf_condutor { get; set; }
 
         /// <summary>

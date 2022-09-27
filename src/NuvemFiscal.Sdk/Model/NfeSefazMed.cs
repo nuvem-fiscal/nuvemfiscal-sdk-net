@@ -55,7 +55,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Utilizar o número do registro ANVISA  ou preencher com o literal “ISENTO”, no caso de medicamento isento de registro na ANVISA.
         /// </summary>
         /// <value>Utilizar o número do registro ANVISA  ou preencher com o literal “ISENTO”, no caso de medicamento isento de registro na ANVISA.</value>
-        [DataMember(Name = "cProdANVISA", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cProdANVISA", IsRequired = true, EmitDefaultValue = true)]
         public string cProdANVISA { get; set; }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Preço Máximo ao Consumidor.
         /// </summary>
         /// <value>Preço Máximo ao Consumidor.</value>
-        [DataMember(Name = "vPMC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPMC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vPMC { get; set; }
 
         /// <summary>

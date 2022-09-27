@@ -71,7 +71,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets infCarga
         /// </summary>
-        [DataMember(Name = "infCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infCarga", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazInfCarga infCarga { get; set; }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets infModal
         /// </summary>
-        [DataMember(Name = "infModal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infModal", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazInfModal infModal { get; set; }
 
         /// <summary>

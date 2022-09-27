@@ -79,7 +79,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Placa do veículo.
         /// </summary>
         /// <value>Placa do veículo.</value>
-        [DataMember(Name = "placa", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "placa", IsRequired = true, EmitDefaultValue = true)]
         public string placa { get; set; }
 
         /// <summary>
@@ -93,14 +93,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tara em KG.
         /// </summary>
         /// <value>Tara em KG.</value>
-        [DataMember(Name = "tara", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tara", IsRequired = true, EmitDefaultValue = true)]
         public int tara { get; set; }
 
         /// <summary>
         /// Capacidade em KG.
         /// </summary>
         /// <value>Capacidade em KG.</value>
-        [DataMember(Name = "capKG", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "capKG", IsRequired = true, EmitDefaultValue = true)]
         public int capKG { get; set; }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider.
         /// </summary>
         /// <value>Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider.</value>
-        [DataMember(Name = "tpCar", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpCar", IsRequired = true, EmitDefaultValue = true)]
         public string tpCar { get; set; }
 
         /// <summary>

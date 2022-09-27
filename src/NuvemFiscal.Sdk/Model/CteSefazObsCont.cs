@@ -59,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Conteúdo do campo.
         /// </summary>
         /// <value>Conteúdo do campo.</value>
-        [DataMember(Name = "xTexto", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xTexto", IsRequired = true, EmitDefaultValue = true)]
         public string xTexto { get; set; }
 
         /// <summary>

@@ -58,14 +58,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do Terminal de Carregamento.  Preencher de acordo com a Tabela de Terminais de Carregamento. O código de cada Porto está definido no Ministério de Transportes.
         /// </summary>
         /// <value>Código do Terminal de Carregamento.  Preencher de acordo com a Tabela de Terminais de Carregamento. O código de cada Porto está definido no Ministério de Transportes.</value>
-        [DataMember(Name = "cTermCarreg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cTermCarreg", IsRequired = true, EmitDefaultValue = true)]
         public string cTermCarreg { get; set; }
 
         /// <summary>
         /// Nome do Terminal de Carregamento.
         /// </summary>
         /// <value>Nome do Terminal de Carregamento.</value>
-        [DataMember(Name = "xTermCarreg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xTermCarreg", IsRequired = true, EmitDefaultValue = true)]
         public string xTermCarreg { get; set; }
 
         /// <summary>

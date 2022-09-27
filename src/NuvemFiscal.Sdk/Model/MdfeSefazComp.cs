@@ -55,14 +55,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo do Componente.  Preencher com: 01 - Vale Pedágio;  02 - Impostos, taxas e contribuições;  03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros.
         /// </summary>
         /// <value>Tipo do Componente.  Preencher com: 01 - Vale Pedágio;  02 - Impostos, taxas e contribuições;  03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros.</value>
-        [DataMember(Name = "tpComp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpComp", IsRequired = true, EmitDefaultValue = true)]
         public string tpComp { get; set; }
 
         /// <summary>
         /// Valor do componente.
         /// </summary>
         /// <value>Valor do componente.</value>
-        [DataMember(Name = "vComp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vComp", IsRequired = true, EmitDefaultValue = true)]
         public decimal vComp { get; set; }
 
         /// <summary>

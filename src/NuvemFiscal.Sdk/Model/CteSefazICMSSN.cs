@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Classificação Tributária do Serviço.  90 - ICMS Simples Nacional.
         /// </summary>
         /// <value>Classificação Tributária do Serviço.  90 - ICMS Simples Nacional.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
         /// Indica se o contribuinte é Simples Nacional   1&#x3D;Sim.
         /// </summary>
         /// <value>Indica se o contribuinte é Simples Nacional   1&#x3D;Sim.</value>
-        [DataMember(Name = "indSN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indSN", IsRequired = true, EmitDefaultValue = true)]
         public int indSN { get; set; }
 
         /// <summary>

@@ -109,28 +109,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Modelo da Nota Fiscal.  Preencher com:  01 - NF Modelo 01/1A e Avulsa;  04 - NF de Produtor.
         /// </summary>
         /// <value>Modelo da Nota Fiscal.  Preencher com:  01 - NF Modelo 01/1A e Avulsa;  04 - NF de Produtor.</value>
-        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 
         /// <summary>
         /// Série.
         /// </summary>
         /// <value>Série.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public string serie { get; set; }
 
         /// <summary>
         /// Número.
         /// </summary>
         /// <value>Número.</value>
-        [DataMember(Name = "nDoc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nDoc", IsRequired = true, EmitDefaultValue = true)]
         public string nDoc { get; set; }
 
         /// <summary>
         /// Data de Emissão.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data de Emissão.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dEmi { get; set; }
 
@@ -138,49 +138,49 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da Base de Cálculo do ICMS.
         /// </summary>
         /// <value>Valor da Base de Cálculo do ICMS.</value>
-        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBC { get; set; }
 
         /// <summary>
         /// Valor Total do ICMS.
         /// </summary>
         /// <value>Valor Total do ICMS.</value>
-        [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMS { get; set; }
 
         /// <summary>
         /// Valor da Base de Cálculo do ICMS ST.
         /// </summary>
         /// <value>Valor da Base de Cálculo do ICMS ST.</value>
-        [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCST { get; set; }
 
         /// <summary>
         /// Valor Total do ICMS ST.
         /// </summary>
         /// <value>Valor Total do ICMS ST.</value>
-        [DataMember(Name = "vST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vST", IsRequired = true, EmitDefaultValue = true)]
         public decimal vST { get; set; }
 
         /// <summary>
         /// Valor Total dos Produtos.
         /// </summary>
         /// <value>Valor Total dos Produtos.</value>
-        [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = true)]
         public decimal vProd { get; set; }
 
         /// <summary>
         /// Valor Total da NF.
         /// </summary>
         /// <value>Valor Total da NF.</value>
-        [DataMember(Name = "vNF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vNF", IsRequired = true, EmitDefaultValue = true)]
         public decimal vNF { get; set; }
 
         /// <summary>
         /// CFOP Predominante.  CFOP da NF ou, na existência de mais de um, predominância pelo critério de valor econômico.
         /// </summary>
         /// <value>CFOP Predominante.  CFOP da NF ou, na existência de mais de um, predominância pelo critério de valor econômico.</value>
-        [DataMember(Name = "nCFOP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nCFOP", IsRequired = true, EmitDefaultValue = true)]
         public int nCFOP { get; set; }
 
         /// <summary>

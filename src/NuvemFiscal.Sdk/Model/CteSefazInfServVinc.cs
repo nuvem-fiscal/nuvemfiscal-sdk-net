@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// informações do CT-e multimodal vinculado.
         /// </summary>
         /// <value>informações do CT-e multimodal vinculado.</value>
-        [DataMember(Name = "infCTeMultimodal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infCTeMultimodal", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazInfCTeMultimodal> infCTeMultimodal { get; set; }
 
         /// <summary>

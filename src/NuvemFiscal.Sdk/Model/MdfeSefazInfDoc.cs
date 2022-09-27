@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Informações dos Municípios de descarregamento.
         /// </summary>
         /// <value>Informações dos Municípios de descarregamento.</value>
-        [DataMember(Name = "infMunDescarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infMunDescarga", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazInfMunDescarga> infMunDescarga { get; set; }
 
         /// <summary>

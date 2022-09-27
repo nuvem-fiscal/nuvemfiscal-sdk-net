@@ -57,14 +57,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo da Unidade de Carga.  1 - Container;    2 - ULD;    3 - Pallet;    4 - Outros;.
         /// </summary>
         /// <value>Tipo da Unidade de Carga.  1 - Container;    2 - ULD;    3 - Pallet;    4 - Outros;.</value>
-        [DataMember(Name = "tpUnidCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpUnidCarga", IsRequired = true, EmitDefaultValue = true)]
         public int tpUnidCarga { get; set; }
 
         /// <summary>
         /// Identificação da Unidade de Carga.  Informar a identificação da unidade de carga, por exemplo: número do container.
         /// </summary>
         /// <value>Identificação da Unidade de Carga.  Informar a identificação da unidade de carga, por exemplo: número do container.</value>
-        [DataMember(Name = "idUnidCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "idUnidCarga", IsRequired = true, EmitDefaultValue = true)]
         public string idUnidCarga { get; set; }
 
         /// <summary>

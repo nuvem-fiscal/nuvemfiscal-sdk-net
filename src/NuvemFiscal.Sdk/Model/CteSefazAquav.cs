@@ -77,21 +77,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da Prestação Base de Cálculo do AFRMM.
         /// </summary>
         /// <value>Valor da Prestação Base de Cálculo do AFRMM.</value>
-        [DataMember(Name = "vPrest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPrest", IsRequired = true, EmitDefaultValue = true)]
         public decimal vPrest { get; set; }
 
         /// <summary>
         /// AFRMM (Adicional de Frete para Renovação da Marinha Mercante).
         /// </summary>
         /// <value>AFRMM (Adicional de Frete para Renovação da Marinha Mercante).</value>
-        [DataMember(Name = "vAFRMM", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vAFRMM", IsRequired = true, EmitDefaultValue = true)]
         public decimal vAFRMM { get; set; }
 
         /// <summary>
         /// Identificação do Navio.
         /// </summary>
         /// <value>Identificação do Navio.</value>
-        [DataMember(Name = "xNavio", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xNavio", IsRequired = true, EmitDefaultValue = true)]
         public string xNavio { get; set; }
 
         /// <summary>
@@ -112,14 +112,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Direção.  Preencher com: N-Norte, L-Leste, S-Sul, O-Oeste.
         /// </summary>
         /// <value>Direção.  Preencher com: N-Norte, L-Leste, S-Sul, O-Oeste.</value>
-        [DataMember(Name = "direc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "direc", IsRequired = true, EmitDefaultValue = true)]
         public string direc { get; set; }
 
         /// <summary>
         /// Irin do navio sempre deverá ser informado.
         /// </summary>
         /// <value>Irin do navio sempre deverá ser informado.</value>
-        [DataMember(Name = "irin", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "irin", IsRequired = true, EmitDefaultValue = true)]
         public string irin { get; set; }
 
         /// <summary>

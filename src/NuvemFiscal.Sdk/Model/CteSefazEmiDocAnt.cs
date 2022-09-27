@@ -94,14 +94,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Razão Social ou Nome do expedidor.
         /// </summary>
         /// <value>Razão Social ou Nome do expedidor.</value>
-        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Informações de identificação dos documentos de Transporte Anterior.
         /// </summary>
         /// <value>Informações de identificação dos documentos de Transporte Anterior.</value>
-        [DataMember(Name = "idDocAnt", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "idDocAnt", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazIdDocAnt> idDocAnt { get; set; }
 
         /// <summary>

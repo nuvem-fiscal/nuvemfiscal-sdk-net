@@ -98,7 +98,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador da IE do destinatário:  1 – Contribuinte ICMSpagamento à vista;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.
         /// </summary>
         /// <value>Indicador da IE do destinatário:  1 – Contribuinte ICMSpagamento à vista;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.</value>
-        [DataMember(Name = "indIEDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indIEDest", IsRequired = true, EmitDefaultValue = true)]
         public int indIEDest { get; set; }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação do Container.
         /// </summary>
         /// <value>Identificação do Container.</value>
-        [DataMember(Name = "nCont", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nCont", IsRequired = true, EmitDefaultValue = true)]
         public string nCont { get; set; }
 
         /// <summary>

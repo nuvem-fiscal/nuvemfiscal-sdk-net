@@ -59,28 +59,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Classificação Tributária do Serviço.  60 - ICMS cobrado por substituição tributária.
         /// </summary>
         /// <value>Classificação Tributária do Serviço.  60 - ICMS cobrado por substituição tributária.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS ST retido.  Valor do frete sobre o qual será calculado o ICMS a ser substituído na Prestação.
         /// </summary>
         /// <value>Valor da BC do ICMS ST retido.  Valor do frete sobre o qual será calculado o ICMS a ser substituído na Prestação.</value>
-        [DataMember(Name = "vBCSTRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCSTRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCSTRet { get; set; }
 
         /// <summary>
         /// Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” – que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.
         /// </summary>
         /// <value>Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” – que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.</value>
-        [DataMember(Name = "vICMSSTRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSSTRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSSTRet { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS.  Percentual de Alíquota incidente na prestação de serviço de transporte.
         /// </summary>
         /// <value>Alíquota do ICMS.  Percentual de Alíquota incidente na prestação de serviço de transporte.</value>
-        [DataMember(Name = "pICMSSTRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSSTRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSSTRet { get; set; }
 
         /// <summary>

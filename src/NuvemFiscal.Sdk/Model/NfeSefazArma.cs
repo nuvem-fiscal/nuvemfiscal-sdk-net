@@ -67,28 +67,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador do tipo de arma de fogo (0 - Uso permitido; 1 - Uso restrito).
         /// </summary>
         /// <value>Indicador do tipo de arma de fogo (0 - Uso permitido; 1 - Uso restrito).</value>
-        [DataMember(Name = "tpArma", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpArma", IsRequired = true, EmitDefaultValue = true)]
         public int tpArma { get; set; }
 
         /// <summary>
         /// Número de série da arma.
         /// </summary>
         /// <value>Número de série da arma.</value>
-        [DataMember(Name = "nSerie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nSerie", IsRequired = true, EmitDefaultValue = true)]
         public string nSerie { get; set; }
 
         /// <summary>
         /// Número de série do cano.
         /// </summary>
         /// <value>Número de série do cano.</value>
-        [DataMember(Name = "nCano", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nCano", IsRequired = true, EmitDefaultValue = true)]
         public string nCano { get; set; }
 
         /// <summary>
         /// Descrição completa da arma, compreendendo: calibre, marca, capacidade, tipo de funcionamento, comprimento e demais elementos que permitam a sua perfeita identificação.
         /// </summary>
         /// <value>Descrição completa da arma, compreendendo: calibre, marca, capacidade, tipo de funcionamento, comprimento e demais elementos que permitam a sua perfeita identificação.</value>
-        [DataMember(Name = "descr", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "descr", IsRequired = true, EmitDefaultValue = true)]
         public string descr { get; set; }
 
         /// <summary>

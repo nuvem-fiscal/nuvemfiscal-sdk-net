@@ -50,14 +50,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo período.  4-no período.
         /// </summary>
         /// <value>Tipo período.  4-no período.</value>
-        [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
         public int tpPer { get; set; }
 
         /// <summary>
         /// Data inicial.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data inicial.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dIni", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dIni { get; set; }
 
@@ -65,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Data final.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data final.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dFim", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dFim { get; set; }
 

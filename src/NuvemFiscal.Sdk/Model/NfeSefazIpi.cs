@@ -82,7 +82,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de Enquadramento Legal do IPI (tabela a ser criada pela RFB).
         /// </summary>
         /// <value>Código de Enquadramento Legal do IPI (tabela a ser criada pela RFB).</value>
-        [DataMember(Name = "cEnq", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cEnq", IsRequired = true, EmitDefaultValue = true)]
         public string cEnq { get; set; }
 
         /// <summary>

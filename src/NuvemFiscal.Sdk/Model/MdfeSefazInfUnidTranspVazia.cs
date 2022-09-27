@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação da unidades de transporte vazia.
         /// </summary>
         /// <value>Identificação da unidades de transporte vazia.</value>
-        [DataMember(Name = "idUnidTranspVazia", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "idUnidTranspVazia", IsRequired = true, EmitDefaultValue = true)]
         public string idUnidTranspVazia { get; set; }
 
         /// <summary>
         /// Tipo da unidade de transporte vazia.  Deve ser preenchido com “1” para Rodoviário Tração do tipo caminhão ou “2” para Rodoviário reboque do tipo carreta.
         /// </summary>
         /// <value>Tipo da unidade de transporte vazia.  Deve ser preenchido com “1” para Rodoviário Tração do tipo caminhão ou “2” para Rodoviário reboque do tipo carreta.</value>
-        [DataMember(Name = "tpUnidTranspVazia", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpUnidTranspVazia", IsRequired = true, EmitDefaultValue = true)]
         public int tpUnidTranspVazia { get; set; }
 
         /// <summary>

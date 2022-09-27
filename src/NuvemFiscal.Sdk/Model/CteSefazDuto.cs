@@ -57,7 +57,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Data de Início da prestação do serviço.
         /// </summary>
         /// <value>Data de Início da prestação do serviço.</value>
-        [DataMember(Name = "dIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dIni", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dIni { get; set; }
 
@@ -65,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Data de Fim da prestação do serviço.
         /// </summary>
         /// <value>Data de Fim da prestação do serviço.</value>
-        [DataMember(Name = "dFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dFim", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dFim { get; set; }
 

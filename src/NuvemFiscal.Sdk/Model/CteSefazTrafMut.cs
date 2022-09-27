@@ -54,21 +54,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Responsável pelo Faturamento.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.
         /// </summary>
         /// <value>Responsável pelo Faturamento.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.</value>
-        [DataMember(Name = "respFat", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "respFat", IsRequired = true, EmitDefaultValue = true)]
         public int respFat { get; set; }
 
         /// <summary>
         /// Ferrovia Emitente do CTe.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.
         /// </summary>
         /// <value>Ferrovia Emitente do CTe.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.</value>
-        [DataMember(Name = "ferrEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ferrEmi", IsRequired = true, EmitDefaultValue = true)]
         public int ferrEmi { get; set; }
 
         /// <summary>
         /// Valor do Frete do Tráfego Mútuo.
         /// </summary>
         /// <value>Valor do Frete do Tráfego Mútuo.</value>
-        [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFrete { get; set; }
 
         /// <summary>

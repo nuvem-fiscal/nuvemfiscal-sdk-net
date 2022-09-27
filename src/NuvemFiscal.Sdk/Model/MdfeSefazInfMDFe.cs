@@ -108,25 +108,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ide
         /// </summary>
-        [DataMember(Name = "ide", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ide", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazIde ide { get; set; }
 
         /// <summary>
         /// Gets or Sets emit
         /// </summary>
-        [DataMember(Name = "emit", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "emit", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazEmit emit { get; set; }
 
         /// <summary>
         /// Gets or Sets infModal
         /// </summary>
-        [DataMember(Name = "infModal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infModal", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazInfModal infModal { get; set; }
 
         /// <summary>
         /// Gets or Sets infDoc
         /// </summary>
-        [DataMember(Name = "infDoc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infDoc", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazInfDoc infDoc { get; set; }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets tot
         /// </summary>
-        [DataMember(Name = "tot", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tot", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazTot tot { get; set; }
 
         /// <summary>

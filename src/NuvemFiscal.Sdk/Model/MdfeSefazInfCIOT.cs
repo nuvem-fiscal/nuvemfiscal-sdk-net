@@ -55,7 +55,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código Identificador da Operação de Transporte.  Também Conhecido como conta frete.
         /// </summary>
         /// <value>Código Identificador da Operação de Transporte.  Também Conhecido como conta frete.</value>
-        [DataMember(Name = "CIOT", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CIOT", IsRequired = true, EmitDefaultValue = true)]
         public string CIOT { get; set; }
 
         /// <summary>

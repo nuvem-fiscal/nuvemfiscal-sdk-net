@@ -71,7 +71,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Produto predominante.  Informar a descrição do produto predominante.
         /// </summary>
         /// <value>Produto predominante.  Informar a descrição do produto predominante.</value>
-        [DataMember(Name = "proPred", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "proPred", IsRequired = true, EmitDefaultValue = true)]
         public string proPred { get; set; }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Informações de quantidades da Carga do CT-e.  Para o Aéreo é obrigatório o preenchimento desse campo da seguinte forma.  1 - Peso Bruto, sempre em quilogramas (obrigatório);  2 - Peso Cubado; sempre em quilogramas;  3 - Quantidade de volumes, sempre em unidades (obrigatório);  4 - Cubagem, sempre em metros cúbicos (obrigatório apenas quando for impossível preencher as dimensões da(s) embalagem(ens) na tag xDime do leiaute do Aéreo).
         /// </summary>
         /// <value>Informações de quantidades da Carga do CT-e.  Para o Aéreo é obrigatório o preenchimento desse campo da seguinte forma.  1 - Peso Bruto, sempre em quilogramas (obrigatório);  2 - Peso Cubado; sempre em quilogramas;  3 - Quantidade de volumes, sempre em unidades (obrigatório);  4 - Cubagem, sempre em metros cúbicos (obrigatório apenas quando for impossível preencher as dimensões da(s) embalagem(ens) na tag xDime do leiaute do Aéreo).</value>
-        [DataMember(Name = "infQ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infQ", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazInfQ> infQ { get; set; }
 
         /// <summary>

@@ -96,28 +96,28 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do Órgão emissor.
         /// </summary>
         /// <value>CNPJ do Órgão emissor.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Órgão emitente.
         /// </summary>
         /// <value>Órgão emitente.</value>
-        [DataMember(Name = "xOrgao", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xOrgao", IsRequired = true, EmitDefaultValue = true)]
         public string xOrgao { get; set; }
 
         /// <summary>
         /// Matrícula do agente.
         /// </summary>
         /// <value>Matrícula do agente.</value>
-        [DataMember(Name = "matr", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "matr", IsRequired = true, EmitDefaultValue = true)]
         public string matr { get; set; }
 
         /// <summary>
         /// Nome do agente.
         /// </summary>
         /// <value>Nome do agente.</value>
-        [DataMember(Name = "xAgente", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xAgente", IsRequired = true, EmitDefaultValue = true)]
         public string xAgente { get; set; }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla da Unidade da Federação.
         /// </summary>
         /// <value>Sigla da Unidade da Federação.</value>
-        [DataMember(Name = "UF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UF", IsRequired = true, EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Repartição Fiscal emitente.
         /// </summary>
         /// <value>Repartição Fiscal emitente.</value>
-        [DataMember(Name = "repEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "repEmi", IsRequired = true, EmitDefaultValue = true)]
         public string repEmi { get; set; }
 
         /// <summary>

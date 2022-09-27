@@ -50,21 +50,21 @@ namespace NuvemFiscal.Sdk.Model
         /// BC do CIDE ( Quantidade comercializada).
         /// </summary>
         /// <value>BC do CIDE ( Quantidade comercializada).</value>
-        [DataMember(Name = "qBCProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qBCProd", IsRequired = true, EmitDefaultValue = true)]
         public decimal qBCProd { get; set; }
 
         /// <summary>
         /// Alíquota do CIDE  (em reais).
         /// </summary>
         /// <value>Alíquota do CIDE  (em reais).</value>
-        [DataMember(Name = "vAliqProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vAliqProd", IsRequired = true, EmitDefaultValue = true)]
         public decimal vAliqProd { get; set; }
 
         /// <summary>
         /// Valor do CIDE.
         /// </summary>
         /// <value>Valor do CIDE.</value>
-        [DataMember(Name = "vCIDE", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vCIDE", IsRequired = true, EmitDefaultValue = true)]
         public decimal vCIDE { get; set; }
 
         /// <summary>

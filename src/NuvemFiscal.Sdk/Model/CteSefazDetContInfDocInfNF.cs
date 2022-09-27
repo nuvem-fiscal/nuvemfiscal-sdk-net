@@ -60,14 +60,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Série.
         /// </summary>
         /// <value>Série.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public string serie { get; set; }
 
         /// <summary>
         /// Número.
         /// </summary>
         /// <value>Número.</value>
-        [DataMember(Name = "nDoc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nDoc", IsRequired = true, EmitDefaultValue = true)]
         public string nDoc { get; set; }
 
         /// <summary>

@@ -63,14 +63,14 @@ namespace NuvemFiscal.Sdk.Model
         /// UF de encerramento do manifesto.
         /// </summary>
         /// <value>UF de encerramento do manifesto.</value>
-        [DataMember(Name = "uf", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "uf", IsRequired = true, EmitDefaultValue = true)]
         public string uf { get; set; }
 
         /// <summary>
         /// Código IBGE do Município de encerramento do manifesto.
         /// </summary>
         /// <value>Código IBGE do Município de encerramento do manifesto.</value>
-        [DataMember(Name = "codigo_municipio", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "codigo_municipio", IsRequired = true, EmitDefaultValue = true)]
         public int codigo_municipio { get; set; }
 
         /// <summary>

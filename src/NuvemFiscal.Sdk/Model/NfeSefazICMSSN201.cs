@@ -70,21 +70,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Origem da mercadoria:  0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  1 - Estrangeira - Importação direta, exceto a indicada no código 6;  2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.
         /// </summary>
         /// <value>Origem da mercadoria:  0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  1 - Estrangeira - Importação direta, exceto a indicada no código 6;  2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
-        [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
         public int orig { get; set; }
 
         /// <summary>
         /// 201- Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS por Substituição Tributária (v.2.0).
         /// </summary>
         /// <value>201- Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS por Substituição Tributária (v.2.0).</value>
-        [DataMember(Name = "CSOSN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CSOSN", IsRequired = true, EmitDefaultValue = true)]
         public int CSOSN { get; set; }
 
         /// <summary>
         /// Modalidade de determinação da BC do ICMS ST:  0 – Preço tabelado ou máximo  sugerido;  1 - Lista Negativa (valor);  2 - Lista Positiva (valor);  3 - Lista Neutra (valor);  4 - Margem Valor Agregado (%%);  5 - Pauta (valor). (v2.0)  6 - Valor da Operação.
         /// </summary>
         /// <value>Modalidade de determinação da BC do ICMS ST:  0 – Preço tabelado ou máximo  sugerido;  1 - Lista Negativa (valor);  2 - Lista Positiva (valor);  3 - Lista Neutra (valor);  4 - Margem Valor Agregado (%%);  5 - Pauta (valor). (v2.0)  6 - Valor da Operação.</value>
-        [DataMember(Name = "modBCST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "modBCST", IsRequired = true, EmitDefaultValue = true)]
         public int modBCST { get; set; }
 
         /// <summary>
@@ -105,21 +105,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do ICMS ST (v2.0).
         /// </summary>
         /// <value>Valor da BC do ICMS ST (v2.0).</value>
-        [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCST { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS ST (v2.0).
         /// </summary>
         /// <value>Alíquota do ICMS ST (v2.0).</value>
-        [DataMember(Name = "pICMSST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSST", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSST { get; set; }
 
         /// <summary>
         /// Valor do ICMS ST (v2.0).
         /// </summary>
         /// <value>Valor do ICMS ST (v2.0).</value>
-        [DataMember(Name = "vICMSST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSST", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSST { get; set; }
 
         /// <summary>
@@ -147,14 +147,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0).
         /// </summary>
         /// <value>Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0).</value>
-        [DataMember(Name = "pCredSN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pCredSN", IsRequired = true, EmitDefaultValue = true)]
         public decimal pCredSN { get; set; }
 
         /// <summary>
         /// Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0).
         /// </summary>
         /// <value>Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0).</value>
-        [DataMember(Name = "vCredICMSSN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vCredICMSSN", IsRequired = true, EmitDefaultValue = true)]
         public decimal vCredICMSSN { get; set; }
 
         /// <summary>

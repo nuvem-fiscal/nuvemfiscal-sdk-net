@@ -56,7 +56,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets infResp
         /// </summary>
-        [DataMember(Name = "infResp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infResp", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazInfResp infResp { get; set; }
 
         /// <summary>

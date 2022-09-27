@@ -111,7 +111,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da UF do emitente do MDF-e.  Código da UF do emitente do Documento Fiscal. Utilizar a  Tabela do IBGE de código de unidades da federação.
         /// </summary>
         /// <value>Código da UF do emitente do MDF-e.  Código da UF do emitente do Documento Fiscal. Utilizar a  Tabela do IBGE de código de unidades da federação.</value>
-        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
         public int cUF { get; set; }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo do Emitente.  1 - Prestador de serviço de transporte  2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado    OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.
         /// </summary>
         /// <value>Tipo do Emitente.  1 - Prestador de serviço de transporte  2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado    OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.</value>
-        [DataMember(Name = "tpEmit", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpEmit", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmit { get; set; }
 
         /// <summary>
@@ -146,84 +146,84 @@ namespace NuvemFiscal.Sdk.Model
         /// Série do Manifesto.  Informar a série do documento fiscal (informar zero se inexistente).  Série na faixa [920-969]: Reservada para emissão por contribuinte pessoa física com inscrição estadual.
         /// </summary>
         /// <value>Série do Manifesto.  Informar a série do documento fiscal (informar zero se inexistente).  Série na faixa [920-969]: Reservada para emissão por contribuinte pessoa física com inscrição estadual.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
         /// <summary>
         /// Número do Manifesto.  Número que identifica o Manifesto. 1 a 999999999.
         /// </summary>
         /// <value>Número do Manifesto.  Número que identifica o Manifesto. 1 a 999999999.</value>
-        [DataMember(Name = "nMDF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nMDF", IsRequired = true, EmitDefaultValue = true)]
         public int nMDF { get; set; }
 
         /// <summary>
         /// Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.
         /// </summary>
         /// <value>Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.</value>
-        [DataMember(Name = "cMDF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMDF", IsRequired = true, EmitDefaultValue = true)]
         public int cMDF { get; set; }
 
         /// <summary>
         /// Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.
         /// </summary>
         /// <value>Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.</value>
-        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = true)]
         public int cDV { get; set; }
 
         /// <summary>
         /// Modalidade de transporte.  1 - Rodoviário;  2 - Aéreo; 3 - Aquaviário; 4 - Ferroviário.
         /// </summary>
         /// <value>Modalidade de transporte.  1 - Rodoviário;  2 - Aéreo; 3 - Aquaviário; 4 - Ferroviário.</value>
-        [DataMember(Name = "modal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "modal", IsRequired = true, EmitDefaultValue = true)]
         public int modal { get; set; }
 
         /// <summary>
         /// Data e hora de emissão do Manifesto.  Formato AAAA-MM-DDTHH:MM:DD TZD.
         /// </summary>
         /// <value>Data e hora de emissão do Manifesto.  Formato AAAA-MM-DDTHH:MM:DD TZD.</value>
-        [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = true)]
         public DateTime dhEmi { get; set; }
 
         /// <summary>
         /// Forma de emissão do Manifesto.  1 - Normal  ; 2 - Contingência; 3-Regime Especial NFF.
         /// </summary>
         /// <value>Forma de emissão do Manifesto.  1 - Normal  ; 2 - Contingência; 3-Regime Especial NFF.</value>
-        [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmis { get; set; }
 
         /// <summary>
         /// Identificação do processo de emissão do Manifesto.  0 - emissão de MDF-e com aplicativo do contribuinte.
         /// </summary>
         /// <value>Identificação do processo de emissão do Manifesto.  0 - emissão de MDF-e com aplicativo do contribuinte.</value>
-        [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
         public string procEmi { get; set; }
 
         /// <summary>
         /// Versão do processo de emissão.  Informar a versão do aplicativo emissor de MDF-e.
         /// </summary>
         /// <value>Versão do processo de emissão.  Informar a versão do aplicativo emissor de MDF-e.</value>
-        [DataMember(Name = "verProc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "verProc", IsRequired = true, EmitDefaultValue = true)]
         public string verProc { get; set; }
 
         /// <summary>
         /// Sigla da UF do Carregamento.  Utilizar a Tabela do IBGE de código de unidades da federação.  Informar &#39;EX&#39; para operações com o exterior.
         /// </summary>
         /// <value>Sigla da UF do Carregamento.  Utilizar a Tabela do IBGE de código de unidades da federação.  Informar &#39;EX&#39; para operações com o exterior.</value>
-        [DataMember(Name = "UFIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFIni", IsRequired = true, EmitDefaultValue = true)]
         public string UFIni { get; set; }
 
         /// <summary>
         /// Sigla da UF do Descarregamento.  Utilizar a Tabela do IBGE de código de unidades da federação.  Informar &#39;EX&#39; para operações com o exterior.
         /// </summary>
         /// <value>Sigla da UF do Descarregamento.  Utilizar a Tabela do IBGE de código de unidades da federação.  Informar &#39;EX&#39; para operações com o exterior.</value>
-        [DataMember(Name = "UFFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFFim", IsRequired = true, EmitDefaultValue = true)]
         public string UFFim { get; set; }
 
         /// <summary>
         /// Informações dos Municípios de Carregamento.
         /// </summary>
         /// <value>Informações dos Municípios de Carregamento.</value>
-        [DataMember(Name = "infMunCarrega", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infMunCarrega", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazInfMunCarrega> infMunCarrega { get; set; }
 
         /// <summary>

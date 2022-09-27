@@ -102,21 +102,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE.
         /// </summary>
         /// <value>Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE.</value>
-        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
         public int cUF { get; set; }
 
         /// <summary>
         /// Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.
         /// </summary>
         /// <value>Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.</value>
-        [DataMember(Name = "cNF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cNF", IsRequired = true, EmitDefaultValue = true)]
         public int cNF { get; set; }
 
         /// <summary>
         /// Descrição da Natureza da Operação.
         /// </summary>
         /// <value>Descrição da Natureza da Operação.</value>
-        [DataMember(Name = "natOp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "natOp", IsRequired = true, EmitDefaultValue = true)]
         public string natOp { get; set; }
 
         /// <summary>
@@ -130,21 +130,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Série do Documento Fiscal  série normal 0-889  Avulsa Fisco 890-899  SCAN 900-999.
         /// </summary>
         /// <value>Série do Documento Fiscal  série normal 0-889  Avulsa Fisco 890-899  SCAN 900-999.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
         /// <summary>
         /// Número do Documento Fiscal.
         /// </summary>
         /// <value>Número do Documento Fiscal.</value>
-        [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = true)]
         public int nNF { get; set; }
 
         /// <summary>
         /// Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00.
         /// </summary>
         /// <value>Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00.</value>
-        [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = true)]
         public DateTime dhEmi { get; set; }
 
         /// <summary>
@@ -158,42 +158,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo do Documento Fiscal (0 - entrada; 1 - saída).
         /// </summary>
         /// <value>Tipo do Documento Fiscal (0 - entrada; 1 - saída).</value>
-        [DataMember(Name = "tpNF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpNF", IsRequired = true, EmitDefaultValue = true)]
         public int tpNF { get; set; }
 
         /// <summary>
         /// Identificador de Local de destino da operação (1-Interna;2-Interestadual;3-Exterior).
         /// </summary>
         /// <value>Identificador de Local de destino da operação (1-Interna;2-Interestadual;3-Exterior).</value>
-        [DataMember(Name = "idDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "idDest", IsRequired = true, EmitDefaultValue = true)]
         public int idDest { get; set; }
 
         /// <summary>
         /// Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).
         /// </summary>
         /// <value>Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).</value>
-        [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = true)]
         public int cMunFG { get; set; }
 
         /// <summary>
         /// Formato de impressão do DANFE (0-sem DANFE;1-DANFe Retrato; 2-DANFe Paisagem;3-DANFe Simplificado;             4-DANFe NFC-e;5-DANFe NFC-e em mensagem eletrônica).
         /// </summary>
         /// <value>Formato de impressão do DANFE (0-sem DANFE;1-DANFe Retrato; 2-DANFe Paisagem;3-DANFe Simplificado;             4-DANFe NFC-e;5-DANFe NFC-e em mensagem eletrônica).</value>
-        [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = true)]
         public int tpImp { get; set; }
 
         /// <summary>
         /// Forma de emissão da NF-e  1 - Normal;  2 - Contingência FS  3 - Regime Especial NFF (NT 2021.002)  4 - Contingência DPEC  5 - Contingência FSDA  6 - Contingência SVC - AN  7 - Contingência SVC - RS  9 - Contingência off-line NFC-e.
         /// </summary>
         /// <value>Forma de emissão da NF-e  1 - Normal;  2 - Contingência FS  3 - Regime Especial NFF (NT 2021.002)  4 - Contingência DPEC  5 - Contingência FSDA  6 - Contingência SVC - AN  7 - Contingência SVC - RS  9 - Contingência off-line NFC-e.</value>
-        [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmis { get; set; }
 
         /// <summary>
         /// Digito Verificador da Chave de Acesso da NF-e.
         /// </summary>
         /// <value>Digito Verificador da Chave de Acesso da NF-e.</value>
-        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = true)]
         public int cDV { get; set; }
 
         /// <summary>
@@ -207,21 +207,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Finalidade da emissão da NF-e:  1 - NFe normal  2 - NFe complementar  3 - NFe de ajuste  4 - Devolução/Retorno.
         /// </summary>
         /// <value>Finalidade da emissão da NF-e:  1 - NFe normal  2 - NFe complementar  3 - NFe de ajuste  4 - Devolução/Retorno.</value>
-        [DataMember(Name = "finNFe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "finNFe", IsRequired = true, EmitDefaultValue = true)]
         public int finNFe { get; set; }
 
         /// <summary>
         /// Indica operação com consumidor final (0-Não;1-Consumidor Final).
         /// </summary>
         /// <value>Indica operação com consumidor final (0-Não;1-Consumidor Final).</value>
-        [DataMember(Name = "indFinal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indFinal", IsRequired = true, EmitDefaultValue = true)]
         public int indFinal { get; set; }
 
         /// <summary>
         /// Indicador de presença do comprador no estabelecimento comercial no momento da oepração             (0-Não se aplica (ex.: Nota Fiscal complementar ou de ajuste;1-Operação presencial;2-Não presencial, internet;3-Não presencial, teleatendimento;4-NFC-e entrega em domicílio;5-Operação presencial, fora do estabelecimento;9-Não presencial, outros).
         /// </summary>
         /// <value>Indicador de presença do comprador no estabelecimento comercial no momento da oepração             (0-Não se aplica (ex.: Nota Fiscal complementar ou de ajuste;1-Operação presencial;2-Não presencial, internet;3-Não presencial, teleatendimento;4-NFC-e entrega em domicílio;5-Operação presencial, fora do estabelecimento;9-Não presencial, outros).</value>
-        [DataMember(Name = "indPres", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indPres", IsRequired = true, EmitDefaultValue = true)]
         public int indPres { get; set; }
 
         /// <summary>
@@ -235,14 +235,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Processo de emissão utilizado com a seguinte codificação:  0 - emissão de NF-e com aplicativo do contribuinte;  1 - emissão de NF-e avulsa pelo Fisco;  2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco;  3- emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco.
         /// </summary>
         /// <value>Processo de emissão utilizado com a seguinte codificação:  0 - emissão de NF-e com aplicativo do contribuinte;  1 - emissão de NF-e avulsa pelo Fisco;  2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco;  3- emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco.</value>
-        [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
         public int procEmi { get; set; }
 
         /// <summary>
         /// versão do aplicativo utilizado no processo de  emissão.
         /// </summary>
         /// <value>versão do aplicativo utilizado no processo de  emissão.</value>
-        [DataMember(Name = "verProc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "verProc", IsRequired = true, EmitDefaultValue = true)]
         public string verProc { get; set; }
 
         /// <summary>

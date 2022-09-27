@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Classificação Tributária do Serviço.  Preencher com:          40 - ICMS isenção;          41 - ICMS não tributada;          51 - ICMS diferido.
         /// </summary>
         /// <value>Classificação Tributária do Serviço.  Preencher com:          40 - ICMS isenção;          41 - ICMS não tributada;          51 - ICMS diferido.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>

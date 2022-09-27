@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Grupo de Informações de Correção.
         /// </summary>
         /// <value>Grupo de Informações de Correção.</value>
-        [DataMember(Name = "correcoes", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "correcoes", IsRequired = true, EmitDefaultValue = true)]
         public List<CteInfCorrecao> correcoes { get; set; }
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Classificação Tributária do Serviço.  90 - ICMS Outra UF.
         /// </summary>
         /// <value>Classificação Tributária do Serviço.  90 - ICMS Outra UF.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
@@ -73,21 +73,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do ICMS.
         /// </summary>
         /// <value>Valor da BC do ICMS.</value>
-        [DataMember(Name = "vBCOutraUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCOutraUF", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCOutraUF { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS.
         /// </summary>
         /// <value>Alíquota do ICMS.</value>
-        [DataMember(Name = "pICMSOutraUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSOutraUF", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSOutraUF { get; set; }
 
         /// <summary>
         /// Valor do ICMS devido outra UF.
         /// </summary>
         /// <value>Valor do ICMS devido outra UF.</value>
-        [DataMember(Name = "vICMSOutraUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSOutraUF", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSOutraUF { get; set; }
 
         /// <summary>

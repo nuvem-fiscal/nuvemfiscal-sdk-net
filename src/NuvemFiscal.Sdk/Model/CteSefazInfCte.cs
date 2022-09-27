@@ -109,7 +109,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ide
         /// </summary>
-        [DataMember(Name = "ide", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ide", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazIde ide { get; set; }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets emit
         /// </summary>
-        [DataMember(Name = "emit", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "emit", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazEmit emit { get; set; }
 
         /// <summary>
@@ -151,13 +151,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets vPrest
         /// </summary>
-        [DataMember(Name = "vPrest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPrest", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazVPrest vPrest { get; set; }
 
         /// <summary>
         /// Gets or Sets imp
         /// </summary>
-        [DataMember(Name = "imp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "imp", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazInfCteImp imp { get; set; }
 
         /// <summary>

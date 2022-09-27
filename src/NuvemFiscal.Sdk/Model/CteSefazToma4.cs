@@ -72,7 +72,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tomador do Serviço.  Preencher com:                 4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço.
         /// </summary>
         /// <value>Tomador do Serviço.  Preencher com:                 4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço.</value>
-        [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = true)]
         public int toma { get; set; }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Razão Social ou Nome.
         /// </summary>
         /// <value>Razão Social ou Nome.</value>
-        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets enderToma
         /// </summary>
-        [DataMember(Name = "enderToma", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "enderToma", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazEndereco enderToma { get; set; }
 
         /// <summary>

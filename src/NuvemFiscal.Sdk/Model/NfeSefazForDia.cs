@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade em quilogramas - peso líquido.
         /// </summary>
         /// <value>Quantidade em quilogramas - peso líquido.</value>
-        [DataMember(Name = "qtde", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qtde", IsRequired = true, EmitDefaultValue = true)]
         public decimal qtde { get; set; }
 
         /// <summary>

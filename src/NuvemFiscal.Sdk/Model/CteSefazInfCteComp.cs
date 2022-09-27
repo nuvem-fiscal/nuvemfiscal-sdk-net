@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Chave do CT-e complementado.
         /// </summary>
         /// <value>Chave do CT-e complementado.</value>
-        [DataMember(Name = "chCTe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chCTe", IsRequired = true, EmitDefaultValue = true)]
         public string chCTe { get; set; }
 
         /// <summary>

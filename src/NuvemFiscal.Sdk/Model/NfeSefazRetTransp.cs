@@ -56,42 +56,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do Serviço.
         /// </summary>
         /// <value>Valor do Serviço.</value>
-        [DataMember(Name = "vServ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vServ", IsRequired = true, EmitDefaultValue = true)]
         public decimal vServ { get; set; }
 
         /// <summary>
         /// BC da Retenção do ICMS.
         /// </summary>
         /// <value>BC da Retenção do ICMS.</value>
-        [DataMember(Name = "vBCRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCRet { get; set; }
 
         /// <summary>
         /// Alíquota da Retenção.
         /// </summary>
         /// <value>Alíquota da Retenção.</value>
-        [DataMember(Name = "pICMSRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSRet { get; set; }
 
         /// <summary>
         /// Valor do ICMS Retido.
         /// </summary>
         /// <value>Valor do ICMS Retido.</value>
-        [DataMember(Name = "vICMSRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSRet { get; set; }
 
         /// <summary>
         /// Código Fiscal de Operações e Prestações.
         /// </summary>
         /// <value>Código Fiscal de Operações e Prestações.</value>
-        [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = true)]
         public int CFOP { get; set; }
 
         /// <summary>
         /// Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).
         /// </summary>
         /// <value>Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).</value>
-        [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = true)]
         public int cMunFG { get; set; }
 
         /// <summary>

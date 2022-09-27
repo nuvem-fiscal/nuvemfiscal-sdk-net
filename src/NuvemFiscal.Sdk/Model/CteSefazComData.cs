@@ -48,14 +48,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de data/período programado para entrega.  Preencher com:                    1-Na data;                    2-Até a data;                    3-A partir da data.
         /// </summary>
         /// <value>Tipo de data/período programado para entrega.  Preencher com:                    1-Na data;                    2-Até a data;                    3-A partir da data.</value>
-        [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
         public int tpPer { get; set; }
 
         /// <summary>
         /// Data programada.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data programada.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dProg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dProg", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dProg { get; set; }
 

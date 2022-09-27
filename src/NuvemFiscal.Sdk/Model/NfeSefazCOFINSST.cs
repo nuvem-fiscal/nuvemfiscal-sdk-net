@@ -84,7 +84,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do COFINS ST.
         /// </summary>
         /// <value>Valor do COFINS ST.</value>
-        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vCOFINS { get; set; }
 
         /// <summary>

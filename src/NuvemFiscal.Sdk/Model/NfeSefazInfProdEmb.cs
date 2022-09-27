@@ -60,21 +60,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Embalagem do produto.
         /// </summary>
         /// <value>Embalagem do produto.</value>
-        [DataMember(Name = "xEmb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xEmb", IsRequired = true, EmitDefaultValue = true)]
         public string xEmb { get; set; }
 
         /// <summary>
         /// Volume do produto na embalagem.
         /// </summary>
         /// <value>Volume do produto na embalagem.</value>
-        [DataMember(Name = "qVolEmb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qVolEmb", IsRequired = true, EmitDefaultValue = true)]
         public decimal qVolEmb { get; set; }
 
         /// <summary>
         /// Unidade de Medida da Embalagem.
         /// </summary>
         /// <value>Unidade de Medida da Embalagem.</value>
-        [DataMember(Name = "uEmb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "uEmb", IsRequired = true, EmitDefaultValue = true)]
         public string uEmb { get; set; }
 
         /// <summary>

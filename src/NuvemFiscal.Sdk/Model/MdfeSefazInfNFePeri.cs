@@ -66,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número ONU/UN.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal.
         /// </summary>
         /// <value>Número ONU/UN.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal.</value>
-        [DataMember(Name = "nONU", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nONU", IsRequired = true, EmitDefaultValue = true)]
         public string nONU { get; set; }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade total por produto.  Preencher conforme a legislação de transporte de produtos perigosos aplicada ao modal.
         /// </summary>
         /// <value>Quantidade total por produto.  Preencher conforme a legislação de transporte de produtos perigosos aplicada ao modal.</value>
-        [DataMember(Name = "qTotProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qTotProd", IsRequired = true, EmitDefaultValue = true)]
         public string qTotProd { get; set; }
 
         /// <summary>

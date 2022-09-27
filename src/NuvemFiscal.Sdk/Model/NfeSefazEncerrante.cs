@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Numero de identificação do Bico utilizado no abastecimento.
         /// </summary>
         /// <value>Numero de identificação do Bico utilizado no abastecimento.</value>
-        [DataMember(Name = "nBico", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nBico", IsRequired = true, EmitDefaultValue = true)]
         public int nBico { get; set; }
 
         /// <summary>
@@ -68,21 +68,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Numero de identificação do tanque ao qual o bico está interligado.
         /// </summary>
         /// <value>Numero de identificação do tanque ao qual o bico está interligado.</value>
-        [DataMember(Name = "nTanque", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nTanque", IsRequired = true, EmitDefaultValue = true)]
         public int nTanque { get; set; }
 
         /// <summary>
         /// Valor do Encerrante no ínicio do abastecimento.
         /// </summary>
         /// <value>Valor do Encerrante no ínicio do abastecimento.</value>
-        [DataMember(Name = "vEncIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vEncIni", IsRequired = true, EmitDefaultValue = true)]
         public decimal vEncIni { get; set; }
 
         /// <summary>
         /// Valor do Encerrante no final do abastecimento.
         /// </summary>
         /// <value>Valor do Encerrante no final do abastecimento.</value>
-        [DataMember(Name = "vEncFin", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vEncFin", IsRequired = true, EmitDefaultValue = true)]
         public decimal vEncFin { get; set; }
 
         /// <summary>

@@ -13,6 +13,7 @@ using System.Net;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Net.Http;
 
 namespace NuvemFiscal.Sdk.Client
 {
@@ -104,7 +105,7 @@ namespace NuvemFiscal.Sdk.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = "nuvemfiscal-sdk/{packageVersion}/{language}";
+            UserAgent = WebUtility.UrlEncode("nuvemfiscal-sdk/{packageVersion}/{language}");
             BasePath = "https://api.nuvemfiscal.com.br";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();

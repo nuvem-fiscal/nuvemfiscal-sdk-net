@@ -157,14 +157,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do produto ou serviço. Preencher com CFOP caso se trate de itens não relacionados com mercadorias/produto e que o contribuinte não possua codificação própria  Formato ”CFOP9999”.
         /// </summary>
         /// <value>Código do produto ou serviço. Preencher com CFOP caso se trate de itens não relacionados com mercadorias/produto e que o contribuinte não possua codificação própria  Formato ”CFOP9999”.</value>
-        [DataMember(Name = "cProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cProd", IsRequired = true, EmitDefaultValue = true)]
         public string cProd { get; set; }
 
         /// <summary>
         /// GTIN (Global Trade Item Number) do produto, antigo código EAN ou código de barras.
         /// </summary>
         /// <value>GTIN (Global Trade Item Number) do produto, antigo código EAN ou código de barras.</value>
-        [DataMember(Name = "cEAN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cEAN", IsRequired = true, EmitDefaultValue = true)]
         public string cEAN { get; set; }
 
         /// <summary>
@@ -178,14 +178,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Descrição do produto ou serviço.
         /// </summary>
         /// <value>Descrição do produto ou serviço.</value>
-        [DataMember(Name = "xProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xProd", IsRequired = true, EmitDefaultValue = true)]
         public string xProd { get; set; }
 
         /// <summary>
         /// Código NCM (8 posições), será permitida a informação do gênero (posição do capítulo do NCM) quando a operação não for de comércio exterior (importação/exportação) ou o produto não seja tributado pelo IPI. Em caso de item de serviço ou item que não tenham produto (Ex. transferência de crédito, crédito do ativo imobilizado, etc.), informar o código 00 (zeros) (v2.0).
         /// </summary>
         /// <value>Código NCM (8 posições), será permitida a informação do gênero (posição do capítulo do NCM) quando a operação não for de comércio exterior (importação/exportação) ou o produto não seja tributado pelo IPI. Em caso de item de serviço ou item que não tenham produto (Ex. transferência de crédito, crédito do ativo imobilizado, etc.), informar o código 00 (zeros) (v2.0).</value>
-        [DataMember(Name = "NCM", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "NCM", IsRequired = true, EmitDefaultValue = true)]
         public string NCM { get; set; }
 
         /// <summary>
@@ -232,42 +232,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Cfop.
         /// </summary>
         /// <value>Cfop.</value>
-        [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = true)]
         public int CFOP { get; set; }
 
         /// <summary>
         /// Unidade comercial.
         /// </summary>
         /// <value>Unidade comercial.</value>
-        [DataMember(Name = "uCom", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "uCom", IsRequired = true, EmitDefaultValue = true)]
         public string uCom { get; set; }
 
         /// <summary>
         /// Quantidade Comercial  do produto, alterado para aceitar de 0 a 4 casas decimais e 11 inteiros.
         /// </summary>
         /// <value>Quantidade Comercial  do produto, alterado para aceitar de 0 a 4 casas decimais e 11 inteiros.</value>
-        [DataMember(Name = "qCom", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qCom", IsRequired = true, EmitDefaultValue = true)]
         public decimal qCom { get; set; }
 
         /// <summary>
         /// Valor unitário de comercialização  - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.
         /// </summary>
         /// <value>Valor unitário de comercialização  - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.</value>
-        [DataMember(Name = "vUnCom", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vUnCom", IsRequired = true, EmitDefaultValue = true)]
         public decimal vUnCom { get; set; }
 
         /// <summary>
         /// Valor bruto do produto ou serviço.
         /// </summary>
         /// <value>Valor bruto do produto ou serviço.</value>
-        [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = true)]
         public decimal vProd { get; set; }
 
         /// <summary>
         /// GTIN (Global Trade Item Number) da unidade tributável, antigo código EAN ou código de barras.
         /// </summary>
         /// <value>GTIN (Global Trade Item Number) da unidade tributável, antigo código EAN ou código de barras.</value>
-        [DataMember(Name = "cEANTrib", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cEANTrib", IsRequired = true, EmitDefaultValue = true)]
         public string cEANTrib { get; set; }
 
         /// <summary>
@@ -281,21 +281,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Unidade Tributável.
         /// </summary>
         /// <value>Unidade Tributável.</value>
-        [DataMember(Name = "uTrib", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "uTrib", IsRequired = true, EmitDefaultValue = true)]
         public string uTrib { get; set; }
 
         /// <summary>
         /// Quantidade Tributável - alterado para aceitar de 0 a 4 casas decimais e 11 inteiros.
         /// </summary>
         /// <value>Quantidade Tributável - alterado para aceitar de 0 a 4 casas decimais e 11 inteiros.</value>
-        [DataMember(Name = "qTrib", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qTrib", IsRequired = true, EmitDefaultValue = true)]
         public decimal qTrib { get; set; }
 
         /// <summary>
         /// Valor unitário de tributação - - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.
         /// </summary>
         /// <value>Valor unitário de tributação - - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.</value>
-        [DataMember(Name = "vUnTrib", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vUnTrib", IsRequired = true, EmitDefaultValue = true)]
         public decimal vUnTrib { get; set; }
 
         /// <summary>
@@ -330,7 +330,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Este campo deverá ser preenchido com:   0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd)   1  – o valor do item (vProd) compõe o valor total da NF-e (vProd).
         /// </summary>
         /// <value>Este campo deverá ser preenchido com:   0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd)   1  – o valor do item (vProd) compõe o valor total da NF-e (vProd).</value>
-        [DataMember(Name = "indTot", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indTot", IsRequired = true, EmitDefaultValue = true)]
         public int indTot { get; set; }
 
         /// <summary>

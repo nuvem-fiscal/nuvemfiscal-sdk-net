@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de data/período programado para entrega.  0- Sem data definida.
         /// </summary>
         /// <value>Tipo de data/período programado para entrega.  0- Sem data definida.</value>
-        [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
         public int tpPer { get; set; }
 
         /// <summary>

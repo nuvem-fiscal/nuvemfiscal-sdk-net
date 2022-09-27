@@ -172,168 +172,168 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo da Operação (1 - Venda concessionária; 2 - Faturamento direto; 3 - Venda direta; 0 - Outros).
         /// </summary>
         /// <value>Tipo da Operação (1 - Venda concessionária; 2 - Faturamento direto; 3 - Venda direta; 0 - Outros).</value>
-        [DataMember(Name = "tpOp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpOp", IsRequired = true, EmitDefaultValue = true)]
         public int tpOp { get; set; }
 
         /// <summary>
         /// Chassi do veículo - VIN (código-identificação-veículo).
         /// </summary>
         /// <value>Chassi do veículo - VIN (código-identificação-veículo).</value>
-        [DataMember(Name = "chassi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chassi", IsRequired = true, EmitDefaultValue = true)]
         public string chassi { get; set; }
 
         /// <summary>
         /// Cor do veículo (código de cada montadora).
         /// </summary>
         /// <value>Cor do veículo (código de cada montadora).</value>
-        [DataMember(Name = "cCor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cCor", IsRequired = true, EmitDefaultValue = true)]
         public string cCor { get; set; }
 
         /// <summary>
         /// Descrição da cor.
         /// </summary>
         /// <value>Descrição da cor.</value>
-        [DataMember(Name = "xCor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xCor", IsRequired = true, EmitDefaultValue = true)]
         public string xCor { get; set; }
 
         /// <summary>
         /// Potência máxima do motor do veículo em cavalo vapor (CV). (potência-veículo).
         /// </summary>
         /// <value>Potência máxima do motor do veículo em cavalo vapor (CV). (potência-veículo).</value>
-        [DataMember(Name = "pot", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pot", IsRequired = true, EmitDefaultValue = true)]
         public string pot { get; set; }
 
         /// <summary>
         /// Capacidade voluntária do motor expressa em centímetros cúbicos (CC). (cilindradas).
         /// </summary>
         /// <value>Capacidade voluntária do motor expressa em centímetros cúbicos (CC). (cilindradas).</value>
-        [DataMember(Name = "cilin", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cilin", IsRequired = true, EmitDefaultValue = true)]
         public string cilin { get; set; }
 
         /// <summary>
         /// Peso líquido.
         /// </summary>
         /// <value>Peso líquido.</value>
-        [DataMember(Name = "pesoL", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pesoL", IsRequired = true, EmitDefaultValue = true)]
         public string pesoL { get; set; }
 
         /// <summary>
         /// Peso bruto.
         /// </summary>
         /// <value>Peso bruto.</value>
-        [DataMember(Name = "pesoB", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pesoB", IsRequired = true, EmitDefaultValue = true)]
         public string pesoB { get; set; }
 
         /// <summary>
         /// Serial (série).
         /// </summary>
         /// <value>Serial (série).</value>
-        [DataMember(Name = "nSerie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nSerie", IsRequired = true, EmitDefaultValue = true)]
         public string nSerie { get; set; }
 
         /// <summary>
         /// Tipo de combustível-Tabela RENAVAM: 01-Álcool; 02-Gasolina; 03-Diesel; 16-Álcool/Gas.; 17-Gas./Álcool/GNV; 18-Gasolina/Elétrico.
         /// </summary>
         /// <value>Tipo de combustível-Tabela RENAVAM: 01-Álcool; 02-Gasolina; 03-Diesel; 16-Álcool/Gas.; 17-Gas./Álcool/GNV; 18-Gasolina/Elétrico.</value>
-        [DataMember(Name = "tpComb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpComb", IsRequired = true, EmitDefaultValue = true)]
         public string tpComb { get; set; }
 
         /// <summary>
         /// Número do motor.
         /// </summary>
         /// <value>Número do motor.</value>
-        [DataMember(Name = "nMotor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nMotor", IsRequired = true, EmitDefaultValue = true)]
         public string nMotor { get; set; }
 
         /// <summary>
         /// CMT-Capacidade Máxima de Tração - em Toneladas 4 casas decimais.
         /// </summary>
         /// <value>CMT-Capacidade Máxima de Tração - em Toneladas 4 casas decimais.</value>
-        [DataMember(Name = "CMT", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CMT", IsRequired = true, EmitDefaultValue = true)]
         public string CMT { get; set; }
 
         /// <summary>
         /// Distância entre eixos.
         /// </summary>
         /// <value>Distância entre eixos.</value>
-        [DataMember(Name = "dist", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dist", IsRequired = true, EmitDefaultValue = true)]
         public string dist { get; set; }
 
         /// <summary>
         /// Ano Modelo de Fabricação.
         /// </summary>
         /// <value>Ano Modelo de Fabricação.</value>
-        [DataMember(Name = "anoMod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "anoMod", IsRequired = true, EmitDefaultValue = true)]
         public int anoMod { get; set; }
 
         /// <summary>
         /// Ano de Fabricação.
         /// </summary>
         /// <value>Ano de Fabricação.</value>
-        [DataMember(Name = "anoFab", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "anoFab", IsRequired = true, EmitDefaultValue = true)]
         public int anoFab { get; set; }
 
         /// <summary>
         /// Tipo de pintura.
         /// </summary>
         /// <value>Tipo de pintura.</value>
-        [DataMember(Name = "tpPint", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpPint", IsRequired = true, EmitDefaultValue = true)]
         public string tpPint { get; set; }
 
         /// <summary>
         /// Tipo de veículo (utilizar tabela RENAVAM).
         /// </summary>
         /// <value>Tipo de veículo (utilizar tabela RENAVAM).</value>
-        [DataMember(Name = "tpVeic", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpVeic", IsRequired = true, EmitDefaultValue = true)]
         public int tpVeic { get; set; }
 
         /// <summary>
         /// Espécie de veículo (utilizar tabela RENAVAM).
         /// </summary>
         /// <value>Espécie de veículo (utilizar tabela RENAVAM).</value>
-        [DataMember(Name = "espVeic", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "espVeic", IsRequired = true, EmitDefaultValue = true)]
         public int espVeic { get; set; }
 
         /// <summary>
         /// Informa-se o veículo tem VIN (chassi) remarcado.  R-Remarcado  N-NormalVIN.
         /// </summary>
         /// <value>Informa-se o veículo tem VIN (chassi) remarcado.  R-Remarcado  N-NormalVIN.</value>
-        [DataMember(Name = "VIN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "VIN", IsRequired = true, EmitDefaultValue = true)]
         public string VIN { get; set; }
 
         /// <summary>
         /// Condição do veículo (1 - acabado; 2 - inacabado; 3 - semi-acabado).
         /// </summary>
         /// <value>Condição do veículo (1 - acabado; 2 - inacabado; 3 - semi-acabado).</value>
-        [DataMember(Name = "condVeic", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "condVeic", IsRequired = true, EmitDefaultValue = true)]
         public int condVeic { get; set; }
 
         /// <summary>
         /// Código Marca Modelo (utilizar tabela RENAVAM).
         /// </summary>
         /// <value>Código Marca Modelo (utilizar tabela RENAVAM).</value>
-        [DataMember(Name = "cMod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMod", IsRequired = true, EmitDefaultValue = true)]
         public string cMod { get; set; }
 
         /// <summary>
         /// Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA  08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA.
         /// </summary>
         /// <value>Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA  08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA.</value>
-        [DataMember(Name = "cCorDENATRAN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cCorDENATRAN", IsRequired = true, EmitDefaultValue = true)]
         public string cCorDENATRAN { get; set; }
 
         /// <summary>
         /// Quantidade máxima de permitida de passageiros sentados, inclusive motorista.
         /// </summary>
         /// <value>Quantidade máxima de permitida de passageiros sentados, inclusive motorista.</value>
-        [DataMember(Name = "lota", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "lota", IsRequired = true, EmitDefaultValue = true)]
         public int lota { get; set; }
 
         /// <summary>
         /// Restrição  0 - Não há;  1 - Alienação Fiduciária;  2 - Arrendamento Mercantil;  3 - Reserva de Domínio;  4 - Penhor de Veículos;  9 - outras.
         /// </summary>
         /// <value>Restrição  0 - Não há;  1 - Alienação Fiduciária;  2 - Arrendamento Mercantil;  3 - Reserva de Domínio;  4 - Penhor de Veículos;  9 - outras.</value>
-        [DataMember(Name = "tpRest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpRest", IsRequired = true, EmitDefaultValue = true)]
         public int tpRest { get; set; }
 
         /// <summary>

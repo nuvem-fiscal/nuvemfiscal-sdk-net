@@ -57,7 +57,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Manifesto Eletrônico de Documentos Fiscais.
         /// </summary>
         /// <value>Manifesto Eletrônico de Documentos Fiscais.</value>
-        [DataMember(Name = "chMDFe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chMDFe", IsRequired = true, EmitDefaultValue = true)]
         public string chMDFe { get; set; }
 
         /// <summary>

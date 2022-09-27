@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificador da Balsa.
         /// </summary>
         /// <value>Identificador da Balsa.</value>
-        [DataMember(Name = "xBalsa", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xBalsa", IsRequired = true, EmitDefaultValue = true)]
         public string xBalsa { get; set; }
 
         /// <summary>

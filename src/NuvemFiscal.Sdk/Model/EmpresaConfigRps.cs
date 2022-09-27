@@ -54,19 +54,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets lote
         /// </summary>
-        [DataMember(Name = "lote", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "lote", IsRequired = true, EmitDefaultValue = true)]
         public int lote { get; set; }
 
         /// <summary>
         /// Gets or Sets serie
         /// </summary>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public string serie { get; set; }
 
         /// <summary>
         /// Gets or Sets numero
         /// </summary>
-        [DataMember(Name = "numero", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "numero", IsRequired = true, EmitDefaultValue = true)]
         public int numero { get; set; }
 
         /// <summary>

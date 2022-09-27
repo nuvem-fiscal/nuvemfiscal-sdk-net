@@ -75,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Logradouro.
         /// </summary>
         /// <value>Logradouro.</value>
-        [DataMember(Name = "xLgr", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xLgr", IsRequired = true, EmitDefaultValue = true)]
         public string xLgr { get; set; }
 
         /// <summary>
@@ -103,28 +103,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do município.  Utilizar a tabela do IBGE       Informar 9999999 para operações com o exterior.
         /// </summary>
         /// <value>Código do município.  Utilizar a tabela do IBGE       Informar 9999999 para operações com o exterior.</value>
-        [DataMember(Name = "cMun", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMun", IsRequired = true, EmitDefaultValue = true)]
         public int cMun { get; set; }
 
         /// <summary>
         /// Nome do município.  Informar EXTERIOR para operações com o exterior.
         /// </summary>
         /// <value>Nome do município.  Informar EXTERIOR para operações com o exterior.</value>
-        [DataMember(Name = "xMun", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xMun", IsRequired = true, EmitDefaultValue = true)]
         public string xMun { get; set; }
 
         /// <summary>
         /// CEP.
         /// </summary>
         /// <value>CEP.</value>
-        [DataMember(Name = "CEP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", IsRequired = true, EmitDefaultValue = true)]
         public int CEP { get; set; }
 
         /// <summary>
         /// Sigla da UF.  Informar EX para operações com o exterior.
         /// </summary>
         /// <value>Sigla da UF.  Informar EX para operações com o exterior.</value>
-        [DataMember(Name = "UF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UF", IsRequired = true, EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>

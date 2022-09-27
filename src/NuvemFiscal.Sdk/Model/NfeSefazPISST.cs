@@ -84,7 +84,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do PIS ST.
         /// </summary>
         /// <value>Valor do PIS ST.</value>
-        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vPIS { get; set; }
 
         /// <summary>

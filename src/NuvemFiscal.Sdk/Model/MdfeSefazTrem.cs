@@ -69,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Prefixo do Trem.
         /// </summary>
         /// <value>Prefixo do Trem.</value>
-        [DataMember(Name = "xPref", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xPref", IsRequired = true, EmitDefaultValue = true)]
         public string xPref { get; set; }
 
         /// <summary>
@@ -83,21 +83,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Origem do Trem.  Sigla da estação de origem.
         /// </summary>
         /// <value>Origem do Trem.  Sigla da estação de origem.</value>
-        [DataMember(Name = "xOri", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xOri", IsRequired = true, EmitDefaultValue = true)]
         public string xOri { get; set; }
 
         /// <summary>
         /// Destino do Trem.  Sigla da estação de destino.
         /// </summary>
         /// <value>Destino do Trem.  Sigla da estação de destino.</value>
-        [DataMember(Name = "xDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xDest", IsRequired = true, EmitDefaultValue = true)]
         public string xDest { get; set; }
 
         /// <summary>
         /// Quantidade de vagões carregados.
         /// </summary>
         /// <value>Quantidade de vagões carregados.</value>
-        [DataMember(Name = "qVag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qVag", IsRequired = true, EmitDefaultValue = true)]
         public int qVag { get; set; }
 
         /// <summary>

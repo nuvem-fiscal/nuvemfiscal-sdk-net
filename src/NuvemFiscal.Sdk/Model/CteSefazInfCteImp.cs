@@ -56,7 +56,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ICMS
         /// </summary>
-        [DataMember(Name = "ICMS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ICMS", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazImp ICMS { get; set; }
 
         /// <summary>

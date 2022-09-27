@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// CPF ou CNPJ do prestador.  Utilize o valor sem máscara.
         /// </summary>
         /// <value>CPF ou CNPJ do prestador.  Utilize o valor sem máscara.</value>
-        [DataMember(Name = "cpf_cnpj", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cpf_cnpj", IsRequired = true, EmitDefaultValue = true)]
         public string cpf_cnpj { get; set; }
 
         /// <summary>

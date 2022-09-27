@@ -60,7 +60,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Modalidade do frete  0- Contratação do Frete por conta do Remetente (CIF);  1- Contratação do Frete por conta do destinatário/remetente (FOB);  2- Contratação do Frete por conta de terceiros;  3- Transporte próprio por conta do remetente;  4- Transporte próprio por conta do destinatário;  9- Sem Ocorrência de transporte.
         /// </summary>
         /// <value>Modalidade do frete  0- Contratação do Frete por conta do Remetente (CIF);  1- Contratação do Frete por conta do destinatário/remetente (FOB);  2- Contratação do Frete por conta de terceiros;  3- Transporte próprio por conta do remetente;  4- Transporte próprio por conta do destinatário;  9- Sem Ocorrência de transporte.</value>
-        [DataMember(Name = "modFrete", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "modFrete", IsRequired = true, EmitDefaultValue = true)]
         public int modFrete { get; set; }
 
         /// <summary>

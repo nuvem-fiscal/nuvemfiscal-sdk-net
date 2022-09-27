@@ -50,7 +50,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)      Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional.
         /// </summary>
         /// <value>Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)      Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional.</value>
-        [DataMember(Name = "respSeg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "respSeg", IsRequired = true, EmitDefaultValue = true)]
         public int respSeg { get; set; }
 
         /// <summary>

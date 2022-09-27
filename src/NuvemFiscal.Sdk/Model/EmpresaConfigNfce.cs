@@ -52,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ambiente
         /// </summary>
-        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = true)]
         public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigNfce" /> class.
@@ -78,7 +78,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets sefaz
         /// </summary>
-        [DataMember(Name = "sefaz", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "sefaz", IsRequired = true, EmitDefaultValue = true)]
         public EmpresaConfigNfceSefaz sefaz { get; set; }
 
         /// <summary>

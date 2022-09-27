@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação do Ambiente.
         /// </summary>
         /// <value>Identificação do Ambiente.</value>
-        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = true)]
         public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DfePedidoInutilizacao" /> class.
@@ -96,42 +96,42 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do emitente.
         /// </summary>
         /// <value>CNPJ do emitente.</value>
-        [DataMember(Name = "cnpj", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cnpj", IsRequired = true, EmitDefaultValue = true)]
         public string cnpj { get; set; }
 
         /// <summary>
         /// Ano de inutilização da numeração.
         /// </summary>
         /// <value>Ano de inutilização da numeração.</value>
-        [DataMember(Name = "ano", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ano", IsRequired = true, EmitDefaultValue = true)]
         public int ano { get; set; }
 
         /// <summary>
         /// Série da NF-e.
         /// </summary>
         /// <value>Série da NF-e.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
         /// <summary>
         /// Número da NF-e inicial.
         /// </summary>
         /// <value>Número da NF-e inicial.</value>
-        [DataMember(Name = "numero_inicial", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "numero_inicial", IsRequired = true, EmitDefaultValue = true)]
         public int numero_inicial { get; set; }
 
         /// <summary>
         /// Número da NF-e final.
         /// </summary>
         /// <value>Número da NF-e final.</value>
-        [DataMember(Name = "numero_final", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "numero_final", IsRequired = true, EmitDefaultValue = true)]
         public int numero_final { get; set; }
 
         /// <summary>
         /// Justificativa do pedido de inutilização.
         /// </summary>
         /// <value>Justificativa do pedido de inutilização.</value>
-        [DataMember(Name = "justificativa", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "justificativa", IsRequired = true, EmitDefaultValue = true)]
         public string justificativa { get; set; }
 
         /// <summary>

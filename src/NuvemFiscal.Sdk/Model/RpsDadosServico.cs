@@ -103,7 +103,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.    Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador.
         /// </summary>
         /// <value>Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.    Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador.</value>
-        [DataMember(Name = "item_lista_servico", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "item_lista_servico", IsRequired = true, EmitDefaultValue = true)]
         public string item_lista_servico { get; set; }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Detalhamento do serviço prestado.
         /// </summary>
         /// <value>Detalhamento do serviço prestado.</value>
-        [DataMember(Name = "discriminacao", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "discriminacao", IsRequired = true, EmitDefaultValue = true)]
         public string discriminacao { get; set; }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets valores
         /// </summary>
-        [DataMember(Name = "valores", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "valores", IsRequired = true, EmitDefaultValue = true)]
         public RpsServicoValores valores { get; set; }
 
         /// <summary>

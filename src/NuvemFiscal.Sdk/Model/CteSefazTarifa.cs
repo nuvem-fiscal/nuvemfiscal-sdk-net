@@ -55,7 +55,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Classe.  Preencher com:           M - Tarifa Mínima;           G - Tarifa Geral;           E - Tarifa Específica.
         /// </summary>
         /// <value>Classe.  Preencher com:           M - Tarifa Mínima;           G - Tarifa Geral;           E - Tarifa Específica.</value>
-        [DataMember(Name = "CL", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CL", IsRequired = true, EmitDefaultValue = true)]
         public string CL { get; set; }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da Tarifa.  Valor da tarifa por kg quando for o caso.
         /// </summary>
         /// <value>Valor da Tarifa.  Valor da tarifa por kg quando for o caso.</value>
-        [DataMember(Name = "vTar", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vTar", IsRequired = true, EmitDefaultValue = true)]
         public decimal vTar { get; set; }
 
         /// <summary>

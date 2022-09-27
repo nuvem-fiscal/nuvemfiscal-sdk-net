@@ -93,14 +93,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Numero do Documento de Importação DI/DSI/DA/DRI-E (DI/DSI/DA/DRI-E) (NT2011/004).
         /// </summary>
         /// <value>Numero do Documento de Importação DI/DSI/DA/DRI-E (DI/DSI/DA/DRI-E) (NT2011/004).</value>
-        [DataMember(Name = "nDI", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nDI", IsRequired = true, EmitDefaultValue = true)]
         public string nDI { get; set; }
 
         /// <summary>
         /// Data de registro da DI/DSI/DA (AAAA-MM-DD).
         /// </summary>
         /// <value>Data de registro da DI/DSI/DA (AAAA-MM-DD).</value>
-        [DataMember(Name = "dDI", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dDI", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dDI { get; set; }
 
@@ -108,21 +108,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Local do desembaraço aduaneiro.
         /// </summary>
         /// <value>Local do desembaraço aduaneiro.</value>
-        [DataMember(Name = "xLocDesemb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xLocDesemb", IsRequired = true, EmitDefaultValue = true)]
         public string xLocDesemb { get; set; }
 
         /// <summary>
         /// UF onde ocorreu o desembaraço aduaneiro.
         /// </summary>
         /// <value>UF onde ocorreu o desembaraço aduaneiro.</value>
-        [DataMember(Name = "UFDesemb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFDesemb", IsRequired = true, EmitDefaultValue = true)]
         public string UFDesemb { get; set; }
 
         /// <summary>
         /// Data do desembaraço aduaneiro (AAAA-MM-DD).
         /// </summary>
         /// <value>Data do desembaraço aduaneiro (AAAA-MM-DD).</value>
-        [DataMember(Name = "dDesemb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dDesemb", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dDesemb { get; set; }
 
@@ -130,7 +130,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Via de transporte internacional informada na DI                   1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-Rodoviaria;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;                   11-Courier;12-Em maos;13-Por reboque.
         /// </summary>
         /// <value>Via de transporte internacional informada na DI                   1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-Rodoviaria;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;                   11-Courier;12-Em maos;13-Por reboque.</value>
-        [DataMember(Name = "tpViaTransp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpViaTransp", IsRequired = true, EmitDefaultValue = true)]
         public int tpViaTransp { get; set; }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Forma de Importação quanto a intermediação                   1-por conta propria;2-por conta e ordem;3-encomenda.
         /// </summary>
         /// <value>Forma de Importação quanto a intermediação                   1-por conta propria;2-por conta e ordem;3-encomenda.</value>
-        [DataMember(Name = "tpIntermedio", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpIntermedio", IsRequired = true, EmitDefaultValue = true)]
         public int tpIntermedio { get; set; }
 
         /// <summary>
@@ -165,14 +165,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do exportador (usado nos sistemas internos de informação do emitente da NF-e).
         /// </summary>
         /// <value>Código do exportador (usado nos sistemas internos de informação do emitente da NF-e).</value>
-        [DataMember(Name = "cExportador", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cExportador", IsRequired = true, EmitDefaultValue = true)]
         public string cExportador { get; set; }
 
         /// <summary>
         /// Adições (NT 2011/004).
         /// </summary>
         /// <value>Adições (NT 2011/004).</value>
-        [DataMember(Name = "adi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "adi", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazAdi> adi { get; set; }
 
         /// <summary>

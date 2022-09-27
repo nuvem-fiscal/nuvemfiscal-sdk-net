@@ -50,14 +50,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da Parcela.
         /// </summary>
         /// <value>Número da Parcela.</value>
-        [DataMember(Name = "nParcela", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nParcela", IsRequired = true, EmitDefaultValue = true)]
         public int nParcela { get; set; }
 
         /// <summary>
         /// Data de vencimento da Parcela (AAAA-MM-DD).
         /// </summary>
         /// <value>Data de vencimento da Parcela (AAAA-MM-DD).</value>
-        [DataMember(Name = "dVenc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dVenc", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dVenc { get; set; }
 
@@ -65,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da Parcela.
         /// </summary>
         /// <value>Valor da Parcela.</value>
-        [DataMember(Name = "vParcela", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vParcela", IsRequired = true, EmitDefaultValue = true)]
         public decimal vParcela { get; set; }
 
         /// <summary>

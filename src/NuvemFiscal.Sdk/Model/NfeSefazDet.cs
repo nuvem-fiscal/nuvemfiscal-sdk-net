@@ -69,13 +69,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets prod
         /// </summary>
-        [DataMember(Name = "prod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "prod", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazProd prod { get; set; }
 
         /// <summary>
         /// Gets or Sets imposto
         /// </summary>
-        [DataMember(Name = "imposto", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "imposto", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazImposto imposto { get; set; }
 
         /// <summary>

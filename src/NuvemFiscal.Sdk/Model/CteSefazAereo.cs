@@ -80,20 +80,20 @@ namespace NuvemFiscal.Sdk.Model
         /// Data prevista da entrega.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data prevista da entrega.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dPrevAereo", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dPrevAereo", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dPrevAereo { get; set; }
 
         /// <summary>
         /// Gets or Sets natCarga
         /// </summary>
-        [DataMember(Name = "natCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "natCarga", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazNatCarga natCarga { get; set; }
 
         /// <summary>
         /// Gets or Sets tarifa
         /// </summary>
-        [DataMember(Name = "tarifa", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tarifa", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazTarifa tarifa { get; set; }
 
         /// <summary>

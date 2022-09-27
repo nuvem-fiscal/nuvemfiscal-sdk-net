@@ -89,7 +89,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Razão Social ou Nome.
         /// </summary>
         /// <value>Razão Social ou Nome.</value>
-        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets enderExped
         /// </summary>
-        [DataMember(Name = "enderExped", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "enderExped", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazEndereco enderExped { get; set; }
 
         /// <summary>

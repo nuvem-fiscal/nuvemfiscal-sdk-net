@@ -75,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome ou Razão Social do tomador/destinatário.
         /// </summary>
         /// <value>Nome ou Razão Social do tomador/destinatário.</value>
-        [DataMember(Name = "nome_razao_social", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nome_razao_social", IsRequired = true, EmitDefaultValue = true)]
         public string nome_razao_social { get; set; }
 
         /// <summary>

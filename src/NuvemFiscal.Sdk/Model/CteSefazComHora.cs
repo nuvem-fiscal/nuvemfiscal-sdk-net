@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de hora.  Preencher com:                    1 - No horário;                    2 - Até o horário;                    3 - A partir do horário.
         /// </summary>
         /// <value>Tipo de hora.  Preencher com:                    1 - No horário;                    2 - Até o horário;                    3 - A partir do horário.</value>
-        [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
         public int tpHor { get; set; }
 
         /// <summary>
         /// Hora programada.  Formato HH:MM:SS.
         /// </summary>
         /// <value>Hora programada.  Formato HH:MM:SS.</value>
-        [DataMember(Name = "hProg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "hProg", IsRequired = true, EmitDefaultValue = true)]
         public string hProg { get; set; }
 
         /// <summary>

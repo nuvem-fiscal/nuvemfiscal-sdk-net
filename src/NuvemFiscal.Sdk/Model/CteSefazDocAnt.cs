@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Emissor do documento anterior.
         /// </summary>
         /// <value>Emissor do documento anterior.</value>
-        [DataMember(Name = "emiDocAnt", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "emiDocAnt", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazEmiDocAnt> emiDocAnt { get; set; }
 
         /// <summary>

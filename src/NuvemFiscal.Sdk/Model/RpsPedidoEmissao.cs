@@ -105,13 +105,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets prestador
         /// </summary>
-        [DataMember(Name = "prestador", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "prestador", IsRequired = true, EmitDefaultValue = true)]
         public RpsIdentificacaoPrestador prestador { get; set; }
 
         /// <summary>
         /// Gets or Sets tomador
         /// </summary>
-        [DataMember(Name = "tomador", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tomador", IsRequired = true, EmitDefaultValue = true)]
         public RpsDadosTomador tomador { get; set; }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets servicos
         /// </summary>
-        [DataMember(Name = "servicos", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "servicos", IsRequired = true, EmitDefaultValue = true)]
         public List<RpsDadosServico> servicos { get; set; }
 
         /// <summary>

@@ -82,14 +82,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Registro Nacional dos Transportadores Rodoviários de Carga.  Registro obrigatório do proprietário, co-proprietário ou arrendatário do veículo junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração.
         /// </summary>
         /// <value>Registro Nacional dos Transportadores Rodoviários de Carga.  Registro obrigatório do proprietário, co-proprietário ou arrendatário do veículo junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração.</value>
-        [DataMember(Name = "RNTRC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "RNTRC", IsRequired = true, EmitDefaultValue = true)]
         public string RNTRC { get; set; }
 
         /// <summary>
         /// Razão Social ou Nome do proprietário.
         /// </summary>
         /// <value>Razão Social ou Nome do proprietário.</value>
-        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo Proprietário ou possuidor.  Preencher com:              0-TAC Agregado;              1-TAC Independente;              2 – Outros.
         /// </summary>
         /// <value>Tipo Proprietário ou possuidor.  Preencher com:              0-TAC Agregado;              1-TAC Independente;              2 – Outros.</value>
-        [DataMember(Name = "tpProp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpProp", IsRequired = true, EmitDefaultValue = true)]
         public int tpProp { get; set; }
 
         /// <summary>

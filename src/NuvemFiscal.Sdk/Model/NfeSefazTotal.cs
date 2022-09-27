@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ICMSTot
         /// </summary>
-        [DataMember(Name = "ICMSTot", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ICMSTot", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazICMSTot ICMSTot { get; set; }
 
         /// <summary>

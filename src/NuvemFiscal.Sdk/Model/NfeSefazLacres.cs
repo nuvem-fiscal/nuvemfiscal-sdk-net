@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número dos Lacres.
         /// </summary>
         /// <value>Número dos Lacres.</value>
-        [DataMember(Name = "nLacre", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nLacre", IsRequired = true, EmitDefaultValue = true)]
         public string nLacre { get; set; }
 
         /// <summary>

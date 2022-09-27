@@ -60,14 +60,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla da UF de Embarque ou de transposição de fronteira.
         /// </summary>
         /// <value>Sigla da UF de Embarque ou de transposição de fronteira.</value>
-        [DataMember(Name = "UFSaidaPais", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFSaidaPais", IsRequired = true, EmitDefaultValue = true)]
         public string UFSaidaPais { get; set; }
 
         /// <summary>
         /// Local de Embarque ou de transposição de fronteira.
         /// </summary>
         /// <value>Local de Embarque ou de transposição de fronteira.</value>
-        [DataMember(Name = "xLocExporta", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xLocExporta", IsRequired = true, EmitDefaultValue = true)]
         public string xLocExporta { get; set; }
 
         /// <summary>

@@ -63,14 +63,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Peso Base de Cálculo de Frete em Toneladas.
         /// </summary>
         /// <value>Peso Base de Cálculo de Frete em Toneladas.</value>
-        [DataMember(Name = "pesoBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pesoBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal pesoBC { get; set; }
 
         /// <summary>
         /// Peso Real em Toneladas.
         /// </summary>
         /// <value>Peso Real em Toneladas.</value>
-        [DataMember(Name = "pesoR", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pesoR", IsRequired = true, EmitDefaultValue = true)]
         public decimal pesoR { get; set; }
 
         /// <summary>
@@ -84,14 +84,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Serie de Identificação do vagão.
         /// </summary>
         /// <value>Serie de Identificação do vagão.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public string serie { get; set; }
 
         /// <summary>
         /// Número de Identificação do vagão.
         /// </summary>
         /// <value>Número de Identificação do vagão.</value>
-        [DataMember(Name = "nVag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nVag", IsRequired = true, EmitDefaultValue = true)]
         public int nVag { get; set; }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tonelada Útil.  Unidade de peso referente à carga útil (apenas o peso da carga transportada), expressa em toneladas.
         /// </summary>
         /// <value>Tonelada Útil.  Unidade de peso referente à carga útil (apenas o peso da carga transportada), expressa em toneladas.</value>
-        [DataMember(Name = "TU", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "TU", IsRequired = true, EmitDefaultValue = true)]
         public decimal TU { get; set; }
 
         /// <summary>

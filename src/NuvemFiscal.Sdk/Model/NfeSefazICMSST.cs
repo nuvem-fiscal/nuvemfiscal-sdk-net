@@ -79,21 +79,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Origem da mercadoria:  0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  1 - Estrangeira - Importação direta, exceto a indicada no código 6;  2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.
         /// </summary>
         /// <value>Origem da mercadoria:  0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  1 - Estrangeira - Importação direta, exceto a indicada no código 6;  2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
-        [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
         public int orig { get; set; }
 
         /// <summary>
         /// Tributção pelo ICMS  41-Não Tributado.  60-Cobrado anteriormente por substituição tributária.
         /// </summary>
         /// <value>Tributção pelo ICMS  41-Não Tributado.  60-Cobrado anteriormente por substituição tributária.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
         /// Informar o valor da BC do ICMS ST retido na UF remetente.
         /// </summary>
         /// <value>Informar o valor da BC do ICMS ST retido na UF remetente.</value>
-        [DataMember(Name = "vBCSTRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCSTRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCSTRet { get; set; }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Informar o valor do ICMS ST retido na UF remetente (iv2.0)).
         /// </summary>
         /// <value>Informar o valor do ICMS ST retido na UF remetente (iv2.0)).</value>
-        [DataMember(Name = "vICMSSTRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSSTRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSSTRet { get; set; }
 
         /// <summary>
@@ -142,14 +142,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Informar o valor da BC do ICMS ST da UF destino.
         /// </summary>
         /// <value>Informar o valor da BC do ICMS ST da UF destino.</value>
-        [DataMember(Name = "vBCSTDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCSTDest", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCSTDest { get; set; }
 
         /// <summary>
         /// Informar o valor da BC do ICMS ST da UF destino (v2.0).
         /// </summary>
         /// <value>Informar o valor da BC do ICMS ST da UF destino (v2.0).</value>
-        [DataMember(Name = "vICMSSTDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSSTDest", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSSTDest { get; set; }
 
         /// <summary>

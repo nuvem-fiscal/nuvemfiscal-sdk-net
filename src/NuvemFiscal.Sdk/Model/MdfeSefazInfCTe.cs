@@ -61,7 +61,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Conhecimento Eletrônico - Chave de Acesso.
         /// </summary>
         /// <value>Conhecimento Eletrônico - Chave de Acesso.</value>
-        [DataMember(Name = "chCTe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chCTe", IsRequired = true, EmitDefaultValue = true)]
         public string chCTe { get; set; }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                  1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS.
         /// </summary>
         /// <value>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                  1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS.</value>
-        [DataMember(Name = "tpIntegra", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpIntegra", IsRequired = true, EmitDefaultValue = true)]
         public int tpIntegra { get; set; }
 
         /// <summary>

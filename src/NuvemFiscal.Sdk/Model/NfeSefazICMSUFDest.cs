@@ -62,7 +62,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da Base de Cálculo do ICMS na UF do destinatário.
         /// </summary>
         /// <value>Valor da Base de Cálculo do ICMS na UF do destinatário.</value>
-        [DataMember(Name = "vBCUFDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCUFDest", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCUFDest { get; set; }
 
         /// <summary>
@@ -83,21 +83,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Alíquota adotada nas operações internas na UF do destinatário para o produto / mercadoria.
         /// </summary>
         /// <value>Alíquota adotada nas operações internas na UF do destinatário para o produto / mercadoria.</value>
-        [DataMember(Name = "pICMSUFDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSUFDest", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSUFDest { get; set; }
 
         /// <summary>
         /// Alíquota interestadual das UF envolvidas: - 4%% alíquota interestadual para produtos importados; - 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES; - 12%% para os demais casos.
         /// </summary>
         /// <value>Alíquota interestadual das UF envolvidas: - 4%% alíquota interestadual para produtos importados; - 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES; - 12%% para os demais casos.</value>
-        [DataMember(Name = "pICMSInter", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSInter", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSInter { get; set; }
 
         /// <summary>
         /// Percentual de partilha para a UF do destinatário: - 40%% em 2016; - 60%% em 2017; - 80%% em 2018; - 100%% a partir de 2019.
         /// </summary>
         /// <value>Percentual de partilha para a UF do destinatário: - 40%% em 2016; - 60%% em 2017; - 80%% em 2018; - 100%% a partir de 2019.</value>
-        [DataMember(Name = "pICMSInterPart", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSInterPart", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSInterPart { get; set; }
 
         /// <summary>
@@ -111,14 +111,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do ICMS de partilha para a UF do destinatário.
         /// </summary>
         /// <value>Valor do ICMS de partilha para a UF do destinatário.</value>
-        [DataMember(Name = "vICMSUFDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSUFDest", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSUFDest { get; set; }
 
         /// <summary>
         /// Valor do ICMS de partilha para a UF do remetente. Nota: A partir de 2019, este valor será zero.
         /// </summary>
         /// <value>Valor do ICMS de partilha para a UF do remetente. Nota: A partir de 2019, este valor será zero.</value>
-        [DataMember(Name = "vICMSUFRemet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSUFRemet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSUFRemet { get; set; }
 
         /// <summary>

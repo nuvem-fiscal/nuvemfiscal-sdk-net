@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Chave de acesso do CT-e original a ser anulado e substituído.
         /// </summary>
         /// <value>Chave de acesso do CT-e original a ser anulado e substituído.</value>
-        [DataMember(Name = "chCte", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chCte", IsRequired = true, EmitDefaultValue = true)]
         public string chCte { get; set; }
 
         /// <summary>
         /// Data de emissão da declaração do tomador não contribuinte do ICMS.
         /// </summary>
         /// <value>Data de emissão da declaração do tomador não contribuinte do ICMS.</value>
-        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dEmi { get; set; }
 

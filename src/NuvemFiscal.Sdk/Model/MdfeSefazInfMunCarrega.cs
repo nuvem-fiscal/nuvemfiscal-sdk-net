@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do Município de Carregamento.
         /// </summary>
         /// <value>Código do Município de Carregamento.</value>
-        [DataMember(Name = "cMunCarrega", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMunCarrega", IsRequired = true, EmitDefaultValue = true)]
         public int cMunCarrega { get; set; }
 
         /// <summary>
         /// Nome do Município de Carregamento.
         /// </summary>
         /// <value>Nome do Município de Carregamento.</value>
-        [DataMember(Name = "xMunCarrega", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xMunCarrega", IsRequired = true, EmitDefaultValue = true)]
         public string xMunCarrega { get; set; }
 
         /// <summary>

@@ -55,21 +55,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do modelo do Documento Fiscal  Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF).
         /// </summary>
         /// <value>Código do modelo do Documento Fiscal  Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF).</value>
-        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 
         /// <summary>
         /// Informar o número de ordem seqüencial do ECF que emitiu o Cupom Fiscal vinculado à NF-e.
         /// </summary>
         /// <value>Informar o número de ordem seqüencial do ECF que emitiu o Cupom Fiscal vinculado à NF-e.</value>
-        [DataMember(Name = "nECF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nECF", IsRequired = true, EmitDefaultValue = true)]
         public int nECF { get; set; }
 
         /// <summary>
         /// Informar o Número do Contador de Ordem de Operação - COO vinculado à NF-e.
         /// </summary>
         /// <value>Informar o Número do Contador de Ordem de Operação - COO vinculado à NF-e.</value>
-        [DataMember(Name = "nCOO", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nCOO", IsRequired = true, EmitDefaultValue = true)]
         public int nCOO { get; set; }
 
         /// <summary>

@@ -79,14 +79,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Modelo do Documento Fiscal.
         /// </summary>
         /// <value>Modelo do Documento Fiscal.</value>
-        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 
         /// <summary>
         /// Serie do documento fiscal.
         /// </summary>
         /// <value>Serie do documento fiscal.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
         /// <summary>
@@ -100,21 +100,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do documento fiscal.
         /// </summary>
         /// <value>Número do documento fiscal.</value>
-        [DataMember(Name = "nro", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nro", IsRequired = true, EmitDefaultValue = true)]
         public int nro { get; set; }
 
         /// <summary>
         /// Valor do documento fiscal.
         /// </summary>
         /// <value>Valor do documento fiscal.</value>
-        [DataMember(Name = "valor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "valor", IsRequired = true, EmitDefaultValue = true)]
         public decimal valor { get; set; }
 
         /// <summary>
         /// Data de emissão do documento fiscal.
         /// </summary>
         /// <value>Data de emissão do documento fiscal.</value>
-        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dEmi { get; set; }
 

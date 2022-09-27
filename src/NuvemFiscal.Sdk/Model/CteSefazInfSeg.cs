@@ -58,14 +58,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome da Seguradora.
         /// </summary>
         /// <value>Nome da Seguradora.</value>
-        [DataMember(Name = "xSeg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xSeg", IsRequired = true, EmitDefaultValue = true)]
         public string xSeg { get; set; }
 
         /// <summary>
         /// Número do CNPJ da seguradora.  Obrigatório apenas se responsável pelo seguro for (2) responsável pela contratação do transporte - pessoa jurídica.
         /// </summary>
         /// <value>Número do CNPJ da seguradora.  Obrigatório apenas se responsável pelo seguro for (2) responsável pela contratação do transporte - pessoa jurídica.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>

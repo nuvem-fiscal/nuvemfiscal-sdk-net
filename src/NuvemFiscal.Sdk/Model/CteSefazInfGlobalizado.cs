@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Preencher com informações adicionais, legislação do regime especial, etc.
         /// </summary>
         /// <value>Preencher com informações adicionais, legislação do regime especial, etc.</value>
-        [DataMember(Name = "xObs", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xObs", IsRequired = true, EmitDefaultValue = true)]
         public string xObs { get; set; }
 
         /// <summary>

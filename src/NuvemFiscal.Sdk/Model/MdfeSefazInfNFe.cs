@@ -59,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Nota Fiscal Eletrônica.
         /// </summary>
         /// <value>Nota Fiscal Eletrônica.</value>
-        [DataMember(Name = "chNFe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chNFe", IsRequired = true, EmitDefaultValue = true)]
         public string chNFe { get; set; }
 
         /// <summary>

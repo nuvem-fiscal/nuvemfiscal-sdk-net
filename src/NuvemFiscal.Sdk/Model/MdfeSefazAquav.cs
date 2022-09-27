@@ -107,49 +107,49 @@ namespace NuvemFiscal.Sdk.Model
         /// Irin do navio sempre deverá ser informado.
         /// </summary>
         /// <value>Irin do navio sempre deverá ser informado.</value>
-        [DataMember(Name = "irin", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "irin", IsRequired = true, EmitDefaultValue = true)]
         public string irin { get; set; }
 
         /// <summary>
         /// Código do tipo de embarcação.  Preencher com código da Tabela de Tipo de Embarcação definida no Ministério dos Transportes.
         /// </summary>
         /// <value>Código do tipo de embarcação.  Preencher com código da Tabela de Tipo de Embarcação definida no Ministério dos Transportes.</value>
-        [DataMember(Name = "tpEmb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpEmb", IsRequired = true, EmitDefaultValue = true)]
         public string tpEmb { get; set; }
 
         /// <summary>
         /// Código da embarcação.
         /// </summary>
         /// <value>Código da embarcação.</value>
-        [DataMember(Name = "cEmbar", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cEmbar", IsRequired = true, EmitDefaultValue = true)]
         public string cEmbar { get; set; }
 
         /// <summary>
         /// Nome da embarcação.
         /// </summary>
         /// <value>Nome da embarcação.</value>
-        [DataMember(Name = "xEmbar", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xEmbar", IsRequired = true, EmitDefaultValue = true)]
         public string xEmbar { get; set; }
 
         /// <summary>
         /// Número da Viagem.
         /// </summary>
         /// <value>Número da Viagem.</value>
-        [DataMember(Name = "nViag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nViag", IsRequired = true, EmitDefaultValue = true)]
         public string nViag { get; set; }
 
         /// <summary>
         /// Código do Porto de Embarque.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes.
         /// </summary>
         /// <value>Código do Porto de Embarque.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes.</value>
-        [DataMember(Name = "cPrtEmb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cPrtEmb", IsRequired = true, EmitDefaultValue = true)]
         public string cPrtEmb { get; set; }
 
         /// <summary>
         /// Código do Porto de Destino.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes.
         /// </summary>
         /// <value>Código do Porto de Destino.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes.</value>
-        [DataMember(Name = "cPrtDest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cPrtDest", IsRequired = true, EmitDefaultValue = true)]
         public string cPrtDest { get; set; }
 
         /// <summary>

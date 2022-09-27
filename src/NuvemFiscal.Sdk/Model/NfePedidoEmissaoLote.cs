@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação do Ambiente.
         /// </summary>
         /// <value>Identificação do Ambiente.</value>
-        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = true)]
         public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NfePedidoEmissaoLote" /> class.
@@ -89,7 +89,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets documentos
         /// </summary>
-        [DataMember(Name = "documentos", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "documentos", IsRequired = true, EmitDefaultValue = true)]
         public List<NfePedidoEmissao> documentos { get; set; }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets id_lote
         /// </summary>
-        [DataMember(Name = "id_lote", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "id_lote", IsRequired = true, EmitDefaultValue = true)]
         public string id_lote { get; set; }
 
         /// <summary>

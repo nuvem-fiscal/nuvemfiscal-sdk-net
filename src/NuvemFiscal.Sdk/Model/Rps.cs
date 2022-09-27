@@ -108,7 +108,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets servicos
         /// </summary>
-        [DataMember(Name = "servicos", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "servicos", IsRequired = true, EmitDefaultValue = true)]
         public List<RpsDadosServico> servicos { get; set; }
 
         /// <summary>

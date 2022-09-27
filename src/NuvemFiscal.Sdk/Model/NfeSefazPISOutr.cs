@@ -61,7 +61,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de Situação Tributária do PIS.  99 - Outras Operações.
         /// </summary>
         /// <value>Código de Situação Tributária do PIS.  99 - Outras Operações.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do PIS.
         /// </summary>
         /// <value>Valor do PIS.</value>
-        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vPIS { get; set; }
 
         /// <summary>

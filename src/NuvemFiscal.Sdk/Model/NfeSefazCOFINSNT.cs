@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de Situação Tributária do COFINS:  04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero);  05 - Operação Tributável (ST);  06 - Operação Tributável - Alíquota Zero;  07 - Operação Isenta da contribuição;  08 - Operação Sem Incidência da contribuição;  09 - Operação com suspensão da contribuição;.
         /// </summary>
         /// <value>Código de Situação Tributária do COFINS:  04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero);  05 - Operação Tributável (ST);  06 - Operação Tributável - Alíquota Zero;  07 - Operação Isenta da contribuição;  08 - Operação Sem Incidência da contribuição;  09 - Operação com suspensão da contribuição;.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>

@@ -60,21 +60,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de hora.  4 - No intervalo de tempo.
         /// </summary>
         /// <value>Tipo de hora.  4 - No intervalo de tempo.</value>
-        [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
         public int tpHor { get; set; }
 
         /// <summary>
         /// Hora inicial.  Formato HH:MM:SS.
         /// </summary>
         /// <value>Hora inicial.  Formato HH:MM:SS.</value>
-        [DataMember(Name = "hIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "hIni", IsRequired = true, EmitDefaultValue = true)]
         public string hIni { get; set; }
 
         /// <summary>
         /// Hora final.  Formato HH:MM:SS.
         /// </summary>
         /// <value>Hora final.  Formato HH:MM:SS.</value>
-        [DataMember(Name = "hFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "hFim", IsRequired = true, EmitDefaultValue = true)]
         public string hFim { get; set; }
 
         /// <summary>

@@ -127,13 +127,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ide
         /// </summary>
-        [DataMember(Name = "ide", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ide", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazIde ide { get; set; }
 
         /// <summary>
         /// Gets or Sets emit
         /// </summary>
-        [DataMember(Name = "emit", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "emit", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazEmit emit { get; set; }
 
         /// <summary>
@@ -171,19 +171,19 @@ namespace NuvemFiscal.Sdk.Model
         /// Dados dos detalhes da NF-e.
         /// </summary>
         /// <value>Dados dos detalhes da NF-e.</value>
-        [DataMember(Name = "det", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "det", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazDet> det { get; set; }
 
         /// <summary>
         /// Gets or Sets total
         /// </summary>
-        [DataMember(Name = "total", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "total", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazTotal total { get; set; }
 
         /// <summary>
         /// Gets or Sets transp
         /// </summary>
-        [DataMember(Name = "transp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "transp", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazTransp transp { get; set; }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets pag
         /// </summary>
-        [DataMember(Name = "pag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pag", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazPag pag { get; set; }
 
         /// <summary>

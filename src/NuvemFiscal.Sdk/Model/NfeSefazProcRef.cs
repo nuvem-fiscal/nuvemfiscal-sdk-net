@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Indentificador do processo ou ato  concessório.
         /// </summary>
         /// <value>Indentificador do processo ou ato  concessório.</value>
-        [DataMember(Name = "nProc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nProc", IsRequired = true, EmitDefaultValue = true)]
         public string nProc { get; set; }
 
         /// <summary>
         /// Origem do processo, informar com:  0 - SEFAZ;  1 - Justiça Federal;  2 - Justiça Estadual;  3 - Secex/RFB;  9 - Outros.
         /// </summary>
         /// <value>Origem do processo, informar com:  0 - SEFAZ;  1 - Justiça Federal;  2 - Justiça Estadual;  3 - Secex/RFB;  9 - Outros.</value>
-        [DataMember(Name = "indProc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indProc", IsRequired = true, EmitDefaultValue = true)]
         public int indProc { get; set; }
 
         /// <summary>

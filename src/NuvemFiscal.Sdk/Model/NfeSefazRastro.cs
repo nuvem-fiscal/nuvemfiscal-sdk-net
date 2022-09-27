@@ -59,21 +59,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do lote do produto.
         /// </summary>
         /// <value>Número do lote do produto.</value>
-        [DataMember(Name = "nLote", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nLote", IsRequired = true, EmitDefaultValue = true)]
         public string nLote { get; set; }
 
         /// <summary>
         /// Quantidade de produto no lote.
         /// </summary>
         /// <value>Quantidade de produto no lote.</value>
-        [DataMember(Name = "qLote", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qLote", IsRequired = true, EmitDefaultValue = true)]
         public decimal qLote { get; set; }
 
         /// <summary>
         /// Data de fabricação/produção. Formato \&quot;AAAA-MM-DD\&quot;.
         /// </summary>
         /// <value>Data de fabricação/produção. Formato \&quot;AAAA-MM-DD\&quot;.</value>
-        [DataMember(Name = "dFab", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dFab", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dFab { get; set; }
 
@@ -81,7 +81,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Data de validade. Informar o último dia do mês caso a validade não especifique o dia. Formato \&quot;AAAA-MM-DD\&quot;.
         /// </summary>
         /// <value>Data de validade. Informar o último dia do mês caso a validade não especifique o dia. Formato \&quot;AAAA-MM-DD\&quot;.</value>
-        [DataMember(Name = "dVal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dVal", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dVal { get; set; }
 

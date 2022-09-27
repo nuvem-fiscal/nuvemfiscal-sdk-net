@@ -76,14 +76,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de produto da ANP. codificação de produtos do SIMP (http://www.anp.gov.br).
         /// </summary>
         /// <value>Código de produto da ANP. codificação de produtos do SIMP (http://www.anp.gov.br).</value>
-        [DataMember(Name = "cProdANP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cProdANP", IsRequired = true, EmitDefaultValue = true)]
         public int cProdANP { get; set; }
 
         /// <summary>
         /// Descrição do Produto conforme ANP. Utilizar a descrição de produtos do Sistema de Informações de Movimentação de Produtos - SIMP (http://www.anp.gov.br/simp/).
         /// </summary>
         /// <value>Descrição do Produto conforme ANP. Utilizar a descrição de produtos do Sistema de Informações de Movimentação de Produtos - SIMP (http://www.anp.gov.br/simp/).</value>
-        [DataMember(Name = "descANP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "descANP", IsRequired = true, EmitDefaultValue = true)]
         public string descANP { get; set; }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla da UF de Consumo.
         /// </summary>
         /// <value>Sigla da UF de Consumo.</value>
-        [DataMember(Name = "UFCons", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFCons", IsRequired = true, EmitDefaultValue = true)]
         public string UFCons { get; set; }
 
         /// <summary>

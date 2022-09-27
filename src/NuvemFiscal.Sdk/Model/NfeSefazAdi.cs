@@ -66,14 +66,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número seqüencial do item dentro da Adição.
         /// </summary>
         /// <value>Número seqüencial do item dentro da Adição.</value>
-        [DataMember(Name = "nSeqAdic", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nSeqAdic", IsRequired = true, EmitDefaultValue = true)]
         public int nSeqAdic { get; set; }
 
         /// <summary>
         /// Código do fabricante estrangeiro (usado nos sistemas internos de informação do emitente da NF-e).
         /// </summary>
         /// <value>Código do fabricante estrangeiro (usado nos sistemas internos de informação do emitente da NF-e).</value>
-        [DataMember(Name = "cFabricante", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cFabricante", IsRequired = true, EmitDefaultValue = true)]
         public string cFabricante { get; set; }
 
         /// <summary>

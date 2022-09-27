@@ -103,7 +103,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Data da prestação do serviço  (AAAA-MM-DD).
         /// </summary>
         /// <value>Data da prestação do serviço  (AAAA-MM-DD).</value>
-        [DataMember(Name = "dCompet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dCompet", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dCompet { get; set; }
 

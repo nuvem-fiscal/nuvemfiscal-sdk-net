@@ -59,14 +59,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo da Unidade de Transporte.  1 - Rodoviário Tração  2 - Rodoviário Reboque  3 - Navio  4 - Balsa  5 - Aeronave  6 - Vagão  7 - Outros.
         /// </summary>
         /// <value>Tipo da Unidade de Transporte.  1 - Rodoviário Tração  2 - Rodoviário Reboque  3 - Navio  4 - Balsa  5 - Aeronave  6 - Vagão  7 - Outros.</value>
-        [DataMember(Name = "tpUnidTransp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpUnidTransp", IsRequired = true, EmitDefaultValue = true)]
         public int tpUnidTransp { get; set; }
 
         /// <summary>
         /// Identificação da Unidade de Transporte.  Informar a identificação conforme o tipo de unidade de transporte.  Por exemplo: para rodoviário tração ou reboque deverá preencher com a placa do veículo.
         /// </summary>
         /// <value>Identificação da Unidade de Transporte.  Informar a identificação conforme o tipo de unidade de transporte.  Por exemplo: para rodoviário tração ou reboque deverá preencher com a placa do veículo.</value>
-        [DataMember(Name = "idUnidTransp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "idUnidTransp", IsRequired = true, EmitDefaultValue = true)]
         public string idUnidTransp { get; set; }
 
         /// <summary>

@@ -75,14 +75,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da UF do emitente do Documento FiscalUtilizar a Tabela do IBGE (Anexo IV - Tabela de UF, Município e País).
         /// </summary>
         /// <value>Código da UF do emitente do Documento FiscalUtilizar a Tabela do IBGE (Anexo IV - Tabela de UF, Município e País).</value>
-        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
         public int cUF { get; set; }
 
         /// <summary>
         /// AAMM da emissão da NF de produtor.
         /// </summary>
         /// <value>AAMM da emissão da NF de produtor.</value>
-        [DataMember(Name = "AAMM", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "AAMM", IsRequired = true, EmitDefaultValue = true)]
         public string AAMM { get; set; }
 
         /// <summary>
@@ -103,28 +103,28 @@ namespace NuvemFiscal.Sdk.Model
         /// IE do emitente da NF de Produtor.
         /// </summary>
         /// <value>IE do emitente da NF de Produtor.</value>
-        [DataMember(Name = "IE", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "IE", IsRequired = true, EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// Código do modelo do Documento Fiscal - utilizar 04 para NF de produtor  ou 01 para NF Avulsa.
         /// </summary>
         /// <value>Código do modelo do Documento Fiscal - utilizar 04 para NF de produtor  ou 01 para NF Avulsa.</value>
-        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 
         /// <summary>
         /// Série do Documento Fiscal, informar zero se inexistentesérie.
         /// </summary>
         /// <value>Série do Documento Fiscal, informar zero se inexistentesérie.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
         /// <summary>
         /// Número do Documento Fiscal - 1 – 999999999.
         /// </summary>
         /// <value>Número do Documento Fiscal - 1 – 999999999.</value>
-        [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = true)]
         public int nNF { get; set; }
 
         /// <summary>

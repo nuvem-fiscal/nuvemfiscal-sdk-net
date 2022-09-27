@@ -58,49 +58,49 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do ICMS na UF de término da prestação do serviço de transporte.
         /// </summary>
         /// <value>Valor da BC do ICMS na UF de término da prestação do serviço de transporte.</value>
-        [DataMember(Name = "vBCUFFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCUFFim", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCUFFim { get; set; }
 
         /// <summary>
         /// Percentual do ICMS relativo ao Fundo de Combate à pobreza (FCP) na UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.
         /// </summary>
         /// <value>Percentual do ICMS relativo ao Fundo de Combate à pobreza (FCP) na UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.</value>
-        [DataMember(Name = "pFCPUFFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pFCPUFFim", IsRequired = true, EmitDefaultValue = true)]
         public decimal pFCPUFFim { get; set; }
 
         /// <summary>
         /// Alíquota interna da UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.
         /// </summary>
         /// <value>Alíquota interna da UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.</value>
-        [DataMember(Name = "pICMSUFFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSUFFim", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSUFFim { get; set; }
 
         /// <summary>
         /// Alíquota interestadual das UF envolvidas.  Alíquota interestadual das UF envolvidas.
         /// </summary>
         /// <value>Alíquota interestadual das UF envolvidas.  Alíquota interestadual das UF envolvidas.</value>
-        [DataMember(Name = "pICMSInter", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pICMSInter", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSInter { get; set; }
 
         /// <summary>
         /// Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP) da UF de término da prestação.
         /// </summary>
         /// <value>Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP) da UF de término da prestação.</value>
-        [DataMember(Name = "vFCPUFFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFCPUFFim", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFCPUFFim { get; set; }
 
         /// <summary>
         /// Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte.
         /// </summary>
         /// <value>Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte.</value>
-        [DataMember(Name = "vICMSUFFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSUFFim", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSUFFim { get; set; }
 
         /// <summary>
         /// Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte.
         /// </summary>
         /// <value>Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte.</value>
-        [DataMember(Name = "vICMSUFIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSUFIni", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSUFIni { get; set; }
 
         /// <summary>

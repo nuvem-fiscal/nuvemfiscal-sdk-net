@@ -94,14 +94,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Logradouro.
         /// </summary>
         /// <value>Logradouro.</value>
-        [DataMember(Name = "logradouro", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "logradouro", IsRequired = true, EmitDefaultValue = true)]
         public string logradouro { get; set; }
 
         /// <summary>
         /// Número.
         /// </summary>
         /// <value>Número.</value>
-        [DataMember(Name = "numero", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "numero", IsRequired = true, EmitDefaultValue = true)]
         public string numero { get; set; }
 
         /// <summary>
@@ -115,14 +115,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Bairro.
         /// </summary>
         /// <value>Bairro.</value>
-        [DataMember(Name = "bairro", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "bairro", IsRequired = true, EmitDefaultValue = true)]
         public string bairro { get; set; }
 
         /// <summary>
         /// Código IBGE do município.
         /// </summary>
         /// <value>Código IBGE do município.</value>
-        [DataMember(Name = "codigo_municipio", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "codigo_municipio", IsRequired = true, EmitDefaultValue = true)]
         public string codigo_municipio { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla do estado.
         /// </summary>
         /// <value>Sigla do estado.</value>
-        [DataMember(Name = "uf", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "uf", IsRequired = true, EmitDefaultValue = true)]
         public string uf { get; set; }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace NuvemFiscal.Sdk.Model
         /// CEP.  Utilize o valor sem máscara.
         /// </summary>
         /// <value>CEP.  Utilize o valor sem máscara.</value>
-        [DataMember(Name = "cep", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cep", IsRequired = true, EmitDefaultValue = true)]
         public string cep { get; set; }
 
         /// <summary>

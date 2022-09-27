@@ -81,35 +81,35 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do ISSQN.
         /// </summary>
         /// <value>Valor da BC do ISSQN.</value>
-        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBC { get; set; }
 
         /// <summary>
         /// Alíquota do ISSQN.
         /// </summary>
         /// <value>Alíquota do ISSQN.</value>
-        [DataMember(Name = "vAliq", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vAliq", IsRequired = true, EmitDefaultValue = true)]
         public decimal vAliq { get; set; }
 
         /// <summary>
         /// Valor da do ISSQN.
         /// </summary>
         /// <value>Valor da do ISSQN.</value>
-        [DataMember(Name = "vISSQN", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vISSQN", IsRequired = true, EmitDefaultValue = true)]
         public decimal vISSQN { get; set; }
 
         /// <summary>
         /// Informar o município de ocorrência do fato gerador do ISSQN. Utilizar a Tabela do IBGE (Anexo VII - Tabela de UF, Município e País). “Atenção, não vincular com os campos B12, C10 ou E10” v2.0.
         /// </summary>
         /// <value>Informar o município de ocorrência do fato gerador do ISSQN. Utilizar a Tabela do IBGE (Anexo VII - Tabela de UF, Município e País). “Atenção, não vincular com os campos B12, C10 ou E10” v2.0.</value>
-        [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = true)]
         public int cMunFG { get; set; }
 
         /// <summary>
         /// Informar o Item da lista de serviços da LC 116/03 em que se classifica o serviço.
         /// </summary>
         /// <value>Informar o Item da lista de serviços da LC 116/03 em que se classifica o serviço.</value>
-        [DataMember(Name = "cListServ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cListServ", IsRequired = true, EmitDefaultValue = true)]
         public string cListServ { get; set; }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Exibilidade do ISS:1-Exigível;2-Não incidente;3-Isenção;4-Exportação;5-Imunidade;6-Exig.Susp. Judicial;7-Exig.Susp. ADM.
         /// </summary>
         /// <value>Exibilidade do ISS:1-Exigível;2-Não incidente;3-Isenção;4-Exportação;5-Imunidade;6-Exig.Susp. Judicial;7-Exig.Susp. ADM.</value>
-        [DataMember(Name = "indISS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indISS", IsRequired = true, EmitDefaultValue = true)]
         public int indISS { get; set; }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não.
         /// </summary>
         /// <value>Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não.</value>
-        [DataMember(Name = "indIncentivo", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indIncentivo", IsRequired = true, EmitDefaultValue = true)]
         public int indIncentivo { get; set; }
 
         /// <summary>

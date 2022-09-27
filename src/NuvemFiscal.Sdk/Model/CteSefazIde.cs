@@ -157,28 +157,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da UF do emitente do CT-e.  Utilizar a Tabela do IBGE.
         /// </summary>
         /// <value>Código da UF do emitente do CT-e.  Utilizar a Tabela do IBGE.</value>
-        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
         public int cUF { get; set; }
 
         /// <summary>
         /// Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.
         /// </summary>
         /// <value>Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.</value>
-        [DataMember(Name = "cCT", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cCT", IsRequired = true, EmitDefaultValue = true)]
         public int cCT { get; set; }
 
         /// <summary>
         /// Código Fiscal de Operações e Prestações.
         /// </summary>
         /// <value>Código Fiscal de Operações e Prestações.</value>
-        [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = true)]
         public int CFOP { get; set; }
 
         /// <summary>
         /// Natureza da Operação.
         /// </summary>
         /// <value>Natureza da Operação.</value>
-        [DataMember(Name = "natOp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "natOp", IsRequired = true, EmitDefaultValue = true)]
         public string natOp { get; set; }
 
         /// <summary>
@@ -192,42 +192,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Série do CT-e.  Preencher com \&quot;0\&quot; no caso de série única.
         /// </summary>
         /// <value>Série do CT-e.  Preencher com \&quot;0\&quot; no caso de série única.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
         /// <summary>
         /// Número do CT-e.
         /// </summary>
         /// <value>Número do CT-e.</value>
-        [DataMember(Name = "nCT", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nCT", IsRequired = true, EmitDefaultValue = true)]
         public int nCT { get; set; }
 
         /// <summary>
         /// Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD.
         /// </summary>
         /// <value>Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD.</value>
-        [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = true)]
         public DateTime dhEmi { get; set; }
 
         /// <summary>
         /// Formato de impressão do DACTE.  Preencher com: 1 - Retrato; 2 - Paisagem.
         /// </summary>
         /// <value>Formato de impressão do DACTE.  Preencher com: 1 - Retrato; 2 - Paisagem.</value>
-        [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = true)]
         public int tpImp { get; set; }
 
         /// <summary>
         /// Forma de emissão do CT-e.  Preencher com:  1 - Normal;   3-Regime Especial NFF;  4-EPEC pela SVC; 5 - Contingência FSDA;   7 - Autorização pela SVC-RS;    8 - Autorização pela SVC-SP.
         /// </summary>
         /// <value>Forma de emissão do CT-e.  Preencher com:  1 - Normal;   3-Regime Especial NFF;  4-EPEC pela SVC; 5 - Contingência FSDA;   7 - Autorização pela SVC-RS;    8 - Autorização pela SVC-SP.</value>
-        [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmis { get; set; }
 
         /// <summary>
         /// Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.
         /// </summary>
         /// <value>Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.</value>
-        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = true)]
         public int cDV { get; set; }
 
         /// <summary>
@@ -241,21 +241,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo do CT-e.  Preencher com:   0 - CT-e Normal;   1 - CT-e de Complemento de Valores; 2 - CT-e de Anulação;   3 - CT-e de Substituição.
         /// </summary>
         /// <value>Tipo do CT-e.  Preencher com:   0 - CT-e Normal;   1 - CT-e de Complemento de Valores; 2 - CT-e de Anulação;   3 - CT-e de Substituição.</value>
-        [DataMember(Name = "tpCTe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpCTe", IsRequired = true, EmitDefaultValue = true)]
         public int tpCTe { get; set; }
 
         /// <summary>
         /// Identificador do processo de emissão do CT-e.  Preencher com:             0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.
         /// </summary>
         /// <value>Identificador do processo de emissão do CT-e.  Preencher com:             0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.</value>
-        [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
         public int procEmi { get; set; }
 
         /// <summary>
         /// Versão do processo de emissão.  Iinformar a versão do aplicativo emissor de CT-e.
         /// </summary>
         /// <value>Versão do processo de emissão.  Iinformar a versão do aplicativo emissor de CT-e.</value>
-        [DataMember(Name = "verProc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "verProc", IsRequired = true, EmitDefaultValue = true)]
         public string verProc { get; set; }
 
         /// <summary>
@@ -269,84 +269,84 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do Município de envio do CT-e (de onde o documento foi transmitido).  Utilizar a tabela do IBGE. Informar 9999999 para as operações com o exterior.
         /// </summary>
         /// <value>Código do Município de envio do CT-e (de onde o documento foi transmitido).  Utilizar a tabela do IBGE. Informar 9999999 para as operações com o exterior.</value>
-        [DataMember(Name = "cMunEnv", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMunEnv", IsRequired = true, EmitDefaultValue = true)]
         public int cMunEnv { get; set; }
 
         /// <summary>
         /// Nome do Município de envio do CT-e (de onde o documento foi transmitido).  Informar PAIS/Municipio para as operações com o exterior.
         /// </summary>
         /// <value>Nome do Município de envio do CT-e (de onde o documento foi transmitido).  Informar PAIS/Municipio para as operações com o exterior.</value>
-        [DataMember(Name = "xMunEnv", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xMunEnv", IsRequired = true, EmitDefaultValue = true)]
         public string xMunEnv { get; set; }
 
         /// <summary>
         /// Sigla da UF de envio do CT-e (de onde o documento foi transmitido).  Informar &#39;EX&#39; para operações com o exterior.
         /// </summary>
         /// <value>Sigla da UF de envio do CT-e (de onde o documento foi transmitido).  Informar &#39;EX&#39; para operações com o exterior.</value>
-        [DataMember(Name = "UFEnv", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFEnv", IsRequired = true, EmitDefaultValue = true)]
         public string UFEnv { get; set; }
 
         /// <summary>
         /// Modal.  Preencher com:01-Rodoviário;  02-Aéreo;03-Aquaviário;04-Ferroviário;05-Dutoviário;06-Multimodal;.
         /// </summary>
         /// <value>Modal.  Preencher com:01-Rodoviário;  02-Aéreo;03-Aquaviário;04-Ferroviário;05-Dutoviário;06-Multimodal;.</value>
-        [DataMember(Name = "modal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "modal", IsRequired = true, EmitDefaultValue = true)]
         public string modal { get; set; }
 
         /// <summary>
         /// Tipo do Serviço.  Preencher com:  0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.
         /// </summary>
         /// <value>Tipo do Serviço.  Preencher com:  0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.</value>
-        [DataMember(Name = "tpServ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpServ", IsRequired = true, EmitDefaultValue = true)]
         public int tpServ { get; set; }
 
         /// <summary>
         /// Código do Município de início da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior.
         /// </summary>
         /// <value>Código do Município de início da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior.</value>
-        [DataMember(Name = "cMunIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMunIni", IsRequired = true, EmitDefaultValue = true)]
         public int cMunIni { get; set; }
 
         /// <summary>
         /// Nome do Município do início da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior.
         /// </summary>
         /// <value>Nome do Município do início da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior.</value>
-        [DataMember(Name = "xMunIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xMunIni", IsRequired = true, EmitDefaultValue = true)]
         public string xMunIni { get; set; }
 
         /// <summary>
         /// UF do início da prestação.  Informar &#39;EX&#39; para operações com o exterior.
         /// </summary>
         /// <value>UF do início da prestação.  Informar &#39;EX&#39; para operações com o exterior.</value>
-        [DataMember(Name = "UFIni", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFIni", IsRequired = true, EmitDefaultValue = true)]
         public string UFIni { get; set; }
 
         /// <summary>
         /// Código do Município de término da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior.
         /// </summary>
         /// <value>Código do Município de término da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior.</value>
-        [DataMember(Name = "cMunFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMunFim", IsRequired = true, EmitDefaultValue = true)]
         public int cMunFim { get; set; }
 
         /// <summary>
         /// Nome do Município do término da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior.
         /// </summary>
         /// <value>Nome do Município do término da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior.</value>
-        [DataMember(Name = "xMunFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xMunFim", IsRequired = true, EmitDefaultValue = true)]
         public string xMunFim { get; set; }
 
         /// <summary>
         /// UF do término da prestação.  Informar &#39;EX&#39; para operações com o exterior.
         /// </summary>
         /// <value>UF do término da prestação.  Informar &#39;EX&#39; para operações com o exterior.</value>
-        [DataMember(Name = "UFFim", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UFFim", IsRequired = true, EmitDefaultValue = true)]
         public string UFFim { get; set; }
 
         /// <summary>
         /// Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino?.  Preencher com: 0 - sim; 1 - não.
         /// </summary>
         /// <value>Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino?.  Preencher com: 0 - sim; 1 - não.</value>
-        [DataMember(Name = "retira", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "retira", IsRequired = true, EmitDefaultValue = true)]
         public int retira { get; set; }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador do papel do tomador na prestação do serviço:  1 – Contribuinte ICMS;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.  Aplica-se ao tomador que for indicado no toma3 ou toma4.
         /// </summary>
         /// <value>Indicador do papel do tomador na prestação do serviço:  1 – Contribuinte ICMS;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.  Aplica-se ao tomador que for indicado no toma3 ou toma4.</value>
-        [DataMember(Name = "indIEToma", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indIEToma", IsRequired = true, EmitDefaultValue = true)]
         public int indIEToma { get; set; }
 
         /// <summary>

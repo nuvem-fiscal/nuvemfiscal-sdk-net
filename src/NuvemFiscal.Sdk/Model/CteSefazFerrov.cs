@@ -55,7 +55,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de Tráfego.  Preencher com:        0-Próprio;        1-Mútuo;        2-Rodoferroviário;        3-Rodoviário.
         /// </summary>
         /// <value>Tipo de Tráfego.  Preencher com:        0-Próprio;        1-Mútuo;        2-Rodoferroviário;        3-Rodoviário.</value>
-        [DataMember(Name = "tpTraf", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpTraf", IsRequired = true, EmitDefaultValue = true)]
         public int tpTraf { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Fluxo Ferroviário.  Trata-se de um número identificador do contrato firmado com o cliente.
         /// </summary>
         /// <value>Fluxo Ferroviário.  Trata-se de um número identificador do contrato firmado com o cliente.</value>
-        [DataMember(Name = "fluxo", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "fluxo", IsRequired = true, EmitDefaultValue = true)]
         public string fluxo { get; set; }
 
         /// <summary>

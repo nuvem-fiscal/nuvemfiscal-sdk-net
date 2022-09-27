@@ -71,42 +71,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE.
         /// </summary>
         /// <value>Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE.</value>
-        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
         public int cUF { get; set; }
 
         /// <summary>
         /// AAMM da emissão.
         /// </summary>
         /// <value>AAMM da emissão.</value>
-        [DataMember(Name = "AAMM", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "AAMM", IsRequired = true, EmitDefaultValue = true)]
         public string AAMM { get; set; }
 
         /// <summary>
         /// CNPJ do emitente do documento fiscal referenciado.
         /// </summary>
         /// <value>CNPJ do emitente do documento fiscal referenciado.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Código do modelo do Documento Fiscal. Utilizar 01 para NF modelo 1/1A e 02 para NF modelo 02.
         /// </summary>
         /// <value>Código do modelo do Documento Fiscal. Utilizar 01 para NF modelo 1/1A e 02 para NF modelo 02.</value>
-        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 
         /// <summary>
         /// Série do Documento Fiscal, informar zero se inexistente.
         /// </summary>
         /// <value>Série do Documento Fiscal, informar zero se inexistente.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
         /// <summary>
         /// Número do Documento Fiscal.
         /// </summary>
         /// <value>Número do Documento Fiscal.</value>
-        [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = true)]
         public int nNF { get; set; }
 
         /// <summary>

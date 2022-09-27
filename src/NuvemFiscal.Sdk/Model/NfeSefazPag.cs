@@ -53,7 +53,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Grupo de detalhamento da forma de pagamento.
         /// </summary>
         /// <value>Grupo de detalhamento da forma de pagamento.</value>
-        [DataMember(Name = "detPag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "detPag", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazDetPag> detPag { get; set; }
 
         /// <summary>

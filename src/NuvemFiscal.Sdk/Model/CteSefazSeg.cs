@@ -64,21 +64,21 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets infSeg
         /// </summary>
-        [DataMember(Name = "infSeg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infSeg", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazInfSeg infSeg { get; set; }
 
         /// <summary>
         /// Número da Apólice.  Obrigatório pela lei 11.442/07 (RCTRC).
         /// </summary>
         /// <value>Número da Apólice.  Obrigatório pela lei 11.442/07 (RCTRC).</value>
-        [DataMember(Name = "nApol", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nApol", IsRequired = true, EmitDefaultValue = true)]
         public string nApol { get; set; }
 
         /// <summary>
         /// Número da Averbação.  Não é obrigatório, pois muitas averbações ocorrem aapós a emissão do CT, mensalmente, por exemplo.
         /// </summary>
         /// <value>Número da Averbação.  Não é obrigatório, pois muitas averbações ocorrem aapós a emissão do CT, mensalmente, por exemplo.</value>
-        [DataMember(Name = "nAver", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nAver", IsRequired = true, EmitDefaultValue = true)]
         public string nAver { get; set; }
 
         /// <summary>

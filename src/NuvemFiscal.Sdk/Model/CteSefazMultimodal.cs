@@ -55,14 +55,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do Certificado do Operador de Transporte Multimodal.
         /// </summary>
         /// <value>Número do Certificado do Operador de Transporte Multimodal.</value>
-        [DataMember(Name = "COTM", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "COTM", IsRequired = true, EmitDefaultValue = true)]
         public string COTM { get; set; }
 
         /// <summary>
         /// Indicador Negociável  Preencher com: 0 - Não Negociável; 1 - Negociável.
         /// </summary>
         /// <value>Indicador Negociável  Preencher com: 0 - Não Negociável; 1 - Negociável.</value>
-        [DataMember(Name = "indNegociavel", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indNegociavel", IsRequired = true, EmitDefaultValue = true)]
         public int indNegociavel { get; set; }
 
         /// <summary>

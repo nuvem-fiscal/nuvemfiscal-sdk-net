@@ -76,42 +76,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Chassi do veículo.
         /// </summary>
         /// <value>Chassi do veículo.</value>
-        [DataMember(Name = "chassi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chassi", IsRequired = true, EmitDefaultValue = true)]
         public string chassi { get; set; }
 
         /// <summary>
         /// Cor do veículo.  Código de cada montadora.
         /// </summary>
         /// <value>Cor do veículo.  Código de cada montadora.</value>
-        [DataMember(Name = "cCor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cCor", IsRequired = true, EmitDefaultValue = true)]
         public string cCor { get; set; }
 
         /// <summary>
         /// Descrição da cor.
         /// </summary>
         /// <value>Descrição da cor.</value>
-        [DataMember(Name = "xCor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xCor", IsRequired = true, EmitDefaultValue = true)]
         public string xCor { get; set; }
 
         /// <summary>
         /// Código Marca Modelo.  Utilizar tabela RENAVAM.
         /// </summary>
         /// <value>Código Marca Modelo.  Utilizar tabela RENAVAM.</value>
-        [DataMember(Name = "cMod", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cMod", IsRequired = true, EmitDefaultValue = true)]
         public string cMod { get; set; }
 
         /// <summary>
         /// Valor Unitário do Veículo.
         /// </summary>
         /// <value>Valor Unitário do Veículo.</value>
-        [DataMember(Name = "vUnit", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vUnit", IsRequired = true, EmitDefaultValue = true)]
         public decimal vUnit { get; set; }
 
         /// <summary>
         /// Frete Unitário.
         /// </summary>
         /// <value>Frete Unitário.</value>
-        [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFrete { get; set; }
 
         /// <summary>

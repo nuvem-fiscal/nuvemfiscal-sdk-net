@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tomador do Serviço.  Preencher com:                 0-Remetente;                 1-Expedidor;                 2-Recebedor;                 3-Destinatário                 Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo.
         /// </summary>
         /// <value>Tomador do Serviço.  Preencher com:                 0-Remetente;                 1-Expedidor;                 2-Recebedor;                 3-Destinatário                 Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo.</value>
-        [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = true)]
         public int toma { get; set; }
 
         /// <summary>

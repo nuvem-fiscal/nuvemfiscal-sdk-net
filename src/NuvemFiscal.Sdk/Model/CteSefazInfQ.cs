@@ -60,21 +60,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da Unidade de Medida.  Preencher com:                    00-M3;                    01-KG;                    02-TON;                    03-UNIDADE;                    04-LITROS;                    05-MMBTU.
         /// </summary>
         /// <value>Código da Unidade de Medida.  Preencher com:                    00-M3;                    01-KG;                    02-TON;                    03-UNIDADE;                    04-LITROS;                    05-MMBTU.</value>
-        [DataMember(Name = "cUnid", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cUnid", IsRequired = true, EmitDefaultValue = true)]
         public string cUnid { get; set; }
 
         /// <summary>
         /// Tipo da Medida.  Exemplos:  PESO BRUTO, PESO DECLARADO, PESO CUBADO, PESO AFORADO, PESO AFERIDO, PESO BASE DE CÁLCULO, LITRAGEM, CAIXAS e etc.
         /// </summary>
         /// <value>Tipo da Medida.  Exemplos:  PESO BRUTO, PESO DECLARADO, PESO CUBADO, PESO AFORADO, PESO AFERIDO, PESO BASE DE CÁLCULO, LITRAGEM, CAIXAS e etc.</value>
-        [DataMember(Name = "tpMed", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpMed", IsRequired = true, EmitDefaultValue = true)]
         public string tpMed { get; set; }
 
         /// <summary>
         /// Quantidade.
         /// </summary>
         /// <value>Quantidade.</value>
-        [DataMember(Name = "qCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qCarga", IsRequired = true, EmitDefaultValue = true)]
         public decimal qCarga { get; set; }
 
         /// <summary>

@@ -104,14 +104,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Componentes do Pagamentoi do Frete.
         /// </summary>
         /// <value>Componentes do Pagamentoi do Frete.</value>
-        [DataMember(Name = "Comp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "Comp", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazComp> Comp { get; set; }
 
         /// <summary>
         /// Valor Total do Contrato.
         /// </summary>
         /// <value>Valor Total do Contrato.</value>
-        [DataMember(Name = "vContrato", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vContrato", IsRequired = true, EmitDefaultValue = true)]
         public decimal vContrato { get; set; }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;.
         /// </summary>
         /// <value>Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;.</value>
-        [DataMember(Name = "indPag", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "indPag", IsRequired = true, EmitDefaultValue = true)]
         public int indPag { get; set; }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets infBanc
         /// </summary>
-        [DataMember(Name = "infBanc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infBanc", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazInfBanc infBanc { get; set; }
 
         /// <summary>

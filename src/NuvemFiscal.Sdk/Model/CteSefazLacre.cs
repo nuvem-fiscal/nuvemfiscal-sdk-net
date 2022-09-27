@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Lacre.
         /// </summary>
         /// <value>Lacre.</value>
-        [DataMember(Name = "nLacre", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nLacre", IsRequired = true, EmitDefaultValue = true)]
         public string nLacre { get; set; }
 
         /// <summary>

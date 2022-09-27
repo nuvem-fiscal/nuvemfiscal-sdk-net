@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação do Ambiente.
         /// </summary>
         /// <value>Identificação do Ambiente.</value>
-        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = true)]
         public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NfePedidoEmissao" /> class.
@@ -84,7 +84,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets infNFe
         /// </summary>
-        [DataMember(Name = "infNFe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infNFe", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazInfNFe infNFe { get; set; }
 
         /// <summary>

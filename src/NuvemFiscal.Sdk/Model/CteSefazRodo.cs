@@ -53,7 +53,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Registro Nacional de Transportadores Rodoviários de Carga.  Registro obrigatório do emitente do CT-e junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração.
         /// </summary>
         /// <value>Registro Nacional de Transportadores Rodoviários de Carga.  Registro obrigatório do emitente do CT-e junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração.</value>
-        [DataMember(Name = "RNTRC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "RNTRC", IsRequired = true, EmitDefaultValue = true)]
         public string RNTRC { get; set; }
 
         /// <summary>

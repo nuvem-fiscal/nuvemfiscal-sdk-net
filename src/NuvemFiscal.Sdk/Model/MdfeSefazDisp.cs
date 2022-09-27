@@ -61,7 +61,7 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ da empresa fornecedora do Vale-Pedágio.  - CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.           - Informar os zeros não significativos.
         /// </summary>
         /// <value>CNPJ da empresa fornecedora do Vale-Pedágio.  - CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.           - Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJForn", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJForn", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJForn { get; set; }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do Vale-Pedagio.  Valor do Vale-Pedágio obrigatório necessário à livre circulação, desde a origem da operação de transporte até o destino, do transportador contratado.
         /// </summary>
         /// <value>Valor do Vale-Pedagio.  Valor do Vale-Pedágio obrigatório necessário à livre circulação, desde a origem da operação de transporte até o destino, do transportador contratado.</value>
-        [DataMember(Name = "vValePed", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vValePed", IsRequired = true, EmitDefaultValue = true)]
         public decimal vValePed { get; set; }
 
         /// <summary>

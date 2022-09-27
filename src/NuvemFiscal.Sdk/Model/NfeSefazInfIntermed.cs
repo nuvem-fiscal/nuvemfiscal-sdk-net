@@ -58,14 +58,14 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do Intermediador da Transação (agenciador, plataforma de delivery, marketplace e similar) de serviços e de negócios.
         /// </summary>
         /// <value>CNPJ do Intermediador da Transação (agenciador, plataforma de delivery, marketplace e similar) de serviços e de negócios.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Identificador cadastrado no intermediador.
         /// </summary>
         /// <value>Identificador cadastrado no intermediador.</value>
-        [DataMember(Name = "idCadIntTran", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "idCadIntTran", IsRequired = true, EmitDefaultValue = true)]
         public string idCadIntTran { get; set; }
 
         /// <summary>

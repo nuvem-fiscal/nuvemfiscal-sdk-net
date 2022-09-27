@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação da unidades de carga vazia.
         /// </summary>
         /// <value>Identificação da unidades de carga vazia.</value>
-        [DataMember(Name = "idUnidCargaVazia", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "idUnidCargaVazia", IsRequired = true, EmitDefaultValue = true)]
         public string idUnidCargaVazia { get; set; }
 
         /// <summary>
         /// Tipo da unidade de carga vazia.  1 - Container; 2 - ULD;3 - Pallet;4 - Outros;.
         /// </summary>
         /// <value>Tipo da unidade de carga vazia.  1 - Container; 2 - ULD;3 - Pallet;4 - Outros;.</value>
-        [DataMember(Name = "tpUnidCargaVazia", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpUnidCargaVazia", IsRequired = true, EmitDefaultValue = true)]
         public int tpUnidCargaVazia { get; set; }
 
         /// <summary>

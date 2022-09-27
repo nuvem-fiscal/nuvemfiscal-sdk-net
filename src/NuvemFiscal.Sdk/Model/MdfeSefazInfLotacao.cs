@@ -57,13 +57,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets infLocalCarrega
         /// </summary>
-        [DataMember(Name = "infLocalCarrega", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infLocalCarrega", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazInfLocalCarrega infLocalCarrega { get; set; }
 
         /// <summary>
         /// Gets or Sets infLocalDescarrega
         /// </summary>
-        [DataMember(Name = "infLocalDescarrega", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infLocalDescarrega", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazInfLocalDescarrega infLocalDescarrega { get; set; }
 
         /// <summary>

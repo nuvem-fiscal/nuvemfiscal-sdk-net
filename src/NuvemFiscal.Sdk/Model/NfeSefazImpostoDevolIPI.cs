@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do IPI devolvido.
         /// </summary>
         /// <value>Valor do IPI devolvido.</value>
-        [DataMember(Name = "vIPIDevol", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vIPIDevol", IsRequired = true, EmitDefaultValue = true)]
         public decimal vIPIDevol { get; set; }
 
         /// <summary>

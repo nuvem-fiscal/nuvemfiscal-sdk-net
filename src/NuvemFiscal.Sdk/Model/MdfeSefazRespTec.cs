@@ -76,28 +76,28 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ da pessoa jurídica responsável técnica pelo sistema utilizado na emissão do documento fiscal eletrônico.  Informar o CNPJ da pessoa jurídica desenvolvedora do sistema utilizado na emissão do documento fiscal eletrônico.
         /// </summary>
         /// <value>CNPJ da pessoa jurídica responsável técnica pelo sistema utilizado na emissão do documento fiscal eletrônico.  Informar o CNPJ da pessoa jurídica desenvolvedora do sistema utilizado na emissão do documento fiscal eletrônico.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Nome da pessoa a ser contatada.  Informar o nome da pessoa a ser contatada na empresa desenvolvedora do sistema utilizado na emissão do documento fiscal eletrônico. No caso de pessoa física, informar o respectivo nome.
         /// </summary>
         /// <value>Nome da pessoa a ser contatada.  Informar o nome da pessoa a ser contatada na empresa desenvolvedora do sistema utilizado na emissão do documento fiscal eletrônico. No caso de pessoa física, informar o respectivo nome.</value>
-        [DataMember(Name = "xContato", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xContato", IsRequired = true, EmitDefaultValue = true)]
         public string xContato { get; set; }
 
         /// <summary>
         /// Email da pessoa jurídica a ser contatada.
         /// </summary>
         /// <value>Email da pessoa jurídica a ser contatada.</value>
-        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>
         /// Telefone da pessoa jurídica a ser contatada.  Preencher com o Código DDD + número do telefone.
         /// </summary>
         /// <value>Telefone da pessoa jurídica a ser contatada.  Preencher com o Código DDD + número do telefone.</value>
-        [DataMember(Name = "fone", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "fone", IsRequired = true, EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>

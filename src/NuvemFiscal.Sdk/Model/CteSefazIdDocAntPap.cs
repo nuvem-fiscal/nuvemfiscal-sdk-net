@@ -69,14 +69,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo do Documento de Transporte Anterior.  Preencher com:  07-ATRE;  08-DTA (Despacho de Transito Aduaneiro);  09-Conhecimento Aéreo Internacional;  10 – Conhecimento - Carta de Porte Internacional;  11 – Conhecimento Avulso;  12-TIF (Transporte Internacional Ferroviário); 13-BL (Bill of Lading).
         /// </summary>
         /// <value>Tipo do Documento de Transporte Anterior.  Preencher com:  07-ATRE;  08-DTA (Despacho de Transito Aduaneiro);  09-Conhecimento Aéreo Internacional;  10 – Conhecimento - Carta de Porte Internacional;  11 – Conhecimento Avulso;  12-TIF (Transporte Internacional Ferroviário); 13-BL (Bill of Lading).</value>
-        [DataMember(Name = "tpDoc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpDoc", IsRequired = true, EmitDefaultValue = true)]
         public string tpDoc { get; set; }
 
         /// <summary>
         /// Série do Documento Fiscal.
         /// </summary>
         /// <value>Série do Documento Fiscal.</value>
-        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public string serie { get; set; }
 
         /// <summary>
@@ -90,14 +90,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do Documento Fiscal.
         /// </summary>
         /// <value>Número do Documento Fiscal.</value>
-        [DataMember(Name = "nDoc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nDoc", IsRequired = true, EmitDefaultValue = true)]
         public string nDoc { get; set; }
 
         /// <summary>
         /// Data de emissão (AAAA-MM-DD).
         /// </summary>
         /// <value>Data de emissão (AAAA-MM-DD).</value>
-        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dEmi { get; set; }
 

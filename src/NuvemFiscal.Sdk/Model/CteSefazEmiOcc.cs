@@ -69,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CNPJ.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
@@ -83,14 +83,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Inscrição Estadual.
         /// </summary>
         /// <value>Inscrição Estadual.</value>
-        [DataMember(Name = "IE", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "IE", IsRequired = true, EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// Sigla da UF.  Informar EX para operações com o exterior.
         /// </summary>
         /// <value>Sigla da UF.  Informar EX para operações com o exterior.</value>
-        [DataMember(Name = "UF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "UF", IsRequired = true, EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>

@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Solicitação do pedido de emissão da NFF.
         /// </summary>
         /// <value>Solicitação do pedido de emissão da NFF.</value>
-        [DataMember(Name = "xSolic", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xSolic", IsRequired = true, EmitDefaultValue = true)]
         public string xSolic { get; set; }
 
         /// <summary>

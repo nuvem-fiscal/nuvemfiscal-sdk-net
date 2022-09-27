@@ -50,14 +50,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor Total da Prestação do Serviço.  Pode conter zeros quando o CT-e for de complemento de ICMS.
         /// </summary>
         /// <value>Valor Total da Prestação do Serviço.  Pode conter zeros quando o CT-e for de complemento de ICMS.</value>
-        [DataMember(Name = "vTPrest", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vTPrest", IsRequired = true, EmitDefaultValue = true)]
         public decimal vTPrest { get; set; }
 
         /// <summary>
         /// Valor a Receber.
         /// </summary>
         /// <value>Valor a Receber.</value>
-        [DataMember(Name = "vRec", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vRec", IsRequired = true, EmitDefaultValue = true)]
         public decimal vRec { get; set; }
 
         /// <summary>

@@ -76,28 +76,28 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ.
         /// </summary>
         /// <value>CNPJ.</value>
-        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Informar o nome da pessoa a ser contatada na empresa desenvolvedora do sistema utilizado na emissão do documento fiscal eletrônico.
         /// </summary>
         /// <value>Informar o nome da pessoa a ser contatada na empresa desenvolvedora do sistema utilizado na emissão do documento fiscal eletrônico.</value>
-        [DataMember(Name = "xContato", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xContato", IsRequired = true, EmitDefaultValue = true)]
         public string xContato { get; set; }
 
         /// <summary>
         /// Informar o e-mail da pessoa a ser contatada na empresa desenvolvedora do sistema.
         /// </summary>
         /// <value>Informar o e-mail da pessoa a ser contatada na empresa desenvolvedora do sistema.</value>
-        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>
         /// Informar o telefone da pessoa a ser contatada na empresa desenvolvedora do sistema. Preencher com o Código DDD + número do telefone.
         /// </summary>
         /// <value>Informar o telefone da pessoa a ser contatada na empresa desenvolvedora do sistema. Preencher com o Código DDD + número do telefone.</value>
-        [DataMember(Name = "fone", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "fone", IsRequired = true, EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>

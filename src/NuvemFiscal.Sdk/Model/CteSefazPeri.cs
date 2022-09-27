@@ -65,20 +65,20 @@ namespace NuvemFiscal.Sdk.Model
         /// Número ONU/UN.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal.
         /// </summary>
         /// <value>Número ONU/UN.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal.</value>
-        [DataMember(Name = "nONU", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nONU", IsRequired = true, EmitDefaultValue = true)]
         public string nONU { get; set; }
 
         /// <summary>
         /// Quantidade total de volumes contendo artigos perigosos.  Preencher com o número de volumes (unidades) de artigos perigosos, ou seja, cada embalagem devidamente marcada e etiquetada (por ex.: número de caixas, de tambores, de bombonas, dentre outros). Não deve ser preenchido com o número de ULD, pallets ou containers.
         /// </summary>
         /// <value>Quantidade total de volumes contendo artigos perigosos.  Preencher com o número de volumes (unidades) de artigos perigosos, ou seja, cada embalagem devidamente marcada e etiquetada (por ex.: número de caixas, de tambores, de bombonas, dentre outros). Não deve ser preenchido com o número de ULD, pallets ou containers.</value>
-        [DataMember(Name = "qTotEmb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qTotEmb", IsRequired = true, EmitDefaultValue = true)]
         public string qTotEmb { get; set; }
 
         /// <summary>
         /// Gets or Sets infTotAP
         /// </summary>
-        [DataMember(Name = "infTotAP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "infTotAP", IsRequired = true, EmitDefaultValue = true)]
         public CteSefazInfTotAP infTotAP { get; set; }
 
         /// <summary>

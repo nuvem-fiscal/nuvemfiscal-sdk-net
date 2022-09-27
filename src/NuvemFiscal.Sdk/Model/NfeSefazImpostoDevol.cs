@@ -53,13 +53,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Percentual de mercadoria devolvida.
         /// </summary>
         /// <value>Percentual de mercadoria devolvida.</value>
-        [DataMember(Name = "pDevol", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pDevol", IsRequired = true, EmitDefaultValue = true)]
         public decimal pDevol { get; set; }
 
         /// <summary>
         /// Gets or Sets IPI
         /// </summary>
-        [DataMember(Name = "IPI", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "IPI", IsRequired = true, EmitDefaultValue = true)]
         public NfeSefazImpostoDevolIPI IPI { get; set; }
 
         /// <summary>

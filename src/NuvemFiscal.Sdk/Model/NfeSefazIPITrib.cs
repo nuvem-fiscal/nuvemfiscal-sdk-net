@@ -61,7 +61,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da Situação Tributária do IPI:  00-Entrada com recuperação de crédito  49 - Outras entradas  50-Saída tributada  99-Outras saídas.
         /// </summary>
         /// <value>Código da Situação Tributária do IPI:  00-Entrada com recuperação de crédito  49 - Outras entradas  50-Saída tributada  99-Outras saídas.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do IPI.
         /// </summary>
         /// <value>Valor do IPI.</value>
-        [DataMember(Name = "vIPI", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vIPI", IsRequired = true, EmitDefaultValue = true)]
         public decimal vIPI { get; set; }
 
         /// <summary>

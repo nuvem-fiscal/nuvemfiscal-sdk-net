@@ -94,7 +94,7 @@ namespace NuvemFiscal.Sdk.Model
         /// CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
         /// </summary>
         /// <value>CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</value>
-        [DataMember(Name = "cpf_cnpj", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cpf_cnpj", IsRequired = true, EmitDefaultValue = true)]
         public string cpf_cnpj { get; set; }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Razão social da empresa.
         /// </summary>
         /// <value>Razão social da empresa.</value>
-        [DataMember(Name = "nome_razao_social", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nome_razao_social", IsRequired = true, EmitDefaultValue = true)]
         public string nome_razao_social { get; set; }
 
         /// <summary>
@@ -150,13 +150,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Email da empresa.
         /// </summary>
         /// <value>Email da empresa.</value>
-        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>
         /// Gets or Sets endereco
         /// </summary>
-        [DataMember(Name = "endereco", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "endereco", IsRequired = true, EmitDefaultValue = true)]
         public EmpresaEndereco endereco { get; set; }
 
         /// <summary>
@@ -170,14 +170,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Regime Tributário da Empresa:  0 - Nenhum  1 - Simples Nacional  2 - Simples Nacional - Excesso  3 - Normal - Lucro Presumido  4 - Normal - Lucro Real
         /// </summary>
         /// <value>Regime Tributário da Empresa:  0 - Nenhum  1 - Simples Nacional  2 - Simples Nacional - Excesso  3 - Normal - Lucro Presumido  4 - Normal - Lucro Real</value>
-        [DataMember(Name = "regime_tributacao", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "regime_tributacao", IsRequired = true, EmitDefaultValue = true)]
         public int regime_tributacao { get; set; }
 
         /// <summary>
         /// Regime especial de tributação da Empresa:  0 - Sem Regime Tributário Especial  1 - Micro Empresa Municipal  2 - Estimativa  3 - Sociedade de Profissionais  4 - Cooperativa  5 - Microempresário Individual - MEI  6 - Microempresa ou Pequeno Porte - ME EPP
         /// </summary>
         /// <value>Regime especial de tributação da Empresa:  0 - Sem Regime Tributário Especial  1 - Micro Empresa Municipal  2 - Estimativa  3 - Sociedade de Profissionais  4 - Cooperativa  5 - Microempresário Individual - MEI  6 - Microempresa ou Pequeno Porte - ME EPP</value>
-        [DataMember(Name = "regime_especial_tributacao", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "regime_especial_tributacao", IsRequired = true, EmitDefaultValue = true)]
         public int regime_especial_tributacao { get; set; }
 
         /// <summary>

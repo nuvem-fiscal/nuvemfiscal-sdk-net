@@ -65,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de documento originário.  Preencher com:                 00 - Declaração;                 10 - Dutoviário;      59 - CF-e SAT;    65 - NFC-e;          99 - Outros.
         /// </summary>
         /// <value>Tipo de documento originário.  Preencher com:                 00 - Declaração;                 10 - Dutoviário;      59 - CF-e SAT;    65 - NFC-e;          99 - Outros.</value>
-        [DataMember(Name = "tpDoc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpDoc", IsRequired = true, EmitDefaultValue = true)]
         public string tpDoc { get; set; }
 
         /// <summary>

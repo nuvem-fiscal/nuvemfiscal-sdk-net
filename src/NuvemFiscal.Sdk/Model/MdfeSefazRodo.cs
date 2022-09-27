@@ -64,7 +64,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets veicTracao
         /// </summary>
-        [DataMember(Name = "veicTracao", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "veicTracao", IsRequired = true, EmitDefaultValue = true)]
         public MdfeSefazVeicTracao veicTracao { get; set; }
 
         /// <summary>

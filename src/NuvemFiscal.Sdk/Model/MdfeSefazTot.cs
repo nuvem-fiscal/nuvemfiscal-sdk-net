@@ -82,21 +82,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor total da carga / mercadorias transportadas.
         /// </summary>
         /// <value>Valor total da carga / mercadorias transportadas.</value>
-        [DataMember(Name = "vCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vCarga", IsRequired = true, EmitDefaultValue = true)]
         public decimal vCarga { get; set; }
 
         /// <summary>
         /// Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  01 – KG;  02 - TON.
         /// </summary>
         /// <value>Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  01 – KG;  02 - TON.</value>
-        [DataMember(Name = "cUnid", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cUnid", IsRequired = true, EmitDefaultValue = true)]
         public string cUnid { get; set; }
 
         /// <summary>
         /// Peso Bruto Total da Carga / Mercadorias transportadas.
         /// </summary>
         /// <value>Peso Bruto Total da Carga / Mercadorias transportadas.</value>
-        [DataMember(Name = "qCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qCarga", IsRequired = true, EmitDefaultValue = true)]
         public decimal qCarga { get; set; }
 
         /// <summary>

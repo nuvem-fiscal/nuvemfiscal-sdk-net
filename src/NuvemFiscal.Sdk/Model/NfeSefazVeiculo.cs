@@ -55,7 +55,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Placa do veículo (NT2011/004).
         /// </summary>
         /// <value>Placa do veículo (NT2011/004).</value>
-        [DataMember(Name = "placa", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "placa", IsRequired = true, EmitDefaultValue = true)]
         public string placa { get; set; }
 
         /// <summary>

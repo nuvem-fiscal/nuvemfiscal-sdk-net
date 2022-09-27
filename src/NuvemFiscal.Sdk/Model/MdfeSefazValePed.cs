@@ -53,7 +53,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Informações dos dispositivos do Vale Pedágio.
         /// </summary>
         /// <value>Informações dos dispositivos do Vale Pedágio.</value>
-        [DataMember(Name = "disp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "disp", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazDisp> disp { get; set; }
 
         /// <summary>

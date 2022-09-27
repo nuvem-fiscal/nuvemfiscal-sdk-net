@@ -90,21 +90,21 @@ namespace NuvemFiscal.Sdk.Model
         /// BC do ICMS.
         /// </summary>
         /// <value>BC do ICMS.</value>
-        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBC { get; set; }
 
         /// <summary>
         /// Valor Total do ICMS.
         /// </summary>
         /// <value>Valor Total do ICMS.</value>
-        [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMS { get; set; }
 
         /// <summary>
         /// Valor Total do ICMS desonerado.
         /// </summary>
         /// <value>Valor Total do ICMS desonerado.</value>
-        [DataMember(Name = "vICMSDeson", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vICMSDeson", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSDeson { get; set; }
 
         /// <summary>
@@ -132,112 +132,112 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor Total do FCP (Fundo de Combate à Pobreza).
         /// </summary>
         /// <value>Valor Total do FCP (Fundo de Combate à Pobreza).</value>
-        [DataMember(Name = "vFCP", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFCP", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFCP { get; set; }
 
         /// <summary>
         /// BC do ICMS ST.
         /// </summary>
         /// <value>BC do ICMS ST.</value>
-        [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBCST { get; set; }
 
         /// <summary>
         /// Valor Total do ICMS ST.
         /// </summary>
         /// <value>Valor Total do ICMS ST.</value>
-        [DataMember(Name = "vST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vST", IsRequired = true, EmitDefaultValue = true)]
         public decimal vST { get; set; }
 
         /// <summary>
         /// Valor Total do FCP (Fundo de Combate à Pobreza) retido por substituição tributária.
         /// </summary>
         /// <value>Valor Total do FCP (Fundo de Combate à Pobreza) retido por substituição tributária.</value>
-        [DataMember(Name = "vFCPST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFCPST", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFCPST { get; set; }
 
         /// <summary>
         /// Valor Total do FCP (Fundo de Combate à Pobreza) retido anteriormente por substituição tributária.
         /// </summary>
         /// <value>Valor Total do FCP (Fundo de Combate à Pobreza) retido anteriormente por substituição tributária.</value>
-        [DataMember(Name = "vFCPSTRet", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFCPSTRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFCPSTRet { get; set; }
 
         /// <summary>
         /// Valor Total dos produtos e serviços.
         /// </summary>
         /// <value>Valor Total dos produtos e serviços.</value>
-        [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = true)]
         public decimal vProd { get; set; }
 
         /// <summary>
         /// Valor Total do Frete.
         /// </summary>
         /// <value>Valor Total do Frete.</value>
-        [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = true)]
         public decimal vFrete { get; set; }
 
         /// <summary>
         /// Valor Total do Seguro.
         /// </summary>
         /// <value>Valor Total do Seguro.</value>
-        [DataMember(Name = "vSeg", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vSeg", IsRequired = true, EmitDefaultValue = true)]
         public decimal vSeg { get; set; }
 
         /// <summary>
         /// Valor Total do Desconto.
         /// </summary>
         /// <value>Valor Total do Desconto.</value>
-        [DataMember(Name = "vDesc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vDesc", IsRequired = true, EmitDefaultValue = true)]
         public decimal vDesc { get; set; }
 
         /// <summary>
         /// Valor Total do II.
         /// </summary>
         /// <value>Valor Total do II.</value>
-        [DataMember(Name = "vII", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vII", IsRequired = true, EmitDefaultValue = true)]
         public decimal vII { get; set; }
 
         /// <summary>
         /// Valor Total do IPI.
         /// </summary>
         /// <value>Valor Total do IPI.</value>
-        [DataMember(Name = "vIPI", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vIPI", IsRequired = true, EmitDefaultValue = true)]
         public decimal vIPI { get; set; }
 
         /// <summary>
         /// Valor Total do IPI devolvido. Deve ser informado quando preenchido o Grupo Tributos Devolvidos na emissão de nota finNFe&#x3D;4 (devolução) nas operações com não contribuintes do IPI. Corresponde ao total da soma dos campos id: UA04.
         /// </summary>
         /// <value>Valor Total do IPI devolvido. Deve ser informado quando preenchido o Grupo Tributos Devolvidos na emissão de nota finNFe&#x3D;4 (devolução) nas operações com não contribuintes do IPI. Corresponde ao total da soma dos campos id: UA04.</value>
-        [DataMember(Name = "vIPIDevol", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vIPIDevol", IsRequired = true, EmitDefaultValue = true)]
         public decimal vIPIDevol { get; set; }
 
         /// <summary>
         /// Valor do PIS.
         /// </summary>
         /// <value>Valor do PIS.</value>
-        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vPIS { get; set; }
 
         /// <summary>
         /// Valor do COFINS.
         /// </summary>
         /// <value>Valor do COFINS.</value>
-        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vCOFINS { get; set; }
 
         /// <summary>
         /// Outras Despesas acessórias.
         /// </summary>
         /// <value>Outras Despesas acessórias.</value>
-        [DataMember(Name = "vOutro", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vOutro", IsRequired = true, EmitDefaultValue = true)]
         public decimal vOutro { get; set; }
 
         /// <summary>
         /// Valor Total da NF-e.
         /// </summary>
         /// <value>Valor Total da NF-e.</value>
-        [DataMember(Name = "vNF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vNF", IsRequired = true, EmitDefaultValue = true)]
         public decimal vNF { get; set; }
 
         /// <summary>

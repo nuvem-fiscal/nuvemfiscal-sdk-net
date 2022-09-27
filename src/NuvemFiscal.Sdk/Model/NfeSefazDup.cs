@@ -65,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da duplicata.
         /// </summary>
         /// <value>Valor da duplicata.</value>
-        [DataMember(Name = "vDup", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vDup", IsRequired = true, EmitDefaultValue = true)]
         public decimal vDup { get; set; }
 
         /// <summary>

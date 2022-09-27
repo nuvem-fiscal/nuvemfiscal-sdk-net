@@ -81,42 +81,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Marca da Nacionalidade da aeronave.
         /// </summary>
         /// <value>Marca da Nacionalidade da aeronave.</value>
-        [DataMember(Name = "nac", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nac", IsRequired = true, EmitDefaultValue = true)]
         public string nac { get; set; }
 
         /// <summary>
         /// Marca de Matrícula da aeronave.
         /// </summary>
         /// <value>Marca de Matrícula da aeronave.</value>
-        [DataMember(Name = "matr", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "matr", IsRequired = true, EmitDefaultValue = true)]
         public string matr { get; set; }
 
         /// <summary>
         /// Número do Voo.  Formato &#x3D; AB1234, sendo AB a designação da empresa e 1234 o número do voo. Quando não for possível incluir as marcas de nacionalidade e matrícula sem hífen.
         /// </summary>
         /// <value>Número do Voo.  Formato &#x3D; AB1234, sendo AB a designação da empresa e 1234 o número do voo. Quando não for possível incluir as marcas de nacionalidade e matrícula sem hífen.</value>
-        [DataMember(Name = "nVoo", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nVoo", IsRequired = true, EmitDefaultValue = true)]
         public string nVoo { get; set; }
 
         /// <summary>
         /// Aeródromo de Embarque.  O código de três letras IATA do aeroporto de partida deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI.
         /// </summary>
         /// <value>Aeródromo de Embarque.  O código de três letras IATA do aeroporto de partida deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI.</value>
-        [DataMember(Name = "cAerEmb", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cAerEmb", IsRequired = true, EmitDefaultValue = true)]
         public string cAerEmb { get; set; }
 
         /// <summary>
         /// Aeródromo de Destino.  O código de três letras IATA do aeroporto de destino deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI.
         /// </summary>
         /// <value>Aeródromo de Destino.  O código de três letras IATA do aeroporto de destino deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI.</value>
-        [DataMember(Name = "cAerDes", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cAerDes", IsRequired = true, EmitDefaultValue = true)]
         public string cAerDes { get; set; }
 
         /// <summary>
         /// Data do Voo.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data do Voo.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dVoo", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dVoo", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime dVoo { get; set; }
 

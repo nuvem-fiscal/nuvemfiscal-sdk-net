@@ -48,14 +48,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade total de volumes.
         /// </summary>
         /// <value>Quantidade total de volumes.</value>
-        [DataMember(Name = "qtdTotal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qtdTotal", IsRequired = true, EmitDefaultValue = true)]
         public decimal qtdTotal { get; set; }
 
         /// <summary>
         /// Quantidade de volumes enviados no MDF-e.
         /// </summary>
         /// <value>Quantidade de volumes enviados no MDF-e.</value>
-        [DataMember(Name = "qtdParcial", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qtdParcial", IsRequired = true, EmitDefaultValue = true)]
         public decimal qtdParcial { get; set; }
 
         /// <summary>

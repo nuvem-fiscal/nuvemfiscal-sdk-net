@@ -59,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Chave de acesso da NF-e.
         /// </summary>
         /// <value>Chave de acesso da NF-e.</value>
-        [DataMember(Name = "chave", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chave", IsRequired = true, EmitDefaultValue = true)]
         public string chave { get; set; }
 
         /// <summary>

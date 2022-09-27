@@ -60,21 +60,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Registro de exportação.
         /// </summary>
         /// <value>Registro de exportação.</value>
-        [DataMember(Name = "nRE", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "nRE", IsRequired = true, EmitDefaultValue = true)]
         public string nRE { get; set; }
 
         /// <summary>
         /// Chave de acesso da NF-e recebida para exportação.
         /// </summary>
         /// <value>Chave de acesso da NF-e recebida para exportação.</value>
-        [DataMember(Name = "chNFe", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chNFe", IsRequired = true, EmitDefaultValue = true)]
         public string chNFe { get; set; }
 
         /// <summary>
         /// Quantidade do item efetivamente exportado.
         /// </summary>
         /// <value>Quantidade do item efetivamente exportado.</value>
-        [DataMember(Name = "qExport", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qExport", IsRequired = true, EmitDefaultValue = true)]
         public decimal qExport { get; set; }
 
         /// <summary>

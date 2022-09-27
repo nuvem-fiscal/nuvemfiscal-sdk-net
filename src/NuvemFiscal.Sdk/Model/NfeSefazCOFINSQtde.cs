@@ -57,28 +57,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de Situação Tributária do COFINS.  03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto;.
         /// </summary>
         /// <value>Código de Situação Tributária do COFINS.  03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto;.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
         /// Quantidade Vendida (NT2011/004).
         /// </summary>
         /// <value>Quantidade Vendida (NT2011/004).</value>
-        [DataMember(Name = "qBCProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "qBCProd", IsRequired = true, EmitDefaultValue = true)]
         public decimal qBCProd { get; set; }
 
         /// <summary>
         /// Alíquota do COFINS (em reais) (NT2011/004).
         /// </summary>
         /// <value>Alíquota do COFINS (em reais) (NT2011/004).</value>
-        [DataMember(Name = "vAliqProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vAliqProd", IsRequired = true, EmitDefaultValue = true)]
         public decimal vAliqProd { get; set; }
 
         /// <summary>
         /// Valor do COFINS.
         /// </summary>
         /// <value>Valor do COFINS.</value>
-        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vCOFINS { get; set; }
 
         /// <summary>

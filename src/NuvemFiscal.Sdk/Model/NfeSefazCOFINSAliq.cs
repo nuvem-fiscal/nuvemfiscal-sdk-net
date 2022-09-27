@@ -57,28 +57,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de Situação Tributária do COFINS.   01 – Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo);  02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada);.
         /// </summary>
         /// <value>Código de Situação Tributária do COFINS.   01 – Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo);  02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada);.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
         /// Valor da BC do COFINS.
         /// </summary>
         /// <value>Valor da BC do COFINS.</value>
-        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBC { get; set; }
 
         /// <summary>
         /// Alíquota do COFINS (em percentual).
         /// </summary>
         /// <value>Alíquota do COFINS (em percentual).</value>
-        [DataMember(Name = "pCOFINS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pCOFINS", IsRequired = true, EmitDefaultValue = true)]
         public decimal pCOFINS { get; set; }
 
         /// <summary>
         /// Valor do COFINS.
         /// </summary>
         /// <value>Valor do COFINS.</value>
-        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vCOFINS { get; set; }
 
         /// <summary>

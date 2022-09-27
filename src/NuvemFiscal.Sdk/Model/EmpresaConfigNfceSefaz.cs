@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número de identificação do CSC.
         /// </summary>
         /// <value>Número de identificação do CSC.</value>
-        [DataMember(Name = "id_csc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "id_csc", IsRequired = true, EmitDefaultValue = true)]
         public int id_csc { get; set; }
 
         /// <summary>
         /// Código do CSC.
         /// </summary>
         /// <value>Código do CSC.</value>
-        [DataMember(Name = "csc", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "csc", IsRequired = true, EmitDefaultValue = true)]
         public string csc { get; set; }
 
         /// <summary>

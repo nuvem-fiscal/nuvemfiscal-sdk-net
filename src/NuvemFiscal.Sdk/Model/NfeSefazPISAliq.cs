@@ -57,28 +57,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de Situação Tributária do PIS.   01 – Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo);  02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada);.
         /// </summary>
         /// <value>Código de Situação Tributária do PIS.   01 – Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo);  02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada);.</value>
-        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
         /// Valor da BC do PIS.
         /// </summary>
         /// <value>Valor da BC do PIS.</value>
-        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
         public decimal vBC { get; set; }
 
         /// <summary>
         /// Alíquota do PIS (em percentual).
         /// </summary>
         /// <value>Alíquota do PIS (em percentual).</value>
-        [DataMember(Name = "pPIS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "pPIS", IsRequired = true, EmitDefaultValue = true)]
         public decimal pPIS { get; set; }
 
         /// <summary>
         /// Valor do PIS.
         /// </summary>
         /// <value>Valor do PIS.</value>
-        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = true)]
         public decimal vPIS { get; set; }
 
         /// <summary>

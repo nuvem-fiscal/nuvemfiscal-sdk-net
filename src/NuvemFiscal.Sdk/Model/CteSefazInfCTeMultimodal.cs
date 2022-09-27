@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Chave de acesso do CT-e Multimodal.
         /// </summary>
         /// <value>Chave de acesso do CT-e Multimodal.</value>
-        [DataMember(Name = "chCTeMultimodal", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chCTeMultimodal", IsRequired = true, EmitDefaultValue = true)]
         public string chCTeMultimodal { get; set; }
 
         /// <summary>

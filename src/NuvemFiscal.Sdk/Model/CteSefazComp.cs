@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome do componente.  Exxemplos: FRETE PESO, FRETE VALOR, SEC/CAT, ADEME, AGENDAMENTO, etc.
         /// </summary>
         /// <value>Nome do componente.  Exxemplos: FRETE PESO, FRETE VALOR, SEC/CAT, ADEME, AGENDAMENTO, etc.</value>
-        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", IsRequired = true, EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Valor do componente.
         /// </summary>
         /// <value>Valor do componente.</value>
-        [DataMember(Name = "vComp", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vComp", IsRequired = true, EmitDefaultValue = true)]
         public decimal vComp { get; set; }
 
         /// <summary>

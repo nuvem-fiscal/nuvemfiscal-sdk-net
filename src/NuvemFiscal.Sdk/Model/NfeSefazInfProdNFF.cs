@@ -58,14 +58,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código Fiscal do Produto.
         /// </summary>
         /// <value>Código Fiscal do Produto.</value>
-        [DataMember(Name = "cProdFisco", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cProdFisco", IsRequired = true, EmitDefaultValue = true)]
         public string cProdFisco { get; set; }
 
         /// <summary>
         /// Código da operação selecionada na NFF e relacionada ao item.
         /// </summary>
         /// <value>Código da operação selecionada na NFF e relacionada ao item.</value>
-        [DataMember(Name = "cOperNFF", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "cOperNFF", IsRequired = true, EmitDefaultValue = true)]
         public string cOperNFF { get; set; }
 
         /// <summary>

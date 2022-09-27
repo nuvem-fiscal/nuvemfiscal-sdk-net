@@ -67,21 +67,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicar o grupo de informações que pertence o \&quot;campo_alterado\&quot;. Ex: ide.
         /// </summary>
         /// <value>Indicar o grupo de informações que pertence o \&quot;campo_alterado\&quot;. Ex: ide.</value>
-        [DataMember(Name = "grupo_alterado", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "grupo_alterado", IsRequired = true, EmitDefaultValue = true)]
         public string grupo_alterado { get; set; }
 
         /// <summary>
         /// Nome do campo modificado do CT-e Original.
         /// </summary>
         /// <value>Nome do campo modificado do CT-e Original.</value>
-        [DataMember(Name = "campo_alterado", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "campo_alterado", IsRequired = true, EmitDefaultValue = true)]
         public string campo_alterado { get; set; }
 
         /// <summary>
         /// Valor correspondente à alteração.
         /// </summary>
         /// <value>Valor correspondente à alteração.</value>
-        [DataMember(Name = "valor_alterado", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "valor_alterado", IsRequired = true, EmitDefaultValue = true)]
         public string valor_alterado { get; set; }
 
         /// <summary>

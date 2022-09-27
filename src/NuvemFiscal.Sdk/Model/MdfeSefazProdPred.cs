@@ -64,14 +64,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.    01-Granel sólido;  02-Granel líquido;  03-Frigorificada;  04-Conteinerizada;  05-Carga Geral;  06-Neogranel;  07-Perigosa (granel sólido);  08-Perigosa (granel líquido);  09-Perigosa (carga frigorificada);  10-Perigosa (conteinerizada);  11-Perigosa (carga geral).
         /// </summary>
         /// <value>Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.    01-Granel sólido;  02-Granel líquido;  03-Frigorificada;  04-Conteinerizada;  05-Carga Geral;  06-Neogranel;  07-Perigosa (granel sólido);  08-Perigosa (granel líquido);  09-Perigosa (carga frigorificada);  10-Perigosa (conteinerizada);  11-Perigosa (carga geral).</value>
-        [DataMember(Name = "tpCarga", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "tpCarga", IsRequired = true, EmitDefaultValue = true)]
         public string tpCarga { get; set; }
 
         /// <summary>
         /// Descrição do produto.
         /// </summary>
         /// <value>Descrição do produto.</value>
-        [DataMember(Name = "xProd", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xProd", IsRequired = true, EmitDefaultValue = true)]
         public string xProd { get; set; }
 
         /// <summary>

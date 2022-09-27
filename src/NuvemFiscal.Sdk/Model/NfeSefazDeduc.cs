@@ -53,14 +53,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Descrição da Dedução.
         /// </summary>
         /// <value>Descrição da Dedução.</value>
-        [DataMember(Name = "xDed", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xDed", IsRequired = true, EmitDefaultValue = true)]
         public string xDed { get; set; }
 
         /// <summary>
         /// valor da dedução.
         /// </summary>
         /// <value>valor da dedução.</value>
-        [DataMember(Name = "vDed", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "vDed", IsRequired = true, EmitDefaultValue = true)]
         public decimal vDed { get; set; }
 
         /// <summary>

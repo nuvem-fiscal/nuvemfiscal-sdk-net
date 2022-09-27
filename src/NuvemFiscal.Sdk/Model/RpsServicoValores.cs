@@ -84,7 +84,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor unitário do serviço.
         /// </summary>
         /// <value>Valor unitário do serviço.</value>
-        [DataMember(Name = "valor_unitario", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "valor_unitario", IsRequired = true, EmitDefaultValue = true)]
         public decimal valor_unitario { get; set; }
 
         /// <summary>

@@ -57,7 +57,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Chave de acesso do CT-e a ser substituído (original).
         /// </summary>
         /// <value>Chave de acesso do CT-e a ser substituído (original).</value>
-        [DataMember(Name = "chCte", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "chCte", IsRequired = true, EmitDefaultValue = true)]
         public string chCte { get; set; }
 
         /// <summary>

@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Solicitação do pedido de emissão da NFF.  Será preenchido com a totalidade de campos informados no aplicativo emissor serializado.
         /// </summary>
         /// <value>Solicitação do pedido de emissão da NFF.  Será preenchido com a totalidade de campos informados no aplicativo emissor serializado.</value>
-        [DataMember(Name = "xSolic", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "xSolic", IsRequired = true, EmitDefaultValue = true)]
         public string xSolic { get; set; }
 
         /// <summary>
