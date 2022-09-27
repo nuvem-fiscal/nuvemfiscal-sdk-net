@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class MdfePedidoEmissao : IEquatable<MdfePedidoEmissao>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do Ambiente.
         /// </summary>
+        /// <value>Identificação do Ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,29 +51,40 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do Ambiente.
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        /// <value>Identificação do Ambiente.</value>
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfePedidoEmissao" /> class.
         /// </summary>
-        /// <param name="infMDFe">infMDFe.</param>
+        [JsonConstructorAttribute]
+        protected MdfePedidoEmissao() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MdfePedidoEmissao" /> class.
+        /// </summary>
+        /// <param name="infMDFe">infMDFe (required).</param>
         /// <param name="infMDFeSupl">infMDFeSupl.</param>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="referencia">referencia.</param>
-        public MdfePedidoEmissao(MdfeSefazInfMDFe infMDFe = default(MdfeSefazInfMDFe), MdfeSefazInfMDFeSupl infMDFeSupl = default(MdfeSefazInfMDFeSupl), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string))
+        /// <param name="ambiente">Identificação do Ambiente. (required).</param>
+        /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
+        public MdfePedidoEmissao(MdfeSefazInfMDFe infMDFe = default(MdfeSefazInfMDFe), MdfeSefazInfMDFeSupl infMDFeSupl = default(MdfeSefazInfMDFeSupl), AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string))
         {
+            // to ensure "infMDFe" is required (not null)
+            if (infMDFe == null)
+            {
+                throw new ArgumentNullException("infMDFe is a required property for MdfePedidoEmissao and cannot be null");
+            }
             this.infMDFe = infMDFe;
-            this.infMDFeSupl = infMDFeSupl;
             this.ambiente = ambiente;
+            this.infMDFeSupl = infMDFeSupl;
             this.referencia = referencia;
         }
 
         /// <summary>
         /// Gets or Sets infMDFe
         /// </summary>
-        [DataMember(Name = "infMDFe", EmitDefaultValue = false)]
+        [DataMember(Name = "infMDFe", IsRequired = true, EmitDefaultValue = false)]
         public MdfeSefazInfMDFe infMDFe { get; set; }
 
         /// <summary>
@@ -82,8 +94,9 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazInfMDFeSupl infMDFeSupl { get; set; }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 

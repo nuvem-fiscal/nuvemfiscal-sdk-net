@@ -113,11 +113,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Dfe" /> class.
         /// </summary>
-        /// <param name="id">Identificador único do documento..</param>
+        /// <param name="id">ID único gerado pela Nuvem Fiscal para este documento..</param>
         /// <param name="ambiente">ambiente.</param>
         /// <param name="createdAt">Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato [&#x60;ISO 8601&#x60;](https://en.wikipedia.org/wiki/ISO_8601)..</param>
         /// <param name="status">status.</param>
-        /// <param name="referencia">Identificador único usado dentro de seu próprio aplicativo para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
+        /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
         /// <param name="dataEmissao">dataEmissao.</param>
         /// <param name="modelo">modelo.</param>
         /// <param name="serie">serie.</param>
@@ -142,9 +142,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Identificador único do documento.
+        /// ID único gerado pela Nuvem Fiscal para este documento.
         /// </summary>
-        /// <value>Identificador único do documento.</value>
+        /// <value>ID único gerado pela Nuvem Fiscal para este documento.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
 
@@ -156,9 +156,9 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime created_at { get; set; }
 
         /// <summary>
-        /// Identificador único usado dentro de seu próprio aplicativo para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
+        /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
-        /// <value>Identificador único usado dentro de seu próprio aplicativo para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
+        /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 

@@ -13,13 +13,15 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**ConsultarEncerramentoMdfe**](MdfeApi.md#consultarencerramentomdfe) | **GET** /mdfe/{id}/encerramento | Consultar encerramento do MDF-e |
 | [**ConsultarEventoMdfe**](MdfeApi.md#consultareventomdfe) | **GET** /mdfe/eventos/{id} | Consultar evento do MDF-e |
 | [**ConsultarLoteMdfe**](MdfeApi.md#consultarlotemdfe) | **GET** /mdfe/lotes/{id} | Consultar lote de MDF-e |
-| [**ConsultarMdfe**](MdfeApi.md#consultarmdfe) | **GET** /mdfe/{id} | Consultar MDF-e |
+| [**ConsultarMdfe**](MdfeApi.md#consultarmdfe) | **GET** /mdfe/{id} | Consultar manifesto |
 | [**ConsultarStatusSefazMdfe**](MdfeApi.md#consultarstatussefazmdfe) | **GET** /mdfe/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora |
 | [**EmitirLoteMdfe**](MdfeApi.md#emitirlotemdfe) | **POST** /mdfe/lotes | Emitir lote de MDF-e |
 | [**EmitirMdfe**](MdfeApi.md#emitirmdfe) | **POST** /mdfe | Emitir MDF-e |
 | [**EncerrarMdfe**](MdfeApi.md#encerrarmdfe) | **POST** /mdfe/{id}/encerramento | Encerrar um MDF-e autorizado |
 | [**IncluirCondutorMdfe**](MdfeApi.md#incluircondutormdfe) | **POST** /mdfe/{id}/inclusao-condutor | Incluir um condutor em um MDF-e autorizado |
 | [**IncluirDfeMdfe**](MdfeApi.md#incluirdfemdfe) | **POST** /mdfe/{id}/inclusao-dfe | Incluir um DF-e em um MDF-e autorizado |
+| [**ListarLotesMdfe**](MdfeApi.md#listarlotesmdfe) | **GET** /mdfe/lotes | Listar lotes de MDF-e |
+| [**ListarMdfe**](MdfeApi.md#listarmdfe) | **GET** /mdfe | Listar MDF-e |
 
 <a name="baixarxmlcancelamentomdfe"></a>
 # **BaixarXmlCancelamentoMdfe**
@@ -55,7 +57,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -98,7 +100,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -155,7 +157,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -198,7 +200,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -255,7 +257,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do evento.
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
 
             try
             {
@@ -298,7 +300,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do evento. |  |
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -355,7 +357,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do Manifesto.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -398,7 +400,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do Manifesto. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -455,7 +457,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
             var body = new MdfePedidoCancelamento(); // MdfePedidoCancelamento | 
 
             try
@@ -499,7 +501,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 | **body** | [**MdfePedidoCancelamento**](MdfePedidoCancelamento.md) |  |  |
 
 ### Tipo de retorno
@@ -557,7 +559,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -600,7 +602,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -657,7 +659,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -700,7 +702,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -757,7 +759,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do evento.
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
 
             try
             {
@@ -800,7 +802,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do evento. |  |
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -828,6 +830,8 @@ catch (ApiException e)
 > DfeLote ConsultarLoteMdfe (string id)
 
 Consultar lote de MDF-e
+
+Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
 
 ### Exemplo
 ```csharp
@@ -857,7 +861,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do lote.
+            var id = "id_example";  // string | ID único do lote gerado pela Nuvem Fiscal.
 
             try
             {
@@ -900,7 +904,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do lote. |  |
+| **id** | **string** | ID único do lote gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -927,7 +931,9 @@ catch (ApiException e)
 # **ConsultarMdfe**
 > Dfe ConsultarMdfe (string id)
 
-Consultar MDF-e
+Consultar manifesto
+
+Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
 
 ### Exemplo
 ```csharp
@@ -957,11 +963,11 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
 
             try
             {
-                // Consultar MDF-e
+                // Consultar manifesto
                 Dfe result = apiInstance.ConsultarMdfe(id);
                 Debug.WriteLine(result);
             }
@@ -982,7 +988,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
-    // Consultar MDF-e
+    // Consultar manifesto
     ApiResponse<Dfe> response = apiInstance.ConsultarMdfeWithHttpInfo(id);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -1000,7 +1006,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -1025,7 +1031,7 @@ catch (ApiException e)
 
 <a name="consultarstatussefazmdfe"></a>
 # **ConsultarStatusSefazMdfe**
-> DfeVisaoGeralSefazStatus ConsultarStatusSefazMdfe (string cpfCnpj = null)
+> DfeVisaoGeralSefazStatus ConsultarStatusSefazMdfe (string cpfCnpj)
 
 Consulta do Status do Serviço na SEFAZ Autorizadora
 
@@ -1059,7 +1065,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional) 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara.
 
             try
             {
@@ -1102,7 +1108,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. | [optional]  |
+| **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1359,7 +1365,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
             var body = new MdfePedidoEncerramento(); // MdfePedidoEncerramento | 
 
             try
@@ -1403,7 +1409,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 | **body** | [**MdfePedidoEncerramento**](MdfePedidoEncerramento.md) |  |  |
 
 ### Tipo de retorno
@@ -1461,7 +1467,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
             var body = new MdfePedidoInclusaoCondutor(); // MdfePedidoInclusaoCondutor | 
 
             try
@@ -1505,7 +1511,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 | **body** | [**MdfePedidoInclusaoCondutor**](MdfePedidoInclusaoCondutor.md) |  |  |
 
 ### Tipo de retorno
@@ -1563,7 +1569,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do MDF-e.
+            var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
             var body = new MdfePedidoInclusaoDfe(); // MdfePedidoInclusaoDfe | 
 
             try
@@ -1607,7 +1613,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do MDF-e. |  |
+| **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
 | **body** | [**MdfePedidoInclusaoDfe**](MdfePedidoInclusaoDfe.md) |  |  |
 
 ### Tipo de retorno
@@ -1621,6 +1627,226 @@ catch (ApiException e)
 ### Headers da requisição HTTP
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="listarlotesmdfe"></a>
+# **ListarLotesMdfe**
+> DfeLoteListagem ListarLotesMdfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+
+Listar lotes de MDF-e
+
+Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ListarLotesMdfeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
+            var ambiente = "homologacao";  // string | 
+            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
+            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var referencia = "referencia_example";  // string |  (optional) 
+
+            try
+            {
+                // Listar lotes de MDF-e
+                DfeLoteListagem result = apiInstance.ListarLotesMdfe(cpfCnpj, ambiente, top, skip, referencia);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MdfeApi.ListarLotesMdfe: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ListarLotesMdfeWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Listar lotes de MDF-e
+    ApiResponse<DfeLoteListagem> response = apiInstance.ListarLotesMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar MdfeApi.ListarLotesMdfeWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
+| **ambiente** | **string** |  |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **referencia** | **string** |  | [optional]  |
+
+### Tipo de retorno
+
+[**DfeLoteListagem**](DfeLoteListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="listarmdfe"></a>
+# **ListarMdfe**
+> DfeListagem ListarMdfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+
+Listar MDF-e
+
+Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ListarMdfeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
+            var ambiente = "homologacao";  // string | 
+            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
+            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var referencia = "referencia_example";  // string |  (optional) 
+
+            try
+            {
+                // Listar MDF-e
+                DfeListagem result = apiInstance.ListarMdfe(cpfCnpj, ambiente, top, skip, referencia);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MdfeApi.ListarMdfe: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ListarMdfeWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Listar MDF-e
+    ApiResponse<DfeListagem> response = apiInstance.ListarMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar MdfeApi.ListarMdfeWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
+| **ambiente** | **string** |  |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **referencia** | **string** |  | [optional]  |
+
+### Tipo de retorno
+
+[**DfeListagem**](DfeListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
  - **Accept**: application/json
 
 

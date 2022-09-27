@@ -24,97 +24,103 @@ namespace NuvemFiscal.Sdk.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
+        /// Baixar XML da NFS-e processada
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         FileParameter BaixarXmlNfse(string id);
 
         /// <summary>
-        /// 
+        /// Baixar XML da NFS-e processada
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         ApiResponse<FileParameter> BaixarXmlNfseWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Cancelar uma NFS-e autorizada
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>NfseCancelamento</returns>
         NfseCancelamento CancelarNfse(string id);
 
         /// <summary>
-        /// 
+        /// Cancelar uma NFS-e autorizada
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
         ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Consultar o cancelamento da NFS-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>NfseCancelamento</returns>
         NfseCancelamento ConsultarCancelamentoNfse(string id);
 
         /// <summary>
-        /// 
+        /// Consultar o cancelamento da NFS-e
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
         ApiResponse<NfseCancelamento> ConsultarCancelamentoNfseWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Consultar lote de NFS-e
         /// </summary>
+        /// <remarks>
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>RpsLote</returns>
         RpsLote ConsultarLoteNfse(string id);
 
         /// <summary>
-        /// 
+        /// Consultar lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of RpsLote</returns>
         ApiResponse<RpsLote> ConsultarLoteNfseWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Consultar NFS-e
         /// </summary>
+        /// <remarks>
+        /// Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>Nfse</returns>
         Nfse ConsultarNfse(string id);
 
         /// <summary>
-        /// 
+        /// Consultar NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of Nfse</returns>
         ApiResponse<Nfse> ConsultarNfseWithHttpInfo(string id);
         /// <summary>
-        /// 
+        /// Emitir lote de NFS-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -122,7 +128,7 @@ namespace NuvemFiscal.Sdk.Api
         RpsLote EmitirLoteNfse(RpsPedidoEmissaoLote body);
 
         /// <summary>
-        /// 
+        /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
         /// 
@@ -132,7 +138,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>ApiResponse of RpsLote</returns>
         ApiResponse<RpsLote> EmitirLoteNfseWithHttpInfo(RpsPedidoEmissaoLote body);
         /// <summary>
-        /// 
+        /// Emitir NFS-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -140,7 +146,7 @@ namespace NuvemFiscal.Sdk.Api
         Nfse EmitirNfse(NfsePedidoEmissao body);
 
         /// <summary>
-        /// 
+        /// Emitir NFS-e
         /// </summary>
         /// <remarks>
         /// 
@@ -150,57 +156,63 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>ApiResponse of Nfse</returns>
         ApiResponse<Nfse> EmitirNfseWithHttpInfo(NfsePedidoEmissao body);
         /// <summary>
-        /// 
+        /// Listar lotes de NFS-e
         /// </summary>
+        /// <remarks>
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <returns>RpsLoteListagem</returns>
-        RpsLoteListagem ListarLotesNfse(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string));
+        RpsLoteListagem ListarLotesNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
 
         /// <summary>
-        /// 
+        /// Listar lotes de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <returns>ApiResponse of RpsLoteListagem</returns>
-        ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string));
+        ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
-        /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
-        /// <returns>NfseListagem</returns>
-        NfseListagem ListarNfse(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string));
-
-        /// <summary>
-        /// 
+        /// Listar NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
+        /// <returns>NfseListagem</returns>
+        NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
+
+        /// <summary>
+        /// Listar NFS-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
         /// <returns>ApiResponse of NfseListagem</returns>
-        ApiResponse<NfseListagem> ListarNfseWithHttpInfo(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string));
+        ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
         #endregion Synchronous Operations
     }
 
@@ -211,122 +223,122 @@ namespace NuvemFiscal.Sdk.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Baixar XML da NFS-e processada
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         System.Threading.Tasks.Task<FileParameter> BaixarXmlNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Baixar XML da NFS-e processada
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarXmlNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Cancelar uma NFS-e autorizada
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
         System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Cancelar uma NFS-e autorizada
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
         System.Threading.Tasks.Task<ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Consultar o cancelamento da NFS-e
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
         System.Threading.Tasks.Task<NfseCancelamento> ConsultarCancelamentoNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Consultar o cancelamento da NFS-e
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
         System.Threading.Tasks.Task<ApiResponse<NfseCancelamento>> ConsultarCancelamentoNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Consultar lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RpsLote</returns>
         System.Threading.Tasks.Task<RpsLote> ConsultarLoteNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Consultar lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RpsLote)</returns>
         System.Threading.Tasks.Task<ApiResponse<RpsLote>> ConsultarLoteNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Consultar NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Nfse</returns>
         System.Threading.Tasks.Task<Nfse> ConsultarNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Consultar NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Nfse)</returns>
         System.Threading.Tasks.Task<ApiResponse<Nfse>> ConsultarNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
         /// 
@@ -338,7 +350,7 @@ namespace NuvemFiscal.Sdk.Api
         System.Threading.Tasks.Task<RpsLote> EmitirLoteNfseAsync(RpsPedidoEmissaoLote body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
         /// 
@@ -349,7 +361,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>Task of ApiResponse (RpsLote)</returns>
         System.Threading.Tasks.Task<ApiResponse<RpsLote>> EmitirLoteNfseWithHttpInfoAsync(RpsPedidoEmissaoLote body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Emitir NFS-e
         /// </summary>
         /// <remarks>
         /// 
@@ -361,7 +373,7 @@ namespace NuvemFiscal.Sdk.Api
         System.Threading.Tasks.Task<Nfse> EmitirNfseAsync(NfsePedidoEmissao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Emitir NFS-e
         /// </summary>
         /// <remarks>
         /// 
@@ -372,67 +384,67 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>Task of ApiResponse (Nfse)</returns>
         System.Threading.Tasks.Task<ApiResponse<Nfse>> EmitirNfseWithHttpInfoAsync(NfsePedidoEmissao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Listar lotes de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RpsLoteListagem</returns>
-        System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Listar lotes de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RpsLoteListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// 
+        /// Listar NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseListagem</returns>
-        System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// 
+        /// Listar NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -647,10 +659,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Baixar XML da NFS-e processada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         public FileParameter BaixarXmlNfse(string id)
         {
@@ -659,10 +671,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Baixar XML da NFS-e processada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarXmlNfseWithHttpInfo(string id)
         {
@@ -713,10 +725,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Baixar XML da NFS-e processada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         public async System.Threading.Tasks.Task<FileParameter> BaixarXmlNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -726,10 +738,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Baixar XML da NFS-e processada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarXmlNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -784,10 +796,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Cancelar uma NFS-e autorizada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>NfseCancelamento</returns>
         public NfseCancelamento CancelarNfse(string id)
         {
@@ -796,10 +808,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Cancelar uma NFS-e autorizada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id)
         {
@@ -850,10 +862,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Cancelar uma NFS-e autorizada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
         public async System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -863,10 +875,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Cancelar uma NFS-e autorizada 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -921,10 +933,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar o cancelamento da NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>NfseCancelamento</returns>
         public NfseCancelamento ConsultarCancelamentoNfse(string id)
         {
@@ -933,10 +945,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar o cancelamento da NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> ConsultarCancelamentoNfseWithHttpInfo(string id)
         {
@@ -987,10 +999,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar o cancelamento da NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
         public async System.Threading.Tasks.Task<NfseCancelamento> ConsultarCancelamentoNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1000,10 +1012,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar o cancelamento da NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento>> ConsultarCancelamentoNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1058,10 +1070,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar lote de NFS-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>RpsLote</returns>
         public RpsLote ConsultarLoteNfse(string id)
         {
@@ -1070,10 +1082,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar lote de NFS-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of RpsLote</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<RpsLote> ConsultarLoteNfseWithHttpInfo(string id)
         {
@@ -1124,10 +1136,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar lote de NFS-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RpsLote</returns>
         public async System.Threading.Tasks.Task<RpsLote> ConsultarLoteNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1137,10 +1149,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar lote de NFS-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RpsLote)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<RpsLote>> ConsultarLoteNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1195,10 +1207,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar NFS-e Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>Nfse</returns>
         public Nfse ConsultarNfse(string id)
         {
@@ -1207,10 +1219,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar NFS-e Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of Nfse</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<Nfse> ConsultarNfseWithHttpInfo(string id)
         {
@@ -1261,10 +1273,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar NFS-e Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Nfse</returns>
         public async System.Threading.Tasks.Task<Nfse> ConsultarNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1274,10 +1286,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Consultar NFS-e Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Nfse)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Nfse>> ConsultarNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1332,7 +1344,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir lote de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1344,7 +1356,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir lote de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1399,7 +1411,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir lote de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1412,7 +1424,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir lote de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1471,7 +1483,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1483,7 +1495,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1538,7 +1550,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1551,7 +1563,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Emitir NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -1610,33 +1622,41 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Listar lotes de NFS-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <returns>RpsLoteListagem</returns>
-        public RpsLoteListagem ListarLotesNfse(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string))
+        public RpsLoteListagem ListarLotesNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> localVarResponse = ListarLotesNfseWithHttpInfo(top, skip, cpfCnpj, referencia, ambiente);
+            NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> localVarResponse = ListarLotesNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Listar lotes de NFS-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <returns>ApiResponse of RpsLoteListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
         {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling NfseApi->ListarLotesNfse");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling NfseApi->ListarLotesNfse");
+
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1661,18 +1681,12 @@ namespace NuvemFiscal.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
             }
-            if (cpfCnpj != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            if (ambiente != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1699,35 +1713,43 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Listar lotes de NFS-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RpsLoteListagem</returns>
-        public async System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> localVarResponse = await ListarLotesNfseWithHttpInfoAsync(top, skip, cpfCnpj, referencia, ambiente, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> localVarResponse = await ListarLotesNfseWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, referencia, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Listar lotes de NFS-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RpsLoteListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling NfseApi->ListarLotesNfse");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling NfseApi->ListarLotesNfse");
+
 
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
@@ -1754,18 +1776,12 @@ namespace NuvemFiscal.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
             }
-            if (cpfCnpj != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            if (ambiente != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1793,33 +1809,41 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Listar NFS-e Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <returns>NfseListagem</returns>
-        public NfseListagem ListarNfse(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string))
+        public NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = ListarNfseWithHttpInfo(top, skip, cpfCnpj, referencia, ambiente);
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Listar NFS-e Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <returns>ApiResponse of NfseListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> ListarNfseWithHttpInfo(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
         {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling NfseApi->ListarNfse");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling NfseApi->ListarNfse");
+
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1844,18 +1868,12 @@ namespace NuvemFiscal.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
             }
-            if (cpfCnpj != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            if (ambiente != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1882,35 +1900,43 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        ///  
+        /// Listar NFS-e Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseListagem</returns>
-        public async System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = await ListarNfseWithHttpInfoAsync(top, skip, cpfCnpj, referencia, ambiente, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = await ListarNfseWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, referencia, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  
+        /// Listar NFS-e Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
-        /// <param name="ambiente"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string), string referencia = default(string), string ambiente = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling NfseApi->ListarNfse");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling NfseApi->ListarNfse");
+
 
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
@@ -1937,18 +1963,12 @@ namespace NuvemFiscal.Sdk.Api
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
             }
-            if (cpfCnpj != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            if (ambiente != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))

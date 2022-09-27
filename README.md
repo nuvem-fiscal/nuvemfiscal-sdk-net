@@ -3,7 +3,7 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 1.0
+- Versão da API: 1.1.0
 - Versão do SDK: 1.0.0
 
 <a name="frameworks-supported"></a>
@@ -155,6 +155,8 @@ Classe | Método | Endpoint | Descrição
 *CteApi* | [**EmitirCte**](docs/CteApi.md#emitircte) | **POST** /cte | Emitir CT-e
 *CteApi* | [**EmitirLoteCte**](docs/CteApi.md#emitirlotecte) | **POST** /cte/lotes | Emitir lote de CT-e
 *CteApi* | [**InutilizarCte**](docs/CteApi.md#inutilizarcte) | **POST** /cte/inutilizacoes | Inutilizar uma sequência de numeração de CT-e
+*CteApi* | [**ListarCte**](docs/CteApi.md#listarcte) | **GET** /cte | Listar CT-e
+*CteApi* | [**ListarLotesCte**](docs/CteApi.md#listarlotescte) | **GET** /cte/lotes | Listar lotes de CT-e
 *EmpresaApi* | [**AlterarConfigCte**](docs/EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e
 *EmpresaApi* | [**AlterarConfigMdfe**](docs/EmpresaApi.md#alterarconfigmdfe) | **PUT** /empresas/{cpf_cnpj}/mdfe | Alterar configuração de MDF-e
 *EmpresaApi* | [**AlterarConfigNfce**](docs/EmpresaApi.md#alterarconfignfce) | **PUT** /empresas/{cpf_cnpj}/nfce | Alterar configuração de NFC-e
@@ -183,13 +185,15 @@ Classe | Método | Endpoint | Descrição
 *MdfeApi* | [**ConsultarEncerramentoMdfe**](docs/MdfeApi.md#consultarencerramentomdfe) | **GET** /mdfe/{id}/encerramento | Consultar encerramento do MDF-e
 *MdfeApi* | [**ConsultarEventoMdfe**](docs/MdfeApi.md#consultareventomdfe) | **GET** /mdfe/eventos/{id} | Consultar evento do MDF-e
 *MdfeApi* | [**ConsultarLoteMdfe**](docs/MdfeApi.md#consultarlotemdfe) | **GET** /mdfe/lotes/{id} | Consultar lote de MDF-e
-*MdfeApi* | [**ConsultarMdfe**](docs/MdfeApi.md#consultarmdfe) | **GET** /mdfe/{id} | Consultar MDF-e
+*MdfeApi* | [**ConsultarMdfe**](docs/MdfeApi.md#consultarmdfe) | **GET** /mdfe/{id} | Consultar manifesto
 *MdfeApi* | [**ConsultarStatusSefazMdfe**](docs/MdfeApi.md#consultarstatussefazmdfe) | **GET** /mdfe/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
 *MdfeApi* | [**EmitirLoteMdfe**](docs/MdfeApi.md#emitirlotemdfe) | **POST** /mdfe/lotes | Emitir lote de MDF-e
 *MdfeApi* | [**EmitirMdfe**](docs/MdfeApi.md#emitirmdfe) | **POST** /mdfe | Emitir MDF-e
 *MdfeApi* | [**EncerrarMdfe**](docs/MdfeApi.md#encerrarmdfe) | **POST** /mdfe/{id}/encerramento | Encerrar um MDF-e autorizado
 *MdfeApi* | [**IncluirCondutorMdfe**](docs/MdfeApi.md#incluircondutormdfe) | **POST** /mdfe/{id}/inclusao-condutor | Incluir um condutor em um MDF-e autorizado
 *MdfeApi* | [**IncluirDfeMdfe**](docs/MdfeApi.md#incluirdfemdfe) | **POST** /mdfe/{id}/inclusao-dfe | Incluir um DF-e em um MDF-e autorizado
+*MdfeApi* | [**ListarLotesMdfe**](docs/MdfeApi.md#listarlotesmdfe) | **GET** /mdfe/lotes | Listar lotes de MDF-e
+*MdfeApi* | [**ListarMdfe**](docs/MdfeApi.md#listarmdfe) | **GET** /mdfe | Listar MDF-e
 *NfceApi* | [**BaixarPdfNfce**](docs/NfceApi.md#baixarpdfnfce) | **GET** /nfce/{id}/pdf | Baixar PDF do DANFCE
 *NfceApi* | [**BaixarXmlCancelamentoNfce**](docs/NfceApi.md#baixarxmlcancelamentonfce) | **GET** /nfce/{id}/cancelamento/xml | Baixar XML do cancelamento
 *NfceApi* | [**BaixarXmlInutilizacaoNfce**](docs/NfceApi.md#baixarxmlinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/xml | Baixar XML da inutilização
@@ -203,6 +207,8 @@ Classe | Método | Endpoint | Descrição
 *NfceApi* | [**EmitirLoteNfce**](docs/NfceApi.md#emitirlotenfce) | **POST** /nfce/lotes | Emitir lote de NFC-e
 *NfceApi* | [**EmitirNfce**](docs/NfceApi.md#emitirnfce) | **POST** /nfce | Emitir NFC-e
 *NfceApi* | [**InutilizarNfce**](docs/NfceApi.md#inutilizarnfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e
+*NfceApi* | [**ListarLotesNfce**](docs/NfceApi.md#listarlotesnfce) | **GET** /nfce/lotes | Listar lotes de NFC-e
+*NfceApi* | [**ListarNfce**](docs/NfceApi.md#listarnfce) | **GET** /nfce | Listar NFC-e
 *NfeApi* | [**BaixarPdfNfe**](docs/NfeApi.md#baixarpdfnfe) | **GET** /nfe/{id}/pdf | Baixar PDF do DANFE
 *NfeApi* | [**BaixarXmlCancelamentoNfe**](docs/NfeApi.md#baixarxmlcancelamentonfe) | **GET** /nfe/{id}/cancelamento/xml | Baixar XML do cancelamento
 *NfeApi* | [**BaixarXmlCartaCorrecaoNfe**](docs/NfeApi.md#baixarxmlcartacorrecaonfe) | **GET** /nfe/{id}/carta-correcao/xml | Baixar XML da carta de correção
@@ -221,15 +227,17 @@ Classe | Método | Endpoint | Descrição
 *NfeApi* | [**EmitirLoteNfe**](docs/NfeApi.md#emitirlotenfe) | **POST** /nfe/lotes | Emitir lote de NF-e
 *NfeApi* | [**EmitirNfe**](docs/NfeApi.md#emitirnfe) | **POST** /nfe | Emitir NF-e
 *NfeApi* | [**InutilizarNfe**](docs/NfeApi.md#inutilizarnfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e
-*NfseApi* | [**BaixarXmlNfse**](docs/NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | 
-*NfseApi* | [**CancelarNfse**](docs/NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | 
-*NfseApi* | [**ConsultarCancelamentoNfse**](docs/NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento | 
-*NfseApi* | [**ConsultarLoteNfse**](docs/NfseApi.md#consultarlotenfse) | **GET** /nfse/lotes/{id} | 
-*NfseApi* | [**ConsultarNfse**](docs/NfseApi.md#consultarnfse) | **GET** /nfse/{id} | 
-*NfseApi* | [**EmitirLoteNfse**](docs/NfseApi.md#emitirlotenfse) | **POST** /nfse/lotes | 
-*NfseApi* | [**EmitirNfse**](docs/NfseApi.md#emitirnfse) | **POST** /nfse | 
-*NfseApi* | [**ListarLotesNfse**](docs/NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | 
-*NfseApi* | [**ListarNfse**](docs/NfseApi.md#listarnfse) | **GET** /nfse | 
+*NfeApi* | [**ListarLotesNfe**](docs/NfeApi.md#listarlotesnfe) | **GET** /nfe/lotes | Listar lotes de NF-e
+*NfeApi* | [**ListarNfe**](docs/NfeApi.md#listarnfe) | **GET** /nfe | Listar NF-e
+*NfseApi* | [**BaixarXmlNfse**](docs/NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada
+*NfseApi* | [**CancelarNfse**](docs/NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada
+*NfseApi* | [**ConsultarCancelamentoNfse**](docs/NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento | Consultar o cancelamento da NFS-e
+*NfseApi* | [**ConsultarLoteNfse**](docs/NfseApi.md#consultarlotenfse) | **GET** /nfse/lotes/{id} | Consultar lote de NFS-e
+*NfseApi* | [**ConsultarNfse**](docs/NfseApi.md#consultarnfse) | **GET** /nfse/{id} | Consultar NFS-e
+*NfseApi* | [**EmitirLoteNfse**](docs/NfseApi.md#emitirlotenfse) | **POST** /nfse/lotes | Emitir lote de NFS-e
+*NfseApi* | [**EmitirNfse**](docs/NfseApi.md#emitirnfse) | **POST** /nfse | Emitir NFS-e
+*NfseApi* | [**ListarLotesNfse**](docs/NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | Listar lotes de NFS-e
+*NfseApi* | [**ListarNfse**](docs/NfseApi.md#listarnfse) | **GET** /nfse | Listar NFS-e
 
 
 <a name="documentation-for-models"></a>
@@ -350,7 +358,9 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfeCartaCorrecao](docs/DfeCartaCorrecao.md)
  - [Model.DfeEvento](docs/DfeEvento.md)
  - [Model.DfeInutilizacao](docs/DfeInutilizacao.md)
+ - [Model.DfeListagem](docs/DfeListagem.md)
  - [Model.DfeLote](docs/DfeLote.md)
+ - [Model.DfeLoteListagem](docs/DfeLoteListagem.md)
  - [Model.DfePedidoInutilizacao](docs/DfePedidoInutilizacao.md)
  - [Model.DfeRecibo](docs/DfeRecibo.md)
  - [Model.DfeSefazStatus](docs/DfeSefazStatus.md)
@@ -550,6 +560,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.RpsDadosPrestador](docs/RpsDadosPrestador.md)
  - [Model.RpsDadosServico](docs/RpsDadosServico.md)
  - [Model.RpsDadosTomador](docs/RpsDadosTomador.md)
+ - [Model.RpsDadosTomadorEndereco](docs/RpsDadosTomadorEndereco.md)
  - [Model.RpsIdentificacao](docs/RpsIdentificacao.md)
  - [Model.RpsIdentificacaoPrestador](docs/RpsIdentificacaoPrestador.md)
  - [Model.RpsLote](docs/RpsLote.md)

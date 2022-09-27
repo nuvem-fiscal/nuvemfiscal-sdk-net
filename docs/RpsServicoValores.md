@@ -4,8 +4,8 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**valor_unitario** | **decimal** |  | [optional] 
-**valor_servicos** | **decimal** |  | [optional] 
+**valor_unitario** | **decimal** | Valor unitário do serviço. | 
+**valor_servicos** | **decimal** | Valor total do serviço. | [optional] 
 **valor_deducoes** | **decimal** |  | [optional] 
 **valor_pis** | **decimal** |  | [optional] 
 **valor_cofins** | **decimal** |  | [optional] 

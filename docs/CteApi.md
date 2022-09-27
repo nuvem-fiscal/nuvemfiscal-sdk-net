@@ -21,6 +21,8 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**EmitirCte**](CteApi.md#emitircte) | **POST** /cte | Emitir CT-e |
 | [**EmitirLoteCte**](CteApi.md#emitirlotecte) | **POST** /cte/lotes | Emitir lote de CT-e |
 | [**InutilizarCte**](CteApi.md#inutilizarcte) | **POST** /cte/inutilizacoes | Inutilizar uma sequência de numeração de CT-e |
+| [**ListarCte**](CteApi.md#listarcte) | **GET** /cte | Listar CT-e |
+| [**ListarLotesCte**](CteApi.md#listarlotescte) | **GET** /cte/lotes | Listar lotes de CT-e |
 
 <a name="baixarxmlcancelamentocte"></a>
 # **BaixarXmlCancelamentoCte**
@@ -56,7 +58,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -99,7 +101,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -156,7 +158,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -199,7 +201,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -256,7 +258,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -299,7 +301,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -356,7 +358,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do evento.
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
 
             try
             {
@@ -399,7 +401,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do evento. |  |
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -456,7 +458,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do evento.
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
 
             try
             {
@@ -499,7 +501,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do evento. |  |
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -556,7 +558,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
             var body = new CtePedidoCancelamento(); // CtePedidoCancelamento | 
 
             try
@@ -600,7 +602,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 | **body** | [**CtePedidoCancelamento**](CtePedidoCancelamento.md) |  |  |
 
 ### Tipo de retorno
@@ -658,7 +660,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -701,7 +703,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -758,7 +760,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -801,7 +803,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -829,6 +831,8 @@ catch (ApiException e)
 > Dfe ConsultarCte (string id)
 
 Consultar CT-e
+
+Consulta os detalhes de um CT-e já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de CT-e e a Nuvem Fiscal irá retornar as informações do CT-e correspondente.
 
 ### Exemplo
 ```csharp
@@ -858,7 +862,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
 
             try
             {
@@ -901,7 +905,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -958,7 +962,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do evento.
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
 
             try
             {
@@ -1001,7 +1005,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do evento. |  |
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -1058,7 +1062,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do evento.
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
 
             try
             {
@@ -1101,7 +1105,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do evento. |  |
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -1129,6 +1133,8 @@ catch (ApiException e)
 > DfeLote ConsultarLoteCte (string id)
 
 Consultar lote de CT-e
+
+Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
 
 ### Exemplo
 ```csharp
@@ -1158,7 +1164,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do lote.
+            var id = "id_example";  // string | ID único do lote gerado pela Nuvem Fiscal.
 
             try
             {
@@ -1201,7 +1207,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do lote. |  |
+| **id** | **string** | ID único do lote gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -1226,7 +1232,7 @@ catch (ApiException e)
 
 <a name="consultarstatussefazcte"></a>
 # **ConsultarStatusSefazCte**
-> DfeVisaoGeralSefazStatus ConsultarStatusSefazCte (string cpfCnpj = null)
+> DfeVisaoGeralSefazStatus ConsultarStatusSefazCte (string cpfCnpj)
 
 Consulta do Status do Serviço na SEFAZ Autorizadora
 
@@ -1260,7 +1266,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional) 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara.
 
             try
             {
@@ -1303,7 +1309,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. | [optional]  |
+| **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1362,7 +1368,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Identificador único do CT-e.
+            var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
             var body = new CtePedidoCartaCorrecao(); // CtePedidoCartaCorrecao | 
 
             try
@@ -1406,7 +1412,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** | Identificador único do CT-e. |  |
+| **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
 | **body** | [**CtePedidoCartaCorrecao**](CtePedidoCartaCorrecao.md) |  |  |
 
 ### Tipo de retorno
@@ -1720,6 +1726,226 @@ catch (ApiException e)
 ### Headers da requisição HTTP
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="listarcte"></a>
+# **ListarCte**
+> DfeListagem ListarCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+
+Listar CT-e
+
+Retorna a lista de CT-e de acordo com os critérios de busca utilizados. Os CT-e são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ListarCteExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CteApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
+            var ambiente = "homologacao";  // string | 
+            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
+            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var referencia = "referencia_example";  // string |  (optional) 
+
+            try
+            {
+                // Listar CT-e
+                DfeListagem result = apiInstance.ListarCte(cpfCnpj, ambiente, top, skip, referencia);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CteApi.ListarCte: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ListarCteWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Listar CT-e
+    ApiResponse<DfeListagem> response = apiInstance.ListarCteWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar CteApi.ListarCteWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
+| **ambiente** | **string** |  |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **referencia** | **string** |  | [optional]  |
+
+### Tipo de retorno
+
+[**DfeListagem**](DfeListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="listarlotescte"></a>
+# **ListarLotesCte**
+> DfeLoteListagem ListarLotesCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+
+Listar lotes de CT-e
+
+Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ListarLotesCteExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CteApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
+            var ambiente = "homologacao";  // string | 
+            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
+            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var referencia = "referencia_example";  // string |  (optional) 
+
+            try
+            {
+                // Listar lotes de CT-e
+                DfeLoteListagem result = apiInstance.ListarLotesCte(cpfCnpj, ambiente, top, skip, referencia);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CteApi.ListarLotesCte: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ListarLotesCteWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Listar lotes de CT-e
+    ApiResponse<DfeLoteListagem> response = apiInstance.ListarLotesCteWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar CteApi.ListarLotesCteWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
+| **ambiente** | **string** |  |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **referencia** | **string** |  | [optional]  |
+
+### Tipo de retorno
+
+[**DfeLoteListagem**](DfeLoteListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
  - **Accept**: application/json
 
 

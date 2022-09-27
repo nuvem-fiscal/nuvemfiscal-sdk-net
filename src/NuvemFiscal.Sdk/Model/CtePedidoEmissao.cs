@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class CtePedidoEmissao : IEquatable<CtePedidoEmissao>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do Ambiente.
         /// </summary>
+        /// <value>Identificação do Ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,29 +51,40 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do Ambiente.
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        /// <value>Identificação do Ambiente.</value>
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CtePedidoEmissao" /> class.
         /// </summary>
-        /// <param name="infCte">infCte.</param>
+        [JsonConstructorAttribute]
+        protected CtePedidoEmissao() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CtePedidoEmissao" /> class.
+        /// </summary>
+        /// <param name="infCte">infCte (required).</param>
         /// <param name="infCTeSupl">infCTeSupl.</param>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="referencia">referencia.</param>
-        public CtePedidoEmissao(CteSefazInfCte infCte = default(CteSefazInfCte), CteSefazInfCTeSupl infCTeSupl = default(CteSefazInfCTeSupl), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string))
+        /// <param name="ambiente">Identificação do Ambiente. (required).</param>
+        /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
+        public CtePedidoEmissao(CteSefazInfCte infCte = default(CteSefazInfCte), CteSefazInfCTeSupl infCTeSupl = default(CteSefazInfCTeSupl), AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string))
         {
+            // to ensure "infCte" is required (not null)
+            if (infCte == null)
+            {
+                throw new ArgumentNullException("infCte is a required property for CtePedidoEmissao and cannot be null");
+            }
             this.infCte = infCte;
-            this.infCTeSupl = infCTeSupl;
             this.ambiente = ambiente;
+            this.infCTeSupl = infCTeSupl;
             this.referencia = referencia;
         }
 
         /// <summary>
         /// Gets or Sets infCte
         /// </summary>
-        [DataMember(Name = "infCte", EmitDefaultValue = false)]
+        [DataMember(Name = "infCte", IsRequired = true, EmitDefaultValue = false)]
         public CteSefazInfCte infCte { get; set; }
 
         /// <summary>
@@ -82,8 +94,9 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazInfCTeSupl infCTeSupl { get; set; }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 

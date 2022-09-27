@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class MdfeInclusaoCondutor : IEquatable<MdfeInclusaoCondutor>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do ambiente.
         /// </summary>
+        /// <value>Identificação do ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,13 +51,15 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do ambiente.
         /// </summary>
+        /// <value>Identificação do ambiente.</value>
         [DataMember(Name = "ambiente", EmitDefaultValue = false)]
         public AmbienteEnum? ambiente { get; set; }
         /// <summary>
-        /// Defines status
+        /// Status do Evento.
         /// </summary>
+        /// <value>Status do Evento.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -88,8 +91,9 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets status
+        /// Status do Evento.
         /// </summary>
+        /// <value>Status do Evento.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? status { get; set; }
         /// <summary>
@@ -97,19 +101,19 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="nomeCondutor">Nome do condutor..</param>
         /// <param name="cpfCondutor">CPF do condutor..</param>
-        /// <param name="id">id.</param>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="status">status.</param>
+        /// <param name="id">ID único gerado pela Nuvem Fiscal para este documento..</param>
+        /// <param name="ambiente">Identificação do ambiente..</param>
+        /// <param name="status">Status do Evento..</param>
         /// <param name="autor">autor.</param>
-        /// <param name="chaveAcesso">chaveAcesso.</param>
-        /// <param name="dataEvento">dataEvento.</param>
-        /// <param name="numeroSequencial">numeroSequencial.</param>
-        /// <param name="dataRecebimento">dataRecebimento.</param>
-        /// <param name="codigoStatus">codigoStatus.</param>
-        /// <param name="motivoStatus">motivoStatus.</param>
-        /// <param name="numeroProtocolo">numeroProtocolo.</param>
-        /// <param name="codigoMensagem">codigoMensagem.</param>
-        /// <param name="mensagem">mensagem.</param>
+        /// <param name="chaveAcesso">Chave de Acesso do documento vinculado ao evento..</param>
+        /// <param name="dataEvento">Data e hora do Evento..</param>
+        /// <param name="numeroSequencial">Sequencial do evento para o mesmo tipo de evento..</param>
+        /// <param name="dataRecebimento">Data e hora do recebimento do Evento pela SEFAZ..</param>
+        /// <param name="codigoStatus">Código do status de registro do Evento..</param>
+        /// <param name="motivoStatus">Descrição literal do status do registro do Evento..</param>
+        /// <param name="numeroProtocolo">Número do Protocolo de registro do Evento..</param>
+        /// <param name="codigoMensagem">Código da Mensagem..</param>
+        /// <param name="mensagem">Mensagem da SEFAZ para o emissor..</param>
         /// <param name="tipoEvento">tipoEvento.</param>
         public MdfeInclusaoCondutor(string nomeCondutor = default(string), string cpfCondutor = default(string), string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), StatusEnum? status = default(StatusEnum?), DfeAutorEvento autor = default(DfeAutorEvento), string chaveAcesso = default(string), DateTime dataEvento = default(DateTime), int numeroSequencial = default(int), DateTime dataRecebimento = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), string numeroProtocolo = default(string), int codigoMensagem = default(int), string mensagem = default(string), string tipoEvento = default(string))
         {
@@ -146,8 +150,9 @@ namespace NuvemFiscal.Sdk.Model
         public string cpf_condutor { get; set; }
 
         /// <summary>
-        /// Gets or Sets id
+        /// ID único gerado pela Nuvem Fiscal para este documento.
         /// </summary>
+        /// <value>ID único gerado pela Nuvem Fiscal para este documento.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
 
@@ -158,56 +163,65 @@ namespace NuvemFiscal.Sdk.Model
         public DfeAutorEvento autor { get; set; }
 
         /// <summary>
-        /// Gets or Sets chave_acesso
+        /// Chave de Acesso do documento vinculado ao evento.
         /// </summary>
+        /// <value>Chave de Acesso do documento vinculado ao evento.</value>
         [DataMember(Name = "chave_acesso", EmitDefaultValue = false)]
         public string chave_acesso { get; set; }
 
         /// <summary>
-        /// Gets or Sets data_evento
+        /// Data e hora do Evento.
         /// </summary>
+        /// <value>Data e hora do Evento.</value>
         [DataMember(Name = "data_evento", EmitDefaultValue = false)]
         public DateTime data_evento { get; set; }
 
         /// <summary>
-        /// Gets or Sets numero_sequencial
+        /// Sequencial do evento para o mesmo tipo de evento.
         /// </summary>
+        /// <value>Sequencial do evento para o mesmo tipo de evento.</value>
         [DataMember(Name = "numero_sequencial", EmitDefaultValue = false)]
         public int numero_sequencial { get; set; }
 
         /// <summary>
-        /// Gets or Sets data_recebimento
+        /// Data e hora do recebimento do Evento pela SEFAZ.
         /// </summary>
+        /// <value>Data e hora do recebimento do Evento pela SEFAZ.</value>
         [DataMember(Name = "data_recebimento", EmitDefaultValue = false)]
         public DateTime data_recebimento { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_status
+        /// Código do status de registro do Evento.
         /// </summary>
+        /// <value>Código do status de registro do Evento.</value>
         [DataMember(Name = "codigo_status", EmitDefaultValue = false)]
         public int codigo_status { get; set; }
 
         /// <summary>
-        /// Gets or Sets motivo_status
+        /// Descrição literal do status do registro do Evento.
         /// </summary>
+        /// <value>Descrição literal do status do registro do Evento.</value>
         [DataMember(Name = "motivo_status", EmitDefaultValue = false)]
         public string motivo_status { get; set; }
 
         /// <summary>
-        /// Gets or Sets numero_protocolo
+        /// Número do Protocolo de registro do Evento.
         /// </summary>
+        /// <value>Número do Protocolo de registro do Evento.</value>
         [DataMember(Name = "numero_protocolo", EmitDefaultValue = false)]
         public string numero_protocolo { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_mensagem
+        /// Código da Mensagem.
         /// </summary>
+        /// <value>Código da Mensagem.</value>
         [DataMember(Name = "codigo_mensagem", EmitDefaultValue = false)]
         public int codigo_mensagem { get; set; }
 
         /// <summary>
-        /// Gets or Sets mensagem
+        /// Mensagem da SEFAZ para o emissor.
         /// </summary>
+        /// <value>Mensagem da SEFAZ para o emissor.</value>
         [DataMember(Name = "mensagem", EmitDefaultValue = false)]
         public string mensagem { get; set; }
 

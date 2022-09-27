@@ -31,11 +31,26 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfePedidoInclusaoCondutor" /> class.
         /// </summary>
-        /// <param name="nomeCondutor">Nome do condutor..</param>
-        /// <param name="cpfCondutor">CPF do condutor..</param>
+        [JsonConstructorAttribute]
+        protected MdfePedidoInclusaoCondutor() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MdfePedidoInclusaoCondutor" /> class.
+        /// </summary>
+        /// <param name="nomeCondutor">Nome do condutor. (required).</param>
+        /// <param name="cpfCondutor">CPF do condutor. (required).</param>
         public MdfePedidoInclusaoCondutor(string nomeCondutor = default(string), string cpfCondutor = default(string))
         {
+            // to ensure "nomeCondutor" is required (not null)
+            if (nomeCondutor == null)
+            {
+                throw new ArgumentNullException("nomeCondutor is a required property for MdfePedidoInclusaoCondutor and cannot be null");
+            }
             this.nome_condutor = nomeCondutor;
+            // to ensure "cpfCondutor" is required (not null)
+            if (cpfCondutor == null)
+            {
+                throw new ArgumentNullException("cpfCondutor is a required property for MdfePedidoInclusaoCondutor and cannot be null");
+            }
             this.cpf_condutor = cpfCondutor;
         }
 
@@ -43,14 +58,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome do condutor.
         /// </summary>
         /// <value>Nome do condutor.</value>
-        [DataMember(Name = "nome_condutor", EmitDefaultValue = false)]
+        [DataMember(Name = "nome_condutor", IsRequired = true, EmitDefaultValue = false)]
         public string nome_condutor { get; set; }
 
         /// <summary>
         /// CPF do condutor.
         /// </summary>
         /// <value>CPF do condutor.</value>
-        [DataMember(Name = "cpf_condutor", EmitDefaultValue = false)]
+        [DataMember(Name = "cpf_condutor", IsRequired = true, EmitDefaultValue = false)]
         public string cpf_condutor { get; set; }
 
         /// <summary>

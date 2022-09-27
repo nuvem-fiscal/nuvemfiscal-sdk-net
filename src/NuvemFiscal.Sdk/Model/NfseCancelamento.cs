@@ -69,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfseCancelamento" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
+        /// <param name="id">ID único do cancelamento gerado automaticamente pela Nuvem Fiscal..</param>
         /// <param name="status">status.</param>
         /// <param name="dataHora">dataHora.</param>
         /// <param name="mensagens">mensagens.</param>
@@ -82,8 +82,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets id
+        /// ID único do cancelamento gerado automaticamente pela Nuvem Fiscal.
         /// </summary>
+        /// <value>ID único do cancelamento gerado automaticamente pela Nuvem Fiscal.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
 

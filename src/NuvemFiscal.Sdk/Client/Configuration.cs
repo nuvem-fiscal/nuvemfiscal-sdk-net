@@ -511,7 +511,7 @@ namespace NuvemFiscal.Sdk.Client
             string report = "C# SDK (NuvemFiscal.Sdk) Debug Report:\n";
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
-            report += "    Version of the API: 1.0\n";
+            report += "    Version of the API: 1.1.0\n";
             report += "    SDK Package Version: 1.0.0\n";
 
             return report;

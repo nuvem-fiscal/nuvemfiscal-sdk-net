@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class NfePedidoEmissaoLote : IEquatable<NfePedidoEmissaoLote>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do Ambiente.
         /// </summary>
+        /// <value>Identificação do Ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,41 +51,58 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do Ambiente.
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        /// <value>Identificação do Ambiente.</value>
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NfePedidoEmissaoLote" /> class.
         /// </summary>
-        /// <param name="documentos">documentos.</param>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="referencia">referencia.</param>
-        /// <param name="idLote">idLote.</param>
-        public NfePedidoEmissaoLote(List<NfePedidoEmissao> documentos = default(List<NfePedidoEmissao>), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), string idLote = default(string))
+        [JsonConstructorAttribute]
+        protected NfePedidoEmissaoLote() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NfePedidoEmissaoLote" /> class.
+        /// </summary>
+        /// <param name="documentos">documentos (required).</param>
+        /// <param name="ambiente">Identificação do Ambiente. (required).</param>
+        /// <param name="referencia">Seu identificador para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
+        /// <param name="idLote">idLote (required).</param>
+        public NfePedidoEmissaoLote(List<NfePedidoEmissao> documentos = default(List<NfePedidoEmissao>), AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string), string idLote = default(string))
         {
+            // to ensure "documentos" is required (not null)
+            if (documentos == null)
+            {
+                throw new ArgumentNullException("documentos is a required property for NfePedidoEmissaoLote and cannot be null");
+            }
             this.documentos = documentos;
             this.ambiente = ambiente;
-            this.referencia = referencia;
+            // to ensure "idLote" is required (not null)
+            if (idLote == null)
+            {
+                throw new ArgumentNullException("idLote is a required property for NfePedidoEmissaoLote and cannot be null");
+            }
             this.id_lote = idLote;
+            this.referencia = referencia;
         }
 
         /// <summary>
         /// Gets or Sets documentos
         /// </summary>
-        [DataMember(Name = "documentos", EmitDefaultValue = false)]
+        [DataMember(Name = "documentos", IsRequired = true, EmitDefaultValue = false)]
         public List<NfePedidoEmissao> documentos { get; set; }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 
         /// <summary>
         /// Gets or Sets id_lote
         /// </summary>
-        [DataMember(Name = "id_lote", EmitDefaultValue = false)]
+        [DataMember(Name = "id_lote", IsRequired = true, EmitDefaultValue = false)]
         public string id_lote { get; set; }
 
         /// <summary>

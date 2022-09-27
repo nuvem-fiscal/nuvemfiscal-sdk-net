@@ -31,16 +31,27 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsIdentificacaoPrestador" /> class.
         /// </summary>
-        /// <param name="cpfCnpj">cpfCnpj.</param>
+        [JsonConstructorAttribute]
+        protected RpsIdentificacaoPrestador() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RpsIdentificacaoPrestador" /> class.
+        /// </summary>
+        /// <param name="cpfCnpj">CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (required).</param>
         public RpsIdentificacaoPrestador(string cpfCnpj = default(string))
         {
+            // to ensure "cpfCnpj" is required (not null)
+            if (cpfCnpj == null)
+            {
+                throw new ArgumentNullException("cpfCnpj is a required property for RpsIdentificacaoPrestador and cannot be null");
+            }
             this.cpf_cnpj = cpfCnpj;
         }
 
         /// <summary>
-        /// Gets or Sets cpf_cnpj
+        /// CPF ou CNPJ do prestador.  Utilize o valor sem máscara.
         /// </summary>
-        [DataMember(Name = "cpf_cnpj", EmitDefaultValue = false)]
+        /// <value>CPF ou CNPJ do prestador.  Utilize o valor sem máscara.</value>
+        [DataMember(Name = "cpf_cnpj", IsRequired = true, EmitDefaultValue = false)]
         public string cpf_cnpj { get; set; }
 
         /// <summary>

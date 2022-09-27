@@ -382,8 +382,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <returns>EmpresaListagem</returns>
         EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string));
@@ -395,8 +395,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <returns>ApiResponse of EmpresaListagem</returns>
         ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string));
@@ -846,8 +846,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaListagem</returns>
@@ -860,8 +860,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaListagem)</returns>
@@ -3669,8 +3669,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresas Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <returns>EmpresaListagem</returns>
         public EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string))
@@ -3683,8 +3683,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresas Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <returns>ApiResponse of EmpresaListagem</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), string cpfCnpj = default(string))
@@ -3746,8 +3746,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresas Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaListagem</returns>
@@ -3761,8 +3761,8 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresas Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="top"> (optional)</param>
-        /// <param name="skip"> (optional)</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaListagem)</returns>

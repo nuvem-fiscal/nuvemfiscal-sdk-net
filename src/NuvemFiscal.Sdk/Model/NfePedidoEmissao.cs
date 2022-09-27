@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class NfePedidoEmissao : IEquatable<NfePedidoEmissao>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do Ambiente.
         /// </summary>
+        /// <value>Identificação do Ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,29 +51,40 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do Ambiente.
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        /// <value>Identificação do Ambiente.</value>
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NfePedidoEmissao" /> class.
         /// </summary>
-        /// <param name="infNFe">infNFe.</param>
+        [JsonConstructorAttribute]
+        protected NfePedidoEmissao() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NfePedidoEmissao" /> class.
+        /// </summary>
+        /// <param name="infNFe">infNFe (required).</param>
         /// <param name="infNFeSupl">infNFeSupl.</param>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="referencia">referencia.</param>
-        public NfePedidoEmissao(NfeSefazInfNFe infNFe = default(NfeSefazInfNFe), NfeSefazInfNFeSupl infNFeSupl = default(NfeSefazInfNFeSupl), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string))
+        /// <param name="ambiente">Identificação do Ambiente. (required).</param>
+        /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
+        public NfePedidoEmissao(NfeSefazInfNFe infNFe = default(NfeSefazInfNFe), NfeSefazInfNFeSupl infNFeSupl = default(NfeSefazInfNFeSupl), AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string))
         {
+            // to ensure "infNFe" is required (not null)
+            if (infNFe == null)
+            {
+                throw new ArgumentNullException("infNFe is a required property for NfePedidoEmissao and cannot be null");
+            }
             this.infNFe = infNFe;
-            this.infNFeSupl = infNFeSupl;
             this.ambiente = ambiente;
+            this.infNFeSupl = infNFeSupl;
             this.referencia = referencia;
         }
 
         /// <summary>
         /// Gets or Sets infNFe
         /// </summary>
-        [DataMember(Name = "infNFe", EmitDefaultValue = false)]
+        [DataMember(Name = "infNFe", IsRequired = true, EmitDefaultValue = false)]
         public NfeSefazInfNFe infNFe { get; set; }
 
         /// <summary>
@@ -82,8 +94,9 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazInfNFeSupl infNFeSupl { get; set; }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 

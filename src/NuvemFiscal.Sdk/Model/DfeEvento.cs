@@ -99,7 +99,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DfeEvento" /> class.
         /// </summary>
-        /// <param name="id">Identificador único do Evento..</param>
+        /// <param name="id">ID único gerado pela Nuvem Fiscal para este documento..</param>
         /// <param name="ambiente">Identificação do ambiente..</param>
         /// <param name="status">Status do Evento..</param>
         /// <param name="autor">autor.</param>
@@ -132,9 +132,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Identificador único do Evento.
+        /// ID único gerado pela Nuvem Fiscal para este documento.
         /// </summary>
-        /// <value>Identificador único do Evento.</value>
+        /// <value>ID único gerado pela Nuvem Fiscal para este documento.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
 

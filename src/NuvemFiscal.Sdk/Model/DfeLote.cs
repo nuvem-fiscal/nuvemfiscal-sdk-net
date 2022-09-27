@@ -89,11 +89,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DfeLote" /> class.
         /// </summary>
-        /// <param name="id">Identificador único do lote..</param>
+        /// <param name="id">ID único gerado pela Nuvem Fiscal para este documento..</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="status">status.</param>
         /// <param name="ambiente">ambiente.</param>
-        /// <param name="referencia">referencia.</param>
+        /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
         /// <param name="idLote">idLote.</param>
         /// <param name="recibo">recibo.</param>
         /// <param name="documentos">documentos.</param>
@@ -110,9 +110,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Identificador único do lote.
+        /// ID único gerado pela Nuvem Fiscal para este documento.
         /// </summary>
-        /// <value>Identificador único do lote.</value>
+        /// <value>ID único gerado pela Nuvem Fiscal para este documento.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
 
@@ -123,8 +123,9 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime created_at { get; set; }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 

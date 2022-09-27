@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**id** | **string** | Identificador único do Evento. | [optional] 
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este documento. | [optional] 
 **ambiente** | **string** | Identificação do ambiente. | [optional] 
 **status** | **string** | Status do Evento. | [optional] 
 **autor** | [**DfeAutorEvento**](DfeAutorEvento.md) |  | [optional] 

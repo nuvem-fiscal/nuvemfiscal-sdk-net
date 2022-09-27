@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [optional] 
+**id** | **string** | ID único da nota gerado automaticamente pela Nuvem Fiscal. | [optional] 
 **created_at** | **DateTime** |  | [optional] 
 **status** | **string** |  | [optional] 
 **numero** | **string** |  | [optional] 

@@ -4,21 +4,21 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
 | Método | Endpoint | Descrição |
 |--------|--------------|-------------|
-| [**BaixarXmlNfse**](NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml |  |
-| [**CancelarNfse**](NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento |  |
-| [**ConsultarCancelamentoNfse**](NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento |  |
-| [**ConsultarLoteNfse**](NfseApi.md#consultarlotenfse) | **GET** /nfse/lotes/{id} |  |
-| [**ConsultarNfse**](NfseApi.md#consultarnfse) | **GET** /nfse/{id} |  |
-| [**EmitirLoteNfse**](NfseApi.md#emitirlotenfse) | **POST** /nfse/lotes |  |
-| [**EmitirNfse**](NfseApi.md#emitirnfse) | **POST** /nfse |  |
-| [**ListarLotesNfse**](NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes |  |
-| [**ListarNfse**](NfseApi.md#listarnfse) | **GET** /nfse |  |
+| [**BaixarXmlNfse**](NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada |
+| [**CancelarNfse**](NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada |
+| [**ConsultarCancelamentoNfse**](NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento | Consultar o cancelamento da NFS-e |
+| [**ConsultarLoteNfse**](NfseApi.md#consultarlotenfse) | **GET** /nfse/lotes/{id} | Consultar lote de NFS-e |
+| [**ConsultarNfse**](NfseApi.md#consultarnfse) | **GET** /nfse/{id} | Consultar NFS-e |
+| [**EmitirLoteNfse**](NfseApi.md#emitirlotenfse) | **POST** /nfse/lotes | Emitir lote de NFS-e |
+| [**EmitirNfse**](NfseApi.md#emitirnfse) | **POST** /nfse | Emitir NFS-e |
+| [**ListarLotesNfse**](NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | Listar lotes de NFS-e |
+| [**ListarNfse**](NfseApi.md#listarnfse) | **GET** /nfse | Listar NFS-e |
 
 <a name="baixarxmlnfse"></a>
 # **BaixarXmlNfse**
 > FileParameter BaixarXmlNfse (string id)
 
-
+Baixar XML da NFS-e processada
 
 ### Exemplo
 ```csharp
@@ -48,10 +48,11 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | 
+            var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
 
             try
             {
+                // Baixar XML da NFS-e processada
                 FileParameter result = apiInstance.BaixarXmlNfse(id);
                 Debug.WriteLine(result);
             }
@@ -72,6 +73,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
+    // Baixar XML da NFS-e processada
     ApiResponse<FileParameter> response = apiInstance.BaixarXmlNfseWithHttpInfo(id);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -89,7 +91,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** |  |  |
+| **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -116,7 +118,7 @@ catch (ApiException e)
 # **CancelarNfse**
 > NfseCancelamento CancelarNfse (string id)
 
-
+Cancelar uma NFS-e autorizada
 
 ### Exemplo
 ```csharp
@@ -146,10 +148,11 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | 
+            var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
 
             try
             {
+                // Cancelar uma NFS-e autorizada
                 NfseCancelamento result = apiInstance.CancelarNfse(id);
                 Debug.WriteLine(result);
             }
@@ -170,6 +173,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
+    // Cancelar uma NFS-e autorizada
     ApiResponse<NfseCancelamento> response = apiInstance.CancelarNfseWithHttpInfo(id);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -187,7 +191,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** |  |  |
+| **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -214,7 +218,7 @@ catch (ApiException e)
 # **ConsultarCancelamentoNfse**
 > NfseCancelamento ConsultarCancelamentoNfse (string id)
 
-
+Consultar o cancelamento da NFS-e
 
 ### Exemplo
 ```csharp
@@ -244,10 +248,11 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | 
+            var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
 
             try
             {
+                // Consultar o cancelamento da NFS-e
                 NfseCancelamento result = apiInstance.ConsultarCancelamentoNfse(id);
                 Debug.WriteLine(result);
             }
@@ -268,6 +273,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
+    // Consultar o cancelamento da NFS-e
     ApiResponse<NfseCancelamento> response = apiInstance.ConsultarCancelamentoNfseWithHttpInfo(id);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -285,7 +291,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** |  |  |
+| **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -312,7 +318,9 @@ catch (ApiException e)
 # **ConsultarLoteNfse**
 > RpsLote ConsultarLoteNfse (string id)
 
+Consultar lote de NFS-e
 
+Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
 
 ### Exemplo
 ```csharp
@@ -342,10 +350,11 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | 
+            var id = "id_example";  // string | ID único do lote gerado pela Nuvem Fiscal.
 
             try
             {
+                // Consultar lote de NFS-e
                 RpsLote result = apiInstance.ConsultarLoteNfse(id);
                 Debug.WriteLine(result);
             }
@@ -366,6 +375,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
+    // Consultar lote de NFS-e
     ApiResponse<RpsLote> response = apiInstance.ConsultarLoteNfseWithHttpInfo(id);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -383,7 +393,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** |  |  |
+| **id** | **string** | ID único do lote gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -410,7 +420,9 @@ catch (ApiException e)
 # **ConsultarNfse**
 > Nfse ConsultarNfse (string id)
 
+Consultar NFS-e
 
+Consulta os detalhes de uma NFS-e já existente. Forneça o ID único obtido de uma requisição de criação ou de listagem de notas e a Nuvem Fiscal irá retornar as informações da nota correspondente.
 
 ### Exemplo
 ```csharp
@@ -440,10 +452,11 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | 
+            var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
 
             try
             {
+                // Consultar NFS-e
                 Nfse result = apiInstance.ConsultarNfse(id);
                 Debug.WriteLine(result);
             }
@@ -464,6 +477,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
+    // Consultar NFS-e
     ApiResponse<Nfse> response = apiInstance.ConsultarNfseWithHttpInfo(id);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -481,7 +495,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **id** | **string** |  |  |
+| **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -508,7 +522,7 @@ catch (ApiException e)
 # **EmitirLoteNfse**
 > RpsLote EmitirLoteNfse (RpsPedidoEmissaoLote body)
 
-
+Emitir lote de NFS-e
 
 ### Exemplo
 ```csharp
@@ -542,6 +556,7 @@ namespace Example
 
             try
             {
+                // Emitir lote de NFS-e
                 RpsLote result = apiInstance.EmitirLoteNfse(body);
                 Debug.WriteLine(result);
             }
@@ -562,6 +577,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
+    // Emitir lote de NFS-e
     ApiResponse<RpsLote> response = apiInstance.EmitirLoteNfseWithHttpInfo(body);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -606,7 +622,7 @@ catch (ApiException e)
 # **EmitirNfse**
 > Nfse EmitirNfse (NfsePedidoEmissao body)
 
-
+Emitir NFS-e
 
 ### Exemplo
 ```csharp
@@ -640,6 +656,7 @@ namespace Example
 
             try
             {
+                // Emitir NFS-e
                 Nfse result = apiInstance.EmitirNfse(body);
                 Debug.WriteLine(result);
             }
@@ -660,6 +677,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
+    // Emitir NFS-e
     ApiResponse<Nfse> response = apiInstance.EmitirNfseWithHttpInfo(body);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -702,9 +720,11 @@ catch (ApiException e)
 
 <a name="listarlotesnfse"></a>
 # **ListarLotesNfse**
-> RpsLoteListagem ListarLotesNfse (int? top = null, int? skip = null, string cpfCnpj = null, string referencia = null, string ambiente = null)
+> RpsLoteListagem ListarLotesNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
 
+Listar lotes de NFS-e
 
+Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
 
 ### Exemplo
 ```csharp
@@ -734,15 +754,16 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var top = 56;  // int? |  (optional) 
-            var skip = 56;  // int? |  (optional) 
-            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional) 
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
+            var ambiente = "homologacao";  // string | 
+            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
+            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
-            var ambiente = "ambiente_example";  // string |  (optional) 
 
             try
             {
-                RpsLoteListagem result = apiInstance.ListarLotesNfse(top, skip, cpfCnpj, referencia, ambiente);
+                // Listar lotes de NFS-e
+                RpsLoteListagem result = apiInstance.ListarLotesNfse(cpfCnpj, ambiente, top, skip, referencia);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -762,7 +783,8 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
-    ApiResponse<RpsLoteListagem> response = apiInstance.ListarLotesNfseWithHttpInfo(top, skip, cpfCnpj, referencia, ambiente);
+    // Listar lotes de NFS-e
+    ApiResponse<RpsLoteListagem> response = apiInstance.ListarLotesNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -779,11 +801,11 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **top** | **int?** |  | [optional]  |
-| **skip** | **int?** |  | [optional]  |
-| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. | [optional]  |
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
+| **ambiente** | **string** |  |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
-| **ambiente** | **string** |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -808,9 +830,11 @@ catch (ApiException e)
 
 <a name="listarnfse"></a>
 # **ListarNfse**
-> NfseListagem ListarNfse (int? top = null, int? skip = null, string cpfCnpj = null, string referencia = null, string ambiente = null)
+> NfseListagem ListarNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
 
+Listar NFS-e
 
+Retorna a lista de notas de acordo com os critérios de busca utilizados. As notas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
 
 ### Exemplo
 ```csharp
@@ -840,15 +864,16 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var top = 56;  // int? |  (optional) 
-            var skip = 56;  // int? |  (optional) 
-            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. (optional) 
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
+            var ambiente = "homologacao";  // string | 
+            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
+            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
-            var ambiente = "ambiente_example";  // string |  (optional) 
 
             try
             {
-                NfseListagem result = apiInstance.ListarNfse(top, skip, cpfCnpj, referencia, ambiente);
+                // Listar NFS-e
+                NfseListagem result = apiInstance.ListarNfse(cpfCnpj, ambiente, top, skip, referencia);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -868,7 +893,8 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
-    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(top, skip, cpfCnpj, referencia, ambiente);
+    // Listar NFS-e
+    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -885,11 +911,11 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **top** | **int?** |  | [optional]  |
-| **skip** | **int?** |  | [optional]  |
-| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do prestador.  Utilize o valor sem máscara. | [optional]  |
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
+| **ambiente** | **string** |  |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
-| **ambiente** | **string** |  | [optional]  |
 
 ### Tipo de retorno
 

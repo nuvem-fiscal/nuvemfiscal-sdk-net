@@ -4,11 +4,11 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**id** | **string** | Identificador único do lote. | [optional] 
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este documento. | [optional] 
 **created_at** | **DateTime** |  | [optional] 
 **status** | **string** |  | [optional] 
 **ambiente** | **string** |  | [optional] 
-**referencia** | **string** |  | [optional] 
+**referencia** | **string** | Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento. | [optional] 
 **id_lote** | **string** |  | [optional] 
 **recibo** | [**DfeRecibo**](DfeRecibo.md) |  | [optional] 
 **documentos** | [**List&lt;Dfe&gt;**](Dfe.md) |  | [optional] 

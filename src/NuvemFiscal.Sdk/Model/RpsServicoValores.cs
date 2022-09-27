@@ -31,8 +31,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsServicoValores" /> class.
         /// </summary>
-        /// <param name="valorUnitario">valorUnitario.</param>
-        /// <param name="valorServicos">valorServicos.</param>
+        [JsonConstructorAttribute]
+        protected RpsServicoValores() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RpsServicoValores" /> class.
+        /// </summary>
+        /// <param name="valorUnitario">Valor unitário do serviço. (required).</param>
+        /// <param name="valorServicos">Valor total do serviço..</param>
         /// <param name="valorDeducoes">valorDeducoes.</param>
         /// <param name="valorPis">valorPis.</param>
         /// <param name="valorCofins">valorCofins.</param>
@@ -76,14 +81,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets valor_unitario
+        /// Valor unitário do serviço.
         /// </summary>
-        [DataMember(Name = "valor_unitario", EmitDefaultValue = false)]
+        /// <value>Valor unitário do serviço.</value>
+        [DataMember(Name = "valor_unitario", IsRequired = true, EmitDefaultValue = false)]
         public decimal valor_unitario { get; set; }
 
         /// <summary>
-        /// Gets or Sets valor_servicos
+        /// Valor total do serviço.
         /// </summary>
+        /// <value>Valor total do serviço.</value>
         [DataMember(Name = "valor_servicos", EmitDefaultValue = false)]
         public decimal valor_servicos { get; set; }
 

@@ -23,63 +23,33 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// EmpresaConfigNfce
+    /// DfeLoteListagem
     /// </summary>
-    [DataContract(Name = "EmpresaConfigNfce")]
-    public partial class EmpresaConfigNfce : IEquatable<EmpresaConfigNfce>, IValidatableObject
+    [DataContract(Name = "DfeLoteListagem")]
+    public partial class DfeLoteListagem : IEquatable<DfeLoteListagem>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Initializes a new instance of the <see cref="DfeLoteListagem" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum AmbienteEnum
+        /// <param name="count">count.</param>
+        /// <param name="data">data.</param>
+        public DfeLoteListagem(int count = default(int), List<DfeLote> data = default(List<DfeLote>))
         {
-            /// <summary>
-            /// Enum Homologacao for value: homologacao
-            /// </summary>
-            [EnumMember(Value = "homologacao")]
-            Homologacao = 1,
-
-            /// <summary>
-            /// Enum Producao for value: producao
-            /// </summary>
-            [EnumMember(Value = "producao")]
-            Producao = 2
-
-        }
-
-
-        /// <summary>
-        /// Gets or Sets ambiente
-        /// </summary>
-        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
-        public AmbienteEnum ambiente { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmpresaConfigNfce" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected EmpresaConfigNfce() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmpresaConfigNfce" /> class.
-        /// </summary>
-        /// <param name="sefaz">sefaz (required).</param>
-        /// <param name="ambiente">ambiente (required).</param>
-        public EmpresaConfigNfce(EmpresaConfigNfceSefaz sefaz = default(EmpresaConfigNfceSefaz), AmbienteEnum ambiente = default(AmbienteEnum))
-        {
-            // to ensure "sefaz" is required (not null)
-            if (sefaz == null)
-            {
-                throw new ArgumentNullException("sefaz is a required property for EmpresaConfigNfce and cannot be null");
-            }
-            this.sefaz = sefaz;
-            this.ambiente = ambiente;
+            this.count = count;
+            this.data = data;
         }
 
         /// <summary>
-        /// Gets or Sets sefaz
+        /// Gets or Sets count
         /// </summary>
-        [DataMember(Name = "sefaz", IsRequired = true, EmitDefaultValue = false)]
-        public EmpresaConfigNfceSefaz sefaz { get; set; }
+        [DataMember(Name = "@count", EmitDefaultValue = false)]
+        public int count { get; set; }
+
+        /// <summary>
+        /// Gets or Sets data
+        /// </summary>
+        [DataMember(Name = "data", EmitDefaultValue = false)]
+        public List<DfeLote> data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -88,9 +58,9 @@ namespace NuvemFiscal.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class EmpresaConfigNfce {\n");
-            sb.Append("  sefaz: ").Append(sefaz).Append("\n");
-            sb.Append("  ambiente: ").Append(ambiente).Append("\n");
+            sb.Append("class DfeLoteListagem {\n");
+            sb.Append("  count: ").Append(count).Append("\n");
+            sb.Append("  data: ").Append(data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -111,15 +81,15 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as EmpresaConfigNfce);
+            return this.Equals(input as DfeLoteListagem);
         }
 
         /// <summary>
-        /// Returns true if EmpresaConfigNfce instances are equal
+        /// Returns true if DfeLoteListagem instances are equal
         /// </summary>
-        /// <param name="input">Instance of EmpresaConfigNfce to be compared</param>
+        /// <param name="input">Instance of DfeLoteListagem to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(EmpresaConfigNfce input)
+        public bool Equals(DfeLoteListagem input)
         {
             if (input == null)
             {
@@ -127,13 +97,14 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
-                    this.sefaz == input.sefaz ||
-                    (this.sefaz != null &&
-                    this.sefaz.Equals(input.sefaz))
+                    this.count == input.count ||
+                    this.count.Equals(input.count)
                 ) && 
                 (
-                    this.ambiente == input.ambiente ||
-                    this.ambiente.Equals(input.ambiente)
+                    this.data == input.data ||
+                    this.data != null &&
+                    input.data != null &&
+                    this.data.SequenceEqual(input.data)
                 );
         }
 
@@ -146,11 +117,11 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.sefaz != null)
+                hashCode = (hashCode * 59) + this.count.GetHashCode();
+                if (this.data != null)
                 {
-                    hashCode = (hashCode * 59) + this.sefaz.GetHashCode();
+                    hashCode = (hashCode * 59) + this.data.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.ambiente.GetHashCode();
                 return hashCode;
             }
         }

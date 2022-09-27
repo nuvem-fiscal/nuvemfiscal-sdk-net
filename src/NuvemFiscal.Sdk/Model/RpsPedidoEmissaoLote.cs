@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class RpsPedidoEmissaoLote : IEquatable<RpsPedidoEmissaoLote>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do Ambiente.
         /// </summary>
+        /// <value>Identificação do Ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,17 +51,23 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do Ambiente.
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        /// <value>Identificação do Ambiente.</value>
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsPedidoEmissaoLote" /> class.
         /// </summary>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="referencia">referencia.</param>
+        [JsonConstructorAttribute]
+        protected RpsPedidoEmissaoLote() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RpsPedidoEmissaoLote" /> class.
+        /// </summary>
+        /// <param name="ambiente">Identificação do Ambiente. (required).</param>
+        /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
         /// <param name="listaRps">listaRps.</param>
-        public RpsPedidoEmissaoLote(AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), List<RpsPedidoEmissao> listaRps = default(List<RpsPedidoEmissao>))
+        public RpsPedidoEmissaoLote(AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string), List<RpsPedidoEmissao> listaRps = default(List<RpsPedidoEmissao>))
         {
             this.ambiente = ambiente;
             this.referencia = referencia;
@@ -68,8 +75,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 

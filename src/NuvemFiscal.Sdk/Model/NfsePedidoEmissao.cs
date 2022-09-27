@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class NfsePedidoEmissao : IEquatable<NfsePedidoEmissao>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do Ambiente.
         /// </summary>
+        /// <value>Identificação do Ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,25 +51,36 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do Ambiente.
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        /// <value>Identificação do Ambiente.</value>
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NfsePedidoEmissao" /> class.
         /// </summary>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="rps">rps.</param>
-        public NfsePedidoEmissao(AmbienteEnum? ambiente = default(AmbienteEnum?), RpsPedidoEmissao rps = default(RpsPedidoEmissao))
+        [JsonConstructorAttribute]
+        protected NfsePedidoEmissao() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NfsePedidoEmissao" /> class.
+        /// </summary>
+        /// <param name="ambiente">Identificação do Ambiente. (required).</param>
+        /// <param name="rps">rps (required).</param>
+        public NfsePedidoEmissao(AmbienteEnum ambiente = default(AmbienteEnum), RpsPedidoEmissao rps = default(RpsPedidoEmissao))
         {
             this.ambiente = ambiente;
+            // to ensure "rps" is required (not null)
+            if (rps == null)
+            {
+                throw new ArgumentNullException("rps is a required property for NfsePedidoEmissao and cannot be null");
+            }
             this.rps = rps;
         }
 
         /// <summary>
         /// Gets or Sets rps
         /// </summary>
-        [DataMember(Name = "rps", EmitDefaultValue = false)]
+        [DataMember(Name = "rps", IsRequired = true, EmitDefaultValue = false)]
         public RpsPedidoEmissao rps { get; set; }
 
         /// <summary>

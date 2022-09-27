@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class MdfePedidoEmissaoLote : IEquatable<MdfePedidoEmissaoLote>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Identificação do Ambiente.
         /// </summary>
+        /// <value>Identificação do Ambiente.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,23 +51,34 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Identificação do Ambiente.
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        /// <value>Identificação do Ambiente.</value>
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MdfePedidoEmissaoLote" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected MdfePedidoEmissaoLote() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfePedidoEmissaoLote" /> class.
         /// </summary>
         /// <param name="documentos">documentos.</param>
-        /// <param name="ambiente">ambiente.</param>
-        /// <param name="referencia">referencia.</param>
-        /// <param name="idLote">idLote.</param>
-        public MdfePedidoEmissaoLote(List<MdfePedidoEmissao> documentos = default(List<MdfePedidoEmissao>), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), string idLote = default(string))
+        /// <param name="ambiente">Identificação do Ambiente. (required).</param>
+        /// <param name="referencia">Seu identificador para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
+        /// <param name="idLote">idLote (required).</param>
+        public MdfePedidoEmissaoLote(List<MdfePedidoEmissao> documentos = default(List<MdfePedidoEmissao>), AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string), string idLote = default(string))
         {
-            this.documentos = documentos;
             this.ambiente = ambiente;
-            this.referencia = referencia;
+            // to ensure "idLote" is required (not null)
+            if (idLote == null)
+            {
+                throw new ArgumentNullException("idLote is a required property for MdfePedidoEmissaoLote and cannot be null");
+            }
             this.id_lote = idLote;
+            this.documentos = documentos;
+            this.referencia = referencia;
         }
 
         /// <summary>
@@ -76,15 +88,16 @@ namespace NuvemFiscal.Sdk.Model
         public List<MdfePedidoEmissao> documentos { get; set; }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 
         /// <summary>
         /// Gets or Sets id_lote
         /// </summary>
-        [DataMember(Name = "id_lote", EmitDefaultValue = false)]
+        [DataMember(Name = "id_lote", IsRequired = true, EmitDefaultValue = false)]
         public string id_lote { get; set; }
 
         /// <summary>

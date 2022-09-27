@@ -31,63 +31,87 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsPedidoEmissao" /> class.
         /// </summary>
-        /// <param name="referencia">referencia.</param>
-        /// <param name="dataEmissao">dataEmissao.</param>
-        /// <param name="competencia">competencia.</param>
-        /// <param name="naturezaTributacao">naturezaTributacao.</param>
-        /// <param name="prestador">prestador.</param>
-        /// <param name="tomador">tomador.</param>
+        [JsonConstructorAttribute]
+        protected RpsPedidoEmissao() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RpsPedidoEmissao" /> class.
+        /// </summary>
+        /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
+        /// <param name="dataEmissao">Data e Hora de Emissão do RPS, no formato AAAA-MM-DDTHH:MM:SSTZD.  Caso não informado, será considerada a data/hora da requisição à API da Nuvem Fiscal..</param>
+        /// <param name="competencia">Competência do RPS, no formato AAAA-MM-DD.  Caso não informado, será considerada a data da requisição à API da Nuvem Fiscal..</param>
+        /// <param name="naturezaTributacao">Natureza da tributação:  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial..</param>
+        /// <param name="prestador">prestador (required).</param>
+        /// <param name="tomador">tomador (required).</param>
         /// <param name="intermediario">intermediario.</param>
         /// <param name="construcaoCivil">construcaoCivil.</param>
-        /// <param name="servicos">servicos.</param>
+        /// <param name="servicos">servicos (required).</param>
         public RpsPedidoEmissao(string referencia = default(string), DateTime dataEmissao = default(DateTime), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsIdentificacaoPrestador prestador = default(RpsIdentificacaoPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>))
         {
+            // to ensure "prestador" is required (not null)
+            if (prestador == null)
+            {
+                throw new ArgumentNullException("prestador is a required property for RpsPedidoEmissao and cannot be null");
+            }
+            this.prestador = prestador;
+            // to ensure "tomador" is required (not null)
+            if (tomador == null)
+            {
+                throw new ArgumentNullException("tomador is a required property for RpsPedidoEmissao and cannot be null");
+            }
+            this.tomador = tomador;
+            // to ensure "servicos" is required (not null)
+            if (servicos == null)
+            {
+                throw new ArgumentNullException("servicos is a required property for RpsPedidoEmissao and cannot be null");
+            }
+            this.servicos = servicos;
             this.referencia = referencia;
             this.data_emissao = dataEmissao;
             this.competencia = competencia;
             this.natureza_tributacao = naturezaTributacao;
-            this.prestador = prestador;
-            this.tomador = tomador;
             this.intermediario = intermediario;
             this.construcao_civil = construcaoCivil;
-            this.servicos = servicos;
         }
 
         /// <summary>
-        /// Gets or Sets referencia
+        /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
+        /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
         [DataMember(Name = "referencia", EmitDefaultValue = false)]
         public string referencia { get; set; }
 
         /// <summary>
-        /// Gets or Sets data_emissao
+        /// Data e Hora de Emissão do RPS, no formato AAAA-MM-DDTHH:MM:SSTZD.  Caso não informado, será considerada a data/hora da requisição à API da Nuvem Fiscal.
         /// </summary>
+        /// <value>Data e Hora de Emissão do RPS, no formato AAAA-MM-DDTHH:MM:SSTZD.  Caso não informado, será considerada a data/hora da requisição à API da Nuvem Fiscal.</value>
         [DataMember(Name = "data_emissao", EmitDefaultValue = false)]
         public DateTime data_emissao { get; set; }
 
         /// <summary>
-        /// Gets or Sets competencia
+        /// Competência do RPS, no formato AAAA-MM-DD.  Caso não informado, será considerada a data da requisição à API da Nuvem Fiscal.
         /// </summary>
+        /// <value>Competência do RPS, no formato AAAA-MM-DD.  Caso não informado, será considerada a data da requisição à API da Nuvem Fiscal.</value>
         [DataMember(Name = "competencia", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime competencia { get; set; }
 
         /// <summary>
-        /// Gets or Sets natureza_tributacao
+        /// Natureza da tributação:  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial.
         /// </summary>
+        /// <value>Natureza da tributação:  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial.</value>
         [DataMember(Name = "natureza_tributacao", EmitDefaultValue = false)]
         public int natureza_tributacao { get; set; }
 
         /// <summary>
         /// Gets or Sets prestador
         /// </summary>
-        [DataMember(Name = "prestador", EmitDefaultValue = false)]
+        [DataMember(Name = "prestador", IsRequired = true, EmitDefaultValue = false)]
         public RpsIdentificacaoPrestador prestador { get; set; }
 
         /// <summary>
         /// Gets or Sets tomador
         /// </summary>
-        [DataMember(Name = "tomador", EmitDefaultValue = false)]
+        [DataMember(Name = "tomador", IsRequired = true, EmitDefaultValue = false)]
         public RpsDadosTomador tomador { get; set; }
 
         /// <summary>
@@ -105,7 +129,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets servicos
         /// </summary>
-        [DataMember(Name = "servicos", EmitDefaultValue = false)]
+        [DataMember(Name = "servicos", IsRequired = true, EmitDefaultValue = false)]
         public List<RpsDadosServico> servicos { get; set; }
 
         /// <summary>

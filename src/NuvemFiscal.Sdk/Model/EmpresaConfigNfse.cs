@@ -52,8 +52,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ambiente
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigNfse" /> class.
         /// </summary>
@@ -64,8 +64,8 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="rps">rps (required).</param>
         /// <param name="prefeitura">prefeitura.</param>
-        /// <param name="ambiente">ambiente.</param>
-        public EmpresaConfigNfse(EmpresaConfigRps rps = default(EmpresaConfigRps), EmpresaConfigPrefeitura prefeitura = default(EmpresaConfigPrefeitura), AmbienteEnum? ambiente = default(AmbienteEnum?))
+        /// <param name="ambiente">ambiente (required).</param>
+        public EmpresaConfigNfse(EmpresaConfigRps rps = default(EmpresaConfigRps), EmpresaConfigPrefeitura prefeitura = default(EmpresaConfigPrefeitura), AmbienteEnum ambiente = default(AmbienteEnum))
         {
             // to ensure "rps" is required (not null)
             if (rps == null)
@@ -73,8 +73,8 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("rps is a required property for EmpresaConfigNfse and cannot be null");
             }
             this.rps = rps;
-            this.prefeitura = prefeitura;
             this.ambiente = ambiente;
+            this.prefeitura = prefeitura;
         }
 
         /// <summary>

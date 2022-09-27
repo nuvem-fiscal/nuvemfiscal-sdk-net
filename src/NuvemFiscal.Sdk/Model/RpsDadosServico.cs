@@ -31,29 +31,50 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsDadosServico" /> class.
         /// </summary>
-        /// <param name="issRetido">issRetido.</param>
-        /// <param name="responsavelRetencao">responsavelRetencao.</param>
-        /// <param name="itemListaServico">itemListaServico.</param>
-        /// <param name="codigoCnae">codigoCnae.</param>
-        /// <param name="codigoTributacaoMunicipio">codigoTributacaoMunicipio.</param>
-        /// <param name="discriminacao">discriminacao.</param>
-        /// <param name="codigoMunicipio">codigoMunicipio.</param>
-        /// <param name="codigoPais">codigoPais.</param>
-        /// <param name="tipoTributacao">tipoTributacao.</param>
-        /// <param name="exigibilidadeIss">exigibilidadeIss.</param>
-        /// <param name="codigoMunicipioIncidencia">codigoMunicipioIncidencia.</param>
-        /// <param name="numeroProcesso">numeroProcesso.</param>
-        /// <param name="unidade">unidade.</param>
-        /// <param name="quantidade">quantidade.</param>
-        /// <param name="valores">valores.</param>
+        [JsonConstructorAttribute]
+        protected RpsDadosServico() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RpsDadosServico" /> class.
+        /// </summary>
+        /// <param name="issRetido">Reter ISSQN.  Valor padrão: &#x60;false&#x60;.</param>
+        /// <param name="responsavelRetencao">Responsável pela retenção:  0 - Prestador;  1 - Tomador;  2 - Intermediário.    Valor padrão: &#x60;0&#x60;.</param>
+        /// <param name="itemListaServico">Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.    Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador. (required).</param>
+        /// <param name="codigoCnae">Código CNAE (Classificação Nacional de Atividades Econômicas)..</param>
+        /// <param name="codigoTributacaoMunicipio">Código de tributação do município..</param>
+        /// <param name="discriminacao">Detalhamento do serviço prestado. (required).</param>
+        /// <param name="codigoMunicipio">Código IBGE do município de prestação do serviço..</param>
+        /// <param name="codigoPais">Código do país de prestação do serviço..</param>
+        /// <param name="tipoTributacao">Tipo de Tributação do Serviço:  1 - Isento de ISS  2 - Imune  3 - Não Incidência no Município  4 - Não Tributável  5 - Retido  6 - Tributável Dentro do Município  7 - Tributável Fora do Município  8 - Tributável Dentro do Município pelo tomador    Valor padrão: &#x60;6&#x60;.</param>
+        /// <param name="exigibilidadeIss">Exigibilidade do ISS:  1 - Exigível  2 - Não Incidência  3 - Isenção  4 - Exportação  5 - Imunidade  6 - Suspenso por Decisão Judicial  7 - Suspenso por Processo Administrativo    Valor padrão: &#x60;1&#x60;.</param>
+        /// <param name="codigoMunicipioIncidencia">Código IBGE do município de incidência do ISSQN..</param>
+        /// <param name="numeroProcesso">Número do Processo de Suspensão da Exigibilidade..</param>
+        /// <param name="unidade">Unidade do serviço prestado..</param>
+        /// <param name="quantidade">Quantidade dos serviços prestados.  Valor padrão: &#x60;1&#x60;.</param>
+        /// <param name="valores">valores (required).</param>
         public RpsDadosServico(bool issRetido = default(bool), int responsavelRetencao = default(int), string itemListaServico = default(string), string codigoCnae = default(string), string codigoTributacaoMunicipio = default(string), string discriminacao = default(string), string codigoMunicipio = default(string), string codigoPais = default(string), int tipoTributacao = default(int), int exigibilidadeIss = default(int), string codigoMunicipioIncidencia = default(string), string numeroProcesso = default(string), string unidade = default(string), decimal quantidade = default(decimal), RpsServicoValores valores = default(RpsServicoValores))
         {
+            // to ensure "itemListaServico" is required (not null)
+            if (itemListaServico == null)
+            {
+                throw new ArgumentNullException("itemListaServico is a required property for RpsDadosServico and cannot be null");
+            }
+            this.item_lista_servico = itemListaServico;
+            // to ensure "discriminacao" is required (not null)
+            if (discriminacao == null)
+            {
+                throw new ArgumentNullException("discriminacao is a required property for RpsDadosServico and cannot be null");
+            }
+            this.discriminacao = discriminacao;
+            // to ensure "valores" is required (not null)
+            if (valores == null)
+            {
+                throw new ArgumentNullException("valores is a required property for RpsDadosServico and cannot be null");
+            }
+            this.valores = valores;
             this.iss_retido = issRetido;
             this.responsavel_retencao = responsavelRetencao;
-            this.item_lista_servico = itemListaServico;
             this.codigo_cnae = codigoCnae;
             this.codigo_tributacao_municipio = codigoTributacaoMunicipio;
-            this.discriminacao = discriminacao;
             this.codigo_municipio = codigoMunicipio;
             this.codigo_pais = codigoPais;
             this.tipo_tributacao = tipoTributacao;
@@ -62,97 +83,110 @@ namespace NuvemFiscal.Sdk.Model
             this.numero_processo = numeroProcesso;
             this.unidade = unidade;
             this.quantidade = quantidade;
-            this.valores = valores;
         }
 
         /// <summary>
-        /// Gets or Sets iss_retido
+        /// Reter ISSQN.  Valor padrão: &#x60;false&#x60;
         /// </summary>
+        /// <value>Reter ISSQN.  Valor padrão: &#x60;false&#x60;</value>
         [DataMember(Name = "iss_retido", EmitDefaultValue = true)]
         public bool iss_retido { get; set; }
 
         /// <summary>
-        /// Gets or Sets responsavel_retencao
+        /// Responsável pela retenção:  0 - Prestador;  1 - Tomador;  2 - Intermediário.    Valor padrão: &#x60;0&#x60;
         /// </summary>
+        /// <value>Responsável pela retenção:  0 - Prestador;  1 - Tomador;  2 - Intermediário.    Valor padrão: &#x60;0&#x60;</value>
         [DataMember(Name = "responsavel_retencao", EmitDefaultValue = false)]
         public int responsavel_retencao { get; set; }
 
         /// <summary>
-        /// Gets or Sets item_lista_servico
+        /// Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.    Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador.
         /// </summary>
-        [DataMember(Name = "item_lista_servico", EmitDefaultValue = false)]
+        /// <value>Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.    Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador.</value>
+        [DataMember(Name = "item_lista_servico", IsRequired = true, EmitDefaultValue = false)]
         public string item_lista_servico { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_cnae
+        /// Código CNAE (Classificação Nacional de Atividades Econômicas).
         /// </summary>
+        /// <value>Código CNAE (Classificação Nacional de Atividades Econômicas).</value>
         [DataMember(Name = "codigo_cnae", EmitDefaultValue = false)]
         public string codigo_cnae { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_tributacao_municipio
+        /// Código de tributação do município.
         /// </summary>
+        /// <value>Código de tributação do município.</value>
         [DataMember(Name = "codigo_tributacao_municipio", EmitDefaultValue = false)]
         public string codigo_tributacao_municipio { get; set; }
 
         /// <summary>
-        /// Gets or Sets discriminacao
+        /// Detalhamento do serviço prestado.
         /// </summary>
-        [DataMember(Name = "discriminacao", EmitDefaultValue = false)]
+        /// <value>Detalhamento do serviço prestado.</value>
+        [DataMember(Name = "discriminacao", IsRequired = true, EmitDefaultValue = false)]
         public string discriminacao { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_municipio
+        /// Código IBGE do município de prestação do serviço.
         /// </summary>
+        /// <value>Código IBGE do município de prestação do serviço.</value>
         [DataMember(Name = "codigo_municipio", EmitDefaultValue = false)]
         public string codigo_municipio { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_pais
+        /// Código do país de prestação do serviço.
         /// </summary>
+        /// <value>Código do país de prestação do serviço.</value>
         [DataMember(Name = "codigo_pais", EmitDefaultValue = false)]
         public string codigo_pais { get; set; }
 
         /// <summary>
-        /// Gets or Sets tipo_tributacao
+        /// Tipo de Tributação do Serviço:  1 - Isento de ISS  2 - Imune  3 - Não Incidência no Município  4 - Não Tributável  5 - Retido  6 - Tributável Dentro do Município  7 - Tributável Fora do Município  8 - Tributável Dentro do Município pelo tomador    Valor padrão: &#x60;6&#x60;
         /// </summary>
+        /// <value>Tipo de Tributação do Serviço:  1 - Isento de ISS  2 - Imune  3 - Não Incidência no Município  4 - Não Tributável  5 - Retido  6 - Tributável Dentro do Município  7 - Tributável Fora do Município  8 - Tributável Dentro do Município pelo tomador    Valor padrão: &#x60;6&#x60;</value>
         [DataMember(Name = "tipo_tributacao", EmitDefaultValue = false)]
         public int tipo_tributacao { get; set; }
 
         /// <summary>
-        /// Gets or Sets exigibilidade_iss
+        /// Exigibilidade do ISS:  1 - Exigível  2 - Não Incidência  3 - Isenção  4 - Exportação  5 - Imunidade  6 - Suspenso por Decisão Judicial  7 - Suspenso por Processo Administrativo    Valor padrão: &#x60;1&#x60;
         /// </summary>
+        /// <value>Exigibilidade do ISS:  1 - Exigível  2 - Não Incidência  3 - Isenção  4 - Exportação  5 - Imunidade  6 - Suspenso por Decisão Judicial  7 - Suspenso por Processo Administrativo    Valor padrão: &#x60;1&#x60;</value>
         [DataMember(Name = "exigibilidade_iss", EmitDefaultValue = false)]
         public int exigibilidade_iss { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_municipio_incidencia
+        /// Código IBGE do município de incidência do ISSQN.
         /// </summary>
+        /// <value>Código IBGE do município de incidência do ISSQN.</value>
         [DataMember(Name = "codigo_municipio_incidencia", EmitDefaultValue = false)]
         public string codigo_municipio_incidencia { get; set; }
 
         /// <summary>
-        /// Gets or Sets numero_processo
+        /// Número do Processo de Suspensão da Exigibilidade.
         /// </summary>
+        /// <value>Número do Processo de Suspensão da Exigibilidade.</value>
         [DataMember(Name = "numero_processo", EmitDefaultValue = false)]
         public string numero_processo { get; set; }
 
         /// <summary>
-        /// Gets or Sets unidade
+        /// Unidade do serviço prestado.
         /// </summary>
+        /// <value>Unidade do serviço prestado.</value>
         [DataMember(Name = "unidade", EmitDefaultValue = false)]
         public string unidade { get; set; }
 
         /// <summary>
-        /// Gets or Sets quantidade
+        /// Quantidade dos serviços prestados.  Valor padrão: &#x60;1&#x60;
         /// </summary>
+        /// <value>Quantidade dos serviços prestados.  Valor padrão: &#x60;1&#x60;</value>
         [DataMember(Name = "quantidade", EmitDefaultValue = false)]
         public decimal quantidade { get; set; }
 
         /// <summary>
         /// Gets or Sets valores
         /// </summary>
-        [DataMember(Name = "valores", EmitDefaultValue = false)]
+        [DataMember(Name = "valores", IsRequired = true, EmitDefaultValue = false)]
         public RpsServicoValores valores { get; set; }
 
         /// <summary>

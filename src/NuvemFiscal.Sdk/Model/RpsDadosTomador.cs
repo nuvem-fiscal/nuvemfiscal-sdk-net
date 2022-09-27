@@ -31,49 +31,64 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsDadosTomador" /> class.
         /// </summary>
-        /// <param name="cpfCnpj">cpfCnpj.</param>
-        /// <param name="inscricaoMunicipal">inscricaoMunicipal.</param>
-        /// <param name="nomeRazaoSocial">nomeRazaoSocial.</param>
-        /// <param name="fone">fone.</param>
-        /// <param name="email">email.</param>
+        [JsonConstructorAttribute]
+        protected RpsDadosTomador() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RpsDadosTomador" /> class.
+        /// </summary>
+        /// <param name="cpfCnpj">CPF ou CNPJ do tomador/destinatário..</param>
+        /// <param name="inscricaoMunicipal">Inscrição Municipal do tomador/destinatário..</param>
+        /// <param name="nomeRazaoSocial">Nome ou Razão Social do tomador/destinatário. (required).</param>
+        /// <param name="fone">Telefone do tomador/destinatário..</param>
+        /// <param name="email">Email do tomador/destinatário..</param>
         /// <param name="endereco">endereco.</param>
-        public RpsDadosTomador(string cpfCnpj = default(string), string inscricaoMunicipal = default(string), string nomeRazaoSocial = default(string), string fone = default(string), string email = default(string), EmpresaEndereco endereco = default(EmpresaEndereco))
+        public RpsDadosTomador(string cpfCnpj = default(string), string inscricaoMunicipal = default(string), string nomeRazaoSocial = default(string), string fone = default(string), string email = default(string), RpsDadosTomadorEndereco endereco = default(RpsDadosTomadorEndereco))
         {
+            // to ensure "nomeRazaoSocial" is required (not null)
+            if (nomeRazaoSocial == null)
+            {
+                throw new ArgumentNullException("nomeRazaoSocial is a required property for RpsDadosTomador and cannot be null");
+            }
+            this.nome_razao_social = nomeRazaoSocial;
             this.cpf_cnpj = cpfCnpj;
             this.inscricao_municipal = inscricaoMunicipal;
-            this.nome_razao_social = nomeRazaoSocial;
             this.fone = fone;
             this.email = email;
             this.endereco = endereco;
         }
 
         /// <summary>
-        /// Gets or Sets cpf_cnpj
+        /// CPF ou CNPJ do tomador/destinatário.
         /// </summary>
+        /// <value>CPF ou CNPJ do tomador/destinatário.</value>
         [DataMember(Name = "cpf_cnpj", EmitDefaultValue = false)]
         public string cpf_cnpj { get; set; }
 
         /// <summary>
-        /// Gets or Sets inscricao_municipal
+        /// Inscrição Municipal do tomador/destinatário.
         /// </summary>
+        /// <value>Inscrição Municipal do tomador/destinatário.</value>
         [DataMember(Name = "inscricao_municipal", EmitDefaultValue = false)]
         public string inscricao_municipal { get; set; }
 
         /// <summary>
-        /// Gets or Sets nome_razao_social
+        /// Nome ou Razão Social do tomador/destinatário.
         /// </summary>
-        [DataMember(Name = "nome_razao_social", EmitDefaultValue = false)]
+        /// <value>Nome ou Razão Social do tomador/destinatário.</value>
+        [DataMember(Name = "nome_razao_social", IsRequired = true, EmitDefaultValue = false)]
         public string nome_razao_social { get; set; }
 
         /// <summary>
-        /// Gets or Sets fone
+        /// Telefone do tomador/destinatário.
         /// </summary>
+        /// <value>Telefone do tomador/destinatário.</value>
         [DataMember(Name = "fone", EmitDefaultValue = false)]
         public string fone { get; set; }
 
         /// <summary>
-        /// Gets or Sets email
+        /// Email do tomador/destinatário.
         /// </summary>
+        /// <value>Email do tomador/destinatário.</value>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string email { get; set; }
 
@@ -81,7 +96,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Gets or Sets endereco
         /// </summary>
         [DataMember(Name = "endereco", EmitDefaultValue = false)]
-        public EmpresaEndereco endereco { get; set; }
+        public RpsDadosTomadorEndereco endereco { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

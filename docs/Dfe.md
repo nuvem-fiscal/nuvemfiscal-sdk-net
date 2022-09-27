@@ -4,11 +4,11 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**id** | **string** | Identificador único do documento. | [optional] 
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este documento. | [optional] 
 **ambiente** | **string** |  | [optional] 
 **created_at** | **DateTime** | Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato [&#x60;ISO 8601&#x60;](https://en.wikipedia.org/wiki/ISO_8601). | [optional] 
 **status** | **string** |  | [optional] 
-**referencia** | **string** | Identificador único usado dentro de seu próprio aplicativo para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento. | [optional] 
+**referencia** | **string** | Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento. | [optional] 
 **data_emissao** | **DateTime** |  | [optional] 
 **modelo** | **int** |  | [optional] 
 **serie** | **int** |  | [optional] 

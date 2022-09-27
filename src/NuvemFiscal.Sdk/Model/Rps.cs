@@ -31,16 +31,27 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Rps" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected Rps() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rps" /> class.
+        /// </summary>
         /// <param name="rps">rps.</param>
         /// <param name="competencia">competencia.</param>
-        /// <param name="naturezaTributacao">Natureza da tributação  Preencher com:                            1-Simples Nacional                            2-Fixo                            3-Depósito em juízo                            4-Exigibilidade suspensa por decisão judicial                            5-Exigibilidade suspensa por procedimento administrativo                            6-Isenção parcial.</param>
+        /// <param name="naturezaTributacao">Natureza da tributação  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial..</param>
         /// <param name="prestador">prestador.</param>
         /// <param name="tomador">tomador.</param>
         /// <param name="intermediario">intermediario.</param>
         /// <param name="construcaoCivil">construcaoCivil.</param>
-        /// <param name="servicos">servicos.</param>
+        /// <param name="servicos">servicos (required).</param>
         public Rps(RpsDados rps = default(RpsDados), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsDadosPrestador prestador = default(RpsDadosPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>))
         {
+            // to ensure "servicos" is required (not null)
+            if (servicos == null)
+            {
+                throw new ArgumentNullException("servicos is a required property for Rps and cannot be null");
+            }
+            this.servicos = servicos;
             this._rps = rps;
             this.competencia = competencia;
             this.natureza_tributacao = naturezaTributacao;
@@ -48,7 +59,6 @@ namespace NuvemFiscal.Sdk.Model
             this.tomador = tomador;
             this.intermediario = intermediario;
             this.construcao_civil = construcaoCivil;
-            this.servicos = servicos;
         }
 
         /// <summary>
@@ -65,9 +75,9 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime competencia { get; set; }
 
         /// <summary>
-        /// Natureza da tributação  Preencher com:                            1-Simples Nacional                            2-Fixo                            3-Depósito em juízo                            4-Exigibilidade suspensa por decisão judicial                            5-Exigibilidade suspensa por procedimento administrativo                            6-Isenção parcial
+        /// Natureza da tributação  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial.
         /// </summary>
-        /// <value>Natureza da tributação  Preencher com:                            1-Simples Nacional                            2-Fixo                            3-Depósito em juízo                            4-Exigibilidade suspensa por decisão judicial                            5-Exigibilidade suspensa por procedimento administrativo                            6-Isenção parcial</value>
+        /// <value>Natureza da tributação  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial.</value>
         [DataMember(Name = "natureza_tributacao", EmitDefaultValue = false)]
         public int natureza_tributacao { get; set; }
 
@@ -98,7 +108,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets servicos
         /// </summary>
-        [DataMember(Name = "servicos", EmitDefaultValue = false)]
+        [DataMember(Name = "servicos", IsRequired = true, EmitDefaultValue = false)]
         public List<RpsDadosServico> servicos { get; set; }
 
         /// <summary>

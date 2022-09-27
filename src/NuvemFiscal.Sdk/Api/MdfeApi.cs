@@ -27,7 +27,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do cancelamento
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         FileParameter BaixarXmlCancelamentoMdfe(string id);
 
@@ -38,14 +38,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         ApiResponse<FileParameter> BaixarXmlCancelamentoMdfeWithHttpInfo(string id);
         /// <summary>
         /// Baixar XML do encerramento
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         FileParameter BaixarXmlEncerramentoMdfe(string id);
 
@@ -56,14 +56,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         ApiResponse<FileParameter> BaixarXmlEncerramentoMdfeWithHttpInfo(string id);
         /// <summary>
         /// Baixar XML do evento
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         FileParameter BaixarXmlEventoMdfe(string id);
 
@@ -74,14 +74,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         ApiResponse<FileParameter> BaixarXmlEventoMdfeWithHttpInfo(string id);
         /// <summary>
         /// Baixar XML do MDF-e processado
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         FileParameter BaixarXmlMdfe(string id);
 
@@ -92,14 +92,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         ApiResponse<FileParameter> BaixarXmlMdfeWithHttpInfo(string id);
         /// <summary>
         /// Cancelar um MDF-e autorizado
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>DfeCancelamento</returns>
         DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento body);
@@ -111,7 +111,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
         ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento body);
@@ -119,7 +119,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar o cancelamento do MDF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>DfeCancelamento</returns>
         DfeCancelamento ConsultarCancelamentoMdfe(string id);
 
@@ -130,14 +130,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
         ApiResponse<DfeCancelamento> ConsultarCancelamentoMdfeWithHttpInfo(string id);
         /// <summary>
         /// Consultar encerramento do MDF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>MdfeEncerramento</returns>
         MdfeEncerramento ConsultarEncerramentoMdfe(string id);
 
@@ -148,14 +148,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of MdfeEncerramento</returns>
         ApiResponse<MdfeEncerramento> ConsultarEncerramentoMdfeWithHttpInfo(string id);
         /// <summary>
         /// Consultar evento do MDF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>DfeEvento</returns>
         DfeEvento ConsultarEventoMdfe(string id);
 
@@ -166,14 +166,17 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of DfeEvento</returns>
         ApiResponse<DfeEvento> ConsultarEventoMdfeWithHttpInfo(string id);
         /// <summary>
         /// Consultar lote de MDF-e
         /// </summary>
+        /// <remarks>
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>DfeLote</returns>
         DfeLote ConsultarLoteMdfe(string id);
 
@@ -181,28 +184,31 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar lote de MDF-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of DfeLote</returns>
         ApiResponse<DfeLote> ConsultarLoteMdfeWithHttpInfo(string id);
         /// <summary>
-        /// Consultar MDF-e
+        /// Consultar manifesto
         /// </summary>
+        /// <remarks>
+        /// Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>Dfe</returns>
         Dfe ConsultarMdfe(string id);
 
         /// <summary>
-        /// Consultar MDF-e
+        /// Consultar manifesto
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of Dfe</returns>
         ApiResponse<Dfe> ConsultarMdfeWithHttpInfo(string id);
         /// <summary>
@@ -212,9 +218,9 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <returns>DfeVisaoGeralSefazStatus</returns>
-        DfeVisaoGeralSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj = default(string));
+        DfeVisaoGeralSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj);
 
         /// <summary>
         /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -223,9 +229,9 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of DfeVisaoGeralSefazStatus</returns>
-        ApiResponse<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj = default(string));
+        ApiResponse<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Emitir lote de MDF-e
         /// </summary>
@@ -266,7 +272,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Encerrar um MDF-e autorizado
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>MdfeEncerramento</returns>
         MdfeEncerramento EncerrarMdfe(string id, MdfePedidoEncerramento body);
@@ -278,7 +284,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of MdfeEncerramento</returns>
         ApiResponse<MdfeEncerramento> EncerrarMdfeWithHttpInfo(string id, MdfePedidoEncerramento body);
@@ -286,7 +292,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um condutor em um MDF-e autorizado
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>MdfeInclusaoCondutor</returns>
         MdfeInclusaoCondutor IncluirCondutorMdfe(string id, MdfePedidoInclusaoCondutor body);
@@ -298,7 +304,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of MdfeInclusaoCondutor</returns>
         ApiResponse<MdfeInclusaoCondutor> IncluirCondutorMdfeWithHttpInfo(string id, MdfePedidoInclusaoCondutor body);
@@ -306,7 +312,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um DF-e em um MDF-e autorizado
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>MdfeInclusaoDfe</returns>
         MdfeInclusaoDfe IncluirDfeMdfe(string id, MdfePedidoInclusaoDfe body);
@@ -318,10 +324,68 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of MdfeInclusaoDfe</returns>
         ApiResponse<MdfeInclusaoDfe> IncluirDfeMdfeWithHttpInfo(string id, MdfePedidoInclusaoDfe body);
+        /// <summary>
+        /// Listar lotes de MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>DfeLoteListagem</returns>
+        DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
+
+        /// <summary>
+        /// Listar lotes de MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>ApiResponse of DfeLoteListagem</returns>
+        ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
+        /// <summary>
+        /// Listar MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>DfeListagem</returns>
+        DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
+
+        /// <summary>
+        /// Listar MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>ApiResponse of DfeListagem</returns>
+        ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
         #endregion Synchronous Operations
     }
 
@@ -338,7 +402,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         System.Threading.Tasks.Task<FileParameter> BaixarXmlCancelamentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -350,7 +414,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarXmlCancelamentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -361,7 +425,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         System.Threading.Tasks.Task<FileParameter> BaixarXmlEncerramentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -373,7 +437,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarXmlEncerramentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -384,7 +448,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         System.Threading.Tasks.Task<FileParameter> BaixarXmlEventoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -396,7 +460,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarXmlEventoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -407,7 +471,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         System.Threading.Tasks.Task<FileParameter> BaixarXmlMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -419,7 +483,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarXmlMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -430,7 +494,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
@@ -443,7 +507,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
@@ -455,7 +519,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
         System.Threading.Tasks.Task<DfeCancelamento> ConsultarCancelamentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -467,7 +531,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
         System.Threading.Tasks.Task<ApiResponse<DfeCancelamento>> ConsultarCancelamentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -478,7 +542,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeEncerramento</returns>
         System.Threading.Tasks.Task<MdfeEncerramento> ConsultarEncerramentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -490,7 +554,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeEncerramento)</returns>
         System.Threading.Tasks.Task<ApiResponse<MdfeEncerramento>> ConsultarEncerramentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -501,7 +565,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeEvento</returns>
         System.Threading.Tasks.Task<DfeEvento> ConsultarEventoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -513,7 +577,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeEvento)</returns>
         System.Threading.Tasks.Task<ApiResponse<DfeEvento>> ConsultarEventoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -521,10 +585,10 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar lote de MDF-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeLote</returns>
         System.Threading.Tasks.Task<DfeLote> ConsultarLoteMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -533,33 +597,33 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar lote de MDF-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeLote)</returns>
         System.Threading.Tasks.Task<ApiResponse<DfeLote>> ConsultarLoteMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Consultar MDF-e
+        /// Consultar manifesto
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Dfe</returns>
         System.Threading.Tasks.Task<Dfe> ConsultarMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Consultar MDF-e
+        /// Consultar manifesto
         /// </summary>
         /// <remarks>
-        /// 
+        /// Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Dfe)</returns>
         System.Threading.Tasks.Task<ApiResponse<Dfe>> ConsultarMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -570,10 +634,10 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeVisaoGeralSefazStatus</returns>
-        System.Threading.Tasks.Task<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -582,10 +646,10 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeVisaoGeralSefazStatus)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeVisaoGeralSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeVisaoGeralSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Emitir lote de MDF-e
         /// </summary>
@@ -639,7 +703,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeEncerramento</returns>
@@ -652,7 +716,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeEncerramento)</returns>
@@ -664,7 +728,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeInclusaoCondutor</returns>
@@ -677,7 +741,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeInclusaoCondutor)</returns>
@@ -689,7 +753,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeInclusaoDfe</returns>
@@ -702,11 +766,73 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeInclusaoDfe)</returns>
         System.Threading.Tasks.Task<ApiResponse<MdfeInclusaoDfe>> IncluirDfeMdfeWithHttpInfoAsync(string id, MdfePedidoInclusaoDfe body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Listar lotes de MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DfeLoteListagem</returns>
+        System.Threading.Tasks.Task<DfeLoteListagem> ListarLotesMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Listar lotes de MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DfeLoteListagem)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DfeLoteListagem>> ListarLotesMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Listar MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DfeListagem</returns>
+        System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Listar MDF-e
+        /// </summary>
+        /// <remarks>
+        /// Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DfeListagem)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -924,7 +1050,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do cancelamento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         public FileParameter BaixarXmlCancelamentoMdfe(string id)
         {
@@ -936,7 +1062,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do cancelamento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarXmlCancelamentoMdfeWithHttpInfo(string id)
         {
@@ -990,7 +1116,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do cancelamento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         public async System.Threading.Tasks.Task<FileParameter> BaixarXmlCancelamentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1003,7 +1129,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do cancelamento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarXmlCancelamentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1061,7 +1187,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do encerramento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         public FileParameter BaixarXmlEncerramentoMdfe(string id)
         {
@@ -1073,7 +1199,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do encerramento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarXmlEncerramentoMdfeWithHttpInfo(string id)
         {
@@ -1127,7 +1253,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do encerramento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         public async System.Threading.Tasks.Task<FileParameter> BaixarXmlEncerramentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1140,7 +1266,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do encerramento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarXmlEncerramentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1198,7 +1324,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do evento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         public FileParameter BaixarXmlEventoMdfe(string id)
         {
@@ -1210,7 +1336,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do evento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarXmlEventoMdfeWithHttpInfo(string id)
         {
@@ -1264,7 +1390,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do evento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         public async System.Threading.Tasks.Task<FileParameter> BaixarXmlEventoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1277,7 +1403,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do evento 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarXmlEventoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1335,7 +1461,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do MDF-e processado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
         public FileParameter BaixarXmlMdfe(string id)
         {
@@ -1347,7 +1473,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do MDF-e processado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of FileParameter</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarXmlMdfeWithHttpInfo(string id)
         {
@@ -1401,7 +1527,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do MDF-e processado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
         public async System.Threading.Tasks.Task<FileParameter> BaixarXmlMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1414,7 +1540,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do MDF-e processado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do Manifesto.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarXmlMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1472,7 +1598,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cancelar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>DfeCancelamento</returns>
         public DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento body)
@@ -1485,7 +1611,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cancelar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento body)
@@ -1546,7 +1672,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cancelar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
@@ -1560,7 +1686,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cancelar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
@@ -1625,7 +1751,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar o cancelamento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>DfeCancelamento</returns>
         public DfeCancelamento ConsultarCancelamentoMdfe(string id)
         {
@@ -1637,7 +1763,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar o cancelamento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento> ConsultarCancelamentoMdfeWithHttpInfo(string id)
         {
@@ -1691,7 +1817,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar o cancelamento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
         public async System.Threading.Tasks.Task<DfeCancelamento> ConsultarCancelamentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1704,7 +1830,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar o cancelamento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento>> ConsultarCancelamentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1762,7 +1888,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar encerramento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>MdfeEncerramento</returns>
         public MdfeEncerramento ConsultarEncerramentoMdfe(string id)
         {
@@ -1774,7 +1900,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar encerramento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of MdfeEncerramento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<MdfeEncerramento> ConsultarEncerramentoMdfeWithHttpInfo(string id)
         {
@@ -1828,7 +1954,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar encerramento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeEncerramento</returns>
         public async System.Threading.Tasks.Task<MdfeEncerramento> ConsultarEncerramentoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1841,7 +1967,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar encerramento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeEncerramento)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<MdfeEncerramento>> ConsultarEncerramentoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1899,7 +2025,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar evento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>DfeEvento</returns>
         public DfeEvento ConsultarEventoMdfe(string id)
         {
@@ -1911,7 +2037,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar evento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of DfeEvento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<DfeEvento> ConsultarEventoMdfeWithHttpInfo(string id)
         {
@@ -1965,7 +2091,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar evento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeEvento</returns>
         public async System.Threading.Tasks.Task<DfeEvento> ConsultarEventoMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1978,7 +2104,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar evento do MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do evento.</param>
+        /// <param name="id">ID único do evento gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeEvento)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeEvento>> ConsultarEventoMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2033,10 +2159,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar lote de MDF-e 
+        /// Consultar lote de MDF-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>DfeLote</returns>
         public DfeLote ConsultarLoteMdfe(string id)
         {
@@ -2045,10 +2171,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar lote de MDF-e 
+        /// Consultar lote de MDF-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of DfeLote</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<DfeLote> ConsultarLoteMdfeWithHttpInfo(string id)
         {
@@ -2099,10 +2225,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar lote de MDF-e 
+        /// Consultar lote de MDF-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeLote</returns>
         public async System.Threading.Tasks.Task<DfeLote> ConsultarLoteMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2112,10 +2238,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar lote de MDF-e 
+        /// Consultar lote de MDF-e Consulta os detalhes de um lote já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal irá retornar as informações do lote correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do lote.</param>
+        /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeLote)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeLote>> ConsultarLoteMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2170,10 +2296,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar MDF-e 
+        /// Consultar manifesto Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>Dfe</returns>
         public Dfe ConsultarMdfe(string id)
         {
@@ -2182,10 +2308,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar MDF-e 
+        /// Consultar manifesto Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of Dfe</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<Dfe> ConsultarMdfeWithHttpInfo(string id)
         {
@@ -2236,10 +2362,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar MDF-e 
+        /// Consultar manifesto Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Dfe</returns>
         public async System.Threading.Tasks.Task<Dfe> ConsultarMdfeAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2249,10 +2375,10 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar MDF-e 
+        /// Consultar manifesto Consulta os detalhes de um manifesto já existente. Forneça o ID único obtido de uma requisição de emissão ou de listagem de manifestos e a Nuvem Fiscal irá retornar as informações do manifesto correspondente.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Dfe)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Dfe>> ConsultarMdfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2310,9 +2436,9 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do Status do Serviço na SEFAZ Autorizadora Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <returns>DfeVisaoGeralSefazStatus</returns>
-        public DfeVisaoGeralSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj = default(string))
+        public DfeVisaoGeralSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj)
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus> localVarResponse = ConsultarStatusSefazMdfeWithHttpInfo(cpfCnpj);
             return localVarResponse.Data;
@@ -2322,10 +2448,14 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do Status do Serviço na SEFAZ Autorizadora Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of DfeVisaoGeralSefazStatus</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj)
         {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling MdfeApi->ConsultarStatusSefazMdfe");
+
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -2342,10 +2472,7 @@ namespace NuvemFiscal.Sdk.Api
             var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (cpfCnpj != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2375,10 +2502,10 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do Status do Serviço na SEFAZ Autorizadora Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeVisaoGeralSefazStatus</returns>
-        public async System.Threading.Tasks.Task<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeVisaoGeralSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus> localVarResponse = await ConsultarStatusSefazMdfeWithHttpInfoAsync(cpfCnpj, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2388,11 +2515,15 @@ namespace NuvemFiscal.Sdk.Api
         /// Consulta do Status do Serviço na SEFAZ Autorizadora Consulta do status do serviço prestado pelo Portal da Secretaria de Fazenda Estadual.    A Nuvem Fiscal mantém a última consulta em cache por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da SEFAZ (conforme orientação do MOC - versão 3.0.0a, item 4.6.3). Dessa forma, você poderá chamar esse endpoint quantas vezes quiser, sem preocupar-se em ter o seu CNPJ bloqueado por consumo indevido (Rejeição 656).
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeVisaoGeralSefazStatus)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling MdfeApi->ConsultarStatusSefazMdfe");
+
 
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
@@ -2411,10 +2542,7 @@ namespace NuvemFiscal.Sdk.Api
             var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (cpfCnpj != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
-            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2723,7 +2851,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Encerrar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>MdfeEncerramento</returns>
         public MdfeEncerramento EncerrarMdfe(string id, MdfePedidoEncerramento body)
@@ -2736,7 +2864,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Encerrar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of MdfeEncerramento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<MdfeEncerramento> EncerrarMdfeWithHttpInfo(string id, MdfePedidoEncerramento body)
@@ -2797,7 +2925,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Encerrar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeEncerramento</returns>
@@ -2811,7 +2939,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Encerrar um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeEncerramento)</returns>
@@ -2876,7 +3004,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um condutor em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>MdfeInclusaoCondutor</returns>
         public MdfeInclusaoCondutor IncluirCondutorMdfe(string id, MdfePedidoInclusaoCondutor body)
@@ -2889,7 +3017,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um condutor em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of MdfeInclusaoCondutor</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<MdfeInclusaoCondutor> IncluirCondutorMdfeWithHttpInfo(string id, MdfePedidoInclusaoCondutor body)
@@ -2950,7 +3078,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um condutor em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeInclusaoCondutor</returns>
@@ -2964,7 +3092,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um condutor em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeInclusaoCondutor)</returns>
@@ -3029,7 +3157,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um DF-e em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>MdfeInclusaoDfe</returns>
         public MdfeInclusaoDfe IncluirDfeMdfe(string id, MdfePedidoInclusaoDfe body)
@@ -3042,7 +3170,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um DF-e em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of MdfeInclusaoDfe</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<MdfeInclusaoDfe> IncluirDfeMdfeWithHttpInfo(string id, MdfePedidoInclusaoDfe body)
@@ -3103,7 +3231,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um DF-e em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MdfeInclusaoDfe</returns>
@@ -3117,7 +3245,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Incluir um DF-e em um MDF-e autorizado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Identificador único do MDF-e.</param>
+        /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MdfeInclusaoDfe)</returns>
@@ -3172,6 +3300,380 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("IncluirDfeMdfe", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Listar lotes de MDF-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>DfeLoteListagem</returns>
+        public DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> localVarResponse = ListarLotesMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Listar lotes de MDF-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>ApiResponse of DfeLoteListagem</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling MdfeApi->ListarLotesMdfe");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling MdfeApi->ListarLotesMdfe");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (top != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$top", top));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            if (referencia != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<DfeLoteListagem>("/mdfe/lotes", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListarLotesMdfe", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Listar lotes de MDF-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DfeLoteListagem</returns>
+        public async System.Threading.Tasks.Task<DfeLoteListagem> ListarLotesMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> localVarResponse = await ListarLotesMdfeWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, referencia, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Listar lotes de MDF-e Retorna a lista dos lotes de acordo com os critérios de busca utilizados. Os lotes são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DfeLoteListagem)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem>> ListarLotesMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling MdfeApi->ListarLotesMdfe");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling MdfeApi->ListarLotesMdfe");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (top != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$top", top));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            if (referencia != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DfeLoteListagem>("/mdfe/lotes", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListarLotesMdfe", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Listar MDF-e Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>DfeListagem</returns>
+        public DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = ListarMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Listar MDF-e Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <returns>ApiResponse of DfeListagem</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling MdfeApi->ListarMdfe");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling MdfeApi->ListarMdfe");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (top != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$top", top));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            if (referencia != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<DfeListagem>("/mdfe", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListarMdfe", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Listar MDF-e Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DfeListagem</returns>
+        public async System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = await ListarMdfeWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, referencia, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Listar MDF-e Retorna a lista de manifestos de acordo com os critérios de busca utilizados. Os manifestos são retornados ordenados pela data da criação, com os mais recentes aparecendo primeiro.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.</param>
+        /// <param name="ambiente"></param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="referencia"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DfeListagem)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling MdfeApi->ListarMdfe");
+
+            // verify the required parameter 'ambiente' is set
+            if (ambiente == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'ambiente' when calling MdfeApi->ListarMdfe");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (top != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$top", top));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            if (referencia != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DfeListagem>("/mdfe", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListarMdfe", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

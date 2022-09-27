@@ -52,13 +52,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets ambiente
         /// </summary>
-        [DataMember(Name = "ambiente", EmitDefaultValue = false)]
-        public AmbienteEnum? ambiente { get; set; }
+        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = false)]
+        public AmbienteEnum ambiente { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigMdfe" /> class.
         /// </summary>
-        /// <param name="ambiente">ambiente.</param>
-        public EmpresaConfigMdfe(AmbienteEnum? ambiente = default(AmbienteEnum?))
+        [JsonConstructorAttribute]
+        protected EmpresaConfigMdfe() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmpresaConfigMdfe" /> class.
+        /// </summary>
+        /// <param name="ambiente">ambiente (required).</param>
+        public EmpresaConfigMdfe(AmbienteEnum ambiente = default(AmbienteEnum))
         {
             this.ambiente = ambiente;
         }

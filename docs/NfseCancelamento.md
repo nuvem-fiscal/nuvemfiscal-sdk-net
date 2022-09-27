@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [optional] 
+**id** | **string** | ID único do cancelamento gerado automaticamente pela Nuvem Fiscal. | [optional] 
 **status** | **string** |  | [optional] 
 **data_hora** | **DateTime** |  | [optional] 
 **mensagens** | [**List&lt;NfseMensagemRetorno&gt;**](NfseMensagemRetorno.md) |  | [optional] 
