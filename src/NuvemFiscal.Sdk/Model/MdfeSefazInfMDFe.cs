@@ -36,8 +36,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazInfMDFe" /> class.
         /// </summary>
-        /// <param name="versao">versao.</param>
-        /// <param name="id">id.</param>
+        /// <param name="versao">Versão do leiaute.  Ex: \&quot;3.00\&quot;. (required).</param>
+        /// <param name="id">Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;..</param>
         /// <param name="ide">ide (required).</param>
         /// <param name="emit">emit (required).</param>
         /// <param name="infModal">infModal (required).</param>
@@ -52,6 +52,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infSolicNFF">infSolicNFF.</param>
         public MdfeSefazInfMDFe(string versao = default(string), string id = default(string), MdfeSefazIde ide = default(MdfeSefazIde), MdfeSefazEmit emit = default(MdfeSefazEmit), MdfeSefazInfModal infModal = default(MdfeSefazInfModal), MdfeSefazInfDoc infDoc = default(MdfeSefazInfDoc), List<MdfeSefazSeg> seg = default(List<MdfeSefazSeg>), MdfeSefazProdPred prodPred = default(MdfeSefazProdPred), MdfeSefazTot tot = default(MdfeSefazTot), List<MdfeSefazLacres> lacres = default(List<MdfeSefazLacres>), List<MdfeSefazAutXML> autXML = default(List<MdfeSefazAutXML>), MdfeSefazInfAdic infAdic = default(MdfeSefazInfAdic), MdfeSefazRespTec infRespTec = default(MdfeSefazRespTec), MdfeSefazInfSolicNFF infSolicNFF = default(MdfeSefazInfSolicNFF))
         {
+            // to ensure "versao" is required (not null)
+            if (versao == null)
+            {
+                throw new ArgumentNullException("versao is a required property for MdfeSefazInfMDFe and cannot be null");
+            }
+            this.versao = versao;
             // to ensure "ide" is required (not null)
             if (ide == null)
             {
@@ -82,7 +88,6 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("tot is a required property for MdfeSefazInfMDFe and cannot be null");
             }
             this.tot = tot;
-            this.versao = versao;
             this.Id = id;
             this.seg = seg;
             this.prodPred = prodPred;
@@ -94,14 +99,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets versao
+        /// Versão do leiaute.  Ex: \&quot;3.00\&quot;.
         /// </summary>
-        [DataMember(Name = "versao", EmitDefaultValue = false)]
+        /// <value>Versão do leiaute.  Ex: \&quot;3.00\&quot;.</value>
+        [DataMember(Name = "versao", IsRequired = true, EmitDefaultValue = true)]
         public string versao { get; set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.
         /// </summary>
+        /// <value>Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.</value>
         [DataMember(Name = "Id", EmitDefaultValue = false)]
         public string Id { get; set; }
 

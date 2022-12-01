@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="orig">Origem da mercadoria:  0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  1 - Estrangeira - Importação direta, exceto a indicada no código 6;  2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%. (required).</param>
         /// <param name="cSOSN">Tributação pelo ICMS 900 - Outros(v2.0). (required).</param>
-        /// <param name="modBC">Modalidade de determinação da BC do ICMS:  0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação..</param>
+        /// <param name="modBC">Modalidade de determinação da BC do ICMS:   0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação..</param>
         /// <param name="vBC">Valor da BC do ICMS..</param>
         /// <param name="pRedBC">Percentual de redução da BC..</param>
         /// <param name="pICMS">Alíquota do ICMS..</param>
@@ -54,9 +54,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vFCPST">Valor do FCP retido por substituição tributária..</param>
         /// <param name="pCredSN">Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0)..</param>
         /// <param name="vCredICMSSN">Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0)..</param>
-        public NfeSefazICMSSN900(int orig = default(int), int cSOSN = default(int), int modBC = default(int), decimal vBC = default(decimal), decimal pRedBC = default(decimal), decimal pICMS = default(decimal), decimal vICMS = default(decimal), int modBCST = default(int), decimal pMVAST = default(decimal), decimal pRedBCST = default(decimal), decimal vBCST = default(decimal), decimal pICMSST = default(decimal), decimal vICMSST = default(decimal), decimal vBCFCPST = default(decimal), decimal pFCPST = default(decimal), decimal vFCPST = default(decimal), decimal pCredSN = default(decimal), decimal vCredICMSSN = default(decimal))
+        public NfeSefazICMSSN900(int orig = default(int), string cSOSN = default(string), int modBC = default(int), decimal vBC = default(decimal), decimal pRedBC = default(decimal), decimal pICMS = default(decimal), decimal vICMS = default(decimal), int modBCST = default(int), decimal pMVAST = default(decimal), decimal pRedBCST = default(decimal), decimal vBCST = default(decimal), decimal pICMSST = default(decimal), decimal vICMSST = default(decimal), decimal vBCFCPST = default(decimal), decimal pFCPST = default(decimal), decimal vFCPST = default(decimal), decimal pCredSN = default(decimal), decimal vCredICMSSN = default(decimal))
         {
             this.orig = orig;
+            // to ensure "cSOSN" is required (not null)
+            if (cSOSN == null)
+            {
+                throw new ArgumentNullException("cSOSN is a required property for NfeSefazICMSSN900 and cannot be null");
+            }
             this.CSOSN = cSOSN;
             this.modBC = modBC;
             this.vBC = vBC;
@@ -88,12 +93,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tributação pelo ICMS 900 - Outros(v2.0).</value>
         [DataMember(Name = "CSOSN", IsRequired = true, EmitDefaultValue = true)]
-        public int CSOSN { get; set; }
+        public string CSOSN { get; set; }
 
         /// <summary>
-        /// Modalidade de determinação da BC do ICMS:  0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.
+        /// Modalidade de determinação da BC do ICMS:   0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.
         /// </summary>
-        /// <value>Modalidade de determinação da BC do ICMS:  0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.</value>
+        /// <value>Modalidade de determinação da BC do ICMS:   0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.</value>
         [DataMember(Name = "modBC", EmitDefaultValue = false)]
         public int modBC { get; set; }
 
@@ -269,7 +274,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CSOSN == input.CSOSN ||
-                    this.CSOSN.Equals(input.CSOSN)
+                    (this.CSOSN != null &&
+                    this.CSOSN.Equals(input.CSOSN))
                 ) && 
                 (
                     this.modBC == input.modBC ||
@@ -347,7 +353,10 @@ namespace NuvemFiscal.Sdk.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.orig.GetHashCode();
-                hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                if (this.CSOSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.modBC.GetHashCode();
                 hashCode = (hashCode * 59) + this.vBC.GetHashCode();
                 hashCode = (hashCode * 59) + this.pRedBC.GetHashCode();

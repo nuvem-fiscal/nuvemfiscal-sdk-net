@@ -100,7 +100,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="DfeAutorizacao" /> class.
         /// </summary>
         /// <param name="digestValue">Digest Value do DF-e processado. Utilizado para conferir a integridade do DF-e original..</param>
-        /// <param name="id">ID único gerado pela Nuvem Fiscal para este documento..</param>
+        /// <param name="id">ID único gerado pela Nuvem Fiscal para este evento..</param>
         /// <param name="ambiente">Identificação do ambiente..</param>
         /// <param name="status">Status do Evento..</param>
         /// <param name="autor">autor.</param>
@@ -141,9 +141,9 @@ namespace NuvemFiscal.Sdk.Model
         public string digest_value { get; set; }
 
         /// <summary>
-        /// ID único gerado pela Nuvem Fiscal para este documento.
+        /// ID único gerado pela Nuvem Fiscal para este evento.
         /// </summary>
-        /// <value>ID único gerado pela Nuvem Fiscal para este documento.</value>
+        /// <value>ID único gerado pela Nuvem Fiscal para este evento.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
 

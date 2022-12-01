@@ -31,8 +31,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjPorteEmpresa" /> class.
         /// </summary>
-        /// <param name="codigo">codigo.</param>
-        /// <param name="descricao">descricao.</param>
+        /// <param name="codigo">Código do porte da empresa..</param>
+        /// <param name="descricao">Descrição do porte da empresa..</param>
         public CnpjPorteEmpresa(string codigo = default(string), string descricao = default(string))
         {
             this.codigo = codigo;
@@ -40,14 +40,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets codigo
+        /// Código do porte da empresa.
         /// </summary>
+        /// <value>Código do porte da empresa.</value>
         [DataMember(Name = "codigo", EmitDefaultValue = false)]
         public string codigo { get; set; }
 
         /// <summary>
-        /// Gets or Sets descricao
+        /// Descrição do porte da empresa.
         /// </summary>
+        /// <value>Descrição do porte da empresa.</value>
         [DataMember(Name = "descricao", EmitDefaultValue = false)]
         public string descricao { get; set; }
 

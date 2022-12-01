@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**versaoModal** | **string** |  | [optional] 
+**versaoModal** | **string** | Versão do leiaute específico para o Modal. | 
 **aereo** | [**MdfeSefazAereo**](MdfeSefazAereo.md) |  | [optional] 
 **rodo** | [**MdfeSefazRodo**](MdfeSefazRodo.md) |  | [optional] 
 **aquav** | [**MdfeSefazAquav**](MdfeSefazAquav.md) |  | [optional] 

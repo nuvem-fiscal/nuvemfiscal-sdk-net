@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPais">Código do país.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="xPais">Nome do país.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="fone">Preencher com Código DDD + número do telefone (v.2.0).  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        public NfeSefazEnderEmi(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), int cMun = default(int), string xMun = default(string), string uF = default(string), int cEP = default(int), int cPais = default(int), string xPais = default(string), string fone = default(string))
+        public NfeSefazEnderEmi(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string uF = default(string), string cEP = default(string), int cPais = default(int), string xPais = default(string), string fone = default(string))
         {
             this.xLgr = xLgr;
             this.nro = nro;
@@ -90,7 +90,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do município.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
         [DataMember(Name = "cMun", EmitDefaultValue = false)]
-        public int cMun { get; set; }
+        public string cMun { get; set; }
 
         /// <summary>
         /// Nome do município.  Caso não seja informado, será utilizado o do cadastro da empresa.
@@ -111,7 +111,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>CEP - NT 2011/004.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
         [DataMember(Name = "CEP", EmitDefaultValue = false)]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         /// <summary>
         /// Código do país.  Caso não seja informado, será utilizado o do cadastro da empresa.
@@ -210,7 +210,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMun == input.cMun ||
-                    this.cMun.Equals(input.cMun)
+                    (this.cMun != null &&
+                    this.cMun.Equals(input.cMun))
                 ) && 
                 (
                     this.xMun == input.xMun ||
@@ -224,7 +225,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CEP == input.CEP ||
-                    this.CEP.Equals(input.CEP)
+                    (this.CEP != null &&
+                    this.CEP.Equals(input.CEP))
                 ) && 
                 (
                     this.cPais == input.cPais ||
@@ -267,7 +269,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xBairro.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                if (this.cMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                }
                 if (this.xMun != null)
                 {
                     hashCode = (hashCode * 59) + this.xMun.GetHashCode();
@@ -276,7 +281,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.UF.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                if (this.CEP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.cPais.GetHashCode();
                 if (this.xPais != null)
                 {

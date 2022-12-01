@@ -42,13 +42,23 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vICMSRet">Valor do ICMS Retido. (required).</param>
         /// <param name="cFOP">Código Fiscal de Operações e Prestações. (required).</param>
         /// <param name="cMunFG">Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE). (required).</param>
-        public NfeSefazRetTransp(decimal vServ = default(decimal), decimal vBCRet = default(decimal), decimal pICMSRet = default(decimal), decimal vICMSRet = default(decimal), int cFOP = default(int), int cMunFG = default(int))
+        public NfeSefazRetTransp(decimal vServ = default(decimal), decimal vBCRet = default(decimal), decimal pICMSRet = default(decimal), decimal vICMSRet = default(decimal), string cFOP = default(string), string cMunFG = default(string))
         {
             this.vServ = vServ;
             this.vBCRet = vBCRet;
             this.pICMSRet = pICMSRet;
             this.vICMSRet = vICMSRet;
+            // to ensure "cFOP" is required (not null)
+            if (cFOP == null)
+            {
+                throw new ArgumentNullException("cFOP is a required property for NfeSefazRetTransp and cannot be null");
+            }
             this.CFOP = cFOP;
+            // to ensure "cMunFG" is required (not null)
+            if (cMunFG == null)
+            {
+                throw new ArgumentNullException("cMunFG is a required property for NfeSefazRetTransp and cannot be null");
+            }
             this.cMunFG = cMunFG;
         }
 
@@ -85,14 +95,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código Fiscal de Operações e Prestações.</value>
         [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = true)]
-        public int CFOP { get; set; }
+        public string CFOP { get; set; }
 
         /// <summary>
         /// Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).
         /// </summary>
         /// <value>Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).</value>
         [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunFG { get; set; }
+        public string cMunFG { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -161,11 +171,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CFOP == input.CFOP ||
-                    this.CFOP.Equals(input.CFOP)
+                    (this.CFOP != null &&
+                    this.CFOP.Equals(input.CFOP))
                 ) && 
                 (
                     this.cMunFG == input.cMunFG ||
-                    this.cMunFG.Equals(input.cMunFG)
+                    (this.cMunFG != null &&
+                    this.cMunFG.Equals(input.cMunFG))
                 );
         }
 
@@ -182,8 +194,14 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.vBCRet.GetHashCode();
                 hashCode = (hashCode * 59) + this.pICMSRet.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.CFOP.GetHashCode();
-                hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
+                if (this.CFOP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CFOP.GetHashCode();
+                }
+                if (this.cMunFG != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
+                }
                 return hashCode;
             }
         }

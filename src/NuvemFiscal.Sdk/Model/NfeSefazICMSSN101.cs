@@ -40,9 +40,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cSOSN">101- Tributada pelo Simples Nacional com permissão de crédito. (v.2.0). (required).</param>
         /// <param name="pCredSN">Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0). (required).</param>
         /// <param name="vCredICMSSN">Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0). (required).</param>
-        public NfeSefazICMSSN101(int orig = default(int), int cSOSN = default(int), decimal pCredSN = default(decimal), decimal vCredICMSSN = default(decimal))
+        public NfeSefazICMSSN101(int orig = default(int), string cSOSN = default(string), decimal pCredSN = default(decimal), decimal vCredICMSSN = default(decimal))
         {
             this.orig = orig;
+            // to ensure "cSOSN" is required (not null)
+            if (cSOSN == null)
+            {
+                throw new ArgumentNullException("cSOSN is a required property for NfeSefazICMSSN101 and cannot be null");
+            }
             this.CSOSN = cSOSN;
             this.pCredSN = pCredSN;
             this.vCredICMSSN = vCredICMSSN;
@@ -60,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>101- Tributada pelo Simples Nacional com permissão de crédito. (v.2.0).</value>
         [DataMember(Name = "CSOSN", IsRequired = true, EmitDefaultValue = true)]
-        public int CSOSN { get; set; }
+        public string CSOSN { get; set; }
 
         /// <summary>
         /// Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0).
@@ -129,7 +134,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CSOSN == input.CSOSN ||
-                    this.CSOSN.Equals(input.CSOSN)
+                    (this.CSOSN != null &&
+                    this.CSOSN.Equals(input.CSOSN))
                 ) && 
                 (
                     this.pCredSN == input.pCredSN ||
@@ -151,7 +157,10 @@ namespace NuvemFiscal.Sdk.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.orig.GetHashCode();
-                hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                if (this.CSOSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.pCredSN.GetHashCode();
                 hashCode = (hashCode * 59) + this.vCredICMSSN.GetHashCode();
                 return hashCode;

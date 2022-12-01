@@ -31,28 +31,28 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjEmpresa" /> class.
         /// </summary>
-        /// <param name="cnpj">cnpj.</param>
-        /// <param name="razaoSocial">razaoSocial.</param>
-        /// <param name="nomeFantasia">nomeFantasia.</param>
-        /// <param name="dataInicioAtividade">dataInicioAtividade.</param>
-        /// <param name="matriz">matriz.</param>
+        /// <param name="cnpj">Número de inscrição do CNPJ..</param>
+        /// <param name="razaoSocial">Nome empresarial da pessoa jurídica..</param>
+        /// <param name="nomeFantasia">Corresponde ao nome fantasia..</param>
+        /// <param name="dataInicioAtividade">Data de início da atividade..</param>
+        /// <param name="matriz">Indicador de matriz/filial:  * &#x60;true&#x60; - É matriz  * &#x60;false&#x60; - É filial.</param>
         /// <param name="naturezaJuridica">naturezaJuridica.</param>
-        /// <param name="capitalSocial">capitalSocial.</param>
+        /// <param name="capitalSocial">Capital social da empresa..</param>
         /// <param name="porte">porte.</param>
-        /// <param name="enteFederativoResponsavel">enteFederativoResponsavel.</param>
+        /// <param name="enteFederativoResponsavel">O ente federativo responsável é preenchido para os casos de órgãos e  entidades do grupo de natureza jurídica 1XXX. Para as demais naturezas,  este atributo fica em branco..</param>
         /// <param name="situacaoCadastral">situacaoCadastral.</param>
         /// <param name="motivoSituacaoCadastral">motivoSituacaoCadastral.</param>
-        /// <param name="nomeDaCidadeNoExterior">nomeDaCidadeNoExterior.</param>
+        /// <param name="nomeDaCidadeNoExterior">Nome da cidade no exterior..</param>
         /// <param name="pais">pais.</param>
         /// <param name="atividadePrincipal">atividadePrincipal.</param>
-        /// <param name="atividadesSecundarias">atividadesSecundarias.</param>
+        /// <param name="atividadesSecundarias">Atividades econômicas secundárias do estabelecimento..</param>
         /// <param name="endereco">endereco.</param>
-        /// <param name="telefones">telefones.</param>
-        /// <param name="email">email.</param>
+        /// <param name="telefones">Telefones do estabelecimento..</param>
+        /// <param name="email">E-mail do contribuinte..</param>
         /// <param name="situacaoEspecial">situacaoEspecial.</param>
         /// <param name="simples">simples.</param>
         /// <param name="simei">simei.</param>
-        public CnpjEmpresa(string cnpj = default(string), string razaoSocial = default(string), string nomeFantasia = default(string), DateTime dataInicioAtividade = default(DateTime), bool matriz = default(bool), CnpjNaturezaJuridica naturezaJuridica = default(CnpjNaturezaJuridica), decimal capitalSocial = default(decimal), CnpjPorteEmpresa porte = default(CnpjPorteEmpresa), string enteFederativoResponsavel = default(string), CnpjSituacaoCadastral situacaoCadastral = default(CnpjSituacaoCadastral), CnpjSituacaoCadastral motivoSituacaoCadastral = default(CnpjSituacaoCadastral), string nomeDaCidadeNoExterior = default(string), CnpjPais pais = default(CnpjPais), CnpjCnae atividadePrincipal = default(CnpjCnae), List<CnpjCnae> atividadesSecundarias = default(List<CnpjCnae>), CnpjEndereco endereco = default(CnpjEndereco), List<CnpjTelefone> telefones = default(List<CnpjTelefone>), string email = default(string), CnpjSituacaoCadastral situacaoEspecial = default(CnpjSituacaoCadastral), CnpjOpcaoSimples simples = default(CnpjOpcaoSimples), CnpjOpcaoSimples simei = default(CnpjOpcaoSimples))
+        public CnpjEmpresa(string cnpj = default(string), string razaoSocial = default(string), string nomeFantasia = default(string), DateTime dataInicioAtividade = default(DateTime), bool matriz = default(bool), CnpjNaturezaJuridica naturezaJuridica = default(CnpjNaturezaJuridica), decimal capitalSocial = default(decimal), CnpjPorteEmpresa porte = default(CnpjPorteEmpresa), string enteFederativoResponsavel = default(string), CnpjSituacaoCadastral situacaoCadastral = default(CnpjSituacaoCadastral), CnpjMotivoSituacaoCadastral motivoSituacaoCadastral = default(CnpjMotivoSituacaoCadastral), string nomeDaCidadeNoExterior = default(string), CnpjPais pais = default(CnpjPais), CnpjCnae atividadePrincipal = default(CnpjCnae), List<CnpjCnae> atividadesSecundarias = default(List<CnpjCnae>), CnpjEndereco endereco = default(CnpjEndereco), List<CnpjTelefone> telefones = default(List<CnpjTelefone>), string email = default(string), CnpjSituacaoEspecial situacaoEspecial = default(CnpjSituacaoEspecial), CnpjOpcaoSimples simples = default(CnpjOpcaoSimples), CnpjOpcaoSimei simei = default(CnpjOpcaoSimei))
         {
             this.cnpj = cnpj;
             this.razao_social = razaoSocial;
@@ -78,33 +78,38 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets cnpj
+        /// Número de inscrição do CNPJ.
         /// </summary>
+        /// <value>Número de inscrição do CNPJ.</value>
         [DataMember(Name = "cnpj", EmitDefaultValue = false)]
         public string cnpj { get; set; }
 
         /// <summary>
-        /// Gets or Sets razao_social
+        /// Nome empresarial da pessoa jurídica.
         /// </summary>
+        /// <value>Nome empresarial da pessoa jurídica.</value>
         [DataMember(Name = "razao_social", EmitDefaultValue = false)]
         public string razao_social { get; set; }
 
         /// <summary>
-        /// Gets or Sets nome_fantasia
+        /// Corresponde ao nome fantasia.
         /// </summary>
+        /// <value>Corresponde ao nome fantasia.</value>
         [DataMember(Name = "nome_fantasia", EmitDefaultValue = false)]
         public string nome_fantasia { get; set; }
 
         /// <summary>
-        /// Gets or Sets data_inicio_atividade
+        /// Data de início da atividade.
         /// </summary>
+        /// <value>Data de início da atividade.</value>
         [DataMember(Name = "data_inicio_atividade", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime data_inicio_atividade { get; set; }
 
         /// <summary>
-        /// Gets or Sets matriz
+        /// Indicador de matriz/filial:  * &#x60;true&#x60; - É matriz  * &#x60;false&#x60; - É filial
         /// </summary>
+        /// <value>Indicador de matriz/filial:  * &#x60;true&#x60; - É matriz  * &#x60;false&#x60; - É filial</value>
         [DataMember(Name = "matriz", EmitDefaultValue = true)]
         public bool matriz { get; set; }
 
@@ -115,8 +120,9 @@ namespace NuvemFiscal.Sdk.Model
         public CnpjNaturezaJuridica natureza_juridica { get; set; }
 
         /// <summary>
-        /// Gets or Sets capital_social
+        /// Capital social da empresa.
         /// </summary>
+        /// <value>Capital social da empresa.</value>
         [DataMember(Name = "capital_social", EmitDefaultValue = false)]
         public decimal capital_social { get; set; }
 
@@ -127,8 +133,9 @@ namespace NuvemFiscal.Sdk.Model
         public CnpjPorteEmpresa porte { get; set; }
 
         /// <summary>
-        /// Gets or Sets ente_federativo_responsavel
+        /// O ente federativo responsável é preenchido para os casos de órgãos e  entidades do grupo de natureza jurídica 1XXX. Para as demais naturezas,  este atributo fica em branco.
         /// </summary>
+        /// <value>O ente federativo responsável é preenchido para os casos de órgãos e  entidades do grupo de natureza jurídica 1XXX. Para as demais naturezas,  este atributo fica em branco.</value>
         [DataMember(Name = "ente_federativo_responsavel", EmitDefaultValue = false)]
         public string ente_federativo_responsavel { get; set; }
 
@@ -142,11 +149,12 @@ namespace NuvemFiscal.Sdk.Model
         /// Gets or Sets motivo_situacao_cadastral
         /// </summary>
         [DataMember(Name = "motivo_situacao_cadastral", EmitDefaultValue = false)]
-        public CnpjSituacaoCadastral motivo_situacao_cadastral { get; set; }
+        public CnpjMotivoSituacaoCadastral motivo_situacao_cadastral { get; set; }
 
         /// <summary>
-        /// Gets or Sets nome_da_cidade_no_exterior
+        /// Nome da cidade no exterior.
         /// </summary>
+        /// <value>Nome da cidade no exterior.</value>
         [DataMember(Name = "nome_da_cidade_no_exterior", EmitDefaultValue = false)]
         public string nome_da_cidade_no_exterior { get; set; }
 
@@ -163,8 +171,9 @@ namespace NuvemFiscal.Sdk.Model
         public CnpjCnae atividade_principal { get; set; }
 
         /// <summary>
-        /// Gets or Sets atividades_secundarias
+        /// Atividades econômicas secundárias do estabelecimento.
         /// </summary>
+        /// <value>Atividades econômicas secundárias do estabelecimento.</value>
         [DataMember(Name = "atividades_secundarias", EmitDefaultValue = false)]
         public List<CnpjCnae> atividades_secundarias { get; set; }
 
@@ -175,14 +184,16 @@ namespace NuvemFiscal.Sdk.Model
         public CnpjEndereco endereco { get; set; }
 
         /// <summary>
-        /// Gets or Sets telefones
+        /// Telefones do estabelecimento.
         /// </summary>
+        /// <value>Telefones do estabelecimento.</value>
         [DataMember(Name = "telefones", EmitDefaultValue = false)]
         public List<CnpjTelefone> telefones { get; set; }
 
         /// <summary>
-        /// Gets or Sets email
+        /// E-mail do contribuinte.
         /// </summary>
+        /// <value>E-mail do contribuinte.</value>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string email { get; set; }
 
@@ -190,7 +201,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Gets or Sets situacao_especial
         /// </summary>
         [DataMember(Name = "situacao_especial", EmitDefaultValue = false)]
-        public CnpjSituacaoCadastral situacao_especial { get; set; }
+        public CnpjSituacaoEspecial situacao_especial { get; set; }
 
         /// <summary>
         /// Gets or Sets simples
@@ -202,7 +213,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Gets or Sets simei
         /// </summary>
         [DataMember(Name = "simei", EmitDefaultValue = false)]
-        public CnpjOpcaoSimples simei { get; set; }
+        public CnpjOpcaoSimei simei { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

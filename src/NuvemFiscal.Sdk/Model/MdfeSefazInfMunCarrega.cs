@@ -38,8 +38,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="cMunCarrega">Código do Município de Carregamento. (required).</param>
         /// <param name="xMunCarrega">Nome do Município de Carregamento. (required).</param>
-        public MdfeSefazInfMunCarrega(int cMunCarrega = default(int), string xMunCarrega = default(string))
+        public MdfeSefazInfMunCarrega(string cMunCarrega = default(string), string xMunCarrega = default(string))
         {
+            // to ensure "cMunCarrega" is required (not null)
+            if (cMunCarrega == null)
+            {
+                throw new ArgumentNullException("cMunCarrega is a required property for MdfeSefazInfMunCarrega and cannot be null");
+            }
             this.cMunCarrega = cMunCarrega;
             // to ensure "xMunCarrega" is required (not null)
             if (xMunCarrega == null)
@@ -54,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de Carregamento.</value>
         [DataMember(Name = "cMunCarrega", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunCarrega { get; set; }
+        public string cMunCarrega { get; set; }
 
         /// <summary>
         /// Nome do Município de Carregamento.
@@ -110,7 +115,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.cMunCarrega == input.cMunCarrega ||
-                    this.cMunCarrega.Equals(input.cMunCarrega)
+                    (this.cMunCarrega != null &&
+                    this.cMunCarrega.Equals(input.cMunCarrega))
                 ) && 
                 (
                     this.xMunCarrega == input.xMunCarrega ||
@@ -128,7 +134,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.cMunCarrega.GetHashCode();
+                if (this.cMunCarrega != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunCarrega.GetHashCode();
+                }
                 if (this.xMunCarrega != null)
                 {
                     hashCode = (hashCode * 59) + this.xMunCarrega.GetHashCode();

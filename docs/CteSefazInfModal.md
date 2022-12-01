@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**versaoModal** | **string** |  | [optional] 
+**versaoModal** | **string** | Versão do leiaute específico para o Modal. | 
 **rodo** | [**CteSefazRodo**](CteSefazRodo.md) |  | [optional] 
 **aereo** | [**CteSefazAereo**](CteSefazAereo.md) |  | [optional] 
 **ferrov** | [**CteSefazFerrov**](CteSefazFerrov.md) |  | [optional] 

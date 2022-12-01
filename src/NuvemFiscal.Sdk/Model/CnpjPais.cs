@@ -31,8 +31,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjPais" /> class.
         /// </summary>
-        /// <param name="codigo">codigo.</param>
-        /// <param name="descricao">descricao.</param>
+        /// <param name="codigo">Código do país..</param>
+        /// <param name="descricao">Nome do país..</param>
         public CnpjPais(string codigo = default(string), string descricao = default(string))
         {
             this.codigo = codigo;
@@ -40,14 +40,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets codigo
+        /// Código do país.
         /// </summary>
+        /// <value>Código do país.</value>
         [DataMember(Name = "codigo", EmitDefaultValue = false)]
         public string codigo { get; set; }
 
         /// <summary>
-        /// Gets or Sets descricao
+        /// Nome do país.
         /// </summary>
+        /// <value>Nome do país.</value>
         [DataMember(Name = "descricao", EmitDefaultValue = false)]
         public string descricao { get; set; }
 

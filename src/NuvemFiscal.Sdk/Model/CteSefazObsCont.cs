@@ -36,23 +36,29 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazObsCont" /> class.
         /// </summary>
-        /// <param name="xCampo">xCampo.</param>
+        /// <param name="xCampo">Identificação do campo. (required).</param>
         /// <param name="xTexto">Conteúdo do campo. (required).</param>
         public CteSefazObsCont(string xCampo = default(string), string xTexto = default(string))
         {
+            // to ensure "xCampo" is required (not null)
+            if (xCampo == null)
+            {
+                throw new ArgumentNullException("xCampo is a required property for CteSefazObsCont and cannot be null");
+            }
+            this.xCampo = xCampo;
             // to ensure "xTexto" is required (not null)
             if (xTexto == null)
             {
                 throw new ArgumentNullException("xTexto is a required property for CteSefazObsCont and cannot be null");
             }
             this.xTexto = xTexto;
-            this.xCampo = xCampo;
         }
 
         /// <summary>
-        /// Gets or Sets xCampo
+        /// Identificação do campo.
         /// </summary>
-        [DataMember(Name = "xCampo", EmitDefaultValue = false)]
+        /// <value>Identificação do campo.</value>
+        [DataMember(Name = "xCampo", IsRequired = true, EmitDefaultValue = true)]
         public string xCampo { get; set; }
 
         /// <summary>

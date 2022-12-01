@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazIde" /> class.
         /// </summary>
         /// <param name="cUF">Código da UF do emitente do CT-e.  Utilizar a Tabela do IBGE. (required).</param>
-        /// <param name="cCT">Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento. (required).</param>
+        /// <param name="cCT">Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado..</param>
         /// <param name="cFOP">Código Fiscal de Operações e Prestações. (required).</param>
         /// <param name="natOp">Natureza da Operação. (required).</param>
         /// <param name="mod">Modelo do documento fiscal.  Utilizar o código 57 para identificação do CT-e, emitido em substituição aos modelos de conhecimentos em papel..</param>
@@ -46,17 +46,17 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dhEmi">Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD. (required).</param>
         /// <param name="tpImp">Formato de impressão do DACTE.  Preencher com: 1 - Retrato; 2 - Paisagem. (required).</param>
         /// <param name="tpEmis">Forma de emissão do CT-e.  Preencher com:  1 - Normal;   3-Regime Especial NFF;  4-EPEC pela SVC; 5 - Contingência FSDA;   7 - Autorização pela SVC-RS;    8 - Autorização pela SVC-SP. (required).</param>
-        /// <param name="cDV">Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso. (required).</param>
+        /// <param name="cDV">Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado..</param>
         /// <param name="tpAmb">Tipo do Ambiente.  Preencher com:1 - Produção; 2 - Homologação..</param>
         /// <param name="tpCTe">Tipo do CT-e.  Preencher com:   0 - CT-e Normal;   1 - CT-e de Complemento de Valores; 2 - CT-e de Anulação;   3 - CT-e de Substituição. (required).</param>
-        /// <param name="procEmi">Identificador do processo de emissão do CT-e.  Preencher com:             0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE. (required).</param>
+        /// <param name="procEmi">Identificador do processo de emissão do CT-e.  Preencher com:              0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE. (required).</param>
         /// <param name="verProc">Versão do processo de emissão.  Iinformar a versão do aplicativo emissor de CT-e. (required).</param>
         /// <param name="indGlobalizado">Indicador de CT-e Globalizado.  Informar valor 1 quando for Globalizado e não informar a tag quando não tratar de CT-e Globalizado..</param>
         /// <param name="cMunEnv">Código do Município de envio do CT-e (de onde o documento foi transmitido).  Utilizar a tabela do IBGE. Informar 9999999 para as operações com o exterior. (required).</param>
         /// <param name="xMunEnv">Nome do Município de envio do CT-e (de onde o documento foi transmitido).  Informar PAIS/Municipio para as operações com o exterior. (required).</param>
         /// <param name="uFEnv">Sigla da UF de envio do CT-e (de onde o documento foi transmitido).  Informar &#39;EX&#39; para operações com o exterior. (required).</param>
         /// <param name="modal">Modal.  Preencher com:01-Rodoviário;  02-Aéreo;03-Aquaviário;04-Ferroviário;05-Dutoviário;06-Multimodal;. (required).</param>
-        /// <param name="tpServ">Tipo do Serviço.  Preencher com:  0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal. (required).</param>
+        /// <param name="tpServ">Tipo do Serviço.  Preencher com:   0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal. (required).</param>
         /// <param name="cMunIni">Código do Município de início da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior. (required).</param>
         /// <param name="xMunIni">Nome do Município do início da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior. (required).</param>
         /// <param name="uFIni">UF do início da prestação.  Informar &#39;EX&#39; para operações com o exterior. (required).</param>
@@ -70,10 +70,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="toma4">toma4.</param>
         /// <param name="dhCont">Data e Hora da entrada em contingência.  Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS..</param>
         /// <param name="xJust">Justificativa da entrada em contingência..</param>
-        public CteSefazIde(int cUF = default(int), int cCT = default(int), int cFOP = default(int), string natOp = default(string), int mod = default(int), int serie = default(int), int nCT = default(int), DateTime dhEmi = default(DateTime), int tpImp = default(int), int tpEmis = default(int), int cDV = default(int), int tpAmb = default(int), int tpCTe = default(int), int procEmi = default(int), string verProc = default(string), int indGlobalizado = default(int), int cMunEnv = default(int), string xMunEnv = default(string), string uFEnv = default(string), string modal = default(string), int tpServ = default(int), int cMunIni = default(int), string xMunIni = default(string), string uFIni = default(string), int cMunFim = default(int), string xMunFim = default(string), string uFFim = default(string), int retira = default(int), string xDetRetira = default(string), int indIEToma = default(int), CteSefazToma3 toma3 = default(CteSefazToma3), CteSefazToma4 toma4 = default(CteSefazToma4), DateTime dhCont = default(DateTime), string xJust = default(string))
+        public CteSefazIde(int cUF = default(int), string cCT = default(string), string cFOP = default(string), string natOp = default(string), int mod = default(int), int serie = default(int), int nCT = default(int), DateTime dhEmi = default(DateTime), int tpImp = default(int), int tpEmis = default(int), int cDV = default(int), int tpAmb = default(int), int tpCTe = default(int), int procEmi = default(int), string verProc = default(string), int indGlobalizado = default(int), string cMunEnv = default(string), string xMunEnv = default(string), string uFEnv = default(string), string modal = default(string), int tpServ = default(int), string cMunIni = default(string), string xMunIni = default(string), string uFIni = default(string), string cMunFim = default(string), string xMunFim = default(string), string uFFim = default(string), int retira = default(int), string xDetRetira = default(string), int indIEToma = default(int), CteSefazToma3 toma3 = default(CteSefazToma3), CteSefazToma4 toma4 = default(CteSefazToma4), DateTime dhCont = default(DateTime), string xJust = default(string))
         {
             this.cUF = cUF;
-            this.cCT = cCT;
+            // to ensure "cFOP" is required (not null)
+            if (cFOP == null)
+            {
+                throw new ArgumentNullException("cFOP is a required property for CteSefazIde and cannot be null");
+            }
             this.CFOP = cFOP;
             // to ensure "natOp" is required (not null)
             if (natOp == null)
@@ -86,7 +90,6 @@ namespace NuvemFiscal.Sdk.Model
             this.dhEmi = dhEmi;
             this.tpImp = tpImp;
             this.tpEmis = tpEmis;
-            this.cDV = cDV;
             this.tpCTe = tpCTe;
             this.procEmi = procEmi;
             // to ensure "verProc" is required (not null)
@@ -95,6 +98,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("verProc is a required property for CteSefazIde and cannot be null");
             }
             this.verProc = verProc;
+            // to ensure "cMunEnv" is required (not null)
+            if (cMunEnv == null)
+            {
+                throw new ArgumentNullException("cMunEnv is a required property for CteSefazIde and cannot be null");
+            }
             this.cMunEnv = cMunEnv;
             // to ensure "xMunEnv" is required (not null)
             if (xMunEnv == null)
@@ -115,6 +123,11 @@ namespace NuvemFiscal.Sdk.Model
             }
             this.modal = modal;
             this.tpServ = tpServ;
+            // to ensure "cMunIni" is required (not null)
+            if (cMunIni == null)
+            {
+                throw new ArgumentNullException("cMunIni is a required property for CteSefazIde and cannot be null");
+            }
             this.cMunIni = cMunIni;
             // to ensure "xMunIni" is required (not null)
             if (xMunIni == null)
@@ -128,6 +141,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("uFIni is a required property for CteSefazIde and cannot be null");
             }
             this.UFIni = uFIni;
+            // to ensure "cMunFim" is required (not null)
+            if (cMunFim == null)
+            {
+                throw new ArgumentNullException("cMunFim is a required property for CteSefazIde and cannot be null");
+            }
             this.cMunFim = cMunFim;
             // to ensure "xMunFim" is required (not null)
             if (xMunFim == null)
@@ -143,7 +161,9 @@ namespace NuvemFiscal.Sdk.Model
             this.UFFim = uFFim;
             this.retira = retira;
             this.indIEToma = indIEToma;
+            this.cCT = cCT;
             this.mod = mod;
+            this.cDV = cDV;
             this.tpAmb = tpAmb;
             this.indGlobalizado = indGlobalizado;
             this.xDetRetira = xDetRetira;
@@ -161,18 +181,18 @@ namespace NuvemFiscal.Sdk.Model
         public int cUF { get; set; }
 
         /// <summary>
-        /// Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.
+        /// Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.
         /// </summary>
-        /// <value>Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.</value>
-        [DataMember(Name = "cCT", IsRequired = true, EmitDefaultValue = true)]
-        public int cCT { get; set; }
+        /// <value>Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.</value>
+        [DataMember(Name = "cCT", EmitDefaultValue = false)]
+        public string cCT { get; set; }
 
         /// <summary>
         /// Código Fiscal de Operações e Prestações.
         /// </summary>
         /// <value>Código Fiscal de Operações e Prestações.</value>
         [DataMember(Name = "CFOP", IsRequired = true, EmitDefaultValue = true)]
-        public int CFOP { get; set; }
+        public string CFOP { get; set; }
 
         /// <summary>
         /// Natureza da Operação.
@@ -224,10 +244,10 @@ namespace NuvemFiscal.Sdk.Model
         public int tpEmis { get; set; }
 
         /// <summary>
-        /// Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.
+        /// Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.
         /// </summary>
-        /// <value>Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.</value>
-        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.</value>
+        [DataMember(Name = "cDV", EmitDefaultValue = false)]
         public int cDV { get; set; }
 
         /// <summary>
@@ -245,9 +265,9 @@ namespace NuvemFiscal.Sdk.Model
         public int tpCTe { get; set; }
 
         /// <summary>
-        /// Identificador do processo de emissão do CT-e.  Preencher com:             0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.
+        /// Identificador do processo de emissão do CT-e.  Preencher com:              0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.
         /// </summary>
-        /// <value>Identificador do processo de emissão do CT-e.  Preencher com:             0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.</value>
+        /// <value>Identificador do processo de emissão do CT-e.  Preencher com:              0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.</value>
         [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
         public int procEmi { get; set; }
 
@@ -270,7 +290,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de envio do CT-e (de onde o documento foi transmitido).  Utilizar a tabela do IBGE. Informar 9999999 para as operações com o exterior.</value>
         [DataMember(Name = "cMunEnv", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunEnv { get; set; }
+        public string cMunEnv { get; set; }
 
         /// <summary>
         /// Nome do Município de envio do CT-e (de onde o documento foi transmitido).  Informar PAIS/Municipio para as operações com o exterior.
@@ -294,9 +314,9 @@ namespace NuvemFiscal.Sdk.Model
         public string modal { get; set; }
 
         /// <summary>
-        /// Tipo do Serviço.  Preencher com:  0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.
+        /// Tipo do Serviço.  Preencher com:   0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.
         /// </summary>
-        /// <value>Tipo do Serviço.  Preencher com:  0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.</value>
+        /// <value>Tipo do Serviço.  Preencher com:   0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.</value>
         [DataMember(Name = "tpServ", IsRequired = true, EmitDefaultValue = true)]
         public int tpServ { get; set; }
 
@@ -305,7 +325,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de início da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior.</value>
         [DataMember(Name = "cMunIni", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunIni { get; set; }
+        public string cMunIni { get; set; }
 
         /// <summary>
         /// Nome do Município do início da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior.
@@ -326,7 +346,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de término da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior.</value>
         [DataMember(Name = "cMunFim", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunFim { get; set; }
+        public string cMunFim { get; set; }
 
         /// <summary>
         /// Nome do Município do término da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior.
@@ -472,11 +492,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cCT == input.cCT ||
-                    this.cCT.Equals(input.cCT)
+                    (this.cCT != null &&
+                    this.cCT.Equals(input.cCT))
                 ) && 
                 (
                     this.CFOP == input.CFOP ||
-                    this.CFOP.Equals(input.CFOP)
+                    (this.CFOP != null &&
+                    this.CFOP.Equals(input.CFOP))
                 ) && 
                 (
                     this.natOp == input.natOp ||
@@ -535,7 +557,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMunEnv == input.cMunEnv ||
-                    this.cMunEnv.Equals(input.cMunEnv)
+                    (this.cMunEnv != null &&
+                    this.cMunEnv.Equals(input.cMunEnv))
                 ) && 
                 (
                     this.xMunEnv == input.xMunEnv ||
@@ -558,7 +581,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMunIni == input.cMunIni ||
-                    this.cMunIni.Equals(input.cMunIni)
+                    (this.cMunIni != null &&
+                    this.cMunIni.Equals(input.cMunIni))
                 ) && 
                 (
                     this.xMunIni == input.xMunIni ||
@@ -572,7 +596,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMunFim == input.cMunFim ||
-                    this.cMunFim.Equals(input.cMunFim)
+                    (this.cMunFim != null &&
+                    this.cMunFim.Equals(input.cMunFim))
                 ) && 
                 (
                     this.xMunFim == input.xMunFim ||
@@ -629,8 +654,14 @@ namespace NuvemFiscal.Sdk.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.cUF.GetHashCode();
-                hashCode = (hashCode * 59) + this.cCT.GetHashCode();
-                hashCode = (hashCode * 59) + this.CFOP.GetHashCode();
+                if (this.cCT != null)
+                {
+                    hashCode = (hashCode * 59) + this.cCT.GetHashCode();
+                }
+                if (this.CFOP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CFOP.GetHashCode();
+                }
                 if (this.natOp != null)
                 {
                     hashCode = (hashCode * 59) + this.natOp.GetHashCode();
@@ -653,7 +684,10 @@ namespace NuvemFiscal.Sdk.Model
                     hashCode = (hashCode * 59) + this.verProc.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.indGlobalizado.GetHashCode();
-                hashCode = (hashCode * 59) + this.cMunEnv.GetHashCode();
+                if (this.cMunEnv != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunEnv.GetHashCode();
+                }
                 if (this.xMunEnv != null)
                 {
                     hashCode = (hashCode * 59) + this.xMunEnv.GetHashCode();
@@ -667,7 +701,10 @@ namespace NuvemFiscal.Sdk.Model
                     hashCode = (hashCode * 59) + this.modal.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.tpServ.GetHashCode();
-                hashCode = (hashCode * 59) + this.cMunIni.GetHashCode();
+                if (this.cMunIni != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunIni.GetHashCode();
+                }
                 if (this.xMunIni != null)
                 {
                     hashCode = (hashCode * 59) + this.xMunIni.GetHashCode();
@@ -676,7 +713,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.UFIni.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cMunFim.GetHashCode();
+                if (this.cMunFim != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunFim.GetHashCode();
+                }
                 if (this.xMunFim != null)
                 {
                     hashCode = (hashCode * 59) + this.xMunFim.GetHashCode();

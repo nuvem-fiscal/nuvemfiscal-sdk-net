@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazCard" /> class.
         /// </summary>
-        /// <param name="tpIntegra">Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                  1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS. (required).</param>
+        /// <param name="tpIntegra">Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                   1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS. (required).</param>
         /// <param name="cNPJ">CNPJ da instituição de pagamento..</param>
         /// <param name="tBand">Bandeira da operadora de cartão..</param>
         /// <param name="cAut">Número de autorização da operação cartão de crédito/débito..</param>
@@ -49,9 +49,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                  1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS.
+        /// Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                   1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS.
         /// </summary>
-        /// <value>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                  1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS.</value>
+        /// <value>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/                   1&#x3D;Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico                  2&#x3D;Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS.</value>
         [DataMember(Name = "tpIntegra", IsRequired = true, EmitDefaultValue = true)]
         public int tpIntegra { get; set; }
 

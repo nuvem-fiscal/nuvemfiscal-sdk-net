@@ -35,12 +35,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPF">Número do CPF do contratante do serviço.  Informar os zeros não significativos..</param>
         /// <param name="cNPJ">Número do CNPJ do contratante do serviço.  Informar os zeros não significativos..</param>
         /// <param name="idEstrangeiro">Identificador do contratante em caso de contratante estrangeiro..</param>
-        public MdfeSefazInfContratante(string xNome = default(string), string cPF = default(string), string cNPJ = default(string), string idEstrangeiro = default(string))
+        /// <param name="infContrato">infContrato.</param>
+        public MdfeSefazInfContratante(string xNome = default(string), string cPF = default(string), string cNPJ = default(string), string idEstrangeiro = default(string), MdfeSefazInfContrato infContrato = default(MdfeSefazInfContrato))
         {
             this.xNome = xNome;
             this.CPF = cPF;
             this.CNPJ = cNPJ;
             this.idEstrangeiro = idEstrangeiro;
+            this.infContrato = infContrato;
         }
 
         /// <summary>
@@ -72,6 +74,12 @@ namespace NuvemFiscal.Sdk.Model
         public string idEstrangeiro { get; set; }
 
         /// <summary>
+        /// Gets or Sets infContrato
+        /// </summary>
+        [DataMember(Name = "infContrato", EmitDefaultValue = false)]
+        public MdfeSefazInfContrato infContrato { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -83,6 +91,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  CPF: ").Append(CPF).Append("\n");
             sb.Append("  CNPJ: ").Append(CNPJ).Append("\n");
             sb.Append("  idEstrangeiro: ").Append(idEstrangeiro).Append("\n");
+            sb.Append("  infContrato: ").Append(infContrato).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -137,6 +146,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.idEstrangeiro == input.idEstrangeiro ||
                     (this.idEstrangeiro != null &&
                     this.idEstrangeiro.Equals(input.idEstrangeiro))
+                ) && 
+                (
+                    this.infContrato == input.infContrato ||
+                    (this.infContrato != null &&
+                    this.infContrato.Equals(input.infContrato))
                 );
         }
 
@@ -164,6 +178,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.idEstrangeiro != null)
                 {
                     hashCode = (hashCode * 59) + this.idEstrangeiro.GetHashCode();
+                }
+                if (this.infContrato != null)
+                {
+                    hashCode = (hashCode * 59) + this.infContrato.GetHashCode();
                 }
                 return hashCode;
             }

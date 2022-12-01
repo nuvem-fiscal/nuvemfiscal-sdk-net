@@ -57,7 +57,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vIN">Informa-se o veículo tem VIN (chassi) remarcado.  R-Remarcado  N-NormalVIN. (required).</param>
         /// <param name="condVeic">Condição do veículo (1 - acabado; 2 - inacabado; 3 - semi-acabado). (required).</param>
         /// <param name="cMod">Código Marca Modelo (utilizar tabela RENAVAM). (required).</param>
-        /// <param name="cCorDENATRAN">Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA  08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA. (required).</param>
+        /// <param name="cCorDENATRAN">Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA   08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA. (required).</param>
         /// <param name="lota">Quantidade máxima de permitida de passageiros sentados, inclusive motorista. (required).</param>
         /// <param name="tpRest">Restrição  0 - Não há;  1 - Alienação Fiduciária;  2 - Arrendamento Mercantil;  3 - Reserva de Domínio;  4 - Penhor de Veículos;  9 - outras. (required).</param>
         public NfeSefazVeicProd(int tpOp = default(int), string chassi = default(string), string cCor = default(string), string xCor = default(string), string pot = default(string), string cilin = default(string), string pesoL = default(string), string pesoB = default(string), string nSerie = default(string), string tpComb = default(string), string nMotor = default(string), string cMT = default(string), string dist = default(string), int anoMod = default(int), int anoFab = default(int), string tpPint = default(string), int tpVeic = default(int), int espVeic = default(int), string vIN = default(string), int condVeic = default(int), string cMod = default(string), string cCorDENATRAN = default(string), int lota = default(int), int tpRest = default(int))
@@ -316,9 +316,9 @@ namespace NuvemFiscal.Sdk.Model
         public string cMod { get; set; }
 
         /// <summary>
-        /// Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA  08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA.
+        /// Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA   08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA.
         /// </summary>
-        /// <value>Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA  08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA.</value>
+        /// <value>Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA   08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA.</value>
         [DataMember(Name = "cCorDENATRAN", IsRequired = true, EmitDefaultValue = true)]
         public string cCorDENATRAN { get; set; }
 

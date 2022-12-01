@@ -11,7 +11,7 @@ Nome | Tipo | Descrição | Comentários
 **numero_inicial** | **int** |  | [optional] 
 **numero_final** | **int** |  | [optional] 
 **justificativa** | **string** |  | [optional] 
-**id** | **string** | ID único gerado pela Nuvem Fiscal para este documento. | [optional] 
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este evento. | [optional] 
 **ambiente** | **string** | Identificação do ambiente. | [optional] 
 **status** | **string** | Status do Evento. | [optional] 
 **autor** | [**DfeAutorEvento**](DfeAutorEvento.md) |  | [optional] 

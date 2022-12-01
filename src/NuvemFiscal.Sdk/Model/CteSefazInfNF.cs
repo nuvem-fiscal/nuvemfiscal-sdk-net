@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="nRoma">Número do Romaneio da NF..</param>
         /// <param name="nPed">Número do Pedido da NF..</param>
-        /// <param name="mod">Modelo da Nota Fiscal.  Preencher com:  01 - NF Modelo 01/1A e Avulsa;  04 - NF de Produtor. (required).</param>
+        /// <param name="mod">Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor. (required).</param>
         /// <param name="serie">Série. (required).</param>
         /// <param name="nDoc">Número. (required).</param>
         /// <param name="dEmi">Data de Emissão.  Formato AAAA-MM-DD. (required).</param>
@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dPrev">Data prevista de entrega.  Formato AAAA-MM-DD..</param>
         /// <param name="infUnidCarga">Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu..</param>
         /// <param name="infUnidTransp">Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas..</param>
-        public CteSefazInfNF(string nRoma = default(string), string nPed = default(string), string mod = default(string), string serie = default(string), string nDoc = default(string), DateTime dEmi = default(DateTime), decimal vBC = default(decimal), decimal vICMS = default(decimal), decimal vBCST = default(decimal), decimal vST = default(decimal), decimal vProd = default(decimal), decimal vNF = default(decimal), int nCFOP = default(int), decimal nPeso = default(decimal), string pIN = default(string), DateTime dPrev = default(DateTime), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
+        public CteSefazInfNF(string nRoma = default(string), string nPed = default(string), string mod = default(string), string serie = default(string), string nDoc = default(string), DateTime dEmi = default(DateTime), decimal vBC = default(decimal), decimal vICMS = default(decimal), decimal vBCST = default(decimal), decimal vST = default(decimal), decimal vProd = default(decimal), decimal vNF = default(decimal), string nCFOP = default(string), decimal nPeso = default(decimal), string pIN = default(string), DateTime dPrev = default(DateTime), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
         {
             // to ensure "mod" is required (not null)
             if (mod == null)
@@ -81,6 +81,11 @@ namespace NuvemFiscal.Sdk.Model
             this.vST = vST;
             this.vProd = vProd;
             this.vNF = vNF;
+            // to ensure "nCFOP" is required (not null)
+            if (nCFOP == null)
+            {
+                throw new ArgumentNullException("nCFOP is a required property for CteSefazInfNF and cannot be null");
+            }
             this.nCFOP = nCFOP;
             this.nRoma = nRoma;
             this.nPed = nPed;
@@ -106,9 +111,9 @@ namespace NuvemFiscal.Sdk.Model
         public string nPed { get; set; }
 
         /// <summary>
-        /// Modelo da Nota Fiscal.  Preencher com:  01 - NF Modelo 01/1A e Avulsa;  04 - NF de Produtor.
+        /// Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor.
         /// </summary>
-        /// <value>Modelo da Nota Fiscal.  Preencher com:  01 - NF Modelo 01/1A e Avulsa;  04 - NF de Produtor.</value>
+        /// <value>Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor.</value>
         [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 
@@ -181,7 +186,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>CFOP Predominante.  CFOP da NF ou, na existência de mais de um, predominância pelo critério de valor econômico.</value>
         [DataMember(Name = "nCFOP", IsRequired = true, EmitDefaultValue = true)]
-        public int nCFOP { get; set; }
+        public string nCFOP { get; set; }
 
         /// <summary>
         /// Peso total em Kg.
@@ -336,7 +341,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.nCFOP == input.nCFOP ||
-                    this.nCFOP.Equals(input.nCFOP)
+                    (this.nCFOP != null &&
+                    this.nCFOP.Equals(input.nCFOP))
                 ) && 
                 (
                     this.nPeso == input.nPeso ||
@@ -405,7 +411,10 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.vST.GetHashCode();
                 hashCode = (hashCode * 59) + this.vProd.GetHashCode();
                 hashCode = (hashCode * 59) + this.vNF.GetHashCode();
-                hashCode = (hashCode * 59) + this.nCFOP.GetHashCode();
+                if (this.nCFOP != null)
+                {
+                    hashCode = (hashCode * 59) + this.nCFOP.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.nPeso.GetHashCode();
                 if (this.PIN != null)
                 {

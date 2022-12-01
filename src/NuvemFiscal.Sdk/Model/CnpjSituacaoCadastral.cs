@@ -31,9 +31,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjSituacaoCadastral" /> class.
         /// </summary>
-        /// <param name="data">data.</param>
-        /// <param name="codigo">codigo.</param>
-        /// <param name="descricao">descricao.</param>
+        /// <param name="data">Data do evento da situação cadastral..</param>
+        /// <param name="codigo">Código da situação cadastral..</param>
+        /// <param name="descricao">Descrição da situação cadastral..</param>
         public CnpjSituacaoCadastral(DateTime data = default(DateTime), string codigo = default(string), string descricao = default(string))
         {
             this.data = data;
@@ -42,21 +42,24 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets data
+        /// Data do evento da situação cadastral.
         /// </summary>
+        /// <value>Data do evento da situação cadastral.</value>
         [DataMember(Name = "data", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime data { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo
+        /// Código da situação cadastral.
         /// </summary>
+        /// <value>Código da situação cadastral.</value>
         [DataMember(Name = "codigo", EmitDefaultValue = false)]
         public string codigo { get; set; }
 
         /// <summary>
-        /// Gets or Sets descricao
+        /// Descrição da situação cadastral.
         /// </summary>
+        /// <value>Descrição da situação cadastral.</value>
         [DataMember(Name = "descricao", EmitDefaultValue = false)]
         public string descricao { get; set; }
 

@@ -36,8 +36,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazInfCte" /> class.
         /// </summary>
-        /// <param name="versao">versao.</param>
-        /// <param name="id">id.</param>
+        /// <param name="versao">Versão do leiaute.  Ex: \&quot;3.00\&quot;. (required).</param>
+        /// <param name="id">Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;..</param>
         /// <param name="ide">ide (required).</param>
         /// <param name="compl">compl.</param>
         /// <param name="emit">emit (required).</param>
@@ -55,6 +55,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infSolicNFF">infSolicNFF.</param>
         public CteSefazInfCte(string versao = default(string), string id = default(string), CteSefazIde ide = default(CteSefazIde), CteSefazCompl compl = default(CteSefazCompl), CteSefazEmit emit = default(CteSefazEmit), CteSefazRem rem = default(CteSefazRem), CteSefazExped exped = default(CteSefazExped), CteSefazReceb receb = default(CteSefazReceb), CteSefazDest dest = default(CteSefazDest), CteSefazVPrest vPrest = default(CteSefazVPrest), CteSefazInfCteImp imp = default(CteSefazInfCteImp), CteSefazInfCTeNorm infCTeNorm = default(CteSefazInfCTeNorm), CteSefazInfCteComp infCteComp = default(CteSefazInfCteComp), CteSefazInfCteAnu infCteAnu = default(CteSefazInfCteAnu), List<CteSefazAutXML> autXML = default(List<CteSefazAutXML>), CteSefazRespTec infRespTec = default(CteSefazRespTec), CteSefazInfSolicNFF infSolicNFF = default(CteSefazInfSolicNFF))
         {
+            // to ensure "versao" is required (not null)
+            if (versao == null)
+            {
+                throw new ArgumentNullException("versao is a required property for CteSefazInfCte and cannot be null");
+            }
+            this.versao = versao;
             // to ensure "ide" is required (not null)
             if (ide == null)
             {
@@ -79,7 +85,6 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("imp is a required property for CteSefazInfCte and cannot be null");
             }
             this.imp = imp;
-            this.versao = versao;
             this.Id = id;
             this.compl = compl;
             this.rem = rem;
@@ -95,14 +100,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets versao
+        /// Versão do leiaute.  Ex: \&quot;3.00\&quot;.
         /// </summary>
-        [DataMember(Name = "versao", EmitDefaultValue = false)]
+        /// <value>Versão do leiaute.  Ex: \&quot;3.00\&quot;.</value>
+        [DataMember(Name = "versao", IsRequired = true, EmitDefaultValue = true)]
         public string versao { get; set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.
         /// </summary>
+        /// <value>Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.</value>
         [DataMember(Name = "Id", EmitDefaultValue = false)]
         public string Id { get; set; }
 

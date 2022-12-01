@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazInfResp" /> class.
         /// </summary>
-        /// <param name="respSeg">Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)      Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional. (required).</param>
+        /// <param name="respSeg">Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)       Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional. (required).</param>
         /// <param name="cNPJ">Número do CNPJ do responsável pelo seguro.  Obrigatório apenas se responsável pelo seguro for (2) responsável pela contratação do transporte - pessoa jurídica..</param>
         /// <param name="cPF">Número do CPF do responsável pelo seguro.  Obrigatório apenas se responsável pelo seguro for (2) responsável pela contratação do transporte - pessoa física..</param>
         public MdfeSefazInfResp(int respSeg = default(int), string cNPJ = default(string), string cPF = default(string))
@@ -47,9 +47,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)      Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional.
+        /// Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)       Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional.
         /// </summary>
-        /// <value>Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)      Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional.</value>
+        /// <value>Responsável pelo seguro.  Preencher com:                 1- Emitente do MDF-e;    22 - Responsável pela contratação do serviço de transporte (contratante)       Dados obrigatórios apenas no modal Rodoviário, depois da lei 11.442/07. Para os demais modais esta informação é opcional.</value>
         [DataMember(Name = "respSeg", IsRequired = true, EmitDefaultValue = true)]
         public int respSeg { get; set; }
 

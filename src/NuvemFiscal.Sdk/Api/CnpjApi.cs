@@ -41,6 +41,35 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cnpj">CNPJ sem máscara.</param>
         /// <returns>ApiResponse of CnpjEmpresa</returns>
         ApiResponse<CnpjEmpresa> ConsultarCnpjWithHttpInfo(string cnpj);
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ
+        /// </summary>
+        /// <remarks>
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <returns>CnpjListagem</returns>
+        CnpjListagem ListarCnpj(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?));
+
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ
+        /// </summary>
+        /// <remarks>
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <returns>ApiResponse of CnpjListagem</returns>
+        ApiResponse<CnpjListagem> ListarCnpjWithHttpInfo(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?));
         #endregion Synchronous Operations
     }
 
@@ -73,6 +102,37 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CnpjEmpresa)</returns>
         System.Threading.Tasks.Task<ApiResponse<CnpjEmpresa>> ConsultarCnpjWithHttpInfoAsync(string cnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ
+        /// </summary>
+        /// <remarks>
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CnpjListagem</returns>
+        System.Threading.Tasks.Task<CnpjListagem> ListarCnpjAsync(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ
+        /// </summary>
+        /// <remarks>
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CnpjListagem)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CnpjListagem>> ListarCnpjWithHttpInfoAsync(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -417,6 +477,195 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConsultarCnpj", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <returns>CnpjListagem</returns>
+        public CnpjListagem ListarCnpj(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<CnpjListagem> localVarResponse = ListarCnpjWithHttpInfo(cnaePrincipal, municipio, naturezaJuridica, top, skip);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <returns>ApiResponse of CnpjListagem</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<CnpjListagem> ListarCnpjWithHttpInfo(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?))
+        {
+            // verify the required parameter 'cnaePrincipal' is set
+            if (cnaePrincipal == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cnaePrincipal' when calling CnpjApi->ListarCnpj");
+
+            // verify the required parameter 'municipio' is set
+            if (municipio == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'municipio' when calling CnpjApi->ListarCnpj");
+
+            // verify the required parameter 'naturezaJuridica' is set
+            if (naturezaJuridica == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'naturezaJuridica' when calling CnpjApi->ListarCnpj");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (top != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$top", top));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cnae_principal", cnaePrincipal));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "municipio", municipio));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "natureza_juridica", naturezaJuridica));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CnpjListagem>("/cnpj", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListarCnpj", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CnpjListagem</returns>
+        public async System.Threading.Tasks.Task<CnpjListagem> ListarCnpjAsync(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<CnpjListagem> localVarResponse = await ListarCnpjWithHttpInfoAsync(cnaePrincipal, municipio, naturezaJuridica, top, skip, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="municipio">Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.</param>
+        /// <param name="naturezaJuridica">Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.</param>
+        /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
+        /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CnpjListagem)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<CnpjListagem>> ListarCnpjWithHttpInfoAsync(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cnaePrincipal' is set
+            if (cnaePrincipal == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cnaePrincipal' when calling CnpjApi->ListarCnpj");
+
+            // verify the required parameter 'municipio' is set
+            if (municipio == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'municipio' when calling CnpjApi->ListarCnpj");
+
+            // verify the required parameter 'naturezaJuridica' is set
+            if (naturezaJuridica == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'naturezaJuridica' when calling CnpjApi->ListarCnpj");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (top != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$top", top));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$skip", skip));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cnae_principal", cnaePrincipal));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "municipio", municipio));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "natureza_juridica", naturezaJuridica));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CnpjListagem>("/cnpj", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListarCnpj", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

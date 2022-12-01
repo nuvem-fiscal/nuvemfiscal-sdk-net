@@ -38,7 +38,8 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="nProc">Indentificador do processo ou ato  concessório. (required).</param>
         /// <param name="indProc">Origem do processo, informar com:  0 - SEFAZ;  1 - Justiça Federal;  2 - Justiça Estadual;  3 - Secex/RFB;  9 - Outros. (required).</param>
-        public NfeSefazProcRef(string nProc = default(string), int indProc = default(int))
+        /// <param name="tpAto">Tipo do ato concessório                Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  08&#x3D;Termo de Acordo;  10&#x3D;Regime Especial;  12&#x3D;Autorização específica;..</param>
+        public NfeSefazProcRef(string nProc = default(string), int indProc = default(int), string tpAto = default(string))
         {
             // to ensure "nProc" is required (not null)
             if (nProc == null)
@@ -47,6 +48,7 @@ namespace NuvemFiscal.Sdk.Model
             }
             this.nProc = nProc;
             this.indProc = indProc;
+            this.tpAto = tpAto;
         }
 
         /// <summary>
@@ -64,6 +66,13 @@ namespace NuvemFiscal.Sdk.Model
         public int indProc { get; set; }
 
         /// <summary>
+        /// Tipo do ato concessório                Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  08&#x3D;Termo de Acordo;  10&#x3D;Regime Especial;  12&#x3D;Autorização específica;.
+        /// </summary>
+        /// <value>Tipo do ato concessório                Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  08&#x3D;Termo de Acordo;  10&#x3D;Regime Especial;  12&#x3D;Autorização específica;.</value>
+        [DataMember(Name = "tpAto", EmitDefaultValue = false)]
+        public string tpAto { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -73,6 +82,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("class NfeSefazProcRef {\n");
             sb.Append("  nProc: ").Append(nProc).Append("\n");
             sb.Append("  indProc: ").Append(indProc).Append("\n");
+            sb.Append("  tpAto: ").Append(tpAto).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -116,6 +126,11 @@ namespace NuvemFiscal.Sdk.Model
                 (
                     this.indProc == input.indProc ||
                     this.indProc.Equals(input.indProc)
+                ) && 
+                (
+                    this.tpAto == input.tpAto ||
+                    (this.tpAto != null &&
+                    this.tpAto.Equals(input.tpAto))
                 );
         }
 
@@ -133,6 +148,10 @@ namespace NuvemFiscal.Sdk.Model
                     hashCode = (hashCode * 59) + this.nProc.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.indProc.GetHashCode();
+                if (this.tpAto != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpAto.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -36,18 +36,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazForDia" /> class.
         /// </summary>
-        /// <param name="dia">dia.</param>
+        /// <param name="dia">Número do dia. (required).</param>
         /// <param name="qtde">Quantidade em quilogramas - peso líquido. (required).</param>
         public NfeSefazForDia(int dia = default(int), decimal qtde = default(decimal))
         {
-            this.qtde = qtde;
             this.dia = dia;
+            this.qtde = qtde;
         }
 
         /// <summary>
-        /// Gets or Sets dia
+        /// Número do dia.
         /// </summary>
-        [DataMember(Name = "dia", EmitDefaultValue = false)]
+        /// <value>Número do dia.</value>
+        [DataMember(Name = "dia", IsRequired = true, EmitDefaultValue = true)]
         public int dia { get; set; }
 
         /// <summary>

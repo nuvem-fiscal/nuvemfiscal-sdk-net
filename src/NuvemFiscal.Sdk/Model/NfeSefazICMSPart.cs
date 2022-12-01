@@ -37,8 +37,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazICMSPart" /> class.
         /// </summary>
         /// <param name="orig">Origem da mercadoria:  0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  1 - Estrangeira - Importação direta, exceto a indicada no código 6;  2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%. (required).</param>
-        /// <param name="cST">Tributação pelo ICMS  10 - Tributada e com cobrança do ICMS por substituição tributária;  90 – Outros. (required).</param>
-        /// <param name="modBC">Modalidade de determinação da BC do ICMS:  0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação. (required).</param>
+        /// <param name="cST">Tributação pelo ICMS   10 - Tributada e com cobrança do ICMS por substituição tributária;  90 – Outros. (required).</param>
+        /// <param name="modBC">Modalidade de determinação da BC do ICMS:   0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação. (required).</param>
         /// <param name="vBC">Valor da BC do ICMS. (required).</param>
         /// <param name="pRedBC">Percentual de redução da BC..</param>
         /// <param name="pICMS">Alíquota do ICMS. (required).</param>
@@ -49,9 +49,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBCST">Valor da BC do ICMS ST. (required).</param>
         /// <param name="pICMSST">Alíquota do ICMS ST. (required).</param>
         /// <param name="vICMSST">Valor do ICMS ST. (required).</param>
+        /// <param name="vBCFCPST">Valor da Base de cálculo do FCP retido por substituicao tributaria..</param>
+        /// <param name="pFCPST">Percentual de FCP retido por substituição tributária..</param>
+        /// <param name="vFCPST">Valor do FCP retido por substituição tributária..</param>
         /// <param name="pBCOp">Percentual para determinação do valor  da Base de Cálculo da operação própria. (required).</param>
         /// <param name="uFST">Sigla da UF para qual é devido o ICMS ST da operação. (required).</param>
-        public NfeSefazICMSPart(int orig = default(int), string cST = default(string), int modBC = default(int), decimal vBC = default(decimal), decimal pRedBC = default(decimal), decimal pICMS = default(decimal), decimal vICMS = default(decimal), int modBCST = default(int), decimal pMVAST = default(decimal), decimal pRedBCST = default(decimal), decimal vBCST = default(decimal), decimal pICMSST = default(decimal), decimal vICMSST = default(decimal), decimal pBCOp = default(decimal), string uFST = default(string))
+        public NfeSefazICMSPart(int orig = default(int), string cST = default(string), int modBC = default(int), decimal vBC = default(decimal), decimal pRedBC = default(decimal), decimal pICMS = default(decimal), decimal vICMS = default(decimal), int modBCST = default(int), decimal pMVAST = default(decimal), decimal pRedBCST = default(decimal), decimal vBCST = default(decimal), decimal pICMSST = default(decimal), decimal vICMSST = default(decimal), decimal vBCFCPST = default(decimal), decimal pFCPST = default(decimal), decimal vFCPST = default(decimal), decimal pBCOp = default(decimal), string uFST = default(string))
         {
             this.orig = orig;
             // to ensure "cST" is required (not null)
@@ -78,6 +81,9 @@ namespace NuvemFiscal.Sdk.Model
             this.pRedBC = pRedBC;
             this.pMVAST = pMVAST;
             this.pRedBCST = pRedBCST;
+            this.vBCFCPST = vBCFCPST;
+            this.pFCPST = pFCPST;
+            this.vFCPST = vFCPST;
         }
 
         /// <summary>
@@ -88,16 +94,16 @@ namespace NuvemFiscal.Sdk.Model
         public int orig { get; set; }
 
         /// <summary>
-        /// Tributação pelo ICMS  10 - Tributada e com cobrança do ICMS por substituição tributária;  90 – Outros.
+        /// Tributação pelo ICMS   10 - Tributada e com cobrança do ICMS por substituição tributária;  90 – Outros.
         /// </summary>
-        /// <value>Tributação pelo ICMS  10 - Tributada e com cobrança do ICMS por substituição tributária;  90 – Outros.</value>
+        /// <value>Tributação pelo ICMS   10 - Tributada e com cobrança do ICMS por substituição tributária;  90 – Outros.</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
         /// <summary>
-        /// Modalidade de determinação da BC do ICMS:  0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.
+        /// Modalidade de determinação da BC do ICMS:   0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.
         /// </summary>
-        /// <value>Modalidade de determinação da BC do ICMS:  0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.</value>
+        /// <value>Modalidade de determinação da BC do ICMS:   0 - Margem Valor Agregado (%%);  1 - Pauta (valor);  2 - Preço Tabelado Máximo (valor);  3 - Valor da Operação.</value>
         [DataMember(Name = "modBC", IsRequired = true, EmitDefaultValue = true)]
         public int modBC { get; set; }
 
@@ -172,6 +178,27 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vICMSST { get; set; }
 
         /// <summary>
+        /// Valor da Base de cálculo do FCP retido por substituicao tributaria.
+        /// </summary>
+        /// <value>Valor da Base de cálculo do FCP retido por substituicao tributaria.</value>
+        [DataMember(Name = "vBCFCPST", EmitDefaultValue = false)]
+        public decimal vBCFCPST { get; set; }
+
+        /// <summary>
+        /// Percentual de FCP retido por substituição tributária.
+        /// </summary>
+        /// <value>Percentual de FCP retido por substituição tributária.</value>
+        [DataMember(Name = "pFCPST", EmitDefaultValue = false)]
+        public decimal pFCPST { get; set; }
+
+        /// <summary>
+        /// Valor do FCP retido por substituição tributária.
+        /// </summary>
+        /// <value>Valor do FCP retido por substituição tributária.</value>
+        [DataMember(Name = "vFCPST", EmitDefaultValue = false)]
+        public decimal vFCPST { get; set; }
+
+        /// <summary>
         /// Percentual para determinação do valor  da Base de Cálculo da operação própria.
         /// </summary>
         /// <value>Percentual para determinação do valor  da Base de Cálculo da operação própria.</value>
@@ -206,6 +233,9 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  vBCST: ").Append(vBCST).Append("\n");
             sb.Append("  pICMSST: ").Append(pICMSST).Append("\n");
             sb.Append("  vICMSST: ").Append(vICMSST).Append("\n");
+            sb.Append("  vBCFCPST: ").Append(vBCFCPST).Append("\n");
+            sb.Append("  pFCPST: ").Append(pFCPST).Append("\n");
+            sb.Append("  vFCPST: ").Append(vFCPST).Append("\n");
             sb.Append("  pBCOp: ").Append(pBCOp).Append("\n");
             sb.Append("  UFST: ").Append(UFST).Append("\n");
             sb.Append("}\n");
@@ -297,6 +327,18 @@ namespace NuvemFiscal.Sdk.Model
                     this.vICMSST.Equals(input.vICMSST)
                 ) && 
                 (
+                    this.vBCFCPST == input.vBCFCPST ||
+                    this.vBCFCPST.Equals(input.vBCFCPST)
+                ) && 
+                (
+                    this.pFCPST == input.pFCPST ||
+                    this.pFCPST.Equals(input.pFCPST)
+                ) && 
+                (
+                    this.vFCPST == input.vFCPST ||
+                    this.vFCPST.Equals(input.vFCPST)
+                ) && 
+                (
                     this.pBCOp == input.pBCOp ||
                     this.pBCOp.Equals(input.pBCOp)
                 ) && 
@@ -332,6 +374,9 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.vBCST.GetHashCode();
                 hashCode = (hashCode * 59) + this.pICMSST.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSST.GetHashCode();
+                hashCode = (hashCode * 59) + this.vBCFCPST.GetHashCode();
+                hashCode = (hashCode * 59) + this.pFCPST.GetHashCode();
+                hashCode = (hashCode * 59) + this.vFCPST.GetHashCode();
                 hashCode = (hashCode * 59) + this.pBCOp.GetHashCode();
                 if (this.UFST != null)
                 {

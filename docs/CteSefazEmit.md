@@ -11,6 +11,7 @@ Nome | Tipo | Descrição | Comentários
 **xNome** | **string** | Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa. | [optional] 
 **xFant** | **string** | Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa. | [optional] 
 **enderEmit** | [**CteSefazEndeEmi**](CteSefazEndeEmi.md) |  | [optional] 
+**CRT** | **int** | Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional;   2&#x3D;Simples Nacional, excesso sublimite de receita bruta;  3&#x3D;Regime Normal. | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

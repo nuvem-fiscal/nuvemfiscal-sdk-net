@@ -102,7 +102,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dataEncerramento">Data que o manifesto foi encerrado..</param>
         /// <param name="uf">UF de encerramento do manifesto..</param>
         /// <param name="codigoMunicipio">Código do Município de encerramento do manifesto..</param>
-        /// <param name="id">ID único gerado pela Nuvem Fiscal para este documento..</param>
+        /// <param name="id">ID único gerado pela Nuvem Fiscal para este evento..</param>
         /// <param name="ambiente">Identificação do ambiente..</param>
         /// <param name="status">Status do Evento..</param>
         /// <param name="autor">autor.</param>
@@ -160,9 +160,9 @@ namespace NuvemFiscal.Sdk.Model
         public int codigo_municipio { get; set; }
 
         /// <summary>
-        /// ID único gerado pela Nuvem Fiscal para este documento.
+        /// ID único gerado pela Nuvem Fiscal para este evento.
         /// </summary>
-        /// <value>ID único gerado pela Nuvem Fiscal para este documento.</value>
+        /// <value>ID único gerado pela Nuvem Fiscal para este evento.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
 

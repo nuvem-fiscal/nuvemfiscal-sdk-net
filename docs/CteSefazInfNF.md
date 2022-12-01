@@ -6,7 +6,7 @@ Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **nRoma** | **string** | Número do Romaneio da NF. | [optional] 
 **nPed** | **string** | Número do Pedido da NF. | [optional] 
-**mod** | **string** | Modelo da Nota Fiscal.  Preencher com:  01 - NF Modelo 01/1A e Avulsa;  04 - NF de Produtor. | 
+**mod** | **string** | Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor. | 
 **serie** | **string** | Série. | 
 **nDoc** | **string** | Número. | 
 **dEmi** | **DateTime** | Data de Emissão.  Formato AAAA-MM-DD. | 
@@ -16,7 +16,7 @@ Nome | Tipo | Descrição | Comentários
 **vST** | **decimal** | Valor Total do ICMS ST. | 
 **vProd** | **decimal** | Valor Total dos Produtos. | 
 **vNF** | **decimal** | Valor Total da NF. | 
-**nCFOP** | **int** | CFOP Predominante.  CFOP da NF ou, na existência de mais de um, predominância pelo critério de valor econômico. | 
+**nCFOP** | **string** | CFOP Predominante.  CFOP da NF ou, na existência de mais de um, predominância pelo critério de valor econômico. | 
 **nPeso** | **decimal** | Peso total em Kg. | [optional] 
 **PIN** | **string** | PIN SUFRAMA.  PIN atribuído pela SUFRAMA para a operação. | [optional] 
 **dPrev** | **DateTime** | Data prevista de entrega.  Formato AAAA-MM-DD. | [optional] 

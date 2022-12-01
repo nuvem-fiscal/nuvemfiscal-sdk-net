@@ -38,13 +38,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="cUF">Código da UF do emitente do MDF-e.  Código da UF do emitente do Documento Fiscal. Utilizar a  Tabela do IBGE de código de unidades da federação. (required).</param>
         /// <param name="tpAmb">Tipo do Ambiente.  1 - Produção  2 - Homologação..</param>
-        /// <param name="tpEmit">Tipo do Emitente.  1 - Prestador de serviço de transporte  2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado    OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e. (required).</param>
+        /// <param name="tpEmit">Tipo do Emitente.  1 - Prestador de serviço de transporte   2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado     OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e. (required).</param>
         /// <param name="tpTransp">Tipo do Transportador.  1 - ETC    2 - TAC    3 - CTC..</param>
         /// <param name="mod">Modelo do Manifesto Eletrônico.  Utilizar o código 58 para identificação do MDF-e..</param>
         /// <param name="serie">Série do Manifesto.  Informar a série do documento fiscal (informar zero se inexistente).  Série na faixa [920-969]: Reservada para emissão por contribuinte pessoa física com inscrição estadual. (required).</param>
         /// <param name="nMDF">Número do Manifesto.  Número que identifica o Manifesto. 1 a 999999999. (required).</param>
-        /// <param name="cMDF">Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento. (required).</param>
-        /// <param name="cDV">Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso. (required).</param>
+        /// <param name="cMDF">Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="cDV">Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado..</param>
         /// <param name="modal">Modalidade de transporte.  1 - Rodoviário;  2 - Aéreo; 3 - Aquaviário; 4 - Ferroviário. (required).</param>
         /// <param name="dhEmi">Data e hora de emissão do Manifesto.  Formato AAAA-MM-DDTHH:MM:DD TZD. (required).</param>
         /// <param name="tpEmis">Forma de emissão do Manifesto.  1 - Normal  ; 2 - Contingência; 3-Regime Especial NFF. (required).</param>
@@ -57,14 +57,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dhIniViagem">Data e hora previstos de inicio da viagem.  Formato AAAA-MM-DDTHH:MM:DD TZD..</param>
         /// <param name="indCanalVerde">Indicador de participação do Canal Verde..</param>
         /// <param name="indCarregaPosterior">Indicador de MDF-e com inclusão da Carga posterior a emissão por evento de inclusão de DF-e..</param>
-        public MdfeSefazIde(int cUF = default(int), int tpAmb = default(int), int tpEmit = default(int), int tpTransp = default(int), int mod = default(int), int serie = default(int), int nMDF = default(int), int cMDF = default(int), int cDV = default(int), int modal = default(int), DateTime dhEmi = default(DateTime), int tpEmis = default(int), string procEmi = default(string), string verProc = default(string), string uFIni = default(string), string uFFim = default(string), List<MdfeSefazInfMunCarrega> infMunCarrega = default(List<MdfeSefazInfMunCarrega>), List<MdfeSefazInfPercurso> infPercurso = default(List<MdfeSefazInfPercurso>), DateTime dhIniViagem = default(DateTime), int indCanalVerde = default(int), int indCarregaPosterior = default(int))
+        public MdfeSefazIde(int cUF = default(int), int tpAmb = default(int), int tpEmit = default(int), int tpTransp = default(int), int mod = default(int), int serie = default(int), int nMDF = default(int), string cMDF = default(string), int cDV = default(int), int modal = default(int), DateTime dhEmi = default(DateTime), int tpEmis = default(int), string procEmi = default(string), string verProc = default(string), string uFIni = default(string), string uFFim = default(string), List<MdfeSefazInfMunCarrega> infMunCarrega = default(List<MdfeSefazInfMunCarrega>), List<MdfeSefazInfPercurso> infPercurso = default(List<MdfeSefazInfPercurso>), DateTime dhIniViagem = default(DateTime), int indCanalVerde = default(int), int indCarregaPosterior = default(int))
         {
             this.cUF = cUF;
             this.tpEmit = tpEmit;
             this.serie = serie;
             this.nMDF = nMDF;
-            this.cMDF = cMDF;
-            this.cDV = cDV;
             this.modal = modal;
             this.dhEmi = dhEmi;
             this.tpEmis = tpEmis;
@@ -101,6 +99,8 @@ namespace NuvemFiscal.Sdk.Model
             this.tpAmb = tpAmb;
             this.tpTransp = tpTransp;
             this.mod = mod;
+            this.cMDF = cMDF;
+            this.cDV = cDV;
             this.infPercurso = infPercurso;
             this.dhIniViagem = dhIniViagem;
             this.indCanalVerde = indCanalVerde;
@@ -122,9 +122,9 @@ namespace NuvemFiscal.Sdk.Model
         public int tpAmb { get; set; }
 
         /// <summary>
-        /// Tipo do Emitente.  1 - Prestador de serviço de transporte  2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado    OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.
+        /// Tipo do Emitente.  1 - Prestador de serviço de transporte   2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado     OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.
         /// </summary>
-        /// <value>Tipo do Emitente.  1 - Prestador de serviço de transporte  2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado    OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.</value>
+        /// <value>Tipo do Emitente.  1 - Prestador de serviço de transporte   2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado     OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.</value>
         [DataMember(Name = "tpEmit", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmit { get; set; }
 
@@ -157,17 +157,17 @@ namespace NuvemFiscal.Sdk.Model
         public int nMDF { get; set; }
 
         /// <summary>
-        /// Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.
+        /// Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.
         /// </summary>
-        /// <value>Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.</value>
-        [DataMember(Name = "cMDF", IsRequired = true, EmitDefaultValue = true)]
-        public int cMDF { get; set; }
+        /// <value>Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.</value>
+        [DataMember(Name = "cMDF", EmitDefaultValue = false)]
+        public string cMDF { get; set; }
 
         /// <summary>
-        /// Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.
+        /// Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.
         /// </summary>
-        /// <value>Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.</value>
-        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.</value>
+        [DataMember(Name = "cDV", EmitDefaultValue = false)]
         public int cDV { get; set; }
 
         /// <summary>
@@ -348,7 +348,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMDF == input.cMDF ||
-                    this.cMDF.Equals(input.cMDF)
+                    (this.cMDF != null &&
+                    this.cMDF.Equals(input.cMDF))
                 ) && 
                 (
                     this.cDV == input.cDV ||
@@ -430,7 +431,10 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.mod.GetHashCode();
                 hashCode = (hashCode * 59) + this.serie.GetHashCode();
                 hashCode = (hashCode * 59) + this.nMDF.GetHashCode();
-                hashCode = (hashCode * 59) + this.cMDF.GetHashCode();
+                if (this.cMDF != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMDF.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.cDV.GetHashCode();
                 hashCode = (hashCode * 59) + this.modal.GetHashCode();
                 if (this.dhEmi != null)

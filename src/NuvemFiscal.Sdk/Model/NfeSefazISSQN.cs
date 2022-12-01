@@ -52,11 +52,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPais">Código de Pais..</param>
         /// <param name="nProcesso">Número do Processo administrativo ou judicial de suspenção do processo..</param>
         /// <param name="indIncentivo">Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não. (required).</param>
-        public NfeSefazISSQN(decimal vBC = default(decimal), decimal vAliq = default(decimal), decimal vISSQN = default(decimal), int cMunFG = default(int), string cListServ = default(string), decimal vDeducao = default(decimal), decimal vOutro = default(decimal), decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal), decimal vISSRet = default(decimal), int indISS = default(int), string cServico = default(string), int cMun = default(int), int cPais = default(int), string nProcesso = default(string), int indIncentivo = default(int))
+        public NfeSefazISSQN(decimal vBC = default(decimal), decimal vAliq = default(decimal), decimal vISSQN = default(decimal), string cMunFG = default(string), string cListServ = default(string), decimal vDeducao = default(decimal), decimal vOutro = default(decimal), decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal), decimal vISSRet = default(decimal), int indISS = default(int), string cServico = default(string), string cMun = default(string), int cPais = default(int), string nProcesso = default(string), int indIncentivo = default(int))
         {
             this.vBC = vBC;
             this.vAliq = vAliq;
             this.vISSQN = vISSQN;
+            // to ensure "cMunFG" is required (not null)
+            if (cMunFG == null)
+            {
+                throw new ArgumentNullException("cMunFG is a required property for NfeSefazISSQN and cannot be null");
+            }
             this.cMunFG = cMunFG;
             // to ensure "cListServ" is required (not null)
             if (cListServ == null)
@@ -103,7 +108,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Informar o município de ocorrência do fato gerador do ISSQN. Utilizar a Tabela do IBGE (Anexo VII - Tabela de UF, Município e País). “Atenção, não vincular com os campos B12, C10 ou E10” v2.0.</value>
         [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunFG { get; set; }
+        public string cMunFG { get; set; }
 
         /// <summary>
         /// Informar o Item da lista de serviços da LC 116/03 em que se classifica o serviço.
@@ -166,7 +171,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de Incidência do Imposto.</value>
         [DataMember(Name = "cMun", EmitDefaultValue = false)]
-        public int cMun { get; set; }
+        public string cMun { get; set; }
 
         /// <summary>
         /// Código de Pais.
@@ -262,7 +267,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMunFG == input.cMunFG ||
-                    this.cMunFG.Equals(input.cMunFG)
+                    (this.cMunFG != null &&
+                    this.cMunFG.Equals(input.cMunFG))
                 ) && 
                 (
                     this.cListServ == input.cListServ ||
@@ -300,7 +306,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMun == input.cMun ||
-                    this.cMun.Equals(input.cMun)
+                    (this.cMun != null &&
+                    this.cMun.Equals(input.cMun))
                 ) && 
                 (
                     this.cPais == input.cPais ||
@@ -329,7 +336,10 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.vBC.GetHashCode();
                 hashCode = (hashCode * 59) + this.vAliq.GetHashCode();
                 hashCode = (hashCode * 59) + this.vISSQN.GetHashCode();
-                hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
+                if (this.cMunFG != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
+                }
                 if (this.cListServ != null)
                 {
                     hashCode = (hashCode * 59) + this.cListServ.GetHashCode();
@@ -344,7 +354,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cServico.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                if (this.cMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.cPais.GetHashCode();
                 if (this.nProcesso != null)
                 {

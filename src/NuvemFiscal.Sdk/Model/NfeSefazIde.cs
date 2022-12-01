@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazIde" /> class.
         /// </summary>
         /// <param name="cUF">Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE. (required).</param>
-        /// <param name="cNF">Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e. (required).</param>
+        /// <param name="cNF">Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.  Geramos automaticamente quando nenhum valor é informado..</param>
         /// <param name="natOp">Descrição da Natureza da Operação. (required).</param>
         /// <param name="mod">Código do modelo do Documento Fiscal. 55 &#x3D; NF-e; 65 &#x3D; NFC-e..</param>
         /// <param name="serie">Série do Documento Fiscal  série normal 0-889  Avulsa Fisco 890-899  SCAN 900-999. (required).</param>
@@ -49,21 +49,20 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cMunFG">Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE). (required).</param>
         /// <param name="tpImp">Formato de impressão do DANFE (0-sem DANFE;1-DANFe Retrato; 2-DANFe Paisagem;3-DANFe Simplificado;             4-DANFe NFC-e;5-DANFe NFC-e em mensagem eletrônica). (required).</param>
         /// <param name="tpEmis">Forma de emissão da NF-e  1 - Normal;  2 - Contingência FS  3 - Regime Especial NFF (NT 2021.002)  4 - Contingência DPEC  5 - Contingência FSDA  6 - Contingência SVC - AN  7 - Contingência SVC - RS  9 - Contingência off-line NFC-e. (required).</param>
-        /// <param name="cDV">Digito Verificador da Chave de Acesso da NF-e. (required).</param>
+        /// <param name="cDV">Digito Verificador da Chave de Acesso da NF-e.  Geramos automaticamente quando nenhum valor é informado..</param>
         /// <param name="tpAmb">Identificação do Ambiente:  1 - Produção  2 - Homologação..</param>
         /// <param name="finNFe">Finalidade da emissão da NF-e:  1 - NFe normal  2 - NFe complementar  3 - NFe de ajuste  4 - Devolução/Retorno. (required).</param>
         /// <param name="indFinal">Indica operação com consumidor final (0-Não;1-Consumidor Final). (required).</param>
         /// <param name="indPres">Indicador de presença do comprador no estabelecimento comercial no momento da oepração             (0-Não se aplica (ex.: Nota Fiscal complementar ou de ajuste;1-Operação presencial;2-Não presencial, internet;3-Não presencial, teleatendimento;4-NFC-e entrega em domicílio;5-Operação presencial, fora do estabelecimento;9-Não presencial, outros). (required).</param>
-        /// <param name="indIntermed">Indicador de intermediador/marketplace             0&#x3D;Operação sem intermediador (em site ou plataforma própria)             1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace)..</param>
+        /// <param name="indIntermed">Indicador de intermediador/marketplace              0&#x3D;Operação sem intermediador (em site ou plataforma própria)              1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace)..</param>
         /// <param name="procEmi">Processo de emissão utilizado com a seguinte codificação:  0 - emissão de NF-e com aplicativo do contribuinte;  1 - emissão de NF-e avulsa pelo Fisco;  2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco;  3- emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco. (required).</param>
         /// <param name="verProc">versão do aplicativo utilizado no processo de  emissão. (required).</param>
         /// <param name="dhCont">Informar a data e hora de entrada em contingência contingência no formato  (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00..</param>
         /// <param name="xJust">Informar a Justificativa da entrada..</param>
         /// <param name="nFref">Grupo de infromações da NF referenciada..</param>
-        public NfeSefazIde(int cUF = default(int), int cNF = default(int), string natOp = default(string), int mod = default(int), int serie = default(int), int nNF = default(int), DateTime dhEmi = default(DateTime), DateTime dhSaiEnt = default(DateTime), int tpNF = default(int), int idDest = default(int), int cMunFG = default(int), int tpImp = default(int), int tpEmis = default(int), int cDV = default(int), int tpAmb = default(int), int finNFe = default(int), int indFinal = default(int), int indPres = default(int), int indIntermed = default(int), int procEmi = default(int), string verProc = default(string), DateTime dhCont = default(DateTime), string xJust = default(string), List<NfeSefazNFref> nFref = default(List<NfeSefazNFref>))
+        public NfeSefazIde(int cUF = default(int), string cNF = default(string), string natOp = default(string), int mod = default(int), int serie = default(int), int nNF = default(int), DateTime dhEmi = default(DateTime), DateTime dhSaiEnt = default(DateTime), int tpNF = default(int), int idDest = default(int), string cMunFG = default(string), int tpImp = default(int), int tpEmis = default(int), int cDV = default(int), int tpAmb = default(int), int finNFe = default(int), int indFinal = default(int), int indPres = default(int), int indIntermed = default(int), int procEmi = default(int), string verProc = default(string), DateTime dhCont = default(DateTime), string xJust = default(string), List<NfeSefazNFref> nFref = default(List<NfeSefazNFref>))
         {
             this.cUF = cUF;
-            this.cNF = cNF;
             // to ensure "natOp" is required (not null)
             if (natOp == null)
             {
@@ -75,10 +74,14 @@ namespace NuvemFiscal.Sdk.Model
             this.dhEmi = dhEmi;
             this.tpNF = tpNF;
             this.idDest = idDest;
+            // to ensure "cMunFG" is required (not null)
+            if (cMunFG == null)
+            {
+                throw new ArgumentNullException("cMunFG is a required property for NfeSefazIde and cannot be null");
+            }
             this.cMunFG = cMunFG;
             this.tpImp = tpImp;
             this.tpEmis = tpEmis;
-            this.cDV = cDV;
             this.finNFe = finNFe;
             this.indFinal = indFinal;
             this.indPres = indPres;
@@ -89,8 +92,10 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("verProc is a required property for NfeSefazIde and cannot be null");
             }
             this.verProc = verProc;
+            this.cNF = cNF;
             this.mod = mod;
             this.dhSaiEnt = dhSaiEnt;
+            this.cDV = cDV;
             this.tpAmb = tpAmb;
             this.indIntermed = indIntermed;
             this.dhCont = dhCont;
@@ -106,11 +111,11 @@ namespace NuvemFiscal.Sdk.Model
         public int cUF { get; set; }
 
         /// <summary>
-        /// Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.
+        /// Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.  Geramos automaticamente quando nenhum valor é informado.
         /// </summary>
-        /// <value>Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.</value>
-        [DataMember(Name = "cNF", IsRequired = true, EmitDefaultValue = true)]
-        public int cNF { get; set; }
+        /// <value>Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.  Geramos automaticamente quando nenhum valor é informado.</value>
+        [DataMember(Name = "cNF", EmitDefaultValue = false)]
+        public string cNF { get; set; }
 
         /// <summary>
         /// Descrição da Natureza da Operação.
@@ -173,7 +178,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).</value>
         [DataMember(Name = "cMunFG", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunFG { get; set; }
+        public string cMunFG { get; set; }
 
         /// <summary>
         /// Formato de impressão do DANFE (0-sem DANFE;1-DANFe Retrato; 2-DANFe Paisagem;3-DANFe Simplificado;             4-DANFe NFC-e;5-DANFe NFC-e em mensagem eletrônica).
@@ -190,10 +195,10 @@ namespace NuvemFiscal.Sdk.Model
         public int tpEmis { get; set; }
 
         /// <summary>
-        /// Digito Verificador da Chave de Acesso da NF-e.
+        /// Digito Verificador da Chave de Acesso da NF-e.  Geramos automaticamente quando nenhum valor é informado.
         /// </summary>
-        /// <value>Digito Verificador da Chave de Acesso da NF-e.</value>
-        [DataMember(Name = "cDV", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Digito Verificador da Chave de Acesso da NF-e.  Geramos automaticamente quando nenhum valor é informado.</value>
+        [DataMember(Name = "cDV", EmitDefaultValue = false)]
         public int cDV { get; set; }
 
         /// <summary>
@@ -225,9 +230,9 @@ namespace NuvemFiscal.Sdk.Model
         public int indPres { get; set; }
 
         /// <summary>
-        /// Indicador de intermediador/marketplace             0&#x3D;Operação sem intermediador (em site ou plataforma própria)             1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace).
+        /// Indicador de intermediador/marketplace              0&#x3D;Operação sem intermediador (em site ou plataforma própria)              1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace).
         /// </summary>
-        /// <value>Indicador de intermediador/marketplace             0&#x3D;Operação sem intermediador (em site ou plataforma própria)             1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace).</value>
+        /// <value>Indicador de intermediador/marketplace              0&#x3D;Operação sem intermediador (em site ou plataforma própria)              1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace).</value>
         [DataMember(Name = "indIntermed", EmitDefaultValue = false)]
         public int indIntermed { get; set; }
 
@@ -339,7 +344,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cNF == input.cNF ||
-                    this.cNF.Equals(input.cNF)
+                    (this.cNF != null &&
+                    this.cNF.Equals(input.cNF))
                 ) && 
                 (
                     this.natOp == input.natOp ||
@@ -378,7 +384,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMunFG == input.cMunFG ||
-                    this.cMunFG.Equals(input.cMunFG)
+                    (this.cMunFG != null &&
+                    this.cMunFG.Equals(input.cMunFG))
                 ) && 
                 (
                     this.tpImp == input.tpImp ||
@@ -449,7 +456,10 @@ namespace NuvemFiscal.Sdk.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.cUF.GetHashCode();
-                hashCode = (hashCode * 59) + this.cNF.GetHashCode();
+                if (this.cNF != null)
+                {
+                    hashCode = (hashCode * 59) + this.cNF.GetHashCode();
+                }
                 if (this.natOp != null)
                 {
                     hashCode = (hashCode * 59) + this.natOp.GetHashCode();
@@ -467,7 +477,10 @@ namespace NuvemFiscal.Sdk.Model
                 }
                 hashCode = (hashCode * 59) + this.tpNF.GetHashCode();
                 hashCode = (hashCode * 59) + this.idDest.GetHashCode();
-                hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
+                if (this.cMunFG != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.tpImp.GetHashCode();
                 hashCode = (hashCode * 59) + this.tpEmis.GetHashCode();
                 hashCode = (hashCode * 59) + this.cDV.GetHashCode();

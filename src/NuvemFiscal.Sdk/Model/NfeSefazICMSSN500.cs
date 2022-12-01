@@ -49,9 +49,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBCEfet">Valor da base de cálculo efetiva..</param>
         /// <param name="pICMSEfet">Alíquota do ICMS efetiva..</param>
         /// <param name="vICMSEfet">Valor do ICMS efetivo..</param>
-        public NfeSefazICMSSN500(int orig = default(int), int cSOSN = default(int), decimal vBCSTRet = default(decimal), decimal pST = default(decimal), decimal vICMSSubstituto = default(decimal), decimal vICMSSTRet = default(decimal), decimal vBCFCPSTRet = default(decimal), decimal pFCPSTRet = default(decimal), decimal vFCPSTRet = default(decimal), decimal pRedBCEfet = default(decimal), decimal vBCEfet = default(decimal), decimal pICMSEfet = default(decimal), decimal vICMSEfet = default(decimal))
+        public NfeSefazICMSSN500(int orig = default(int), string cSOSN = default(string), decimal vBCSTRet = default(decimal), decimal pST = default(decimal), decimal vICMSSubstituto = default(decimal), decimal vICMSSTRet = default(decimal), decimal vBCFCPSTRet = default(decimal), decimal pFCPSTRet = default(decimal), decimal vFCPSTRet = default(decimal), decimal pRedBCEfet = default(decimal), decimal vBCEfet = default(decimal), decimal pICMSEfet = default(decimal), decimal vICMSEfet = default(decimal))
         {
             this.orig = orig;
+            // to ensure "cSOSN" is required (not null)
+            if (cSOSN == null)
+            {
+                throw new ArgumentNullException("cSOSN is a required property for NfeSefazICMSSN500 and cannot be null");
+            }
             this.CSOSN = cSOSN;
             this.vBCSTRet = vBCSTRet;
             this.pST = pST;
@@ -78,7 +83,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>500 – ICMS cobrado anterirmente por substituição tributária (substituído) ou por antecipação  (v.2.0).</value>
         [DataMember(Name = "CSOSN", IsRequired = true, EmitDefaultValue = true)]
-        public int CSOSN { get; set; }
+        public string CSOSN { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS ST retido anteriormente (v2.0).
@@ -219,7 +224,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CSOSN == input.CSOSN ||
-                    this.CSOSN.Equals(input.CSOSN)
+                    (this.CSOSN != null &&
+                    this.CSOSN.Equals(input.CSOSN))
                 ) && 
                 (
                     this.vBCSTRet == input.vBCSTRet ||
@@ -277,7 +283,10 @@ namespace NuvemFiscal.Sdk.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.orig.GetHashCode();
-                hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                if (this.CSOSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.vBCSTRet.GetHashCode();
                 hashCode = (hashCode * 59) + this.pST.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSSubstituto.GetHashCode();

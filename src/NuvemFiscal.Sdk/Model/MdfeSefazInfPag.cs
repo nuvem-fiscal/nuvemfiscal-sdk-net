@@ -45,9 +45,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="indAltoDesemp">Indicador de operação de transporte de alto desempenho.  Operação de transporte com utilização de veículos de frotas dedicadas ou fidelizadas.  Preencher com “1” para indicar operação de transporte de alto desempenho, demais casos não informar a tag..</param>
         /// <param name="indPag">Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;. (required).</param>
         /// <param name="vAdiant">Valor do Adiantamento (usar apenas em pagamento à Prazo..</param>
+        /// <param name="indAntecipaAdiant">Indicador para declarar concordância em antecipar o adiantamento.  Informar a tag somente se for autorizado antecipar o adiantamento..</param>
         /// <param name="infPrazo">Informações do pagamento a prazo.  Informar somente se indPag for à Prazo..</param>
+        /// <param name="tpAntecip">Tipo de Permissão em relação a antecipação das parcelas.  0 - Não permite antecipar    1 - Permite antecipar as parcelas    2 - Permite antecipar as parcelas mediante confirmação..</param>
         /// <param name="infBanc">infBanc (required).</param>
-        public MdfeSefazInfPag(string xNome = default(string), string cPF = default(string), string cNPJ = default(string), string idEstrangeiro = default(string), List<MdfeSefazComp> comp = default(List<MdfeSefazComp>), decimal vContrato = default(decimal), int indAltoDesemp = default(int), int indPag = default(int), decimal vAdiant = default(decimal), List<MdfeSefazInfPrazo> infPrazo = default(List<MdfeSefazInfPrazo>), MdfeSefazInfBanc infBanc = default(MdfeSefazInfBanc))
+        public MdfeSefazInfPag(string xNome = default(string), string cPF = default(string), string cNPJ = default(string), string idEstrangeiro = default(string), List<MdfeSefazComp> comp = default(List<MdfeSefazComp>), decimal vContrato = default(decimal), int indAltoDesemp = default(int), int indPag = default(int), decimal vAdiant = default(decimal), int indAntecipaAdiant = default(int), List<MdfeSefazInfPrazo> infPrazo = default(List<MdfeSefazInfPrazo>), int tpAntecip = default(int), MdfeSefazInfBanc infBanc = default(MdfeSefazInfBanc))
         {
             // to ensure "comp" is required (not null)
             if (comp == null)
@@ -69,7 +71,9 @@ namespace NuvemFiscal.Sdk.Model
             this.idEstrangeiro = idEstrangeiro;
             this.indAltoDesemp = indAltoDesemp;
             this.vAdiant = vAdiant;
+            this.indAntecipaAdiant = indAntecipaAdiant;
             this.infPrazo = infPrazo;
+            this.tpAntecip = tpAntecip;
         }
 
         /// <summary>
@@ -136,11 +140,25 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vAdiant { get; set; }
 
         /// <summary>
+        /// Indicador para declarar concordância em antecipar o adiantamento.  Informar a tag somente se for autorizado antecipar o adiantamento.
+        /// </summary>
+        /// <value>Indicador para declarar concordância em antecipar o adiantamento.  Informar a tag somente se for autorizado antecipar o adiantamento.</value>
+        [DataMember(Name = "indAntecipaAdiant", EmitDefaultValue = false)]
+        public int indAntecipaAdiant { get; set; }
+
+        /// <summary>
         /// Informações do pagamento a prazo.  Informar somente se indPag for à Prazo.
         /// </summary>
         /// <value>Informações do pagamento a prazo.  Informar somente se indPag for à Prazo.</value>
         [DataMember(Name = "infPrazo", EmitDefaultValue = false)]
         public List<MdfeSefazInfPrazo> infPrazo { get; set; }
+
+        /// <summary>
+        /// Tipo de Permissão em relação a antecipação das parcelas.  0 - Não permite antecipar    1 - Permite antecipar as parcelas    2 - Permite antecipar as parcelas mediante confirmação.
+        /// </summary>
+        /// <value>Tipo de Permissão em relação a antecipação das parcelas.  0 - Não permite antecipar    1 - Permite antecipar as parcelas    2 - Permite antecipar as parcelas mediante confirmação.</value>
+        [DataMember(Name = "tpAntecip", EmitDefaultValue = false)]
+        public int tpAntecip { get; set; }
 
         /// <summary>
         /// Gets or Sets infBanc
@@ -165,7 +183,9 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  indAltoDesemp: ").Append(indAltoDesemp).Append("\n");
             sb.Append("  indPag: ").Append(indPag).Append("\n");
             sb.Append("  vAdiant: ").Append(vAdiant).Append("\n");
+            sb.Append("  indAntecipaAdiant: ").Append(indAntecipaAdiant).Append("\n");
             sb.Append("  infPrazo: ").Append(infPrazo).Append("\n");
+            sb.Append("  tpAntecip: ").Append(tpAntecip).Append("\n");
             sb.Append("  infBanc: ").Append(infBanc).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -245,10 +265,18 @@ namespace NuvemFiscal.Sdk.Model
                     this.vAdiant.Equals(input.vAdiant)
                 ) && 
                 (
+                    this.indAntecipaAdiant == input.indAntecipaAdiant ||
+                    this.indAntecipaAdiant.Equals(input.indAntecipaAdiant)
+                ) && 
+                (
                     this.infPrazo == input.infPrazo ||
                     this.infPrazo != null &&
                     input.infPrazo != null &&
                     this.infPrazo.SequenceEqual(input.infPrazo)
+                ) && 
+                (
+                    this.tpAntecip == input.tpAntecip ||
+                    this.tpAntecip.Equals(input.tpAntecip)
                 ) && 
                 (
                     this.infBanc == input.infBanc ||
@@ -290,10 +318,12 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.indAltoDesemp.GetHashCode();
                 hashCode = (hashCode * 59) + this.indPag.GetHashCode();
                 hashCode = (hashCode * 59) + this.vAdiant.GetHashCode();
+                hashCode = (hashCode * 59) + this.indAntecipaAdiant.GetHashCode();
                 if (this.infPrazo != null)
                 {
                     hashCode = (hashCode * 59) + this.infPrazo.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.tpAntecip.GetHashCode();
                 if (this.infBanc != null)
                 {
                     hashCode = (hashCode * 59) + this.infBanc.GetHashCode();

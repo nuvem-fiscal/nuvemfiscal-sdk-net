@@ -36,8 +36,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazInfNFe" /> class.
         /// </summary>
-        /// <param name="versao">versao.</param>
-        /// <param name="id">id.</param>
+        /// <param name="versao">Versão do leiaute (v4.00). (required).</param>
+        /// <param name="id">PL_005d - 11/08/09 - validação do Id..</param>
         /// <param name="ide">ide (required).</param>
         /// <param name="emit">emit (required).</param>
         /// <param name="avulsa">avulsa.</param>
@@ -59,6 +59,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infSolicNFF">infSolicNFF.</param>
         public NfeSefazInfNFe(string versao = default(string), string id = default(string), NfeSefazIde ide = default(NfeSefazIde), NfeSefazEmit emit = default(NfeSefazEmit), NfeSefazAvulsa avulsa = default(NfeSefazAvulsa), NfeSefazDest dest = default(NfeSefazDest), NfeSefazLocal retirada = default(NfeSefazLocal), NfeSefazLocal entrega = default(NfeSefazLocal), List<NfeSefazAutXML> autXML = default(List<NfeSefazAutXML>), List<NfeSefazDet> det = default(List<NfeSefazDet>), NfeSefazTotal total = default(NfeSefazTotal), NfeSefazTransp transp = default(NfeSefazTransp), NfeSefazCobr cobr = default(NfeSefazCobr), NfeSefazPag pag = default(NfeSefazPag), NfeSefazInfIntermed infIntermed = default(NfeSefazInfIntermed), NfeSefazInfAdic infAdic = default(NfeSefazInfAdic), NfeSefazExporta exporta = default(NfeSefazExporta), NfeSefazCompra compra = default(NfeSefazCompra), NfeSefazCana cana = default(NfeSefazCana), NfeSefazInfRespTec infRespTec = default(NfeSefazInfRespTec), NfeSefazInfSolicNFF infSolicNFF = default(NfeSefazInfSolicNFF))
         {
+            // to ensure "versao" is required (not null)
+            if (versao == null)
+            {
+                throw new ArgumentNullException("versao is a required property for NfeSefazInfNFe and cannot be null");
+            }
+            this.versao = versao;
             // to ensure "ide" is required (not null)
             if (ide == null)
             {
@@ -95,7 +101,6 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("pag is a required property for NfeSefazInfNFe and cannot be null");
             }
             this.pag = pag;
-            this.versao = versao;
             this.Id = id;
             this.avulsa = avulsa;
             this.dest = dest;
@@ -113,14 +118,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets versao
+        /// Versão do leiaute (v4.00).
         /// </summary>
-        [DataMember(Name = "versao", EmitDefaultValue = false)]
+        /// <value>Versão do leiaute (v4.00).</value>
+        [DataMember(Name = "versao", IsRequired = true, EmitDefaultValue = true)]
         public string versao { get; set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// PL_005d - 11/08/09 - validação do Id.
         /// </summary>
+        /// <value>PL_005d - 11/08/09 - validação do Id.</value>
         [DataMember(Name = "Id", EmitDefaultValue = false)]
         public string Id { get; set; }
 

@@ -25,7 +25,7 @@ Nome | Tipo | Descrição | Comentários
 **VIN** | **string** | Informa-se o veículo tem VIN (chassi) remarcado.  R-Remarcado  N-NormalVIN. | 
 **condVeic** | **int** | Condição do veículo (1 - acabado; 2 - inacabado; 3 - semi-acabado). | 
 **cMod** | **string** | Código Marca Modelo (utilizar tabela RENAVAM). | 
-**cCorDENATRAN** | **string** | Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA  08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA. | 
+**cCorDENATRAN** | **string** | Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA   08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA. | 
 **lota** | **int** | Quantidade máxima de permitida de passageiros sentados, inclusive motorista. | 
 **tpRest** | **int** | Restrição  0 - Não há;  1 - Alienação Fiduciária;  2 - Arrendamento Mercantil;  3 - Reserva de Domínio;  4 - Penhor de Veículos;  9 - outras. | 
 

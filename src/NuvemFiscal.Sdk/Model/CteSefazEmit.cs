@@ -38,7 +38,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xNome">Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="xFant">Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="enderEmit">enderEmit.</param>
-        public CteSefazEmit(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string iEST = default(string), string xNome = default(string), string xFant = default(string), CteSefazEndeEmi enderEmit = default(CteSefazEndeEmi))
+        /// <param name="cRT">Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional;   2&#x3D;Simples Nacional, excesso sublimite de receita bruta;  3&#x3D;Regime Normal..</param>
+        public CteSefazEmit(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string iEST = default(string), string xNome = default(string), string xFant = default(string), CteSefazEndeEmi enderEmit = default(CteSefazEndeEmi), int cRT = default(int))
         {
             this.CNPJ = cNPJ;
             this.CPF = cPF;
@@ -47,6 +48,7 @@ namespace NuvemFiscal.Sdk.Model
             this.xNome = xNome;
             this.xFant = xFant;
             this.enderEmit = enderEmit;
+            this.CRT = cRT;
         }
 
         /// <summary>
@@ -98,6 +100,13 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazEndeEmi enderEmit { get; set; }
 
         /// <summary>
+        /// Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional;   2&#x3D;Simples Nacional, excesso sublimite de receita bruta;  3&#x3D;Regime Normal.
+        /// </summary>
+        /// <value>Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional;   2&#x3D;Simples Nacional, excesso sublimite de receita bruta;  3&#x3D;Regime Normal.</value>
+        [DataMember(Name = "CRT", EmitDefaultValue = false)]
+        public int CRT { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -112,6 +121,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  xNome: ").Append(xNome).Append("\n");
             sb.Append("  xFant: ").Append(xFant).Append("\n");
             sb.Append("  enderEmit: ").Append(enderEmit).Append("\n");
+            sb.Append("  CRT: ").Append(CRT).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -181,6 +191,10 @@ namespace NuvemFiscal.Sdk.Model
                     this.enderEmit == input.enderEmit ||
                     (this.enderEmit != null &&
                     this.enderEmit.Equals(input.enderEmit))
+                ) && 
+                (
+                    this.CRT == input.CRT ||
+                    this.CRT.Equals(input.CRT)
                 );
         }
 
@@ -221,6 +235,7 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.enderEmit.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.CRT.GetHashCode();
                 return hashCode;
             }
         }

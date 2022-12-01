@@ -1365,7 +1365,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
-            var ambiente = "homologacao";  // string | 
+            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.  Valores aceitos: homologacao, producao
             var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
             var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
@@ -1412,7 +1412,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **ambiente** | **string** |  |  |
+| **ambiente** | **string** | Identificação do Ambiente.  Valores aceitos: homologacao, producao |  |
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
@@ -1475,7 +1475,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
-            var ambiente = "homologacao";  // string | 
+            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.  Valores aceitos: homologacao, producao
             var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
             var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
@@ -1522,7 +1522,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **ambiente** | **string** |  |  |
+| **ambiente** | **string** | Identificação do Ambiente.  Valores aceitos: homologacao, producao |  |
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
 | **referencia** | **string** |  | [optional]  |

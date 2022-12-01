@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazComp" /> class.
         /// </summary>
-        /// <param name="tpComp">Tipo do Componente.  Preencher com: 01 - Vale Pedágio;  02 - Impostos, taxas e contribuições;  03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros. (required).</param>
+        /// <param name="tpComp">Tipo do Componente.  Preencher com: 01 - Vale Pedágio;   02 - Impostos, taxas e contribuições;   03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros. (required).</param>
         /// <param name="vComp">Valor do componente. (required).</param>
         /// <param name="xComp">Descrição do componente do tipo Outros..</param>
         public MdfeSefazComp(string tpComp = default(string), decimal vComp = default(decimal), string xComp = default(string))
@@ -52,9 +52,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo do Componente.  Preencher com: 01 - Vale Pedágio;  02 - Impostos, taxas e contribuições;  03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros.
+        /// Tipo do Componente.  Preencher com: 01 - Vale Pedágio;   02 - Impostos, taxas e contribuições;   03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros.
         /// </summary>
-        /// <value>Tipo do Componente.  Preencher com: 01 - Vale Pedágio;  02 - Impostos, taxas e contribuições;  03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros.</value>
+        /// <value>Tipo do Componente.  Preencher com: 01 - Vale Pedágio;   02 - Impostos, taxas e contribuições;   03 - Despesas (bancárias, meios de pagamento, outras)  ; 99 - Outros.</value>
         [DataMember(Name = "tpComp", IsRequired = true, EmitDefaultValue = true)]
         public string tpComp { get; set; }
 

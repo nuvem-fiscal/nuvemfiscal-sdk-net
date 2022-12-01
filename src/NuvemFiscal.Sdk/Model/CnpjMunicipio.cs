@@ -31,9 +31,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjMunicipio" /> class.
         /// </summary>
-        /// <param name="codigoTom">codigoTom.</param>
-        /// <param name="codigoIbge">codigoIbge.</param>
-        /// <param name="descricao">descricao.</param>
+        /// <param name="codigoTom">Código TOM do município..</param>
+        /// <param name="codigoIbge">Código IBGE do município..</param>
+        /// <param name="descricao">Nome do município..</param>
         public CnpjMunicipio(string codigoTom = default(string), string codigoIbge = default(string), string descricao = default(string))
         {
             this.codigo_tom = codigoTom;
@@ -42,20 +42,23 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets codigo_tom
+        /// Código TOM do município.
         /// </summary>
+        /// <value>Código TOM do município.</value>
         [DataMember(Name = "codigo_tom", EmitDefaultValue = false)]
         public string codigo_tom { get; set; }
 
         /// <summary>
-        /// Gets or Sets codigo_ibge
+        /// Código IBGE do município.
         /// </summary>
+        /// <value>Código IBGE do município.</value>
         [DataMember(Name = "codigo_ibge", EmitDefaultValue = false)]
         public string codigo_ibge { get; set; }
 
         /// <summary>
-        /// Gets or Sets descricao
+        /// Nome do município.
         /// </summary>
+        /// <value>Nome do município.</value>
         [DataMember(Name = "descricao", EmitDefaultValue = false)]
         public string descricao { get; set; }
 

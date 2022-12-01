@@ -52,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="fone">Telefone, preencher com Código DDD + número do telefone , nas operações com exterior é permtido informar o código do país + código da localidade + número do telefone..</param>
         /// <param name="email">Informar o e-mail do expedidor/Recebedor. O campo pode ser utilizado para informar o e-mail de recepção da NF-e indicada pelo expedidor..</param>
         /// <param name="iE">Inscrição Estadual (v2.0)..</param>
-        public NfeSefazLocal(string cNPJ = default(string), string cPF = default(string), string xNome = default(string), string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), int cMun = default(int), string xMun = default(string), string uF = default(string), int cEP = default(int), int cPais = default(int), string xPais = default(string), string fone = default(string), string email = default(string), string iE = default(string))
+        public NfeSefazLocal(string cNPJ = default(string), string cPF = default(string), string xNome = default(string), string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string uF = default(string), string cEP = default(string), int cPais = default(int), string xPais = default(string), string fone = default(string), string email = default(string), string iE = default(string))
         {
             // to ensure "xLgr" is required (not null)
             if (xLgr == null)
@@ -72,6 +72,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xBairro is a required property for NfeSefazLocal and cannot be null");
             }
             this.xBairro = xBairro;
+            // to ensure "cMun" is required (not null)
+            if (cMun == null)
+            {
+                throw new ArgumentNullException("cMun is a required property for NfeSefazLocal and cannot be null");
+            }
             this.cMun = cMun;
             // to ensure "xMun" is required (not null)
             if (xMun == null)
@@ -151,7 +156,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do município (utilizar a tabela do IBGE).</value>
         [DataMember(Name = "cMun", IsRequired = true, EmitDefaultValue = true)]
-        public int cMun { get; set; }
+        public string cMun { get; set; }
 
         /// <summary>
         /// Nome do município.
@@ -172,7 +177,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>CEP.</value>
         [DataMember(Name = "CEP", EmitDefaultValue = false)]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         /// <summary>
         /// Código de Pais.
@@ -305,7 +310,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMun == input.cMun ||
-                    this.cMun.Equals(input.cMun)
+                    (this.cMun != null &&
+                    this.cMun.Equals(input.cMun))
                 ) && 
                 (
                     this.xMun == input.xMun ||
@@ -319,7 +325,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CEP == input.CEP ||
-                    this.CEP.Equals(input.CEP)
+                    (this.CEP != null &&
+                    this.CEP.Equals(input.CEP))
                 ) && 
                 (
                     this.cPais == input.cPais ||
@@ -384,7 +391,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xBairro.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                if (this.cMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                }
                 if (this.xMun != null)
                 {
                     hashCode = (hashCode * 59) + this.xMun.GetHashCode();
@@ -393,7 +403,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.UF.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                if (this.CEP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.cPais.GetHashCode();
                 if (this.xPais != null)
                 {

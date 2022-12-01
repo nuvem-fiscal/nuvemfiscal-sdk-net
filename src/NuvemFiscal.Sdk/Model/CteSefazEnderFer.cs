@@ -44,7 +44,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xMun">Nome do município.  Informar EXTERIOR para operações com o exterior. (required).</param>
         /// <param name="cEP">CEP. (required).</param>
         /// <param name="uF">Sigla da UF.  Informar EX para operações com o exterior. (required).</param>
-        public CteSefazEnderFer(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), int cMun = default(int), string xMun = default(string), int cEP = default(int), string uF = default(string))
+        public CteSefazEnderFer(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string cEP = default(string), string uF = default(string))
         {
             // to ensure "xLgr" is required (not null)
             if (xLgr == null)
@@ -52,6 +52,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xLgr is a required property for CteSefazEnderFer and cannot be null");
             }
             this.xLgr = xLgr;
+            // to ensure "cMun" is required (not null)
+            if (cMun == null)
+            {
+                throw new ArgumentNullException("cMun is a required property for CteSefazEnderFer and cannot be null");
+            }
             this.cMun = cMun;
             // to ensure "xMun" is required (not null)
             if (xMun == null)
@@ -59,6 +64,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xMun is a required property for CteSefazEnderFer and cannot be null");
             }
             this.xMun = xMun;
+            // to ensure "cEP" is required (not null)
+            if (cEP == null)
+            {
+                throw new ArgumentNullException("cEP is a required property for CteSefazEnderFer and cannot be null");
+            }
             this.CEP = cEP;
             // to ensure "uF" is required (not null)
             if (uF == null)
@@ -104,7 +114,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do município.  Utilizar a tabela do IBGE       Informar 9999999 para operações com o exterior.</value>
         [DataMember(Name = "cMun", IsRequired = true, EmitDefaultValue = true)]
-        public int cMun { get; set; }
+        public string cMun { get; set; }
 
         /// <summary>
         /// Nome do município.  Informar EXTERIOR para operações com o exterior.
@@ -118,7 +128,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>CEP.</value>
         [DataMember(Name = "CEP", IsRequired = true, EmitDefaultValue = true)]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         /// <summary>
         /// Sigla da UF.  Informar EX para operações com o exterior.
@@ -200,7 +210,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMun == input.cMun ||
-                    this.cMun.Equals(input.cMun)
+                    (this.cMun != null &&
+                    this.cMun.Equals(input.cMun))
                 ) && 
                 (
                     this.xMun == input.xMun ||
@@ -209,7 +220,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CEP == input.CEP ||
-                    this.CEP.Equals(input.CEP)
+                    (this.CEP != null &&
+                    this.CEP.Equals(input.CEP))
                 ) && 
                 (
                     this.UF == input.UF ||
@@ -243,12 +255,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xBairro.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                if (this.cMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                }
                 if (this.xMun != null)
                 {
                     hashCode = (hashCode * 59) + this.xMun.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                if (this.CEP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                }
                 if (this.UF != null)
                 {
                     hashCode = (hashCode * 59) + this.UF.GetHashCode();

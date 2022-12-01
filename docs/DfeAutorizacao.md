@@ -5,7 +5,7 @@
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **digest_value** | **string** | Digest Value do DF-e processado. Utilizado para conferir a integridade do DF-e original. | [optional] 
-**id** | **string** | ID único gerado pela Nuvem Fiscal para este documento. | [optional] 
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este evento. | [optional] 
 **ambiente** | **string** | Identificação do ambiente. | [optional] 
 **status** | **string** | Status do Evento. | [optional] 
 **autor** | [**DfeAutorEvento**](DfeAutorEvento.md) |  | [optional] 

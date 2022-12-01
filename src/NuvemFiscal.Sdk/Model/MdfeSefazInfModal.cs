@@ -31,13 +31,23 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazInfModal" /> class.
         /// </summary>
-        /// <param name="versaoModal">versaoModal.</param>
+        [JsonConstructorAttribute]
+        protected MdfeSefazInfModal() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MdfeSefazInfModal" /> class.
+        /// </summary>
+        /// <param name="versaoModal">Versão do leiaute específico para o Modal. (required).</param>
         /// <param name="aereo">aereo.</param>
         /// <param name="rodo">rodo.</param>
         /// <param name="aquav">aquav.</param>
         /// <param name="ferrov">ferrov.</param>
         public MdfeSefazInfModal(string versaoModal = default(string), MdfeSefazAereo aereo = default(MdfeSefazAereo), MdfeSefazRodo rodo = default(MdfeSefazRodo), MdfeSefazAquav aquav = default(MdfeSefazAquav), MdfeSefazFerrov ferrov = default(MdfeSefazFerrov))
         {
+            // to ensure "versaoModal" is required (not null)
+            if (versaoModal == null)
+            {
+                throw new ArgumentNullException("versaoModal is a required property for MdfeSefazInfModal and cannot be null");
+            }
             this.versaoModal = versaoModal;
             this.aereo = aereo;
             this.rodo = rodo;
@@ -46,9 +56,10 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets versaoModal
+        /// Versão do leiaute específico para o Modal.
         /// </summary>
-        [DataMember(Name = "versaoModal", EmitDefaultValue = false)]
+        /// <value>Versão do leiaute específico para o Modal.</value>
+        [DataMember(Name = "versaoModal", IsRequired = true, EmitDefaultValue = true)]
         public string versaoModal { get; set; }
 
         /// <summary>

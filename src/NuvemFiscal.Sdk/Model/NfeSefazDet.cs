@@ -36,13 +36,15 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazDet" /> class.
         /// </summary>
-        /// <param name="nItem">nItem.</param>
+        /// <param name="nItem">Número do item do NF. (required).</param>
         /// <param name="prod">prod (required).</param>
         /// <param name="imposto">imposto (required).</param>
         /// <param name="impostoDevol">impostoDevol.</param>
         /// <param name="infAdProd">Informações adicionais do produto (norma referenciada, informações complementares, etc)..</param>
-        public NfeSefazDet(int nItem = default(int), NfeSefazProd prod = default(NfeSefazProd), NfeSefazImposto imposto = default(NfeSefazImposto), NfeSefazImpostoDevol impostoDevol = default(NfeSefazImpostoDevol), string infAdProd = default(string))
+        /// <param name="obsItem">obsItem.</param>
+        public NfeSefazDet(int nItem = default(int), NfeSefazProd prod = default(NfeSefazProd), NfeSefazImposto imposto = default(NfeSefazImposto), NfeSefazImpostoDevol impostoDevol = default(NfeSefazImpostoDevol), string infAdProd = default(string), NfeSefazObsItem obsItem = default(NfeSefazObsItem))
         {
+            this.nItem = nItem;
             // to ensure "prod" is required (not null)
             if (prod == null)
             {
@@ -55,15 +57,16 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("imposto is a required property for NfeSefazDet and cannot be null");
             }
             this.imposto = imposto;
-            this.nItem = nItem;
             this.impostoDevol = impostoDevol;
             this.infAdProd = infAdProd;
+            this.obsItem = obsItem;
         }
 
         /// <summary>
-        /// Gets or Sets nItem
+        /// Número do item do NF.
         /// </summary>
-        [DataMember(Name = "nItem", EmitDefaultValue = false)]
+        /// <value>Número do item do NF.</value>
+        [DataMember(Name = "nItem", IsRequired = true, EmitDefaultValue = true)]
         public int nItem { get; set; }
 
         /// <summary>
@@ -92,6 +95,12 @@ namespace NuvemFiscal.Sdk.Model
         public string infAdProd { get; set; }
 
         /// <summary>
+        /// Gets or Sets obsItem
+        /// </summary>
+        [DataMember(Name = "obsItem", EmitDefaultValue = false)]
+        public NfeSefazObsItem obsItem { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -104,6 +113,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  imposto: ").Append(imposto).Append("\n");
             sb.Append("  impostoDevol: ").Append(impostoDevol).Append("\n");
             sb.Append("  infAdProd: ").Append(infAdProd).Append("\n");
+            sb.Append("  obsItem: ").Append(obsItem).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -162,6 +172,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.infAdProd == input.infAdProd ||
                     (this.infAdProd != null &&
                     this.infAdProd.Equals(input.infAdProd))
+                ) && 
+                (
+                    this.obsItem == input.obsItem ||
+                    (this.obsItem != null &&
+                    this.obsItem.Equals(input.obsItem))
                 );
         }
 
@@ -190,6 +205,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.infAdProd != null)
                 {
                     hashCode = (hashCode * 59) + this.infAdProd.GetHashCode();
+                }
+                if (this.obsItem != null)
+                {
+                    hashCode = (hashCode * 59) + this.obsItem.GetHashCode();
                 }
                 return hashCode;
             }

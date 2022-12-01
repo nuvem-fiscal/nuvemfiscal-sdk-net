@@ -47,9 +47,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBCFCPST">Valor da Base de cálculo do FCP..</param>
         /// <param name="pFCPST">Percentual de FCP retido por substituição tributária..</param>
         /// <param name="vFCPST">Valor do FCP retido por substituição tributária..</param>
-        public NfeSefazICMSSN202(int orig = default(int), int cSOSN = default(int), int modBCST = default(int), decimal pMVAST = default(decimal), decimal pRedBCST = default(decimal), decimal vBCST = default(decimal), decimal pICMSST = default(decimal), decimal vICMSST = default(decimal), decimal vBCFCPST = default(decimal), decimal pFCPST = default(decimal), decimal vFCPST = default(decimal))
+        public NfeSefazICMSSN202(int orig = default(int), string cSOSN = default(string), int modBCST = default(int), decimal pMVAST = default(decimal), decimal pRedBCST = default(decimal), decimal vBCST = default(decimal), decimal pICMSST = default(decimal), decimal vICMSST = default(decimal), decimal vBCFCPST = default(decimal), decimal pFCPST = default(decimal), decimal vFCPST = default(decimal))
         {
             this.orig = orig;
+            // to ensure "cSOSN" is required (not null)
+            if (cSOSN == null)
+            {
+                throw new ArgumentNullException("cSOSN is a required property for NfeSefazICMSSN202 and cannot be null");
+            }
             this.CSOSN = cSOSN;
             this.modBCST = modBCST;
             this.vBCST = vBCST;
@@ -74,7 +79,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>202- Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS por Substituição Tributária;  203-  Isenção do ICMS nos Simples Nacional para faixa de receita bruta e com cobrança do ICMS por Substituição Tributária (v.2.0).</value>
         [DataMember(Name = "CSOSN", IsRequired = true, EmitDefaultValue = true)]
-        public int CSOSN { get; set; }
+        public string CSOSN { get; set; }
 
         /// <summary>
         /// Modalidade de determinação da BC do ICMS ST:  0 – Preço tabelado ou máximo  sugerido;  1 - Lista Negativa (valor);  2 - Lista Positiva (valor);  3 - Lista Neutra (valor);  4 - Margem Valor Agregado (%%);  5 - Pauta (valor). (v2.0)  6 - Valor da Operação.
@@ -199,7 +204,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CSOSN == input.CSOSN ||
-                    this.CSOSN.Equals(input.CSOSN)
+                    (this.CSOSN != null &&
+                    this.CSOSN.Equals(input.CSOSN))
                 ) && 
                 (
                     this.modBCST == input.modBCST ||
@@ -249,7 +255,10 @@ namespace NuvemFiscal.Sdk.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.orig.GetHashCode();
-                hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                if (this.CSOSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.modBCST.GetHashCode();
                 hashCode = (hashCode * 59) + this.pMVAST.GetHashCode();
                 hashCode = (hashCode * 59) + this.pRedBCST.GetHashCode();

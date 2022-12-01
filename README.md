@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 1.1.0
-- Versão do SDK: 1.1.0
+- Versão da API: 1.2.1
+- Versão do SDK: 1.2.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -138,6 +138,7 @@ Classe | Método | Endpoint | Descrição
 ------------ | ------------- | ------------- | -------------
 *CepApi* | [**ConsultarCep**](docs/CepApi.md#consultarcep) | **GET** /cep/{Cep} | Consultar endereço através do CEP
 *CnpjApi* | [**ConsultarCnpj**](docs/CnpjApi.md#consultarcnpj) | **GET** /cnpj/{Cnpj} | Consultar dados do CNPJ
+*CnpjApi* | [**ListarCnpj**](docs/CnpjApi.md#listarcnpj) | **GET** /cnpj | Listar estabelecimentos a partir da base de CNPJ
 *CteApi* | [**BaixarXmlCancelamentoCte**](docs/CteApi.md#baixarxmlcancelamentocte) | **GET** /cte/{id}/cancelamento/xml | Baixar XML do cancelamento
 *CteApi* | [**BaixarXmlCartaCorrecaoCte**](docs/CteApi.md#baixarxmlcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/xml | Baixar XML da carta de correção
 *CteApi* | [**BaixarXmlCte**](docs/CteApi.md#baixarxmlcte) | **GET** /cte/{id}/xml | Baixar XML do CT-e processado
@@ -247,12 +248,16 @@ Classe | Método | Endpoint | Descrição
  - [Model.CnpjCnae](docs/CnpjCnae.md)
  - [Model.CnpjEmpresa](docs/CnpjEmpresa.md)
  - [Model.CnpjEndereco](docs/CnpjEndereco.md)
+ - [Model.CnpjListagem](docs/CnpjListagem.md)
+ - [Model.CnpjMotivoSituacaoCadastral](docs/CnpjMotivoSituacaoCadastral.md)
  - [Model.CnpjMunicipio](docs/CnpjMunicipio.md)
  - [Model.CnpjNaturezaJuridica](docs/CnpjNaturezaJuridica.md)
+ - [Model.CnpjOpcaoSimei](docs/CnpjOpcaoSimei.md)
  - [Model.CnpjOpcaoSimples](docs/CnpjOpcaoSimples.md)
  - [Model.CnpjPais](docs/CnpjPais.md)
  - [Model.CnpjPorteEmpresa](docs/CnpjPorteEmpresa.md)
  - [Model.CnpjSituacaoCadastral](docs/CnpjSituacaoCadastral.md)
+ - [Model.CnpjSituacaoEspecial](docs/CnpjSituacaoEspecial.md)
  - [Model.CnpjTelefone](docs/CnpjTelefone.md)
  - [Model.CteCartaCorrecao](docs/CteCartaCorrecao.md)
  - [Model.CteInfCorrecao](docs/CteInfCorrecao.md)
@@ -404,6 +409,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.MdfeSefazInfCIOT](docs/MdfeSefazInfCIOT.md)
  - [Model.MdfeSefazInfCTe](docs/MdfeSefazInfCTe.md)
  - [Model.MdfeSefazInfContratante](docs/MdfeSefazInfContratante.md)
+ - [Model.MdfeSefazInfContrato](docs/MdfeSefazInfContrato.md)
  - [Model.MdfeSefazInfDoc](docs/MdfeSefazInfDoc.md)
  - [Model.MdfeSefazInfEmbComb](docs/MdfeSefazInfEmbComb.md)
  - [Model.MdfeSefazInfEntregaParcial](docs/MdfeSefazInfEntregaParcial.md)
@@ -513,6 +519,8 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfeSefazImpostoDevol](docs/NfeSefazImpostoDevol.md)
  - [Model.NfeSefazImpostoDevolIPI](docs/NfeSefazImpostoDevolIPI.md)
  - [Model.NfeSefazInfAdic](docs/NfeSefazInfAdic.md)
+ - [Model.NfeSefazInfAdicObsCont](docs/NfeSefazInfAdicObsCont.md)
+ - [Model.NfeSefazInfAdicObsFisco](docs/NfeSefazInfAdicObsFisco.md)
  - [Model.NfeSefazInfIntermed](docs/NfeSefazInfIntermed.md)
  - [Model.NfeSefazInfNFe](docs/NfeSefazInfNFe.md)
  - [Model.NfeSefazInfNFeSupl](docs/NfeSefazInfNFeSupl.md)
@@ -527,6 +535,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfeSefazNFref](docs/NfeSefazNFref.md)
  - [Model.NfeSefazObsCont](docs/NfeSefazObsCont.md)
  - [Model.NfeSefazObsFisco](docs/NfeSefazObsFisco.md)
+ - [Model.NfeSefazObsItem](docs/NfeSefazObsItem.md)
  - [Model.NfeSefazPIS](docs/NfeSefazPIS.md)
  - [Model.NfeSefazPISAliq](docs/NfeSefazPISAliq.md)
  - [Model.NfeSefazPISNT](docs/NfeSefazPISNT.md)

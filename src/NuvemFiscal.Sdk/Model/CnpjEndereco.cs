@@ -31,13 +31,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjEndereco" /> class.
         /// </summary>
-        /// <param name="tipoLogradouro">tipoLogradouro.</param>
-        /// <param name="logradouro">logradouro.</param>
-        /// <param name="numero">numero.</param>
-        /// <param name="complemento">complemento.</param>
-        /// <param name="bairro">bairro.</param>
-        /// <param name="cep">cep.</param>
-        /// <param name="uf">uf.</param>
+        /// <param name="tipoLogradouro">Descrição do tipo de logradouro..</param>
+        /// <param name="logradouro">Nome do logradouro onde se localiza o estabelecimento..</param>
+        /// <param name="numero">Número onde se localiza o estabelecimento. Quando não houver  preenchimento do número haverá ‘S/N’..</param>
+        /// <param name="complemento">Complemento para o endereço de localização do estabelecimento..</param>
+        /// <param name="bairro">Bairro onde se localiza o estabelecimento..</param>
+        /// <param name="cep">Código de endereçamento postal referente ao logradouro no qual o  estabelecimento esta localizado..</param>
+        /// <param name="uf">Sigla da unidade da federação em que se encontra o estabelecimento..</param>
         /// <param name="municipio">municipio.</param>
         public CnpjEndereco(string tipoLogradouro = default(string), string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string cep = default(string), string uf = default(string), CnpjMunicipio municipio = default(CnpjMunicipio))
         {
@@ -52,44 +52,51 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets tipo_logradouro
+        /// Descrição do tipo de logradouro.
         /// </summary>
+        /// <value>Descrição do tipo de logradouro.</value>
         [DataMember(Name = "tipo_logradouro", EmitDefaultValue = false)]
         public string tipo_logradouro { get; set; }
 
         /// <summary>
-        /// Gets or Sets logradouro
+        /// Nome do logradouro onde se localiza o estabelecimento.
         /// </summary>
+        /// <value>Nome do logradouro onde se localiza o estabelecimento.</value>
         [DataMember(Name = "logradouro", EmitDefaultValue = false)]
         public string logradouro { get; set; }
 
         /// <summary>
-        /// Gets or Sets numero
+        /// Número onde se localiza o estabelecimento. Quando não houver  preenchimento do número haverá ‘S/N’.
         /// </summary>
+        /// <value>Número onde se localiza o estabelecimento. Quando não houver  preenchimento do número haverá ‘S/N’.</value>
         [DataMember(Name = "numero", EmitDefaultValue = false)]
         public string numero { get; set; }
 
         /// <summary>
-        /// Gets or Sets complemento
+        /// Complemento para o endereço de localização do estabelecimento.
         /// </summary>
+        /// <value>Complemento para o endereço de localização do estabelecimento.</value>
         [DataMember(Name = "complemento", EmitDefaultValue = false)]
         public string complemento { get; set; }
 
         /// <summary>
-        /// Gets or Sets bairro
+        /// Bairro onde se localiza o estabelecimento.
         /// </summary>
+        /// <value>Bairro onde se localiza o estabelecimento.</value>
         [DataMember(Name = "bairro", EmitDefaultValue = false)]
         public string bairro { get; set; }
 
         /// <summary>
-        /// Gets or Sets cep
+        /// Código de endereçamento postal referente ao logradouro no qual o  estabelecimento esta localizado.
         /// </summary>
+        /// <value>Código de endereçamento postal referente ao logradouro no qual o  estabelecimento esta localizado.</value>
         [DataMember(Name = "cep", EmitDefaultValue = false)]
         public string cep { get; set; }
 
         /// <summary>
-        /// Gets or Sets uf
+        /// Sigla da unidade da federação em que se encontra o estabelecimento.
         /// </summary>
+        /// <value>Sigla da unidade da federação em que se encontra o estabelecimento.</value>
         [DataMember(Name = "uf", EmitDefaultValue = false)]
         public string uf { get; set; }
 

@@ -5,7 +5,7 @@
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **correcoes** | [**List&lt;CteInfCorrecao&gt;**](CteInfCorrecao.md) | Grupo de Informações de Correção. | 
-**id** | **string** | ID único gerado pela Nuvem Fiscal para este documento. | [optional] 
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este evento. | [optional] 
 **ambiente** | **string** | Identificação do ambiente. | [optional] 
 **status** | **string** | Status do Evento. | [optional] 
 **autor** | [**DfeAutorEvento**](DfeAutorEvento.md) |  | [optional] 

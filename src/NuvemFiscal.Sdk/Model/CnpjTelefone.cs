@@ -31,8 +31,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjTelefone" /> class.
         /// </summary>
-        /// <param name="ddd">ddd.</param>
-        /// <param name="numero">numero.</param>
+        /// <param name="ddd">Código de DDD (Discagem Direta à Distância).</param>
+        /// <param name="numero">Número do telefone..</param>
         public CnpjTelefone(string ddd = default(string), string numero = default(string))
         {
             this.ddd = ddd;
@@ -40,14 +40,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets ddd
+        /// Código de DDD (Discagem Direta à Distância)
         /// </summary>
+        /// <value>Código de DDD (Discagem Direta à Distância)</value>
         [DataMember(Name = "ddd", EmitDefaultValue = false)]
         public string ddd { get; set; }
 
         /// <summary>
-        /// Gets or Sets numero
+        /// Número do telefone.
         /// </summary>
+        /// <value>Número do telefone.</value>
         [DataMember(Name = "numero", EmitDefaultValue = false)]
         public string numero { get; set; }
 

@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dDesemb">Data do desembaraço aduaneiro (AAAA-MM-DD). (required).</param>
         /// <param name="tpViaTransp">Via de transporte internacional informada na DI                   1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-Rodoviaria;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;                   11-Courier;12-Em maos;13-Por reboque. (required).</param>
         /// <param name="vAFRMM">Valor Adicional ao frete para renovação de marinha mercante..</param>
-        /// <param name="tpIntermedio">Forma de Importação quanto a intermediação                   1-por conta propria;2-por conta e ordem;3-encomenda. (required).</param>
+        /// <param name="tpIntermedio">Forma de Importação quanto a intermediação                    1-por conta propria;2-por conta e ordem;3-encomenda. (required).</param>
         /// <param name="cNPJ">CNPJ do adquirente ou do encomendante..</param>
         /// <param name="uFTerceiro">Sigla da UF do adquirente ou do encomendante..</param>
         /// <param name="cExportador">Código do exportador (usado nos sistemas internos de informação do emitente da NF-e). (required).</param>
@@ -141,9 +141,9 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vAFRMM { get; set; }
 
         /// <summary>
-        /// Forma de Importação quanto a intermediação                   1-por conta propria;2-por conta e ordem;3-encomenda.
+        /// Forma de Importação quanto a intermediação                    1-por conta propria;2-por conta e ordem;3-encomenda.
         /// </summary>
-        /// <value>Forma de Importação quanto a intermediação                   1-por conta propria;2-por conta e ordem;3-encomenda.</value>
+        /// <value>Forma de Importação quanto a intermediação                    1-por conta propria;2-por conta e ordem;3-encomenda.</value>
         [DataMember(Name = "tpIntermedio", IsRequired = true, EmitDefaultValue = true)]
         public int tpIntermedio { get; set; }
 

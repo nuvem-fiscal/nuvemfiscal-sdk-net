@@ -36,8 +36,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazToma4" /> class.
         /// </summary>
-        /// <param name="toma">Tomador do Serviço.  Preencher com:                 4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço. (required).</param>
-        /// <param name="cNPJ">Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos..</param>
+        /// <param name="toma">Tomador do Serviço.  Preencher com:                  4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço. (required).</param>
+        /// <param name="cNPJ">Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.                 Informar os zeros não significativos..</param>
         /// <param name="cPF">Número do CPF.  Informar os zeros não significativos..</param>
         /// <param name="iE">Inscrição Estadual.  Informar a IE do tomador ou ISENTO se tomador é contribuinte do ICMS isento de inscrição no cadastro de contribuintes do ICMS. Caso o tomador não seja contribuinte do ICMS não informar o conteúdo..</param>
         /// <param name="xNome">Razão Social ou Nome. (required).</param>
@@ -69,16 +69,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tomador do Serviço.  Preencher com:                 4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço.
+        /// Tomador do Serviço.  Preencher com:                  4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço.
         /// </summary>
-        /// <value>Tomador do Serviço.  Preencher com:                 4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço.</value>
+        /// <value>Tomador do Serviço.  Preencher com:                  4 - Outros                 Obs: Informar os dados cadastrais do tomador do serviço.</value>
         [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = true)]
         public int toma { get; set; }
 
         /// <summary>
-        /// Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.
+        /// Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.                 Informar os zeros não significativos.
         /// </summary>
-        /// <value>Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.</value>
+        /// <value>Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.                 Informar os zeros não significativos.</value>
         [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
         public string CNPJ { get; set; }
 

@@ -34,7 +34,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cEP">CEP onde foi carregado o MDF-e.  Informar zeros não significativos..</param>
         /// <param name="latitude">Latitude do ponto geográfico onde foi carregado o MDF-e..</param>
         /// <param name="longitude">Latitude do ponto geográfico onde foi carregado o MDF-e..</param>
-        public MdfeSefazInfLocalCarrega(int cEP = default(int), decimal latitude = default(decimal), decimal longitude = default(decimal))
+        public MdfeSefazInfLocalCarrega(string cEP = default(string), string latitude = default(string), string longitude = default(string))
         {
             this.CEP = cEP;
             this.latitude = latitude;
@@ -46,21 +46,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>CEP onde foi carregado o MDF-e.  Informar zeros não significativos.</value>
         [DataMember(Name = "CEP", EmitDefaultValue = false)]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         /// <summary>
         /// Latitude do ponto geográfico onde foi carregado o MDF-e.
         /// </summary>
         /// <value>Latitude do ponto geográfico onde foi carregado o MDF-e.</value>
         [DataMember(Name = "latitude", EmitDefaultValue = false)]
-        public decimal latitude { get; set; }
+        public string latitude { get; set; }
 
         /// <summary>
         /// Latitude do ponto geográfico onde foi carregado o MDF-e.
         /// </summary>
         /// <value>Latitude do ponto geográfico onde foi carregado o MDF-e.</value>
         [DataMember(Name = "longitude", EmitDefaultValue = false)]
-        public decimal longitude { get; set; }
+        public string longitude { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -110,15 +110,18 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.CEP == input.CEP ||
-                    this.CEP.Equals(input.CEP)
+                    (this.CEP != null &&
+                    this.CEP.Equals(input.CEP))
                 ) && 
                 (
                     this.latitude == input.latitude ||
-                    this.latitude.Equals(input.latitude)
+                    (this.latitude != null &&
+                    this.latitude.Equals(input.latitude))
                 ) && 
                 (
                     this.longitude == input.longitude ||
-                    this.longitude.Equals(input.longitude)
+                    (this.longitude != null &&
+                    this.longitude.Equals(input.longitude))
                 );
         }
 
@@ -131,9 +134,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.CEP.GetHashCode();
-                hashCode = (hashCode * 59) + this.latitude.GetHashCode();
-                hashCode = (hashCode * 59) + this.longitude.GetHashCode();
+                if (this.CEP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                }
+                if (this.latitude != null)
+                {
+                    hashCode = (hashCode * 59) + this.latitude.GetHashCode();
+                }
+                if (this.longitude != null)
+                {
+                    hashCode = (hashCode * 59) + this.longitude.GetHashCode();
+                }
                 return hashCode;
             }
         }

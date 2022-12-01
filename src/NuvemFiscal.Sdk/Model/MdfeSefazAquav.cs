@@ -44,7 +44,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPrtEmb">Código do Porto de Embarque.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes. (required).</param>
         /// <param name="cPrtDest">Código do Porto de Destino.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes. (required).</param>
         /// <param name="prtTrans">Porto de Transbordo..</param>
-        /// <param name="tpNav">Tipo de Navegação.  Preencher com:        0 - Interior;        1 - Cabotagem..</param>
+        /// <param name="tpNav">Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem..</param>
         /// <param name="infTermCarreg">Grupo de informações dos terminais de carregamento..</param>
         /// <param name="infTermDescarreg">Grupo de informações dos terminais de descarregamento..</param>
         /// <param name="infEmbComb">Informações das Embarcações do Comboio..</param>
@@ -160,9 +160,9 @@ namespace NuvemFiscal.Sdk.Model
         public string prtTrans { get; set; }
 
         /// <summary>
-        /// Tipo de Navegação.  Preencher com:        0 - Interior;        1 - Cabotagem.
+        /// Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem.
         /// </summary>
-        /// <value>Tipo de Navegação.  Preencher com:        0 - Interior;        1 - Cabotagem.</value>
+        /// <value>Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem.</value>
         [DataMember(Name = "tpNav", EmitDefaultValue = false)]
         public int tpNav { get; set; }
 

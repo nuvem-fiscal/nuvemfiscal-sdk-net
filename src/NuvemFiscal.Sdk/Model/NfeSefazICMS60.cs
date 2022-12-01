@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazICMS60" /> class.
         /// </summary>
         /// <param name="orig">Origem da mercadoria:  0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  1 - Estrangeira - Importação direta, exceto a indicada no código 6;  2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%. (required).</param>
-        /// <param name="cST">Tributação pelo ICMS  60 - ICMS cobrado anteriormente por substituição tributária. (required).</param>
+        /// <param name="cST">Tributação pelo ICMS   60 - ICMS cobrado anteriormente por substituição tributária. (required).</param>
         /// <param name="vBCSTRet">Valor da BC do ICMS ST retido anteriormente..</param>
         /// <param name="pST">Aliquota suportada pelo consumidor final..</param>
         /// <param name="vICMSSubstituto">Valor do ICMS Próprio do Substituto cobrado em operação anterior..</param>
@@ -79,9 +79,9 @@ namespace NuvemFiscal.Sdk.Model
         public int orig { get; set; }
 
         /// <summary>
-        /// Tributação pelo ICMS  60 - ICMS cobrado anteriormente por substituição tributária.
+        /// Tributação pelo ICMS   60 - ICMS cobrado anteriormente por substituição tributária.
         /// </summary>
-        /// <value>Tributação pelo ICMS  60 - ICMS cobrado anteriormente por substituição tributária.</value>
+        /// <value>Tributação pelo ICMS   60 - ICMS cobrado anteriormente por substituição tributária.</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

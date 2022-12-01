@@ -15,7 +15,7 @@ Nome | Tipo | Descrição | Comentários
 **CNPJFab** | **string** | CNPJ do Fabricante da Mercadoria, obrigatório para produto em escala NÃO relevante. | [optional] 
 **cBenef** | **string** |  | [optional] 
 **EXTIPI** | **string** | Código EX TIPI (3 posições). | [optional] 
-**CFOP** | **int** | Cfop. | 
+**CFOP** | **string** | Cfop. | 
 **uCom** | **string** | Unidade comercial. | 
 **qCom** | **decimal** | Quantidade Comercial  do produto, alterado para aceitar de 0 a 4 casas decimais e 11 inteiros. | 
 **vUnCom** | **decimal** | Valor unitário de comercialização  - alterado para aceitar 0 a 10 casas decimais e 11 inteiros. | 

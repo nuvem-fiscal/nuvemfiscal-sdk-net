@@ -31,9 +31,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CnpjOpcaoSimples" /> class.
         /// </summary>
-        /// <param name="optante">optante.</param>
-        /// <param name="dataOpcao">dataOpcao.</param>
-        /// <param name="dataExclusao">dataExclusao.</param>
+        /// <param name="optante">Indicador da existência da opção pelo Simples Nacional:  * &#x60;true&#x60; - É optante.  * &#x60;false&#x60; - Não é optante..</param>
+        /// <param name="dataOpcao">Data da opção pelo Simples Nacional..</param>
+        /// <param name="dataExclusao">Data da exclusão do Simples Nacional..</param>
         public CnpjOpcaoSimples(bool optante = default(bool), DateTime dataOpcao = default(DateTime), DateTime dataExclusao = default(DateTime))
         {
             this.optante = optante;
@@ -42,21 +42,24 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets optante
+        /// Indicador da existência da opção pelo Simples Nacional:  * &#x60;true&#x60; - É optante.  * &#x60;false&#x60; - Não é optante.
         /// </summary>
+        /// <value>Indicador da existência da opção pelo Simples Nacional:  * &#x60;true&#x60; - É optante.  * &#x60;false&#x60; - Não é optante.</value>
         [DataMember(Name = "optante", EmitDefaultValue = true)]
         public bool optante { get; set; }
 
         /// <summary>
-        /// Gets or Sets data_opcao
+        /// Data da opção pelo Simples Nacional.
         /// </summary>
+        /// <value>Data da opção pelo Simples Nacional.</value>
         [DataMember(Name = "data_opcao", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime data_opcao { get; set; }
 
         /// <summary>
-        /// Gets or Sets data_exclusao
+        /// Data da exclusão do Simples Nacional.
         /// </summary>
+        /// <value>Data da exclusão do Simples Nacional.</value>
         [DataMember(Name = "data_exclusao", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime data_exclusao { get; set; }

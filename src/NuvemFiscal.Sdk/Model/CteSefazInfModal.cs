@@ -31,7 +31,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazInfModal" /> class.
         /// </summary>
-        /// <param name="versaoModal">versaoModal.</param>
+        [JsonConstructorAttribute]
+        protected CteSefazInfModal() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CteSefazInfModal" /> class.
+        /// </summary>
+        /// <param name="versaoModal">Versão do leiaute específico para o Modal. (required).</param>
         /// <param name="rodo">rodo.</param>
         /// <param name="aereo">aereo.</param>
         /// <param name="ferrov">ferrov.</param>
@@ -40,6 +45,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="multimodal">multimodal.</param>
         public CteSefazInfModal(string versaoModal = default(string), CteSefazRodo rodo = default(CteSefazRodo), CteSefazAereo aereo = default(CteSefazAereo), CteSefazFerrov ferrov = default(CteSefazFerrov), CteSefazAquav aquav = default(CteSefazAquav), CteSefazDuto duto = default(CteSefazDuto), CteSefazMultimodal multimodal = default(CteSefazMultimodal))
         {
+            // to ensure "versaoModal" is required (not null)
+            if (versaoModal == null)
+            {
+                throw new ArgumentNullException("versaoModal is a required property for CteSefazInfModal and cannot be null");
+            }
             this.versaoModal = versaoModal;
             this.rodo = rodo;
             this.aereo = aereo;
@@ -50,9 +60,10 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets versaoModal
+        /// Versão do leiaute específico para o Modal.
         /// </summary>
-        [DataMember(Name = "versaoModal", EmitDefaultValue = false)]
+        /// <value>Versão do leiaute específico para o Modal.</value>
+        [DataMember(Name = "versaoModal", IsRequired = true, EmitDefaultValue = true)]
         public string versaoModal { get; set; }
 
         /// <summary>

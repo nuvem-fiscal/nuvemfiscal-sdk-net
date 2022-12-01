@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="obsCont">Campo de uso livre do contribuinte  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto..</param>
         /// <param name="obsFisco">Campo de uso exclusivo do Fisco  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto..</param>
         /// <param name="procRef">Grupo de informações do  processo referenciado..</param>
-        public NfeSefazInfAdic(string infAdFisco = default(string), string infCpl = default(string), List<NfeSefazObsCont> obsCont = default(List<NfeSefazObsCont>), List<NfeSefazObsFisco> obsFisco = default(List<NfeSefazObsFisco>), List<NfeSefazProcRef> procRef = default(List<NfeSefazProcRef>))
+        public NfeSefazInfAdic(string infAdFisco = default(string), string infCpl = default(string), List<NfeSefazInfAdicObsCont> obsCont = default(List<NfeSefazInfAdicObsCont>), List<NfeSefazInfAdicObsFisco> obsFisco = default(List<NfeSefazInfAdicObsFisco>), List<NfeSefazProcRef> procRef = default(List<NfeSefazProcRef>))
         {
             this.infAdFisco = infAdFisco;
             this.infCpl = infCpl;
@@ -64,14 +64,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Campo de uso livre do contribuinte  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.</value>
         [DataMember(Name = "obsCont", EmitDefaultValue = false)]
-        public List<NfeSefazObsCont> obsCont { get; set; }
+        public List<NfeSefazInfAdicObsCont> obsCont { get; set; }
 
         /// <summary>
         /// Campo de uso exclusivo do Fisco  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.
         /// </summary>
         /// <value>Campo de uso exclusivo do Fisco  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.</value>
         [DataMember(Name = "obsFisco", EmitDefaultValue = false)]
-        public List<NfeSefazObsFisco> obsFisco { get; set; }
+        public List<NfeSefazInfAdicObsFisco> obsFisco { get; set; }
 
         /// <summary>
         /// Grupo de informações do  processo referenciado.

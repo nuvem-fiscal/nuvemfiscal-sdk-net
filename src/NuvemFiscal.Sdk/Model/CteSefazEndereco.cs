@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="uF">Sigla da UF.  Informar EX para operações com o exterior. (required).</param>
         /// <param name="cPais">Código do país.  Utilizar a tabela do BACEN..</param>
         /// <param name="xPais">Nome do país..</param>
-        public CteSefazEndereco(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), int cMun = default(int), string xMun = default(string), int cEP = default(int), string uF = default(string), int cPais = default(int), string xPais = default(string))
+        public CteSefazEndereco(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string cEP = default(string), string uF = default(string), int cPais = default(int), string xPais = default(string))
         {
             // to ensure "xLgr" is required (not null)
             if (xLgr == null)
@@ -66,6 +66,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xBairro is a required property for CteSefazEndereco and cannot be null");
             }
             this.xBairro = xBairro;
+            // to ensure "cMun" is required (not null)
+            if (cMun == null)
+            {
+                throw new ArgumentNullException("cMun is a required property for CteSefazEndereco and cannot be null");
+            }
             this.cMun = cMun;
             // to ensure "xMun" is required (not null)
             if (xMun == null)
@@ -118,7 +123,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do município (utilizar a tabela do IBGE).  Informar 9999999 para operações com o exterior.</value>
         [DataMember(Name = "cMun", IsRequired = true, EmitDefaultValue = true)]
-        public int cMun { get; set; }
+        public string cMun { get; set; }
 
         /// <summary>
         /// Nome do município.  Informar EXTERIOR para operações com o exterior.
@@ -132,7 +137,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>CEP.  Informar os zeros não significativos.</value>
         [DataMember(Name = "CEP", EmitDefaultValue = false)]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         /// <summary>
         /// Sigla da UF.  Informar EX para operações com o exterior.
@@ -230,7 +235,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMun == input.cMun ||
-                    this.cMun.Equals(input.cMun)
+                    (this.cMun != null &&
+                    this.cMun.Equals(input.cMun))
                 ) && 
                 (
                     this.xMun == input.xMun ||
@@ -239,7 +245,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CEP == input.CEP ||
-                    this.CEP.Equals(input.CEP)
+                    (this.CEP != null &&
+                    this.CEP.Equals(input.CEP))
                 ) && 
                 (
                     this.UF == input.UF ||
@@ -282,12 +289,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xBairro.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                if (this.cMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                }
                 if (this.xMun != null)
                 {
                     hashCode = (hashCode * 59) + this.xMun.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                if (this.CEP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                }
                 if (this.UF != null)
                 {
                     hashCode = (hashCode * 59) + this.UF.GetHashCode();

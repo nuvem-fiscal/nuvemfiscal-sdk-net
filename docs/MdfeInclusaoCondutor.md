@@ -6,7 +6,7 @@ Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **nome_condutor** | **string** | Nome do condutor. | [optional] 
 **cpf_condutor** | **string** | CPF do condutor. | [optional] 
-**id** | **string** | ID único gerado pela Nuvem Fiscal para este documento. | [optional] 
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este evento. | [optional] 
 **ambiente** | **string** | Identificação do ambiente. | [optional] 
 **status** | **string** | Status do Evento. | [optional] 
 **autor** | [**DfeAutorEvento**](DfeAutorEvento.md) |  | [optional] 

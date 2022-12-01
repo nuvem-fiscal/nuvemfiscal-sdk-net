@@ -36,8 +36,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazTrafMut" /> class.
         /// </summary>
-        /// <param name="respFat">Responsável pelo Faturamento.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino. (required).</param>
-        /// <param name="ferrEmi">Ferrovia Emitente do CTe.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino. (required).</param>
+        /// <param name="respFat">Responsável pelo Faturamento.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino. (required).</param>
+        /// <param name="ferrEmi">Ferrovia Emitente do CTe.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino. (required).</param>
         /// <param name="vFrete">Valor do Frete do Tráfego Mútuo. (required).</param>
         /// <param name="chCTeFerroOrigem">Chave de acesso do CT-e emitido pelo ferrovia de origem..</param>
         /// <param name="ferroEnv">Informações das Ferrovias Envolvidas..</param>
@@ -51,16 +51,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Responsável pelo Faturamento.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.
+        /// Responsável pelo Faturamento.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.
         /// </summary>
-        /// <value>Responsável pelo Faturamento.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.</value>
+        /// <value>Responsável pelo Faturamento.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.</value>
         [DataMember(Name = "respFat", IsRequired = true, EmitDefaultValue = true)]
         public int respFat { get; set; }
 
         /// <summary>
-        /// Ferrovia Emitente do CTe.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.
+        /// Ferrovia Emitente do CTe.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.
         /// </summary>
-        /// <value>Ferrovia Emitente do CTe.  Preencher com:           1-Ferrovia de origem;           2-Ferrovia de destino.</value>
+        /// <value>Ferrovia Emitente do CTe.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.</value>
         [DataMember(Name = "ferrEmi", IsRequired = true, EmitDefaultValue = true)]
         public int ferrEmi { get; set; }
 

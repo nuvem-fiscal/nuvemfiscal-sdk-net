@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**cMunDescarga** | **int** | Código do Município de Descarregamento. | 
+**cMunDescarga** | **string** | Código do Município de Descarregamento. | 
 **xMunDescarga** | **string** | Nome do Município de Descarregamento. | 
 **infCTe** | [**List&lt;MdfeSefazInfCTe&gt;**](MdfeSefazInfCTe.md) | Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte. | [optional] 
 **infNFe** | [**List&lt;MdfeSefazInfNFe&gt;**](MdfeSefazInfNFe.md) | Nota Fiscal Eletronica. | [optional] 

@@ -34,7 +34,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codBanco">Número do banco..</param>
         /// <param name="codAgencia">Número da agência bancária..</param>
         /// <param name="cNPJIPEF">Número do CNPJ da Instituição de Pagamento Eletrônico do Frete.  Informar os zeros não significativos..</param>
-        /// <param name="pIX">Chave PIX.  Informar a chave PIX para recebimento do frete.  Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição..</param>
+        /// <param name="pIX">Chave PIX.  Informar a chave PIX para recebimento do frete.   Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição..</param>
         public MdfeSefazInfBanc(string codBanco = default(string), string codAgencia = default(string), string cNPJIPEF = default(string), string pIX = default(string))
         {
             this.codBanco = codBanco;
@@ -65,9 +65,9 @@ namespace NuvemFiscal.Sdk.Model
         public string CNPJIPEF { get; set; }
 
         /// <summary>
-        /// Chave PIX.  Informar a chave PIX para recebimento do frete.  Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição.
+        /// Chave PIX.  Informar a chave PIX para recebimento do frete.   Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição.
         /// </summary>
-        /// <value>Chave PIX.  Informar a chave PIX para recebimento do frete.  Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição.</value>
+        /// <value>Chave PIX.  Informar a chave PIX para recebimento do frete.   Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição.</value>
         [DataMember(Name = "PIX", EmitDefaultValue = false)]
         public string PIX { get; set; }
 

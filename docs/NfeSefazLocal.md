@@ -11,10 +11,10 @@ Nome | Tipo | Descrição | Comentários
 **nro** | **string** | Número. | 
 **xCpl** | **string** | Complemento. | [optional] 
 **xBairro** | **string** | Bairro. | 
-**cMun** | **int** | Código do município (utilizar a tabela do IBGE). | 
+**cMun** | **string** | Código do município (utilizar a tabela do IBGE). | 
 **xMun** | **string** | Nome do município. | 
 **UF** | **string** | Sigla da UF. | 
-**CEP** | **int** | CEP. | [optional] 
+**CEP** | **string** | CEP. | [optional] 
 **cPais** | **int** | Código de Pais. | [optional] 
 **xPais** | **string** | Nome do país. | [optional] 
 **fone** | **string** | Telefone, preencher com Código DDD + número do telefone , nas operações com exterior é permtido informar o código do país + código da localidade + número do telefone. | [optional] 

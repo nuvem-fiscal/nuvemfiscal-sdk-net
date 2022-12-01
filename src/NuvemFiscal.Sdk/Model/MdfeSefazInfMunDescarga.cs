@@ -41,8 +41,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infCTe">Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte..</param>
         /// <param name="infNFe">Nota Fiscal Eletronica..</param>
         /// <param name="infMDFeTransp">Manifesto Eletrônico de Documentos Fiscais. Somente para modal Aquaviário (vide regras MOC)..</param>
-        public MdfeSefazInfMunDescarga(int cMunDescarga = default(int), string xMunDescarga = default(string), List<MdfeSefazInfCTe> infCTe = default(List<MdfeSefazInfCTe>), List<MdfeSefazInfNFe> infNFe = default(List<MdfeSefazInfNFe>), List<MdfeSefazInfMDFeTransp> infMDFeTransp = default(List<MdfeSefazInfMDFeTransp>))
+        public MdfeSefazInfMunDescarga(string cMunDescarga = default(string), string xMunDescarga = default(string), List<MdfeSefazInfCTe> infCTe = default(List<MdfeSefazInfCTe>), List<MdfeSefazInfNFe> infNFe = default(List<MdfeSefazInfNFe>), List<MdfeSefazInfMDFeTransp> infMDFeTransp = default(List<MdfeSefazInfMDFeTransp>))
         {
+            // to ensure "cMunDescarga" is required (not null)
+            if (cMunDescarga == null)
+            {
+                throw new ArgumentNullException("cMunDescarga is a required property for MdfeSefazInfMunDescarga and cannot be null");
+            }
             this.cMunDescarga = cMunDescarga;
             // to ensure "xMunDescarga" is required (not null)
             if (xMunDescarga == null)
@@ -60,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de Descarregamento.</value>
         [DataMember(Name = "cMunDescarga", IsRequired = true, EmitDefaultValue = true)]
-        public int cMunDescarga { get; set; }
+        public string cMunDescarga { get; set; }
 
         /// <summary>
         /// Nome do Município de Descarregamento.
@@ -140,7 +145,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.cMunDescarga == input.cMunDescarga ||
-                    this.cMunDescarga.Equals(input.cMunDescarga)
+                    (this.cMunDescarga != null &&
+                    this.cMunDescarga.Equals(input.cMunDescarga))
                 ) && 
                 (
                     this.xMunDescarga == input.xMunDescarga ||
@@ -176,7 +182,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.cMunDescarga.GetHashCode();
+                if (this.cMunDescarga != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMunDescarga.GetHashCode();
+                }
                 if (this.xMunDescarga != null)
                 {
                     hashCode = (hashCode * 59) + this.xMunDescarga.GetHashCode();

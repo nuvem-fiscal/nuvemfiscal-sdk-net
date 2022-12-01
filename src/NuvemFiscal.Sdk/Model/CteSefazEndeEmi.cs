@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cEP">CEP.  Informar zeros não significativos.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="uF">Sigla da UF.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="fone">Telefone.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        public CteSefazEndeEmi(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), int cMun = default(int), string xMun = default(string), int cEP = default(int), string uF = default(string), string fone = default(string))
+        public CteSefazEndeEmi(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string cEP = default(string), string uF = default(string), string fone = default(string))
         {
             this.xLgr = xLgr;
             this.nro = nro;
@@ -86,7 +86,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do município (utilizar a tabela do IBGE).  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
         [DataMember(Name = "cMun", EmitDefaultValue = false)]
-        public int cMun { get; set; }
+        public string cMun { get; set; }
 
         /// <summary>
         /// Nome do município.  Caso não seja informado, será utilizado o do cadastro da empresa.
@@ -100,7 +100,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>CEP.  Informar zeros não significativos.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
         [DataMember(Name = "CEP", EmitDefaultValue = false)]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         /// <summary>
         /// Sigla da UF.  Caso não seja informado, será utilizado o do cadastro da empresa.
@@ -190,7 +190,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cMun == input.cMun ||
-                    this.cMun.Equals(input.cMun)
+                    (this.cMun != null &&
+                    this.cMun.Equals(input.cMun))
                 ) && 
                 (
                     this.xMun == input.xMun ||
@@ -199,7 +200,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CEP == input.CEP ||
-                    this.CEP.Equals(input.CEP)
+                    (this.CEP != null &&
+                    this.CEP.Equals(input.CEP))
                 ) && 
                 (
                     this.UF == input.UF ||
@@ -238,12 +240,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xBairro.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                if (this.cMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.cMun.GetHashCode();
+                }
                 if (this.xMun != null)
                 {
                     hashCode = (hashCode * 59) + this.xMun.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                if (this.CEP != null)
+                {
+                    hashCode = (hashCode * 59) + this.CEP.GetHashCode();
+                }
                 if (this.UF != null)
                 {
                     hashCode = (hashCode * 59) + this.UF.GetHashCode();

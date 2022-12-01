@@ -4,13 +4,13 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**tipo_logradouro** | **string** |  | [optional] 
-**logradouro** | **string** |  | [optional] 
-**numero** | **string** |  | [optional] 
-**complemento** | **string** |  | [optional] 
-**bairro** | **string** |  | [optional] 
-**cep** | **string** |  | [optional] 
-**uf** | **string** |  | [optional] 
+**tipo_logradouro** | **string** | Descrição do tipo de logradouro. | [optional] 
+**logradouro** | **string** | Nome do logradouro onde se localiza o estabelecimento. | [optional] 
+**numero** | **string** | Número onde se localiza o estabelecimento. Quando não houver  preenchimento do número haverá ‘S/N’. | [optional] 
+**complemento** | **string** | Complemento para o endereço de localização do estabelecimento. | [optional] 
+**bairro** | **string** | Bairro onde se localiza o estabelecimento. | [optional] 
+**cep** | **string** | Código de endereçamento postal referente ao logradouro no qual o  estabelecimento esta localizado. | [optional] 
+**uf** | **string** | Sigla da unidade da federação em que se encontra o estabelecimento. | [optional] 
 **municipio** | [**CnpjMunicipio**](CnpjMunicipio.md) |  | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
