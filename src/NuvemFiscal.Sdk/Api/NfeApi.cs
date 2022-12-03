@@ -273,8 +273,8 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
-        /// <returns>DfeVisaoGeralSefazStatus</returns>
-        DfeVisaoGeralSefazStatus ConsultarStatusSefazNfe(string cpfCnpj);
+        /// <returns>DfeSefazStatus</returns>
+        DfeSefazStatus ConsultarStatusSefazNfe(string cpfCnpj);
 
         /// <summary>
         /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -284,8 +284,8 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
-        /// <returns>ApiResponse of DfeVisaoGeralSefazStatus</returns>
-        ApiResponse<DfeVisaoGeralSefazStatus> ConsultarStatusSefazNfeWithHttpInfo(string cpfCnpj);
+        /// <returns>ApiResponse of DfeSefazStatus</returns>
+        ApiResponse<DfeSefazStatus> ConsultarStatusSefazNfeWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Solicitar correção da NF-e
         /// </summary>
@@ -740,8 +740,8 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DfeVisaoGeralSefazStatus</returns>
-        System.Threading.Tasks.Task<DfeVisaoGeralSefazStatus> ConsultarStatusSefazNfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of DfeSefazStatus</returns>
+        System.Threading.Tasks.Task<DfeSefazStatus> ConsultarStatusSefazNfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -752,8 +752,8 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DfeVisaoGeralSefazStatus)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeVisaoGeralSefazStatus>> ConsultarStatusSefazNfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (DfeSefazStatus)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DfeSefazStatus>> ConsultarStatusSefazNfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Solicitar correção da NF-e
         /// </summary>
@@ -2925,10 +2925,10 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
-        /// <returns>DfeVisaoGeralSefazStatus</returns>
-        public DfeVisaoGeralSefazStatus ConsultarStatusSefazNfe(string cpfCnpj)
+        /// <returns>DfeSefazStatus</returns>
+        public DfeSefazStatus ConsultarStatusSefazNfe(string cpfCnpj)
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus> localVarResponse = ConsultarStatusSefazNfeWithHttpInfo(cpfCnpj);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus> localVarResponse = ConsultarStatusSefazNfeWithHttpInfo(cpfCnpj);
             return localVarResponse.Data;
         }
 
@@ -2937,8 +2937,8 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
-        /// <returns>ApiResponse of DfeVisaoGeralSefazStatus</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus> ConsultarStatusSefazNfeWithHttpInfo(string cpfCnpj)
+        /// <returns>ApiResponse of DfeSefazStatus</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus> ConsultarStatusSefazNfeWithHttpInfo(string cpfCnpj)
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -2975,7 +2975,7 @@ namespace NuvemFiscal.Sdk.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<DfeVisaoGeralSefazStatus>("/nfe/sefaz/status", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<DfeSefazStatus>("/nfe/sefaz/status", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2992,10 +2992,10 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DfeVisaoGeralSefazStatus</returns>
-        public async System.Threading.Tasks.Task<DfeVisaoGeralSefazStatus> ConsultarStatusSefazNfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of DfeSefazStatus</returns>
+        public async System.Threading.Tasks.Task<DfeSefazStatus> ConsultarStatusSefazNfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus> localVarResponse = await ConsultarStatusSefazNfeWithHttpInfoAsync(cpfCnpj, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus> localVarResponse = await ConsultarStatusSefazNfeWithHttpInfoAsync(cpfCnpj, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3005,8 +3005,8 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DfeVisaoGeralSefazStatus)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeVisaoGeralSefazStatus>> ConsultarStatusSefazNfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (DfeSefazStatus)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus>> ConsultarStatusSefazNfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -3046,7 +3046,7 @@ namespace NuvemFiscal.Sdk.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<DfeVisaoGeralSefazStatus>("/nfe/sefaz/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DfeSefazStatus>("/nfe/sefaz/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

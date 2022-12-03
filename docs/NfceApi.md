@@ -928,7 +928,7 @@ catch (ApiException e)
 
 <a name="consultarstatussefaznfce"></a>
 # **ConsultarStatusSefazNfce**
-> DfeVisaoGeralSefazStatus ConsultarStatusSefazNfce (string cpfCnpj)
+> DfeSefazStatus ConsultarStatusSefazNfce (string cpfCnpj)
 
 Consulta do Status do Serviço na SEFAZ Autorizadora
 
@@ -967,7 +967,7 @@ namespace Example
             try
             {
                 // Consulta do Status do Serviço na SEFAZ Autorizadora
-                DfeVisaoGeralSefazStatus result = apiInstance.ConsultarStatusSefazNfce(cpfCnpj);
+                DfeSefazStatus result = apiInstance.ConsultarStatusSefazNfce(cpfCnpj);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -988,7 +988,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Consulta do Status do Serviço na SEFAZ Autorizadora
-    ApiResponse<DfeVisaoGeralSefazStatus> response = apiInstance.ConsultarStatusSefazNfceWithHttpInfo(cpfCnpj);
+    ApiResponse<DfeSefazStatus> response = apiInstance.ConsultarStatusSefazNfceWithHttpInfo(cpfCnpj);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1009,7 +1009,7 @@ catch (ApiException e)
 
 ### Tipo de retorno
 
-[**DfeVisaoGeralSefazStatus**](DfeVisaoGeralSefazStatus.md)
+[**DfeSefazStatus**](DfeSefazStatus.md)
 
 ### Autorização
 

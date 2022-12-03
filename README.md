@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 1.2.1
-- Versão do SDK: 1.2.0
+- Versão da API: 1.2.2
+- Versão do SDK: 1.3.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -369,7 +369,6 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfePedidoInutilizacao](docs/DfePedidoInutilizacao.md)
  - [Model.DfeRecibo](docs/DfeRecibo.md)
  - [Model.DfeSefazStatus](docs/DfeSefazStatus.md)
- - [Model.DfeVisaoGeralSefazStatus](docs/DfeVisaoGeralSefazStatus.md)
  - [Model.Empresa](docs/Empresa.md)
  - [Model.EmpresaCertificado](docs/EmpresaCertificado.md)
  - [Model.EmpresaConfigCte](docs/EmpresaConfigCte.md)
