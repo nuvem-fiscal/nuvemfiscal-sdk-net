@@ -116,7 +116,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoMensagem">Código da Mensagem..</param>
         /// <param name="mensagem">Mensagem da SEFAZ para o emissor..</param>
         /// <param name="tipoEvento">tipoEvento.</param>
-        public MdfeInclusaoDfe(int codigoMunicipioCarrega = default(int), string municipioCarrega = default(string), List<MdfeDocumentoVinculado> documentos = default(List<MdfeDocumentoVinculado>), string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), StatusEnum? status = default(StatusEnum?), DfeAutorEvento autor = default(DfeAutorEvento), string chaveAcesso = default(string), DateTime dataEvento = default(DateTime), int numeroSequencial = default(int), DateTime dataRecebimento = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), string numeroProtocolo = default(string), int codigoMensagem = default(int), string mensagem = default(string), string tipoEvento = default(string))
+        public MdfeInclusaoDfe(string codigoMunicipioCarrega = default(string), string municipioCarrega = default(string), List<MdfeDocumentoVinculado> documentos = default(List<MdfeDocumentoVinculado>), string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), StatusEnum? status = default(StatusEnum?), DfeAutorEvento autor = default(DfeAutorEvento), string chaveAcesso = default(string), DateTime dataEvento = default(DateTime), int numeroSequencial = default(int), DateTime dataRecebimento = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), string numeroProtocolo = default(string), int codigoMensagem = default(int), string mensagem = default(string), string tipoEvento = default(string))
         {
             this.codigo_municipio_carrega = codigoMunicipioCarrega;
             this.municipio_carrega = municipioCarrega;
@@ -142,7 +142,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de carregamento.</value>
         [DataMember(Name = "codigo_municipio_carrega", EmitDefaultValue = false)]
-        public int codigo_municipio_carrega { get; set; }
+        public string codigo_municipio_carrega { get; set; }
 
         /// <summary>
         /// Nome do Município de carregamento.
@@ -302,7 +302,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.codigo_municipio_carrega == input.codigo_municipio_carrega ||
-                    this.codigo_municipio_carrega.Equals(input.codigo_municipio_carrega)
+                    (this.codigo_municipio_carrega != null &&
+                    this.codigo_municipio_carrega.Equals(input.codigo_municipio_carrega))
                 ) && 
                 (
                     this.municipio_carrega == input.municipio_carrega ||
@@ -391,7 +392,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.codigo_municipio_carrega.GetHashCode();
+                if (this.codigo_municipio_carrega != null)
+                {
+                    hashCode = (hashCode * 59) + this.codigo_municipio_carrega.GetHashCode();
+                }
                 if (this.municipio_carrega != null)
                 {
                     hashCode = (hashCode * 59) + this.municipio_carrega.GetHashCode();

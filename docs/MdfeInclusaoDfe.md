@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**codigo_municipio_carrega** | **int** | Código do Município de carregamento. | [optional] 
+**codigo_municipio_carrega** | **string** | Código do Município de carregamento. | [optional] 
 **municipio_carrega** | **string** | Nome do Município de carregamento. | [optional] 
 **documentos** | [**List&lt;MdfeDocumentoVinculado&gt;**](MdfeDocumentoVinculado.md) | Informações dos documentos fiscais vinculados ao manifesto. | [optional] 
 **id** | **string** | ID único gerado pela Nuvem Fiscal para este evento. | [optional] 

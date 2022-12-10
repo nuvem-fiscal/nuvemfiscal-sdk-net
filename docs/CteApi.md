@@ -20,7 +20,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**CriarCartaCorrecaoCte**](CteApi.md#criarcartacorrecaocte) | **POST** /cte/{id}/carta-correcao | Solicitar correção do CT-e |
 | [**EmitirCte**](CteApi.md#emitircte) | **POST** /cte | Emitir CT-e |
 | [**EmitirLoteCte**](CteApi.md#emitirlotecte) | **POST** /cte/lotes | Emitir lote de CT-e |
-| [**InutilizarCte**](CteApi.md#inutilizarcte) | **POST** /cte/inutilizacoes | Inutilizar uma sequência de numeração de CT-e |
+| [**InutilizarNumeracaoCte**](CteApi.md#inutilizarnumeracaocte) | **POST** /cte/inutilizacoes | Inutilizar uma sequência de numeração de CT-e |
 | [**ListarCte**](CteApi.md#listarcte) | **GET** /cte | Listar CT-e |
 | [**ListarLotesCte**](CteApi.md#listarlotescte) | **GET** /cte/lotes | Listar lotes de CT-e |
 
@@ -1636,9 +1636,9 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
-<a name="inutilizarcte"></a>
-# **InutilizarCte**
-> DfeInutilizacao InutilizarCte (DfePedidoInutilizacao body)
+<a name="inutilizarnumeracaocte"></a>
+# **InutilizarNumeracaoCte**
+> DfeInutilizacao InutilizarNumeracaoCte (DfePedidoInutilizacao body)
 
 Inutilizar uma sequência de numeração de CT-e
 
@@ -1653,7 +1653,7 @@ using NuvemFiscal.Sdk.Model;
 
 namespace Example
 {
-    public class InutilizarCteExample
+    public class InutilizarNumeracaoCteExample
     {
         public static void Main()
         {
@@ -1675,12 +1675,12 @@ namespace Example
             try
             {
                 // Inutilizar uma sequência de numeração de CT-e
-                DfeInutilizacao result = apiInstance.InutilizarCte(body);
+                DfeInutilizacao result = apiInstance.InutilizarNumeracaoCte(body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CteApi.InutilizarCte: " + e.Message);
+                Debug.Print("Exception when calling CteApi.InutilizarNumeracaoCte: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1689,21 +1689,21 @@ namespace Example
 }
 ```
 
-#### Usando a variante InutilizarCteWithHttpInfo
+#### Usando a variante InutilizarNumeracaoCteWithHttpInfo
 Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
 
 ```csharp
 try
 {
     // Inutilizar uma sequência de numeração de CT-e
-    ApiResponse<DfeInutilizacao> response = apiInstance.InutilizarCteWithHttpInfo(body);
+    ApiResponse<DfeInutilizacao> response = apiInstance.InutilizarNumeracaoCteWithHttpInfo(body);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exceção ao chamar CteApi.InutilizarCteWithHttpInfo: " + e.Message);
+    Debug.Print("Exceção ao chamar CteApi.InutilizarNumeracaoCteWithHttpInfo: " + e.Message);
     Debug.Print("Código de status: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

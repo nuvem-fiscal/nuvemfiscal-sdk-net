@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="uF">Sigla da UF.  Informar EX para operações com o exterior. (required).</param>
         /// <param name="cPais">Código do país.  Utilizar a tabela do BACEN..</param>
         /// <param name="xPais">Nome do país..</param>
-        public CteSefazEndereco(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string cEP = default(string), string uF = default(string), int cPais = default(int), string xPais = default(string))
+        public CteSefazEndereco(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string cEP = default(string), string uF = default(string), string cPais = default(string), string xPais = default(string))
         {
             // to ensure "xLgr" is required (not null)
             if (xLgr == null)
@@ -151,7 +151,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do país.  Utilizar a tabela do BACEN.</value>
         [DataMember(Name = "cPais", EmitDefaultValue = false)]
-        public int cPais { get; set; }
+        public string cPais { get; set; }
 
         /// <summary>
         /// Nome do país.
@@ -255,7 +255,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cPais == input.cPais ||
-                    this.cPais.Equals(input.cPais)
+                    (this.cPais != null &&
+                    this.cPais.Equals(input.cPais))
                 ) && 
                 (
                     this.xPais == input.xPais ||
@@ -305,7 +306,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.UF.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cPais.GetHashCode();
+                if (this.cPais != null)
+                {
+                    hashCode = (hashCode * 59) + this.cPais.GetHashCode();
+                }
                 if (this.xPais != null)
                 {
                     hashCode = (hashCode * 59) + this.xPais.GetHashCode();

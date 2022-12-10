@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPais">Código do país.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="xPais">Nome do país.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="fone">Preencher com Código DDD + número do telefone (v.2.0).  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        public NfeSefazEnderEmi(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string uF = default(string), string cEP = default(string), int cPais = default(int), string xPais = default(string), string fone = default(string))
+        public NfeSefazEnderEmi(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string uF = default(string), string cEP = default(string), string cPais = default(string), string xPais = default(string), string fone = default(string))
         {
             this.xLgr = xLgr;
             this.nro = nro;
@@ -118,7 +118,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do país.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
         [DataMember(Name = "cPais", EmitDefaultValue = false)]
-        public int cPais { get; set; }
+        public string cPais { get; set; }
 
         /// <summary>
         /// Nome do país.  Caso não seja informado, será utilizado o do cadastro da empresa.
@@ -230,7 +230,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cPais == input.cPais ||
-                    this.cPais.Equals(input.cPais)
+                    (this.cPais != null &&
+                    this.cPais.Equals(input.cPais))
                 ) && 
                 (
                     this.xPais == input.xPais ||
@@ -285,7 +286,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CEP.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cPais.GetHashCode();
+                if (this.cPais != null)
+                {
+                    hashCode = (hashCode * 59) + this.cPais.GetHashCode();
+                }
                 if (this.xPais != null)
                 {
                     hashCode = (hashCode * 59) + this.xPais.GetHashCode();

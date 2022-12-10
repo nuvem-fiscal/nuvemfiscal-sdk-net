@@ -56,7 +56,13 @@ namespace NuvemFiscal.Sdk.Model
             /// Enum Rejeitado for value: rejeitado
             /// </summary>
             [EnumMember(Value = "rejeitado")]
-            Rejeitado = 4
+            Rejeitado = 4,
+
+            /// <summary>
+            /// Enum Erro for value: erro
+            /// </summary>
+            [EnumMember(Value = "erro")]
+            Erro = 5
 
         }
 

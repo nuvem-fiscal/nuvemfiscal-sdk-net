@@ -15,7 +15,7 @@ Nome | Tipo | Descrição | Comentários
 **xMun** | **string** | Nome do município. | 
 **UF** | **string** | Sigla da UF. | 
 **CEP** | **string** | CEP. | [optional] 
-**cPais** | **int** | Código de Pais. | [optional] 
+**cPais** | **string** | Código de Pais. | [optional] 
 **xPais** | **string** | Nome do país. | [optional] 
 **fone** | **string** | Telefone, preencher com Código DDD + número do telefone , nas operações com exterior é permtido informar o código do país + código da localidade + número do telefone. | [optional] 
 **email** | **string** | Informar o e-mail do expedidor/Recebedor. O campo pode ser utilizado para informar o e-mail de recepção da NF-e indicada pelo expedidor. | [optional] 

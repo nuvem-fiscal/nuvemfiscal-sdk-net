@@ -21,7 +21,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**CriarCartaCorrecaoNfe**](NfeApi.md#criarcartacorrecaonfe) | **POST** /nfe/{id}/carta-correcao | Solicitar correção da NF-e |
 | [**EmitirLoteNfe**](NfeApi.md#emitirlotenfe) | **POST** /nfe/lotes | Emitir lote de NF-e |
 | [**EmitirNfe**](NfeApi.md#emitirnfe) | **POST** /nfe | Emitir NF-e |
-| [**InutilizarNfe**](NfeApi.md#inutilizarnfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e |
+| [**InutilizarNumeracaoNfe**](NfeApi.md#inutilizarnumeracaonfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e |
 | [**ListarLotesNfe**](NfeApi.md#listarlotesnfe) | **GET** /nfe/lotes | Listar lotes de NF-e |
 | [**ListarNfe**](NfeApi.md#listarnfe) | **GET** /nfe | Listar NF-e |
 
@@ -1737,9 +1737,9 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
-<a name="inutilizarnfe"></a>
-# **InutilizarNfe**
-> DfeInutilizacao InutilizarNfe (DfePedidoInutilizacao body)
+<a name="inutilizarnumeracaonfe"></a>
+# **InutilizarNumeracaoNfe**
+> DfeInutilizacao InutilizarNumeracaoNfe (DfePedidoInutilizacao body)
 
 Inutilizar uma sequência de numeração de NF-e
 
@@ -1754,7 +1754,7 @@ using NuvemFiscal.Sdk.Model;
 
 namespace Example
 {
-    public class InutilizarNfeExample
+    public class InutilizarNumeracaoNfeExample
     {
         public static void Main()
         {
@@ -1776,12 +1776,12 @@ namespace Example
             try
             {
                 // Inutilizar uma sequência de numeração de NF-e
-                DfeInutilizacao result = apiInstance.InutilizarNfe(body);
+                DfeInutilizacao result = apiInstance.InutilizarNumeracaoNfe(body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling NfeApi.InutilizarNfe: " + e.Message);
+                Debug.Print("Exception when calling NfeApi.InutilizarNumeracaoNfe: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1790,21 +1790,21 @@ namespace Example
 }
 ```
 
-#### Usando a variante InutilizarNfeWithHttpInfo
+#### Usando a variante InutilizarNumeracaoNfeWithHttpInfo
 Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
 
 ```csharp
 try
 {
     // Inutilizar uma sequência de numeração de NF-e
-    ApiResponse<DfeInutilizacao> response = apiInstance.InutilizarNfeWithHttpInfo(body);
+    ApiResponse<DfeInutilizacao> response = apiInstance.InutilizarNumeracaoNfeWithHttpInfo(body);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exceção ao chamar NfeApi.InutilizarNfeWithHttpInfo: " + e.Message);
+    Debug.Print("Exceção ao chamar NfeApi.InutilizarNumeracaoNfeWithHttpInfo: " + e.Message);
     Debug.Print("Código de status: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

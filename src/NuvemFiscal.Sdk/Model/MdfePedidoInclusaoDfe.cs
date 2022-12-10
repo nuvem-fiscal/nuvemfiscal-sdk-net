@@ -35,7 +35,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="municipioCarrega">Nome do Município de carregamento..</param>
         /// <param name="documentos">Informações dos documentos fiscais vinculados ao manifesto..</param>
         /// <param name="protocoloAutorizacao">protocoloAutorizacao.</param>
-        public MdfePedidoInclusaoDfe(int codigoMunicipioCarrega = default(int), string municipioCarrega = default(string), List<MdfeDocumentoVinculado> documentos = default(List<MdfeDocumentoVinculado>), string protocoloAutorizacao = default(string))
+        public MdfePedidoInclusaoDfe(string codigoMunicipioCarrega = default(string), string municipioCarrega = default(string), List<MdfeDocumentoVinculado> documentos = default(List<MdfeDocumentoVinculado>), string protocoloAutorizacao = default(string))
         {
             this.codigo_municipio_carrega = codigoMunicipioCarrega;
             this.municipio_carrega = municipioCarrega;
@@ -48,7 +48,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de carregamento.</value>
         [DataMember(Name = "codigo_municipio_carrega", EmitDefaultValue = false)]
-        public int codigo_municipio_carrega { get; set; }
+        public string codigo_municipio_carrega { get; set; }
 
         /// <summary>
         /// Nome do Município de carregamento.
@@ -119,7 +119,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.codigo_municipio_carrega == input.codigo_municipio_carrega ||
-                    this.codigo_municipio_carrega.Equals(input.codigo_municipio_carrega)
+                    (this.codigo_municipio_carrega != null &&
+                    this.codigo_municipio_carrega.Equals(input.codigo_municipio_carrega))
                 ) && 
                 (
                     this.municipio_carrega == input.municipio_carrega ||
@@ -148,7 +149,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.codigo_municipio_carrega.GetHashCode();
+                if (this.codigo_municipio_carrega != null)
+                {
+                    hashCode = (hashCode * 59) + this.codigo_municipio_carrega.GetHashCode();
+                }
                 if (this.municipio_carrega != null)
                 {
                     hashCode = (hashCode * 59) + this.municipio_carrega.GetHashCode();

@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 1.2.2
-- Versão do SDK: 1.3.0
+- Versão da API: 1.2.9
+- Versão do SDK: 1.4.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -155,7 +155,7 @@ Classe | Método | Endpoint | Descrição
 *CteApi* | [**CriarCartaCorrecaoCte**](docs/CteApi.md#criarcartacorrecaocte) | **POST** /cte/{id}/carta-correcao | Solicitar correção do CT-e
 *CteApi* | [**EmitirCte**](docs/CteApi.md#emitircte) | **POST** /cte | Emitir CT-e
 *CteApi* | [**EmitirLoteCte**](docs/CteApi.md#emitirlotecte) | **POST** /cte/lotes | Emitir lote de CT-e
-*CteApi* | [**InutilizarCte**](docs/CteApi.md#inutilizarcte) | **POST** /cte/inutilizacoes | Inutilizar uma sequência de numeração de CT-e
+*CteApi* | [**InutilizarNumeracaoCte**](docs/CteApi.md#inutilizarnumeracaocte) | **POST** /cte/inutilizacoes | Inutilizar uma sequência de numeração de CT-e
 *CteApi* | [**ListarCte**](docs/CteApi.md#listarcte) | **GET** /cte | Listar CT-e
 *CteApi* | [**ListarLotesCte**](docs/CteApi.md#listarlotescte) | **GET** /cte/lotes | Listar lotes de CT-e
 *EmpresaApi* | [**AlterarConfigCte**](docs/EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e
@@ -207,7 +207,7 @@ Classe | Método | Endpoint | Descrição
 *NfceApi* | [**ConsultarStatusSefazNfce**](docs/NfceApi.md#consultarstatussefaznfce) | **GET** /nfce/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
 *NfceApi* | [**EmitirLoteNfce**](docs/NfceApi.md#emitirlotenfce) | **POST** /nfce/lotes | Emitir lote de NFC-e
 *NfceApi* | [**EmitirNfce**](docs/NfceApi.md#emitirnfce) | **POST** /nfce | Emitir NFC-e
-*NfceApi* | [**InutilizarNfce**](docs/NfceApi.md#inutilizarnfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e
+*NfceApi* | [**InutilizarNumeracaoNfce**](docs/NfceApi.md#inutilizarnumeracaonfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e
 *NfceApi* | [**ListarLotesNfce**](docs/NfceApi.md#listarlotesnfce) | **GET** /nfce/lotes | Listar lotes de NFC-e
 *NfceApi* | [**ListarNfce**](docs/NfceApi.md#listarnfce) | **GET** /nfce | Listar NFC-e
 *NfeApi* | [**BaixarPdfNfe**](docs/NfeApi.md#baixarpdfnfe) | **GET** /nfe/{id}/pdf | Baixar PDF do DANFE
@@ -227,7 +227,7 @@ Classe | Método | Endpoint | Descrição
 *NfeApi* | [**CriarCartaCorrecaoNfe**](docs/NfeApi.md#criarcartacorrecaonfe) | **POST** /nfe/{id}/carta-correcao | Solicitar correção da NF-e
 *NfeApi* | [**EmitirLoteNfe**](docs/NfeApi.md#emitirlotenfe) | **POST** /nfe/lotes | Emitir lote de NF-e
 *NfeApi* | [**EmitirNfe**](docs/NfeApi.md#emitirnfe) | **POST** /nfe | Emitir NF-e
-*NfeApi* | [**InutilizarNfe**](docs/NfeApi.md#inutilizarnfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e
+*NfeApi* | [**InutilizarNumeracaoNfe**](docs/NfeApi.md#inutilizarnumeracaonfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e
 *NfeApi* | [**ListarLotesNfe**](docs/NfeApi.md#listarlotesnfe) | **GET** /nfe/lotes | Listar lotes de NF-e
 *NfeApi* | [**ListarNfe**](docs/NfeApi.md#listarnfe) | **GET** /nfe | Listar NF-e
 *NfseApi* | [**BaixarXmlNfse**](docs/NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada

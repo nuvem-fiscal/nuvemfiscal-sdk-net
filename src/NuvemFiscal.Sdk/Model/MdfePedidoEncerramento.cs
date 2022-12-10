@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dataEncerramento">Data que o manifesto foi encerrado.  Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API..</param>
         /// <param name="uf">UF de encerramento do manifesto. (required).</param>
         /// <param name="codigoMunicipio">Código IBGE do Município de encerramento do manifesto. (required).</param>
-        public MdfePedidoEncerramento(DateTime dataEncerramento = default(DateTime), string uf = default(string), int codigoMunicipio = default(int))
+        public MdfePedidoEncerramento(DateTime dataEncerramento = default(DateTime), string uf = default(string), string codigoMunicipio = default(string))
         {
             // to ensure "uf" is required (not null)
             if (uf == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("uf is a required property for MdfePedidoEncerramento and cannot be null");
             }
             this.uf = uf;
+            // to ensure "codigoMunicipio" is required (not null)
+            if (codigoMunicipio == null)
+            {
+                throw new ArgumentNullException("codigoMunicipio is a required property for MdfePedidoEncerramento and cannot be null");
+            }
             this.codigo_municipio = codigoMunicipio;
             this.data_encerramento = dataEncerramento;
         }
@@ -71,7 +76,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código IBGE do Município de encerramento do manifesto.</value>
         [DataMember(Name = "codigo_municipio", IsRequired = true, EmitDefaultValue = true)]
-        public int codigo_municipio { get; set; }
+        public string codigo_municipio { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -131,7 +136,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.codigo_municipio == input.codigo_municipio ||
-                    this.codigo_municipio.Equals(input.codigo_municipio)
+                    (this.codigo_municipio != null &&
+                    this.codigo_municipio.Equals(input.codigo_municipio))
                 );
         }
 
@@ -152,7 +158,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.uf.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.codigo_municipio.GetHashCode();
+                if (this.codigo_municipio != null)
+                {
+                    hashCode = (hashCode * 59) + this.codigo_municipio.GetHashCode();
+                }
                 return hashCode;
             }
         }

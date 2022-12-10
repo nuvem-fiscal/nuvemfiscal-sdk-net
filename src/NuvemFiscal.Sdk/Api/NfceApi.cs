@@ -256,7 +256,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>DfeInutilizacao</returns>
-        DfeInutilizacao InutilizarNfce(DfePedidoInutilizacao body);
+        DfeInutilizacao InutilizarNumeracaoNfce(DfePedidoInutilizacao body);
 
         /// <summary>
         /// Inutilizar uma sequência de numeração de NFC-e
@@ -267,7 +267,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>ApiResponse of DfeInutilizacao</returns>
-        ApiResponse<DfeInutilizacao> InutilizarNfceWithHttpInfo(DfePedidoInutilizacao body);
+        ApiResponse<DfeInutilizacao> InutilizarNumeracaoNfceWithHttpInfo(DfePedidoInutilizacao body);
         /// <summary>
         /// Listar lotes de NFC-e
         /// </summary>
@@ -623,7 +623,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeInutilizacao</returns>
-        System.Threading.Tasks.Task<DfeInutilizacao> InutilizarNfceAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeInutilizacao> InutilizarNumeracaoNfceAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Inutilizar uma sequência de numeração de NFC-e
@@ -635,7 +635,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeInutilizacao)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeInutilizacao>> InutilizarNfceWithHttpInfoAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeInutilizacao>> InutilizarNumeracaoNfceWithHttpInfoAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Listar lotes de NFC-e
         /// </summary>
@@ -2581,9 +2581,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>DfeInutilizacao</returns>
-        public DfeInutilizacao InutilizarNfce(DfePedidoInutilizacao body)
+        public DfeInutilizacao InutilizarNumeracaoNfce(DfePedidoInutilizacao body)
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao> localVarResponse = InutilizarNfceWithHttpInfo(body);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao> localVarResponse = InutilizarNumeracaoNfceWithHttpInfo(body);
             return localVarResponse.Data;
         }
 
@@ -2593,11 +2593,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>ApiResponse of DfeInutilizacao</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao> InutilizarNfceWithHttpInfo(DfePedidoInutilizacao body)
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao> InutilizarNumeracaoNfceWithHttpInfo(DfePedidoInutilizacao body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling NfceApi->InutilizarNfce");
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling NfceApi->InutilizarNumeracaoNfce");
 
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
@@ -2635,7 +2635,7 @@ namespace NuvemFiscal.Sdk.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("InutilizarNfce", localVarResponse);
+                Exception _exception = this.ExceptionFactory("InutilizarNumeracaoNfce", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2649,9 +2649,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeInutilizacao</returns>
-        public async System.Threading.Tasks.Task<DfeInutilizacao> InutilizarNfceAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeInutilizacao> InutilizarNumeracaoNfceAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao> localVarResponse = await InutilizarNfceWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao> localVarResponse = await InutilizarNumeracaoNfceWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2662,11 +2662,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeInutilizacao)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao>> InutilizarNfceWithHttpInfoAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeInutilizacao>> InutilizarNumeracaoNfceWithHttpInfoAsync(DfePedidoInutilizacao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling NfceApi->InutilizarNfce");
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling NfceApi->InutilizarNumeracaoNfce");
 
 
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
@@ -2707,7 +2707,7 @@ namespace NuvemFiscal.Sdk.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("InutilizarNfce", localVarResponse);
+                Exception _exception = this.ExceptionFactory("InutilizarNumeracaoNfce", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

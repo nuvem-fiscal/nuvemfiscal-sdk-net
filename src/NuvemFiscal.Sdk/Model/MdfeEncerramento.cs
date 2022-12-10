@@ -116,7 +116,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoMensagem">Código da Mensagem..</param>
         /// <param name="mensagem">Mensagem da SEFAZ para o emissor..</param>
         /// <param name="tipoEvento">tipoEvento.</param>
-        public MdfeEncerramento(DateTime dataEncerramento = default(DateTime), string uf = default(string), int codigoMunicipio = default(int), string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), StatusEnum? status = default(StatusEnum?), DfeAutorEvento autor = default(DfeAutorEvento), string chaveAcesso = default(string), DateTime dataEvento = default(DateTime), int numeroSequencial = default(int), DateTime dataRecebimento = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), string numeroProtocolo = default(string), int codigoMensagem = default(int), string mensagem = default(string), string tipoEvento = default(string))
+        public MdfeEncerramento(DateTime dataEncerramento = default(DateTime), string uf = default(string), string codigoMunicipio = default(string), string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), StatusEnum? status = default(StatusEnum?), DfeAutorEvento autor = default(DfeAutorEvento), string chaveAcesso = default(string), DateTime dataEvento = default(DateTime), int numeroSequencial = default(int), DateTime dataRecebimento = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), string numeroProtocolo = default(string), int codigoMensagem = default(int), string mensagem = default(string), string tipoEvento = default(string))
         {
             this.data_encerramento = dataEncerramento;
             this.uf = uf;
@@ -157,7 +157,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código do Município de encerramento do manifesto.</value>
         [DataMember(Name = "codigo_municipio", EmitDefaultValue = false)]
-        public int codigo_municipio { get; set; }
+        public string codigo_municipio { get; set; }
 
         /// <summary>
         /// ID único gerado pela Nuvem Fiscal para este evento.
@@ -313,7 +313,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.codigo_municipio == input.codigo_municipio ||
-                    this.codigo_municipio.Equals(input.codigo_municipio)
+                    (this.codigo_municipio != null &&
+                    this.codigo_municipio.Equals(input.codigo_municipio))
                 ) && 
                 (
                     this.id == input.id ||
@@ -399,7 +400,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.uf.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.codigo_municipio.GetHashCode();
+                if (this.codigo_municipio != null)
+                {
+                    hashCode = (hashCode * 59) + this.codigo_municipio.GetHashCode();
+                }
                 if (this.id != null)
                 {
                     hashCode = (hashCode * 59) + this.id.GetHashCode();

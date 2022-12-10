@@ -52,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPais">Código de Pais..</param>
         /// <param name="nProcesso">Número do Processo administrativo ou judicial de suspenção do processo..</param>
         /// <param name="indIncentivo">Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não. (required).</param>
-        public NfeSefazISSQN(decimal vBC = default(decimal), decimal vAliq = default(decimal), decimal vISSQN = default(decimal), string cMunFG = default(string), string cListServ = default(string), decimal vDeducao = default(decimal), decimal vOutro = default(decimal), decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal), decimal vISSRet = default(decimal), int indISS = default(int), string cServico = default(string), string cMun = default(string), int cPais = default(int), string nProcesso = default(string), int indIncentivo = default(int))
+        public NfeSefazISSQN(decimal vBC = default(decimal), decimal vAliq = default(decimal), decimal vISSQN = default(decimal), string cMunFG = default(string), string cListServ = default(string), decimal vDeducao = default(decimal), decimal vOutro = default(decimal), decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal), decimal vISSRet = default(decimal), int indISS = default(int), string cServico = default(string), string cMun = default(string), string cPais = default(string), string nProcesso = default(string), int indIncentivo = default(int))
         {
             this.vBC = vBC;
             this.vAliq = vAliq;
@@ -178,7 +178,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código de Pais.</value>
         [DataMember(Name = "cPais", EmitDefaultValue = false)]
-        public int cPais { get; set; }
+        public string cPais { get; set; }
 
         /// <summary>
         /// Número do Processo administrativo ou judicial de suspenção do processo.
@@ -311,7 +311,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cPais == input.cPais ||
-                    this.cPais.Equals(input.cPais)
+                    (this.cPais != null &&
+                    this.cPais.Equals(input.cPais))
                 ) && 
                 (
                     this.nProcesso == input.nProcesso ||
@@ -358,7 +359,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cMun.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cPais.GetHashCode();
+                if (this.cPais != null)
+                {
+                    hashCode = (hashCode * 59) + this.cPais.GetHashCode();
+                }
                 if (this.nProcesso != null)
                 {
                     hashCode = (hashCode * 59) + this.nProcesso.GetHashCode();

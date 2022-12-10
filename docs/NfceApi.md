@@ -16,7 +16,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**ConsultarStatusSefazNfce**](NfceApi.md#consultarstatussefaznfce) | **GET** /nfce/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora |
 | [**EmitirLoteNfce**](NfceApi.md#emitirlotenfce) | **POST** /nfce/lotes | Emitir lote de NFC-e |
 | [**EmitirNfce**](NfceApi.md#emitirnfce) | **POST** /nfce | Emitir NFC-e |
-| [**InutilizarNfce**](NfceApi.md#inutilizarnfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e |
+| [**InutilizarNumeracaoNfce**](NfceApi.md#inutilizarnumeracaonfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e |
 | [**ListarLotesNfce**](NfceApi.md#listarlotesnfce) | **GET** /nfce/lotes | Listar lotes de NFC-e |
 | [**ListarNfce**](NfceApi.md#listarnfce) | **GET** /nfce | Listar NFC-e |
 
@@ -1228,9 +1228,9 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
-<a name="inutilizarnfce"></a>
-# **InutilizarNfce**
-> DfeInutilizacao InutilizarNfce (DfePedidoInutilizacao body)
+<a name="inutilizarnumeracaonfce"></a>
+# **InutilizarNumeracaoNfce**
+> DfeInutilizacao InutilizarNumeracaoNfce (DfePedidoInutilizacao body)
 
 Inutilizar uma sequência de numeração de NFC-e
 
@@ -1245,7 +1245,7 @@ using NuvemFiscal.Sdk.Model;
 
 namespace Example
 {
-    public class InutilizarNfceExample
+    public class InutilizarNumeracaoNfceExample
     {
         public static void Main()
         {
@@ -1267,12 +1267,12 @@ namespace Example
             try
             {
                 // Inutilizar uma sequência de numeração de NFC-e
-                DfeInutilizacao result = apiInstance.InutilizarNfce(body);
+                DfeInutilizacao result = apiInstance.InutilizarNumeracaoNfce(body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling NfceApi.InutilizarNfce: " + e.Message);
+                Debug.Print("Exception when calling NfceApi.InutilizarNumeracaoNfce: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -1281,21 +1281,21 @@ namespace Example
 }
 ```
 
-#### Usando a variante InutilizarNfceWithHttpInfo
+#### Usando a variante InutilizarNumeracaoNfceWithHttpInfo
 Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
 
 ```csharp
 try
 {
     // Inutilizar uma sequência de numeração de NFC-e
-    ApiResponse<DfeInutilizacao> response = apiInstance.InutilizarNfceWithHttpInfo(body);
+    ApiResponse<DfeInutilizacao> response = apiInstance.InutilizarNumeracaoNfceWithHttpInfo(body);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exceção ao chamar NfceApi.InutilizarNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Exceção ao chamar NfceApi.InutilizarNumeracaoNfceWithHttpInfo: " + e.Message);
     Debug.Print("Código de status: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
