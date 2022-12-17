@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 1.2.9
-- Versão do SDK: 1.4.0
+- Versão da API: 1.3.3
+- Versão do SDK: 1.5.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -138,7 +138,7 @@ Classe | Método | Endpoint | Descrição
 ------------ | ------------- | ------------- | -------------
 *CepApi* | [**ConsultarCep**](docs/CepApi.md#consultarcep) | **GET** /cep/{Cep} | Consultar endereço através do CEP
 *CnpjApi* | [**ConsultarCnpj**](docs/CnpjApi.md#consultarcnpj) | **GET** /cnpj/{Cnpj} | Consultar dados do CNPJ
-*CnpjApi* | [**ListarCnpj**](docs/CnpjApi.md#listarcnpj) | **GET** /cnpj | Listar estabelecimentos a partir da base de CNPJ
+*CnpjApi* | [**ListarCnpj**](docs/CnpjApi.md#listarcnpj) | **GET** /cnpj | Listar estabelecimentos ativos a partir da base de CNPJ
 *CteApi* | [**BaixarXmlCancelamentoCte**](docs/CteApi.md#baixarxmlcancelamentocte) | **GET** /cte/{id}/cancelamento/xml | Baixar XML do cancelamento
 *CteApi* | [**BaixarXmlCartaCorrecaoCte**](docs/CteApi.md#baixarxmlcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/xml | Baixar XML da carta de correção
 *CteApi* | [**BaixarXmlCte**](docs/CteApi.md#baixarxmlcte) | **GET** /cte/{id}/xml | Baixar XML do CT-e processado
@@ -560,6 +560,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfseCancelamento](docs/NfseCancelamento.md)
  - [Model.NfseListagem](docs/NfseListagem.md)
  - [Model.NfseMensagemRetorno](docs/NfseMensagemRetorno.md)
+ - [Model.NfsePedidoCancelamento](docs/NfsePedidoCancelamento.md)
  - [Model.NfsePedidoEmissao](docs/NfsePedidoEmissao.md)
  - [Model.Rps](docs/Rps.md)
  - [Model.RpsDados](docs/RpsDados.md)

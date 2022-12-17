@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class EmpresaConfigNfce : IEquatable<EmpresaConfigNfce>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Indica se a empresa irá emitir em produção ou homologação.
         /// </summary>
+        /// <value>Indica se a empresa irá emitir em produção ou homologação.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,8 +51,9 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Indica se a empresa irá emitir em produção ou homologação.
         /// </summary>
+        /// <value>Indica se a empresa irá emitir em produção ou homologação.</value>
         [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = true)]
         public AmbienteEnum ambiente { get; set; }
         /// <summary>
@@ -63,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="EmpresaConfigNfce" /> class.
         /// </summary>
         /// <param name="sefaz">sefaz (required).</param>
-        /// <param name="ambiente">ambiente (required).</param>
+        /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
         public EmpresaConfigNfce(EmpresaConfigNfceSefaz sefaz = default(EmpresaConfigNfceSefaz), AmbienteEnum ambiente = default(AmbienteEnum))
         {
             // to ensure "sefaz" is required (not null)

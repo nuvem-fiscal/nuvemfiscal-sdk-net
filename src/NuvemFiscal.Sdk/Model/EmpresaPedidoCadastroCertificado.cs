@@ -31,24 +31,41 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaPedidoCadastroCertificado" /> class.
         /// </summary>
-        /// <param name="certificado">certificado.</param>
-        /// <param name="password">password.</param>
+        [JsonConstructorAttribute]
+        protected EmpresaPedidoCadastroCertificado() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmpresaPedidoCadastroCertificado" /> class.
+        /// </summary>
+        /// <param name="certificado">Binário do certificado digital (.pfx ou .p12) codificado em base64. (required).</param>
+        /// <param name="password">Senha do certificado. (required).</param>
         public EmpresaPedidoCadastroCertificado(byte[] certificado = default(byte[]), string password = default(string))
         {
+            // to ensure "certificado" is required (not null)
+            if (certificado == null)
+            {
+                throw new ArgumentNullException("certificado is a required property for EmpresaPedidoCadastroCertificado and cannot be null");
+            }
             this.certificado = certificado;
+            // to ensure "password" is required (not null)
+            if (password == null)
+            {
+                throw new ArgumentNullException("password is a required property for EmpresaPedidoCadastroCertificado and cannot be null");
+            }
             this.password = password;
         }
 
         /// <summary>
-        /// Gets or Sets certificado
+        /// Binário do certificado digital (.pfx ou .p12) codificado em base64.
         /// </summary>
-        [DataMember(Name = "certificado", EmitDefaultValue = false)]
+        /// <value>Binário do certificado digital (.pfx ou .p12) codificado em base64.</value>
+        [DataMember(Name = "certificado", IsRequired = true, EmitDefaultValue = true)]
         public byte[] certificado { get; set; }
 
         /// <summary>
-        /// Gets or Sets password
+        /// Senha do certificado.
         /// </summary>
-        [DataMember(Name = "password", EmitDefaultValue = false)]
+        /// <value>Senha do certificado.</value>
+        [DataMember(Name = "password", IsRequired = true, EmitDefaultValue = true)]
         public string password { get; set; }
 
         /// <summary>

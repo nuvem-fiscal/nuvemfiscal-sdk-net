@@ -23,52 +23,35 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// EmpresaConfigMdfe
+    /// NfsePedidoCancelamento
     /// </summary>
-    [DataContract(Name = "EmpresaConfigMdfe")]
-    public partial class EmpresaConfigMdfe : IEquatable<EmpresaConfigMdfe>, IValidatableObject
+    [DataContract(Name = "NfsePedidoCancelamento")]
+    public partial class NfsePedidoCancelamento : IEquatable<NfsePedidoCancelamento>, IValidatableObject
     {
         /// <summary>
-        /// Indica se a empresa irá emitir em produção ou homologação.
+        /// Initializes a new instance of the <see cref="NfsePedidoCancelamento" /> class.
         /// </summary>
-        /// <value>Indica se a empresa irá emitir em produção ou homologação.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum AmbienteEnum
+        /// <param name="codigo">Código de cancelamento, exigido por algumas prefeituras.  Para saber quais valores são aceitos, consulte o manual da prefeitura..</param>
+        /// <param name="motivo">Motivo de cancelamento, exigido por algumas prefeituras..</param>
+        public NfsePedidoCancelamento(string codigo = default(string), string motivo = default(string))
         {
-            /// <summary>
-            /// Enum Homologacao for value: homologacao
-            /// </summary>
-            [EnumMember(Value = "homologacao")]
-            Homologacao = 1,
-
-            /// <summary>
-            /// Enum Producao for value: producao
-            /// </summary>
-            [EnumMember(Value = "producao")]
-            Producao = 2
-
+            this.codigo = codigo;
+            this.motivo = motivo;
         }
 
+        /// <summary>
+        /// Código de cancelamento, exigido por algumas prefeituras.  Para saber quais valores são aceitos, consulte o manual da prefeitura.
+        /// </summary>
+        /// <value>Código de cancelamento, exigido por algumas prefeituras.  Para saber quais valores são aceitos, consulte o manual da prefeitura.</value>
+        [DataMember(Name = "codigo", EmitDefaultValue = false)]
+        public string codigo { get; set; }
 
         /// <summary>
-        /// Indica se a empresa irá emitir em produção ou homologação.
+        /// Motivo de cancelamento, exigido por algumas prefeituras.
         /// </summary>
-        /// <value>Indica se a empresa irá emitir em produção ou homologação.</value>
-        [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = true)]
-        public AmbienteEnum ambiente { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmpresaConfigMdfe" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected EmpresaConfigMdfe() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmpresaConfigMdfe" /> class.
-        /// </summary>
-        /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
-        public EmpresaConfigMdfe(AmbienteEnum ambiente = default(AmbienteEnum))
-        {
-            this.ambiente = ambiente;
-        }
+        /// <value>Motivo de cancelamento, exigido por algumas prefeituras.</value>
+        [DataMember(Name = "motivo", EmitDefaultValue = false)]
+        public string motivo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,8 +60,9 @@ namespace NuvemFiscal.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class EmpresaConfigMdfe {\n");
-            sb.Append("  ambiente: ").Append(ambiente).Append("\n");
+            sb.Append("class NfsePedidoCancelamento {\n");
+            sb.Append("  codigo: ").Append(codigo).Append("\n");
+            sb.Append("  motivo: ").Append(motivo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,15 +83,15 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as EmpresaConfigMdfe);
+            return this.Equals(input as NfsePedidoCancelamento);
         }
 
         /// <summary>
-        /// Returns true if EmpresaConfigMdfe instances are equal
+        /// Returns true if NfsePedidoCancelamento instances are equal
         /// </summary>
-        /// <param name="input">Instance of EmpresaConfigMdfe to be compared</param>
+        /// <param name="input">Instance of NfsePedidoCancelamento to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(EmpresaConfigMdfe input)
+        public bool Equals(NfsePedidoCancelamento input)
         {
             if (input == null)
             {
@@ -115,8 +99,14 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
-                    this.ambiente == input.ambiente ||
-                    this.ambiente.Equals(input.ambiente)
+                    this.codigo == input.codigo ||
+                    (this.codigo != null &&
+                    this.codigo.Equals(input.codigo))
+                ) && 
+                (
+                    this.motivo == input.motivo ||
+                    (this.motivo != null &&
+                    this.motivo.Equals(input.motivo))
                 );
         }
 
@@ -129,7 +119,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ambiente.GetHashCode();
+                if (this.codigo != null)
+                {
+                    hashCode = (hashCode * 59) + this.codigo.GetHashCode();
+                }
+                if (this.motivo != null)
+                {
+                    hashCode = (hashCode * 59) + this.motivo.GetHashCode();
+                }
                 return hashCode;
             }
         }

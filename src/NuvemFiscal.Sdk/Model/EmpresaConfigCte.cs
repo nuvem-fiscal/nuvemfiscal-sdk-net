@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class EmpresaConfigCte : IEquatable<EmpresaConfigCte>, IValidatableObject
     {
         /// <summary>
-        /// Defines ambiente
+        /// Indica se a empresa irá emitir em produção ou homologação.
         /// </summary>
+        /// <value>Indica se a empresa irá emitir em produção ou homologação.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AmbienteEnum
         {
@@ -50,8 +51,9 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets ambiente
+        /// Indica se a empresa irá emitir em produção ou homologação.
         /// </summary>
+        /// <value>Indica se a empresa irá emitir em produção ou homologação.</value>
         [DataMember(Name = "ambiente", IsRequired = true, EmitDefaultValue = true)]
         public AmbienteEnum ambiente { get; set; }
         /// <summary>
@@ -62,7 +64,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigCte" /> class.
         /// </summary>
-        /// <param name="ambiente">ambiente (required).</param>
+        /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
         public EmpresaConfigCte(AmbienteEnum ambiente = default(AmbienteEnum))
         {
             this.ambiente = ambiente;

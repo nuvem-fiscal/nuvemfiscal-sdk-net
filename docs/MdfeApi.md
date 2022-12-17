@@ -458,7 +458,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
-            var body = new MdfePedidoCancelamento(); // MdfePedidoCancelamento | 
+            var body = new MdfePedidoCancelamento(); // MdfePedidoCancelamento | Dados do cancelamento.
 
             try
             {
@@ -502,7 +502,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
-| **body** | [**MdfePedidoCancelamento**](MdfePedidoCancelamento.md) |  |  |
+| **body** | [**MdfePedidoCancelamento**](MdfePedidoCancelamento.md) | Dados do cancelamento. |  |
 
 ### Tipo de retorno
 

@@ -100,7 +100,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <returns>DfeCancelamento</returns>
         DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento body);
 
@@ -112,7 +112,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
         ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento body);
         /// <summary>
@@ -495,7 +495,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
         System.Threading.Tasks.Task<DfeCancelamento> CancelarMdfeAsync(string id, MdfePedidoCancelamento body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -508,7 +508,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
         System.Threading.Tasks.Task<ApiResponse<DfeCancelamento>> CancelarMdfeWithHttpInfoAsync(string id, MdfePedidoCancelamento body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1599,7 +1599,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <returns>DfeCancelamento</returns>
         public DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento body)
         {
@@ -1612,7 +1612,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento body)
         {
@@ -1673,7 +1673,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
         public async System.Threading.Tasks.Task<DfeCancelamento> CancelarMdfeAsync(string id, MdfePedidoCancelamento body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1687,7 +1687,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Dados do cancelamento.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento>> CancelarMdfeWithHttpInfoAsync(string id, MdfePedidoCancelamento body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

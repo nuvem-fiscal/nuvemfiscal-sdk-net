@@ -46,8 +46,9 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <returns>NfseCancelamento</returns>
-        NfseCancelamento CancelarNfse(string id);
+        NfseCancelamento CancelarNfse(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento));
 
         /// <summary>
         /// Cancelar uma NFS-e autorizada
@@ -57,8 +58,9 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
-        ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id);
+        ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento));
         /// <summary>
         /// Consultar o cancelamento da NFS-e
         /// </summary>
@@ -253,9 +255,10 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
-        System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Cancelar uma NFS-e autorizada
@@ -265,9 +268,10 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Consultar o cancelamento da NFS-e
         /// </summary>
@@ -800,10 +804,11 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <returns>NfseCancelamento</returns>
-        public NfseCancelamento CancelarNfse(string id)
+        public NfseCancelamento CancelarNfse(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> localVarResponse = CancelarNfseWithHttpInfo(id);
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> localVarResponse = CancelarNfseWithHttpInfo(id, body);
             return localVarResponse.Data;
         }
 
@@ -812,8 +817,9 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id)
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -822,6 +828,7 @@ namespace NuvemFiscal.Sdk.Api
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -836,6 +843,7 @@ namespace NuvemFiscal.Sdk.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = body;
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -866,11 +874,12 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
-        public async System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> localVarResponse = await CancelarNfseWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> localVarResponse = await CancelarNfseWithHttpInfoAsync(id, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -879,9 +888,10 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -891,6 +901,7 @@ namespace NuvemFiscal.Sdk.Api
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -906,6 +917,7 @@ namespace NuvemFiscal.Sdk.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = body;
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))

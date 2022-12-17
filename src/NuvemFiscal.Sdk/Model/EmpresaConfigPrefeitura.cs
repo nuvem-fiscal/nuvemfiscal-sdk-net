@@ -31,9 +31,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigPrefeitura" /> class.
         /// </summary>
-        /// <param name="login">login.</param>
-        /// <param name="senha">senha.</param>
-        /// <param name="token">token.</param>
+        /// <param name="login">Login de autenticação com a prefeitura, caso não utilize certificado digital..</param>
+        /// <param name="senha">Senha de autenticação com a prefeitura, caso não utilize certificado digital..</param>
+        /// <param name="token">Token de autenticação com a prefeitura, caso não utilize certificado digital..</param>
         public EmpresaConfigPrefeitura(string login = default(string), string senha = default(string), string token = default(string))
         {
             this.login = login;
@@ -42,20 +42,23 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets login
+        /// Login de autenticação com a prefeitura, caso não utilize certificado digital.
         /// </summary>
+        /// <value>Login de autenticação com a prefeitura, caso não utilize certificado digital.</value>
         [DataMember(Name = "login", EmitDefaultValue = false)]
         public string login { get; set; }
 
         /// <summary>
-        /// Gets or Sets senha
+        /// Senha de autenticação com a prefeitura, caso não utilize certificado digital.
         /// </summary>
+        /// <value>Senha de autenticação com a prefeitura, caso não utilize certificado digital.</value>
         [DataMember(Name = "senha", EmitDefaultValue = false)]
         public string senha { get; set; }
 
         /// <summary>
-        /// Gets or Sets token
+        /// Token de autenticação com a prefeitura, caso não utilize certificado digital.
         /// </summary>
+        /// <value>Token de autenticação com a prefeitura, caso não utilize certificado digital.</value>
         [DataMember(Name = "token", EmitDefaultValue = false)]
         public string token { get; set; }
 

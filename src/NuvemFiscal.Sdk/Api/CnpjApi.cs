@@ -42,10 +42,10 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>ApiResponse of CnpjEmpresa</returns>
         ApiResponse<CnpjEmpresa> ConsultarCnpjWithHttpInfo(string cnpj);
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ
+        /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -57,10 +57,10 @@ namespace NuvemFiscal.Sdk.Api
         CnpjListagem ListarCnpj(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?));
 
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ
+        /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -103,10 +103,10 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>Task of ApiResponse (CnpjEmpresa)</returns>
         System.Threading.Tasks.Task<ApiResponse<CnpjEmpresa>> ConsultarCnpjWithHttpInfoAsync(string cnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ
+        /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -119,10 +119,10 @@ namespace NuvemFiscal.Sdk.Api
         System.Threading.Tasks.Task<CnpjListagem> ListarCnpjAsync(string cnaePrincipal, string municipio, string naturezaJuridica, int? top = default(int?), int? skip = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ
+        /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -484,7 +484,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -500,7 +500,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -576,7 +576,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -593,7 +593,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>

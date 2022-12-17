@@ -77,12 +77,16 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="id">ID único do cancelamento gerado automaticamente pela Nuvem Fiscal..</param>
         /// <param name="status">status.</param>
+        /// <param name="codigo">codigo.</param>
+        /// <param name="motivo">motivo.</param>
         /// <param name="dataHora">dataHora.</param>
         /// <param name="mensagens">mensagens.</param>
-        public NfseCancelamento(string id = default(string), StatusEnum? status = default(StatusEnum?), DateTime dataHora = default(DateTime), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>))
+        public NfseCancelamento(string id = default(string), StatusEnum? status = default(StatusEnum?), string codigo = default(string), string motivo = default(string), DateTime dataHora = default(DateTime), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>))
         {
             this.id = id;
             this.status = status;
+            this.codigo = codigo;
+            this.motivo = motivo;
             this.data_hora = dataHora;
             this.mensagens = mensagens;
         }
@@ -93,6 +97,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>ID único do cancelamento gerado automaticamente pela Nuvem Fiscal.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets codigo
+        /// </summary>
+        [DataMember(Name = "codigo", EmitDefaultValue = false)]
+        public string codigo { get; set; }
+
+        /// <summary>
+        /// Gets or Sets motivo
+        /// </summary>
+        [DataMember(Name = "motivo", EmitDefaultValue = false)]
+        public string motivo { get; set; }
 
         /// <summary>
         /// Gets or Sets data_hora
@@ -116,6 +132,8 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("class NfseCancelamento {\n");
             sb.Append("  id: ").Append(id).Append("\n");
             sb.Append("  status: ").Append(status).Append("\n");
+            sb.Append("  codigo: ").Append(codigo).Append("\n");
+            sb.Append("  motivo: ").Append(motivo).Append("\n");
             sb.Append("  data_hora: ").Append(data_hora).Append("\n");
             sb.Append("  mensagens: ").Append(mensagens).Append("\n");
             sb.Append("}\n");
@@ -163,6 +181,16 @@ namespace NuvemFiscal.Sdk.Model
                     this.status.Equals(input.status)
                 ) && 
                 (
+                    this.codigo == input.codigo ||
+                    (this.codigo != null &&
+                    this.codigo.Equals(input.codigo))
+                ) && 
+                (
+                    this.motivo == input.motivo ||
+                    (this.motivo != null &&
+                    this.motivo.Equals(input.motivo))
+                ) && 
+                (
                     this.data_hora == input.data_hora ||
                     (this.data_hora != null &&
                     this.data_hora.Equals(input.data_hora))
@@ -189,6 +217,14 @@ namespace NuvemFiscal.Sdk.Model
                     hashCode = (hashCode * 59) + this.id.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.status.GetHashCode();
+                if (this.codigo != null)
+                {
+                    hashCode = (hashCode * 59) + this.codigo.GetHashCode();
+                }
+                if (this.motivo != null)
+                {
+                    hashCode = (hashCode * 59) + this.motivo.GetHashCode();
+                }
                 if (this.data_hora != null)
                 {
                     hashCode = (hashCode * 59) + this.data_hora.GetHashCode();

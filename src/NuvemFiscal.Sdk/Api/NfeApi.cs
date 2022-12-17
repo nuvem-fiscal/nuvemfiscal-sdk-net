@@ -294,7 +294,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <returns>DfeCartaCorrecao</returns>
         DfeCartaCorrecao CriarCartaCorrecaoNfe(string id, NfePedidoCartaCorrecao body);
 
@@ -306,7 +306,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <returns>ApiResponse of DfeCartaCorrecao</returns>
         ApiResponse<DfeCartaCorrecao> CriarCartaCorrecaoNfeWithHttpInfo(string id, NfePedidoCartaCorrecao body);
         /// <summary>
@@ -762,7 +762,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCartaCorrecao</returns>
         System.Threading.Tasks.Task<DfeCartaCorrecao> CriarCartaCorrecaoNfeAsync(string id, NfePedidoCartaCorrecao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -775,7 +775,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCartaCorrecao)</returns>
         System.Threading.Tasks.Task<ApiResponse<DfeCartaCorrecao>> CriarCartaCorrecaoNfeWithHttpInfoAsync(string id, NfePedidoCartaCorrecao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -3062,7 +3062,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <returns>DfeCartaCorrecao</returns>
         public DfeCartaCorrecao CriarCartaCorrecaoNfe(string id, NfePedidoCartaCorrecao body)
         {
@@ -3075,7 +3075,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <returns>ApiResponse of DfeCartaCorrecao</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<DfeCartaCorrecao> CriarCartaCorrecaoNfeWithHttpInfo(string id, NfePedidoCartaCorrecao body)
         {
@@ -3136,7 +3136,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCartaCorrecao</returns>
         public async System.Threading.Tasks.Task<DfeCartaCorrecao> CriarCartaCorrecaoNfeAsync(string id, NfePedidoCartaCorrecao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3150,7 +3150,7 @@ namespace NuvemFiscal.Sdk.Api
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
-        /// <param name="body"></param>
+        /// <param name="body">Contém os dados do pedido para carta de correção.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCartaCorrecao)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeCartaCorrecao>> CriarCartaCorrecaoNfeWithHttpInfoAsync(string id, NfePedidoCartaCorrecao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

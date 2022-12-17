@@ -1470,7 +1470,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
-            var body = new NfePedidoCartaCorrecao(); // NfePedidoCartaCorrecao | 
+            var body = new NfePedidoCartaCorrecao(); // NfePedidoCartaCorrecao | Contém os dados do pedido para carta de correção.
 
             try
             {
@@ -1514,7 +1514,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
-| **body** | [**NfePedidoCartaCorrecao**](NfePedidoCartaCorrecao.md) |  |  |
+| **body** | [**NfePedidoCartaCorrecao**](NfePedidoCartaCorrecao.md) | Contém os dados do pedido para carta de correção. |  |
 
 ### Tipo de retorno
 

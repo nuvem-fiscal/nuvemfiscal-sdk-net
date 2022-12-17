@@ -5,7 +5,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | Método | Endpoint | Descrição |
 |--------|--------------|-------------|
 | [**ConsultarCnpj**](CnpjApi.md#consultarcnpj) | **GET** /cnpj/{Cnpj} | Consultar dados do CNPJ |
-| [**ListarCnpj**](CnpjApi.md#listarcnpj) | **GET** /cnpj | Listar estabelecimentos a partir da base de CNPJ |
+| [**ListarCnpj**](CnpjApi.md#listarcnpj) | **GET** /cnpj | Listar estabelecimentos ativos a partir da base de CNPJ |
 
 <a name="consultarcnpj"></a>
 # **ConsultarCnpj**
@@ -111,9 +111,9 @@ catch (ApiException e)
 # **ListarCnpj**
 > CnpjListagem ListarCnpj (string cnaePrincipal, string municipio, string naturezaJuridica, int? top = null, int? skip = null)
 
-Listar estabelecimentos a partir da base de CNPJ
+Listar estabelecimentos ativos a partir da base de CNPJ
 
-Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.
+Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \"Ativa\".
 
 ### Exemplo
 ```csharp
@@ -151,7 +151,7 @@ namespace Example
 
             try
             {
-                // Listar estabelecimentos a partir da base de CNPJ
+                // Listar estabelecimentos ativos a partir da base de CNPJ
                 CnpjListagem result = apiInstance.ListarCnpj(cnaePrincipal, municipio, naturezaJuridica, top, skip);
                 Debug.WriteLine(result);
             }
@@ -172,7 +172,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
-    // Listar estabelecimentos a partir da base de CNPJ
+    // Listar estabelecimentos ativos a partir da base de CNPJ
     ApiResponse<CnpjListagem> response = apiInstance.ListarCnpjWithHttpInfo(cnaePrincipal, municipio, naturezaJuridica, top, skip);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);

@@ -116,7 +116,7 @@ catch (ApiException e)
 
 <a name="cancelarnfse"></a>
 # **CancelarNfse**
-> NfseCancelamento CancelarNfse (string id)
+> NfseCancelamento CancelarNfse (string id, NfsePedidoCancelamento body = null)
 
 Cancelar uma NFS-e autorizada
 
@@ -149,11 +149,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
+            var body = new NfsePedidoCancelamento(); // NfsePedidoCancelamento |  (optional) 
 
             try
             {
                 // Cancelar uma NFS-e autorizada
-                NfseCancelamento result = apiInstance.CancelarNfse(id);
+                NfseCancelamento result = apiInstance.CancelarNfse(id, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -174,7 +175,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Cancelar uma NFS-e autorizada
-    ApiResponse<NfseCancelamento> response = apiInstance.CancelarNfseWithHttpInfo(id);
+    ApiResponse<NfseCancelamento> response = apiInstance.CancelarNfseWithHttpInfo(id, body);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -192,6 +193,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
+| **body** | [**NfsePedidoCancelamento**](NfsePedidoCancelamento.md) |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -203,7 +205,7 @@ catch (ApiException e)
 
 ### Headers da requisição HTTP
 
- - **Content-Type**: Não especificado
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
