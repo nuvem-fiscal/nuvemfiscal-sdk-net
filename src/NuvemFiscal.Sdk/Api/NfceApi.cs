@@ -309,8 +309,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
-        DfeListagem ListarNfce(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
+        DfeListagem ListarNfce(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string));
 
         /// <summary>
         /// Listar NFC-e
@@ -324,8 +325,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
-        ApiResponse<DfeListagem> ListarNfceWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string));
+        ApiResponse<DfeListagem> ListarNfceWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string));
         #endregion Synchronous Operations
     }
 
@@ -679,9 +681,10 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeListagem</returns>
-        System.Threading.Tasks.Task<DfeListagem> ListarNfceAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeListagem> ListarNfceAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar NFC-e
@@ -695,9 +698,10 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeListagem>> ListarNfceWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeListagem>> ListarNfceWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -2910,10 +2914,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
-        public DfeListagem ListarNfce(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
+        public DfeListagem ListarNfce(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = ListarNfceWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = ListarNfceWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia, chave);
             return localVarResponse.Data;
         }
 
@@ -2926,8 +2931,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> ListarNfceWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> ListarNfceWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -2967,6 +2973,10 @@ namespace NuvemFiscal.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
             localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
+            if (chave != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "chave", chave));
+            }
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3001,11 +3011,12 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeListagem</returns>
-        public async System.Threading.Tasks.Task<DfeListagem> ListarNfceAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeListagem> ListarNfceAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = await ListarNfceWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, referencia, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = await ListarNfceWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, referencia, chave, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3018,9 +3029,10 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. (optional)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)</param>
         /// <param name="referencia"> (optional)</param>
+        /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem>> ListarNfceWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem>> ListarNfceWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -3062,6 +3074,10 @@ namespace NuvemFiscal.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
             localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
+            if (chave != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "chave", chave));
+            }
 
             // authentication (jwt) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))

@@ -4,6 +4,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
 | Método | Endpoint | Descrição |
 |--------|--------------|-------------|
+| [**BaixarPdfNfse**](NfseApi.md#baixarpdfnfse) | **GET** /nfse/{id}/pdf | Baixar PDF do DANFSE |
 | [**BaixarXmlNfse**](NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada |
 | [**CancelarNfse**](NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada |
 | [**ConsultarCancelamentoNfse**](NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento | Consultar o cancelamento da NFS-e |
@@ -13,6 +14,106 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**EmitirNfse**](NfseApi.md#emitirnfse) | **POST** /nfse | Emitir NFS-e |
 | [**ListarLotesNfse**](NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | Listar lotes de NFS-e |
 | [**ListarNfse**](NfseApi.md#listarnfse) | **GET** /nfse | Listar NFS-e |
+
+<a name="baixarpdfnfse"></a>
+# **BaixarPdfNfse**
+> FileParameter BaixarPdfNfse (string id)
+
+Baixar PDF do DANFSE
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarPdfNfseExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar PDF do DANFSE
+                FileParameter result = apiInstance.BaixarPdfNfse(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfseApi.BaixarPdfNfse: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarPdfNfseWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar PDF do DANFSE
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfseWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfseApi.BaixarPdfNfseWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
 <a name="baixarxmlnfse"></a>
 # **BaixarXmlNfse**
@@ -832,7 +933,7 @@ catch (ApiException e)
 
 <a name="listarnfse"></a>
 # **ListarNfse**
-> NfseListagem ListarNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+> NfseListagem ListarNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null, string chave = null)
 
 Listar NFS-e
 
@@ -871,11 +972,12 @@ namespace Example
             var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
             var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
+            var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
 
             try
             {
                 // Listar NFS-e
-                NfseListagem result = apiInstance.ListarNfse(cpfCnpj, ambiente, top, skip, referencia);
+                NfseListagem result = apiInstance.ListarNfse(cpfCnpj, ambiente, top, skip, referencia, chave);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -896,7 +998,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar NFS-e
-    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia, chave);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -918,6 +1020,7 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
+| **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
 
 ### Tipo de retorno
 

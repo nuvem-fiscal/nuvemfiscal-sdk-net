@@ -1749,7 +1749,7 @@ catch (ApiException e)
 
 <a name="listarmdfe"></a>
 # **ListarMdfe**
-> DfeListagem ListarMdfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+> DfeListagem ListarMdfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null, string chave = null)
 
 Listar MDF-e
 
@@ -1788,11 +1788,12 @@ namespace Example
             var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
             var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
+            var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
 
             try
             {
                 // Listar MDF-e
-                DfeListagem result = apiInstance.ListarMdfe(cpfCnpj, ambiente, top, skip, referencia);
+                DfeListagem result = apiInstance.ListarMdfe(cpfCnpj, ambiente, top, skip, referencia, chave);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1813,7 +1814,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar MDF-e
-    ApiResponse<DfeListagem> response = apiInstance.ListarMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    ApiResponse<DfeListagem> response = apiInstance.ListarMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia, chave);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1835,6 +1836,7 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
+| **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
 
 ### Tipo de retorno
 

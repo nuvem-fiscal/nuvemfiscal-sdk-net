@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoCnae">Código CNAE (Classificação Nacional de Atividades Econômicas)..</param>
         /// <param name="codigoTributacaoMunicipio">Código de tributação do município..</param>
         /// <param name="discriminacao">Detalhamento do serviço prestado. (required).</param>
-        /// <param name="codigoMunicipio">Código IBGE do município de prestação do serviço..</param>
+        /// <param name="codigoMunicipio">Código IBGE do município de prestação do serviço.  Caso não informado, será considerado o município do prestador..</param>
         /// <param name="codigoPais">Código do país de prestação do serviço..</param>
         /// <param name="tipoTributacao">Tipo de Tributação do Serviço:  1 - Isento de ISS  2 - Imune  3 - Não Incidência no Município  4 - Não Tributável  5 - Retido  6 - Tributável Dentro do Município  7 - Tributável Fora do Município  8 - Tributável Dentro do Município pelo tomador    Valor padrão: &#x60;6&#x60;.</param>
         /// <param name="exigibilidadeIss">Exigibilidade do ISS:  1 - Exigível  2 - Não Incidência  3 - Isenção  4 - Exportação  5 - Imunidade  6 - Suspenso por Decisão Judicial  7 - Suspenso por Processo Administrativo    Valor padrão: &#x60;1&#x60;.</param>
@@ -128,9 +128,9 @@ namespace NuvemFiscal.Sdk.Model
         public string discriminacao { get; set; }
 
         /// <summary>
-        /// Código IBGE do município de prestação do serviço.
+        /// Código IBGE do município de prestação do serviço.  Caso não informado, será considerado o município do prestador.
         /// </summary>
-        /// <value>Código IBGE do município de prestação do serviço.</value>
+        /// <value>Código IBGE do município de prestação do serviço.  Caso não informado, será considerado o município do prestador.</value>
         [DataMember(Name = "codigo_municipio", EmitDefaultValue = false)]
         public string codigo_municipio { get; set; }
 

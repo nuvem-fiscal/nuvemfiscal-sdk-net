@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 1.3.3
-- Versão do SDK: 1.5.0
+- Versão da API: 1.5.0
+- Versão do SDK: 1.6.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -139,6 +139,8 @@ Classe | Método | Endpoint | Descrição
 *CepApi* | [**ConsultarCep**](docs/CepApi.md#consultarcep) | **GET** /cep/{Cep} | Consultar endereço através do CEP
 *CnpjApi* | [**ConsultarCnpj**](docs/CnpjApi.md#consultarcnpj) | **GET** /cnpj/{Cnpj} | Consultar dados do CNPJ
 *CnpjApi* | [**ListarCnpj**](docs/CnpjApi.md#listarcnpj) | **GET** /cnpj | Listar estabelecimentos ativos a partir da base de CNPJ
+*ContaApi* | [**ConsultarCotaConta**](docs/ContaApi.md#consultarcotaconta) | **GET** /conta/cotas/{nome} | Consultar o limite de uso e o consumo de uma cota específica.
+*ContaApi* | [**ListarCotasConta**](docs/ContaApi.md#listarcotasconta) | **GET** /conta/cotas | Consultar os limites de uso e consumo de todas as cotas existentes.
 *CteApi* | [**BaixarXmlCancelamentoCte**](docs/CteApi.md#baixarxmlcancelamentocte) | **GET** /cte/{id}/cancelamento/xml | Baixar XML do cancelamento
 *CteApi* | [**BaixarXmlCartaCorrecaoCte**](docs/CteApi.md#baixarxmlcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/xml | Baixar XML da carta de correção
 *CteApi* | [**BaixarXmlCte**](docs/CteApi.md#baixarxmlcte) | **GET** /cte/{id}/xml | Baixar XML do CT-e processado
@@ -230,6 +232,7 @@ Classe | Método | Endpoint | Descrição
 *NfeApi* | [**InutilizarNumeracaoNfe**](docs/NfeApi.md#inutilizarnumeracaonfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e
 *NfeApi* | [**ListarLotesNfe**](docs/NfeApi.md#listarlotesnfe) | **GET** /nfe/lotes | Listar lotes de NF-e
 *NfeApi* | [**ListarNfe**](docs/NfeApi.md#listarnfe) | **GET** /nfe | Listar NF-e
+*NfseApi* | [**BaixarPdfNfse**](docs/NfseApi.md#baixarpdfnfse) | **GET** /nfse/{id}/pdf | Baixar PDF do DANFSE
 *NfseApi* | [**BaixarXmlNfse**](docs/NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada
 *NfseApi* | [**CancelarNfse**](docs/NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada
 *NfseApi* | [**ConsultarCancelamentoNfse**](docs/NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento | Consultar o cancelamento da NFS-e
@@ -259,6 +262,8 @@ Classe | Método | Endpoint | Descrição
  - [Model.CnpjSituacaoCadastral](docs/CnpjSituacaoCadastral.md)
  - [Model.CnpjSituacaoEspecial](docs/CnpjSituacaoEspecial.md)
  - [Model.CnpjTelefone](docs/CnpjTelefone.md)
+ - [Model.ContaCota](docs/ContaCota.md)
+ - [Model.ContaCotaListagem](docs/ContaCotaListagem.md)
  - [Model.CteCartaCorrecao](docs/CteCartaCorrecao.md)
  - [Model.CteInfCorrecao](docs/CteInfCorrecao.md)
  - [Model.CtePedidoCancelamento](docs/CtePedidoCancelamento.md)
@@ -369,6 +374,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfePedidoInutilizacao](docs/DfePedidoInutilizacao.md)
  - [Model.DfeRecibo](docs/DfeRecibo.md)
  - [Model.DfeSefazStatus](docs/DfeSefazStatus.md)
+ - [Model.Dps](docs/Dps.md)
  - [Model.Empresa](docs/Empresa.md)
  - [Model.EmpresaCertificado](docs/EmpresaCertificado.md)
  - [Model.EmpresaConfigCte](docs/EmpresaConfigCte.md)
@@ -596,6 +602,7 @@ Classe | Método | Endpoint | Descrição
 - **Flow**: application
 - **URL de autorização**: 
 - **Scopes**: 
+  - conta: 
   - empresa: 
   - cep: 
   - cnpj: 
