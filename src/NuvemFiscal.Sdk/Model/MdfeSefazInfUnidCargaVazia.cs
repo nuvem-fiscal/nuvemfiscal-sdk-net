@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfUnidCargaVazia
+    /// Informações das Undades de Carga vazias.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfUnidCargaVazia")]
     public partial class MdfeSefazInfUnidCargaVazia : IEquatable<MdfeSefazInfUnidCargaVazia>, IValidatableObject
@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="MdfeSefazInfUnidCargaVazia" /> class.
         /// </summary>
         /// <param name="idUnidCargaVazia">Identificação da unidades de carga vazia. (required).</param>
-        /// <param name="tpUnidCargaVazia">Tipo da unidade de carga vazia.  1 - Container; 2 - ULD;3 - Pallet;4 - Outros;. (required).</param>
+        /// <param name="tpUnidCargaVazia">Tipo da unidade de carga vazia.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros (required).</param>
         public MdfeSefazInfUnidCargaVazia(string idUnidCargaVazia = default(string), int tpUnidCargaVazia = default(int))
         {
             // to ensure "idUnidCargaVazia" is required (not null)
@@ -57,9 +57,9 @@ namespace NuvemFiscal.Sdk.Model
         public string idUnidCargaVazia { get; set; }
 
         /// <summary>
-        /// Tipo da unidade de carga vazia.  1 - Container; 2 - ULD;3 - Pallet;4 - Outros;.
+        /// Tipo da unidade de carga vazia.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros
         /// </summary>
-        /// <value>Tipo da unidade de carga vazia.  1 - Container; 2 - ULD;3 - Pallet;4 - Outros;.</value>
+        /// <value>Tipo da unidade de carga vazia.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros</value>
         [DataMember(Name = "tpUnidCargaVazia", IsRequired = true, EmitDefaultValue = true)]
         public int tpUnidCargaVazia { get; set; }
 

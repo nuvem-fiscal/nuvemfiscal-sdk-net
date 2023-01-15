@@ -11,7 +11,9 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**ConsultarLoteNfse**](NfseApi.md#consultarlotenfse) | **GET** /nfse/lotes/{id} | Consultar lote de NFS-e |
 | [**ConsultarNfse**](NfseApi.md#consultarnfse) | **GET** /nfse/{id} | Consultar NFS-e |
 | [**EmitirLoteNfse**](NfseApi.md#emitirlotenfse) | **POST** /nfse/lotes | Emitir lote de NFS-e |
+| [**EmitirLoteNfseDps**](NfseApi.md#emitirlotenfsedps) | **POST** /nfse/dps/lotes | Emitir lote de NFS-e |
 | [**EmitirNfse**](NfseApi.md#emitirnfse) | **POST** /nfse | Emitir NFS-e |
+| [**EmitirNfseDps**](NfseApi.md#emitirnfsedps) | **POST** /nfse/dps | Emitir NFS-e |
 | [**ListarLotesNfse**](NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | Listar lotes de NFS-e |
 | [**ListarNfse**](NfseApi.md#listarnfse) | **GET** /nfse | Listar NFS-e |
 
@@ -721,6 +723,106 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
+<a name="emitirlotenfsedps"></a>
+# **EmitirLoteNfseDps**
+> RpsLote EmitirLoteNfseDps (NfseLoteDpsPedidoEmissao body)
+
+Emitir lote de NFS-e
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class EmitirLoteNfseDpsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
+            var body = new NfseLoteDpsPedidoEmissao(); // NfseLoteDpsPedidoEmissao | 
+
+            try
+            {
+                // Emitir lote de NFS-e
+                RpsLote result = apiInstance.EmitirLoteNfseDps(body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfseApi.EmitirLoteNfseDps: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante EmitirLoteNfseDpsWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Emitir lote de NFS-e
+    ApiResponse<RpsLote> response = apiInstance.EmitirLoteNfseDpsWithHttpInfo(body);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfseApi.EmitirLoteNfseDpsWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **body** | [**NfseLoteDpsPedidoEmissao**](NfseLoteDpsPedidoEmissao.md) |  |  |
+
+### Tipo de retorno
+
+[**RpsLote**](RpsLote.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
 <a name="emitirnfse"></a>
 # **EmitirNfse**
 > Nfse EmitirNfse (NfsePedidoEmissao body)
@@ -821,9 +923,109 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
+<a name="emitirnfsedps"></a>
+# **EmitirNfseDps**
+> Nfse EmitirNfseDps (NfseDpsPedidoEmissao body)
+
+Emitir NFS-e
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class EmitirNfseDpsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
+            var body = new NfseDpsPedidoEmissao(); // NfseDpsPedidoEmissao | 
+
+            try
+            {
+                // Emitir NFS-e
+                Nfse result = apiInstance.EmitirNfseDps(body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfseApi.EmitirNfseDps: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante EmitirNfseDpsWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Emitir NFS-e
+    ApiResponse<Nfse> response = apiInstance.EmitirNfseDpsWithHttpInfo(body);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfseApi.EmitirNfseDpsWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **body** | [**NfseDpsPedidoEmissao**](NfseDpsPedidoEmissao.md) |  |  |
+
+### Tipo de retorno
+
+[**Nfse**](Nfse.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
 <a name="listarlotesnfse"></a>
 # **ListarLotesNfse**
-> RpsLoteListagem ListarLotesNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+> RpsLoteListagem ListarLotesNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null)
 
 Listar lotes de NFS-e
 
@@ -858,15 +1060,16 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
-            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.  Valores aceitos: homologacao, producao
-            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
-            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.    Valores aceitos: homologacao, producao
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = true;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
 
             try
             {
                 // Listar lotes de NFS-e
-                RpsLoteListagem result = apiInstance.ListarLotesNfse(cpfCnpj, ambiente, top, skip, referencia);
+                RpsLoteListagem result = apiInstance.ListarLotesNfse(cpfCnpj, ambiente, top, skip, inlinecount, referencia);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -887,7 +1090,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar lotes de NFS-e
-    ApiResponse<RpsLoteListagem> response = apiInstance.ListarLotesNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    ApiResponse<RpsLoteListagem> response = apiInstance.ListarLotesNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -905,9 +1108,10 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **ambiente** | **string** | Identificação do Ambiente.  Valores aceitos: homologacao, producao |  |
-| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
-| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **ambiente** | **string** | Identificação do Ambiente.    Valores aceitos: homologacao, producao |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
 
 ### Tipo de retorno
@@ -933,7 +1137,7 @@ catch (ApiException e)
 
 <a name="listarnfse"></a>
 # **ListarNfse**
-> NfseListagem ListarNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null, string chave = null)
+> NfseListagem ListarNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null)
 
 Listar NFS-e
 
@@ -967,17 +1171,18 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
-            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.  Valores aceitos: homologacao, producao
-            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
-            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.    Utilize o valor sem máscara.
+            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.    Valores aceitos: homologacao, producao
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = true;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
             var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
 
             try
             {
                 // Listar NFS-e
-                NfseListagem result = apiInstance.ListarNfse(cpfCnpj, ambiente, top, skip, referencia, chave);
+                NfseListagem result = apiInstance.ListarNfse(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -998,7 +1203,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar NFS-e
-    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia, chave);
+    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1015,10 +1220,11 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **ambiente** | **string** | Identificação do Ambiente.  Valores aceitos: homologacao, producao |  |
-| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
-| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.    Utilize o valor sem máscara. |  |
+| **ambiente** | **string** | Identificação do Ambiente.    Valores aceitos: homologacao, producao |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
 | **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
 

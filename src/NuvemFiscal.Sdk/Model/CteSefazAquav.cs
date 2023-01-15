@@ -39,12 +39,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vPrest">Valor da Prestação Base de Cálculo do AFRMM. (required).</param>
         /// <param name="vAFRMM">AFRMM (Adicional de Frete para Renovação da Marinha Mercante). (required).</param>
         /// <param name="xNavio">Identificação do Navio. (required).</param>
-        /// <param name="balsa">Grupo de informações das balsas..</param>
+        /// <param name="balsa">balsa.</param>
         /// <param name="nViag">Número da Viagem..</param>
         /// <param name="direc">Direção.  Preencher com: N-Norte, L-Leste, S-Sul, O-Oeste. (required).</param>
         /// <param name="irin">Irin do navio sempre deverá ser informado. (required).</param>
-        /// <param name="detCont">Grupo de informações de detalhamento dos conteiners   (Somente para Redespacho Intermediário e Serviço Vinculado a Multimodal)..</param>
-        /// <param name="tpNav">Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem..</param>
+        /// <param name="detCont">detCont.</param>
+        /// <param name="tpNav">Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem.</param>
         public CteSefazAquav(decimal vPrest = default(decimal), decimal vAFRMM = default(decimal), string xNavio = default(string), List<CteSefazBalsa> balsa = default(List<CteSefazBalsa>), string nViag = default(string), string direc = default(string), string irin = default(string), List<CteSefazDetCont> detCont = default(List<CteSefazDetCont>), int tpNav = default(int))
         {
             this.vPrest = vPrest;
@@ -95,9 +95,8 @@ namespace NuvemFiscal.Sdk.Model
         public string xNavio { get; set; }
 
         /// <summary>
-        /// Grupo de informações das balsas.
+        /// Gets or Sets balsa
         /// </summary>
-        /// <value>Grupo de informações das balsas.</value>
         [DataMember(Name = "balsa", EmitDefaultValue = false)]
         public List<CteSefazBalsa> balsa { get; set; }
 
@@ -123,16 +122,15 @@ namespace NuvemFiscal.Sdk.Model
         public string irin { get; set; }
 
         /// <summary>
-        /// Grupo de informações de detalhamento dos conteiners   (Somente para Redespacho Intermediário e Serviço Vinculado a Multimodal).
+        /// Gets or Sets detCont
         /// </summary>
-        /// <value>Grupo de informações de detalhamento dos conteiners   (Somente para Redespacho Intermediário e Serviço Vinculado a Multimodal).</value>
         [DataMember(Name = "detCont", EmitDefaultValue = false)]
         public List<CteSefazDetCont> detCont { get; set; }
 
         /// <summary>
-        /// Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem.
+        /// Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem
         /// </summary>
-        /// <value>Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem.</value>
+        /// <value>Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem</value>
         [DataMember(Name = "tpNav", EmitDefaultValue = false)]
         public int tpNav { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazTarifa
+    /// Informações de tarifa.
     /// </summary>
     [DataContract(Name = "CteSefazTarifa")]
     public partial class CteSefazTarifa : IEquatable<CteSefazTarifa>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazTarifa" /> class.
         /// </summary>
-        /// <param name="cL">Classe.  Preencher com:           M - Tarifa Mínima;           G - Tarifa Geral;           E - Tarifa Específica. (required).</param>
+        /// <param name="cL">Classe.  Preencher com:  * M - Tarifa Mínima  * G - Tarifa Geral  * E - Tarifa Específica (required).</param>
         /// <param name="cTar">Código da Tarifa.  Deverão ser incluídos os códigos de três dígitos, correspondentes à tarifa..</param>
         /// <param name="vTar">Valor da Tarifa.  Valor da tarifa por kg quando for o caso. (required).</param>
         public CteSefazTarifa(string cL = default(string), string cTar = default(string), decimal vTar = default(decimal))
@@ -52,9 +52,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Classe.  Preencher com:           M - Tarifa Mínima;           G - Tarifa Geral;           E - Tarifa Específica.
+        /// Classe.  Preencher com:  * M - Tarifa Mínima  * G - Tarifa Geral  * E - Tarifa Específica
         /// </summary>
-        /// <value>Classe.  Preencher com:           M - Tarifa Mínima;           G - Tarifa Geral;           E - Tarifa Específica.</value>
+        /// <value>Classe.  Preencher com:  * M - Tarifa Mínima  * G - Tarifa Geral  * E - Tarifa Específica</value>
         [DataMember(Name = "CL", IsRequired = true, EmitDefaultValue = true)]
         public string CL { get; set; }
 

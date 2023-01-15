@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfServVinc
+    /// Informações do Serviço Vinculado a Multimodal.
     /// </summary>
     [DataContract(Name = "CteSefazInfServVinc")]
     public partial class CteSefazInfServVinc : IEquatable<CteSefazInfServVinc>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazInfServVinc" /> class.
         /// </summary>
-        /// <param name="infCTeMultimodal">informações do CT-e multimodal vinculado. (required).</param>
+        /// <param name="infCTeMultimodal">infCTeMultimodal (required).</param>
         public CteSefazInfServVinc(List<CteSefazInfCTeMultimodal> infCTeMultimodal = default(List<CteSefazInfCTeMultimodal>))
         {
             // to ensure "infCTeMultimodal" is required (not null)
@@ -48,9 +48,8 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// informações do CT-e multimodal vinculado.
+        /// Gets or Sets infCTeMultimodal
         /// </summary>
-        /// <value>informações do CT-e multimodal vinculado.</value>
         [DataMember(Name = "infCTeMultimodal", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazInfCTeMultimodal> infCTeMultimodal { get; set; }
 

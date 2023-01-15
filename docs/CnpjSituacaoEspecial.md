@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjSituacaoEspecial
+Situação especial da empresa.
 
 ## Propriedades
 

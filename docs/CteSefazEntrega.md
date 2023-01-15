@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazEntrega
+Informações ref. a previsão de entrega.
 
 ## Propriedades
 

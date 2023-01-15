@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazIdDocAntPap
+    /// Documentos de transporte anterior em papel.
     /// </summary>
     [DataContract(Name = "CteSefazIdDocAntPap")]
     public partial class CteSefazIdDocAntPap : IEquatable<CteSefazIdDocAntPap>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazIdDocAntPap" /> class.
         /// </summary>
-        /// <param name="tpDoc">Tipo do Documento de Transporte Anterior.  Preencher com:  07-ATRE;         08-DTA (Despacho de Transito Aduaneiro);  09-Conhecimento Aéreo Internacional;  10 – Conhecimento - Carta de Porte Internacional;  11 – Conhecimento Avulso;  12-TIF (Transporte Internacional Ferroviário); 13-BL (Bill of Lading). (required).</param>
+        /// <param name="tpDoc">Tipo do Documento de Transporte Anterior.  Preencher com:  * 07 - ATRE  * 08 - DTA (Despacho de Transito Aduaneiro)  * 09 - Conhecimento Aéreo Internacional  * 10 - Conhecimento - Carta de Porte Internacional  * 11 - Conhecimento Avulso  * 12 - TIF (Transporte Internacional Ferroviário)  * 13 - BL (Bill of Lading) (required).</param>
         /// <param name="serie">Série do Documento Fiscal. (required).</param>
         /// <param name="subser">Série do Documento Fiscal..</param>
         /// <param name="nDoc">Número do Documento Fiscal. (required).</param>
@@ -66,9 +66,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo do Documento de Transporte Anterior.  Preencher com:  07-ATRE;         08-DTA (Despacho de Transito Aduaneiro);  09-Conhecimento Aéreo Internacional;  10 – Conhecimento - Carta de Porte Internacional;  11 – Conhecimento Avulso;  12-TIF (Transporte Internacional Ferroviário); 13-BL (Bill of Lading).
+        /// Tipo do Documento de Transporte Anterior.  Preencher com:  * 07 - ATRE  * 08 - DTA (Despacho de Transito Aduaneiro)  * 09 - Conhecimento Aéreo Internacional  * 10 - Conhecimento - Carta de Porte Internacional  * 11 - Conhecimento Avulso  * 12 - TIF (Transporte Internacional Ferroviário)  * 13 - BL (Bill of Lading)
         /// </summary>
-        /// <value>Tipo do Documento de Transporte Anterior.  Preencher com:  07-ATRE;         08-DTA (Despacho de Transito Aduaneiro);  09-Conhecimento Aéreo Internacional;  10 – Conhecimento - Carta de Porte Internacional;  11 – Conhecimento Avulso;  12-TIF (Transporte Internacional Ferroviário); 13-BL (Bill of Lading).</value>
+        /// <value>Tipo do Documento de Transporte Anterior.  Preencher com:  * 07 - ATRE  * 08 - DTA (Despacho de Transito Aduaneiro)  * 09 - Conhecimento Aéreo Internacional  * 10 - Conhecimento - Carta de Porte Internacional  * 11 - Conhecimento Avulso  * 12 - TIF (Transporte Internacional Ferroviário)  * 13 - BL (Bill of Lading)</value>
         [DataMember(Name = "tpDoc", IsRequired = true, EmitDefaultValue = true)]
         public string tpDoc { get; set; }
 

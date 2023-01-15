@@ -38,10 +38,10 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoMunicipio">Código IBGE do município..</param>
         /// <param name="cidade">Cidade..</param>
         /// <param name="uf">Sigla do estado..</param>
-        /// <param name="codigoPais">Código do país.  Valor padrão: &#x60;1058&#x60;.</param>
+        /// <param name="codigoPais">codigoPais (default to &quot;1058&quot;).</param>
         /// <param name="pais">Nome do país..</param>
         /// <param name="cep">CEP.  Utilize o valor sem máscara..</param>
-        public RpsDadosTomadorEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = default(string), string pais = default(string), string cep = default(string))
+        public RpsDadosTomadorEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = "1058", string pais = default(string), string cep = default(string))
         {
             this.logradouro = logradouro;
             this.numero = numero;
@@ -50,7 +50,8 @@ namespace NuvemFiscal.Sdk.Model
             this.codigo_municipio = codigoMunicipio;
             this.cidade = cidade;
             this.uf = uf;
-            this.codigo_pais = codigoPais;
+            // use default value if no "codigoPais" provided
+            this.codigo_pais = codigoPais ?? "1058";
             this.pais = pais;
             this.cep = cep;
         }
@@ -105,9 +106,8 @@ namespace NuvemFiscal.Sdk.Model
         public string uf { get; set; }
 
         /// <summary>
-        /// Código do país.  Valor padrão: &#x60;1058&#x60;
+        /// Gets or Sets codigo_pais
         /// </summary>
-        /// <value>Código do país.  Valor padrão: &#x60;1058&#x60;</value>
         [DataMember(Name = "codigo_pais", EmitDefaultValue = false)]
         public string codigo_pais { get; set; }
 

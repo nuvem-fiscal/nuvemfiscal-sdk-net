@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazInfNFeSupl
+Informações suplementares Nota Fiscal.
 
 ## Propriedades
 

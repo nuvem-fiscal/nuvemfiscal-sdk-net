@@ -46,12 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="fone">Telefone da empresa..</param>
         /// <param name="email">Email da empresa. (required).</param>
         /// <param name="endereco">endereco (required).</param>
-        /// <param name="optanteSimplesNacional">Optante pelo simples nacional..</param>
-        /// <param name="regimeTributacao">Regime Tributário da Empresa:  0 - Nenhum  1 - Simples Nacional  2 - Simples Nacional - Excesso  3 - Normal - Lucro Presumido  4 - Normal - Lucro Real (required).</param>
-        /// <param name="regimeEspecialTributacao">Regime especial de tributação da Empresa:  0 - Sem Regime Tributário Especial  1 - Micro Empresa Municipal  2 - Estimativa  3 - Sociedade de Profissionais  4 - Cooperativa  5 - Microempresário Individual - MEI  6 - Microempresa ou Pequeno Porte - ME EPP (required).</param>
-        /// <param name="incentivoFiscal">Indicador se a empresa possui algum tipo de incentivo fiscal..</param>
-        /// <param name="incentivadorCultural">Indicador se a empresa é um incentivador cultural..</param>
-        public Empresa(string cpfCnpj = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string inscricaoEstadual = default(string), string inscricaoMunicipal = default(string), string nomeRazaoSocial = default(string), string nomeFantasia = default(string), string fone = default(string), string email = default(string), EmpresaEndereco endereco = default(EmpresaEndereco), bool optanteSimplesNacional = default(bool), int regimeTributacao = default(int), int regimeEspecialTributacao = default(int), bool incentivoFiscal = default(bool), bool incentivadorCultural = default(bool))
+        public Empresa(string cpfCnpj = default(string), DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string inscricaoEstadual = default(string), string inscricaoMunicipal = default(string), string nomeRazaoSocial = default(string), string nomeFantasia = default(string), string fone = default(string), string email = default(string), EmpresaEndereco endereco = default(EmpresaEndereco))
         {
             // to ensure "cpfCnpj" is required (not null)
             if (cpfCnpj == null)
@@ -77,17 +72,12 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("endereco is a required property for Empresa and cannot be null");
             }
             this.endereco = endereco;
-            this.regime_tributacao = regimeTributacao;
-            this.regime_especial_tributacao = regimeEspecialTributacao;
             this.created_at = createdAt;
             this.updated_at = updatedAt;
             this.inscricao_estadual = inscricaoEstadual;
             this.inscricao_municipal = inscricaoMunicipal;
             this.nome_fantasia = nomeFantasia;
             this.fone = fone;
-            this.optante_simples_nacional = optanteSimplesNacional;
-            this.incentivo_fiscal = incentivoFiscal;
-            this.incentivador_cultural = incentivadorCultural;
         }
 
         /// <summary>
@@ -160,41 +150,6 @@ namespace NuvemFiscal.Sdk.Model
         public EmpresaEndereco endereco { get; set; }
 
         /// <summary>
-        /// Optante pelo simples nacional.
-        /// </summary>
-        /// <value>Optante pelo simples nacional.</value>
-        [DataMember(Name = "optante_simples_nacional", EmitDefaultValue = true)]
-        public bool optante_simples_nacional { get; set; }
-
-        /// <summary>
-        /// Regime Tributário da Empresa:  0 - Nenhum  1 - Simples Nacional  2 - Simples Nacional - Excesso  3 - Normal - Lucro Presumido  4 - Normal - Lucro Real
-        /// </summary>
-        /// <value>Regime Tributário da Empresa:  0 - Nenhum  1 - Simples Nacional  2 - Simples Nacional - Excesso  3 - Normal - Lucro Presumido  4 - Normal - Lucro Real</value>
-        [DataMember(Name = "regime_tributacao", IsRequired = true, EmitDefaultValue = true)]
-        public int regime_tributacao { get; set; }
-
-        /// <summary>
-        /// Regime especial de tributação da Empresa:  0 - Sem Regime Tributário Especial  1 - Micro Empresa Municipal  2 - Estimativa  3 - Sociedade de Profissionais  4 - Cooperativa  5 - Microempresário Individual - MEI  6 - Microempresa ou Pequeno Porte - ME EPP
-        /// </summary>
-        /// <value>Regime especial de tributação da Empresa:  0 - Sem Regime Tributário Especial  1 - Micro Empresa Municipal  2 - Estimativa  3 - Sociedade de Profissionais  4 - Cooperativa  5 - Microempresário Individual - MEI  6 - Microempresa ou Pequeno Porte - ME EPP</value>
-        [DataMember(Name = "regime_especial_tributacao", IsRequired = true, EmitDefaultValue = true)]
-        public int regime_especial_tributacao { get; set; }
-
-        /// <summary>
-        /// Indicador se a empresa possui algum tipo de incentivo fiscal.
-        /// </summary>
-        /// <value>Indicador se a empresa possui algum tipo de incentivo fiscal.</value>
-        [DataMember(Name = "incentivo_fiscal", EmitDefaultValue = true)]
-        public bool incentivo_fiscal { get; set; }
-
-        /// <summary>
-        /// Indicador se a empresa é um incentivador cultural.
-        /// </summary>
-        /// <value>Indicador se a empresa é um incentivador cultural.</value>
-        [DataMember(Name = "incentivador_cultural", EmitDefaultValue = true)]
-        public bool incentivador_cultural { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -212,11 +167,6 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  fone: ").Append(fone).Append("\n");
             sb.Append("  email: ").Append(email).Append("\n");
             sb.Append("  endereco: ").Append(endereco).Append("\n");
-            sb.Append("  optante_simples_nacional: ").Append(optante_simples_nacional).Append("\n");
-            sb.Append("  regime_tributacao: ").Append(regime_tributacao).Append("\n");
-            sb.Append("  regime_especial_tributacao: ").Append(regime_especial_tributacao).Append("\n");
-            sb.Append("  incentivo_fiscal: ").Append(incentivo_fiscal).Append("\n");
-            sb.Append("  incentivador_cultural: ").Append(incentivador_cultural).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -301,26 +251,6 @@ namespace NuvemFiscal.Sdk.Model
                     this.endereco == input.endereco ||
                     (this.endereco != null &&
                     this.endereco.Equals(input.endereco))
-                ) && 
-                (
-                    this.optante_simples_nacional == input.optante_simples_nacional ||
-                    this.optante_simples_nacional.Equals(input.optante_simples_nacional)
-                ) && 
-                (
-                    this.regime_tributacao == input.regime_tributacao ||
-                    this.regime_tributacao.Equals(input.regime_tributacao)
-                ) && 
-                (
-                    this.regime_especial_tributacao == input.regime_especial_tributacao ||
-                    this.regime_especial_tributacao.Equals(input.regime_especial_tributacao)
-                ) && 
-                (
-                    this.incentivo_fiscal == input.incentivo_fiscal ||
-                    this.incentivo_fiscal.Equals(input.incentivo_fiscal)
-                ) && 
-                (
-                    this.incentivador_cultural == input.incentivador_cultural ||
-                    this.incentivador_cultural.Equals(input.incentivador_cultural)
                 );
         }
 
@@ -373,11 +303,6 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.endereco.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.optante_simples_nacional.GetHashCode();
-                hashCode = (hashCode * 59) + this.regime_tributacao.GetHashCode();
-                hashCode = (hashCode * 59) + this.regime_especial_tributacao.GetHashCode();
-                hashCode = (hashCode * 59) + this.incentivo_fiscal.GetHashCode();
-                hashCode = (hashCode * 59) + this.incentivador_cultural.GetHashCode();
                 return hashCode;
             }
         }

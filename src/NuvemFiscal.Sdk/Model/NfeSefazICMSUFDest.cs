@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazICMSUFDest
+    /// Grupo a ser informado nas vendas interestarduais para consumidor final, não contribuinte de ICMS.
     /// </summary>
     [DataContract(Name = "NfeSefazICMSUFDest")]
     public partial class NfeSefazICMSUFDest : IEquatable<NfeSefazICMSUFDest>, IValidatableObject
@@ -40,8 +40,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBCFCPUFDest">Valor da Base de Cálculo do FCP na UF do destinatário..</param>
         /// <param name="pFCPUFDest">Percentual adicional inserido na alíquota interna da UF de destino, relativo ao Fundo de Combate à Pobreza (FCP) naquela UF..</param>
         /// <param name="pICMSUFDest">Alíquota adotada nas operações internas na UF do destinatário para o produto / mercadoria. (required).</param>
-        /// <param name="pICMSInter">Alíquota interestadual das UF envolvidas: - 4%% alíquota interestadual para produtos importados; - 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES; - 12%% para os demais casos. (required).</param>
-        /// <param name="pICMSInterPart">Percentual de partilha para a UF do destinatário: - 40%% em 2016; - 60%% em 2017; - 80%% em 2018; - 100%% a partir de 2019. (required).</param>
+        /// <param name="pICMSInter">Alíquota interestadual das UF envolvidas:  * 4%% alíquota interestadual para produtos importados  * 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES  * 12%% para os demais casos. (required).</param>
+        /// <param name="pICMSInterPart">Percentual de partilha para a UF do destinatário:  * 40%% em 2016  * 60%% em 2017  * 80%% em 2018  * 100%% a partir de 2019. (required).</param>
         /// <param name="vFCPUFDest">Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) da UF de destino..</param>
         /// <param name="vICMSUFDest">Valor do ICMS de partilha para a UF do destinatário. (required).</param>
         /// <param name="vICMSUFRemet">Valor do ICMS de partilha para a UF do remetente. Nota: A partir de 2019, este valor será zero. (required).</param>
@@ -87,16 +87,16 @@ namespace NuvemFiscal.Sdk.Model
         public decimal pICMSUFDest { get; set; }
 
         /// <summary>
-        /// Alíquota interestadual das UF envolvidas: - 4%% alíquota interestadual para produtos importados; - 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES; - 12%% para os demais casos.
+        /// Alíquota interestadual das UF envolvidas:  * 4%% alíquota interestadual para produtos importados  * 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES  * 12%% para os demais casos.
         /// </summary>
-        /// <value>Alíquota interestadual das UF envolvidas: - 4%% alíquota interestadual para produtos importados; - 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES; - 12%% para os demais casos.</value>
+        /// <value>Alíquota interestadual das UF envolvidas:  * 4%% alíquota interestadual para produtos importados  * 7%% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES  * 12%% para os demais casos.</value>
         [DataMember(Name = "pICMSInter", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSInter { get; set; }
 
         /// <summary>
-        /// Percentual de partilha para a UF do destinatário: - 40%% em 2016; - 60%% em 2017; - 80%% em 2018; - 100%% a partir de 2019.
+        /// Percentual de partilha para a UF do destinatário:  * 40%% em 2016  * 60%% em 2017  * 80%% em 2018  * 100%% a partir de 2019.
         /// </summary>
-        /// <value>Percentual de partilha para a UF do destinatário: - 40%% em 2016; - 60%% em 2017; - 80%% em 2018; - 100%% a partir de 2019.</value>
+        /// <value>Percentual de partilha para a UF do destinatário:  * 40%% em 2016  * 60%% em 2017  * 80%% em 2018  * 100%% a partir de 2019.</value>
         [DataMember(Name = "pICMSInterPart", IsRequired = true, EmitDefaultValue = true)]
         public decimal pICMSInterPart { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazVeicReboqueProp
+    /// Proprietários ou possuidor do Veículo.  Só preenchido quando o veículo não pertencer à empresa emitente do MDF-e.
     /// </summary>
     [DataContract(Name = "MdfeSefazVeicReboque_Prop")]
     public partial class MdfeSefazVeicReboqueProp : IEquatable<MdfeSefazVeicReboqueProp>, IValidatableObject
@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xNome">Razão Social ou Nome do proprietário. (required).</param>
         /// <param name="iE">Inscrição Estadual..</param>
         /// <param name="uF">UF..</param>
-        /// <param name="tpProp">Tipo Proprietário ou possuidor.  Preencher com:              0-TAC Agregado;              1-TAC Independente;                2 – Outros. (required).</param>
+        /// <param name="tpProp">Tipo Proprietário ou possuidor.  Preencher com:  * 0 - TAC Agregado  * 1 - TAC Independente  * 2 - Outros (required).</param>
         public MdfeSefazVeicReboqueProp(string cPF = default(string), string cNPJ = default(string), string rNTRC = default(string), string xNome = default(string), string iE = default(string), string uF = default(string), int tpProp = default(int))
         {
             // to ensure "rNTRC" is required (not null)
@@ -107,9 +107,9 @@ namespace NuvemFiscal.Sdk.Model
         public string UF { get; set; }
 
         /// <summary>
-        /// Tipo Proprietário ou possuidor.  Preencher com:              0-TAC Agregado;              1-TAC Independente;                2 – Outros.
+        /// Tipo Proprietário ou possuidor.  Preencher com:  * 0 - TAC Agregado  * 1 - TAC Independente  * 2 - Outros
         /// </summary>
-        /// <value>Tipo Proprietário ou possuidor.  Preencher com:              0-TAC Agregado;              1-TAC Independente;                2 – Outros.</value>
+        /// <value>Tipo Proprietário ou possuidor.  Preencher com:  * 0 - TAC Agregado  * 1 - TAC Independente  * 2 - Outros</value>
         [DataMember(Name = "tpProp", IsRequired = true, EmitDefaultValue = true)]
         public int tpProp { get; set; }
 

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazAutXML
+Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos.
 
 ## Propriedades
 

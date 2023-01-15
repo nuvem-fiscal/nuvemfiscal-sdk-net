@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazRodo" /> class.
         /// </summary>
         /// <param name="rNTRC">Registro Nacional de Transportadores Rodoviários de Carga.  Registro obrigatório do emitente do CT-e junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração. (required).</param>
-        /// <param name="occ">Ordens de Coleta associados..</param>
+        /// <param name="occ">occ.</param>
         public CteSefazRodo(string rNTRC = default(string), List<CteSefazOcc> occ = default(List<CteSefazOcc>))
         {
             // to ensure "rNTRC" is required (not null)
@@ -57,9 +57,8 @@ namespace NuvemFiscal.Sdk.Model
         public string RNTRC { get; set; }
 
         /// <summary>
-        /// Ordens de Coleta associados.
+        /// Gets or Sets occ
         /// </summary>
-        /// <value>Ordens de Coleta associados.</value>
         [DataMember(Name = "occ", EmitDefaultValue = false)]
         public List<CteSefazOcc> occ { get; set; }
 

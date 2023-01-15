@@ -64,9 +64,10 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigNfce" /> class.
         /// </summary>
+        /// <param name="cRT">Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal..</param>
         /// <param name="sefaz">sefaz (required).</param>
         /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
-        public EmpresaConfigNfce(EmpresaConfigNfceSefaz sefaz = default(EmpresaConfigNfceSefaz), AmbienteEnum ambiente = default(AmbienteEnum))
+        public EmpresaConfigNfce(int cRT = default(int), EmpresaConfigNfceSefaz sefaz = default(EmpresaConfigNfceSefaz), AmbienteEnum ambiente = default(AmbienteEnum))
         {
             // to ensure "sefaz" is required (not null)
             if (sefaz == null)
@@ -75,7 +76,15 @@ namespace NuvemFiscal.Sdk.Model
             }
             this.sefaz = sefaz;
             this.ambiente = ambiente;
+            this.CRT = cRT;
         }
+
+        /// <summary>
+        /// Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal.
+        /// </summary>
+        /// <value>Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal.</value>
+        [DataMember(Name = "CRT", EmitDefaultValue = false)]
+        public int CRT { get; set; }
 
         /// <summary>
         /// Gets or Sets sefaz
@@ -91,6 +100,7 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class EmpresaConfigNfce {\n");
+            sb.Append("  CRT: ").Append(CRT).Append("\n");
             sb.Append("  sefaz: ").Append(sefaz).Append("\n");
             sb.Append("  ambiente: ").Append(ambiente).Append("\n");
             sb.Append("}\n");
@@ -129,6 +139,10 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
+                    this.CRT == input.CRT ||
+                    this.CRT.Equals(input.CRT)
+                ) && 
+                (
                     this.sefaz == input.sefaz ||
                     (this.sefaz != null &&
                     this.sefaz.Equals(input.sefaz))
@@ -148,6 +162,7 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.CRT.GetHashCode();
                 if (this.sefaz != null)
                 {
                     hashCode = (hashCode * 59) + this.sefaz.GetHashCode();

@@ -44,12 +44,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPrtEmb">Código do Porto de Embarque.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes. (required).</param>
         /// <param name="cPrtDest">Código do Porto de Destino.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes. (required).</param>
         /// <param name="prtTrans">Porto de Transbordo..</param>
-        /// <param name="tpNav">Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem..</param>
-        /// <param name="infTermCarreg">Grupo de informações dos terminais de carregamento..</param>
-        /// <param name="infTermDescarreg">Grupo de informações dos terminais de descarregamento..</param>
-        /// <param name="infEmbComb">Informações das Embarcações do Comboio..</param>
-        /// <param name="infUnidCargaVazia">Informações das Undades de Carga vazias..</param>
-        /// <param name="infUnidTranspVazia">Informações das Undades de Transporte vazias..</param>
+        /// <param name="tpNav">Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem.</param>
+        /// <param name="infTermCarreg">infTermCarreg.</param>
+        /// <param name="infTermDescarreg">infTermDescarreg.</param>
+        /// <param name="infEmbComb">infEmbComb.</param>
+        /// <param name="infUnidCargaVazia">infUnidCargaVazia.</param>
+        /// <param name="infUnidTranspVazia">infUnidTranspVazia.</param>
         public MdfeSefazAquav(string irin = default(string), string tpEmb = default(string), string cEmbar = default(string), string xEmbar = default(string), string nViag = default(string), string cPrtEmb = default(string), string cPrtDest = default(string), string prtTrans = default(string), int tpNav = default(int), List<MdfeSefazInfTermCarreg> infTermCarreg = default(List<MdfeSefazInfTermCarreg>), List<MdfeSefazInfTermDescarreg> infTermDescarreg = default(List<MdfeSefazInfTermDescarreg>), List<MdfeSefazInfEmbComb> infEmbComb = default(List<MdfeSefazInfEmbComb>), List<MdfeSefazInfUnidCargaVazia> infUnidCargaVazia = default(List<MdfeSefazInfUnidCargaVazia>), List<MdfeSefazInfUnidTranspVazia> infUnidTranspVazia = default(List<MdfeSefazInfUnidTranspVazia>))
         {
             // to ensure "irin" is required (not null)
@@ -160,44 +160,39 @@ namespace NuvemFiscal.Sdk.Model
         public string prtTrans { get; set; }
 
         /// <summary>
-        /// Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem.
+        /// Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem
         /// </summary>
-        /// <value>Tipo de Navegação.  Preencher com:         0 - Interior;        1 - Cabotagem.</value>
+        /// <value>Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem</value>
         [DataMember(Name = "tpNav", EmitDefaultValue = false)]
         public int tpNav { get; set; }
 
         /// <summary>
-        /// Grupo de informações dos terminais de carregamento.
+        /// Gets or Sets infTermCarreg
         /// </summary>
-        /// <value>Grupo de informações dos terminais de carregamento.</value>
         [DataMember(Name = "infTermCarreg", EmitDefaultValue = false)]
         public List<MdfeSefazInfTermCarreg> infTermCarreg { get; set; }
 
         /// <summary>
-        /// Grupo de informações dos terminais de descarregamento.
+        /// Gets or Sets infTermDescarreg
         /// </summary>
-        /// <value>Grupo de informações dos terminais de descarregamento.</value>
         [DataMember(Name = "infTermDescarreg", EmitDefaultValue = false)]
         public List<MdfeSefazInfTermDescarreg> infTermDescarreg { get; set; }
 
         /// <summary>
-        /// Informações das Embarcações do Comboio.
+        /// Gets or Sets infEmbComb
         /// </summary>
-        /// <value>Informações das Embarcações do Comboio.</value>
         [DataMember(Name = "infEmbComb", EmitDefaultValue = false)]
         public List<MdfeSefazInfEmbComb> infEmbComb { get; set; }
 
         /// <summary>
-        /// Informações das Undades de Carga vazias.
+        /// Gets or Sets infUnidCargaVazia
         /// </summary>
-        /// <value>Informações das Undades de Carga vazias.</value>
         [DataMember(Name = "infUnidCargaVazia", EmitDefaultValue = false)]
         public List<MdfeSefazInfUnidCargaVazia> infUnidCargaVazia { get; set; }
 
         /// <summary>
-        /// Informações das Undades de Transporte vazias.
+        /// Gets or Sets infUnidTranspVazia
         /// </summary>
-        /// <value>Informações das Undades de Transporte vazias.</value>
         [DataMember(Name = "infUnidTranspVazia", EmitDefaultValue = false)]
         public List<MdfeSefazInfUnidTranspVazia> infUnidTranspVazia { get; set; }
 

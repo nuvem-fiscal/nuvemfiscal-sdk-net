@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfMDFeTransp
+    /// Manifesto Eletrônico de Documentos Fiscais. Somente para modal Aquaviário (vide regras MOC).
     /// </summary>
     [DataContract(Name = "MdfeSefazInfMDFeTransp")]
     public partial class MdfeSefazInfMDFeTransp : IEquatable<MdfeSefazInfMDFeTransp>, IValidatableObject
@@ -38,8 +38,8 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="chMDFe">Manifesto Eletrônico de Documentos Fiscais. (required).</param>
         /// <param name="indReentrega">Indicador de Reentrega..</param>
-        /// <param name="infUnidTransp">Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu..</param>
-        /// <param name="peri">Preenchido quando for  transporte de produtos classificados pela ONU como perigosos..</param>
+        /// <param name="infUnidTransp">infUnidTransp.</param>
+        /// <param name="peri">peri.</param>
         public MdfeSefazInfMDFeTransp(string chMDFe = default(string), int indReentrega = default(int), List<MdfeSefazUnidadeTransp> infUnidTransp = default(List<MdfeSefazUnidadeTransp>), List<MdfeSefazInfMDFeTranspPeri> peri = default(List<MdfeSefazInfMDFeTranspPeri>))
         {
             // to ensure "chMDFe" is required (not null)
@@ -68,16 +68,14 @@ namespace NuvemFiscal.Sdk.Model
         public int indReentrega { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.
+        /// Gets or Sets infUnidTransp
         /// </summary>
-        /// <value>Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.</value>
         [DataMember(Name = "infUnidTransp", EmitDefaultValue = false)]
         public List<MdfeSefazUnidadeTransp> infUnidTransp { get; set; }
 
         /// <summary>
-        /// Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.
+        /// Gets or Sets peri
         /// </summary>
-        /// <value>Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.</value>
         [DataMember(Name = "peri", EmitDefaultValue = false)]
         public List<MdfeSefazInfMDFeTranspPeri> peri { get; set; }
 

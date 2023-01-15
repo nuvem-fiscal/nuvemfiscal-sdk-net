@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazSemHora
+    /// Entrega sem hora definida.
     /// </summary>
     [DataContract(Name = "CteSefazSemHora")]
     public partial class CteSefazSemHora : IEquatable<CteSefazSemHora>, IValidatableObject
@@ -36,16 +36,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazSemHora" /> class.
         /// </summary>
-        /// <param name="tpHor">Tipo de hora.  0- Sem hora definida. (required).</param>
+        /// <param name="tpHor">Tipo de hora.  * 0 - Sem hora definida (required).</param>
         public CteSefazSemHora(int tpHor = default(int))
         {
             this.tpHor = tpHor;
         }
 
         /// <summary>
-        /// Tipo de hora.  0- Sem hora definida.
+        /// Tipo de hora.  * 0 - Sem hora definida
         /// </summary>
-        /// <value>Tipo de hora.  0- Sem hora definida.</value>
+        /// <value>Tipo de hora.  * 0 - Sem hora definida</value>
         [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
         public int tpHor { get; set; }
 

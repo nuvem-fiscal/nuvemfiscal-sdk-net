@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfTermCarreg
+Grupo de informações dos terminais de carregamento.
 
 ## Propriedades
 

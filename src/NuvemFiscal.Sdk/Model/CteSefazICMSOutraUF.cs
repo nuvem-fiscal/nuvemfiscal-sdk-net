@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazICMSOutraUF
+    /// ICMS devido à UF de origem da prestação, quando  diferente da UF do emitente.
     /// </summary>
     [DataContract(Name = "CteSefazICMSOutraUF")]
     public partial class CteSefazICMSOutraUF : IEquatable<CteSefazICMSOutraUF>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazICMSOutraUF" /> class.
         /// </summary>
-        /// <param name="cST">Classificação Tributária do Serviço.  90 - ICMS Outra UF. (required).</param>
+        /// <param name="cST">Classificação Tributária do Serviço.  * 90 - ICMS Outra UF (required).</param>
         /// <param name="pRedBCOutraUF">Percentual de redução da BC..</param>
         /// <param name="vBCOutraUF">Valor da BC do ICMS. (required).</param>
         /// <param name="pICMSOutraUF">Alíquota do ICMS. (required).</param>
@@ -56,9 +56,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Classificação Tributária do Serviço.  90 - ICMS Outra UF.
+        /// Classificação Tributária do Serviço.  * 90 - ICMS Outra UF
         /// </summary>
-        /// <value>Classificação Tributária do Serviço.  90 - ICMS Outra UF.</value>
+        /// <value>Classificação Tributária do Serviço.  * 90 - ICMS Outra UF</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

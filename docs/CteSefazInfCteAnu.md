@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfCteAnu
+Detalhamento do CT-e do tipo Anulação.
 
 ## Propriedades
 

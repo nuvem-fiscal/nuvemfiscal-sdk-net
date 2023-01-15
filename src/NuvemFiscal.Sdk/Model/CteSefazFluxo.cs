@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazFluxo
+    /// Previsão do fluxo da carga.  Preenchimento obrigatório para o modal aéreo.
     /// </summary>
     [DataContract(Name = "CteSefazFluxo")]
     public partial class CteSefazFluxo : IEquatable<CteSefazFluxo>, IValidatableObject
@@ -31,9 +31,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazFluxo" /> class.
         /// </summary>
-        /// <param name="xOrig">Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:                - Preenchimento obrigatório para o modal aéreo.                - O código de três letras IATA do aeroporto de partida deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI..</param>
+        /// <param name="xOrig">Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo..</param>
         /// <param name="pass">pass.</param>
-        /// <param name="xDest">Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:                - Preenchimento obrigatório para o modal aéreo.                - Deverá ser incluído o código de três letras IATA do aeroporto de destino. Quando não for possível, utilizar a sigla OACI..</param>
+        /// <param name="xDest">Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo..</param>
         /// <param name="xRota">Código da Rota de Entrega..</param>
         public CteSefazFluxo(string xOrig = default(string), List<CteSefazPass> pass = default(List<CteSefazPass>), string xDest = default(string), string xRota = default(string))
         {
@@ -44,9 +44,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:                - Preenchimento obrigatório para o modal aéreo.                - O código de três letras IATA do aeroporto de partida deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI.
+        /// Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.
         /// </summary>
-        /// <value>Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:                - Preenchimento obrigatório para o modal aéreo.                - O código de três letras IATA do aeroporto de partida deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI.</value>
+        /// <value>Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.</value>
         [DataMember(Name = "xOrig", EmitDefaultValue = false)]
         public string xOrig { get; set; }
 
@@ -57,9 +57,9 @@ namespace NuvemFiscal.Sdk.Model
         public List<CteSefazPass> pass { get; set; }
 
         /// <summary>
-        /// Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:                - Preenchimento obrigatório para o modal aéreo.                - Deverá ser incluído o código de três letras IATA do aeroporto de destino. Quando não for possível, utilizar a sigla OACI.
+        /// Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.
         /// </summary>
-        /// <value>Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:                - Preenchimento obrigatório para o modal aéreo.                - Deverá ser incluído o código de três letras IATA do aeroporto de destino. Quando não for possível, utilizar a sigla OACI.</value>
+        /// <value>Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.</value>
         [DataMember(Name = "xDest", EmitDefaultValue = false)]
         public string xDest { get; set; }
 

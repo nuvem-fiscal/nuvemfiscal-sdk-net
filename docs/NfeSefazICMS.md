@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazICMS
+Dados do ICMS Normal e ST.
 
 ## Propriedades
 

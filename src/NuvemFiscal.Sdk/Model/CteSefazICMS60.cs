@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazICMS60
+    /// Tributação pelo ICMS60 - ICMS cobrado por substituição tributária.Responsabilidade do recolhimento do ICMS atribuído ao tomador ou 3º por ST.
     /// </summary>
     [DataContract(Name = "CteSefazICMS60")]
     public partial class CteSefazICMS60 : IEquatable<CteSefazICMS60>, IValidatableObject
@@ -36,9 +36,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazICMS60" /> class.
         /// </summary>
-        /// <param name="cST">Classificação Tributária do Serviço.  60 - ICMS cobrado por substituição tributária. (required).</param>
+        /// <param name="cST">Classificação Tributária do Serviço.  * 60 - ICMS cobrado por substituição tributária (required).</param>
         /// <param name="vBCSTRet">Valor da BC do ICMS ST retido.  Valor do frete sobre o qual será calculado o ICMS a ser substituído na Prestação. (required).</param>
-        /// <param name="vICMSSTRet">Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” – que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído. (required).</param>
+        /// <param name="vICMSSTRet">Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” - que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído. (required).</param>
         /// <param name="pICMSSTRet">Alíquota do ICMS.  Percentual de Alíquota incidente na prestação de serviço de transporte. (required).</param>
         /// <param name="vCred">Valor do Crédito outorgado/Presumido.  Preencher somente quando o transportador substituído, for optante pelo crédito outorgado previsto no Convênio 106/96 e corresponde ao percentual de 20%% do valor do ICMS ST retido..</param>
         public CteSefazICMS60(string cST = default(string), decimal vBCSTRet = default(decimal), decimal vICMSSTRet = default(decimal), decimal pICMSSTRet = default(decimal), decimal vCred = default(decimal))
@@ -56,9 +56,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Classificação Tributária do Serviço.  60 - ICMS cobrado por substituição tributária.
+        /// Classificação Tributária do Serviço.  * 60 - ICMS cobrado por substituição tributária
         /// </summary>
-        /// <value>Classificação Tributária do Serviço.  60 - ICMS cobrado por substituição tributária.</value>
+        /// <value>Classificação Tributária do Serviço.  * 60 - ICMS cobrado por substituição tributária</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 
@@ -70,9 +70,9 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vBCSTRet { get; set; }
 
         /// <summary>
-        /// Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” – que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.
+        /// Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” - que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.
         /// </summary>
-        /// <value>Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” – que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.</value>
+        /// <value>Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” - que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.</value>
         [DataMember(Name = "vICMSSTRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal vICMSSTRet { get; set; }
 

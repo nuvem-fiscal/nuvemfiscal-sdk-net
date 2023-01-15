@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfCTeNorm
+Grupo de informações do CT-e Normal e Substituto.
 
 ## Propriedades
 
@@ -8,7 +9,7 @@ Nome | Tipo | Descrição | Comentários
 **infDoc** | [**CteSefazInfDoc**](CteSefazInfDoc.md) |  | [optional] 
 **docAnt** | [**CteSefazDocAnt**](CteSefazDocAnt.md) |  | [optional] 
 **infModal** | [**CteSefazInfModal**](CteSefazInfModal.md) |  | 
-**veicNovos** | [**List&lt;CteSefazVeicNovos&gt;**](CteSefazVeicNovos.md) | informações dos veículos transportados. | [optional] 
+**veicNovos** | [**List&lt;CteSefazVeicNovos&gt;**](CteSefazVeicNovos.md) |  | [optional] 
 **cobr** | [**CteSefazCobr**](CteSefazCobr.md) |  | [optional] 
 **infCteSub** | [**CteSefazInfCteSub**](CteSefazInfCteSub.md) |  | [optional] 
 **infGlobalizado** | [**CteSefazInfGlobalizado**](CteSefazInfGlobalizado.md) |  | [optional] 

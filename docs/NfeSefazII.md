@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazII
+Dados do Imposto de Importação.
 
 ## Propriedades
 

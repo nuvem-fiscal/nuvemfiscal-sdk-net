@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazImpostoDevolIPI
+Informação de IPI devolvido.
 
 ## Propriedades
 

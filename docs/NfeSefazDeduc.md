@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazDeduc
+Deduções - Taxas e Contribuições.
 
 ## Propriedades
 

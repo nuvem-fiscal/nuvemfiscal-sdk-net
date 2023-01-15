@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazCondutor
+Informações do(s) Condutor(es) do veículo.
 
 ## Propriedades
 

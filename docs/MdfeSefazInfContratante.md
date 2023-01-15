@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfContratante
+Grupo de informações dos contratantes do serviço de transporte.
 
 ## Propriedades
 

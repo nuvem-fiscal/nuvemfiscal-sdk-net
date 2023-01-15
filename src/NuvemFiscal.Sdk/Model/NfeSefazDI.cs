@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazDI
+    /// Delcaração de Importação  (NT 2011/004).
     /// </summary>
     [DataContract(Name = "NfeSefazDI")]
     public partial class NfeSefazDI : IEquatable<NfeSefazDI>, IValidatableObject
@@ -41,13 +41,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xLocDesemb">Local do desembaraço aduaneiro. (required).</param>
         /// <param name="uFDesemb">UF onde ocorreu o desembaraço aduaneiro. (required).</param>
         /// <param name="dDesemb">Data do desembaraço aduaneiro (AAAA-MM-DD). (required).</param>
-        /// <param name="tpViaTransp">Via de transporte internacional informada na DI                   1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-Rodoviaria;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;                   11-Courier;12-Em maos;13-Por reboque. (required).</param>
+        /// <param name="tpViaTransp">Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque (required).</param>
         /// <param name="vAFRMM">Valor Adicional ao frete para renovação de marinha mercante..</param>
-        /// <param name="tpIntermedio">Forma de Importação quanto a intermediação                    1-por conta propria;2-por conta e ordem;3-encomenda. (required).</param>
+        /// <param name="tpIntermedio">Forma de Importação quanto a intermediação  * 1 - por conta propria  * 2 - por conta e ordem  * 3 - encomenda (required).</param>
         /// <param name="cNPJ">CNPJ do adquirente ou do encomendante..</param>
         /// <param name="uFTerceiro">Sigla da UF do adquirente ou do encomendante..</param>
         /// <param name="cExportador">Código do exportador (usado nos sistemas internos de informação do emitente da NF-e). (required).</param>
-        /// <param name="adi">Adições (NT 2011/004). (required).</param>
+        /// <param name="adi">adi (required).</param>
         public NfeSefazDI(string nDI = default(string), DateTime dDI = default(DateTime), string xLocDesemb = default(string), string uFDesemb = default(string), DateTime dDesemb = default(DateTime), int tpViaTransp = default(int), decimal vAFRMM = default(decimal), int tpIntermedio = default(int), string cNPJ = default(string), string uFTerceiro = default(string), string cExportador = default(string), List<NfeSefazAdi> adi = default(List<NfeSefazAdi>))
         {
             // to ensure "nDI" is required (not null)
@@ -127,9 +127,9 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime dDesemb { get; set; }
 
         /// <summary>
-        /// Via de transporte internacional informada na DI                   1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-Rodoviaria;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;                   11-Courier;12-Em maos;13-Por reboque.
+        /// Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque
         /// </summary>
-        /// <value>Via de transporte internacional informada na DI                   1-Maritima;2-Fluvial;3-Lacustre;4-Aerea;5-Postal;6-Ferroviaria;7-Rodoviaria;8-Conduto;9-Meios Proprios;10-Entrada/Saida Ficta;                   11-Courier;12-Em maos;13-Por reboque.</value>
+        /// <value>Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque</value>
         [DataMember(Name = "tpViaTransp", IsRequired = true, EmitDefaultValue = true)]
         public int tpViaTransp { get; set; }
 
@@ -141,9 +141,9 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vAFRMM { get; set; }
 
         /// <summary>
-        /// Forma de Importação quanto a intermediação                    1-por conta propria;2-por conta e ordem;3-encomenda.
+        /// Forma de Importação quanto a intermediação  * 1 - por conta propria  * 2 - por conta e ordem  * 3 - encomenda
         /// </summary>
-        /// <value>Forma de Importação quanto a intermediação                    1-por conta propria;2-por conta e ordem;3-encomenda.</value>
+        /// <value>Forma de Importação quanto a intermediação  * 1 - por conta propria  * 2 - por conta e ordem  * 3 - encomenda</value>
         [DataMember(Name = "tpIntermedio", IsRequired = true, EmitDefaultValue = true)]
         public int tpIntermedio { get; set; }
 
@@ -169,9 +169,8 @@ namespace NuvemFiscal.Sdk.Model
         public string cExportador { get; set; }
 
         /// <summary>
-        /// Adições (NT 2011/004).
+        /// Gets or Sets adi
         /// </summary>
-        /// <value>Adições (NT 2011/004).</value>
         [DataMember(Name = "adi", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazAdi> adi { get; set; }
 

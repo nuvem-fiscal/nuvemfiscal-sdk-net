@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazAutXML
+    /// Pessoas autorizadas para o download do XML da NF-e.
     /// </summary>
     [DataContract(Name = "NfeSefazAutXML")]
     public partial class NfeSefazAutXML : IEquatable<NfeSefazAutXML>, IValidatableObject

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazPIS
+Dados do PIS.
 
 ## Propriedades
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazRefNF
+    /// Dados da NF modelo 1/1A referenciada ou NF modelo 2 referenciada.
     /// </summary>
     [DataContract(Name = "NfeSefazRefNF")]
     public partial class NfeSefazRefNF : IEquatable<NfeSefazRefNF>, IValidatableObject

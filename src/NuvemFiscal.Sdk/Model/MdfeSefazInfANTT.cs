@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfANTT
+    /// Grupo de informações para Agência Reguladora.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfANTT")]
     public partial class MdfeSefazInfANTT : IEquatable<MdfeSefazInfANTT>, IValidatableObject
@@ -32,10 +32,10 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="MdfeSefazInfANTT" /> class.
         /// </summary>
         /// <param name="rNTRC">Registro Nacional de Transportadores Rodoviários de Carga.  Registro obrigatório do emitente do MDF-e junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração..</param>
-        /// <param name="infCIOT">Dados do CIOT..</param>
+        /// <param name="infCIOT">infCIOT.</param>
         /// <param name="valePed">valePed.</param>
-        /// <param name="infContratante">Grupo de informações dos contratantes do serviço de transporte..</param>
-        /// <param name="infPag">Informações do Pagamento do Frete..</param>
+        /// <param name="infContratante">infContratante.</param>
+        /// <param name="infPag">infPag.</param>
         public MdfeSefazInfANTT(string rNTRC = default(string), List<MdfeSefazInfCIOT> infCIOT = default(List<MdfeSefazInfCIOT>), MdfeSefazValePed valePed = default(MdfeSefazValePed), List<MdfeSefazInfContratante> infContratante = default(List<MdfeSefazInfContratante>), List<MdfeSefazInfPag> infPag = default(List<MdfeSefazInfPag>))
         {
             this.RNTRC = rNTRC;
@@ -53,9 +53,8 @@ namespace NuvemFiscal.Sdk.Model
         public string RNTRC { get; set; }
 
         /// <summary>
-        /// Dados do CIOT.
+        /// Gets or Sets infCIOT
         /// </summary>
-        /// <value>Dados do CIOT.</value>
         [DataMember(Name = "infCIOT", EmitDefaultValue = false)]
         public List<MdfeSefazInfCIOT> infCIOT { get; set; }
 
@@ -66,16 +65,14 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazValePed valePed { get; set; }
 
         /// <summary>
-        /// Grupo de informações dos contratantes do serviço de transporte.
+        /// Gets or Sets infContratante
         /// </summary>
-        /// <value>Grupo de informações dos contratantes do serviço de transporte.</value>
         [DataMember(Name = "infContratante", EmitDefaultValue = false)]
         public List<MdfeSefazInfContratante> infContratante { get; set; }
 
         /// <summary>
-        /// Informações do Pagamento do Frete.
+        /// Gets or Sets infPag
         /// </summary>
-        /// <value>Informações do Pagamento do Frete.</value>
         [DataMember(Name = "infPag", EmitDefaultValue = false)]
         public List<MdfeSefazInfPag> infPag { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazVeicReboque
+    /// Dados dos reboques.
     /// </summary>
     [DataContract(Name = "MdfeSefazVeicReboque")]
     public partial class MdfeSefazVeicReboque : IEquatable<MdfeSefazVeicReboque>, IValidatableObject
@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="capKG">Capacidade em KG. (required).</param>
         /// <param name="capM3">Capacidade em M3..</param>
         /// <param name="prop">prop.</param>
-        /// <param name="tpCar">Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider. (required).</param>
+        /// <param name="tpCar">Tipo de Carroceria.  Preencher com:  * 00 - não aplicável  * 01 - Aberta  * 02 - Fechada/Baú  * 03 - Granelera  * 04 - Porta Container  * 05 - Sider (required).</param>
         /// <param name="uF">UF em que veículo está licenciado.  Sigla da UF de licenciamento do veículo..</param>
         public MdfeSefazVeicReboque(string cInt = default(string), string placa = default(string), string rENAVAM = default(string), int tara = default(int), int capKG = default(int), int capM3 = default(int), MdfeSefazVeicReboqueProp prop = default(MdfeSefazVeicReboqueProp), string tpCar = default(string), string uF = default(string))
         {
@@ -117,9 +117,9 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazVeicReboqueProp prop { get; set; }
 
         /// <summary>
-        /// Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider.
+        /// Tipo de Carroceria.  Preencher com:  * 00 - não aplicável  * 01 - Aberta  * 02 - Fechada/Baú  * 03 - Granelera  * 04 - Porta Container  * 05 - Sider
         /// </summary>
-        /// <value>Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider.</value>
+        /// <value>Tipo de Carroceria.  Preencher com:  * 00 - não aplicável  * 01 - Aberta  * 02 - Fechada/Baú  * 03 - Granelera  * 04 - Porta Container  * 05 - Sider</value>
         [DataMember(Name = "tpCar", IsRequired = true, EmitDefaultValue = true)]
         public string tpCar { get; set; }
 

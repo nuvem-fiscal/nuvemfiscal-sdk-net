@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazDocAnt
+    /// Documentos de Transporte Anterior.
     /// </summary>
     [DataContract(Name = "CteSefazDocAnt")]
     public partial class CteSefazDocAnt : IEquatable<CteSefazDocAnt>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazDocAnt" /> class.
         /// </summary>
-        /// <param name="emiDocAnt">Emissor do documento anterior. (required).</param>
+        /// <param name="emiDocAnt">emiDocAnt (required).</param>
         public CteSefazDocAnt(List<CteSefazEmiDocAnt> emiDocAnt = default(List<CteSefazEmiDocAnt>))
         {
             // to ensure "emiDocAnt" is required (not null)
@@ -48,9 +48,8 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Emissor do documento anterior.
+        /// Gets or Sets emiDocAnt
         /// </summary>
-        /// <value>Emissor do documento anterior.</value>
         [DataMember(Name = "emiDocAnt", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazEmiDocAnt> emiDocAnt { get; set; }
 

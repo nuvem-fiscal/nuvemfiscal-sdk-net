@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazDest
+    /// Identificação do Destinatário.
     /// </summary>
     [DataContract(Name = "NfeSefazDest")]
     public partial class NfeSefazDest : IEquatable<NfeSefazDest>, IValidatableObject
@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="idEstrangeiro">Identificador do destinatário, em caso de comprador estrangeiro..</param>
         /// <param name="xNome">Razão Social ou nome do destinatário..</param>
         /// <param name="enderDest">enderDest.</param>
-        /// <param name="indIEDest">Indicador da IE do destinatário:  1 – Contribuinte ICMSpagamento à vista;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte. (required).</param>
+        /// <param name="indIEDest">Indicador da IE do destinatário:  * 1 - Contribuinte ICMSpagamento à vista  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte (required).</param>
         /// <param name="iE">Inscrição Estadual (obrigatório nas operações com contribuintes do ICMS)..</param>
         /// <param name="iSUF">Inscrição na SUFRAMA (Obrigatório nas operações com as áreas com benefícios de incentivos fiscais sob controle da SUFRAMA) PL_005d - 11/08/09 - alterado para aceitar 8 ou 9 dígitos..</param>
         /// <param name="iM">Inscrição Municipal do tomador do serviço..</param>
@@ -95,9 +95,9 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazEndereco enderDest { get; set; }
 
         /// <summary>
-        /// Indicador da IE do destinatário:  1 – Contribuinte ICMSpagamento à vista;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.
+        /// Indicador da IE do destinatário:  * 1 - Contribuinte ICMSpagamento à vista  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte
         /// </summary>
-        /// <value>Indicador da IE do destinatário:  1 – Contribuinte ICMSpagamento à vista;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.</value>
+        /// <value>Indicador da IE do destinatário:  * 1 - Contribuinte ICMSpagamento à vista  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte</value>
         [DataMember(Name = "indIEDest", IsRequired = true, EmitDefaultValue = true)]
         public int indIEDest { get; set; }
 

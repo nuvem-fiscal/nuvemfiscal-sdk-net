@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfCTe
+    /// Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfCTe")]
     public partial class MdfeSefazInfCTe : IEquatable<MdfeSefazInfCTe>, IValidatableObject
@@ -39,8 +39,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="chCTe">Conhecimento Eletrônico - Chave de Acesso. (required).</param>
         /// <param name="segCodBarra">Segundo código de barras..</param>
         /// <param name="indReentrega">Indicador de Reentrega..</param>
-        /// <param name="infUnidTransp">Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas..</param>
-        /// <param name="peri">Preenchido quando for  transporte de produtos classificados pela ONU como perigosos..</param>
+        /// <param name="infUnidTransp">infUnidTransp.</param>
+        /// <param name="peri">peri.</param>
         /// <param name="infEntregaParcial">infEntregaParcial.</param>
         public MdfeSefazInfCTe(string chCTe = default(string), string segCodBarra = default(string), int indReentrega = default(int), List<MdfeSefazUnidadeTransp> infUnidTransp = default(List<MdfeSefazUnidadeTransp>), List<MdfeSefazPeri> peri = default(List<MdfeSefazPeri>), MdfeSefazInfEntregaParcial infEntregaParcial = default(MdfeSefazInfEntregaParcial))
         {
@@ -79,16 +79,14 @@ namespace NuvemFiscal.Sdk.Model
         public int indReentrega { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.
+        /// Gets or Sets infUnidTransp
         /// </summary>
-        /// <value>Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.</value>
         [DataMember(Name = "infUnidTransp", EmitDefaultValue = false)]
         public List<MdfeSefazUnidadeTransp> infUnidTransp { get; set; }
 
         /// <summary>
-        /// Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.
+        /// Gets or Sets peri
         /// </summary>
-        /// <value>Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.</value>
         [DataMember(Name = "peri", EmitDefaultValue = false)]
         public List<MdfeSefazPeri> peri { get; set; }
 

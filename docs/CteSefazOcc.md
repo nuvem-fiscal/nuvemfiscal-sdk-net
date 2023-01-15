@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazOcc
+Ordens de Coleta associados.
 
 ## Propriedades
 

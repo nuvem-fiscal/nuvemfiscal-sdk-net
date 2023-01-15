@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazRefECF
+    /// Grupo do Cupom Fiscal vinculado à NF-e.
     /// </summary>
     [DataContract(Name = "NfeSefazRefECF")]
     public partial class NfeSefazRefECF : IEquatable<NfeSefazRefECF>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazRefECF" /> class.
         /// </summary>
-        /// <param name="mod">Código do modelo do Documento Fiscal   Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF). (required).</param>
+        /// <param name="mod">Código do modelo do Documento Fiscal  Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF). (required).</param>
         /// <param name="nECF">Informar o número de ordem seqüencial do ECF que emitiu o Cupom Fiscal vinculado à NF-e. (required).</param>
         /// <param name="nCOO">Informar o Número do Contador de Ordem de Operação - COO vinculado à NF-e. (required).</param>
         public NfeSefazRefECF(string mod = default(string), int nECF = default(int), int nCOO = default(int))
@@ -52,9 +52,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código do modelo do Documento Fiscal   Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF).
+        /// Código do modelo do Documento Fiscal  Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF).
         /// </summary>
-        /// <value>Código do modelo do Documento Fiscal   Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF).</value>
+        /// <value>Código do modelo do Documento Fiscal  Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF).</value>
         [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 

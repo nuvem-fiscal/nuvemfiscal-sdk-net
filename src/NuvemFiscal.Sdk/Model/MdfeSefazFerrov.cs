@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="MdfeSefazFerrov" /> class.
         /// </summary>
         /// <param name="trem">trem (required).</param>
-        /// <param name="vag">informações dos Vagões. (required).</param>
+        /// <param name="vag">vag (required).</param>
         public MdfeSefazFerrov(MdfeSefazTrem trem = default(MdfeSefazTrem), List<MdfeSefazVag> vag = default(List<MdfeSefazVag>))
         {
             // to ensure "trem" is required (not null)
@@ -61,9 +61,8 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazTrem trem { get; set; }
 
         /// <summary>
-        /// informações dos Vagões.
+        /// Gets or Sets vag
         /// </summary>
-        /// <value>informações dos Vagões.</value>
         [DataMember(Name = "vag", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazVag> vag { get; set; }
 

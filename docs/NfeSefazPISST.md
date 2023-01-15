@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazPISST
+Dados do PIS Substituição Tributária.
 
 ## Propriedades
 

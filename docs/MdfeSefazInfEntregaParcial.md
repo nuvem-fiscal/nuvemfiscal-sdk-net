@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfEntregaParcial
+Grupo de informações da Entrega Parcial (Corte de Voo).
 
 ## Propriedades
 

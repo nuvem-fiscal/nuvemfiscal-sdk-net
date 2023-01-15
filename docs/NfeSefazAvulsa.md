@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazAvulsa
+Emissão de avulsa, informar os dados do Fisco emitente.
 
 ## Propriedades
 

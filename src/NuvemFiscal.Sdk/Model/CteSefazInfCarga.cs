@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfCarga
+    /// Informações da Carga do CT-e.
     /// </summary>
     [DataContract(Name = "CteSefazInfCarga")]
     public partial class CteSefazInfCarga : IEquatable<CteSefazInfCarga>, IValidatableObject
@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vCarga">Valor total da carga.  Dever ser informado para todos os modais, com exceção para o Dutoviário..</param>
         /// <param name="proPred">Produto predominante.  Informar a descrição do produto predominante. (required).</param>
         /// <param name="xOutCat">Outras características da carga.  \&quot;FRIA\&quot;, \&quot;GRANEL\&quot;, \&quot;REFRIGERADA\&quot;, \&quot;Medidas: 12X12X12\&quot;..</param>
-        /// <param name="infQ">Informações de quantidades da Carga do CT-e.  Para o Aéreo é obrigatório o preenchimento desse campo da seguinte forma.  1 - Peso Bruto, sempre em quilogramas (obrigatório);  2 - Peso Cubado; sempre em quilogramas;  3 - Quantidade de volumes, sempre em unidades (obrigatório);  4 - Cubagem, sempre em metros cúbicos (obrigatório apenas quando for impossível preencher as dimensões da(s) embalagem(ens) na tag xDime do leiaute do Aéreo). (required).</param>
+        /// <param name="infQ">infQ (required).</param>
         /// <param name="vCargaAverb">Valor da Carga para efeito de averbação.  Normalmente igual ao valor declarado da mercadoria, diferente por exemplo, quando a mercadoria transportada é isenta de tributos nacionais para exportação, onde é preciso averbar um valor maior, pois no caso de indenização, o valor a ser pago será maior..</param>
         public CteSefazInfCarga(decimal vCarga = default(decimal), string proPred = default(string), string xOutCat = default(string), List<CteSefazInfQ> infQ = default(List<CteSefazInfQ>), decimal vCargaAverb = default(decimal))
         {
@@ -82,9 +82,8 @@ namespace NuvemFiscal.Sdk.Model
         public string xOutCat { get; set; }
 
         /// <summary>
-        /// Informações de quantidades da Carga do CT-e.  Para o Aéreo é obrigatório o preenchimento desse campo da seguinte forma.  1 - Peso Bruto, sempre em quilogramas (obrigatório);  2 - Peso Cubado; sempre em quilogramas;  3 - Quantidade de volumes, sempre em unidades (obrigatório);  4 - Cubagem, sempre em metros cúbicos (obrigatório apenas quando for impossível preencher as dimensões da(s) embalagem(ens) na tag xDime do leiaute do Aéreo).
+        /// Gets or Sets infQ
         /// </summary>
-        /// <value>Informações de quantidades da Carga do CT-e.  Para o Aéreo é obrigatório o preenchimento desse campo da seguinte forma.  1 - Peso Bruto, sempre em quilogramas (obrigatório);  2 - Peso Cubado; sempre em quilogramas;  3 - Quantidade de volumes, sempre em unidades (obrigatório);  4 - Cubagem, sempre em metros cúbicos (obrigatório apenas quando for impossível preencher as dimensões da(s) embalagem(ens) na tag xDime do leiaute do Aéreo).</value>
         [DataMember(Name = "infQ", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazInfQ> infQ { get; set; }
 

@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazFerrov" /> class.
         /// </summary>
-        /// <param name="tpTraf">Tipo de Tráfego.  Preencher com:        0-Próprio;        1-Mútuo;        2-Rodoferroviário;        3-Rodoviário. (required).</param>
+        /// <param name="tpTraf">Tipo de Tráfego.  Preencher com:  * 0 - Próprio  * 1 - Mútuo  * 2 - Rodoferroviário  * 3 - Rodoviário (required).</param>
         /// <param name="trafMut">trafMut.</param>
         /// <param name="fluxo">Fluxo Ferroviário.  Trata-se de um número identificador do contrato firmado com o cliente. (required).</param>
         public CteSefazFerrov(int tpTraf = default(int), CteSefazTrafMut trafMut = default(CteSefazTrafMut), string fluxo = default(string))
@@ -52,9 +52,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo de Tráfego.  Preencher com:        0-Próprio;        1-Mútuo;        2-Rodoferroviário;        3-Rodoviário.
+        /// Tipo de Tráfego.  Preencher com:  * 0 - Próprio  * 1 - Mútuo  * 2 - Rodoferroviário  * 3 - Rodoviário
         /// </summary>
-        /// <value>Tipo de Tráfego.  Preencher com:        0-Próprio;        1-Mútuo;        2-Rodoferroviário;        3-Rodoviário.</value>
+        /// <value>Tipo de Tráfego.  Preencher com:  * 0 - Próprio  * 1 - Mútuo  * 2 - Rodoferroviário  * 3 - Rodoviário</value>
         [DataMember(Name = "tpTraf", IsRequired = true, EmitDefaultValue = true)]
         public int tpTraf { get; set; }
 

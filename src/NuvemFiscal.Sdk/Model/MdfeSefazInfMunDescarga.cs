@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfMunDescarga
+    /// Informações dos Municípios de descarregamento.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfMunDescarga")]
     public partial class MdfeSefazInfMunDescarga : IEquatable<MdfeSefazInfMunDescarga>, IValidatableObject
@@ -38,9 +38,9 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="cMunDescarga">Código do Município de Descarregamento. (required).</param>
         /// <param name="xMunDescarga">Nome do Município de Descarregamento. (required).</param>
-        /// <param name="infCTe">Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte..</param>
-        /// <param name="infNFe">Nota Fiscal Eletronica..</param>
-        /// <param name="infMDFeTransp">Manifesto Eletrônico de Documentos Fiscais. Somente para modal Aquaviário (vide regras MOC)..</param>
+        /// <param name="infCTe">infCTe.</param>
+        /// <param name="infNFe">infNFe.</param>
+        /// <param name="infMDFeTransp">infMDFeTransp.</param>
         public MdfeSefazInfMunDescarga(string cMunDescarga = default(string), string xMunDescarga = default(string), List<MdfeSefazInfCTe> infCTe = default(List<MdfeSefazInfCTe>), List<MdfeSefazInfNFe> infNFe = default(List<MdfeSefazInfNFe>), List<MdfeSefazInfMDFeTransp> infMDFeTransp = default(List<MdfeSefazInfMDFeTransp>))
         {
             // to ensure "cMunDescarga" is required (not null)
@@ -75,23 +75,20 @@ namespace NuvemFiscal.Sdk.Model
         public string xMunDescarga { get; set; }
 
         /// <summary>
-        /// Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte.
+        /// Gets or Sets infCTe
         /// </summary>
-        /// <value>Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte.</value>
         [DataMember(Name = "infCTe", EmitDefaultValue = false)]
         public List<MdfeSefazInfCTe> infCTe { get; set; }
 
         /// <summary>
-        /// Nota Fiscal Eletronica.
+        /// Gets or Sets infNFe
         /// </summary>
-        /// <value>Nota Fiscal Eletronica.</value>
         [DataMember(Name = "infNFe", EmitDefaultValue = false)]
         public List<MdfeSefazInfNFe> infNFe { get; set; }
 
         /// <summary>
-        /// Manifesto Eletrônico de Documentos Fiscais. Somente para modal Aquaviário (vide regras MOC).
+        /// Gets or Sets infMDFeTransp
         /// </summary>
-        /// <value>Manifesto Eletrônico de Documentos Fiscais. Somente para modal Aquaviário (vide regras MOC).</value>
         [DataMember(Name = "infMDFeTransp", EmitDefaultValue = false)]
         public List<MdfeSefazInfMDFeTransp> infMDFeTransp { get; set; }
 

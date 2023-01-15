@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazComp
+Componentes do Valor da Prestação.
 
 ## Propriedades
 

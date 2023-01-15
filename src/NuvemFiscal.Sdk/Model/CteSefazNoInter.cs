@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazNoInter
+    /// Entrega no intervalo de horário definido.
     /// </summary>
     [DataContract(Name = "CteSefazNoInter")]
     public partial class CteSefazNoInter : IEquatable<CteSefazNoInter>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazNoInter" /> class.
         /// </summary>
-        /// <param name="tpHor">Tipo de hora.  4 - No intervalo de tempo. (required).</param>
+        /// <param name="tpHor">Tipo de hora.  * 4 - No intervalo de tempo (required).</param>
         /// <param name="hIni">Hora inicial.  Formato HH:MM:SS. (required).</param>
         /// <param name="hFim">Hora final.  Formato HH:MM:SS. (required).</param>
         public CteSefazNoInter(int tpHor = default(int), string hIni = default(string), string hFim = default(string))
@@ -57,9 +57,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo de hora.  4 - No intervalo de tempo.
+        /// Tipo de hora.  * 4 - No intervalo de tempo
         /// </summary>
-        /// <value>Tipo de hora.  4 - No intervalo de tempo.</value>
+        /// <value>Tipo de hora.  * 4 - No intervalo de tempo</value>
         [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
         public int tpHor { get; set; }
 

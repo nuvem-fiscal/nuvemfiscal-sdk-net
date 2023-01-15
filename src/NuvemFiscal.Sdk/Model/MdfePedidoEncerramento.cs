@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfePedidoEncerramento" /> class.
         /// </summary>
-        /// <param name="dataEncerramento">Data que o manifesto foi encerrado.  Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API..</param>
+        /// <param name="dataEncerramento">Data que o manifesto foi encerrado.    Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API..</param>
         /// <param name="uf">UF de encerramento do manifesto. (required).</param>
         /// <param name="codigoMunicipio">Código IBGE do Município de encerramento do manifesto. (required).</param>
         public MdfePedidoEncerramento(DateTime dataEncerramento = default(DateTime), string uf = default(string), string codigoMunicipio = default(string))
@@ -57,9 +57,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Data que o manifesto foi encerrado.  Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API.
+        /// Data que o manifesto foi encerrado.    Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API.
         /// </summary>
-        /// <value>Data que o manifesto foi encerrado.  Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API.</value>
+        /// <value>Data que o manifesto foi encerrado.    Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API.</value>
         [DataMember(Name = "data_encerramento", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime data_encerramento { get; set; }

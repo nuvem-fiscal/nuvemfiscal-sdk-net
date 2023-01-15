@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfCTeSupl
+Informações suplementares do CT-e.
 
 ## Propriedades
 

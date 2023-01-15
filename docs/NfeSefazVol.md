@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazVol
+Dados dos volumes.
 
 ## Propriedades
 

@@ -1,10 +1,11 @@
 # NuvemFiscal.Sdk.Model.CteSefazTarifa
+Informações de tarifa.
 
 ## Propriedades
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**CL** | **string** | Classe.  Preencher com:           M - Tarifa Mínima;           G - Tarifa Geral;           E - Tarifa Específica. | 
+**CL** | **string** | Classe.  Preencher com:  * M - Tarifa Mínima  * G - Tarifa Geral  * E - Tarifa Específica | 
 **cTar** | **string** | Código da Tarifa.  Deverão ser incluídos os códigos de três dígitos, correspondentes à tarifa. | [optional] 
 **vTar** | **decimal** | Valor da Tarifa.  Valor da tarifa por kg quando for o caso. | 
 

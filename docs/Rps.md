@@ -12,6 +12,7 @@ Nome | Tipo | Descrição | Comentários
 **intermediario** | [**RpsDadosIntermediario**](RpsDadosIntermediario.md) |  | [optional] 
 **construcao_civil** | [**RpsDadosConstrucaoCivil**](RpsDadosConstrucaoCivil.md) |  | [optional] 
 **servicos** | [**List&lt;RpsDadosServico&gt;**](RpsDadosServico.md) |  | 
+**outras_informacoes** | **string** | Informações adicionais ao documento. | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

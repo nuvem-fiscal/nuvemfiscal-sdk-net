@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazDet
+Dados dos detalhes da NF-e.
 
 ## Propriedades
 

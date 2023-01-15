@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfDoc
+    /// Informações dos documentos transportados pelo CT-e  Opcional para Redespacho Intermediario e Serviço vinculado a multimodal.  Poderá não ser informado para os CT-e de redespacho intermediário e serviço vinculado a multimodal. Nos demais casos deverá sempre ser informado.
     /// </summary>
     [DataContract(Name = "CteSefazInfDoc")]
     public partial class CteSefazInfDoc : IEquatable<CteSefazInfDoc>, IValidatableObject
@@ -31,9 +31,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazInfDoc" /> class.
         /// </summary>
-        /// <param name="infNF">Informações das NF.  Este grupo deve ser informado quando o documento originário for NF..</param>
-        /// <param name="infNFe">Informações das NF-e..</param>
-        /// <param name="infOutros">Informações dos demais documentos..</param>
+        /// <param name="infNF">infNF.</param>
+        /// <param name="infNFe">infNFe.</param>
+        /// <param name="infOutros">infOutros.</param>
         public CteSefazInfDoc(List<CteSefazInfNF> infNF = default(List<CteSefazInfNF>), List<CteSefazInfNFe> infNFe = default(List<CteSefazInfNFe>), List<CteSefazInfOutros> infOutros = default(List<CteSefazInfOutros>))
         {
             this.infNF = infNF;
@@ -42,23 +42,20 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Informações das NF.  Este grupo deve ser informado quando o documento originário for NF.
+        /// Gets or Sets infNF
         /// </summary>
-        /// <value>Informações das NF.  Este grupo deve ser informado quando o documento originário for NF.</value>
         [DataMember(Name = "infNF", EmitDefaultValue = false)]
         public List<CteSefazInfNF> infNF { get; set; }
 
         /// <summary>
-        /// Informações das NF-e.
+        /// Gets or Sets infNFe
         /// </summary>
-        /// <value>Informações das NF-e.</value>
         [DataMember(Name = "infNFe", EmitDefaultValue = false)]
         public List<CteSefazInfNFe> infNFe { get; set; }
 
         /// <summary>
-        /// Informações dos demais documentos.
+        /// Gets or Sets infOutros
         /// </summary>
-        /// <value>Informações dos demais documentos.</value>
         [DataMember(Name = "infOutros", EmitDefaultValue = false)]
         public List<CteSefazInfOutros> infOutros { get; set; }
 

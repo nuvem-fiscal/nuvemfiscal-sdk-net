@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazFat
+Dados da fatura.
 
 ## Propriedades
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// EmpresaConfigPrefeitura
+    /// Dados adicionais para comunicação com a prefeitura. Essa validação é  dinâmica, de acordo com a necessidade de cada município.
     /// </summary>
     [DataContract(Name = "EmpresaConfigPrefeitura")]
     public partial class EmpresaConfigPrefeitura : IEquatable<EmpresaConfigPrefeitura>, IValidatableObject

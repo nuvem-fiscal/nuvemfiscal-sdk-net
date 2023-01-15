@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazEmit
+    /// Identificação do Emitente do CT-e.
     /// </summary>
     [DataContract(Name = "CteSefazEmit")]
     public partial class CteSefazEmit : IEquatable<CteSefazEmit>, IValidatableObject
@@ -32,13 +32,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazEmit" /> class.
         /// </summary>
         /// <param name="cNPJ">CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica..</param>
-        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.    Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física..</param>
+        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física..</param>
         /// <param name="iE">Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="iEST">Inscrição Estadual do Substituto Tributário..</param>
         /// <param name="xNome">Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="xFant">Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="enderEmit">enderEmit.</param>
-        /// <param name="cRT">Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional;   2&#x3D;Simples Nacional, excesso sublimite de receita bruta;  3&#x3D;Regime Normal..</param>
+        /// <param name="cRT">Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional  * 2 - Simples Nacional, excesso sublimite de receita bruta  * 3 - Regime Normal.</param>
         public CteSefazEmit(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string iEST = default(string), string xNome = default(string), string xFant = default(string), CteSefazEndeEmi enderEmit = default(CteSefazEndeEmi), int cRT = default(int))
         {
             this.CNPJ = cNPJ;
@@ -59,9 +59,9 @@ namespace NuvemFiscal.Sdk.Model
         public string CNPJ { get; set; }
 
         /// <summary>
-        /// CPF do emitente.  Informar zeros não significativos.    Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física.
+        /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física.
         /// </summary>
-        /// <value>CPF do emitente.  Informar zeros não significativos.    Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física.</value>
+        /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física.</value>
         [DataMember(Name = "CPF", EmitDefaultValue = false)]
         public string CPF { get; set; }
 
@@ -100,9 +100,9 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazEndeEmi enderEmit { get; set; }
 
         /// <summary>
-        /// Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional;   2&#x3D;Simples Nacional, excesso sublimite de receita bruta;  3&#x3D;Regime Normal.
+        /// Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional  * 2 - Simples Nacional, excesso sublimite de receita bruta  * 3 - Regime Normal
         /// </summary>
-        /// <value>Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional;   2&#x3D;Simples Nacional, excesso sublimite de receita bruta;  3&#x3D;Regime Normal.</value>
+        /// <value>Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional  * 2 - Simples Nacional, excesso sublimite de receita bruta  * 3 - Regime Normal</value>
         [DataMember(Name = "CRT", EmitDefaultValue = false)]
         public int CRT { get; set; }
 

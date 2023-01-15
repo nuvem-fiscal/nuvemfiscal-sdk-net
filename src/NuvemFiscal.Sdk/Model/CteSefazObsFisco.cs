@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazObsFisco
+    /// Campo de uso livre do contribuinte.  Informar o nome do campo no atributo xCampo e o conteúdo do campo no XTexto.
     /// </summary>
     [DataContract(Name = "CteSefazObsFisco")]
     public partial class CteSefazObsFisco : IEquatable<CteSefazObsFisco>, IValidatableObject

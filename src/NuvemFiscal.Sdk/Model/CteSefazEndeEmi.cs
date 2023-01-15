@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazEndeEmi
+    /// Endereço do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
     /// </summary>
     [DataContract(Name = "CteSefazEndeEmi")]
     public partial class CteSefazEndeEmi : IEquatable<CteSefazEndeEmi>, IValidatableObject

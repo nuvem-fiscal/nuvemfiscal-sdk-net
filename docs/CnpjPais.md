@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjPais
+País.
 
 ## Propriedades
 

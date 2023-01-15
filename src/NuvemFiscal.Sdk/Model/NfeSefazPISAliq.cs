@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazPISAliq
+    /// Código de Situação Tributária do PIS.  * 01 - Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo)  * 02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada)
     /// </summary>
     [DataContract(Name = "NfeSefazPISAliq")]
     public partial class NfeSefazPISAliq : IEquatable<NfeSefazPISAliq>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazPISAliq" /> class.
         /// </summary>
-        /// <param name="cST">Código de Situação Tributária do PIS.   01 – Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo);  02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada);. (required).</param>
+        /// <param name="cST">Código de Situação Tributária do PIS.  * 01 - Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo)  * 02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada) (required).</param>
         /// <param name="vBC">Valor da BC do PIS. (required).</param>
         /// <param name="pPIS">Alíquota do PIS (em percentual). (required).</param>
         /// <param name="vPIS">Valor do PIS. (required).</param>
@@ -54,9 +54,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código de Situação Tributária do PIS.   01 – Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo);  02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada);.
+        /// Código de Situação Tributária do PIS.  * 01 - Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo)  * 02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada)
         /// </summary>
-        /// <value>Código de Situação Tributária do PIS.   01 – Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo);  02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada);.</value>
+        /// <value>Código de Situação Tributária do PIS.  * 01 - Operação Tributável - Base de Cálculo &#x3D; Valor da Operação Alíquota Normal (Cumulativo/Não Cumulativo)  * 02 - Operação Tributável - Base de Calculo &#x3D; Valor da Operação (Alíquota Diferenciada)</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

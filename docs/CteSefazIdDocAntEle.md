@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazIdDocAntEle
+Documentos de transporte anterior eletrônicos.
 
 ## Propriedades
 

@@ -39,13 +39,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
         /// <param name="dataEmissao">Data e Hora de Emissão do RPS, no formato AAAA-MM-DDTHH:MM:SSTZD.  Caso não informado, será considerada a data/hora da requisição à API da Nuvem Fiscal..</param>
         /// <param name="competencia">Competência do RPS, no formato AAAA-MM-DD.  Caso não informado, será considerada a data da requisição à API da Nuvem Fiscal..</param>
-        /// <param name="naturezaTributacao">Natureza da tributação:  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial..</param>
+        /// <param name="naturezaTributacao">Natureza da tributação:  * 1 - Simples Nacional;  * 2 - Fixo;  * 3 - Depósito em juízo;  * 4 - Exigibilidade suspensa por decisão judicial;  * 5 - Exigibilidade suspensa por procedimento administrativo;  * 6 - Isenção parcial..</param>
         /// <param name="prestador">prestador (required).</param>
         /// <param name="tomador">tomador (required).</param>
         /// <param name="intermediario">intermediario.</param>
         /// <param name="construcaoCivil">construcaoCivil.</param>
         /// <param name="servicos">servicos (required).</param>
-        public RpsPedidoEmissao(string referencia = default(string), DateTime dataEmissao = default(DateTime), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsIdentificacaoPrestador prestador = default(RpsIdentificacaoPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>))
+        /// <param name="outrasInformacoes">Informações adicionais ao documento..</param>
+        public RpsPedidoEmissao(string referencia = default(string), DateTime dataEmissao = default(DateTime), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsIdentificacaoPrestador prestador = default(RpsIdentificacaoPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>), string outrasInformacoes = default(string))
         {
             // to ensure "prestador" is required (not null)
             if (prestador == null)
@@ -71,6 +72,7 @@ namespace NuvemFiscal.Sdk.Model
             this.natureza_tributacao = naturezaTributacao;
             this.intermediario = intermediario;
             this.construcao_civil = construcaoCivil;
+            this.outras_informacoes = outrasInformacoes;
         }
 
         /// <summary>
@@ -96,9 +98,9 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime competencia { get; set; }
 
         /// <summary>
-        /// Natureza da tributação:  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial.
+        /// Natureza da tributação:  * 1 - Simples Nacional;  * 2 - Fixo;  * 3 - Depósito em juízo;  * 4 - Exigibilidade suspensa por decisão judicial;  * 5 - Exigibilidade suspensa por procedimento administrativo;  * 6 - Isenção parcial.
         /// </summary>
-        /// <value>Natureza da tributação:  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial.</value>
+        /// <value>Natureza da tributação:  * 1 - Simples Nacional;  * 2 - Fixo;  * 3 - Depósito em juízo;  * 4 - Exigibilidade suspensa por decisão judicial;  * 5 - Exigibilidade suspensa por procedimento administrativo;  * 6 - Isenção parcial.</value>
         [DataMember(Name = "natureza_tributacao", EmitDefaultValue = false)]
         public int natureza_tributacao { get; set; }
 
@@ -133,6 +135,13 @@ namespace NuvemFiscal.Sdk.Model
         public List<RpsDadosServico> servicos { get; set; }
 
         /// <summary>
+        /// Informações adicionais ao documento.
+        /// </summary>
+        /// <value>Informações adicionais ao documento.</value>
+        [DataMember(Name = "outras_informacoes", EmitDefaultValue = false)]
+        public string outras_informacoes { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -149,6 +158,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  intermediario: ").Append(intermediario).Append("\n");
             sb.Append("  construcao_civil: ").Append(construcao_civil).Append("\n");
             sb.Append("  servicos: ").Append(servicos).Append("\n");
+            sb.Append("  outras_informacoes: ").Append(outras_informacoes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -228,6 +238,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.servicos != null &&
                     input.servicos != null &&
                     this.servicos.SequenceEqual(input.servicos)
+                ) && 
+                (
+                    this.outras_informacoes == input.outras_informacoes ||
+                    (this.outras_informacoes != null &&
+                    this.outras_informacoes.Equals(input.outras_informacoes))
                 );
         }
 
@@ -272,6 +287,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.servicos != null)
                 {
                     hashCode = (hashCode * 59) + this.servicos.GetHashCode();
+                }
+                if (this.outras_informacoes != null)
+                {
+                    hashCode = (hashCode * 59) + this.outras_informacoes.GetHashCode();
                 }
                 return hashCode;
             }

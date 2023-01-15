@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfNF
+Informações das NF.  Este grupo deve ser informado quando o documento originário for NF.
 
 ## Propriedades
 
@@ -6,7 +7,7 @@ Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **nRoma** | **string** | Número do Romaneio da NF. | [optional] 
 **nPed** | **string** | Número do Pedido da NF. | [optional] 
-**mod** | **string** | Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor. | 
+**mod** | **string** | Modelo da Nota Fiscal.  Preencher com:  * 01 - NF Modelo 01/1A e Avulsa  * 04 - NF de Produtor | 
 **serie** | **string** | Série. | 
 **nDoc** | **string** | Número. | 
 **dEmi** | **DateTime** | Data de Emissão.  Formato AAAA-MM-DD. | 
@@ -20,8 +21,8 @@ Nome | Tipo | Descrição | Comentários
 **nPeso** | **decimal** | Peso total em Kg. | [optional] 
 **PIN** | **string** | PIN SUFRAMA.  PIN atribuído pela SUFRAMA para a operação. | [optional] 
 **dPrev** | **DateTime** | Data prevista de entrega.  Formato AAAA-MM-DD. | [optional] 
-**infUnidCarga** | [**List&lt;CteSefazUnidCarga&gt;**](CteSefazUnidCarga.md) | Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu. | [optional] 
-**infUnidTransp** | [**List&lt;CteSefazUnidadeTransp&gt;**](CteSefazUnidadeTransp.md) | Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas. | [optional] 
+**infUnidCarga** | [**List&lt;CteSefazUnidCarga&gt;**](CteSefazUnidCarga.md) |  | [optional] 
+**infUnidTransp** | [**List&lt;CteSefazUnidadeTransp&gt;**](CteSefazUnidadeTransp.md) |  | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

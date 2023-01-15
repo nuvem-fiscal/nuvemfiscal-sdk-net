@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazIdDocAnt
+    /// Informações de identificação dos documentos de Transporte Anterior.
     /// </summary>
     [DataContract(Name = "CteSefazIdDocAnt")]
     public partial class CteSefazIdDocAnt : IEquatable<CteSefazIdDocAnt>, IValidatableObject
@@ -31,8 +31,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazIdDocAnt" /> class.
         /// </summary>
-        /// <param name="idDocAntPap">Documentos de transporte anterior em papel..</param>
-        /// <param name="idDocAntEle">Documentos de transporte anterior eletrônicos..</param>
+        /// <param name="idDocAntPap">idDocAntPap.</param>
+        /// <param name="idDocAntEle">idDocAntEle.</param>
         public CteSefazIdDocAnt(List<CteSefazIdDocAntPap> idDocAntPap = default(List<CteSefazIdDocAntPap>), List<CteSefazIdDocAntEle> idDocAntEle = default(List<CteSefazIdDocAntEle>))
         {
             this.idDocAntPap = idDocAntPap;
@@ -40,16 +40,14 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Documentos de transporte anterior em papel.
+        /// Gets or Sets idDocAntPap
         /// </summary>
-        /// <value>Documentos de transporte anterior em papel.</value>
         [DataMember(Name = "idDocAntPap", EmitDefaultValue = false)]
         public List<CteSefazIdDocAntPap> idDocAntPap { get; set; }
 
         /// <summary>
-        /// Documentos de transporte anterior eletrônicos.
+        /// Gets or Sets idDocAntEle
         /// </summary>
-        /// <value>Documentos de transporte anterior eletrônicos.</value>
         [DataMember(Name = "idDocAntEle", EmitDefaultValue = false)]
         public List<CteSefazIdDocAntEle> idDocAntEle { get; set; }
 

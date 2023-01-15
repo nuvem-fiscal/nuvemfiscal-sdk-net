@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjMotivoSituacaoCadastral
+Motivo da situação cadastral.
 
 ## Propriedades
 

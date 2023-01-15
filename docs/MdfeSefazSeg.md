@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazSeg
+Informações de Seguro da Carga.
 
 ## Propriedades
 

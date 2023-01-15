@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazFerroEnv
+Informações das Ferrovias Envolvidas.
 
 ## Propriedades
 

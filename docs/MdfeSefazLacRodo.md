@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazLacRodo
+Lacres.
 
 ## Propriedades
 

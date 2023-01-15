@@ -64,11 +64,20 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigNfe" /> class.
         /// </summary>
+        /// <param name="cRT">Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal..</param>
         /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
-        public EmpresaConfigNfe(AmbienteEnum ambiente = default(AmbienteEnum))
+        public EmpresaConfigNfe(int cRT = default(int), AmbienteEnum ambiente = default(AmbienteEnum))
         {
             this.ambiente = ambiente;
+            this.CRT = cRT;
         }
+
+        /// <summary>
+        /// Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal.
+        /// </summary>
+        /// <value>Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal.</value>
+        [DataMember(Name = "CRT", EmitDefaultValue = false)]
+        public int CRT { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,6 +87,7 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class EmpresaConfigNfe {\n");
+            sb.Append("  CRT: ").Append(CRT).Append("\n");
             sb.Append("  ambiente: ").Append(ambiente).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -115,6 +125,10 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
+                    this.CRT == input.CRT ||
+                    this.CRT.Equals(input.CRT)
+                ) && 
+                (
                     this.ambiente == input.ambiente ||
                     this.ambiente.Equals(input.ambiente)
                 );
@@ -129,6 +143,7 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.CRT.GetHashCode();
                 hashCode = (hashCode * 59) + this.ambiente.GetHashCode();
                 return hashCode;
             }

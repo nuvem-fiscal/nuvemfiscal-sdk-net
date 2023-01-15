@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazAdi
+    /// Adições (NT 2011/004).
     /// </summary>
     [DataContract(Name = "NfeSefazAdi")]
     public partial class NfeSefazAdi : IEquatable<NfeSefazAdi>, IValidatableObject
@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nAdicao">Número da Adição..</param>
         /// <param name="nSeqAdic">Número seqüencial do item dentro da Adição. (required).</param>
         /// <param name="cFabricante">Código do fabricante estrangeiro (usado nos sistemas internos de informação do emitente da NF-e). (required).</param>
-        /// <param name="vDescDI">Valor do desconto do item da DI – adição..</param>
+        /// <param name="vDescDI">Valor do desconto do item da DI - adição..</param>
         /// <param name="nDraw">Número do ato concessório de Drawback..</param>
         public NfeSefazAdi(int nAdicao = default(int), int nSeqAdic = default(int), string cFabricante = default(string), decimal vDescDI = default(decimal), string nDraw = default(string))
         {
@@ -77,9 +77,9 @@ namespace NuvemFiscal.Sdk.Model
         public string cFabricante { get; set; }
 
         /// <summary>
-        /// Valor do desconto do item da DI – adição.
+        /// Valor do desconto do item da DI - adição.
         /// </summary>
-        /// <value>Valor do desconto do item da DI – adição.</value>
+        /// <value>Valor do desconto do item da DI - adição.</value>
         [DataMember(Name = "vDescDI", EmitDefaultValue = false)]
         public decimal vDescDI { get; set; }
 

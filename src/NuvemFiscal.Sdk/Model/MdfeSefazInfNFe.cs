@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfNFe
+    /// Nota Fiscal Eletronica.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfNFe")]
     public partial class MdfeSefazInfNFe : IEquatable<MdfeSefazInfNFe>, IValidatableObject
@@ -39,8 +39,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="chNFe">Nota Fiscal Eletrônica. (required).</param>
         /// <param name="segCodBarra">Segundo código de barras..</param>
         /// <param name="indReentrega">Indicador de Reentrega..</param>
-        /// <param name="infUnidTransp">Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas..</param>
-        /// <param name="peri">Preenchido quando for  transporte de produtos classificados pela ONU como perigosos..</param>
+        /// <param name="infUnidTransp">infUnidTransp.</param>
+        /// <param name="peri">peri.</param>
         public MdfeSefazInfNFe(string chNFe = default(string), string segCodBarra = default(string), int indReentrega = default(int), List<MdfeSefazUnidadeTransp> infUnidTransp = default(List<MdfeSefazUnidadeTransp>), List<MdfeSefazInfNFePeri> peri = default(List<MdfeSefazInfNFePeri>))
         {
             // to ensure "chNFe" is required (not null)
@@ -77,16 +77,14 @@ namespace NuvemFiscal.Sdk.Model
         public int indReentrega { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.
+        /// Gets or Sets infUnidTransp
         /// </summary>
-        /// <value>Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.</value>
         [DataMember(Name = "infUnidTransp", EmitDefaultValue = false)]
         public List<MdfeSefazUnidadeTransp> infUnidTransp { get; set; }
 
         /// <summary>
-        /// Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.
+        /// Gets or Sets peri
         /// </summary>
-        /// <value>Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.</value>
         [DataMember(Name = "peri", EmitDefaultValue = false)]
         public List<MdfeSefazInfNFePeri> peri { get; set; }
 

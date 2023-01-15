@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazIde
+    /// Identificação do MDF-e.
     /// </summary>
     [DataContract(Name = "MdfeSefazIde")]
     public partial class MdfeSefazIde : IEquatable<MdfeSefazIde>, IValidatableObject
@@ -37,23 +37,23 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="MdfeSefazIde" /> class.
         /// </summary>
         /// <param name="cUF">Código da UF do emitente do MDF-e.  Código da UF do emitente do Documento Fiscal. Utilizar a  Tabela do IBGE de código de unidades da federação. (required).</param>
-        /// <param name="tpAmb">Tipo do Ambiente.  1 - Produção  2 - Homologação..</param>
-        /// <param name="tpEmit">Tipo do Emitente.  1 - Prestador de serviço de transporte   2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado     OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e. (required).</param>
-        /// <param name="tpTransp">Tipo do Transportador.  1 - ETC    2 - TAC    3 - CTC..</param>
+        /// <param name="tpAmb">Tipo do Ambiente.  * 1 - Produção  * 2 - Homologação.</param>
+        /// <param name="tpEmit">Tipo do Emitente.  * 1 - Prestador de serviço de transporte  * 2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado  OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e. (required).</param>
+        /// <param name="tpTransp">Tipo do Transportador.  * 1 - ETC  * 2 - TAC  * 3 - CTC.</param>
         /// <param name="mod">Modelo do Manifesto Eletrônico.  Utilizar o código 58 para identificação do MDF-e..</param>
         /// <param name="serie">Série do Manifesto.  Informar a série do documento fiscal (informar zero se inexistente).  Série na faixa [920-969]: Reservada para emissão por contribuinte pessoa física com inscrição estadual. (required).</param>
         /// <param name="nMDF">Número do Manifesto.  Número que identifica o Manifesto. 1 a 999999999. (required).</param>
         /// <param name="cMDF">Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado..</param>
         /// <param name="cDV">Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado..</param>
-        /// <param name="modal">Modalidade de transporte.  1 - Rodoviário;  2 - Aéreo; 3 - Aquaviário; 4 - Ferroviário. (required).</param>
+        /// <param name="modal">Modalidade de transporte.  * 1 - Rodoviário  * 2 - Aéreo  * 3 - Aquaviário  * 4 - Ferroviário (required).</param>
         /// <param name="dhEmi">Data e hora de emissão do Manifesto.  Formato AAAA-MM-DDTHH:MM:DD TZD. (required).</param>
-        /// <param name="tpEmis">Forma de emissão do Manifesto.  1 - Normal  ; 2 - Contingência; 3-Regime Especial NFF. (required).</param>
-        /// <param name="procEmi">Identificação do processo de emissão do Manifesto.  0 - emissão de MDF-e com aplicativo do contribuinte. (required).</param>
+        /// <param name="tpEmis">Forma de emissão do Manifesto.  * 1 - Normal  * 2 - Contingência  * 3 - Regime Especial NFF (required).</param>
+        /// <param name="procEmi">Identificação do processo de emissão do Manifesto.  * 0 - emissão de MDF-e com aplicativo do contribuinte (required).</param>
         /// <param name="verProc">Versão do processo de emissão.  Informar a versão do aplicativo emissor de MDF-e. (required).</param>
         /// <param name="uFIni">Sigla da UF do Carregamento.  Utilizar a Tabela do IBGE de código de unidades da federação.  Informar &#39;EX&#39; para operações com o exterior. (required).</param>
         /// <param name="uFFim">Sigla da UF do Descarregamento.  Utilizar a Tabela do IBGE de código de unidades da federação.  Informar &#39;EX&#39; para operações com o exterior. (required).</param>
-        /// <param name="infMunCarrega">Informações dos Municípios de Carregamento. (required).</param>
-        /// <param name="infPercurso">Informações do Percurso do MDF-e..</param>
+        /// <param name="infMunCarrega">infMunCarrega (required).</param>
+        /// <param name="infPercurso">infPercurso.</param>
         /// <param name="dhIniViagem">Data e hora previstos de inicio da viagem.  Formato AAAA-MM-DDTHH:MM:DD TZD..</param>
         /// <param name="indCanalVerde">Indicador de participação do Canal Verde..</param>
         /// <param name="indCarregaPosterior">Indicador de MDF-e com inclusão da Carga posterior a emissão por evento de inclusão de DF-e..</param>
@@ -115,23 +115,23 @@ namespace NuvemFiscal.Sdk.Model
         public int cUF { get; set; }
 
         /// <summary>
-        /// Tipo do Ambiente.  1 - Produção  2 - Homologação.
+        /// Tipo do Ambiente.  * 1 - Produção  * 2 - Homologação
         /// </summary>
-        /// <value>Tipo do Ambiente.  1 - Produção  2 - Homologação.</value>
+        /// <value>Tipo do Ambiente.  * 1 - Produção  * 2 - Homologação</value>
         [DataMember(Name = "tpAmb", EmitDefaultValue = false)]
         public int tpAmb { get; set; }
 
         /// <summary>
-        /// Tipo do Emitente.  1 - Prestador de serviço de transporte   2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado     OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.
+        /// Tipo do Emitente.  * 1 - Prestador de serviço de transporte  * 2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado  OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.
         /// </summary>
-        /// <value>Tipo do Emitente.  1 - Prestador de serviço de transporte   2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado     OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.</value>
+        /// <value>Tipo do Emitente.  * 1 - Prestador de serviço de transporte  * 2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado  OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.</value>
         [DataMember(Name = "tpEmit", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmit { get; set; }
 
         /// <summary>
-        /// Tipo do Transportador.  1 - ETC    2 - TAC    3 - CTC.
+        /// Tipo do Transportador.  * 1 - ETC  * 2 - TAC  * 3 - CTC
         /// </summary>
-        /// <value>Tipo do Transportador.  1 - ETC    2 - TAC    3 - CTC.</value>
+        /// <value>Tipo do Transportador.  * 1 - ETC  * 2 - TAC  * 3 - CTC</value>
         [DataMember(Name = "tpTransp", EmitDefaultValue = false)]
         public int tpTransp { get; set; }
 
@@ -171,9 +171,9 @@ namespace NuvemFiscal.Sdk.Model
         public int cDV { get; set; }
 
         /// <summary>
-        /// Modalidade de transporte.  1 - Rodoviário;  2 - Aéreo; 3 - Aquaviário; 4 - Ferroviário.
+        /// Modalidade de transporte.  * 1 - Rodoviário  * 2 - Aéreo  * 3 - Aquaviário  * 4 - Ferroviário
         /// </summary>
-        /// <value>Modalidade de transporte.  1 - Rodoviário;  2 - Aéreo; 3 - Aquaviário; 4 - Ferroviário.</value>
+        /// <value>Modalidade de transporte.  * 1 - Rodoviário  * 2 - Aéreo  * 3 - Aquaviário  * 4 - Ferroviário</value>
         [DataMember(Name = "modal", IsRequired = true, EmitDefaultValue = true)]
         public int modal { get; set; }
 
@@ -185,16 +185,16 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime dhEmi { get; set; }
 
         /// <summary>
-        /// Forma de emissão do Manifesto.  1 - Normal  ; 2 - Contingência; 3-Regime Especial NFF.
+        /// Forma de emissão do Manifesto.  * 1 - Normal  * 2 - Contingência  * 3 - Regime Especial NFF
         /// </summary>
-        /// <value>Forma de emissão do Manifesto.  1 - Normal  ; 2 - Contingência; 3-Regime Especial NFF.</value>
+        /// <value>Forma de emissão do Manifesto.  * 1 - Normal  * 2 - Contingência  * 3 - Regime Especial NFF</value>
         [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmis { get; set; }
 
         /// <summary>
-        /// Identificação do processo de emissão do Manifesto.  0 - emissão de MDF-e com aplicativo do contribuinte.
+        /// Identificação do processo de emissão do Manifesto.  * 0 - emissão de MDF-e com aplicativo do contribuinte
         /// </summary>
-        /// <value>Identificação do processo de emissão do Manifesto.  0 - emissão de MDF-e com aplicativo do contribuinte.</value>
+        /// <value>Identificação do processo de emissão do Manifesto.  * 0 - emissão de MDF-e com aplicativo do contribuinte</value>
         [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
         public string procEmi { get; set; }
 
@@ -220,16 +220,14 @@ namespace NuvemFiscal.Sdk.Model
         public string UFFim { get; set; }
 
         /// <summary>
-        /// Informações dos Municípios de Carregamento.
+        /// Gets or Sets infMunCarrega
         /// </summary>
-        /// <value>Informações dos Municípios de Carregamento.</value>
         [DataMember(Name = "infMunCarrega", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazInfMunCarrega> infMunCarrega { get; set; }
 
         /// <summary>
-        /// Informações do Percurso do MDF-e.
+        /// Gets or Sets infPercurso
         /// </summary>
-        /// <value>Informações do Percurso do MDF-e.</value>
         [DataMember(Name = "infPercurso", EmitDefaultValue = false)]
         public List<MdfeSefazInfPercurso> infPercurso { get; set; }
 

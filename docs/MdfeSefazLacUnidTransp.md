@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazLacUnidTransp
+Lacres das Unidades de Transporte.
 
 ## Propriedades
 

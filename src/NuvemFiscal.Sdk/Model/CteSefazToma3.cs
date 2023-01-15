@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazToma3
+    /// Indicador do \&quot;papel\&quot; do tomador do serviço no CT-e.
     /// </summary>
     [DataContract(Name = "CteSefazToma3")]
     public partial class CteSefazToma3 : IEquatable<CteSefazToma3>, IValidatableObject
@@ -36,16 +36,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazToma3" /> class.
         /// </summary>
-        /// <param name="toma">Tomador do Serviço.  Preencher com:                 0-Remetente;                 1-Expedidor;                 2-Recebedor;                 3-Destinatário                 Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo. (required).</param>
+        /// <param name="toma">Tomador do Serviço.  Preencher com:  * 0 - Remetente  * 1 - Expedidor  * 2 - Recebedor  * 3 - Destinatário  Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo. (required).</param>
         public CteSefazToma3(int toma = default(int))
         {
             this.toma = toma;
         }
 
         /// <summary>
-        /// Tomador do Serviço.  Preencher com:                 0-Remetente;                 1-Expedidor;                 2-Recebedor;                 3-Destinatário                 Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo.
+        /// Tomador do Serviço.  Preencher com:  * 0 - Remetente  * 1 - Expedidor  * 2 - Recebedor  * 3 - Destinatário  Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo.
         /// </summary>
-        /// <value>Tomador do Serviço.  Preencher com:                 0-Remetente;                 1-Expedidor;                 2-Recebedor;                 3-Destinatário                 Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo.</value>
+        /// <value>Tomador do Serviço.  Preencher com:  * 0 - Remetente  * 1 - Expedidor  * 2 - Recebedor  * 3 - Destinatário  Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo.</value>
         [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = true)]
         public int toma { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazCOFINSST
+    /// Dados do COFINS da  Substituição Tributaria.
     /// </summary>
     [DataContract(Name = "NfeSefazCOFINSST")]
     public partial class NfeSefazCOFINSST : IEquatable<NfeSefazCOFINSST>, IValidatableObject

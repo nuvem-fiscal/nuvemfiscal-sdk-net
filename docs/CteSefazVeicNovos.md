@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazVeicNovos
+informações dos veículos transportados.
 
 ## Propriedades
 

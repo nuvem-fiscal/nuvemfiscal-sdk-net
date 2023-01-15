@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazEmit
+    /// Identificação do emitente.
     /// </summary>
     [DataContract(Name = "NfeSefazEmit")]
     public partial class NfeSefazEmit : IEquatable<NfeSefazEmit>, IValidatableObject
@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="iEST">Inscricao Estadual do Substituto Tributário.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="iM">Inscrição Municipal.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="cNAE">CNAE Fiscal.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="cRT">Código de Regime Tributário.   Este campo será obrigatoriamente preenchido com:  1 – Simples Nacional;  2 – Simples Nacional – excesso de sublimite de receita bruta;  3 – Regime Normal.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="cRT">Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         public NfeSefazEmit(string cNPJ = default(string), string cPF = default(string), string xNome = default(string), string xFant = default(string), NfeSefazEnderEmi enderEmit = default(NfeSefazEnderEmi), string iE = default(string), string iEST = default(string), string iM = default(string), string cNAE = default(string), int cRT = default(int))
         {
             this.CNPJ = cNPJ;
@@ -118,9 +118,9 @@ namespace NuvemFiscal.Sdk.Model
         public string CNAE { get; set; }
 
         /// <summary>
-        /// Código de Regime Tributário.   Este campo será obrigatoriamente preenchido com:  1 – Simples Nacional;  2 – Simples Nacional – excesso de sublimite de receita bruta;  3 – Regime Normal.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal  Caso não seja informado, será utilizado o do cadastro da empresa.
         /// </summary>
-        /// <value>Código de Regime Tributário.   Este campo será obrigatoriamente preenchido com:  1 – Simples Nacional;  2 – Simples Nacional – excesso de sublimite de receita bruta;  3 – Regime Normal.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
         [DataMember(Name = "CRT", EmitDefaultValue = false)]
         public int CRT { get; set; }
 

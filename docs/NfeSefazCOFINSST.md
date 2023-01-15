@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazCOFINSST
+Dados do COFINS da  Substituição Tributaria.
 
 ## Propriedades
 

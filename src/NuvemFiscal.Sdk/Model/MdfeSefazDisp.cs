@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazDisp
+    /// Informações dos dispositivos do Vale Pedágio.
     /// </summary>
     [DataContract(Name = "MdfeSefazDisp")]
     public partial class MdfeSefazDisp : IEquatable<MdfeSefazDisp>, IValidatableObject
@@ -36,12 +36,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazDisp" /> class.
         /// </summary>
-        /// <param name="cNPJForn">CNPJ da empresa fornecedora do Vale-Pedágio.  - CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.           - Informar os zeros não significativos. (required).</param>
-        /// <param name="cNPJPg">CNPJ do responsável pelo pagamento do Vale-Pedágio.  - responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.           - Informar os zeros não significativos..</param>
+        /// <param name="cNPJForn">CNPJ da empresa fornecedora do Vale-Pedágio.  * CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.  * Informar os zeros não significativos. (required).</param>
+        /// <param name="cNPJPg">CNPJ do responsável pelo pagamento do Vale-Pedágio.  * responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.  * Informar os zeros não significativos..</param>
         /// <param name="cPFPg">CNPJ do responsável pelo pagamento do Vale-Pedágio.  Informar os zeros não significativos..</param>
         /// <param name="nCompra">Número do comprovante de compra.  Número de ordem do comprovante de compra do Vale-Pedágio fornecido para cada veículo ou combinação veicular, por viagem..</param>
         /// <param name="vValePed">Valor do Vale-Pedagio.  Valor do Vale-Pedágio obrigatório necessário à livre circulação, desde a origem da operação de transporte até o destino, do transportador contratado. (required).</param>
-        /// <param name="tpValePed">Tipo do Vale Pedagio.  01 - TAG; 02 - Cupom; 03 - Cartão..</param>
+        /// <param name="tpValePed">Tipo do Vale Pedagio.  * 01 - TAG  * 02 - Cupom  * 03 - Cartão.</param>
         public MdfeSefazDisp(string cNPJForn = default(string), string cNPJPg = default(string), string cPFPg = default(string), string nCompra = default(string), decimal vValePed = default(decimal), string tpValePed = default(string))
         {
             // to ensure "cNPJForn" is required (not null)
@@ -58,16 +58,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// CNPJ da empresa fornecedora do Vale-Pedágio.  - CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.           - Informar os zeros não significativos.
+        /// CNPJ da empresa fornecedora do Vale-Pedágio.  * CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.  * Informar os zeros não significativos.
         /// </summary>
-        /// <value>CNPJ da empresa fornecedora do Vale-Pedágio.  - CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.           - Informar os zeros não significativos.</value>
+        /// <value>CNPJ da empresa fornecedora do Vale-Pedágio.  * CNPJ da Empresa Fornecedora do Vale-Pedágio, ou seja, empresa que fornece ao Responsável pelo Pagamento do Vale-Pedágio os dispositivos do Vale-Pedágio.  * Informar os zeros não significativos.</value>
         [DataMember(Name = "CNPJForn", IsRequired = true, EmitDefaultValue = true)]
         public string CNPJForn { get; set; }
 
         /// <summary>
-        /// CNPJ do responsável pelo pagamento do Vale-Pedágio.  - responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.           - Informar os zeros não significativos.
+        /// CNPJ do responsável pelo pagamento do Vale-Pedágio.  * responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.  * Informar os zeros não significativos.
         /// </summary>
-        /// <value>CNPJ do responsável pelo pagamento do Vale-Pedágio.  - responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.           - Informar os zeros não significativos.</value>
+        /// <value>CNPJ do responsável pelo pagamento do Vale-Pedágio.  * responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.  * Informar os zeros não significativos.</value>
         [DataMember(Name = "CNPJPg", EmitDefaultValue = false)]
         public string CNPJPg { get; set; }
 
@@ -93,9 +93,9 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vValePed { get; set; }
 
         /// <summary>
-        /// Tipo do Vale Pedagio.  01 - TAG; 02 - Cupom; 03 - Cartão.
+        /// Tipo do Vale Pedagio.  * 01 - TAG  * 02 - Cupom  * 03 - Cartão
         /// </summary>
-        /// <value>Tipo do Vale Pedagio.  01 - TAG; 02 - Cupom; 03 - Cartão.</value>
+        /// <value>Tipo do Vale Pedagio.  * 01 - TAG  * 02 - Cupom  * 03 - Cartão</value>
         [DataMember(Name = "tpValePed", EmitDefaultValue = false)]
         public string tpValePed { get; set; }
 

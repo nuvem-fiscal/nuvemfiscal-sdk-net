@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazOcc
+    /// Ordens de Coleta associados.
     /// </summary>
     [DataContract(Name = "CteSefazOcc")]
     public partial class CteSefazOcc : IEquatable<CteSefazOcc>, IValidatableObject

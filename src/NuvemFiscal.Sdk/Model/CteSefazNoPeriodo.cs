@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazNoPeriodo
+    /// Entrega no período definido.
     /// </summary>
     [DataContract(Name = "CteSefazNoPeriodo")]
     public partial class CteSefazNoPeriodo : IEquatable<CteSefazNoPeriodo>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazNoPeriodo" /> class.
         /// </summary>
-        /// <param name="tpPer">Tipo período.  4-no período. (required).</param>
+        /// <param name="tpPer">Tipo período.  * 4 - no período (required).</param>
         /// <param name="dIni">Data inicial.  Formato AAAA-MM-DD. (required).</param>
         /// <param name="dFim">Data final.  Formato AAAA-MM-DD. (required).</param>
         public CteSefazNoPeriodo(int tpPer = default(int), DateTime dIni = default(DateTime), DateTime dFim = default(DateTime))
@@ -47,9 +47,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo período.  4-no período.
+        /// Tipo período.  * 4 - no período
         /// </summary>
-        /// <value>Tipo período.  4-no período.</value>
+        /// <value>Tipo período.  * 4 - no período</value>
         [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
         public int tpPer { get; set; }
 

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazRetTrib
+Retenção de Tributos Federais.
 
 ## Propriedades
 

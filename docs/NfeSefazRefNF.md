@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazRefNF
+Dados da NF modelo 1/1A referenciada ou NF modelo 2 referenciada.
 
 ## Propriedades
 

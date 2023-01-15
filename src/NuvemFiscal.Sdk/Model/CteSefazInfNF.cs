@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfNF
+    /// Informações das NF.  Este grupo deve ser informado quando o documento originário for NF.
     /// </summary>
     [DataContract(Name = "CteSefazInfNF")]
     public partial class CteSefazInfNF : IEquatable<CteSefazInfNF>, IValidatableObject
@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="nRoma">Número do Romaneio da NF..</param>
         /// <param name="nPed">Número do Pedido da NF..</param>
-        /// <param name="mod">Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor. (required).</param>
+        /// <param name="mod">Modelo da Nota Fiscal.  Preencher com:  * 01 - NF Modelo 01/1A e Avulsa  * 04 - NF de Produtor (required).</param>
         /// <param name="serie">Série. (required).</param>
         /// <param name="nDoc">Número. (required).</param>
         /// <param name="dEmi">Data de Emissão.  Formato AAAA-MM-DD. (required).</param>
@@ -52,8 +52,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nPeso">Peso total em Kg..</param>
         /// <param name="pIN">PIN SUFRAMA.  PIN atribuído pela SUFRAMA para a operação..</param>
         /// <param name="dPrev">Data prevista de entrega.  Formato AAAA-MM-DD..</param>
-        /// <param name="infUnidCarga">Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu..</param>
-        /// <param name="infUnidTransp">Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas..</param>
+        /// <param name="infUnidCarga">infUnidCarga.</param>
+        /// <param name="infUnidTransp">infUnidTransp.</param>
         public CteSefazInfNF(string nRoma = default(string), string nPed = default(string), string mod = default(string), string serie = default(string), string nDoc = default(string), DateTime dEmi = default(DateTime), decimal vBC = default(decimal), decimal vICMS = default(decimal), decimal vBCST = default(decimal), decimal vST = default(decimal), decimal vProd = default(decimal), decimal vNF = default(decimal), string nCFOP = default(string), decimal nPeso = default(decimal), string pIN = default(string), DateTime dPrev = default(DateTime), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
         {
             // to ensure "mod" is required (not null)
@@ -111,9 +111,9 @@ namespace NuvemFiscal.Sdk.Model
         public string nPed { get; set; }
 
         /// <summary>
-        /// Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor.
+        /// Modelo da Nota Fiscal.  Preencher com:  * 01 - NF Modelo 01/1A e Avulsa  * 04 - NF de Produtor
         /// </summary>
-        /// <value>Modelo da Nota Fiscal.  Preencher com:   01 - NF Modelo 01/1A e Avulsa;   04 - NF de Produtor.</value>
+        /// <value>Modelo da Nota Fiscal.  Preencher com:  * 01 - NF Modelo 01/1A e Avulsa  * 04 - NF de Produtor</value>
         [DataMember(Name = "mod", IsRequired = true, EmitDefaultValue = true)]
         public string mod { get; set; }
 
@@ -211,16 +211,14 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime dPrev { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.
+        /// Gets or Sets infUnidCarga
         /// </summary>
-        /// <value>Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.</value>
         [DataMember(Name = "infUnidCarga", EmitDefaultValue = false)]
         public List<CteSefazUnidCarga> infUnidCarga { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.
+        /// Gets or Sets infUnidTransp
         /// </summary>
-        /// <value>Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.</value>
         [DataMember(Name = "infUnidTransp", EmitDefaultValue = false)]
         public List<CteSefazUnidadeTransp> infUnidTransp { get; set; }
 

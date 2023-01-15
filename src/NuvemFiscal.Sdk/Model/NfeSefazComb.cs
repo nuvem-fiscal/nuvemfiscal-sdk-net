@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazComb
+    /// Informar apenas para operações com combustíveis líquidos.
     /// </summary>
     [DataContract(Name = "NfeSefazComb")]
     public partial class NfeSefazComb : IEquatable<NfeSefazComb>, IValidatableObject

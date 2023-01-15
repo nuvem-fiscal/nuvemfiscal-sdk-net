@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazISSQNtot
+Totais referentes ao ISSQN.
 
 ## Propriedades
 

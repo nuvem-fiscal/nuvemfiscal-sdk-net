@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazObsFisco
+Grupo de observações de uso livre (para o item da NF-e).
 
 ## Propriedades
 

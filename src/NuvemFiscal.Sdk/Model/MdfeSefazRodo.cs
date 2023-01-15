@@ -38,9 +38,9 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="infANTT">infANTT.</param>
         /// <param name="veicTracao">veicTracao (required).</param>
-        /// <param name="veicReboque">Dados dos reboques..</param>
+        /// <param name="veicReboque">veicReboque.</param>
         /// <param name="codAgPorto">Código de Agendamento no porto..</param>
-        /// <param name="lacRodo">Lacres..</param>
+        /// <param name="lacRodo">lacRodo.</param>
         public MdfeSefazRodo(MdfeSefazInfANTT infANTT = default(MdfeSefazInfANTT), MdfeSefazVeicTracao veicTracao = default(MdfeSefazVeicTracao), List<MdfeSefazVeicReboque> veicReboque = default(List<MdfeSefazVeicReboque>), string codAgPorto = default(string), List<MdfeSefazLacRodo> lacRodo = default(List<MdfeSefazLacRodo>))
         {
             // to ensure "veicTracao" is required (not null)
@@ -68,9 +68,8 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazVeicTracao veicTracao { get; set; }
 
         /// <summary>
-        /// Dados dos reboques.
+        /// Gets or Sets veicReboque
         /// </summary>
-        /// <value>Dados dos reboques.</value>
         [DataMember(Name = "veicReboque", EmitDefaultValue = false)]
         public List<MdfeSefazVeicReboque> veicReboque { get; set; }
 
@@ -82,9 +81,8 @@ namespace NuvemFiscal.Sdk.Model
         public string codAgPorto { get; set; }
 
         /// <summary>
-        /// Lacres.
+        /// Gets or Sets lacRodo
         /// </summary>
-        /// <value>Lacres.</value>
         [DataMember(Name = "lacRodo", EmitDefaultValue = false)]
         public List<MdfeSefazLacRodo> lacRodo { get; set; }
 

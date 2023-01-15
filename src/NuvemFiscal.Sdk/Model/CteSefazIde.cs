@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazIde
+    /// Identificação do CT-e.
     /// </summary>
     [DataContract(Name = "CteSefazIde")]
     public partial class CteSefazIde : IEquatable<CteSefazIde>, IValidatableObject
@@ -44,28 +44,28 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="serie">Série do CT-e.  Preencher com \&quot;0\&quot; no caso de série única. (required).</param>
         /// <param name="nCT">Número do CT-e. (required).</param>
         /// <param name="dhEmi">Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD. (required).</param>
-        /// <param name="tpImp">Formato de impressão do DACTE.  Preencher com: 1 - Retrato; 2 - Paisagem. (required).</param>
-        /// <param name="tpEmis">Forma de emissão do CT-e.  Preencher com:  1 - Normal;   3-Regime Especial NFF;  4-EPEC pela SVC; 5 - Contingência FSDA;   7 - Autorização pela SVC-RS;    8 - Autorização pela SVC-SP. (required).</param>
+        /// <param name="tpImp">Formato de impressão do DACTE:  * 1 - Retrato  * 2 - Paisagem (required).</param>
+        /// <param name="tpEmis">Forma de emissão do CT-e.  Preencher com:  * 1 - Normal  * 3 - Regime Especial NFF  * 4 - EPEC pela SVC  * 5 - Contingência FSDA  * 7 - Autorização pela SVC-RS  * 8 - Autorização pela SVC-SP (required).</param>
         /// <param name="cDV">Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado..</param>
-        /// <param name="tpAmb">Tipo do Ambiente.  Preencher com:1 - Produção; 2 - Homologação..</param>
-        /// <param name="tpCTe">Tipo do CT-e.  Preencher com:   0 - CT-e Normal;   1 - CT-e de Complemento de Valores; 2 - CT-e de Anulação;   3 - CT-e de Substituição. (required).</param>
-        /// <param name="procEmi">Identificador do processo de emissão do CT-e.  Preencher com:              0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE. (required).</param>
+        /// <param name="tpAmb">Tipo do Ambiente:  * 1 - Produção  * 2 - Homologação.</param>
+        /// <param name="tpCTe">Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 2 - CT-e de Anulação  * 3 - CT-e de Substituição (required).</param>
+        /// <param name="procEmi">Identificador do processo de emissão do CT-e.  Preencher com:  * 0 - emissão de CT-e com aplicativo do contribuinte  * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE (required).</param>
         /// <param name="verProc">Versão do processo de emissão.  Iinformar a versão do aplicativo emissor de CT-e. (required).</param>
         /// <param name="indGlobalizado">Indicador de CT-e Globalizado.  Informar valor 1 quando for Globalizado e não informar a tag quando não tratar de CT-e Globalizado..</param>
         /// <param name="cMunEnv">Código do Município de envio do CT-e (de onde o documento foi transmitido).  Utilizar a tabela do IBGE. Informar 9999999 para as operações com o exterior. (required).</param>
         /// <param name="xMunEnv">Nome do Município de envio do CT-e (de onde o documento foi transmitido).  Informar PAIS/Municipio para as operações com o exterior. (required).</param>
         /// <param name="uFEnv">Sigla da UF de envio do CT-e (de onde o documento foi transmitido).  Informar &#39;EX&#39; para operações com o exterior. (required).</param>
-        /// <param name="modal">Modal.  Preencher com:01-Rodoviário;  02-Aéreo;03-Aquaviário;04-Ferroviário;05-Dutoviário;06-Multimodal;. (required).</param>
-        /// <param name="tpServ">Tipo do Serviço.  Preencher com:   0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal. (required).</param>
+        /// <param name="modal">Modal. Preencher com:  * 01 - Rodoviário  * 02 - Aéreo  * 03 - Aquaviário  * 04 - Ferroviário  * 05 - Dutoviário  * 06 - Multimodal (required).</param>
+        /// <param name="tpServ">Tipo do Serviço.  Preencher com:  * 0 - Normal  * 1 - Subcontratação  * 2 - Redespacho  * 3 - Redespacho Intermediário  * 4 - Serviço Vinculado a Multimodal (required).</param>
         /// <param name="cMunIni">Código do Município de início da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior. (required).</param>
         /// <param name="xMunIni">Nome do Município do início da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior. (required).</param>
         /// <param name="uFIni">UF do início da prestação.  Informar &#39;EX&#39; para operações com o exterior. (required).</param>
         /// <param name="cMunFim">Código do Município de término da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior. (required).</param>
         /// <param name="xMunFim">Nome do Município do término da prestação.  Informar &#39;EXTERIOR&#39; para operações com o exterior. (required).</param>
         /// <param name="uFFim">UF do término da prestação.  Informar &#39;EX&#39; para operações com o exterior. (required).</param>
-        /// <param name="retira">Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino?.  Preencher com: 0 - sim; 1 - não. (required).</param>
+        /// <param name="retira">Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino? Preencher com:  * 0 - Sim  * 1 - Não (required).</param>
         /// <param name="xDetRetira">Detalhes do retira..</param>
-        /// <param name="indIEToma">Indicador do papel do tomador na prestação do serviço:  1 – Contribuinte ICMS;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.  Aplica-se ao tomador que for indicado no toma3 ou toma4. (required).</param>
+        /// <param name="indIEToma">Indicador do papel do tomador na prestação do serviço:  * 1 - Contribuinte ICMS  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte  Aplica-se ao tomador que for indicado no toma3 ou toma4. (required).</param>
         /// <param name="toma3">toma3.</param>
         /// <param name="toma4">toma4.</param>
         /// <param name="dhCont">Data e Hora da entrada em contingência.  Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS..</param>
@@ -230,16 +230,16 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime dhEmi { get; set; }
 
         /// <summary>
-        /// Formato de impressão do DACTE.  Preencher com: 1 - Retrato; 2 - Paisagem.
+        /// Formato de impressão do DACTE:  * 1 - Retrato  * 2 - Paisagem
         /// </summary>
-        /// <value>Formato de impressão do DACTE.  Preencher com: 1 - Retrato; 2 - Paisagem.</value>
+        /// <value>Formato de impressão do DACTE:  * 1 - Retrato  * 2 - Paisagem</value>
         [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = true)]
         public int tpImp { get; set; }
 
         /// <summary>
-        /// Forma de emissão do CT-e.  Preencher com:  1 - Normal;   3-Regime Especial NFF;  4-EPEC pela SVC; 5 - Contingência FSDA;   7 - Autorização pela SVC-RS;    8 - Autorização pela SVC-SP.
+        /// Forma de emissão do CT-e.  Preencher com:  * 1 - Normal  * 3 - Regime Especial NFF  * 4 - EPEC pela SVC  * 5 - Contingência FSDA  * 7 - Autorização pela SVC-RS  * 8 - Autorização pela SVC-SP
         /// </summary>
-        /// <value>Forma de emissão do CT-e.  Preencher com:  1 - Normal;   3-Regime Especial NFF;  4-EPEC pela SVC; 5 - Contingência FSDA;   7 - Autorização pela SVC-RS;    8 - Autorização pela SVC-SP.</value>
+        /// <value>Forma de emissão do CT-e.  Preencher com:  * 1 - Normal  * 3 - Regime Especial NFF  * 4 - EPEC pela SVC  * 5 - Contingência FSDA  * 7 - Autorização pela SVC-RS  * 8 - Autorização pela SVC-SP</value>
         [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmis { get; set; }
 
@@ -251,23 +251,23 @@ namespace NuvemFiscal.Sdk.Model
         public int cDV { get; set; }
 
         /// <summary>
-        /// Tipo do Ambiente.  Preencher com:1 - Produção; 2 - Homologação.
+        /// Tipo do Ambiente:  * 1 - Produção  * 2 - Homologação
         /// </summary>
-        /// <value>Tipo do Ambiente.  Preencher com:1 - Produção; 2 - Homologação.</value>
+        /// <value>Tipo do Ambiente:  * 1 - Produção  * 2 - Homologação</value>
         [DataMember(Name = "tpAmb", EmitDefaultValue = false)]
         public int tpAmb { get; set; }
 
         /// <summary>
-        /// Tipo do CT-e.  Preencher com:   0 - CT-e Normal;   1 - CT-e de Complemento de Valores; 2 - CT-e de Anulação;   3 - CT-e de Substituição.
+        /// Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 2 - CT-e de Anulação  * 3 - CT-e de Substituição
         /// </summary>
-        /// <value>Tipo do CT-e.  Preencher com:   0 - CT-e Normal;   1 - CT-e de Complemento de Valores; 2 - CT-e de Anulação;   3 - CT-e de Substituição.</value>
+        /// <value>Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 2 - CT-e de Anulação  * 3 - CT-e de Substituição</value>
         [DataMember(Name = "tpCTe", IsRequired = true, EmitDefaultValue = true)]
         public int tpCTe { get; set; }
 
         /// <summary>
-        /// Identificador do processo de emissão do CT-e.  Preencher com:              0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.
+        /// Identificador do processo de emissão do CT-e.  Preencher com:  * 0 - emissão de CT-e com aplicativo do contribuinte  * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE
         /// </summary>
-        /// <value>Identificador do processo de emissão do CT-e.  Preencher com:              0 - emissão de CT-e com aplicativo do contribuinte;             3- emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE.</value>
+        /// <value>Identificador do processo de emissão do CT-e.  Preencher com:  * 0 - emissão de CT-e com aplicativo do contribuinte  * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE</value>
         [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
         public int procEmi { get; set; }
 
@@ -307,16 +307,16 @@ namespace NuvemFiscal.Sdk.Model
         public string UFEnv { get; set; }
 
         /// <summary>
-        /// Modal.  Preencher com:01-Rodoviário;  02-Aéreo;03-Aquaviário;04-Ferroviário;05-Dutoviário;06-Multimodal;.
+        /// Modal. Preencher com:  * 01 - Rodoviário  * 02 - Aéreo  * 03 - Aquaviário  * 04 - Ferroviário  * 05 - Dutoviário  * 06 - Multimodal
         /// </summary>
-        /// <value>Modal.  Preencher com:01-Rodoviário;  02-Aéreo;03-Aquaviário;04-Ferroviário;05-Dutoviário;06-Multimodal;.</value>
+        /// <value>Modal. Preencher com:  * 01 - Rodoviário  * 02 - Aéreo  * 03 - Aquaviário  * 04 - Ferroviário  * 05 - Dutoviário  * 06 - Multimodal</value>
         [DataMember(Name = "modal", IsRequired = true, EmitDefaultValue = true)]
         public string modal { get; set; }
 
         /// <summary>
-        /// Tipo do Serviço.  Preencher com:   0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.
+        /// Tipo do Serviço.  Preencher com:  * 0 - Normal  * 1 - Subcontratação  * 2 - Redespacho  * 3 - Redespacho Intermediário  * 4 - Serviço Vinculado a Multimodal
         /// </summary>
-        /// <value>Tipo do Serviço.  Preencher com:   0 - Normal;1 - Subcontratação;  2 - Redespacho;3 - Redespacho Intermediário; 4 - Serviço Vinculado a Multimodal.</value>
+        /// <value>Tipo do Serviço.  Preencher com:  * 0 - Normal  * 1 - Subcontratação  * 2 - Redespacho  * 3 - Redespacho Intermediário  * 4 - Serviço Vinculado a Multimodal</value>
         [DataMember(Name = "tpServ", IsRequired = true, EmitDefaultValue = true)]
         public int tpServ { get; set; }
 
@@ -363,9 +363,9 @@ namespace NuvemFiscal.Sdk.Model
         public string UFFim { get; set; }
 
         /// <summary>
-        /// Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino?.  Preencher com: 0 - sim; 1 - não.
+        /// Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino? Preencher com:  * 0 - Sim  * 1 - Não
         /// </summary>
-        /// <value>Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino?.  Preencher com: 0 - sim; 1 - não.</value>
+        /// <value>Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino? Preencher com:  * 0 - Sim  * 1 - Não</value>
         [DataMember(Name = "retira", IsRequired = true, EmitDefaultValue = true)]
         public int retira { get; set; }
 
@@ -377,9 +377,9 @@ namespace NuvemFiscal.Sdk.Model
         public string xDetRetira { get; set; }
 
         /// <summary>
-        /// Indicador do papel do tomador na prestação do serviço:  1 – Contribuinte ICMS;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.  Aplica-se ao tomador que for indicado no toma3 ou toma4.
+        /// Indicador do papel do tomador na prestação do serviço:  * 1 - Contribuinte ICMS  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte  Aplica-se ao tomador que for indicado no toma3 ou toma4.
         /// </summary>
-        /// <value>Indicador do papel do tomador na prestação do serviço:  1 – Contribuinte ICMS;  2 – Contribuinte isento de inscrição;  9 – Não Contribuinte.  Aplica-se ao tomador que for indicado no toma3 ou toma4.</value>
+        /// <value>Indicador do papel do tomador na prestação do serviço:  * 1 - Contribuinte ICMS  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte  Aplica-se ao tomador que for indicado no toma3 ou toma4.</value>
         [DataMember(Name = "indIEToma", IsRequired = true, EmitDefaultValue = true)]
         public int indIEToma { get; set; }
 

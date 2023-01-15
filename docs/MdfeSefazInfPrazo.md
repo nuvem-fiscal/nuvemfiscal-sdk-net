@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfPrazo
+Informações do pagamento a prazo.  Informar somente se indPag for à Prazo.
 
 ## Propriedades
 

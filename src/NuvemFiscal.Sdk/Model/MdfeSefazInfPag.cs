@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfPag
+    /// Informações do Pagamento do Frete.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfPag")]
     public partial class MdfeSefazInfPag : IEquatable<MdfeSefazInfPag>, IValidatableObject
@@ -40,14 +40,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPF">Número do CPF do responsável pelo pgto.  Informar os zeros não significativos..</param>
         /// <param name="cNPJ">Número do CNPJ do responsável pelo pgto.  Informar os zeros não significativos..</param>
         /// <param name="idEstrangeiro">Identificador do responsável pelo pgto em caso de ser estrangeiro..</param>
-        /// <param name="comp">Componentes do Pagamentoi do Frete. (required).</param>
+        /// <param name="comp">comp (required).</param>
         /// <param name="vContrato">Valor Total do Contrato. (required).</param>
         /// <param name="indAltoDesemp">Indicador de operação de transporte de alto desempenho.  Operação de transporte com utilização de veículos de frotas dedicadas ou fidelizadas.  Preencher com “1” para indicar operação de transporte de alto desempenho, demais casos não informar a tag..</param>
-        /// <param name="indPag">Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;. (required).</param>
+        /// <param name="indPag">Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo (required).</param>
         /// <param name="vAdiant">Valor do Adiantamento (usar apenas em pagamento à Prazo..</param>
         /// <param name="indAntecipaAdiant">Indicador para declarar concordância em antecipar o adiantamento.  Informar a tag somente se for autorizado antecipar o adiantamento..</param>
-        /// <param name="infPrazo">Informações do pagamento a prazo.  Informar somente se indPag for à Prazo..</param>
-        /// <param name="tpAntecip">Tipo de Permissão em relação a antecipação das parcelas.  0 - Não permite antecipar    1 - Permite antecipar as parcelas    2 - Permite antecipar as parcelas mediante confirmação..</param>
+        /// <param name="infPrazo">infPrazo.</param>
+        /// <param name="tpAntecip">Tipo de Permissão em relação a antecipação das parcelas.  * 0 - Não permite antecipar  * 1 - Permite antecipar as parcelas  * 2 - Permite antecipar as parcelas mediante confirmação.</param>
         /// <param name="infBanc">infBanc (required).</param>
         public MdfeSefazInfPag(string xNome = default(string), string cPF = default(string), string cNPJ = default(string), string idEstrangeiro = default(string), List<MdfeSefazComp> comp = default(List<MdfeSefazComp>), decimal vContrato = default(decimal), int indAltoDesemp = default(int), int indPag = default(int), decimal vAdiant = default(decimal), int indAntecipaAdiant = default(int), List<MdfeSefazInfPrazo> infPrazo = default(List<MdfeSefazInfPrazo>), int tpAntecip = default(int), MdfeSefazInfBanc infBanc = default(MdfeSefazInfBanc))
         {
@@ -105,9 +105,8 @@ namespace NuvemFiscal.Sdk.Model
         public string idEstrangeiro { get; set; }
 
         /// <summary>
-        /// Componentes do Pagamentoi do Frete.
+        /// Gets or Sets Comp
         /// </summary>
-        /// <value>Componentes do Pagamentoi do Frete.</value>
         [DataMember(Name = "Comp", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazComp> Comp { get; set; }
 
@@ -126,9 +125,9 @@ namespace NuvemFiscal.Sdk.Model
         public int indAltoDesemp { get; set; }
 
         /// <summary>
-        /// Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;.
+        /// Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo
         /// </summary>
-        /// <value>Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;.</value>
+        /// <value>Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo</value>
         [DataMember(Name = "indPag", IsRequired = true, EmitDefaultValue = true)]
         public int indPag { get; set; }
 
@@ -147,16 +146,15 @@ namespace NuvemFiscal.Sdk.Model
         public int indAntecipaAdiant { get; set; }
 
         /// <summary>
-        /// Informações do pagamento a prazo.  Informar somente se indPag for à Prazo.
+        /// Gets or Sets infPrazo
         /// </summary>
-        /// <value>Informações do pagamento a prazo.  Informar somente se indPag for à Prazo.</value>
         [DataMember(Name = "infPrazo", EmitDefaultValue = false)]
         public List<MdfeSefazInfPrazo> infPrazo { get; set; }
 
         /// <summary>
-        /// Tipo de Permissão em relação a antecipação das parcelas.  0 - Não permite antecipar    1 - Permite antecipar as parcelas    2 - Permite antecipar as parcelas mediante confirmação.
+        /// Tipo de Permissão em relação a antecipação das parcelas.  * 0 - Não permite antecipar  * 1 - Permite antecipar as parcelas  * 2 - Permite antecipar as parcelas mediante confirmação
         /// </summary>
-        /// <value>Tipo de Permissão em relação a antecipação das parcelas.  0 - Não permite antecipar    1 - Permite antecipar as parcelas    2 - Permite antecipar as parcelas mediante confirmação.</value>
+        /// <value>Tipo de Permissão em relação a antecipação das parcelas.  * 0 - Não permite antecipar  * 1 - Permite antecipar as parcelas  * 2 - Permite antecipar as parcelas mediante confirmação</value>
         [DataMember(Name = "tpAntecip", EmitDefaultValue = false)]
         public int tpAntecip { get; set; }
 

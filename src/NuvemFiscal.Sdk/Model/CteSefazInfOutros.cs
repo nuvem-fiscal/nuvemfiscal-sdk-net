@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfOutros
+    /// Informações dos demais documentos.
     /// </summary>
     [DataContract(Name = "CteSefazInfOutros")]
     public partial class CteSefazInfOutros : IEquatable<CteSefazInfOutros>, IValidatableObject
@@ -36,14 +36,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazInfOutros" /> class.
         /// </summary>
-        /// <param name="tpDoc">Tipo de documento originário.  Preencher com:                 00 - Declaração;                 10 - Dutoviário;      59 - CF-e SAT;    65 - NFC-e;          99 - Outros. (required).</param>
+        /// <param name="tpDoc">Tipo de documento originário.  Preencher com:  * 00 - Declaração  * 10 - Dutoviário  * 59 - CF-e SAT  * 65 - NFC-e  * 99 - Outros (required).</param>
         /// <param name="descOutros">Descrição do documento..</param>
         /// <param name="nDoc">Número..</param>
         /// <param name="dEmi">Data de Emissão.  Formato AAAA-MM-DD..</param>
         /// <param name="vDocFisc">Valor do documento..</param>
         /// <param name="dPrev">Data prevista de entrega.  Formato AAAA-MM-DD..</param>
-        /// <param name="infUnidCarga">Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu..</param>
-        /// <param name="infUnidTransp">Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas..</param>
+        /// <param name="infUnidCarga">infUnidCarga.</param>
+        /// <param name="infUnidTransp">infUnidTransp.</param>
         public CteSefazInfOutros(string tpDoc = default(string), string descOutros = default(string), string nDoc = default(string), DateTime dEmi = default(DateTime), decimal vDocFisc = default(decimal), DateTime dPrev = default(DateTime), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
         {
             // to ensure "tpDoc" is required (not null)
@@ -62,9 +62,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo de documento originário.  Preencher com:                 00 - Declaração;                 10 - Dutoviário;      59 - CF-e SAT;    65 - NFC-e;          99 - Outros.
+        /// Tipo de documento originário.  Preencher com:  * 00 - Declaração  * 10 - Dutoviário  * 59 - CF-e SAT  * 65 - NFC-e  * 99 - Outros
         /// </summary>
-        /// <value>Tipo de documento originário.  Preencher com:                 00 - Declaração;                 10 - Dutoviário;      59 - CF-e SAT;    65 - NFC-e;          99 - Outros.</value>
+        /// <value>Tipo de documento originário.  Preencher com:  * 00 - Declaração  * 10 - Dutoviário  * 59 - CF-e SAT  * 65 - NFC-e  * 99 - Outros</value>
         [DataMember(Name = "tpDoc", IsRequired = true, EmitDefaultValue = true)]
         public string tpDoc { get; set; }
 
@@ -106,16 +106,14 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime dPrev { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.
+        /// Gets or Sets infUnidCarga
         /// </summary>
-        /// <value>Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.</value>
         [DataMember(Name = "infUnidCarga", EmitDefaultValue = false)]
         public List<CteSefazUnidCarga> infUnidCarga { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.
+        /// Gets or Sets infUnidTransp
         /// </summary>
-        /// <value>Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.</value>
         [DataMember(Name = "infUnidTransp", EmitDefaultValue = false)]
         public List<CteSefazUnidadeTransp> infUnidTransp { get; set; }
 

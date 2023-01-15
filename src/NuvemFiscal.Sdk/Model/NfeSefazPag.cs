@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazPag
+    /// Dados de Pagamento. Obrigatório apenas para (NFC-e) NT 2012/004.
     /// </summary>
     [DataContract(Name = "NfeSefazPag")]
     public partial class NfeSefazPag : IEquatable<NfeSefazPag>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazPag" /> class.
         /// </summary>
-        /// <param name="detPag">Grupo de detalhamento da forma de pagamento. (required).</param>
+        /// <param name="detPag">detPag (required).</param>
         /// <param name="vTroco">Valor do Troco..</param>
         public NfeSefazPag(List<NfeSefazDetPag> detPag = default(List<NfeSefazDetPag>), decimal vTroco = default(decimal))
         {
@@ -50,9 +50,8 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Grupo de detalhamento da forma de pagamento.
+        /// Gets or Sets detPag
         /// </summary>
-        /// <value>Grupo de detalhamento da forma de pagamento.</value>
         [DataMember(Name = "detPag", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazDetPag> detPag { get; set; }
 

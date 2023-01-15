@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazComData
+    /// Entrega com data definida.
     /// </summary>
     [DataContract(Name = "CteSefazComData")]
     public partial class CteSefazComData : IEquatable<CteSefazComData>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazComData" /> class.
         /// </summary>
-        /// <param name="tpPer">Tipo de data/período programado para entrega.  Preencher com:                    1-Na data;                    2-Até a data;                    3-A partir da data. (required).</param>
+        /// <param name="tpPer">Tipo de data/período programado para entrega.  Preencher com:  * 1 - Na data  * 2 - Até a data  * 3 - A partir da data (required).</param>
         /// <param name="dProg">Data programada.  Formato AAAA-MM-DD. (required).</param>
         public CteSefazComData(int tpPer = default(int), DateTime dProg = default(DateTime))
         {
@@ -45,9 +45,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo de data/período programado para entrega.  Preencher com:                    1-Na data;                    2-Até a data;                    3-A partir da data.
+        /// Tipo de data/período programado para entrega.  Preencher com:  * 1 - Na data  * 2 - Até a data  * 3 - A partir da data
         /// </summary>
-        /// <value>Tipo de data/período programado para entrega.  Preencher com:                    1-Na data;                    2-Até a data;                    3-A partir da data.</value>
+        /// <value>Tipo de data/período programado para entrega.  Preencher com:  * 1 - Na data  * 2 - Até a data  * 3 - A partir da data</value>
         [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
         public int tpPer { get; set; }
 

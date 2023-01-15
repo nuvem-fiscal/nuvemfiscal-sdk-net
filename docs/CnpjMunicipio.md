@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjMunicipio
+Município de jurisdição onde se encontra o estabelecimento.
 
 ## Propriedades
 

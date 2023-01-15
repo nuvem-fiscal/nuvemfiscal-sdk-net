@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazLacre
+    /// Grupo de informações dos lacres dos cointainers da qtde da carga.
     /// </summary>
     [DataContract(Name = "CteSefazLacre")]
     public partial class CteSefazLacre : IEquatable<CteSefazLacre>, IValidatableObject

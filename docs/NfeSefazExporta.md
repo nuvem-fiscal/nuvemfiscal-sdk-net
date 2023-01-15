@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazExporta
+Informações de exportação.
 
 ## Propriedades
 

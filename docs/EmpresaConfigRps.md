@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.EmpresaConfigRps
+Configuração de numeração de lote, série e RPS.
 
 ## Propriedades
 

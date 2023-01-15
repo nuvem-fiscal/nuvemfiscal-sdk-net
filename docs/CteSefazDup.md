@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazDup
+Dados das duplicatas.
 
 ## Propriedades
 

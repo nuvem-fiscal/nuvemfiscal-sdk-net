@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazComHora
+    /// Entrega com hora definida.
     /// </summary>
     [DataContract(Name = "CteSefazComHora")]
     public partial class CteSefazComHora : IEquatable<CteSefazComHora>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazComHora" /> class.
         /// </summary>
-        /// <param name="tpHor">Tipo de hora.  Preencher com:                    1 - No horário;                    2 - Até o horário;                    3 - A partir do horário. (required).</param>
+        /// <param name="tpHor">Tipo de hora.  Preencher com:  * 1 - No horário  * 2 - Até o horário  * 3 - A partir do horário (required).</param>
         /// <param name="hProg">Hora programada.  Formato HH:MM:SS. (required).</param>
         public CteSefazComHora(int tpHor = default(int), string hProg = default(string))
         {
@@ -50,9 +50,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo de hora.  Preencher com:                    1 - No horário;                    2 - Até o horário;                    3 - A partir do horário.
+        /// Tipo de hora.  Preencher com:  * 1 - No horário  * 2 - Até o horário  * 3 - A partir do horário
         /// </summary>
-        /// <value>Tipo de hora.  Preencher com:                    1 - No horário;                    2 - Até o horário;                    3 - A partir do horário.</value>
+        /// <value>Tipo de hora.  Preencher com:  * 1 - No horário  * 2 - Até o horário  * 3 - A partir do horário</value>
         [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
         public int tpHor { get; set; }
 

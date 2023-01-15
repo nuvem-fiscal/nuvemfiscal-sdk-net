@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazEncerrante
+    /// Informações do grupo de \&quot;encerrante\&quot;.
     /// </summary>
     [DataContract(Name = "NfeSefazEncerrante")]
     public partial class NfeSefazEncerrante : IEquatable<NfeSefazEncerrante>, IValidatableObject

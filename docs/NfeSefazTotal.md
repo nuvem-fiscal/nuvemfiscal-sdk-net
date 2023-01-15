@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazTotal
+Dados dos totais da NF-e.
 
 ## Propriedades
 

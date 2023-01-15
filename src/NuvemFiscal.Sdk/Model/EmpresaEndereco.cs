@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// EmpresaEndereco
+    /// Endereço da empresa.
     /// </summary>
     [DataContract(Name = "EmpresaEndereco")]
     public partial class EmpresaEndereco : IEquatable<EmpresaEndereco>, IValidatableObject
@@ -43,10 +43,10 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoMunicipio">Código IBGE do município. (required).</param>
         /// <param name="cidade">Cidade..</param>
         /// <param name="uf">Sigla do estado. (required).</param>
-        /// <param name="codigoPais">Código do país.  Valor padrão: &#x60;1058&#x60;.</param>
-        /// <param name="pais">Nome do país.  Valor padrão: &#x60;Brasil&#x60;.</param>
+        /// <param name="codigoPais">Código do país. (default to &quot;1058&quot;).</param>
+        /// <param name="pais">Nome do país. (default to &quot;Brasil&quot;).</param>
         /// <param name="cep">CEP.  Utilize o valor sem máscara. (required).</param>
-        public EmpresaEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = default(string), string pais = default(string), string cep = default(string))
+        public EmpresaEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = "1058", string pais = "Brasil", string cep = default(string))
         {
             // to ensure "logradouro" is required (not null)
             if (logradouro == null)
@@ -86,8 +86,10 @@ namespace NuvemFiscal.Sdk.Model
             this.cep = cep;
             this.complemento = complemento;
             this.cidade = cidade;
-            this.codigo_pais = codigoPais;
-            this.pais = pais;
+            // use default value if no "codigoPais" provided
+            this.codigo_pais = codigoPais ?? "1058";
+            // use default value if no "pais" provided
+            this.pais = pais ?? "Brasil";
         }
 
         /// <summary>
@@ -140,16 +142,16 @@ namespace NuvemFiscal.Sdk.Model
         public string uf { get; set; }
 
         /// <summary>
-        /// Código do país.  Valor padrão: &#x60;1058&#x60;
+        /// Código do país.
         /// </summary>
-        /// <value>Código do país.  Valor padrão: &#x60;1058&#x60;</value>
+        /// <value>Código do país.</value>
         [DataMember(Name = "codigo_pais", EmitDefaultValue = false)]
         public string codigo_pais { get; set; }
 
         /// <summary>
-        /// Nome do país.  Valor padrão: &#x60;Brasil&#x60;
+        /// Nome do país.
         /// </summary>
-        /// <value>Nome do país.  Valor padrão: &#x60;Brasil&#x60;</value>
+        /// <value>Nome do país.</value>
         [DataMember(Name = "pais", EmitDefaultValue = false)]
         public string pais { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazUnidCarga
+    /// Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.
     /// </summary>
     [DataContract(Name = "CteSefazUnidCarga")]
     public partial class CteSefazUnidCarga : IEquatable<CteSefazUnidCarga>, IValidatableObject
@@ -36,9 +36,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazUnidCarga" /> class.
         /// </summary>
-        /// <param name="tpUnidCarga">Tipo da Unidade de Carga.  1 - Container  2 - ULD  3 - Pallet  4 - Outros. (required).</param>
+        /// <param name="tpUnidCarga">Tipo da Unidade de Carga.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros (required).</param>
         /// <param name="idUnidCarga">Identificação da Unidade de Carga.  Informar a identificação da unidade de carga, por exemplo: número do container. (required).</param>
-        /// <param name="lacUnidCarga">Lacres das Unidades de Carga..</param>
+        /// <param name="lacUnidCarga">lacUnidCarga.</param>
         /// <param name="qtdRat">Quantidade rateada (Peso,Volume)..</param>
         public CteSefazUnidCarga(int tpUnidCarga = default(int), string idUnidCarga = default(string), List<CteSefazLacUnidCarga> lacUnidCarga = default(List<CteSefazLacUnidCarga>), decimal qtdRat = default(decimal))
         {
@@ -54,9 +54,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo da Unidade de Carga.  1 - Container  2 - ULD  3 - Pallet  4 - Outros.
+        /// Tipo da Unidade de Carga.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros
         /// </summary>
-        /// <value>Tipo da Unidade de Carga.  1 - Container  2 - ULD  3 - Pallet  4 - Outros.</value>
+        /// <value>Tipo da Unidade de Carga.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros</value>
         [DataMember(Name = "tpUnidCarga", IsRequired = true, EmitDefaultValue = true)]
         public int tpUnidCarga { get; set; }
 
@@ -68,9 +68,8 @@ namespace NuvemFiscal.Sdk.Model
         public string idUnidCarga { get; set; }
 
         /// <summary>
-        /// Lacres das Unidades de Carga.
+        /// Gets or Sets lacUnidCarga
         /// </summary>
-        /// <value>Lacres das Unidades de Carga.</value>
         [DataMember(Name = "lacUnidCarga", EmitDefaultValue = false)]
         public List<CteSefazLacUnidCarga> lacUnidCarga { get; set; }
 

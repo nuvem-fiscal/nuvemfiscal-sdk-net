@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazRefNF
+Informação da NF ou CT emitido pelo Tomador.
 
 ## Propriedades
 

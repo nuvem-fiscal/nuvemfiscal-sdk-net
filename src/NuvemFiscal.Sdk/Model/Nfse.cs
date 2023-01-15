@@ -116,10 +116,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dataEmissao">dataEmissao.</param>
         /// <param name="ambiente">ambiente.</param>
         /// <param name="referencia">referencia.</param>
-        /// <param name="declaracaoPrestacaoServico">declaracaoPrestacaoServico.</param>
+        /// <param name="dPS">dPS.</param>
         /// <param name="cancelamento">cancelamento.</param>
         /// <param name="mensagens">mensagens.</param>
-        public Nfse(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string numero = default(string), string codigoVerificacao = default(string), string linkUrl = default(string), DateTime dataEmissao = default(DateTime), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), Rps declaracaoPrestacaoServico = default(Rps), NfseCancelamento cancelamento = default(NfseCancelamento), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>))
+        /// <param name="rps">rps.</param>
+        public Nfse(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string numero = default(string), string codigoVerificacao = default(string), string linkUrl = default(string), DateTime dataEmissao = default(DateTime), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), DPS dPS = default(DPS), NfseCancelamento cancelamento = default(NfseCancelamento), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>), Rps rps = default(Rps))
         {
             this.id = id;
             this.created_at = createdAt;
@@ -130,9 +131,10 @@ namespace NuvemFiscal.Sdk.Model
             this.data_emissao = dataEmissao;
             this.ambiente = ambiente;
             this.referencia = referencia;
-            this.declaracao_prestacao_servico = declaracaoPrestacaoServico;
+            this.DPS = dPS;
             this.cancelamento = cancelamento;
             this.mensagens = mensagens;
+            this.rps = rps;
         }
 
         /// <summary>
@@ -179,10 +181,10 @@ namespace NuvemFiscal.Sdk.Model
         public string referencia { get; set; }
 
         /// <summary>
-        /// Gets or Sets declaracao_prestacao_servico
+        /// Gets or Sets DPS
         /// </summary>
-        [DataMember(Name = "declaracao_prestacao_servico", EmitDefaultValue = false)]
-        public Rps declaracao_prestacao_servico { get; set; }
+        [DataMember(Name = "DPS", EmitDefaultValue = false)]
+        public DPS DPS { get; set; }
 
         /// <summary>
         /// Gets or Sets cancelamento
@@ -195,6 +197,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         [DataMember(Name = "mensagens", EmitDefaultValue = false)]
         public List<NfseMensagemRetorno> mensagens { get; set; }
+
+        /// <summary>
+        /// Gets or Sets rps
+        /// </summary>
+        [DataMember(Name = "rps", EmitDefaultValue = false)]
+        public Rps rps { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -213,9 +221,10 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  data_emissao: ").Append(data_emissao).Append("\n");
             sb.Append("  ambiente: ").Append(ambiente).Append("\n");
             sb.Append("  referencia: ").Append(referencia).Append("\n");
-            sb.Append("  declaracao_prestacao_servico: ").Append(declaracao_prestacao_servico).Append("\n");
+            sb.Append("  DPS: ").Append(DPS).Append("\n");
             sb.Append("  cancelamento: ").Append(cancelamento).Append("\n");
             sb.Append("  mensagens: ").Append(mensagens).Append("\n");
+            sb.Append("  rps: ").Append(rps).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -295,9 +304,9 @@ namespace NuvemFiscal.Sdk.Model
                     this.referencia.Equals(input.referencia))
                 ) && 
                 (
-                    this.declaracao_prestacao_servico == input.declaracao_prestacao_servico ||
-                    (this.declaracao_prestacao_servico != null &&
-                    this.declaracao_prestacao_servico.Equals(input.declaracao_prestacao_servico))
+                    this.DPS == input.DPS ||
+                    (this.DPS != null &&
+                    this.DPS.Equals(input.DPS))
                 ) && 
                 (
                     this.cancelamento == input.cancelamento ||
@@ -309,6 +318,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.mensagens != null &&
                     input.mensagens != null &&
                     this.mensagens.SequenceEqual(input.mensagens)
+                ) && 
+                (
+                    this.rps == input.rps ||
+                    (this.rps != null &&
+                    this.rps.Equals(input.rps))
                 );
         }
 
@@ -351,9 +365,9 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.referencia.GetHashCode();
                 }
-                if (this.declaracao_prestacao_servico != null)
+                if (this.DPS != null)
                 {
-                    hashCode = (hashCode * 59) + this.declaracao_prestacao_servico.GetHashCode();
+                    hashCode = (hashCode * 59) + this.DPS.GetHashCode();
                 }
                 if (this.cancelamento != null)
                 {
@@ -362,6 +376,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.mensagens != null)
                 {
                     hashCode = (hashCode * 59) + this.mensagens.GetHashCode();
+                }
+                if (this.rps != null)
+                {
+                    hashCode = (hashCode * 59) + this.rps.GetHashCode();
                 }
                 return hashCode;
             }

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjCnae
+Atividade econômica principal do estabelecimento.
 
 ## Propriedades
 

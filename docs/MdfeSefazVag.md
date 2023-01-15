@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazVag
+informações dos Vagões.
 
 ## Propriedades
 

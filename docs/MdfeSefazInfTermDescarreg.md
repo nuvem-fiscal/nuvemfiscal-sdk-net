@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfTermDescarreg
+Grupo de informações dos terminais de descarregamento.
 
 ## Propriedades
 

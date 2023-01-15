@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazTransporta
+Dados do transportador.
 
 ## Propriedades
 

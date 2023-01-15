@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazTot
+    /// Totalizadores da carga transportada e seus documentos fiscais.
     /// </summary>
     [DataContract(Name = "MdfeSefazTot")]
     public partial class MdfeSefazTot : IEquatable<MdfeSefazTot>, IValidatableObject
@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="qNFe">Quantidade total de NF-e relacionadas no Manifesto..</param>
         /// <param name="qMDFe">Quantidade total de MDF-e relacionados no Manifesto Aquaviário..</param>
         /// <param name="vCarga">Valor total da carga / mercadorias transportadas. (required).</param>
-        /// <param name="cUnid">Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  01 – KG;  02 - TON. (required).</param>
+        /// <param name="cUnid">Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  * 01 - KG  * 02 - TON (required).</param>
         /// <param name="qCarga">Peso Bruto Total da Carga / Mercadorias transportadas. (required).</param>
         public MdfeSefazTot(int qCTe = default(int), int qNFe = default(int), int qMDFe = default(int), decimal vCarga = default(decimal), string cUnid = default(string), decimal qCarga = default(decimal))
         {
@@ -86,9 +86,9 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vCarga { get; set; }
 
         /// <summary>
-        /// Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  01 – KG;  02 - TON.
+        /// Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  * 01 - KG  * 02 - TON
         /// </summary>
-        /// <value>Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  01 – KG;  02 - TON.</value>
+        /// <value>Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  * 01 - KG  * 02 - TON</value>
         [DataMember(Name = "cUnid", IsRequired = true, EmitDefaultValue = true)]
         public string cUnid { get; set; }
 

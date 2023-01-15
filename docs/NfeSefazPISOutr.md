@@ -1,10 +1,11 @@
 # NuvemFiscal.Sdk.Model.NfeSefazPISOutr
+Código de Situação Tributária do PIS.  * 99 - Outras Operações
 
 ## Propriedades
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**CST** | **string** | Código de Situação Tributária do PIS.  99 - Outras Operações. | 
+**CST** | **string** | Código de Situação Tributária do PIS.  * 99 - Outras Operações | 
 **vBC** | **decimal** | Valor da BC do PIS. | [optional] 
 **pPIS** | **decimal** | Alíquota do PIS (em percentual). | [optional] 
 **qBCProd** | **decimal** | Quantidade Vendida (NT2011/004). | [optional] 

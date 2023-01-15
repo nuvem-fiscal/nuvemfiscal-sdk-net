@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfCte
+    /// Informações do CT-e.
     /// </summary>
     [DataContract(Name = "CteSefazInfCte")]
     public partial class CteSefazInfCte : IEquatable<CteSefazInfCte>, IValidatableObject
@@ -50,7 +50,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infCTeNorm">infCTeNorm.</param>
         /// <param name="infCteComp">infCteComp.</param>
         /// <param name="infCteAnu">infCteAnu.</param>
-        /// <param name="autXML">Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos..</param>
+        /// <param name="autXML">autXML.</param>
         /// <param name="infRespTec">infRespTec.</param>
         /// <param name="infSolicNFF">infSolicNFF.</param>
         public CteSefazInfCte(string versao = default(string), string id = default(string), CteSefazIde ide = default(CteSefazIde), CteSefazCompl compl = default(CteSefazCompl), CteSefazEmit emit = default(CteSefazEmit), CteSefazRem rem = default(CteSefazRem), CteSefazExped exped = default(CteSefazExped), CteSefazReceb receb = default(CteSefazReceb), CteSefazDest dest = default(CteSefazDest), CteSefazVPrest vPrest = default(CteSefazVPrest), CteSefazInfCteImp imp = default(CteSefazInfCteImp), CteSefazInfCTeNorm infCTeNorm = default(CteSefazInfCTeNorm), CteSefazInfCteComp infCteComp = default(CteSefazInfCteComp), CteSefazInfCteAnu infCteAnu = default(CteSefazInfCteAnu), List<CteSefazAutXML> autXML = default(List<CteSefazAutXML>), CteSefazRespTec infRespTec = default(CteSefazRespTec), CteSefazInfSolicNFF infSolicNFF = default(CteSefazInfSolicNFF))
@@ -186,9 +186,8 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazInfCteAnu infCteAnu { get; set; }
 
         /// <summary>
-        /// Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos.
+        /// Gets or Sets autXML
         /// </summary>
-        /// <value>Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos.</value>
         [DataMember(Name = "autXML", EmitDefaultValue = false)]
         public List<CteSefazAutXML> autXML { get; set; }
 

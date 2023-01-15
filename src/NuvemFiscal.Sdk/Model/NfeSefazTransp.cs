@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazTransp
+    /// Dados dos transportes da NF-e.
     /// </summary>
     [DataContract(Name = "NfeSefazTransp")]
     public partial class NfeSefazTransp : IEquatable<NfeSefazTransp>, IValidatableObject
@@ -36,14 +36,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazTransp" /> class.
         /// </summary>
-        /// <param name="modFrete">Modalidade do frete  0- Contratação do Frete por conta do Remetente (CIF);  1- Contratação do Frete por conta do destinatário/remetente (FOB);  2- Contratação do Frete por conta de terceiros;  3- Transporte próprio por conta do remetente;  4- Transporte próprio por conta do destinatário;  9- Sem Ocorrência de transporte. (required).</param>
+        /// <param name="modFrete">Modalidade do frete  * 0 - Contratação do Frete por conta do Remetente (CIF)  * 1 - Contratação do Frete por conta do destinatário/remetente (FOB)  * 2 - Contratação do Frete por conta de terceiros  * 3 - Transporte próprio por conta do remetente  * 4 - Transporte próprio por conta do destinatário  * 9 - Sem Ocorrência de transporte (required).</param>
         /// <param name="transporta">transporta.</param>
         /// <param name="retTransp">retTransp.</param>
         /// <param name="veicTransp">veicTransp.</param>
-        /// <param name="reboque">Dados do reboque/Dolly (v2.0)..</param>
+        /// <param name="reboque">reboque.</param>
         /// <param name="vagao">Identificação do vagão (v2.0)..</param>
         /// <param name="balsa">Identificação da balsa (v2.0)..</param>
-        /// <param name="vol">Dados dos volumes..</param>
+        /// <param name="vol">vol.</param>
         public NfeSefazTransp(int modFrete = default(int), NfeSefazTransporta transporta = default(NfeSefazTransporta), NfeSefazRetTransp retTransp = default(NfeSefazRetTransp), NfeSefazVeiculo veicTransp = default(NfeSefazVeiculo), List<NfeSefazVeiculo> reboque = default(List<NfeSefazVeiculo>), string vagao = default(string), string balsa = default(string), List<NfeSefazVol> vol = default(List<NfeSefazVol>))
         {
             this.modFrete = modFrete;
@@ -57,9 +57,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Modalidade do frete  0- Contratação do Frete por conta do Remetente (CIF);  1- Contratação do Frete por conta do destinatário/remetente (FOB);  2- Contratação do Frete por conta de terceiros;  3- Transporte próprio por conta do remetente;  4- Transporte próprio por conta do destinatário;  9- Sem Ocorrência de transporte.
+        /// Modalidade do frete  * 0 - Contratação do Frete por conta do Remetente (CIF)  * 1 - Contratação do Frete por conta do destinatário/remetente (FOB)  * 2 - Contratação do Frete por conta de terceiros  * 3 - Transporte próprio por conta do remetente  * 4 - Transporte próprio por conta do destinatário  * 9 - Sem Ocorrência de transporte
         /// </summary>
-        /// <value>Modalidade do frete  0- Contratação do Frete por conta do Remetente (CIF);  1- Contratação do Frete por conta do destinatário/remetente (FOB);  2- Contratação do Frete por conta de terceiros;  3- Transporte próprio por conta do remetente;  4- Transporte próprio por conta do destinatário;  9- Sem Ocorrência de transporte.</value>
+        /// <value>Modalidade do frete  * 0 - Contratação do Frete por conta do Remetente (CIF)  * 1 - Contratação do Frete por conta do destinatário/remetente (FOB)  * 2 - Contratação do Frete por conta de terceiros  * 3 - Transporte próprio por conta do remetente  * 4 - Transporte próprio por conta do destinatário  * 9 - Sem Ocorrência de transporte</value>
         [DataMember(Name = "modFrete", IsRequired = true, EmitDefaultValue = true)]
         public int modFrete { get; set; }
 
@@ -82,9 +82,8 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazVeiculo veicTransp { get; set; }
 
         /// <summary>
-        /// Dados do reboque/Dolly (v2.0).
+        /// Gets or Sets reboque
         /// </summary>
-        /// <value>Dados do reboque/Dolly (v2.0).</value>
         [DataMember(Name = "reboque", EmitDefaultValue = false)]
         public List<NfeSefazVeiculo> reboque { get; set; }
 
@@ -103,9 +102,8 @@ namespace NuvemFiscal.Sdk.Model
         public string balsa { get; set; }
 
         /// <summary>
-        /// Dados dos volumes.
+        /// Gets or Sets vol
         /// </summary>
-        /// <value>Dados dos volumes.</value>
         [DataMember(Name = "vol", EmitDefaultValue = false)]
         public List<NfeSefazVol> vol { get; set; }
 

@@ -44,7 +44,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="intermediario">intermediario.</param>
         /// <param name="construcaoCivil">construcaoCivil.</param>
         /// <param name="servicos">servicos (required).</param>
-        public Rps(RpsDados rps = default(RpsDados), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsDadosPrestador prestador = default(RpsDadosPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>))
+        /// <param name="outrasInformacoes">Informações adicionais ao documento..</param>
+        public Rps(RpsDados rps = default(RpsDados), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsDadosPrestador prestador = default(RpsDadosPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>), string outrasInformacoes = default(string))
         {
             // to ensure "servicos" is required (not null)
             if (servicos == null)
@@ -59,6 +60,7 @@ namespace NuvemFiscal.Sdk.Model
             this.tomador = tomador;
             this.intermediario = intermediario;
             this.construcao_civil = construcaoCivil;
+            this.outras_informacoes = outrasInformacoes;
         }
 
         /// <summary>
@@ -112,6 +114,13 @@ namespace NuvemFiscal.Sdk.Model
         public List<RpsDadosServico> servicos { get; set; }
 
         /// <summary>
+        /// Informações adicionais ao documento.
+        /// </summary>
+        /// <value>Informações adicionais ao documento.</value>
+        [DataMember(Name = "outras_informacoes", EmitDefaultValue = false)]
+        public string outras_informacoes { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -127,6 +136,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  intermediario: ").Append(intermediario).Append("\n");
             sb.Append("  construcao_civil: ").Append(construcao_civil).Append("\n");
             sb.Append("  servicos: ").Append(servicos).Append("\n");
+            sb.Append("  outras_informacoes: ").Append(outras_informacoes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -201,6 +211,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.servicos != null &&
                     input.servicos != null &&
                     this.servicos.SequenceEqual(input.servicos)
+                ) && 
+                (
+                    this.outras_informacoes == input.outras_informacoes ||
+                    (this.outras_informacoes != null &&
+                    this.outras_informacoes.Equals(input.outras_informacoes))
                 );
         }
 
@@ -241,6 +256,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.servicos != null)
                 {
                     hashCode = (hashCode * 59) + this.servicos.GetHashCode();
+                }
+                if (this.outras_informacoes != null)
+                {
+                    hashCode = (hashCode * 59) + this.outras_informacoes.GetHashCode();
                 }
                 return hashCode;
             }

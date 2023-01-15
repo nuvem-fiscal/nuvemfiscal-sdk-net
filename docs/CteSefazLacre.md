@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazLacre
+Grupo de informações dos lacres dos cointainers da qtde da carga.
 
 ## Propriedades
 

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.EmpresaConfigPrefeitura
+Dados adicionais para comunicação com a prefeitura. Essa validação é  dinâmica, de acordo com a necessidade de cada município.
 
 ## Propriedades
 

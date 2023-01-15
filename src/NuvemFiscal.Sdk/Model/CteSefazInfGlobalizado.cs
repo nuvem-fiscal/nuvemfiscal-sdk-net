@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfGlobalizado
+    /// Informações do CT-e Globalizado.
     /// </summary>
     [DataContract(Name = "CteSefazInfGlobalizado")]
     public partial class CteSefazInfGlobalizado : IEquatable<CteSefazInfGlobalizado>, IValidatableObject

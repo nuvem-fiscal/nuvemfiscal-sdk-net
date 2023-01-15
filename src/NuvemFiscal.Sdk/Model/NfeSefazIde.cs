@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazIde
+    /// identificação da NF-e.
     /// </summary>
     [DataContract(Name = "NfeSefazIde")]
     public partial class NfeSefazIde : IEquatable<NfeSefazIde>, IValidatableObject
@@ -39,27 +39,27 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cUF">Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE. (required).</param>
         /// <param name="cNF">Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.  Geramos automaticamente quando nenhum valor é informado..</param>
         /// <param name="natOp">Descrição da Natureza da Operação. (required).</param>
-        /// <param name="mod">Código do modelo do Documento Fiscal. 55 &#x3D; NF-e; 65 &#x3D; NFC-e..</param>
-        /// <param name="serie">Série do Documento Fiscal  série normal 0-889  Avulsa Fisco 890-899  SCAN 900-999. (required).</param>
+        /// <param name="mod">Código do modelo do Documento Fiscal:  * 55 - NF-e  * 65 - NFC-e.</param>
+        /// <param name="serie">Série do Documento Fiscal:  * Série normal 0-889  * Avulsa Fisco 890-899  * SCAN 900-999 (required).</param>
         /// <param name="nNF">Número do Documento Fiscal. (required).</param>
         /// <param name="dhEmi">Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00. (required).</param>
         /// <param name="dhSaiEnt">Data e Hora da saída ou de entrada da mercadoria / produto (AAAA-MM-DDTHH:mm:ssTZD)..</param>
-        /// <param name="tpNF">Tipo do Documento Fiscal (0 - entrada; 1 - saída). (required).</param>
-        /// <param name="idDest">Identificador de Local de destino da operação (1-Interna;2-Interestadual;3-Exterior). (required).</param>
+        /// <param name="tpNF">Tipo do Documento Fiscal:  * 0 - Entrada  * 1 - Saída (required).</param>
+        /// <param name="idDest">Identificador de Local de destino da operação:  * 1 - Interna  * 2 - Interestadual  * 3 - Exterior (required).</param>
         /// <param name="cMunFG">Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE). (required).</param>
-        /// <param name="tpImp">Formato de impressão do DANFE (0-sem DANFE;1-DANFe Retrato; 2-DANFe Paisagem;3-DANFe Simplificado;             4-DANFe NFC-e;5-DANFe NFC-e em mensagem eletrônica). (required).</param>
-        /// <param name="tpEmis">Forma de emissão da NF-e  1 - Normal;  2 - Contingência FS  3 - Regime Especial NFF (NT 2021.002)  4 - Contingência DPEC  5 - Contingência FSDA  6 - Contingência SVC - AN  7 - Contingência SVC - RS  9 - Contingência off-line NFC-e. (required).</param>
+        /// <param name="tpImp">Formato de impressão do DANFE:  * 0 - Sem DANFE  * 1 - DANFe Retrato  * 2 - DANFe Paisagem  * 3 - DANFe Simplificado  * 4 - DANFe NFC-e  * 5 - DANFe NFC-e em mensagem eletrônica (required).</param>
+        /// <param name="tpEmis">Forma de emissão da NF-e  * 1 - Normal  * 2 - Contingência FS  * 3 - Regime Especial NFF (NT 2021.002)  * 4 - Contingência DPEC  * 5 - Contingência FSDA  * 6 - Contingência SVC - AN  * 7 - Contingência SVC - RS  * 9 - Contingência off-line NFC-e (required).</param>
         /// <param name="cDV">Digito Verificador da Chave de Acesso da NF-e.  Geramos automaticamente quando nenhum valor é informado..</param>
-        /// <param name="tpAmb">Identificação do Ambiente:  1 - Produção  2 - Homologação..</param>
-        /// <param name="finNFe">Finalidade da emissão da NF-e:  1 - NFe normal  2 - NFe complementar  3 - NFe de ajuste  4 - Devolução/Retorno. (required).</param>
-        /// <param name="indFinal">Indica operação com consumidor final (0-Não;1-Consumidor Final). (required).</param>
-        /// <param name="indPres">Indicador de presença do comprador no estabelecimento comercial no momento da oepração             (0-Não se aplica (ex.: Nota Fiscal complementar ou de ajuste;1-Operação presencial;2-Não presencial, internet;3-Não presencial, teleatendimento;4-NFC-e entrega em domicílio;5-Operação presencial, fora do estabelecimento;9-Não presencial, outros). (required).</param>
-        /// <param name="indIntermed">Indicador de intermediador/marketplace              0&#x3D;Operação sem intermediador (em site ou plataforma própria)              1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace)..</param>
-        /// <param name="procEmi">Processo de emissão utilizado com a seguinte codificação:  0 - emissão de NF-e com aplicativo do contribuinte;  1 - emissão de NF-e avulsa pelo Fisco;  2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco;  3- emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco. (required).</param>
+        /// <param name="tpAmb">Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação.</param>
+        /// <param name="finNFe">Finalidade da emissão da NF-e:  * 1 - NFe normal  * 2 - NFe complementar  * 3 - NFe de ajuste  * 4 - Devolução/Retorno (required).</param>
+        /// <param name="indFinal">Indica operação com consumidor final:  * 0 - Não  * 1 - Consumidor Final (required).</param>
+        /// <param name="indPres">Indicador de presença do comprador no estabelecimento comercial no momento da operação:  * 0 - Não se aplica (ex.: Nota Fiscal complementar ou de ajuste)  * 1 - Operação presencial  * 2 - Não presencial, internet  * 3 - Não presencial, teleatendimento  * 4 - NFC-e entrega em domicílio  * 5 - Operação presencial, fora do estabelecimento  * 9 - Não presencial, outros (required).</param>
+        /// <param name="indIntermed">Indicador de intermediador/marketplace  * 0 - Operação sem intermediador (em site ou plataforma própria)  * 1 - Operação em site ou plataforma de terceiros (intermediadores/marketplace).</param>
+        /// <param name="procEmi">Processo de emissão utilizado com a seguinte codificação:  * 0 - emissão de NF-e com aplicativo do contribuinte  * 1 - emissão de NF-e avulsa pelo Fisco  * 2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco  * 3 - emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco (required).</param>
         /// <param name="verProc">versão do aplicativo utilizado no processo de  emissão. (required).</param>
         /// <param name="dhCont">Informar a data e hora de entrada em contingência contingência no formato  (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00..</param>
         /// <param name="xJust">Informar a Justificativa da entrada..</param>
-        /// <param name="nFref">Grupo de infromações da NF referenciada..</param>
+        /// <param name="nFref">nFref.</param>
         public NfeSefazIde(int cUF = default(int), string cNF = default(string), string natOp = default(string), int mod = default(int), int serie = default(int), int nNF = default(int), DateTime dhEmi = default(DateTime), DateTime dhSaiEnt = default(DateTime), int tpNF = default(int), int idDest = default(int), string cMunFG = default(string), int tpImp = default(int), int tpEmis = default(int), int cDV = default(int), int tpAmb = default(int), int finNFe = default(int), int indFinal = default(int), int indPres = default(int), int indIntermed = default(int), int procEmi = default(int), string verProc = default(string), DateTime dhCont = default(DateTime), string xJust = default(string), List<NfeSefazNFref> nFref = default(List<NfeSefazNFref>))
         {
             this.cUF = cUF;
@@ -125,16 +125,16 @@ namespace NuvemFiscal.Sdk.Model
         public string natOp { get; set; }
 
         /// <summary>
-        /// Código do modelo do Documento Fiscal. 55 &#x3D; NF-e; 65 &#x3D; NFC-e.
+        /// Código do modelo do Documento Fiscal:  * 55 - NF-e  * 65 - NFC-e
         /// </summary>
-        /// <value>Código do modelo do Documento Fiscal. 55 &#x3D; NF-e; 65 &#x3D; NFC-e.</value>
+        /// <value>Código do modelo do Documento Fiscal:  * 55 - NF-e  * 65 - NFC-e</value>
         [DataMember(Name = "mod", EmitDefaultValue = false)]
         public int mod { get; set; }
 
         /// <summary>
-        /// Série do Documento Fiscal  série normal 0-889  Avulsa Fisco 890-899  SCAN 900-999.
+        /// Série do Documento Fiscal:  * Série normal 0-889  * Avulsa Fisco 890-899  * SCAN 900-999
         /// </summary>
-        /// <value>Série do Documento Fiscal  série normal 0-889  Avulsa Fisco 890-899  SCAN 900-999.</value>
+        /// <value>Série do Documento Fiscal:  * Série normal 0-889  * Avulsa Fisco 890-899  * SCAN 900-999</value>
         [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
         public int serie { get; set; }
 
@@ -160,16 +160,16 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime dhSaiEnt { get; set; }
 
         /// <summary>
-        /// Tipo do Documento Fiscal (0 - entrada; 1 - saída).
+        /// Tipo do Documento Fiscal:  * 0 - Entrada  * 1 - Saída
         /// </summary>
-        /// <value>Tipo do Documento Fiscal (0 - entrada; 1 - saída).</value>
+        /// <value>Tipo do Documento Fiscal:  * 0 - Entrada  * 1 - Saída</value>
         [DataMember(Name = "tpNF", IsRequired = true, EmitDefaultValue = true)]
         public int tpNF { get; set; }
 
         /// <summary>
-        /// Identificador de Local de destino da operação (1-Interna;2-Interestadual;3-Exterior).
+        /// Identificador de Local de destino da operação:  * 1 - Interna  * 2 - Interestadual  * 3 - Exterior
         /// </summary>
-        /// <value>Identificador de Local de destino da operação (1-Interna;2-Interestadual;3-Exterior).</value>
+        /// <value>Identificador de Local de destino da operação:  * 1 - Interna  * 2 - Interestadual  * 3 - Exterior</value>
         [DataMember(Name = "idDest", IsRequired = true, EmitDefaultValue = true)]
         public int idDest { get; set; }
 
@@ -181,16 +181,16 @@ namespace NuvemFiscal.Sdk.Model
         public string cMunFG { get; set; }
 
         /// <summary>
-        /// Formato de impressão do DANFE (0-sem DANFE;1-DANFe Retrato; 2-DANFe Paisagem;3-DANFe Simplificado;             4-DANFe NFC-e;5-DANFe NFC-e em mensagem eletrônica).
+        /// Formato de impressão do DANFE:  * 0 - Sem DANFE  * 1 - DANFe Retrato  * 2 - DANFe Paisagem  * 3 - DANFe Simplificado  * 4 - DANFe NFC-e  * 5 - DANFe NFC-e em mensagem eletrônica
         /// </summary>
-        /// <value>Formato de impressão do DANFE (0-sem DANFE;1-DANFe Retrato; 2-DANFe Paisagem;3-DANFe Simplificado;             4-DANFe NFC-e;5-DANFe NFC-e em mensagem eletrônica).</value>
+        /// <value>Formato de impressão do DANFE:  * 0 - Sem DANFE  * 1 - DANFe Retrato  * 2 - DANFe Paisagem  * 3 - DANFe Simplificado  * 4 - DANFe NFC-e  * 5 - DANFe NFC-e em mensagem eletrônica</value>
         [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = true)]
         public int tpImp { get; set; }
 
         /// <summary>
-        /// Forma de emissão da NF-e  1 - Normal;  2 - Contingência FS  3 - Regime Especial NFF (NT 2021.002)  4 - Contingência DPEC  5 - Contingência FSDA  6 - Contingência SVC - AN  7 - Contingência SVC - RS  9 - Contingência off-line NFC-e.
+        /// Forma de emissão da NF-e  * 1 - Normal  * 2 - Contingência FS  * 3 - Regime Especial NFF (NT 2021.002)  * 4 - Contingência DPEC  * 5 - Contingência FSDA  * 6 - Contingência SVC - AN  * 7 - Contingência SVC - RS  * 9 - Contingência off-line NFC-e
         /// </summary>
-        /// <value>Forma de emissão da NF-e  1 - Normal;  2 - Contingência FS  3 - Regime Especial NFF (NT 2021.002)  4 - Contingência DPEC  5 - Contingência FSDA  6 - Contingência SVC - AN  7 - Contingência SVC - RS  9 - Contingência off-line NFC-e.</value>
+        /// <value>Forma de emissão da NF-e  * 1 - Normal  * 2 - Contingência FS  * 3 - Regime Especial NFF (NT 2021.002)  * 4 - Contingência DPEC  * 5 - Contingência FSDA  * 6 - Contingência SVC - AN  * 7 - Contingência SVC - RS  * 9 - Contingência off-line NFC-e</value>
         [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
         public int tpEmis { get; set; }
 
@@ -202,44 +202,44 @@ namespace NuvemFiscal.Sdk.Model
         public int cDV { get; set; }
 
         /// <summary>
-        /// Identificação do Ambiente:  1 - Produção  2 - Homologação.
+        /// Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação
         /// </summary>
-        /// <value>Identificação do Ambiente:  1 - Produção  2 - Homologação.</value>
+        /// <value>Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação</value>
         [DataMember(Name = "tpAmb", EmitDefaultValue = false)]
         public int tpAmb { get; set; }
 
         /// <summary>
-        /// Finalidade da emissão da NF-e:  1 - NFe normal  2 - NFe complementar  3 - NFe de ajuste  4 - Devolução/Retorno.
+        /// Finalidade da emissão da NF-e:  * 1 - NFe normal  * 2 - NFe complementar  * 3 - NFe de ajuste  * 4 - Devolução/Retorno
         /// </summary>
-        /// <value>Finalidade da emissão da NF-e:  1 - NFe normal  2 - NFe complementar  3 - NFe de ajuste  4 - Devolução/Retorno.</value>
+        /// <value>Finalidade da emissão da NF-e:  * 1 - NFe normal  * 2 - NFe complementar  * 3 - NFe de ajuste  * 4 - Devolução/Retorno</value>
         [DataMember(Name = "finNFe", IsRequired = true, EmitDefaultValue = true)]
         public int finNFe { get; set; }
 
         /// <summary>
-        /// Indica operação com consumidor final (0-Não;1-Consumidor Final).
+        /// Indica operação com consumidor final:  * 0 - Não  * 1 - Consumidor Final
         /// </summary>
-        /// <value>Indica operação com consumidor final (0-Não;1-Consumidor Final).</value>
+        /// <value>Indica operação com consumidor final:  * 0 - Não  * 1 - Consumidor Final</value>
         [DataMember(Name = "indFinal", IsRequired = true, EmitDefaultValue = true)]
         public int indFinal { get; set; }
 
         /// <summary>
-        /// Indicador de presença do comprador no estabelecimento comercial no momento da oepração             (0-Não se aplica (ex.: Nota Fiscal complementar ou de ajuste;1-Operação presencial;2-Não presencial, internet;3-Não presencial, teleatendimento;4-NFC-e entrega em domicílio;5-Operação presencial, fora do estabelecimento;9-Não presencial, outros).
+        /// Indicador de presença do comprador no estabelecimento comercial no momento da operação:  * 0 - Não se aplica (ex.: Nota Fiscal complementar ou de ajuste)  * 1 - Operação presencial  * 2 - Não presencial, internet  * 3 - Não presencial, teleatendimento  * 4 - NFC-e entrega em domicílio  * 5 - Operação presencial, fora do estabelecimento  * 9 - Não presencial, outros
         /// </summary>
-        /// <value>Indicador de presença do comprador no estabelecimento comercial no momento da oepração             (0-Não se aplica (ex.: Nota Fiscal complementar ou de ajuste;1-Operação presencial;2-Não presencial, internet;3-Não presencial, teleatendimento;4-NFC-e entrega em domicílio;5-Operação presencial, fora do estabelecimento;9-Não presencial, outros).</value>
+        /// <value>Indicador de presença do comprador no estabelecimento comercial no momento da operação:  * 0 - Não se aplica (ex.: Nota Fiscal complementar ou de ajuste)  * 1 - Operação presencial  * 2 - Não presencial, internet  * 3 - Não presencial, teleatendimento  * 4 - NFC-e entrega em domicílio  * 5 - Operação presencial, fora do estabelecimento  * 9 - Não presencial, outros</value>
         [DataMember(Name = "indPres", IsRequired = true, EmitDefaultValue = true)]
         public int indPres { get; set; }
 
         /// <summary>
-        /// Indicador de intermediador/marketplace              0&#x3D;Operação sem intermediador (em site ou plataforma própria)              1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace).
+        /// Indicador de intermediador/marketplace  * 0 - Operação sem intermediador (em site ou plataforma própria)  * 1 - Operação em site ou plataforma de terceiros (intermediadores/marketplace)
         /// </summary>
-        /// <value>Indicador de intermediador/marketplace              0&#x3D;Operação sem intermediador (em site ou plataforma própria)              1&#x3D;Operação em site ou plataforma de terceiros (intermediadores/marketplace).</value>
+        /// <value>Indicador de intermediador/marketplace  * 0 - Operação sem intermediador (em site ou plataforma própria)  * 1 - Operação em site ou plataforma de terceiros (intermediadores/marketplace)</value>
         [DataMember(Name = "indIntermed", EmitDefaultValue = false)]
         public int indIntermed { get; set; }
 
         /// <summary>
-        /// Processo de emissão utilizado com a seguinte codificação:  0 - emissão de NF-e com aplicativo do contribuinte;  1 - emissão de NF-e avulsa pelo Fisco;  2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco;  3- emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco.
+        /// Processo de emissão utilizado com a seguinte codificação:  * 0 - emissão de NF-e com aplicativo do contribuinte  * 1 - emissão de NF-e avulsa pelo Fisco  * 2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco  * 3 - emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco
         /// </summary>
-        /// <value>Processo de emissão utilizado com a seguinte codificação:  0 - emissão de NF-e com aplicativo do contribuinte;  1 - emissão de NF-e avulsa pelo Fisco;  2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco;  3- emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco.</value>
+        /// <value>Processo de emissão utilizado com a seguinte codificação:  * 0 - emissão de NF-e com aplicativo do contribuinte  * 1 - emissão de NF-e avulsa pelo Fisco  * 2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco  * 3 - emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco</value>
         [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
         public int procEmi { get; set; }
 
@@ -265,9 +265,8 @@ namespace NuvemFiscal.Sdk.Model
         public string xJust { get; set; }
 
         /// <summary>
-        /// Grupo de infromações da NF referenciada.
+        /// Gets or Sets NFref
         /// </summary>
-        /// <value>Grupo de infromações da NF referenciada.</value>
         [DataMember(Name = "NFref", EmitDefaultValue = false)]
         public List<NfeSefazNFref> NFref { get; set; }
 

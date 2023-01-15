@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjSituacaoCadastral
+Situação cadastral.
 
 ## Propriedades
 

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazVeiculo
+Dados do reboque/Dolly (v2.0).
 
 ## Propriedades
 

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazEndeEmi
+Endereço do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
 
 ## Propriedades
 

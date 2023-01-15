@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 1.5.0
-- Versão do SDK: 1.6.0
+- Versão da API: 2.0.0
+- Versão do SDK: 2.0.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -239,7 +239,9 @@ Classe | Método | Endpoint | Descrição
 *NfseApi* | [**ConsultarLoteNfse**](docs/NfseApi.md#consultarlotenfse) | **GET** /nfse/lotes/{id} | Consultar lote de NFS-e
 *NfseApi* | [**ConsultarNfse**](docs/NfseApi.md#consultarnfse) | **GET** /nfse/{id} | Consultar NFS-e
 *NfseApi* | [**EmitirLoteNfse**](docs/NfseApi.md#emitirlotenfse) | **POST** /nfse/lotes | Emitir lote de NFS-e
+*NfseApi* | [**EmitirLoteNfseDps**](docs/NfseApi.md#emitirlotenfsedps) | **POST** /nfse/dps/lotes | Emitir lote de NFS-e
 *NfseApi* | [**EmitirNfse**](docs/NfseApi.md#emitirnfse) | **POST** /nfse | Emitir NFS-e
+*NfseApi* | [**EmitirNfseDps**](docs/NfseApi.md#emitirnfsedps) | **POST** /nfse/dps | Emitir NFS-e
 *NfseApi* | [**ListarLotesNfse**](docs/NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | Listar lotes de NFS-e
 *NfseApi* | [**ListarNfse**](docs/NfseApi.md#listarnfse) | **GET** /nfse | Listar NFS-e
 
@@ -247,8 +249,12 @@ Classe | Método | Endpoint | Descrição
 <a name="documentation-for-models"></a>
 ## Documentação dos DTOs
 
+ - [Model.AtvEvento](docs/AtvEvento.md)
+ - [Model.BeneficioMunicipal](docs/BeneficioMunicipal.md)
+ - [Model.CServ](docs/CServ.md)
  - [Model.CepEndereco](docs/CepEndereco.md)
  - [Model.CnpjCnae](docs/CnpjCnae.md)
+ - [Model.CnpjCnaeSecundario](docs/CnpjCnaeSecundario.md)
  - [Model.CnpjEmpresa](docs/CnpjEmpresa.md)
  - [Model.CnpjEndereco](docs/CnpjEndereco.md)
  - [Model.CnpjListagem](docs/CnpjListagem.md)
@@ -262,6 +268,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.CnpjSituacaoCadastral](docs/CnpjSituacaoCadastral.md)
  - [Model.CnpjSituacaoEspecial](docs/CnpjSituacaoEspecial.md)
  - [Model.CnpjTelefone](docs/CnpjTelefone.md)
+ - [Model.ComExterior](docs/ComExterior.md)
  - [Model.ContaCota](docs/ContaCota.md)
  - [Model.ContaCotaListagem](docs/ContaCotaListagem.md)
  - [Model.CteCartaCorrecao](docs/CteCartaCorrecao.md)
@@ -361,6 +368,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.CteSefazUnidadeTransp](docs/CteSefazUnidadeTransp.md)
  - [Model.CteSefazVPrest](docs/CteSefazVPrest.md)
  - [Model.CteSefazVeicNovos](docs/CteSefazVeicNovos.md)
+ - [Model.DPS](docs/DPS.md)
  - [Model.Dfe](docs/Dfe.md)
  - [Model.DfeAutorEvento](docs/DfeAutorEvento.md)
  - [Model.DfeAutorizacao](docs/DfeAutorizacao.md)
@@ -374,7 +382,9 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfePedidoInutilizacao](docs/DfePedidoInutilizacao.md)
  - [Model.DfeRecibo](docs/DfeRecibo.md)
  - [Model.DfeSefazStatus](docs/DfeSefazStatus.md)
- - [Model.Dps](docs/Dps.md)
+ - [Model.DocDedRed](docs/DocDedRed.md)
+ - [Model.DocNFNFS](docs/DocNFNFS.md)
+ - [Model.DocOutNFSe](docs/DocOutNFSe.md)
  - [Model.Empresa](docs/Empresa.md)
  - [Model.EmpresaCertificado](docs/EmpresaCertificado.md)
  - [Model.EmpresaConfigCte](docs/EmpresaConfigCte.md)
@@ -383,11 +393,32 @@ Classe | Método | Endpoint | Descrição
  - [Model.EmpresaConfigNfceSefaz](docs/EmpresaConfigNfceSefaz.md)
  - [Model.EmpresaConfigNfe](docs/EmpresaConfigNfe.md)
  - [Model.EmpresaConfigNfse](docs/EmpresaConfigNfse.md)
+ - [Model.EmpresaConfigNfseRegTrib](docs/EmpresaConfigNfseRegTrib.md)
  - [Model.EmpresaConfigPrefeitura](docs/EmpresaConfigPrefeitura.md)
  - [Model.EmpresaConfigRps](docs/EmpresaConfigRps.md)
  - [Model.EmpresaEndereco](docs/EmpresaEndereco.md)
  - [Model.EmpresaListagem](docs/EmpresaListagem.md)
  - [Model.EmpresaPedidoCadastroCertificado](docs/EmpresaPedidoCadastroCertificado.md)
+ - [Model.EnderExt](docs/EnderExt.md)
+ - [Model.EnderExtSimples](docs/EnderExtSimples.md)
+ - [Model.EnderNac](docs/EnderNac.md)
+ - [Model.Endereco](docs/Endereco.md)
+ - [Model.EnderecoSimples](docs/EnderecoSimples.md)
+ - [Model.ExigSuspensa](docs/ExigSuspensa.md)
+ - [Model.ExploracaoRodoviaria](docs/ExploracaoRodoviaria.md)
+ - [Model.InfDPS](docs/InfDPS.md)
+ - [Model.InfoCompl](docs/InfoCompl.md)
+ - [Model.InfoDedRed](docs/InfoDedRed.md)
+ - [Model.InfoFornecDocDedRed](docs/InfoFornecDocDedRed.md)
+ - [Model.InfoIntermediario](docs/InfoIntermediario.md)
+ - [Model.InfoObra](docs/InfoObra.md)
+ - [Model.InfoPrestador](docs/InfoPrestador.md)
+ - [Model.InfoTomador](docs/InfoTomador.md)
+ - [Model.InfoTributacao](docs/InfoTributacao.md)
+ - [Model.InfoValores](docs/InfoValores.md)
+ - [Model.ListaDocDedRed](docs/ListaDocDedRed.md)
+ - [Model.LocPrest](docs/LocPrest.md)
+ - [Model.LocacaoSublocacao](docs/LocacaoSublocacao.md)
  - [Model.MdfeDocumentoVinculado](docs/MdfeDocumentoVinculado.md)
  - [Model.MdfeEncerramento](docs/MdfeEncerramento.md)
  - [Model.MdfeInclusaoCondutor](docs/MdfeInclusaoCondutor.md)
@@ -564,7 +595,9 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfeSefazVol](docs/NfeSefazVol.md)
  - [Model.Nfse](docs/Nfse.md)
  - [Model.NfseCancelamento](docs/NfseCancelamento.md)
+ - [Model.NfseDpsPedidoEmissao](docs/NfseDpsPedidoEmissao.md)
  - [Model.NfseListagem](docs/NfseListagem.md)
+ - [Model.NfseLoteDpsPedidoEmissao](docs/NfseLoteDpsPedidoEmissao.md)
  - [Model.NfseMensagemRetorno](docs/NfseMensagemRetorno.md)
  - [Model.NfsePedidoCancelamento](docs/NfsePedidoCancelamento.md)
  - [Model.NfsePedidoEmissao](docs/NfsePedidoEmissao.md)
@@ -583,6 +616,16 @@ Classe | Método | Endpoint | Descrição
  - [Model.RpsPedidoEmissao](docs/RpsPedidoEmissao.md)
  - [Model.RpsPedidoEmissaoLote](docs/RpsPedidoEmissaoLote.md)
  - [Model.RpsServicoValores](docs/RpsServicoValores.md)
+ - [Model.Serv](docs/Serv.md)
+ - [Model.Substituicao](docs/Substituicao.md)
+ - [Model.TribFederal](docs/TribFederal.md)
+ - [Model.TribMunicipal](docs/TribMunicipal.md)
+ - [Model.TribOutrosPisCofins](docs/TribOutrosPisCofins.md)
+ - [Model.TribTotal](docs/TribTotal.md)
+ - [Model.TribTotalMonet](docs/TribTotalMonet.md)
+ - [Model.TribTotalPercent](docs/TribTotalPercent.md)
+ - [Model.VDescCondIncond](docs/VDescCondIncond.md)
+ - [Model.VServPrest](docs/VServPrest.md)
 
 
 <a name="documentation-for-authorization"></a>

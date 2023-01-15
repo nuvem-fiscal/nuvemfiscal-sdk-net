@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazProd
+Dados dos produtos e serviços da NF-e.
 
 ## Propriedades
 
@@ -29,9 +30,9 @@ Nome | Tipo | Descrição | Comentários
 **vSeg** | **decimal** | Valor Total do Seguro. | [optional] 
 **vDesc** | **decimal** | Valor do Desconto. | [optional] 
 **vOutro** | **decimal** | Outras despesas acessórias. | [optional] 
-**indTot** | **int** | Este campo deverá ser preenchido com:   0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd)   1  – o valor do item (vProd) compõe o valor total da NF-e (vProd). | 
-**DI** | [**List&lt;NfeSefazDI&gt;**](NfeSefazDI.md) | Delcaração de Importação  (NT 2011/004). | [optional] 
-**detExport** | [**List&lt;NfeSefazDetExport&gt;**](NfeSefazDetExport.md) | Detalhe da exportação. | [optional] 
+**indTot** | **int** | Este campo deverá ser preenchido com:  * 0 - o valor do item (vProd) não compõe o valor total da NF-e (vProd)  * 1 - o valor do item (vProd) compõe o valor total da NF-e (vProd) | 
+**DI** | [**List&lt;NfeSefazDI&gt;**](NfeSefazDI.md) |  | [optional] 
+**detExport** | [**List&lt;NfeSefazDetExport&gt;**](NfeSefazDetExport.md) |  | [optional] 
 **xPed** | **string** | pedido de compra - Informação de interesse do emissor para controle do B2B. | [optional] 
 **nItemPed** | **int** | Número do Item do Pedido de Compra - Identificação do número do item do pedido de Compra. | [optional] 
 **nFCI** | **string** | Número de controle da FCI - Ficha de Conteúdo de Importação. | [optional] 
@@ -40,7 +41,7 @@ Nome | Tipo | Descrição | Comentários
 **infProdEmb** | [**NfeSefazInfProdEmb**](NfeSefazInfProdEmb.md) |  | [optional] 
 **veicProd** | [**NfeSefazVeicProd**](NfeSefazVeicProd.md) |  | [optional] 
 **med** | [**NfeSefazMed**](NfeSefazMed.md) |  | [optional] 
-**arma** | [**List&lt;NfeSefazArma&gt;**](NfeSefazArma.md) | Armamentos. | [optional] 
+**arma** | [**List&lt;NfeSefazArma&gt;**](NfeSefazArma.md) |  | [optional] 
 **comb** | [**NfeSefazComb**](NfeSefazComb.md) |  | [optional] 
 **nRECOPI** | **string** | Número do RECOPI. | [optional] 
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazVPrest
+    /// Valores da Prestação de Serviço.
     /// </summary>
     [DataContract(Name = "CteSefazVPrest")]
     public partial class CteSefazVPrest : IEquatable<CteSefazVPrest>, IValidatableObject
@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="vTPrest">Valor Total da Prestação do Serviço.  Pode conter zeros quando o CT-e for de complemento de ICMS. (required).</param>
         /// <param name="vRec">Valor a Receber. (required).</param>
-        /// <param name="comp">Componentes do Valor da Prestação..</param>
+        /// <param name="comp">comp.</param>
         public CteSefazVPrest(decimal vTPrest = default(decimal), decimal vRec = default(decimal), List<CteSefazComp> comp = default(List<CteSefazComp>))
         {
             this.vTPrest = vTPrest;
@@ -61,9 +61,8 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vRec { get; set; }
 
         /// <summary>
-        /// Componentes do Valor da Prestação.
+        /// Gets or Sets Comp
         /// </summary>
-        /// <value>Componentes do Valor da Prestação.</value>
         [DataMember(Name = "Comp", EmitDefaultValue = false)]
         public List<CteSefazComp> Comp { get; set; }
 

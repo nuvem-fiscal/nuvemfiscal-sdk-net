@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazAutXML
+    /// Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos.
     /// </summary>
     [DataContract(Name = "CteSefazAutXML")]
     public partial class CteSefazAutXML : IEquatable<CteSefazAutXML>, IValidatableObject

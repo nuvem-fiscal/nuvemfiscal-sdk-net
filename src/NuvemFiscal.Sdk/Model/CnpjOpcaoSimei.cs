@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CnpjOpcaoSimei
+    /// Informações da opção pelo MEI.
     /// </summary>
     [DataContract(Name = "CnpjOpcaoSimei")]
     public partial class CnpjOpcaoSimei : IEquatable<CnpjOpcaoSimei>, IValidatableObject

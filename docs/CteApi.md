@@ -1738,7 +1738,7 @@ catch (ApiException e)
 
 <a name="listarcte"></a>
 # **ListarCte**
-> DfeListagem ListarCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null, string chave = null)
+> DfeListagem ListarCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null)
 
 Listar CT-e
 
@@ -1772,17 +1772,18 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
-            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.  Valores aceitos: homologacao, producao
-            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
-            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.    Utilize o valor sem máscara.
+            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.    Valores aceitos: homologacao, producao
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = true;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
             var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
 
             try
             {
                 // Listar CT-e
-                DfeListagem result = apiInstance.ListarCte(cpfCnpj, ambiente, top, skip, referencia, chave);
+                DfeListagem result = apiInstance.ListarCte(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1803,7 +1804,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar CT-e
-    ApiResponse<DfeListagem> response = apiInstance.ListarCteWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia, chave);
+    ApiResponse<DfeListagem> response = apiInstance.ListarCteWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1820,10 +1821,11 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **ambiente** | **string** | Identificação do Ambiente.  Valores aceitos: homologacao, producao |  |
-| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
-| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.    Utilize o valor sem máscara. |  |
+| **ambiente** | **string** | Identificação do Ambiente.    Valores aceitos: homologacao, producao |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
 | **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
 
@@ -1850,7 +1852,7 @@ catch (ApiException e)
 
 <a name="listarlotescte"></a>
 # **ListarLotesCte**
-> DfeLoteListagem ListarLotesCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, string referencia = null)
+> DfeLoteListagem ListarLotesCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null)
 
 Listar lotes de CT-e
 
@@ -1885,15 +1887,16 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara.
-            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.  Valores aceitos: homologacao, producao
-            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
-            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var ambiente = "ambiente_example";  // string | Identificação do Ambiente.    Valores aceitos: homologacao, producao
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = true;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional) 
             var referencia = "referencia_example";  // string |  (optional) 
 
             try
             {
                 // Listar lotes de CT-e
-                DfeLoteListagem result = apiInstance.ListarLotesCte(cpfCnpj, ambiente, top, skip, referencia);
+                DfeLoteListagem result = apiInstance.ListarLotesCte(cpfCnpj, ambiente, top, skip, inlinecount, referencia);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1914,7 +1917,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar lotes de CT-e
-    ApiResponse<DfeLoteListagem> response = apiInstance.ListarLotesCteWithHttpInfo(cpfCnpj, ambiente, top, skip, referencia);
+    ApiResponse<DfeLoteListagem> response = apiInstance.ListarLotesCteWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1932,9 +1935,10 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **ambiente** | **string** | Identificação do Ambiente.  Valores aceitos: homologacao, producao |  |
-| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
-| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **ambiente** | **string** | Identificação do Ambiente.    Valores aceitos: homologacao, producao |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional]  |
 | **referencia** | **string** |  | [optional]  |
 
 ### Tipo de retorno

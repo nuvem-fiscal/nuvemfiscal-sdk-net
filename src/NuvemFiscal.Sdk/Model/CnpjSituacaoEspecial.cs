@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CnpjSituacaoEspecial
+    /// Situação especial da empresa.
     /// </summary>
     [DataContract(Name = "CnpjSituacaoEspecial")]
     public partial class CnpjSituacaoEspecial : IEquatable<CnpjSituacaoEspecial>, IValidatableObject

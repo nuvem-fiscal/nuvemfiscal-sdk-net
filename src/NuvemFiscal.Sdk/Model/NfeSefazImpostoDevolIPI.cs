@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazImpostoDevolIPI
+    /// Informação de IPI devolvido.
     /// </summary>
     [DataContract(Name = "NfeSefazImpostoDevol_IPI")]
     public partial class NfeSefazImpostoDevolIPI : IEquatable<NfeSefazImpostoDevolIPI>, IValidatableObject

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazInfIntermed
+Grupo de Informações do Intermediador da Transação.
 
 ## Propriedades
 

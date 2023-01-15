@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfEmbComb
+Informações das Embarcações do Comboio.
 
 ## Propriedades
 

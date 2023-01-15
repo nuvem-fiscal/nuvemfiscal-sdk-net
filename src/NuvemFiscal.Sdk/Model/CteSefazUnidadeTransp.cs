@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazUnidadeTransp
+    /// Informações das Unidades de Transporte (Carreta/Reboque/Vagão).  Deve ser preenchido com as informações das unidades de transporte utilizadas.
     /// </summary>
     [DataContract(Name = "CteSefazUnidadeTransp")]
     public partial class CteSefazUnidadeTransp : IEquatable<CteSefazUnidadeTransp>, IValidatableObject
@@ -36,10 +36,10 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazUnidadeTransp" /> class.
         /// </summary>
-        /// <param name="tpUnidTransp">Tipo da Unidade de Transporte.  1 - Rodoviário Tração  2 - Rodoviário Reboque  3 - Navio  4 - Balsa  5 - Aeronave  6 - Vagão  7 - Outros. (required).</param>
+        /// <param name="tpUnidTransp">Tipo da Unidade de Transporte.  * 1 - Rodoviário Tração  * 2 - Rodoviário Reboque  * 3 - Navio  * 4 - Balsa  * 5 - Aeronave  * 6 - Vagão  * 7 - Outros (required).</param>
         /// <param name="idUnidTransp">Identificação da Unidade de Transporte.  Informar a identificação conforme o tipo de unidade de transporte.  Por exemplo: para rodoviário tração ou reboque deverá preencher com a placa do veículo. (required).</param>
-        /// <param name="lacUnidTransp">Lacres das Unidades de Transporte..</param>
-        /// <param name="infUnidCarga">Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu..</param>
+        /// <param name="lacUnidTransp">lacUnidTransp.</param>
+        /// <param name="infUnidCarga">infUnidCarga.</param>
         /// <param name="qtdRat">Quantidade rateada (Peso,Volume)..</param>
         public CteSefazUnidadeTransp(int tpUnidTransp = default(int), string idUnidTransp = default(string), List<CteSefazLacUnidTransp> lacUnidTransp = default(List<CteSefazLacUnidTransp>), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), decimal qtdRat = default(decimal))
         {
@@ -56,9 +56,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo da Unidade de Transporte.  1 - Rodoviário Tração  2 - Rodoviário Reboque  3 - Navio  4 - Balsa  5 - Aeronave  6 - Vagão  7 - Outros.
+        /// Tipo da Unidade de Transporte.  * 1 - Rodoviário Tração  * 2 - Rodoviário Reboque  * 3 - Navio  * 4 - Balsa  * 5 - Aeronave  * 6 - Vagão  * 7 - Outros
         /// </summary>
-        /// <value>Tipo da Unidade de Transporte.  1 - Rodoviário Tração  2 - Rodoviário Reboque  3 - Navio  4 - Balsa  5 - Aeronave  6 - Vagão  7 - Outros.</value>
+        /// <value>Tipo da Unidade de Transporte.  * 1 - Rodoviário Tração  * 2 - Rodoviário Reboque  * 3 - Navio  * 4 - Balsa  * 5 - Aeronave  * 6 - Vagão  * 7 - Outros</value>
         [DataMember(Name = "tpUnidTransp", IsRequired = true, EmitDefaultValue = true)]
         public int tpUnidTransp { get; set; }
 
@@ -70,16 +70,14 @@ namespace NuvemFiscal.Sdk.Model
         public string idUnidTransp { get; set; }
 
         /// <summary>
-        /// Lacres das Unidades de Transporte.
+        /// Gets or Sets lacUnidTransp
         /// </summary>
-        /// <value>Lacres das Unidades de Transporte.</value>
         [DataMember(Name = "lacUnidTransp", EmitDefaultValue = false)]
         public List<CteSefazLacUnidTransp> lacUnidTransp { get; set; }
 
         /// <summary>
-        /// Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.
+        /// Gets or Sets infUnidCarga
         /// </summary>
-        /// <value>Informações das Unidades de Carga (Containeres/ULD/Outros).  Dispositivo de carga utilizada (Unit Load Device - ULD) significa todo tipo de contêiner de carga, vagão, contêiner de avião, palete de aeronave com rede ou palete de aeronave com rede sobre um iglu.</value>
         [DataMember(Name = "infUnidCarga", EmitDefaultValue = false)]
         public List<CteSefazUnidCarga> infUnidCarga { get; set; }
 

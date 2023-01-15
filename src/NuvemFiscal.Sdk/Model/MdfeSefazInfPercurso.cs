@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfPercurso
+    /// Informações do Percurso do MDF-e.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfPercurso")]
     public partial class MdfeSefazInfPercurso : IEquatable<MdfeSefazInfPercurso>, IValidatableObject

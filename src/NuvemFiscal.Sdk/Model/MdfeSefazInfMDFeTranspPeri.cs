@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfMDFeTranspPeri
+    /// Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfMDFeTransp_Peri")]
     public partial class MdfeSefazInfMDFeTranspPeri : IEquatable<MdfeSefazInfMDFeTranspPeri>, IValidatableObject
@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nONU">Número ONU/UN.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal. (required).</param>
         /// <param name="xNomeAE">Nome apropriado para embarque do produto.  Ver a legislação de transporte de produtos perigosos aplicada ao modo de transporte..</param>
         /// <param name="xClaRisco">Classe ou subclasse/divisão, e risco subsidiário/risco secundário.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal..</param>
-        /// <param name="grEmb">Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal                 Preenchimento obrigatório para o modal aéreo.                 A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo..</param>
+        /// <param name="grEmb">Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal  Preenchimento obrigatório para o modal aéreo.  A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo..</param>
         /// <param name="qTotProd">Quantidade total por produto.  Preencher conforme a legislação de transporte de produtos perigosos aplicada ao modal. (required).</param>
         /// <param name="qVolTipo">Quantidade e Tipo de volumes.  Preencher conforme a legislação de transporte de produtos perigosos aplicada ao modal..</param>
         public MdfeSefazInfMDFeTranspPeri(string nONU = default(string), string xNomeAE = default(string), string xClaRisco = default(string), string grEmb = default(string), string qTotProd = default(string), string qVolTipo = default(string))
@@ -84,9 +84,9 @@ namespace NuvemFiscal.Sdk.Model
         public string xClaRisco { get; set; }
 
         /// <summary>
-        /// Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal                 Preenchimento obrigatório para o modal aéreo.                 A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo.
+        /// Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal  Preenchimento obrigatório para o modal aéreo.  A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo.
         /// </summary>
-        /// <value>Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal                 Preenchimento obrigatório para o modal aéreo.                 A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo.</value>
+        /// <value>Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal  Preenchimento obrigatório para o modal aéreo.  A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo.</value>
         [DataMember(Name = "grEmb", EmitDefaultValue = false)]
         public string grEmb { get; set; }
 

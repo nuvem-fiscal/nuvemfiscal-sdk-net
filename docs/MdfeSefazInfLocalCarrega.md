@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfLocalCarrega
+Informações da localização de carregamento do MDF-e de carga lotação.
 
 ## Propriedades
 

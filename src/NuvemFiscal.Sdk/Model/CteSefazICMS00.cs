@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazICMS00
+    /// Prestação sujeito à tributação normal do ICMS.
     /// </summary>
     [DataContract(Name = "CteSefazICMS00")]
     public partial class CteSefazICMS00 : IEquatable<CteSefazICMS00>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazICMS00" /> class.
         /// </summary>
-        /// <param name="cST">classificação Tributária do Serviço.  00 - tributação normal ICMS. (required).</param>
+        /// <param name="cST">classificação Tributária do Serviço.  * 00 - tributação normal ICMS (required).</param>
         /// <param name="vBC">Valor da BC do ICMS. (required).</param>
         /// <param name="pICMS">Alíquota do ICMS. (required).</param>
         /// <param name="vICMS">Valor do ICMS. (required).</param>
@@ -54,9 +54,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// classificação Tributária do Serviço.  00 - tributação normal ICMS.
+        /// classificação Tributária do Serviço.  * 00 - tributação normal ICMS
         /// </summary>
-        /// <value>classificação Tributária do Serviço.  00 - tributação normal ICMS.</value>
+        /// <value>classificação Tributária do Serviço.  * 00 - tributação normal ICMS</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazLocal
+    /// Identificação do Local de Entrega (informar apenas quando for diferente do endereço do destinatário).
     /// </summary>
     [DataContract(Name = "NfeSefazLocal")]
     public partial class NfeSefazLocal : IEquatable<NfeSefazLocal>, IValidatableObject

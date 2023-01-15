@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazDetPag
+    /// Grupo de detalhamento da forma de pagamento.
     /// </summary>
     [DataContract(Name = "NfeSefazDetPag")]
     public partial class NfeSefazDetPag : IEquatable<NfeSefazDetPag>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazDetPag" /> class.
         /// </summary>
-        /// <param name="indPag">Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;..</param>
+        /// <param name="indPag">Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo.</param>
         /// <param name="tPag">Forma de Pagamento:. (required).</param>
         /// <param name="xPag">Descrição do Meio de Pagamento..</param>
         /// <param name="vPag">Valor do Pagamento. Esta tag poderá ser omitida quando a tag tPag&#x3D;90 (Sem Pagamento), caso contrário deverá ser preenchida. (required).</param>
@@ -56,9 +56,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;.
+        /// Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo
         /// </summary>
-        /// <value>Indicador da Forma de Pagamento:0-Pagamento à Vista;1-Pagamento à Prazo;.</value>
+        /// <value>Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo</value>
         [DataMember(Name = "indPag", EmitDefaultValue = false)]
         public int indPag { get; set; }
 

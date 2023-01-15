@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazInfAdic
+    /// Informações adicionais da NF-e.
     /// </summary>
     [DataContract(Name = "NfeSefazInfAdic")]
     public partial class NfeSefazInfAdic : IEquatable<NfeSefazInfAdic>, IValidatableObject
@@ -33,9 +33,9 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="infAdFisco">Informações adicionais de interesse do Fisco (v2.0)..</param>
         /// <param name="infCpl">Informações complementares de interesse do Contribuinte..</param>
-        /// <param name="obsCont">Campo de uso livre do contribuinte  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto..</param>
-        /// <param name="obsFisco">Campo de uso exclusivo do Fisco  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto..</param>
-        /// <param name="procRef">Grupo de informações do  processo referenciado..</param>
+        /// <param name="obsCont">obsCont.</param>
+        /// <param name="obsFisco">obsFisco.</param>
+        /// <param name="procRef">procRef.</param>
         public NfeSefazInfAdic(string infAdFisco = default(string), string infCpl = default(string), List<NfeSefazInfAdicObsCont> obsCont = default(List<NfeSefazInfAdicObsCont>), List<NfeSefazInfAdicObsFisco> obsFisco = default(List<NfeSefazInfAdicObsFisco>), List<NfeSefazProcRef> procRef = default(List<NfeSefazProcRef>))
         {
             this.infAdFisco = infAdFisco;
@@ -60,23 +60,20 @@ namespace NuvemFiscal.Sdk.Model
         public string infCpl { get; set; }
 
         /// <summary>
-        /// Campo de uso livre do contribuinte  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.
+        /// Gets or Sets obsCont
         /// </summary>
-        /// <value>Campo de uso livre do contribuinte  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.</value>
         [DataMember(Name = "obsCont", EmitDefaultValue = false)]
         public List<NfeSefazInfAdicObsCont> obsCont { get; set; }
 
         /// <summary>
-        /// Campo de uso exclusivo do Fisco  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.
+        /// Gets or Sets obsFisco
         /// </summary>
-        /// <value>Campo de uso exclusivo do Fisco  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.</value>
         [DataMember(Name = "obsFisco", EmitDefaultValue = false)]
         public List<NfeSefazInfAdicObsFisco> obsFisco { get; set; }
 
         /// <summary>
-        /// Grupo de informações do  processo referenciado.
+        /// Gets or Sets procRef
         /// </summary>
-        /// <value>Grupo de informações do  processo referenciado.</value>
         [DataMember(Name = "procRef", EmitDefaultValue = false)]
         public List<NfeSefazProcRef> procRef { get; set; }
 

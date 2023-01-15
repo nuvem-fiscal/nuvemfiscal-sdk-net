@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazCana
+    /// Informações de registro aquisições de cana.
     /// </summary>
     [DataContract(Name = "NfeSefazCana")]
     public partial class NfeSefazCana : IEquatable<NfeSefazCana>, IValidatableObject
@@ -38,11 +38,11 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="safra">Identificação da safra. (required).</param>
         /// <param name="_ref">Mês e Ano de Referência, formato: MM/AAAA. (required).</param>
-        /// <param name="forDia">Fornecimentos diários. (required).</param>
+        /// <param name="forDia">forDia (required).</param>
         /// <param name="qTotMes">Total do mês. (required).</param>
         /// <param name="qTotAnt">Total Anterior. (required).</param>
         /// <param name="qTotGer">Total Geral. (required).</param>
-        /// <param name="deduc">Deduções - Taxas e Contribuições..</param>
+        /// <param name="deduc">deduc.</param>
         /// <param name="vFor">Valor  dos fornecimentos. (required).</param>
         /// <param name="vTotDed">Valor Total das Deduções. (required).</param>
         /// <param name="vLiqFor">Valor Líquido dos fornecimentos. (required).</param>
@@ -90,9 +90,8 @@ namespace NuvemFiscal.Sdk.Model
         public string _ref { get; set; }
 
         /// <summary>
-        /// Fornecimentos diários.
+        /// Gets or Sets forDia
         /// </summary>
-        /// <value>Fornecimentos diários.</value>
         [DataMember(Name = "forDia", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazForDia> forDia { get; set; }
 
@@ -118,9 +117,8 @@ namespace NuvemFiscal.Sdk.Model
         public decimal qTotGer { get; set; }
 
         /// <summary>
-        /// Deduções - Taxas e Contribuições.
+        /// Gets or Sets deduc
         /// </summary>
-        /// <value>Deduções - Taxas e Contribuições.</value>
         [DataMember(Name = "deduc", EmitDefaultValue = false)]
         public List<NfeSefazDeduc> deduc { get; set; }
 

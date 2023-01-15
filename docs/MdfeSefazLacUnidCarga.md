@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazLacUnidCarga
+Lacres das Unidades de Carga.
 
 ## Propriedades
 

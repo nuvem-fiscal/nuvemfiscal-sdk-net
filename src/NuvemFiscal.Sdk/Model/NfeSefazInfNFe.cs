@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazInfNFe
+    /// Informações da Nota Fiscal eletrônica.
     /// </summary>
     [DataContract(Name = "NfeSefazInfNFe")]
     public partial class NfeSefazInfNFe : IEquatable<NfeSefazInfNFe>, IValidatableObject
@@ -44,8 +44,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dest">dest.</param>
         /// <param name="retirada">retirada.</param>
         /// <param name="entrega">entrega.</param>
-        /// <param name="autXML">Pessoas autorizadas para o download do XML da NF-e..</param>
-        /// <param name="det">Dados dos detalhes da NF-e. (required).</param>
+        /// <param name="autXML">autXML.</param>
+        /// <param name="det">det (required).</param>
         /// <param name="total">total (required).</param>
         /// <param name="transp">transp (required).</param>
         /// <param name="cobr">cobr.</param>
@@ -168,16 +168,14 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazLocal entrega { get; set; }
 
         /// <summary>
-        /// Pessoas autorizadas para o download do XML da NF-e.
+        /// Gets or Sets autXML
         /// </summary>
-        /// <value>Pessoas autorizadas para o download do XML da NF-e.</value>
         [DataMember(Name = "autXML", EmitDefaultValue = false)]
         public List<NfeSefazAutXML> autXML { get; set; }
 
         /// <summary>
-        /// Dados dos detalhes da NF-e.
+        /// Gets or Sets det
         /// </summary>
-        /// <value>Dados dos detalhes da NF-e.</value>
         [DataMember(Name = "det", IsRequired = true, EmitDefaultValue = true)]
         public List<NfeSefazDet> det { get; set; }
 

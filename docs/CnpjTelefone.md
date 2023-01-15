@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjTelefone
+Telefone do estabelecimento.
 
 ## Propriedades
 

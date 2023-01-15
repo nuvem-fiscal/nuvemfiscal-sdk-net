@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfGlobalizado
+Informações do CT-e Globalizado.
 
 ## Propriedades
 

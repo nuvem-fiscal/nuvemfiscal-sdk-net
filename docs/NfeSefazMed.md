@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazMed
+grupo do detalhamento de Medicamentos e de matérias-primas farmacêuticas.
 
 ## Propriedades
 

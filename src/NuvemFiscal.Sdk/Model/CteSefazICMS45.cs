@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazICMS45
+    /// ICMS  Isento, não Tributado ou diferido.
     /// </summary>
     [DataContract(Name = "CteSefazICMS45")]
     public partial class CteSefazICMS45 : IEquatable<CteSefazICMS45>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazICMS45" /> class.
         /// </summary>
-        /// <param name="cST">Classificação Tributária do Serviço.  Preencher com:          40 - ICMS isenção;          41 - ICMS não tributada;          51 - ICMS diferido. (required).</param>
+        /// <param name="cST">Classificação Tributária do Serviço.  Preencher com:  * 40 - ICMS isenção  * 41 - ICMS não tributada  * 51 - ICMS diferido (required).</param>
         public CteSefazICMS45(string cST = default(string))
         {
             // to ensure "cST" is required (not null)
@@ -48,9 +48,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Classificação Tributária do Serviço.  Preencher com:          40 - ICMS isenção;          41 - ICMS não tributada;          51 - ICMS diferido.
+        /// Classificação Tributária do Serviço.  Preencher com:  * 40 - ICMS isenção  * 41 - ICMS não tributada  * 51 - ICMS diferido
         /// </summary>
-        /// <value>Classificação Tributária do Serviço.  Preencher com:          40 - ICMS isenção;          41 - ICMS não tributada;          51 - ICMS diferido.</value>
+        /// <value>Classificação Tributária do Serviço.  Preencher com:  * 40 - ICMS isenção  * 41 - ICMS não tributada  * 51 - ICMS diferido</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

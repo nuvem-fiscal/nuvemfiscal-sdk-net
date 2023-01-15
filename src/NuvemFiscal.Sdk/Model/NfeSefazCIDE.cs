@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazCIDE
+    /// CIDE Combustíveis.
     /// </summary>
     [DataContract(Name = "NfeSefazCIDE")]
     public partial class NfeSefazCIDE : IEquatable<NfeSefazCIDE>, IValidatableObject

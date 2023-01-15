@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazICMSUFFim
+Informações do ICMS de partilha com a UF de término do serviço de transporte na operação interestadual.  Grupo a ser informado nas prestações interestaduais para consumidor final, não contribuinte do ICMS.
 
 ## Propriedades
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazEmit
+    /// Identificação do Emitente do Manifesto.
     /// </summary>
     [DataContract(Name = "MdfeSefazEmit")]
     public partial class MdfeSefazEmit : IEquatable<MdfeSefazEmit>, IValidatableObject
@@ -32,7 +32,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="MdfeSefazEmit" /> class.
         /// </summary>
         /// <param name="cNPJ">CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica..</param>
-        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.    Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física..</param>
+        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física..</param>
         /// <param name="iE">Inscrição Estadual do emitemte.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="xNome">Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
         /// <param name="xFant">Nome fantasia do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
@@ -55,9 +55,9 @@ namespace NuvemFiscal.Sdk.Model
         public string CNPJ { get; set; }
 
         /// <summary>
-        /// CPF do emitente.  Informar zeros não significativos.    Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física.
+        /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física.
         /// </summary>
-        /// <value>CPF do emitente.  Informar zeros não significativos.    Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física.</value>
+        /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física.</value>
         [DataMember(Name = "CPF", EmitDefaultValue = false)]
         public string CPF { get; set; }
 

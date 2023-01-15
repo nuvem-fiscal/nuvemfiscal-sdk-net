@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfPercurso
+Informações do Percurso do MDF-e.
 
 ## Propriedades
 

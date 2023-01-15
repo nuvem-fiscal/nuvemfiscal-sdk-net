@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazCOFINS
+Dados do COFINS.
 
 ## Propriedades
 

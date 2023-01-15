@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazRefNFP
+    /// Grupo com as informações NF de produtor referenciada.
     /// </summary>
     [DataContract(Name = "NfeSefazRefNFP")]
     public partial class NfeSefazRefNFP : IEquatable<NfeSefazRefNFP>, IValidatableObject
@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="iE">IE do emitente da NF de Produtor. (required).</param>
         /// <param name="mod">Código do modelo do Documento Fiscal - utilizar 04 para NF de produtor  ou 01 para NF Avulsa. (required).</param>
         /// <param name="serie">Série do Documento Fiscal, informar zero se inexistentesérie. (required).</param>
-        /// <param name="nNF">Número do Documento Fiscal - 1 – 999999999. (required).</param>
+        /// <param name="nNF">Número do Documento Fiscal - 1 - 999999999. (required).</param>
         public NfeSefazRefNFP(int cUF = default(int), string aAMM = default(string), string cNPJ = default(string), string cPF = default(string), string iE = default(string), string mod = default(string), int serie = default(int), int nNF = default(int))
         {
             this.cUF = cUF;
@@ -121,9 +121,9 @@ namespace NuvemFiscal.Sdk.Model
         public int serie { get; set; }
 
         /// <summary>
-        /// Número do Documento Fiscal - 1 – 999999999.
+        /// Número do Documento Fiscal - 1 - 999999999.
         /// </summary>
-        /// <value>Número do Documento Fiscal - 1 – 999999999.</value>
+        /// <value>Número do Documento Fiscal - 1 - 999999999.</value>
         [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = true)]
         public int nNF { get; set; }
 

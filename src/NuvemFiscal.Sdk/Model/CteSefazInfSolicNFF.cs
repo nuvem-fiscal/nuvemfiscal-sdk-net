@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfSolicNFF
+    /// Grupo de informações do pedido de emissão da Nota Fiscal Fácil.
     /// </summary>
     [DataContract(Name = "CteSefazInfSolicNFF")]
     public partial class CteSefazInfSolicNFF : IEquatable<CteSefazInfSolicNFF>, IValidatableObject

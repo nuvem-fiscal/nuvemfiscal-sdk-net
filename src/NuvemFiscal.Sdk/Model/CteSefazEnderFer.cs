@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazEnderFer
+    /// Dados do endereço da ferrovia envolvida.
     /// </summary>
     [DataContract(Name = "CteSefazEnderFer")]
     public partial class CteSefazEnderFer : IEquatable<CteSefazEnderFer>, IValidatableObject
@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nro">Número..</param>
         /// <param name="xCpl">Complemento..</param>
         /// <param name="xBairro">Bairro..</param>
-        /// <param name="cMun">Código do município.  Utilizar a tabela do IBGE       Informar 9999999 para operações com o exterior. (required).</param>
+        /// <param name="cMun">Código do município.  Utilizar a tabela do IBGE  Informar 9999999 para operações com o exterior. (required).</param>
         /// <param name="xMun">Nome do município.  Informar EXTERIOR para operações com o exterior. (required).</param>
         /// <param name="cEP">CEP. (required).</param>
         /// <param name="uF">Sigla da UF.  Informar EX para operações com o exterior. (required).</param>
@@ -110,9 +110,9 @@ namespace NuvemFiscal.Sdk.Model
         public string xBairro { get; set; }
 
         /// <summary>
-        /// Código do município.  Utilizar a tabela do IBGE       Informar 9999999 para operações com o exterior.
+        /// Código do município.  Utilizar a tabela do IBGE  Informar 9999999 para operações com o exterior.
         /// </summary>
-        /// <value>Código do município.  Utilizar a tabela do IBGE       Informar 9999999 para operações com o exterior.</value>
+        /// <value>Código do município.  Utilizar a tabela do IBGE  Informar 9999999 para operações com o exterior.</value>
         [DataMember(Name = "cMun", IsRequired = true, EmitDefaultValue = true)]
         public string cMun { get; set; }
 

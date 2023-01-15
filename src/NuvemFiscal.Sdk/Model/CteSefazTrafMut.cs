@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazTrafMut
+    /// Detalhamento de informações para o tráfego mútuo.
     /// </summary>
     [DataContract(Name = "CteSefazTrafMut")]
     public partial class CteSefazTrafMut : IEquatable<CteSefazTrafMut>, IValidatableObject
@@ -36,11 +36,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazTrafMut" /> class.
         /// </summary>
-        /// <param name="respFat">Responsável pelo Faturamento.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino. (required).</param>
-        /// <param name="ferrEmi">Ferrovia Emitente do CTe.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino. (required).</param>
+        /// <param name="respFat">Responsável pelo Faturamento.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino (required).</param>
+        /// <param name="ferrEmi">Ferrovia Emitente do CTe.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino (required).</param>
         /// <param name="vFrete">Valor do Frete do Tráfego Mútuo. (required).</param>
         /// <param name="chCTeFerroOrigem">Chave de acesso do CT-e emitido pelo ferrovia de origem..</param>
-        /// <param name="ferroEnv">Informações das Ferrovias Envolvidas..</param>
+        /// <param name="ferroEnv">ferroEnv.</param>
         public CteSefazTrafMut(int respFat = default(int), int ferrEmi = default(int), decimal vFrete = default(decimal), string chCTeFerroOrigem = default(string), List<CteSefazFerroEnv> ferroEnv = default(List<CteSefazFerroEnv>))
         {
             this.respFat = respFat;
@@ -51,16 +51,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Responsável pelo Faturamento.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.
+        /// Responsável pelo Faturamento.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino
         /// </summary>
-        /// <value>Responsável pelo Faturamento.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.</value>
+        /// <value>Responsável pelo Faturamento.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino</value>
         [DataMember(Name = "respFat", IsRequired = true, EmitDefaultValue = true)]
         public int respFat { get; set; }
 
         /// <summary>
-        /// Ferrovia Emitente do CTe.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.
+        /// Ferrovia Emitente do CTe.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino
         /// </summary>
-        /// <value>Ferrovia Emitente do CTe.  Preencher com:            1-Ferrovia de origem;            2-Ferrovia de destino.</value>
+        /// <value>Ferrovia Emitente do CTe.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino</value>
         [DataMember(Name = "ferrEmi", IsRequired = true, EmitDefaultValue = true)]
         public int ferrEmi { get; set; }
 
@@ -79,9 +79,8 @@ namespace NuvemFiscal.Sdk.Model
         public string chCTeFerroOrigem { get; set; }
 
         /// <summary>
-        /// Informações das Ferrovias Envolvidas.
+        /// Gets or Sets ferroEnv
         /// </summary>
-        /// <value>Informações das Ferrovias Envolvidas.</value>
         [DataMember(Name = "ferroEnv", EmitDefaultValue = false)]
         public List<CteSefazFerroEnv> ferroEnv { get; set; }
 

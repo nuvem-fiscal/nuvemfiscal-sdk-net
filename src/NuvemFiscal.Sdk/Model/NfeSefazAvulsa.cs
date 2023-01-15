@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazAvulsa
+    /// Emissão de avulsa, informar os dados do Fisco emitente.
     /// </summary>
     [DataContract(Name = "NfeSefazAvulsa")]
     public partial class NfeSefazAvulsa : IEquatable<NfeSefazAvulsa>, IValidatableObject

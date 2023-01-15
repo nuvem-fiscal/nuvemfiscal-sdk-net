@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazTomaICMS
+    /// Tomador é contribuinte do ICMS, mas não é emitente de documento fiscal eletrônico.
     /// </summary>
     [DataContract(Name = "CteSefazTomaICMS")]
     public partial class CteSefazTomaICMS : IEquatable<CteSefazTomaICMS>, IValidatableObject

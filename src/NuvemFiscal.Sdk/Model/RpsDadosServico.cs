@@ -36,20 +36,20 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsDadosServico" /> class.
         /// </summary>
-        /// <param name="issRetido">Reter ISSQN.  Valor padrão: &#x60;false&#x60;.</param>
-        /// <param name="responsavelRetencao">Responsável pela retenção:  0 - Prestador;  1 - Tomador;  2 - Intermediário.    Valor padrão: &#x60;0&#x60;.</param>
+        /// <param name="issRetido">Reter ISSQN..</param>
+        /// <param name="responsavelRetencao">Responsável pela retenção:  * 0 - Prestador;  * 1 - Tomador;  * 2 - Intermediário..</param>
         /// <param name="itemListaServico">Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.    Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador. (required).</param>
         /// <param name="codigoCnae">Código CNAE (Classificação Nacional de Atividades Econômicas)..</param>
         /// <param name="codigoTributacaoMunicipio">Código de tributação do município..</param>
         /// <param name="discriminacao">Detalhamento do serviço prestado. (required).</param>
         /// <param name="codigoMunicipio">Código IBGE do município de prestação do serviço.  Caso não informado, será considerado o município do prestador..</param>
         /// <param name="codigoPais">Código do país de prestação do serviço..</param>
-        /// <param name="tipoTributacao">Tipo de Tributação do Serviço:  1 - Isento de ISS  2 - Imune  3 - Não Incidência no Município  4 - Não Tributável  5 - Retido  6 - Tributável Dentro do Município  7 - Tributável Fora do Município  8 - Tributável Dentro do Município pelo tomador    Valor padrão: &#x60;6&#x60;.</param>
-        /// <param name="exigibilidadeIss">Exigibilidade do ISS:  1 - Exigível  2 - Não Incidência  3 - Isenção  4 - Exportação  5 - Imunidade  6 - Suspenso por Decisão Judicial  7 - Suspenso por Processo Administrativo    Valor padrão: &#x60;1&#x60;.</param>
+        /// <param name="tipoTributacao">Tipo de Tributação do Serviço:  * 1 - Isento de ISS  * 2 - Imune  * 3 - Não Incidência no Município  * 4 - Não Tributável  * 5 - Retido  * 6 - Tributável Dentro do Município  * 7 - Tributável Fora do Município  * 8 - Tributável Dentro do Município pelo tomador.</param>
+        /// <param name="exigibilidadeIss">Exigibilidade do ISS:  * 1 - Exigível  * 2 - Não Incidência  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Suspenso por Decisão Judicial  * 7 - Suspenso por Processo Administrativo.</param>
         /// <param name="codigoMunicipioIncidencia">Código IBGE do município de incidência do ISSQN..</param>
         /// <param name="numeroProcesso">Número do Processo de Suspensão da Exigibilidade..</param>
         /// <param name="unidade">Unidade do serviço prestado..</param>
-        /// <param name="quantidade">Quantidade dos serviços prestados.  Valor padrão: &#x60;1&#x60;.</param>
+        /// <param name="quantidade">Quantidade dos serviços prestados..</param>
         /// <param name="valores">valores (required).</param>
         public RpsDadosServico(bool issRetido = default(bool), int responsavelRetencao = default(int), string itemListaServico = default(string), string codigoCnae = default(string), string codigoTributacaoMunicipio = default(string), string discriminacao = default(string), string codigoMunicipio = default(string), string codigoPais = default(string), int tipoTributacao = default(int), int exigibilidadeIss = default(int), string codigoMunicipioIncidencia = default(string), string numeroProcesso = default(string), string unidade = default(string), decimal quantidade = default(decimal), RpsServicoValores valores = default(RpsServicoValores))
         {
@@ -86,16 +86,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Reter ISSQN.  Valor padrão: &#x60;false&#x60;
+        /// Reter ISSQN.
         /// </summary>
-        /// <value>Reter ISSQN.  Valor padrão: &#x60;false&#x60;</value>
+        /// <value>Reter ISSQN.</value>
         [DataMember(Name = "iss_retido", EmitDefaultValue = true)]
         public bool iss_retido { get; set; }
 
         /// <summary>
-        /// Responsável pela retenção:  0 - Prestador;  1 - Tomador;  2 - Intermediário.    Valor padrão: &#x60;0&#x60;
+        /// Responsável pela retenção:  * 0 - Prestador;  * 1 - Tomador;  * 2 - Intermediário.
         /// </summary>
-        /// <value>Responsável pela retenção:  0 - Prestador;  1 - Tomador;  2 - Intermediário.    Valor padrão: &#x60;0&#x60;</value>
+        /// <value>Responsável pela retenção:  * 0 - Prestador;  * 1 - Tomador;  * 2 - Intermediário.</value>
         [DataMember(Name = "responsavel_retencao", EmitDefaultValue = false)]
         public int responsavel_retencao { get; set; }
 
@@ -142,16 +142,16 @@ namespace NuvemFiscal.Sdk.Model
         public string codigo_pais { get; set; }
 
         /// <summary>
-        /// Tipo de Tributação do Serviço:  1 - Isento de ISS  2 - Imune  3 - Não Incidência no Município  4 - Não Tributável  5 - Retido  6 - Tributável Dentro do Município  7 - Tributável Fora do Município  8 - Tributável Dentro do Município pelo tomador    Valor padrão: &#x60;6&#x60;
+        /// Tipo de Tributação do Serviço:  * 1 - Isento de ISS  * 2 - Imune  * 3 - Não Incidência no Município  * 4 - Não Tributável  * 5 - Retido  * 6 - Tributável Dentro do Município  * 7 - Tributável Fora do Município  * 8 - Tributável Dentro do Município pelo tomador
         /// </summary>
-        /// <value>Tipo de Tributação do Serviço:  1 - Isento de ISS  2 - Imune  3 - Não Incidência no Município  4 - Não Tributável  5 - Retido  6 - Tributável Dentro do Município  7 - Tributável Fora do Município  8 - Tributável Dentro do Município pelo tomador    Valor padrão: &#x60;6&#x60;</value>
+        /// <value>Tipo de Tributação do Serviço:  * 1 - Isento de ISS  * 2 - Imune  * 3 - Não Incidência no Município  * 4 - Não Tributável  * 5 - Retido  * 6 - Tributável Dentro do Município  * 7 - Tributável Fora do Município  * 8 - Tributável Dentro do Município pelo tomador</value>
         [DataMember(Name = "tipo_tributacao", EmitDefaultValue = false)]
         public int tipo_tributacao { get; set; }
 
         /// <summary>
-        /// Exigibilidade do ISS:  1 - Exigível  2 - Não Incidência  3 - Isenção  4 - Exportação  5 - Imunidade  6 - Suspenso por Decisão Judicial  7 - Suspenso por Processo Administrativo    Valor padrão: &#x60;1&#x60;
+        /// Exigibilidade do ISS:  * 1 - Exigível  * 2 - Não Incidência  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Suspenso por Decisão Judicial  * 7 - Suspenso por Processo Administrativo
         /// </summary>
-        /// <value>Exigibilidade do ISS:  1 - Exigível  2 - Não Incidência  3 - Isenção  4 - Exportação  5 - Imunidade  6 - Suspenso por Decisão Judicial  7 - Suspenso por Processo Administrativo    Valor padrão: &#x60;1&#x60;</value>
+        /// <value>Exigibilidade do ISS:  * 1 - Exigível  * 2 - Não Incidência  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Suspenso por Decisão Judicial  * 7 - Suspenso por Processo Administrativo</value>
         [DataMember(Name = "exigibilidade_iss", EmitDefaultValue = false)]
         public int exigibilidade_iss { get; set; }
 
@@ -177,9 +177,9 @@ namespace NuvemFiscal.Sdk.Model
         public string unidade { get; set; }
 
         /// <summary>
-        /// Quantidade dos serviços prestados.  Valor padrão: &#x60;1&#x60;
+        /// Quantidade dos serviços prestados.
         /// </summary>
-        /// <value>Quantidade dos serviços prestados.  Valor padrão: &#x60;1&#x60;</value>
+        /// <value>Quantidade dos serviços prestados.</value>
         [DataMember(Name = "quantidade", EmitDefaultValue = false)]
         public decimal quantidade { get; set; }
 

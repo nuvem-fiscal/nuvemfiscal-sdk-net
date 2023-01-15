@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazICMSTot
+Totais referentes ao ICMS.
 
 ## Propriedades
 

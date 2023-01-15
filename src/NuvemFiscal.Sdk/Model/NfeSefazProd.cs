@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazProd
+    /// Dados dos produtos e serviços da NF-e.
     /// </summary>
     [DataContract(Name = "NfeSefazProd")]
     public partial class NfeSefazProd : IEquatable<NfeSefazProd>, IValidatableObject
@@ -61,9 +61,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vSeg">Valor Total do Seguro..</param>
         /// <param name="vDesc">Valor do Desconto..</param>
         /// <param name="vOutro">Outras despesas acessórias..</param>
-        /// <param name="indTot">Este campo deverá ser preenchido com:   0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd)   1  – o valor do item (vProd) compõe o valor total da NF-e (vProd). (required).</param>
-        /// <param name="dI">Delcaração de Importação  (NT 2011/004)..</param>
-        /// <param name="detExport">Detalhe da exportação..</param>
+        /// <param name="indTot">Este campo deverá ser preenchido com:  * 0 - o valor do item (vProd) não compõe o valor total da NF-e (vProd)  * 1 - o valor do item (vProd) compõe o valor total da NF-e (vProd) (required).</param>
+        /// <param name="dI">dI.</param>
+        /// <param name="detExport">detExport.</param>
         /// <param name="xPed">pedido de compra - Informação de interesse do emissor para controle do B2B..</param>
         /// <param name="nItemPed">Número do Item do Pedido de Compra - Identificação do número do item do pedido de Compra..</param>
         /// <param name="nFCI">Número de controle da FCI - Ficha de Conteúdo de Importação..</param>
@@ -72,7 +72,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infProdEmb">infProdEmb.</param>
         /// <param name="veicProd">veicProd.</param>
         /// <param name="med">med.</param>
-        /// <param name="arma">Armamentos..</param>
+        /// <param name="arma">arma.</param>
         /// <param name="comb">comb.</param>
         /// <param name="nRECOPI">Número do RECOPI..</param>
         public NfeSefazProd(string cProd = default(string), string cEAN = default(string), string cBarra = default(string), string xProd = default(string), string nCM = default(string), List<string> nVE = default(List<string>), string cEST = default(string), string indEscala = default(string), string cNPJFab = default(string), string cBenef = default(string), string eXTIPI = default(string), string cFOP = default(string), string uCom = default(string), decimal qCom = default(decimal), decimal vUnCom = default(decimal), decimal vProd = default(decimal), string cEANTrib = default(string), string cBarraTrib = default(string), string uTrib = default(string), decimal qTrib = default(decimal), decimal vUnTrib = default(decimal), decimal vFrete = default(decimal), decimal vSeg = default(decimal), decimal vDesc = default(decimal), decimal vOutro = default(decimal), int indTot = default(int), List<NfeSefazDI> dI = default(List<NfeSefazDI>), List<NfeSefazDetExport> detExport = default(List<NfeSefazDetExport>), string xPed = default(string), int nItemPed = default(int), string nFCI = default(string), List<NfeSefazRastro> rastro = default(List<NfeSefazRastro>), NfeSefazInfProdNFF infProdNFF = default(NfeSefazInfProdNFF), NfeSefazInfProdEmb infProdEmb = default(NfeSefazInfProdEmb), NfeSefazVeicProd veicProd = default(NfeSefazVeicProd), NfeSefazMed med = default(NfeSefazMed), List<NfeSefazArma> arma = default(List<NfeSefazArma>), NfeSefazComb comb = default(NfeSefazComb), string nRECOPI = default(string))
@@ -332,23 +332,21 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vOutro { get; set; }
 
         /// <summary>
-        /// Este campo deverá ser preenchido com:   0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd)   1  – o valor do item (vProd) compõe o valor total da NF-e (vProd).
+        /// Este campo deverá ser preenchido com:  * 0 - o valor do item (vProd) não compõe o valor total da NF-e (vProd)  * 1 - o valor do item (vProd) compõe o valor total da NF-e (vProd)
         /// </summary>
-        /// <value>Este campo deverá ser preenchido com:   0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd)   1  – o valor do item (vProd) compõe o valor total da NF-e (vProd).</value>
+        /// <value>Este campo deverá ser preenchido com:  * 0 - o valor do item (vProd) não compõe o valor total da NF-e (vProd)  * 1 - o valor do item (vProd) compõe o valor total da NF-e (vProd)</value>
         [DataMember(Name = "indTot", IsRequired = true, EmitDefaultValue = true)]
         public int indTot { get; set; }
 
         /// <summary>
-        /// Delcaração de Importação  (NT 2011/004).
+        /// Gets or Sets DI
         /// </summary>
-        /// <value>Delcaração de Importação  (NT 2011/004).</value>
         [DataMember(Name = "DI", EmitDefaultValue = false)]
         public List<NfeSefazDI> DI { get; set; }
 
         /// <summary>
-        /// Detalhe da exportação.
+        /// Gets or Sets detExport
         /// </summary>
-        /// <value>Detalhe da exportação.</value>
         [DataMember(Name = "detExport", EmitDefaultValue = false)]
         public List<NfeSefazDetExport> detExport { get; set; }
 
@@ -404,9 +402,8 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazMed med { get; set; }
 
         /// <summary>
-        /// Armamentos.
+        /// Gets or Sets arma
         /// </summary>
-        /// <value>Armamentos.</value>
         [DataMember(Name = "arma", EmitDefaultValue = false)]
         public List<NfeSefazArma> arma { get; set; }
 

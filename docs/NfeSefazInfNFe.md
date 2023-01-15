@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazInfNFe
+Informações da Nota Fiscal eletrônica.
 
 ## Propriedades
 
@@ -12,8 +13,8 @@ Nome | Tipo | Descrição | Comentários
 **dest** | [**NfeSefazDest**](NfeSefazDest.md) |  | [optional] 
 **retirada** | [**NfeSefazLocal**](NfeSefazLocal.md) |  | [optional] 
 **entrega** | [**NfeSefazLocal**](NfeSefazLocal.md) |  | [optional] 
-**autXML** | [**List&lt;NfeSefazAutXML&gt;**](NfeSefazAutXML.md) | Pessoas autorizadas para o download do XML da NF-e. | [optional] 
-**det** | [**List&lt;NfeSefazDet&gt;**](NfeSefazDet.md) | Dados dos detalhes da NF-e. | 
+**autXML** | [**List&lt;NfeSefazAutXML&gt;**](NfeSefazAutXML.md) |  | [optional] 
+**det** | [**List&lt;NfeSefazDet&gt;**](NfeSefazDet.md) |  | 
 **total** | [**NfeSefazTotal**](NfeSefazTotal.md) |  | 
 **transp** | [**NfeSefazTransp**](NfeSefazTransp.md) |  | 
 **cobr** | [**NfeSefazCobr**](NfeSefazCobr.md) |  | [optional] 

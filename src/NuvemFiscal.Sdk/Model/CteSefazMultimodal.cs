@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazMultimodal" /> class.
         /// </summary>
         /// <param name="cOTM">Número do Certificado do Operador de Transporte Multimodal. (required).</param>
-        /// <param name="indNegociavel">Indicador Negociável  Preencher com: 0 - Não Negociável; 1 - Negociável. (required).</param>
+        /// <param name="indNegociavel">Indicador Negociável  Preencher com: 0 - Não Negociável  * 1 - Negociável (required).</param>
         /// <param name="seg">seg.</param>
         public CteSefazMultimodal(string cOTM = default(string), int indNegociavel = default(int), CteSefazSeg seg = default(CteSefazSeg))
         {
@@ -59,9 +59,9 @@ namespace NuvemFiscal.Sdk.Model
         public string COTM { get; set; }
 
         /// <summary>
-        /// Indicador Negociável  Preencher com: 0 - Não Negociável; 1 - Negociável.
+        /// Indicador Negociável  Preencher com: 0 - Não Negociável  * 1 - Negociável
         /// </summary>
-        /// <value>Indicador Negociável  Preencher com: 0 - Não Negociável; 1 - Negociável.</value>
+        /// <value>Indicador Negociável  Preencher com: 0 - Não Negociável  * 1 - Negociável</value>
         [DataMember(Name = "indNegociavel", IsRequired = true, EmitDefaultValue = true)]
         public int indNegociavel { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfLocalDescarrega
+    /// Informações da localização de descarregamento do MDF-e de carga lotação.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfLocalDescarrega")]
     public partial class MdfeSefazInfLocalDescarrega : IEquatable<MdfeSefazInfLocalDescarrega>, IValidatableObject

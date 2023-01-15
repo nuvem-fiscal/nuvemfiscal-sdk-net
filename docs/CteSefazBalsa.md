@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazBalsa
+Grupo de informações das balsas.
 
 ## Propriedades
 

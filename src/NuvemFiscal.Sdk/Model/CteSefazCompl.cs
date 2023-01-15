@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazCompl
+    /// Dados complementares do CT-e para fins operacionais ou comerciais.
     /// </summary>
     [DataContract(Name = "CteSefazCompl")]
     public partial class CteSefazCompl : IEquatable<CteSefazCompl>, IValidatableObject
@@ -31,16 +31,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazCompl" /> class.
         /// </summary>
-        /// <param name="xCaracAd">Característica adicional do transporte.  Texto livre:  REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc..</param>
-        /// <param name="xCaracSer">Característica adicional do serviço.  Texto livre:             ENTREGA EXPRESSA; LOGÍSTICA REVERSA; CONVENCIONAL; EMERGENCIAL; etc..</param>
+        /// <param name="xCaracAd">Característica adicional do transporte.  Texto livre:  REENTREGA  DEVOLUÇÃO  REFATURAMENTO  etc..</param>
+        /// <param name="xCaracSer">Característica adicional do serviço.  Texto livre:  ENTREGA EXPRESSA  LOGÍSTICA REVERSA  CONVENCIONAL  EMERGENCIAL  etc..</param>
         /// <param name="xEmi">Funcionário emissor do CTe..</param>
         /// <param name="fluxo">fluxo.</param>
         /// <param name="entrega">entrega.</param>
         /// <param name="origCalc">Município de origem para efeito de cálculo do frete..</param>
         /// <param name="destCalc">Município de destino para efeito de cálculo do frete..</param>
         /// <param name="xObs">Observações Gerais..</param>
-        /// <param name="obsCont">Campo de uso livre do contribuinte.  Informar o nome do campo no atributo xCampo e o conteúdo do campo no XTexto..</param>
-        /// <param name="obsFisco">Campo de uso livre do contribuinte.  Informar o nome do campo no atributo xCampo e o conteúdo do campo no XTexto..</param>
+        /// <param name="obsCont">obsCont.</param>
+        /// <param name="obsFisco">obsFisco.</param>
         public CteSefazCompl(string xCaracAd = default(string), string xCaracSer = default(string), string xEmi = default(string), CteSefazFluxo fluxo = default(CteSefazFluxo), CteSefazEntrega entrega = default(CteSefazEntrega), string origCalc = default(string), string destCalc = default(string), string xObs = default(string), List<CteSefazObsCont> obsCont = default(List<CteSefazObsCont>), List<CteSefazObsFisco> obsFisco = default(List<CteSefazObsFisco>))
         {
             this.xCaracAd = xCaracAd;
@@ -56,16 +56,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Característica adicional do transporte.  Texto livre:  REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc.
+        /// Característica adicional do transporte.  Texto livre:  REENTREGA  DEVOLUÇÃO  REFATURAMENTO  etc.
         /// </summary>
-        /// <value>Característica adicional do transporte.  Texto livre:  REENTREGA; DEVOLUÇÃO; REFATURAMENTO; etc.</value>
+        /// <value>Característica adicional do transporte.  Texto livre:  REENTREGA  DEVOLUÇÃO  REFATURAMENTO  etc.</value>
         [DataMember(Name = "xCaracAd", EmitDefaultValue = false)]
         public string xCaracAd { get; set; }
 
         /// <summary>
-        /// Característica adicional do serviço.  Texto livre:             ENTREGA EXPRESSA; LOGÍSTICA REVERSA; CONVENCIONAL; EMERGENCIAL; etc.
+        /// Característica adicional do serviço.  Texto livre:  ENTREGA EXPRESSA  LOGÍSTICA REVERSA  CONVENCIONAL  EMERGENCIAL  etc.
         /// </summary>
-        /// <value>Característica adicional do serviço.  Texto livre:             ENTREGA EXPRESSA; LOGÍSTICA REVERSA; CONVENCIONAL; EMERGENCIAL; etc.</value>
+        /// <value>Característica adicional do serviço.  Texto livre:  ENTREGA EXPRESSA  LOGÍSTICA REVERSA  CONVENCIONAL  EMERGENCIAL  etc.</value>
         [DataMember(Name = "xCaracSer", EmitDefaultValue = false)]
         public string xCaracSer { get; set; }
 
@@ -110,16 +110,14 @@ namespace NuvemFiscal.Sdk.Model
         public string xObs { get; set; }
 
         /// <summary>
-        /// Campo de uso livre do contribuinte.  Informar o nome do campo no atributo xCampo e o conteúdo do campo no XTexto.
+        /// Gets or Sets ObsCont
         /// </summary>
-        /// <value>Campo de uso livre do contribuinte.  Informar o nome do campo no atributo xCampo e o conteúdo do campo no XTexto.</value>
         [DataMember(Name = "ObsCont", EmitDefaultValue = false)]
         public List<CteSefazObsCont> ObsCont { get; set; }
 
         /// <summary>
-        /// Campo de uso livre do contribuinte.  Informar o nome do campo no atributo xCampo e o conteúdo do campo no XTexto.
+        /// Gets or Sets ObsFisco
         /// </summary>
-        /// <value>Campo de uso livre do contribuinte.  Informar o nome do campo no atributo xCampo e o conteúdo do campo no XTexto.</value>
         [DataMember(Name = "ObsFisco", EmitDefaultValue = false)]
         public List<CteSefazObsFisco> ObsFisco { get; set; }
 

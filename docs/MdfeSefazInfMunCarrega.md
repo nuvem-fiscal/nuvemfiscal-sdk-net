@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfMunCarrega
+Informações dos Municípios de Carregamento.
 
 ## Propriedades
 

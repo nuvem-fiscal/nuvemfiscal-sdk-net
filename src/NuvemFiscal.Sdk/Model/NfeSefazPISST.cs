@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazPISST
+    /// Dados do PIS Substituição Tributária.
     /// </summary>
     [DataContract(Name = "NfeSefazPISST")]
     public partial class NfeSefazPISST : IEquatable<NfeSefazPISST>, IValidatableObject

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazDetContInfDoc
+    /// Informações dos documentos dos conteiners.
     /// </summary>
     [DataContract(Name = "CteSefazDetCont_InfDoc")]
     public partial class CteSefazDetContInfDoc : IEquatable<CteSefazDetContInfDoc>, IValidatableObject
@@ -31,8 +31,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazDetContInfDoc" /> class.
         /// </summary>
-        /// <param name="infNF">Informações das NF..</param>
-        /// <param name="infNFe">Informações das NFe..</param>
+        /// <param name="infNF">infNF.</param>
+        /// <param name="infNFe">infNFe.</param>
         public CteSefazDetContInfDoc(List<CteSefazDetContInfDocInfNF> infNF = default(List<CteSefazDetContInfDocInfNF>), List<CteSefazDetContInfDocInfNFe> infNFe = default(List<CteSefazDetContInfDocInfNFe>))
         {
             this.infNF = infNF;
@@ -40,16 +40,14 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Informações das NF.
+        /// Gets or Sets infNF
         /// </summary>
-        /// <value>Informações das NF.</value>
         [DataMember(Name = "infNF", EmitDefaultValue = false)]
         public List<CteSefazDetContInfDocInfNF> infNF { get; set; }
 
         /// <summary>
-        /// Informações das NFe.
+        /// Gets or Sets infNFe
         /// </summary>
-        /// <value>Informações das NFe.</value>
         [DataMember(Name = "infNFe", EmitDefaultValue = false)]
         public List<CteSefazDetContInfDocInfNFe> infNFe { get; set; }
 

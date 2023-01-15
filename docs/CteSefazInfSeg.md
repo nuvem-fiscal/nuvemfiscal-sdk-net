@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfSeg
+Informações da seguradora.
 
 ## Propriedades
 

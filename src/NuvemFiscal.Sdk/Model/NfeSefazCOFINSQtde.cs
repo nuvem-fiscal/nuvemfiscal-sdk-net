@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazCOFINSQtde
+    /// Código de Situação Tributária do COFINS.  * 03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto
     /// </summary>
     [DataContract(Name = "NfeSefazCOFINSQtde")]
     public partial class NfeSefazCOFINSQtde : IEquatable<NfeSefazCOFINSQtde>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazCOFINSQtde" /> class.
         /// </summary>
-        /// <param name="cST">Código de Situação Tributária do COFINS.  03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto;. (required).</param>
+        /// <param name="cST">Código de Situação Tributária do COFINS.  * 03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto (required).</param>
         /// <param name="qBCProd">Quantidade Vendida (NT2011/004). (required).</param>
         /// <param name="vAliqProd">Alíquota do COFINS (em reais) (NT2011/004). (required).</param>
         /// <param name="vCOFINS">Valor do COFINS. (required).</param>
@@ -54,9 +54,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código de Situação Tributária do COFINS.  03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto;.
+        /// Código de Situação Tributária do COFINS.  * 03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto
         /// </summary>
-        /// <value>Código de Situação Tributária do COFINS.  03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto;.</value>
+        /// <value>Código de Situação Tributária do COFINS.  * 03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

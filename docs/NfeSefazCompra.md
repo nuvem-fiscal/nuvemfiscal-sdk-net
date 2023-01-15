@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazCompra
+Informações de compras  (Nota de Empenho, Pedido e Contrato).
 
 ## Propriedades
 

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfUnidTranspVazia
+Informações das Undades de Transporte vazias.
 
 ## Propriedades
 

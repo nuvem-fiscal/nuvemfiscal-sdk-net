@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazCIDE
+CIDE Combustíveis.
 
 ## Propriedades
 

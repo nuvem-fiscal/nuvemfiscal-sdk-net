@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazImp
+Informações relativas ao ICMS.
 
 ## Propriedades
 

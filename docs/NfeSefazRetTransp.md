@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazRetTransp
+Dados da retenção  ICMS do Transporte.
 
 ## Propriedades
 

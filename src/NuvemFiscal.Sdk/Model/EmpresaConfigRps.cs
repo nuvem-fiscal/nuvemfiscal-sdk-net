@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// EmpresaConfigRps
+    /// Configuração de numeração de lote, série e RPS.
     /// </summary>
     [DataContract(Name = "EmpresaConfigRps")]
     public partial class EmpresaConfigRps : IEquatable<EmpresaConfigRps>, IValidatableObject

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazTomaICMS
+Tomador é contribuinte do ICMS, mas não é emitente de documento fiscal eletrônico.
 
 ## Propriedades
 

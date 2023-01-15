@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazDetContInfDocInfNFe
+Informações das NFe.
 
 ## Propriedades
 

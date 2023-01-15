@@ -1,10 +1,11 @@
 # NuvemFiscal.Sdk.Model.NfeSefazCOFINSQtde
+Código de Situação Tributária do COFINS.  * 03 - Operação Tributável - Base de Calculo = Quantidade Vendida x Alíquota por Unidade de Produto
 
 ## Propriedades
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**CST** | **string** | Código de Situação Tributária do COFINS.  03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto;. | 
+**CST** | **string** | Código de Situação Tributária do COFINS.  * 03 - Operação Tributável - Base de Calculo &#x3D; Quantidade Vendida x Alíquota por Unidade de Produto | 
 **qBCProd** | **decimal** | Quantidade Vendida (NT2011/004). | 
 **vAliqProd** | **decimal** | Alíquota do COFINS (em reais) (NT2011/004). | 
 **vCOFINS** | **decimal** | Valor do COFINS. | 

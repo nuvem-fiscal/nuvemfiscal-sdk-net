@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazInfNFeSupl
+    /// Informações suplementares Nota Fiscal.
     /// </summary>
     [DataContract(Name = "NfeSefazInfNFeSupl")]
     public partial class NfeSefazInfNFeSupl : IEquatable<NfeSefazInfNFeSupl>, IValidatableObject

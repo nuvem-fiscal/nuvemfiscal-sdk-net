@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfTermCarreg
+    /// Grupo de informações dos terminais de carregamento.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfTermCarreg")]
     public partial class MdfeSefazInfTermCarreg : IEquatable<MdfeSefazInfTermCarreg>, IValidatableObject

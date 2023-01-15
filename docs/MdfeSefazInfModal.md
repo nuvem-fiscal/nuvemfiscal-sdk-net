@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfModal
+Informações do modal.
 
 ## Propriedades
 

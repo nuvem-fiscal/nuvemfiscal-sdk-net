@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazInfCTeNorm
+    /// Grupo de informações do CT-e Normal e Substituto.
     /// </summary>
     [DataContract(Name = "CteSefazInfCTeNorm")]
     public partial class CteSefazInfCTeNorm : IEquatable<CteSefazInfCTeNorm>, IValidatableObject
@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infDoc">infDoc.</param>
         /// <param name="docAnt">docAnt.</param>
         /// <param name="infModal">infModal (required).</param>
-        /// <param name="veicNovos">informações dos veículos transportados..</param>
+        /// <param name="veicNovos">veicNovos.</param>
         /// <param name="cobr">cobr.</param>
         /// <param name="infCteSub">infCteSub.</param>
         /// <param name="infGlobalizado">infGlobalizado.</param>
@@ -93,9 +93,8 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazInfModal infModal { get; set; }
 
         /// <summary>
-        /// informações dos veículos transportados.
+        /// Gets or Sets veicNovos
         /// </summary>
-        /// <value>informações dos veículos transportados.</value>
         [DataMember(Name = "veicNovos", EmitDefaultValue = false)]
         public List<CteSefazVeicNovos> veicNovos { get; set; }
 

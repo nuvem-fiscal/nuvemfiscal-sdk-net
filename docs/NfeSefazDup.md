@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazDup
+Dados das duplicatas NT 2011/004.
 
 ## Propriedades
 

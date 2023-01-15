@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazEndereco
+Dados do endereço.
 
 ## Propriedades
 

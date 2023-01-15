@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazVeicTracao
+    /// Dados do Veículo com a Tração.
     /// </summary>
     [DataContract(Name = "MdfeSefazVeicTracao")]
     public partial class MdfeSefazVeicTracao : IEquatable<MdfeSefazVeicTracao>, IValidatableObject
@@ -43,9 +43,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="capKG">Capacidade em KG..</param>
         /// <param name="capM3">Capacidade em M3..</param>
         /// <param name="prop">prop.</param>
-        /// <param name="condutor">Informações do(s) Condutor(es) do veículo. (required).</param>
-        /// <param name="tpRod">Tipo de Rodado.  Preencher com:           01 - Truck;           02 - Toco;           03 - Cavalo Mecânico;           04 - VAN;           05 - Utilitário;           06 - Outros. (required).</param>
-        /// <param name="tpCar">Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider. (required).</param>
+        /// <param name="condutor">condutor (required).</param>
+        /// <param name="tpRod">Tipo de Rodado.  Preencher com:  * 01 - Truck  * 02 - Toco  * 03 - Cavalo Mecânico  * 04 - VAN  * 05 - Utilitário  * 06 - Outros (required).</param>
+        /// <param name="tpCar">Tipo de Carroceria.  Preencher com:  * 00 - não aplicável  * 01 - Aberta  * 02 - Fechada/Baú  * 03 - Granelera  * 04 - Porta Container  * 05 - Sider (required).</param>
         /// <param name="uF">UF em que veículo está licenciado.  Sigla da UF de licenciamento do veículo..</param>
         public MdfeSefazVeicTracao(string cInt = default(string), string placa = default(string), string rENAVAM = default(string), int tara = default(int), int capKG = default(int), int capM3 = default(int), MdfeSefazProp prop = default(MdfeSefazProp), List<MdfeSefazCondutor> condutor = default(List<MdfeSefazCondutor>), string tpRod = default(string), string tpCar = default(string), string uF = default(string))
         {
@@ -131,23 +131,22 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazProp prop { get; set; }
 
         /// <summary>
-        /// Informações do(s) Condutor(es) do veículo.
+        /// Gets or Sets condutor
         /// </summary>
-        /// <value>Informações do(s) Condutor(es) do veículo.</value>
         [DataMember(Name = "condutor", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazCondutor> condutor { get; set; }
 
         /// <summary>
-        /// Tipo de Rodado.  Preencher com:           01 - Truck;           02 - Toco;           03 - Cavalo Mecânico;           04 - VAN;           05 - Utilitário;           06 - Outros.
+        /// Tipo de Rodado.  Preencher com:  * 01 - Truck  * 02 - Toco  * 03 - Cavalo Mecânico  * 04 - VAN  * 05 - Utilitário  * 06 - Outros
         /// </summary>
-        /// <value>Tipo de Rodado.  Preencher com:           01 - Truck;           02 - Toco;           03 - Cavalo Mecânico;           04 - VAN;           05 - Utilitário;           06 - Outros.</value>
+        /// <value>Tipo de Rodado.  Preencher com:  * 01 - Truck  * 02 - Toco  * 03 - Cavalo Mecânico  * 04 - VAN  * 05 - Utilitário  * 06 - Outros</value>
         [DataMember(Name = "tpRod", IsRequired = true, EmitDefaultValue = true)]
         public string tpRod { get; set; }
 
         /// <summary>
-        /// Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider.
+        /// Tipo de Carroceria.  Preencher com:  * 00 - não aplicável  * 01 - Aberta  * 02 - Fechada/Baú  * 03 - Granelera  * 04 - Porta Container  * 05 - Sider
         /// </summary>
-        /// <value>Tipo de Carroceria.  Preencher com:           00 - não aplicável;           01 - Aberta;           02 - Fechada/Baú;           03 - Granelera;           04 - Porta Container;           05 - Sider.</value>
+        /// <value>Tipo de Carroceria.  Preencher com:  * 00 - não aplicável  * 01 - Aberta  * 02 - Fechada/Baú  * 03 - Granelera  * 04 - Porta Container  * 05 - Sider</value>
         [DataMember(Name = "tpCar", IsRequired = true, EmitDefaultValue = true)]
         public string tpCar { get; set; }
 

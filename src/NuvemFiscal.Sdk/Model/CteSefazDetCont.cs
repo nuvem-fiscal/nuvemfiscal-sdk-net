@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazDetCont
+    /// Grupo de informações de detalhamento dos conteiners  (Somente para Redespacho Intermediário e Serviço Vinculado a Multimodal).
     /// </summary>
     [DataContract(Name = "CteSefazDetCont")]
     public partial class CteSefazDetCont : IEquatable<CteSefazDetCont>, IValidatableObject
@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazDetCont" /> class.
         /// </summary>
         /// <param name="nCont">Identificação do Container. (required).</param>
-        /// <param name="lacre">Grupo de informações dos lacres dos cointainers da qtde da carga..</param>
+        /// <param name="lacre">lacre.</param>
         /// <param name="infDoc">infDoc.</param>
         public CteSefazDetCont(string nCont = default(string), List<CteSefazLacre> lacre = default(List<CteSefazLacre>), CteSefazDetContInfDoc infDoc = default(CteSefazDetContInfDoc))
         {
@@ -59,9 +59,8 @@ namespace NuvemFiscal.Sdk.Model
         public string nCont { get; set; }
 
         /// <summary>
-        /// Grupo de informações dos lacres dos cointainers da qtde da carga.
+        /// Gets or Sets lacre
         /// </summary>
-        /// <value>Grupo de informações dos lacres dos cointainers da qtde da carga.</value>
         [DataMember(Name = "lacre", EmitDefaultValue = false)]
         public List<CteSefazLacre> lacre { get; set; }
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazISSQN
+    /// ISSQN.
     /// </summary>
     [DataContract(Name = "NfeSefazISSQN")]
     public partial class NfeSefazISSQN : IEquatable<NfeSefazISSQN>, IValidatableObject
@@ -46,12 +46,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vDescIncond">Valor desconto incondicionado..</param>
         /// <param name="vDescCond">Valor desconto condicionado..</param>
         /// <param name="vISSRet">Valor Retenção ISS..</param>
-        /// <param name="indISS">Exibilidade do ISS:1-Exigível;2-Não incidente;3-Isenção;4-Exportação;5-Imunidade;6-Exig.Susp. Judicial;7-Exig.Susp. ADM. (required).</param>
+        /// <param name="indISS">Exibilidade do ISS:1-Exigível  * 2 - Não incidente  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Exig.Susp. Judicial  * 7 - Exig.Susp. ADM (required).</param>
         /// <param name="cServico">Código do serviço prestado dentro do município..</param>
         /// <param name="cMun">Código do Município de Incidência do Imposto..</param>
         /// <param name="cPais">Código de Pais..</param>
         /// <param name="nProcesso">Número do Processo administrativo ou judicial de suspenção do processo..</param>
-        /// <param name="indIncentivo">Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não. (required).</param>
+        /// <param name="indIncentivo">Indicador de Incentivo Fiscal. 1&#x3D;Sim  * 2 - Não (required).</param>
         public NfeSefazISSQN(decimal vBC = default(decimal), decimal vAliq = default(decimal), decimal vISSQN = default(decimal), string cMunFG = default(string), string cListServ = default(string), decimal vDeducao = default(decimal), decimal vOutro = default(decimal), decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal), decimal vISSRet = default(decimal), int indISS = default(int), string cServico = default(string), string cMun = default(string), string cPais = default(string), string nProcesso = default(string), int indIncentivo = default(int))
         {
             this.vBC = vBC;
@@ -153,9 +153,9 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vISSRet { get; set; }
 
         /// <summary>
-        /// Exibilidade do ISS:1-Exigível;2-Não incidente;3-Isenção;4-Exportação;5-Imunidade;6-Exig.Susp. Judicial;7-Exig.Susp. ADM.
+        /// Exibilidade do ISS:1-Exigível  * 2 - Não incidente  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Exig.Susp. Judicial  * 7 - Exig.Susp. ADM
         /// </summary>
-        /// <value>Exibilidade do ISS:1-Exigível;2-Não incidente;3-Isenção;4-Exportação;5-Imunidade;6-Exig.Susp. Judicial;7-Exig.Susp. ADM.</value>
+        /// <value>Exibilidade do ISS:1-Exigível  * 2 - Não incidente  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Exig.Susp. Judicial  * 7 - Exig.Susp. ADM</value>
         [DataMember(Name = "indISS", IsRequired = true, EmitDefaultValue = true)]
         public int indISS { get; set; }
 
@@ -188,9 +188,9 @@ namespace NuvemFiscal.Sdk.Model
         public string nProcesso { get; set; }
 
         /// <summary>
-        /// Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não.
+        /// Indicador de Incentivo Fiscal. 1&#x3D;Sim  * 2 - Não
         /// </summary>
-        /// <value>Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não.</value>
+        /// <value>Indicador de Incentivo Fiscal. 1&#x3D;Sim  * 2 - Não</value>
         [DataMember(Name = "indIncentivo", IsRequired = true, EmitDefaultValue = true)]
         public int indIncentivo { get; set; }
 

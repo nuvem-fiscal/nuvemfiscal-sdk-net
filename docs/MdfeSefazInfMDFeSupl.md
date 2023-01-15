@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfMDFeSupl
+Informações suplementares do MDF-e.
 
 ## Propriedades
 

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazImp
+    /// Informações relativas ao ICMS.
     /// </summary>
     [DataContract(Name = "CteSefazImp")]
     public partial class CteSefazImp : IEquatable<CteSefazImp>, IValidatableObject

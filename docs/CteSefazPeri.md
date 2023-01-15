@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazPeri
+Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.  O preenchimento desses campos não desobriga a empresa aérea de emitir os demais documentos que constam na legislação vigente.
 
 ## Propriedades
 

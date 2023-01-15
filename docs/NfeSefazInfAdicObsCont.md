@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazInfAdicObsCont
+Campo de uso livre do contribuinte  informar o nome do campo no atributo xCampo  e o conteúdo do campo no xTexto.
 
 ## Propriedades
 

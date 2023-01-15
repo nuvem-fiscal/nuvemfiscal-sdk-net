@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazInfProdEmb
+Informações mais detalhadas do produto (usada na NFF).
 
 ## Propriedades
 

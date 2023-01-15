@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfMDFe
+    /// Informações do MDF-e.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfMDFe")]
     public partial class MdfeSefazInfMDFe : IEquatable<MdfeSefazInfMDFe>, IValidatableObject
@@ -42,11 +42,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="emit">emit (required).</param>
         /// <param name="infModal">infModal (required).</param>
         /// <param name="infDoc">infDoc (required).</param>
-        /// <param name="seg">Informações de Seguro da Carga..</param>
+        /// <param name="seg">seg.</param>
         /// <param name="prodPred">prodPred.</param>
         /// <param name="tot">tot (required).</param>
-        /// <param name="lacres">Lacres do MDF-e.  Preechimento opcional para os modais Rodoviário e Ferroviário..</param>
-        /// <param name="autXML">Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos..</param>
+        /// <param name="lacres">lacres.</param>
+        /// <param name="autXML">autXML.</param>
         /// <param name="infAdic">infAdic.</param>
         /// <param name="infRespTec">infRespTec.</param>
         /// <param name="infSolicNFF">infSolicNFF.</param>
@@ -137,9 +137,8 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazInfDoc infDoc { get; set; }
 
         /// <summary>
-        /// Informações de Seguro da Carga.
+        /// Gets or Sets seg
         /// </summary>
-        /// <value>Informações de Seguro da Carga.</value>
         [DataMember(Name = "seg", EmitDefaultValue = false)]
         public List<MdfeSefazSeg> seg { get; set; }
 
@@ -156,16 +155,14 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazTot tot { get; set; }
 
         /// <summary>
-        /// Lacres do MDF-e.  Preechimento opcional para os modais Rodoviário e Ferroviário.
+        /// Gets or Sets lacres
         /// </summary>
-        /// <value>Lacres do MDF-e.  Preechimento opcional para os modais Rodoviário e Ferroviário.</value>
         [DataMember(Name = "lacres", EmitDefaultValue = false)]
         public List<MdfeSefazLacres> lacres { get; set; }
 
         /// <summary>
-        /// Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos.
+        /// Gets or Sets autXML
         /// </summary>
-        /// <value>Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos.</value>
         [DataMember(Name = "autXML", EmitDefaultValue = false)]
         public List<MdfeSefazAutXML> autXML { get; set; }
 

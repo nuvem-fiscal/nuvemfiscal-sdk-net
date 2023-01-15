@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazInfDoc
+    /// Informações dos Documentos fiscais vinculados ao manifesto.
     /// </summary>
     [DataContract(Name = "MdfeSefazInfDoc")]
     public partial class MdfeSefazInfDoc : IEquatable<MdfeSefazInfDoc>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazInfDoc" /> class.
         /// </summary>
-        /// <param name="infMunDescarga">Informações dos Municípios de descarregamento. (required).</param>
+        /// <param name="infMunDescarga">infMunDescarga (required).</param>
         public MdfeSefazInfDoc(List<MdfeSefazInfMunDescarga> infMunDescarga = default(List<MdfeSefazInfMunDescarga>))
         {
             // to ensure "infMunDescarga" is required (not null)
@@ -48,9 +48,8 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Informações dos Municípios de descarregamento.
+        /// Gets or Sets infMunDescarga
         /// </summary>
-        /// <value>Informações dos Municípios de descarregamento.</value>
         [DataMember(Name = "infMunDescarga", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazInfMunDescarga> infMunDescarga { get; set; }
 

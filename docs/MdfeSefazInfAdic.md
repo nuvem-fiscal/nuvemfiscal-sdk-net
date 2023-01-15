@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfAdic
+Informações Adicionais.
 
 ## Propriedades
 

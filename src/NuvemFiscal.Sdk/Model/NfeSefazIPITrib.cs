@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazIPITrib" /> class.
         /// </summary>
-        /// <param name="cST">Código da Situação Tributária do IPI:  00-Entrada com recuperação de crédito  49 - Outras entradas  50-Saída tributada  99-Outras saídas. (required).</param>
+        /// <param name="cST">Código da Situação Tributária do IPI:  * 00 - Entrada com recuperação de crédito  * 49 - Outras entradas  * 50 - Saída tributada  * 99 - Outras saídas (required).</param>
         /// <param name="vBC">Valor da BC do IPI..</param>
         /// <param name="pIPI">Alíquota do IPI..</param>
         /// <param name="qUnid">Quantidade total na unidade padrão para tributação..</param>
@@ -58,9 +58,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código da Situação Tributária do IPI:  00-Entrada com recuperação de crédito  49 - Outras entradas  50-Saída tributada  99-Outras saídas.
+        /// Código da Situação Tributária do IPI:  * 00 - Entrada com recuperação de crédito  * 49 - Outras entradas  * 50 - Saída tributada  * 99 - Outras saídas
         /// </summary>
-        /// <value>Código da Situação Tributária do IPI:  00-Entrada com recuperação de crédito  49 - Outras entradas  50-Saída tributada  99-Outras saídas.</value>
+        /// <value>Código da Situação Tributária do IPI:  * 00 - Entrada com recuperação de crédito  * 49 - Outras entradas  * 50 - Saída tributada  * 99 - Outras saídas</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

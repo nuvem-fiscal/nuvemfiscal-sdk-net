@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazRetTrib
+    /// Retenção de Tributos Federais.
     /// </summary>
     [DataContract(Name = "NfeSefazRetTrib")]
     public partial class NfeSefazRetTrib : IEquatable<NfeSefazRetTrib>, IValidatableObject

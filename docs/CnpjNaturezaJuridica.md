@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjNaturezaJuridica
+Natureza jurídica.
 
 ## Propriedades
 

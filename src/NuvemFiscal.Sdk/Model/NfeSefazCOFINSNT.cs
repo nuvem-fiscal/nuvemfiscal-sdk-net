@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazCOFINSNT
+    /// Código de Situação Tributária do COFINS:  * 04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero)  * 06 - Operação Tributável - Alíquota Zero  * 07 - Operação Isenta da contribuição  * 08 - Operação Sem Incidência da contribuição  * 09 - Operação com suspensão da contribuição
     /// </summary>
     [DataContract(Name = "NfeSefazCOFINSNT")]
     public partial class NfeSefazCOFINSNT : IEquatable<NfeSefazCOFINSNT>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazCOFINSNT" /> class.
         /// </summary>
-        /// <param name="cST">Código de Situação Tributária do COFINS:  04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero);  05 - Operação Tributável (ST);  06 - Operação Tributável - Alíquota Zero;  07 - Operação Isenta da contribuição;  08 - Operação Sem Incidência da contribuição;  09 - Operação com suspensão da contribuição;. (required).</param>
+        /// <param name="cST">Código de Situação Tributária do COFINS:  * 04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero)  * 05 - Operação Tributável (ST)  * 06 - Operação Tributável - Alíquota Zero  * 07 - Operação Isenta da contribuição  * 08 - Operação Sem Incidência da contribuição  * 09 - Operação com suspensão da contribuição (required).</param>
         public NfeSefazCOFINSNT(string cST = default(string))
         {
             // to ensure "cST" is required (not null)
@@ -48,9 +48,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código de Situação Tributária do COFINS:  04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero);  05 - Operação Tributável (ST);  06 - Operação Tributável - Alíquota Zero;  07 - Operação Isenta da contribuição;  08 - Operação Sem Incidência da contribuição;  09 - Operação com suspensão da contribuição;.
+        /// Código de Situação Tributária do COFINS:  * 04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero)  * 05 - Operação Tributável (ST)  * 06 - Operação Tributável - Alíquota Zero  * 07 - Operação Isenta da contribuição  * 08 - Operação Sem Incidência da contribuição  * 09 - Operação com suspensão da contribuição
         /// </summary>
-        /// <value>Código de Situação Tributária do COFINS:  04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero);  05 - Operação Tributável (ST);  06 - Operação Tributável - Alíquota Zero;  07 - Operação Isenta da contribuição;  08 - Operação Sem Incidência da contribuição;  09 - Operação com suspensão da contribuição;.</value>
+        /// <value>Código de Situação Tributária do COFINS:  * 04 - Operação Tributável - Tributação Monofásica - (Alíquota Zero)  * 05 - Operação Tributável (ST)  * 06 - Operação Tributável - Alíquota Zero  * 07 - Operação Isenta da contribuição  * 08 - Operação Sem Incidência da contribuição  * 09 - Operação com suspensão da contribuição</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

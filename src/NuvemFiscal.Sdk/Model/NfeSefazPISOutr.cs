@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazPISOutr
+    /// Código de Situação Tributária do PIS.  * 99 - Outras Operações
     /// </summary>
     [DataContract(Name = "NfeSefazPISOutr")]
     public partial class NfeSefazPISOutr : IEquatable<NfeSefazPISOutr>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazPISOutr" /> class.
         /// </summary>
-        /// <param name="cST">Código de Situação Tributária do PIS.  99 - Outras Operações. (required).</param>
+        /// <param name="cST">Código de Situação Tributária do PIS.  * 99 - Outras Operações (required).</param>
         /// <param name="vBC">Valor da BC do PIS..</param>
         /// <param name="pPIS">Alíquota do PIS (em percentual)..</param>
         /// <param name="qBCProd">Quantidade Vendida (NT2011/004)..</param>
@@ -58,9 +58,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código de Situação Tributária do PIS.  99 - Outras Operações.
+        /// Código de Situação Tributária do PIS.  * 99 - Outras Operações
         /// </summary>
-        /// <value>Código de Situação Tributária do PIS.  99 - Outras Operações.</value>
+        /// <value>Código de Situação Tributária do PIS.  * 99 - Outras Operações</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

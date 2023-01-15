@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazSemData
+    /// Entrega sem data definida.  Esta opção é proibida para o modal aéreo.
     /// </summary>
     [DataContract(Name = "CteSefazSemData")]
     public partial class CteSefazSemData : IEquatable<CteSefazSemData>, IValidatableObject
@@ -36,16 +36,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazSemData" /> class.
         /// </summary>
-        /// <param name="tpPer">Tipo de data/período programado para entrega.  0- Sem data definida. (required).</param>
+        /// <param name="tpPer">Tipo de data/período programado para entrega.  * 0 - Sem data definida (required).</param>
         public CteSefazSemData(int tpPer = default(int))
         {
             this.tpPer = tpPer;
         }
 
         /// <summary>
-        /// Tipo de data/período programado para entrega.  0- Sem data definida.
+        /// Tipo de data/período programado para entrega.  * 0 - Sem data definida
         /// </summary>
-        /// <value>Tipo de data/período programado para entrega.  0- Sem data definida.</value>
+        /// <value>Tipo de data/período programado para entrega.  * 0 - Sem data definida</value>
         [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
         public int tpPer { get; set; }
 

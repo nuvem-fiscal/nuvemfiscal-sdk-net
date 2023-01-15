@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjPorteEmpresa
+Porte da empresa.
 
 ## Propriedades
 

@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazIPINT" /> class.
         /// </summary>
-        /// <param name="cST">Código da Situação Tributária do IPI:  01-Entrada tributada com alíquota zero  02-Entrada isenta  03-Entrada não-tributada  04-Entrada imune  05-Entrada com suspensão  51-Saída tributada com alíquota zero  52-Saída isenta  53-Saída não-tributada  54-Saída imune  55-Saída com suspensão. (required).</param>
+        /// <param name="cST">Código da Situação Tributária do IPI:  * 01 - Entrada tributada com alíquota zero  * 02 - Entrada isenta  * 03 - Entrada não-tributada  * 04 - Entrada imune  * 05 - Entrada com suspensão  * 51 - Saída tributada com alíquota zero  * 52 - Saída isenta  * 53 - Saída não-tributada  * 54 - Saída imune  * 55 - Saída com suspensão (required).</param>
         public NfeSefazIPINT(string cST = default(string))
         {
             // to ensure "cST" is required (not null)
@@ -48,9 +48,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código da Situação Tributária do IPI:  01-Entrada tributada com alíquota zero  02-Entrada isenta  03-Entrada não-tributada  04-Entrada imune  05-Entrada com suspensão  51-Saída tributada com alíquota zero  52-Saída isenta  53-Saída não-tributada  54-Saída imune  55-Saída com suspensão.
+        /// Código da Situação Tributária do IPI:  * 01 - Entrada tributada com alíquota zero  * 02 - Entrada isenta  * 03 - Entrada não-tributada  * 04 - Entrada imune  * 05 - Entrada com suspensão  * 51 - Saída tributada com alíquota zero  * 52 - Saída isenta  * 53 - Saída não-tributada  * 54 - Saída imune  * 55 - Saída com suspensão
         /// </summary>
-        /// <value>Código da Situação Tributária do IPI:  01-Entrada tributada com alíquota zero  02-Entrada isenta  03-Entrada não-tributada  04-Entrada imune  05-Entrada com suspensão  51-Saída tributada com alíquota zero  52-Saída isenta  53-Saída não-tributada  54-Saída imune  55-Saída com suspensão.</value>
+        /// <value>Código da Situação Tributária do IPI:  * 01 - Entrada tributada com alíquota zero  * 02 - Entrada isenta  * 03 - Entrada não-tributada  * 04 - Entrada imune  * 05 - Entrada com suspensão  * 51 - Saída tributada com alíquota zero  * 52 - Saída isenta  * 53 - Saída não-tributada  * 54 - Saída imune  * 55 - Saída com suspensão</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
 

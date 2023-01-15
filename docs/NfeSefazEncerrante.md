@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazEncerrante
+Informações do grupo de \"encerrante\".
 
 ## Propriedades
 

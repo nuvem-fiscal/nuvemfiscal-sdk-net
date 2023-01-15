@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazISSQN
+ISSQN.
 
 ## Propriedades
 
@@ -14,12 +15,12 @@ Nome | Tipo | Descrição | Comentários
 **vDescIncond** | **decimal** | Valor desconto incondicionado. | [optional] 
 **vDescCond** | **decimal** | Valor desconto condicionado. | [optional] 
 **vISSRet** | **decimal** | Valor Retenção ISS. | [optional] 
-**indISS** | **int** | Exibilidade do ISS:1-Exigível;2-Não incidente;3-Isenção;4-Exportação;5-Imunidade;6-Exig.Susp. Judicial;7-Exig.Susp. ADM. | 
+**indISS** | **int** | Exibilidade do ISS:1-Exigível  * 2 - Não incidente  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Exig.Susp. Judicial  * 7 - Exig.Susp. ADM | 
 **cServico** | **string** | Código do serviço prestado dentro do município. | [optional] 
 **cMun** | **string** | Código do Município de Incidência do Imposto. | [optional] 
 **cPais** | **string** | Código de Pais. | [optional] 
 **nProcesso** | **string** | Número do Processo administrativo ou judicial de suspenção do processo. | [optional] 
-**indIncentivo** | **int** | Indicador de Incentivo Fiscal. 1&#x3D;Sim; 2&#x3D;Não. | 
+**indIncentivo** | **int** | Indicador de Incentivo Fiscal. 1&#x3D;Sim  * 2 - Não | 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

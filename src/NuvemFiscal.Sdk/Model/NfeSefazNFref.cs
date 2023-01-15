@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazNFref
+    /// Grupo de infromações da NF referenciada.
     /// </summary>
     [DataContract(Name = "NfeSefazNFref")]
     public partial class NfeSefazNFref : IEquatable<NfeSefazNFref>, IValidatableObject
@@ -32,13 +32,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazNFref" /> class.
         /// </summary>
         /// <param name="refNFe">Chave de acesso das NF-e referenciadas. Chave de acesso compostas por Código da UF (tabela do IBGE) + AAMM da emissão + CNPJ do Emitente + modelo, série e número da NF-e Referenciada + Código Numérico + DV..</param>
+        /// <param name="refNFeSig">Referencia uma NF-e (modelo 55) emitida anteriormente pela sua Chave de Acesso com código numérico zerado, permitindo manter o sigilo da NF-e referenciada..</param>
         /// <param name="refNF">refNF.</param>
         /// <param name="refNFP">refNFP.</param>
         /// <param name="refCTe">Utilizar esta TAG para referenciar um CT-e emitido anteriormente, vinculada a NF-e atual..</param>
         /// <param name="refECF">refECF.</param>
-        public NfeSefazNFref(string refNFe = default(string), NfeSefazRefNF refNF = default(NfeSefazRefNF), NfeSefazRefNFP refNFP = default(NfeSefazRefNFP), string refCTe = default(string), NfeSefazRefECF refECF = default(NfeSefazRefECF))
+        public NfeSefazNFref(string refNFe = default(string), string refNFeSig = default(string), NfeSefazRefNF refNF = default(NfeSefazRefNF), NfeSefazRefNFP refNFP = default(NfeSefazRefNFP), string refCTe = default(string), NfeSefazRefECF refECF = default(NfeSefazRefECF))
         {
             this.refNFe = refNFe;
+            this.refNFeSig = refNFeSig;
             this.refNF = refNF;
             this.refNFP = refNFP;
             this.refCTe = refCTe;
@@ -51,6 +53,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Chave de acesso das NF-e referenciadas. Chave de acesso compostas por Código da UF (tabela do IBGE) + AAMM da emissão + CNPJ do Emitente + modelo, série e número da NF-e Referenciada + Código Numérico + DV.</value>
         [DataMember(Name = "refNFe", EmitDefaultValue = false)]
         public string refNFe { get; set; }
+
+        /// <summary>
+        /// Referencia uma NF-e (modelo 55) emitida anteriormente pela sua Chave de Acesso com código numérico zerado, permitindo manter o sigilo da NF-e referenciada.
+        /// </summary>
+        /// <value>Referencia uma NF-e (modelo 55) emitida anteriormente pela sua Chave de Acesso com código numérico zerado, permitindo manter o sigilo da NF-e referenciada.</value>
+        [DataMember(Name = "refNFeSig", EmitDefaultValue = false)]
+        public string refNFeSig { get; set; }
 
         /// <summary>
         /// Gets or Sets refNF
@@ -86,6 +95,7 @@ namespace NuvemFiscal.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class NfeSefazNFref {\n");
             sb.Append("  refNFe: ").Append(refNFe).Append("\n");
+            sb.Append("  refNFeSig: ").Append(refNFeSig).Append("\n");
             sb.Append("  refNF: ").Append(refNF).Append("\n");
             sb.Append("  refNFP: ").Append(refNFP).Append("\n");
             sb.Append("  refCTe: ").Append(refCTe).Append("\n");
@@ -131,6 +141,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.refNFe.Equals(input.refNFe))
                 ) && 
                 (
+                    this.refNFeSig == input.refNFeSig ||
+                    (this.refNFeSig != null &&
+                    this.refNFeSig.Equals(input.refNFeSig))
+                ) && 
+                (
                     this.refNF == input.refNF ||
                     (this.refNF != null &&
                     this.refNF.Equals(input.refNF))
@@ -164,6 +179,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.refNFe != null)
                 {
                     hashCode = (hashCode * 59) + this.refNFe.GetHashCode();
+                }
+                if (this.refNFeSig != null)
+                {
+                    hashCode = (hashCode * 59) + this.refNFeSig.GetHashCode();
                 }
                 if (this.refNF != null)
                 {

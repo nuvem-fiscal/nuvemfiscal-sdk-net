@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CnpjOpcaoSimei
+Informações da opção pelo MEI.
 
 ## Propriedades
 

@@ -1842,7 +1842,7 @@ void (empty response body)
 
 <a name="listarempresas"></a>
 # **ListarEmpresas**
-> EmpresaListagem ListarEmpresas (int? top = null, int? skip = null, string cpfCnpj = null)
+> EmpresaListagem ListarEmpresas (int? top = null, int? skip = null, bool? inlinecount = null, string cpfCnpj = null)
 
 Consultar empresas
 
@@ -1876,14 +1876,15 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
-            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = true;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional) 
             var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional) 
 
             try
             {
                 // Consultar empresas
-                EmpresaListagem result = apiInstance.ListarEmpresas(top, skip, cpfCnpj);
+                EmpresaListagem result = apiInstance.ListarEmpresas(top, skip, inlinecount, cpfCnpj);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1904,7 +1905,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Consultar empresas
-    ApiResponse<EmpresaListagem> response = apiInstance.ListarEmpresasWithHttpInfo(top, skip, cpfCnpj);
+    ApiResponse<EmpresaListagem> response = apiInstance.ListarEmpresasWithHttpInfo(top, skip, inlinecount, cpfCnpj);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1921,8 +1922,9 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
-| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional]  |
 | **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. | [optional]  |
 
 ### Tipo de retorno

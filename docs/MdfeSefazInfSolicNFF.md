@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfSolicNFF
+Grupo de informações do pedido de emissão da Nota Fiscal Fácil.
 
 ## Propriedades
 

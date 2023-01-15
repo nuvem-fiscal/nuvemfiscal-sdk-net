@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazEmiDocAnt
+    /// Emissor do documento anterior.
     /// </summary>
     [DataContract(Name = "CteSefazEmiDocAnt")]
     public partial class CteSefazEmiDocAnt : IEquatable<CteSefazEmiDocAnt>, IValidatableObject
@@ -36,12 +36,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazEmiDocAnt" /> class.
         /// </summary>
-        /// <param name="cNPJ">Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.                     Informar os zeros não significativos..</param>
+        /// <param name="cNPJ">Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos..</param>
         /// <param name="cPF">Número do CPF.  Informar os zeros não significativos..</param>
         /// <param name="iE">Inscrição Estadual..</param>
         /// <param name="uF">Sigla da UF.  Informar EX para operações com o exterior..</param>
         /// <param name="xNome">Razão Social ou Nome do expedidor. (required).</param>
-        /// <param name="idDocAnt">Informações de identificação dos documentos de Transporte Anterior. (required).</param>
+        /// <param name="idDocAnt">idDocAnt (required).</param>
         public CteSefazEmiDocAnt(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string uF = default(string), string xNome = default(string), List<CteSefazIdDocAnt> idDocAnt = default(List<CteSefazIdDocAnt>))
         {
             // to ensure "xNome" is required (not null)
@@ -63,9 +63,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.                     Informar os zeros não significativos.
+        /// Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.
         /// </summary>
-        /// <value>Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.                     Informar os zeros não significativos.</value>
+        /// <value>Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.</value>
         [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
         public string CNPJ { get; set; }
 
@@ -98,9 +98,8 @@ namespace NuvemFiscal.Sdk.Model
         public string xNome { get; set; }
 
         /// <summary>
-        /// Informações de identificação dos documentos de Transporte Anterior.
+        /// Gets or Sets idDocAnt
         /// </summary>
-        /// <value>Informações de identificação dos documentos de Transporte Anterior.</value>
         [DataMember(Name = "idDocAnt", IsRequired = true, EmitDefaultValue = true)]
         public List<CteSefazIdDocAnt> idDocAnt { get; set; }
 

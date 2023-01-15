@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazTrem
+Informações da composição do trem.
 
 ## Propriedades
 

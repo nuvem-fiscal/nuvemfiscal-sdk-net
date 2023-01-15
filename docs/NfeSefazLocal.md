@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazLocal
+Identificação do Local de Entrega (informar apenas quando for diferente do endereço do destinatário).
 
 ## Propriedades
 

@@ -23,41 +23,35 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Dps
+    /// Grupo de informações da DPS relativas ao serviço prestado.
     /// </summary>
-    [DataContract(Name = "Dps")]
-    public partial class Dps : IEquatable<Dps>, IValidatableObject
+    [DataContract(Name = "DPS")]
+    public partial class DPS : IEquatable<DPS>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Dps" /> class.
+        /// Initializes a new instance of the <see cref="DPS" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
-        /// <param name="numero">numero.</param>
-        /// <param name="serie">serie.</param>
-        public Dps(string id = default(string), string numero = default(string), string serie = default(string))
+        /// <param name="serie">Série do DPS..</param>
+        /// <param name="nDPS">Número do DPS..</param>
+        public DPS(string serie = default(string), string nDPS = default(string))
         {
-            this.id = id;
-            this.numero = numero;
             this.serie = serie;
+            this.nDPS = nDPS;
         }
 
         /// <summary>
-        /// Gets or Sets id
+        /// Série do DPS.
         /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public string id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets numero
-        /// </summary>
-        [DataMember(Name = "numero", EmitDefaultValue = false)]
-        public string numero { get; set; }
-
-        /// <summary>
-        /// Gets or Sets serie
-        /// </summary>
+        /// <value>Série do DPS.</value>
         [DataMember(Name = "serie", EmitDefaultValue = false)]
         public string serie { get; set; }
+
+        /// <summary>
+        /// Número do DPS.
+        /// </summary>
+        /// <value>Número do DPS.</value>
+        [DataMember(Name = "nDPS", EmitDefaultValue = false)]
+        public string nDPS { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,10 +60,9 @@ namespace NuvemFiscal.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Dps {\n");
-            sb.Append("  id: ").Append(id).Append("\n");
-            sb.Append("  numero: ").Append(numero).Append("\n");
+            sb.Append("class DPS {\n");
             sb.Append("  serie: ").Append(serie).Append("\n");
+            sb.Append("  nDPS: ").Append(nDPS).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,15 +83,15 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Dps);
+            return this.Equals(input as DPS);
         }
 
         /// <summary>
-        /// Returns true if Dps instances are equal
+        /// Returns true if DPS instances are equal
         /// </summary>
-        /// <param name="input">Instance of Dps to be compared</param>
+        /// <param name="input">Instance of DPS to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Dps input)
+        public bool Equals(DPS input)
         {
             if (input == null)
             {
@@ -106,19 +99,14 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
-                    this.id == input.id ||
-                    (this.id != null &&
-                    this.id.Equals(input.id))
-                ) && 
-                (
-                    this.numero == input.numero ||
-                    (this.numero != null &&
-                    this.numero.Equals(input.numero))
-                ) && 
-                (
                     this.serie == input.serie ||
                     (this.serie != null &&
                     this.serie.Equals(input.serie))
+                ) && 
+                (
+                    this.nDPS == input.nDPS ||
+                    (this.nDPS != null &&
+                    this.nDPS.Equals(input.nDPS))
                 );
         }
 
@@ -131,17 +119,13 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.id != null)
-                {
-                    hashCode = (hashCode * 59) + this.id.GetHashCode();
-                }
-                if (this.numero != null)
-                {
-                    hashCode = (hashCode * 59) + this.numero.GetHashCode();
-                }
                 if (this.serie != null)
                 {
                     hashCode = (hashCode * 59) + this.serie.GetHashCode();
+                }
+                if (this.nDPS != null)
+                {
+                    hashCode = (hashCode * 59) + this.nDPS.GetHashCode();
                 }
                 return hashCode;
             }

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazAutXML
+Pessoas autorizadas para o download do XML da NF-e.
 
 ## Propriedades
 

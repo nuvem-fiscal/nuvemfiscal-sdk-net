@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazImposto
+Tributos incidentes nos produtos ou serviços da NF-e.
 
 ## Propriedades
 

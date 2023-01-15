@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfCTeMultimodal
+informações do CT-e multimodal vinculado.
 
 ## Propriedades
 

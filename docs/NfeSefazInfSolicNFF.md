@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazInfSolicNFF
+Grupo para informações da solicitação da NFF.
 
 ## Propriedades
 

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazForDia
+Fornecimentos diários.
 
 ## Propriedades
 

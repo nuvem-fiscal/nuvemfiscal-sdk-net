@@ -109,7 +109,7 @@ catch (ApiException e)
 
 <a name="listarcnpj"></a>
 # **ListarCnpj**
-> CnpjListagem ListarCnpj (string cnaePrincipal, string municipio, string naturezaJuridica, int? top = null, int? skip = null)
+> CnpjListagem ListarCnpj (string cnaePrincipal, string municipio, string naturezaJuridica, int? top = null, int? skip = null, bool? inlinecount = null)
 
 Listar estabelecimentos ativos a partir da base de CNPJ
 
@@ -146,13 +146,14 @@ namespace Example
             var cnaePrincipal = "cnaePrincipal_example";  // string | Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.
             var municipio = "municipio_example";  // string | Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara.
             var naturezaJuridica = "naturezaJuridica_example";  // string | Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara.
-            var top = 56;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: `10`. (optional) 
-            var skip = 56;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional) 
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = true;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional) 
 
             try
             {
                 // Listar estabelecimentos ativos a partir da base de CNPJ
-                CnpjListagem result = apiInstance.ListarCnpj(cnaePrincipal, municipio, naturezaJuridica, top, skip);
+                CnpjListagem result = apiInstance.ListarCnpj(cnaePrincipal, municipio, naturezaJuridica, top, skip, inlinecount);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -173,7 +174,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar estabelecimentos ativos a partir da base de CNPJ
-    ApiResponse<CnpjListagem> response = apiInstance.ListarCnpjWithHttpInfo(cnaePrincipal, municipio, naturezaJuridica, top, skip);
+    ApiResponse<CnpjListagem> response = apiInstance.ListarCnpjWithHttpInfo(cnaePrincipal, municipio, naturezaJuridica, top, skip, inlinecount);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -193,8 +194,9 @@ catch (ApiException e)
 | **cnaePrincipal** | **string** | Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara. |  |
 | **municipio** | **string** | Filtro pelo código IBGE ou TOM (Tabela de Órgãos e Municípios) do município do estabelecimento.  Utilize o valor sem máscara. |  |
 | **naturezaJuridica** | **string** | Filtro pela natureza jurídica do estabelecimento   Utilize o valor de quatro dígitos sem máscara. |  |
-| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100.  Valor padrão: &#x60;10&#x60;. | [optional]  |
-| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional]  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional]  |
 
 ### Tipo de retorno
 

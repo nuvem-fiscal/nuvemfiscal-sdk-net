@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazComb
+Informar apenas para operações com combustíveis líquidos.
 
 ## Propriedades
 

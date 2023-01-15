@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazRefNFP
+Grupo com as informações NF de produtor referenciada.
 
 ## Propriedades
 
@@ -11,7 +12,7 @@ Nome | Tipo | Descrição | Comentários
 **IE** | **string** | IE do emitente da NF de Produtor. | 
 **mod** | **string** | Código do modelo do Documento Fiscal - utilizar 04 para NF de produtor  ou 01 para NF Avulsa. | 
 **serie** | **int** | Série do Documento Fiscal, informar zero se inexistentesérie. | 
-**nNF** | **int** | Número do Documento Fiscal - 1 – 999999999. | 
+**nNF** | **int** | Número do Documento Fiscal - 1 - 999999999. | 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

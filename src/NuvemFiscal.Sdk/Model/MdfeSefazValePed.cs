@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazValePed
+    /// Informações de Vale Pedágio.  Outras informações sobre Vale-Pedágio obrigatório que não tenham campos específicos devem ser informadas no campo de observações gerais de uso livre pelo contribuinte, visando atender as determinações legais vigentes.
     /// </summary>
     [DataContract(Name = "MdfeSefazValePed")]
     public partial class MdfeSefazValePed : IEquatable<MdfeSefazValePed>, IValidatableObject
@@ -36,8 +36,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazValePed" /> class.
         /// </summary>
-        /// <param name="disp">Informações dos dispositivos do Vale Pedágio. (required).</param>
-        /// <param name="categCombVeic">Categoria de Combinação Veicular.  Preencher com:    02 Veículo Comercial 2 eixos;0  4 Veículo Comercial 3 eixos;  06 Veículo Comercial 4 eixos;0  7 Veículo Comercial 5 eixos; 0  8 Veículo Comercial 6 eixos;  10 Veículo Comercial 7 eixos;  11 Veículo Comercial 8 eixos;  12 Veículo Comercial 9 eixos;  13 Veículo Comercial 10 eixos;  14 Veículo Comercial Acima de 10 eixos;..</param>
+        /// <param name="disp">disp (required).</param>
+        /// <param name="categCombVeic">Categoria de Combinação Veicular.  Preencher com:  02 Veículo Comercial 2 eixos  0  4 Veículo Comercial 3 eixos  06 Veículo Comercial 4 eixos  0  7 Veículo Comercial 5 eixos  0  8 Veículo Comercial 6 eixos  10 Veículo Comercial 7 eixos  11 Veículo Comercial 8 eixos  12 Veículo Comercial 9 eixos  13 Veículo Comercial 10 eixos  14 Veículo Comercial Acima de 10 eixos..</param>
         public MdfeSefazValePed(List<MdfeSefazDisp> disp = default(List<MdfeSefazDisp>), string categCombVeic = default(string))
         {
             // to ensure "disp" is required (not null)
@@ -50,16 +50,15 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Informações dos dispositivos do Vale Pedágio.
+        /// Gets or Sets disp
         /// </summary>
-        /// <value>Informações dos dispositivos do Vale Pedágio.</value>
         [DataMember(Name = "disp", IsRequired = true, EmitDefaultValue = true)]
         public List<MdfeSefazDisp> disp { get; set; }
 
         /// <summary>
-        /// Categoria de Combinação Veicular.  Preencher com:    02 Veículo Comercial 2 eixos;0  4 Veículo Comercial 3 eixos;  06 Veículo Comercial 4 eixos;0  7 Veículo Comercial 5 eixos; 0  8 Veículo Comercial 6 eixos;  10 Veículo Comercial 7 eixos;  11 Veículo Comercial 8 eixos;  12 Veículo Comercial 9 eixos;  13 Veículo Comercial 10 eixos;  14 Veículo Comercial Acima de 10 eixos;.
+        /// Categoria de Combinação Veicular.  Preencher com:  02 Veículo Comercial 2 eixos  0  4 Veículo Comercial 3 eixos  06 Veículo Comercial 4 eixos  0  7 Veículo Comercial 5 eixos  0  8 Veículo Comercial 6 eixos  10 Veículo Comercial 7 eixos  11 Veículo Comercial 8 eixos  12 Veículo Comercial 9 eixos  13 Veículo Comercial 10 eixos  14 Veículo Comercial Acima de 10 eixos.
         /// </summary>
-        /// <value>Categoria de Combinação Veicular.  Preencher com:    02 Veículo Comercial 2 eixos;0  4 Veículo Comercial 3 eixos;  06 Veículo Comercial 4 eixos;0  7 Veículo Comercial 5 eixos; 0  8 Veículo Comercial 6 eixos;  10 Veículo Comercial 7 eixos;  11 Veículo Comercial 8 eixos;  12 Veículo Comercial 9 eixos;  13 Veículo Comercial 10 eixos;  14 Veículo Comercial Acima de 10 eixos;.</value>
+        /// <value>Categoria de Combinação Veicular.  Preencher com:  02 Veículo Comercial 2 eixos  0  4 Veículo Comercial 3 eixos  06 Veículo Comercial 4 eixos  0  7 Veículo Comercial 5 eixos  0  8 Veículo Comercial 6 eixos  10 Veículo Comercial 7 eixos  11 Veículo Comercial 8 eixos  12 Veículo Comercial 9 eixos  13 Veículo Comercial 10 eixos  14 Veículo Comercial Acima de 10 eixos.</value>
         [DataMember(Name = "categCombVeic", EmitDefaultValue = false)]
         public string categCombVeic { get; set; }
 

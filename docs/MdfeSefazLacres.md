@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazLacres
+Lacres do MDF-e.  Preechimento opcional para os modais Rodoviário e Ferroviário.
 
 ## Propriedades
 

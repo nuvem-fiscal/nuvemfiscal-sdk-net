@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// CteSefazCobr
+    /// Dados da cobrança do CT-e.
     /// </summary>
     [DataContract(Name = "CteSefazCobr")]
     public partial class CteSefazCobr : IEquatable<CteSefazCobr>, IValidatableObject
@@ -32,7 +32,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazCobr" /> class.
         /// </summary>
         /// <param name="fat">fat.</param>
-        /// <param name="dup">Dados das duplicatas..</param>
+        /// <param name="dup">dup.</param>
         public CteSefazCobr(CteSefazFat fat = default(CteSefazFat), List<CteSefazDup> dup = default(List<CteSefazDup>))
         {
             this.fat = fat;
@@ -46,9 +46,8 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazFat fat { get; set; }
 
         /// <summary>
-        /// Dados das duplicatas.
+        /// Gets or Sets dup
         /// </summary>
-        /// <value>Dados das duplicatas.</value>
         [DataMember(Name = "dup", EmitDefaultValue = false)]
         public List<CteSefazDup> dup { get; set; }
 

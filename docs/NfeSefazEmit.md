@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazEmit
+Identificação do emitente.
 
 ## Propriedades
 
@@ -13,7 +14,7 @@ Nome | Tipo | Descrição | Comentários
 **IEST** | **string** | Inscricao Estadual do Substituto Tributário.  Caso não seja informado, será utilizado o do cadastro da empresa. | [optional] 
 **IM** | **string** | Inscrição Municipal.  Caso não seja informado, será utilizado o do cadastro da empresa. | [optional] 
 **CNAE** | **string** | CNAE Fiscal.  Caso não seja informado, será utilizado o do cadastro da empresa. | [optional] 
-**CRT** | **int** | Código de Regime Tributário.   Este campo será obrigatoriamente preenchido com:  1 – Simples Nacional;  2 – Simples Nacional – excesso de sublimite de receita bruta;  3 – Regime Normal.  Caso não seja informado, será utilizado o do cadastro da empresa. | [optional] 
+**CRT** | **int** | Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal  Caso não seja informado, será utilizado o do cadastro da empresa. | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

@@ -64,10 +64,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigNfse" /> class.
         /// </summary>
+        /// <param name="regTrib">regTrib.</param>
         /// <param name="rps">rps (required).</param>
         /// <param name="prefeitura">prefeitura.</param>
+        /// <param name="incentivoFiscal">Indicador se a empresa possui algum tipo de incentivo fiscal..</param>
         /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
-        public EmpresaConfigNfse(EmpresaConfigRps rps = default(EmpresaConfigRps), EmpresaConfigPrefeitura prefeitura = default(EmpresaConfigPrefeitura), AmbienteEnum ambiente = default(AmbienteEnum))
+        public EmpresaConfigNfse(EmpresaConfigNfseRegTrib regTrib = default(EmpresaConfigNfseRegTrib), EmpresaConfigRps rps = default(EmpresaConfigRps), EmpresaConfigPrefeitura prefeitura = default(EmpresaConfigPrefeitura), bool incentivoFiscal = default(bool), AmbienteEnum ambiente = default(AmbienteEnum))
         {
             // to ensure "rps" is required (not null)
             if (rps == null)
@@ -76,8 +78,16 @@ namespace NuvemFiscal.Sdk.Model
             }
             this.rps = rps;
             this.ambiente = ambiente;
+            this.regTrib = regTrib;
             this.prefeitura = prefeitura;
+            this.incentivo_fiscal = incentivoFiscal;
         }
+
+        /// <summary>
+        /// Gets or Sets regTrib
+        /// </summary>
+        [DataMember(Name = "regTrib", EmitDefaultValue = false)]
+        public EmpresaConfigNfseRegTrib regTrib { get; set; }
 
         /// <summary>
         /// Gets or Sets rps
@@ -92,6 +102,13 @@ namespace NuvemFiscal.Sdk.Model
         public EmpresaConfigPrefeitura prefeitura { get; set; }
 
         /// <summary>
+        /// Indicador se a empresa possui algum tipo de incentivo fiscal.
+        /// </summary>
+        /// <value>Indicador se a empresa possui algum tipo de incentivo fiscal.</value>
+        [DataMember(Name = "incentivo_fiscal", EmitDefaultValue = true)]
+        public bool incentivo_fiscal { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -99,8 +116,10 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class EmpresaConfigNfse {\n");
+            sb.Append("  regTrib: ").Append(regTrib).Append("\n");
             sb.Append("  rps: ").Append(rps).Append("\n");
             sb.Append("  prefeitura: ").Append(prefeitura).Append("\n");
+            sb.Append("  incentivo_fiscal: ").Append(incentivo_fiscal).Append("\n");
             sb.Append("  ambiente: ").Append(ambiente).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -138,6 +157,11 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
+                    this.regTrib == input.regTrib ||
+                    (this.regTrib != null &&
+                    this.regTrib.Equals(input.regTrib))
+                ) && 
+                (
                     this.rps == input.rps ||
                     (this.rps != null &&
                     this.rps.Equals(input.rps))
@@ -146,6 +170,10 @@ namespace NuvemFiscal.Sdk.Model
                     this.prefeitura == input.prefeitura ||
                     (this.prefeitura != null &&
                     this.prefeitura.Equals(input.prefeitura))
+                ) && 
+                (
+                    this.incentivo_fiscal == input.incentivo_fiscal ||
+                    this.incentivo_fiscal.Equals(input.incentivo_fiscal)
                 ) && 
                 (
                     this.ambiente == input.ambiente ||
@@ -162,6 +190,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.regTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.regTrib.GetHashCode();
+                }
                 if (this.rps != null)
                 {
                     hashCode = (hashCode * 59) + this.rps.GetHashCode();
@@ -170,6 +202,7 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.prefeitura.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.incentivo_fiscal.GetHashCode();
                 hashCode = (hashCode * 59) + this.ambiente.GetHashCode();
                 return hashCode;
             }

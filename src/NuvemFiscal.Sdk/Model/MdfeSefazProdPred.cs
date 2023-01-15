@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// MdfeSefazProdPred
+    /// Produto predominante.  Informar a descrição do produto predominante.
     /// </summary>
     [DataContract(Name = "MdfeSefazProdPred")]
     public partial class MdfeSefazProdPred : IEquatable<MdfeSefazProdPred>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazProdPred" /> class.
         /// </summary>
-        /// <param name="tpCarga">Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.    01-Granel sólido;  02-Granel líquido;  03-Frigorificada;  04-Conteinerizada;  05-Carga Geral;  06-Neogranel;  07-Perigosa (granel sólido);  08-Perigosa (granel líquido);  09-Perigosa (carga frigorificada);  10-Perigosa (conteinerizada);  11-Perigosa (carga geral). (required).</param>
+        /// <param name="tpCarga">Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.  * 01 - Granel sólido  * 02 - Granel líquido  * 03 - Frigorificada  * 04 - Conteinerizada  * 05 - Carga Geral  * 06 - Neogranel  * 07 - Perigosa (granel sólido)  * 08 - Perigosa (granel líquido)  * 09 - Perigosa (carga frigorificada)  * 10 - Perigosa (conteinerizada)  * 11 - Perigosa (carga geral) (required).</param>
         /// <param name="xProd">Descrição do produto. (required).</param>
         /// <param name="cEAN">GTIN (Global Trade Item Number) do produto, antigo código EAN ou código de barras..</param>
         /// <param name="nCM">Código NCM..</param>
@@ -61,9 +61,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.    01-Granel sólido;  02-Granel líquido;  03-Frigorificada;  04-Conteinerizada;  05-Carga Geral;  06-Neogranel;  07-Perigosa (granel sólido);  08-Perigosa (granel líquido);  09-Perigosa (carga frigorificada);  10-Perigosa (conteinerizada);  11-Perigosa (carga geral).
+        /// Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.  * 01 - Granel sólido  * 02 - Granel líquido  * 03 - Frigorificada  * 04 - Conteinerizada  * 05 - Carga Geral  * 06 - Neogranel  * 07 - Perigosa (granel sólido)  * 08 - Perigosa (granel líquido)  * 09 - Perigosa (carga frigorificada)  * 10 - Perigosa (conteinerizada)  * 11 - Perigosa (carga geral)
         /// </summary>
-        /// <value>Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.    01-Granel sólido;  02-Granel líquido;  03-Frigorificada;  04-Conteinerizada;  05-Carga Geral;  06-Neogranel;  07-Perigosa (granel sólido);  08-Perigosa (granel líquido);  09-Perigosa (carga frigorificada);  10-Perigosa (conteinerizada);  11-Perigosa (carga geral).</value>
+        /// <value>Tipo de Carga.  Conforme Resolução ANTT nº.  5.849/2019.  * 01 - Granel sólido  * 02 - Granel líquido  * 03 - Frigorificada  * 04 - Conteinerizada  * 05 - Carga Geral  * 06 - Neogranel  * 07 - Perigosa (granel sólido)  * 08 - Perigosa (granel líquido)  * 09 - Perigosa (carga frigorificada)  * 10 - Perigosa (conteinerizada)  * 11 - Perigosa (carga geral)</value>
         [DataMember(Name = "tpCarga", IsRequired = true, EmitDefaultValue = true)]
         public string tpCarga { get; set; }
 

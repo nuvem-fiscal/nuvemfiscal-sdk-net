@@ -4,7 +4,7 @@
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**CST** | **string** | Código da Situação Tributária do IPI:  00-Entrada com recuperação de crédito  49 - Outras entradas  50-Saída tributada  99-Outras saídas. | 
+**CST** | **string** | Código da Situação Tributária do IPI:  * 00 - Entrada com recuperação de crédito  * 49 - Outras entradas  * 50 - Saída tributada  * 99 - Outras saídas | 
 **vBC** | **decimal** | Valor da BC do IPI. | [optional] 
 **pIPI** | **decimal** | Alíquota do IPI. | [optional] 
 **qUnid** | **decimal** | Quantidade total na unidade padrão para tributação. | [optional] 

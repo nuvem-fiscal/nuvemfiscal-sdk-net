@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazInfLotacao
+Informações da carga lotação. Informar somente quando MDF-e for de carga lotação.
 
 ## Propriedades
 

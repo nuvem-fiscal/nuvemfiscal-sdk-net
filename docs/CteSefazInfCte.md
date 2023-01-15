@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazInfCte
+Informações do CT-e.
 
 ## Propriedades
 
@@ -18,7 +19,7 @@ Nome | Tipo | Descrição | Comentários
 **infCTeNorm** | [**CteSefazInfCTeNorm**](CteSefazInfCTeNorm.md) |  | [optional] 
 **infCteComp** | [**CteSefazInfCteComp**](CteSefazInfCteComp.md) |  | [optional] 
 **infCteAnu** | [**CteSefazInfCteAnu**](CteSefazInfCteAnu.md) |  | [optional] 
-**autXML** | [**List&lt;CteSefazAutXML&gt;**](CteSefazAutXML.md) | Autorizados para download do XML do DF-e.  Informar CNPJ ou CPF. Preencher os zeros não significativos. | [optional] 
+**autXML** | [**List&lt;CteSefazAutXML&gt;**](CteSefazAutXML.md) |  | [optional] 
 **infRespTec** | [**CteSefazRespTec**](CteSefazRespTec.md) |  | [optional] 
 **infSolicNFF** | [**CteSefazInfSolicNFF**](CteSefazInfSolicNFF.md) |  | [optional] 
 

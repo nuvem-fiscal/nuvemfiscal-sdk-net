@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dPrevAereo">Data prevista da entrega.  Formato AAAA-MM-DD. (required).</param>
         /// <param name="natCarga">natCarga (required).</param>
         /// <param name="tarifa">tarifa (required).</param>
-        /// <param name="peri">Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.  O preenchimento desses campos não desobriga a empresa aérea de emitir os demais documentos que constam na legislação vigente..</param>
+        /// <param name="peri">peri.</param>
         public CteSefazAereo(int nMinu = default(int), string nOCA = default(string), DateTime dPrevAereo = default(DateTime), CteSefazNatCarga natCarga = default(CteSefazNatCarga), CteSefazTarifa tarifa = default(CteSefazTarifa), List<CteSefazPeri> peri = default(List<CteSefazPeri>))
         {
             this.dPrevAereo = dPrevAereo;
@@ -97,9 +97,8 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazTarifa tarifa { get; set; }
 
         /// <summary>
-        /// Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.  O preenchimento desses campos não desobriga a empresa aérea de emitir os demais documentos que constam na legislação vigente.
+        /// Gets or Sets peri
         /// </summary>
-        /// <value>Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.  O preenchimento desses campos não desobriga a empresa aérea de emitir os demais documentos que constam na legislação vigente.</value>
         [DataMember(Name = "peri", EmitDefaultValue = false)]
         public List<CteSefazPeri> peri { get; set; }
 

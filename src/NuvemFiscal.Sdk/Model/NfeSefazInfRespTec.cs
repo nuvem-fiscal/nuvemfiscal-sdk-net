@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazInfRespTec
+    /// Informações do Responsável Técnico pela emissão do DF-e.
     /// </summary>
     [DataContract(Name = "NfeSefazInfRespTec")]
     public partial class NfeSefazInfRespTec : IEquatable<NfeSefazInfRespTec>, IValidatableObject
@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="email">Informar o e-mail da pessoa a ser contatada na empresa desenvolvedora do sistema. (required).</param>
         /// <param name="fone">Informar o telefone da pessoa a ser contatada na empresa desenvolvedora do sistema. Preencher com o Código DDD + número do telefone. (required).</param>
         /// <param name="idCSRT">Identificador do CSRT utilizado para montar o hash do CSRT..</param>
-        /// <param name="hashCSRT">O hashCSRT é o resultado da função hash (SHA-1 – Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe..</param>
+        /// <param name="hashCSRT">O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe..</param>
         public NfeSefazInfRespTec(string cNPJ = default(string), string xContato = default(string), string email = default(string), string fone = default(string), int idCSRT = default(int), string hashCSRT = default(string))
         {
             // to ensure "cNPJ" is required (not null)
@@ -108,9 +108,9 @@ namespace NuvemFiscal.Sdk.Model
         public int idCSRT { get; set; }
 
         /// <summary>
-        /// O hashCSRT é o resultado da função hash (SHA-1 – Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.
+        /// O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.
         /// </summary>
-        /// <value>O hashCSRT é o resultado da função hash (SHA-1 – Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.</value>
+        /// <value>O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.</value>
         [DataMember(Name = "hashCSRT", EmitDefaultValue = false)]
         public string hashCSRT { get; set; }
 

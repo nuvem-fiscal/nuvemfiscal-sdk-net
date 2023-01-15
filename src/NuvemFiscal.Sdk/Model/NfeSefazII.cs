@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfeSefazII
+    /// Dados do Imposto de Importação.
     /// </summary>
     [DataContract(Name = "NfeSefazII")]
     public partial class NfeSefazII : IEquatable<NfeSefazII>, IValidatableObject

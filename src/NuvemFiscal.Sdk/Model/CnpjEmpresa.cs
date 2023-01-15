@@ -45,14 +45,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nomeDaCidadeNoExterior">Nome da cidade no exterior..</param>
         /// <param name="pais">pais.</param>
         /// <param name="atividadePrincipal">atividadePrincipal.</param>
-        /// <param name="atividadesSecundarias">Atividades econômicas secundárias do estabelecimento..</param>
+        /// <param name="atividadesSecundarias">atividadesSecundarias.</param>
         /// <param name="endereco">endereco.</param>
-        /// <param name="telefones">Telefones do estabelecimento..</param>
+        /// <param name="telefones">telefones.</param>
         /// <param name="email">E-mail do contribuinte..</param>
         /// <param name="situacaoEspecial">situacaoEspecial.</param>
         /// <param name="simples">simples.</param>
         /// <param name="simei">simei.</param>
-        public CnpjEmpresa(string cnpj = default(string), string razaoSocial = default(string), string nomeFantasia = default(string), DateTime dataInicioAtividade = default(DateTime), bool matriz = default(bool), CnpjNaturezaJuridica naturezaJuridica = default(CnpjNaturezaJuridica), decimal capitalSocial = default(decimal), CnpjPorteEmpresa porte = default(CnpjPorteEmpresa), string enteFederativoResponsavel = default(string), CnpjSituacaoCadastral situacaoCadastral = default(CnpjSituacaoCadastral), CnpjMotivoSituacaoCadastral motivoSituacaoCadastral = default(CnpjMotivoSituacaoCadastral), string nomeDaCidadeNoExterior = default(string), CnpjPais pais = default(CnpjPais), CnpjCnae atividadePrincipal = default(CnpjCnae), List<CnpjCnae> atividadesSecundarias = default(List<CnpjCnae>), CnpjEndereco endereco = default(CnpjEndereco), List<CnpjTelefone> telefones = default(List<CnpjTelefone>), string email = default(string), CnpjSituacaoEspecial situacaoEspecial = default(CnpjSituacaoEspecial), CnpjOpcaoSimples simples = default(CnpjOpcaoSimples), CnpjOpcaoSimei simei = default(CnpjOpcaoSimei))
+        public CnpjEmpresa(string cnpj = default(string), string razaoSocial = default(string), string nomeFantasia = default(string), DateTime dataInicioAtividade = default(DateTime), bool matriz = default(bool), CnpjNaturezaJuridica naturezaJuridica = default(CnpjNaturezaJuridica), decimal capitalSocial = default(decimal), CnpjPorteEmpresa porte = default(CnpjPorteEmpresa), string enteFederativoResponsavel = default(string), CnpjSituacaoCadastral situacaoCadastral = default(CnpjSituacaoCadastral), CnpjMotivoSituacaoCadastral motivoSituacaoCadastral = default(CnpjMotivoSituacaoCadastral), string nomeDaCidadeNoExterior = default(string), CnpjPais pais = default(CnpjPais), CnpjCnae atividadePrincipal = default(CnpjCnae), List<CnpjCnaeSecundario> atividadesSecundarias = default(List<CnpjCnaeSecundario>), CnpjEndereco endereco = default(CnpjEndereco), List<CnpjTelefone> telefones = default(List<CnpjTelefone>), string email = default(string), CnpjSituacaoEspecial situacaoEspecial = default(CnpjSituacaoEspecial), CnpjOpcaoSimples simples = default(CnpjOpcaoSimples), CnpjOpcaoSimei simei = default(CnpjOpcaoSimei))
         {
             this.cnpj = cnpj;
             this.razao_social = razaoSocial;
@@ -171,11 +171,10 @@ namespace NuvemFiscal.Sdk.Model
         public CnpjCnae atividade_principal { get; set; }
 
         /// <summary>
-        /// Atividades econômicas secundárias do estabelecimento.
+        /// Gets or Sets atividades_secundarias
         /// </summary>
-        /// <value>Atividades econômicas secundárias do estabelecimento.</value>
         [DataMember(Name = "atividades_secundarias", EmitDefaultValue = false)]
-        public List<CnpjCnae> atividades_secundarias { get; set; }
+        public List<CnpjCnaeSecundario> atividades_secundarias { get; set; }
 
         /// <summary>
         /// Gets or Sets endereco
@@ -184,9 +183,8 @@ namespace NuvemFiscal.Sdk.Model
         public CnpjEndereco endereco { get; set; }
 
         /// <summary>
-        /// Telefones do estabelecimento.
+        /// Gets or Sets telefones
         /// </summary>
-        /// <value>Telefones do estabelecimento.</value>
         [DataMember(Name = "telefones", EmitDefaultValue = false)]
         public List<CnpjTelefone> telefones { get; set; }
 

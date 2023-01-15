@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazSeg
+Informações de Seguro do Multimodal.
 
 ## Propriedades
 
