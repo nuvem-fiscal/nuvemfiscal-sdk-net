@@ -33,10 +33,10 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="endNac">endNac.</param>
         /// <param name="endExt">endExt.</param>
-        /// <param name="xLgr">Tipo e nome do logradouro da localização do imóvel.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="nro">Número do imóvel.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xCpl">Complemento do endereço.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xBairro">Bairro.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="xLgr">Tipo e nome do logradouro da localização do imóvel..</param>
+        /// <param name="nro">Número do imóvel..</param>
+        /// <param name="xCpl">Complemento do endereço..</param>
+        /// <param name="xBairro">Bairro..</param>
         public Endereco(EnderNac endNac = default(EnderNac), EnderExt endExt = default(EnderExt), string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string))
         {
             this.endNac = endNac;
@@ -60,30 +60,30 @@ namespace NuvemFiscal.Sdk.Model
         public EnderExt endExt { get; set; }
 
         /// <summary>
-        /// Tipo e nome do logradouro da localização do imóvel.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Tipo e nome do logradouro da localização do imóvel.
         /// </summary>
-        /// <value>Tipo e nome do logradouro da localização do imóvel.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Tipo e nome do logradouro da localização do imóvel.</value>
         [DataMember(Name = "xLgr", EmitDefaultValue = false)]
         public string xLgr { get; set; }
 
         /// <summary>
-        /// Número do imóvel.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Número do imóvel.
         /// </summary>
-        /// <value>Número do imóvel.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Número do imóvel.</value>
         [DataMember(Name = "nro", EmitDefaultValue = false)]
         public string nro { get; set; }
 
         /// <summary>
-        /// Complemento do endereço.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Complemento do endereço.
         /// </summary>
-        /// <value>Complemento do endereço.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Complemento do endereço.</value>
         [DataMember(Name = "xCpl", EmitDefaultValue = false)]
         public string xCpl { get; set; }
 
         /// <summary>
-        /// Bairro.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Bairro.
         /// </summary>
-        /// <value>Bairro.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Bairro.</value>
         [DataMember(Name = "xBairro", EmitDefaultValue = false)]
         public string xBairro { get; set; }
 

@@ -22,7 +22,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**EnviarCertificadoEmpresa**](EmpresaApi.md#enviarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado/upload | Upload de certificado |
 | [**ExcluirCertificadoEmpresa**](EmpresaApi.md#excluircertificadoempresa) | **DELETE** /empresas/{cpf_cnpj}/certificado | Deletar certificado |
 | [**ExcluirEmpresa**](EmpresaApi.md#excluirempresa) | **DELETE** /empresas/{cpf_cnpj} | Deletar empresa |
-| [**ListarEmpresas**](EmpresaApi.md#listarempresas) | **GET** /empresas | Consultar empresas |
+| [**ListarEmpresas**](EmpresaApi.md#listarempresas) | **GET** /empresas | Listar empresas |
 
 <a name="alterarconfigcte"></a>
 # **AlterarConfigCte**
@@ -1844,7 +1844,7 @@ void (empty response body)
 # **ListarEmpresas**
 > EmpresaListagem ListarEmpresas (int? top = null, int? skip = null, bool? inlinecount = null, string cpfCnpj = null)
 
-Consultar empresas
+Listar empresas
 
 Retorna a lista das empresas associadas à sua conta. As empresas são retornadas ordenadas pela data da criação, com as mais recentes aparecendo primeiro.
 
@@ -1878,12 +1878,12 @@ namespace Example
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
-            var inlinecount = true;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional) 
+            var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
             var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional) 
 
             try
             {
-                // Consultar empresas
+                // Listar empresas
                 EmpresaListagem result = apiInstance.ListarEmpresas(top, skip, inlinecount, cpfCnpj);
                 Debug.WriteLine(result);
             }
@@ -1904,7 +1904,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 ```csharp
 try
 {
-    // Consultar empresas
+    // Listar empresas
     ApiResponse<EmpresaListagem> response = apiInstance.ListarEmpresasWithHttpInfo(top, skip, inlinecount, cpfCnpj);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
@@ -1924,7 +1924,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
-| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional]  |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
 | **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. | [optional]  |
 
 ### Tipo de retorno

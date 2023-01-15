@@ -339,7 +339,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>DfeLoteListagem</returns>
         DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string));
@@ -355,7 +355,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>ApiResponse of DfeLoteListagem</returns>
         ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string));
@@ -370,7 +370,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
@@ -387,7 +387,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
@@ -788,7 +788,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeLoteListagem</returns>
@@ -805,7 +805,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeLoteListagem)</returns>
@@ -821,7 +821,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -839,7 +839,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3326,7 +3326,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>DfeLoteListagem</returns>
         public DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string))
@@ -3343,7 +3343,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>ApiResponse of DfeLoteListagem</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string))
@@ -3423,7 +3423,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeLoteListagem</returns>
@@ -3441,7 +3441,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeLoteListagem)</returns>
@@ -3525,7 +3525,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
@@ -3543,7 +3543,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
@@ -3628,7 +3628,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3647,7 +3647,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="ambiente">Identificação do Ambiente.    Valores aceitos: homologacao, producao</param>
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
-        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)</param>
+        /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Grupo de informações específicas de endereço nacional.  Caso não seja informado, será utilizado o do cadastro da empresa.
+    /// Grupo de informações específicas de endereço nacional.
     /// </summary>
     [DataContract(Name = "EnderNac")]
     public partial class EnderNac : IEquatable<EnderNac>, IValidatableObject
@@ -31,8 +31,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EnderNac" /> class.
         /// </summary>
-        /// <param name="cMun">Código do município, conforme Tabela do IBGE.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="cEP">Número do CEP.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="cMun">Código do município, conforme Tabela do IBGE..</param>
+        /// <param name="cEP">Número do CEP..</param>
         public EnderNac(string cMun = default(string), string cEP = default(string))
         {
             this.cMun = cMun;
@@ -40,16 +40,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código do município, conforme Tabela do IBGE.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Código do município, conforme Tabela do IBGE.
         /// </summary>
-        /// <value>Código do município, conforme Tabela do IBGE.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Código do município, conforme Tabela do IBGE.</value>
         [DataMember(Name = "cMun", EmitDefaultValue = false)]
         public string cMun { get; set; }
 
         /// <summary>
-        /// Número do CEP.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Número do CEP.
         /// </summary>
-        /// <value>Número do CEP.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Número do CEP.</value>
         [DataMember(Name = "CEP", EmitDefaultValue = false)]
         public string CEP { get; set; }
 

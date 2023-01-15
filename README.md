@@ -4,7 +4,7 @@ Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
 - Versão da API: 2.0.0
-- Versão do SDK: 2.0.0
+- Versão do SDK: 2.1.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -178,7 +178,7 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**EnviarCertificadoEmpresa**](docs/EmpresaApi.md#enviarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado/upload | Upload de certificado
 *EmpresaApi* | [**ExcluirCertificadoEmpresa**](docs/EmpresaApi.md#excluircertificadoempresa) | **DELETE** /empresas/{cpf_cnpj}/certificado | Deletar certificado
 *EmpresaApi* | [**ExcluirEmpresa**](docs/EmpresaApi.md#excluirempresa) | **DELETE** /empresas/{cpf_cnpj} | Deletar empresa
-*EmpresaApi* | [**ListarEmpresas**](docs/EmpresaApi.md#listarempresas) | **GET** /empresas | Consultar empresas
+*EmpresaApi* | [**ListarEmpresas**](docs/EmpresaApi.md#listarempresas) | **GET** /empresas | Listar empresas
 *MdfeApi* | [**BaixarXmlCancelamentoMdfe**](docs/MdfeApi.md#baixarxmlcancelamentomdfe) | **GET** /mdfe/{id}/cancelamento/xml | Baixar XML do cancelamento
 *MdfeApi* | [**BaixarXmlEncerramentoMdfe**](docs/MdfeApi.md#baixarxmlencerramentomdfe) | **GET** /mdfe/{id}/encerramento/xml | Baixar XML do encerramento
 *MdfeApi* | [**BaixarXmlEventoMdfe**](docs/MdfeApi.md#baixarxmleventomdfe) | **GET** /mdfe/eventos/{id}/xml | Baixar XML do evento

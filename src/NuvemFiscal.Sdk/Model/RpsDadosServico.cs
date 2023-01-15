@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RpsDadosServico" /> class.
         /// </summary>
-        /// <param name="issRetido">Reter ISSQN..</param>
+        /// <param name="issRetido">Reter ISSQN. (default to false).</param>
         /// <param name="responsavelRetencao">Responsável pela retenção:  * 0 - Prestador;  * 1 - Tomador;  * 2 - Intermediário..</param>
         /// <param name="itemListaServico">Código do item da lista de serviço, geralmente segue a LC116, podendo variar de acordo com a prefeitura.    Você pode encontrar esse dado no portal da prefeitura, em uma nota emitida ou junto ao contador. (required).</param>
         /// <param name="codigoCnae">Código CNAE (Classificação Nacional de Atividades Econômicas)..</param>
@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="unidade">Unidade do serviço prestado..</param>
         /// <param name="quantidade">Quantidade dos serviços prestados..</param>
         /// <param name="valores">valores (required).</param>
-        public RpsDadosServico(bool issRetido = default(bool), int responsavelRetencao = default(int), string itemListaServico = default(string), string codigoCnae = default(string), string codigoTributacaoMunicipio = default(string), string discriminacao = default(string), string codigoMunicipio = default(string), string codigoPais = default(string), int tipoTributacao = default(int), int exigibilidadeIss = default(int), string codigoMunicipioIncidencia = default(string), string numeroProcesso = default(string), string unidade = default(string), decimal quantidade = default(decimal), RpsServicoValores valores = default(RpsServicoValores))
+        public RpsDadosServico(bool issRetido = false, int responsavelRetencao = default(int), string itemListaServico = default(string), string codigoCnae = default(string), string codigoTributacaoMunicipio = default(string), string discriminacao = default(string), string codigoMunicipio = default(string), string codigoPais = default(string), int tipoTributacao = default(int), int exigibilidadeIss = default(int), string codigoMunicipioIncidencia = default(string), string numeroProcesso = default(string), string unidade = default(string), decimal quantidade = default(decimal), RpsServicoValores valores = default(RpsServicoValores))
         {
             // to ensure "itemListaServico" is required (not null)
             if (itemListaServico == null)

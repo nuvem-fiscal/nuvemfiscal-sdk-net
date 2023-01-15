@@ -119,8 +119,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dPS">dPS.</param>
         /// <param name="cancelamento">cancelamento.</param>
         /// <param name="mensagens">mensagens.</param>
-        /// <param name="rps">rps.</param>
-        public Nfse(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string numero = default(string), string codigoVerificacao = default(string), string linkUrl = default(string), DateTime dataEmissao = default(DateTime), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), DPS dPS = default(DPS), NfseCancelamento cancelamento = default(NfseCancelamento), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>), Rps rps = default(Rps))
+        /// <param name="declaracaoPrestacaoServico">declaracaoPrestacaoServico.</param>
+        public Nfse(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string numero = default(string), string codigoVerificacao = default(string), string linkUrl = default(string), DateTime dataEmissao = default(DateTime), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), DPS dPS = default(DPS), NfseCancelamento cancelamento = default(NfseCancelamento), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>), Rps declaracaoPrestacaoServico = default(Rps))
         {
             this.id = id;
             this.created_at = createdAt;
@@ -134,7 +134,7 @@ namespace NuvemFiscal.Sdk.Model
             this.DPS = dPS;
             this.cancelamento = cancelamento;
             this.mensagens = mensagens;
-            this.rps = rps;
+            this.declaracao_prestacao_servico = declaracaoPrestacaoServico;
         }
 
         /// <summary>
@@ -199,10 +199,10 @@ namespace NuvemFiscal.Sdk.Model
         public List<NfseMensagemRetorno> mensagens { get; set; }
 
         /// <summary>
-        /// Gets or Sets rps
+        /// Gets or Sets declaracao_prestacao_servico
         /// </summary>
-        [DataMember(Name = "rps", EmitDefaultValue = false)]
-        public Rps rps { get; set; }
+        [DataMember(Name = "declaracao_prestacao_servico", EmitDefaultValue = false)]
+        public Rps declaracao_prestacao_servico { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -224,7 +224,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  DPS: ").Append(DPS).Append("\n");
             sb.Append("  cancelamento: ").Append(cancelamento).Append("\n");
             sb.Append("  mensagens: ").Append(mensagens).Append("\n");
-            sb.Append("  rps: ").Append(rps).Append("\n");
+            sb.Append("  declaracao_prestacao_servico: ").Append(declaracao_prestacao_servico).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -320,9 +320,9 @@ namespace NuvemFiscal.Sdk.Model
                     this.mensagens.SequenceEqual(input.mensagens)
                 ) && 
                 (
-                    this.rps == input.rps ||
-                    (this.rps != null &&
-                    this.rps.Equals(input.rps))
+                    this.declaracao_prestacao_servico == input.declaracao_prestacao_servico ||
+                    (this.declaracao_prestacao_servico != null &&
+                    this.declaracao_prestacao_servico.Equals(input.declaracao_prestacao_servico))
                 );
         }
 
@@ -377,9 +377,9 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.mensagens.GetHashCode();
                 }
-                if (this.rps != null)
+                if (this.declaracao_prestacao_servico != null)
                 {
-                    hashCode = (hashCode * 59) + this.rps.GetHashCode();
+                    hashCode = (hashCode * 59) + this.declaracao_prestacao_servico.GetHashCode();
                 }
                 return hashCode;
             }

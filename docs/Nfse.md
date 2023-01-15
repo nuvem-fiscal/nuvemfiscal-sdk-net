@@ -16,7 +16,7 @@ Nome | Tipo | Descrição | Comentários
 **DPS** | [**DPS**](DPS.md) |  | [optional] 
 **cancelamento** | [**NfseCancelamento**](NfseCancelamento.md) |  | [optional] 
 **mensagens** | [**List&lt;NfseMensagemRetorno&gt;**](NfseMensagemRetorno.md) |  | [optional] 
-**rps** | [**Rps**](Rps.md) |  | [optional] 
+**declaracao_prestacao_servico** | [**Rps**](Rps.md) |  | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

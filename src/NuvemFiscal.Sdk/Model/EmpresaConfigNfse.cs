@@ -67,9 +67,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="regTrib">regTrib.</param>
         /// <param name="rps">rps (required).</param>
         /// <param name="prefeitura">prefeitura.</param>
-        /// <param name="incentivoFiscal">Indicador se a empresa possui algum tipo de incentivo fiscal..</param>
+        /// <param name="incentivoFiscal">Indicador se a empresa possui algum tipo de incentivo fiscal. (default to false).</param>
         /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
-        public EmpresaConfigNfse(EmpresaConfigNfseRegTrib regTrib = default(EmpresaConfigNfseRegTrib), EmpresaConfigRps rps = default(EmpresaConfigRps), EmpresaConfigPrefeitura prefeitura = default(EmpresaConfigPrefeitura), bool incentivoFiscal = default(bool), AmbienteEnum ambiente = default(AmbienteEnum))
+        public EmpresaConfigNfse(EmpresaConfigNfseRegTrib regTrib = default(EmpresaConfigNfseRegTrib), EmpresaConfigRps rps = default(EmpresaConfigRps), EmpresaConfigPrefeitura prefeitura = default(EmpresaConfigPrefeitura), bool incentivoFiscal = false, AmbienteEnum ambiente = default(AmbienteEnum))
         {
             // to ensure "rps" is required (not null)
             if (rps == null)
