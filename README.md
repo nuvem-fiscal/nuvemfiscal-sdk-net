@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.1.0
-- Versão do SDK: 2.3.0
+- Versão da API: 2.2.0
+- Versão do SDK: 2.4.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -141,6 +141,11 @@ Classe | Método | Endpoint | Descrição
 *CnpjApi* | [**ListarCnpj**](docs/CnpjApi.md#listarcnpj) | **GET** /cnpj | Listar estabelecimentos ativos a partir da base de CNPJ
 *ContaApi* | [**ConsultarCotaConta**](docs/ContaApi.md#consultarcotaconta) | **GET** /conta/cotas/{nome} | Consultar o limite de uso e o consumo de uma cota específica.
 *ContaApi* | [**ListarCotasConta**](docs/ContaApi.md#listarcotasconta) | **GET** /conta/cotas | Consultar os limites de uso e consumo de todas as cotas existentes.
+*CteApi* | [**BaixarPdfCancelamentoCte**](docs/CteApi.md#baixarpdfcancelamentocte) | **GET** /cte/{id}/cancelamento/pdf | Baixar PDF do cancelamento
+*CteApi* | [**BaixarPdfCartaCorrecaoCte**](docs/CteApi.md#baixarpdfcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/pdf | Baixar PDF da carta de correção
+*CteApi* | [**BaixarPdfCte**](docs/CteApi.md#baixarpdfcte) | **GET** /cte/{id}/pdf | Baixar PDF do DACTE
+*CteApi* | [**BaixarPdfEventoCte**](docs/CteApi.md#baixarpdfeventocte) | **GET** /cte/eventos/{id}/pdf | Baixar PDF do evento
+*CteApi* | [**BaixarPdfInutilizacaoCte**](docs/CteApi.md#baixarpdfinutilizacaocte) | **GET** /cte/inutilizacoes/{id}/pdf | Baixar PDF da inutilização
 *CteApi* | [**BaixarXmlCancelamentoCte**](docs/CteApi.md#baixarxmlcancelamentocte) | **GET** /cte/{id}/cancelamento/xml | Baixar XML do cancelamento
 *CteApi* | [**BaixarXmlCartaCorrecaoCte**](docs/CteApi.md#baixarxmlcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/xml | Baixar XML da carta de correção
 *CteApi* | [**BaixarXmlCte**](docs/CteApi.md#baixarxmlcte) | **GET** /cte/{id}/xml | Baixar XML do CT-e processado
@@ -179,6 +184,10 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**ExcluirCertificadoEmpresa**](docs/EmpresaApi.md#excluircertificadoempresa) | **DELETE** /empresas/{cpf_cnpj}/certificado | Deletar certificado
 *EmpresaApi* | [**ExcluirEmpresa**](docs/EmpresaApi.md#excluirempresa) | **DELETE** /empresas/{cpf_cnpj} | Deletar empresa
 *EmpresaApi* | [**ListarEmpresas**](docs/EmpresaApi.md#listarempresas) | **GET** /empresas | Listar empresas
+*MdfeApi* | [**BaixarPdfCancelamentoMdfe**](docs/MdfeApi.md#baixarpdfcancelamentomdfe) | **GET** /mdfe/{id}/cancelamento/pdf | Baixar PDF do cancelamento
+*MdfeApi* | [**BaixarPdfEncerramentoMdfe**](docs/MdfeApi.md#baixarpdfencerramentomdfe) | **GET** /mdfe/{id}/encerramento/pdf | Baixar PDF do encerramento
+*MdfeApi* | [**BaixarPdfEventoMdfe**](docs/MdfeApi.md#baixarpdfeventomdfe) | **GET** /mdfe/eventos/{id}/pdf | Baixar PDF do evento
+*MdfeApi* | [**BaixarPdfMdfe**](docs/MdfeApi.md#baixarpdfmdfe) | **GET** /mdfe/{id}/pdf | Baixar PDF do DAMDFE
 *MdfeApi* | [**BaixarXmlCancelamentoMdfe**](docs/MdfeApi.md#baixarxmlcancelamentomdfe) | **GET** /mdfe/{id}/cancelamento/xml | Baixar XML do cancelamento
 *MdfeApi* | [**BaixarXmlEncerramentoMdfe**](docs/MdfeApi.md#baixarxmlencerramentomdfe) | **GET** /mdfe/{id}/encerramento/xml | Baixar XML do encerramento
 *MdfeApi* | [**BaixarXmlEventoMdfe**](docs/MdfeApi.md#baixarxmleventomdfe) | **GET** /mdfe/eventos/{id}/xml | Baixar XML do evento
