@@ -4,14 +4,20 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
 | Método | Endpoint | Descrição |
 |--------|--------------|-------------|
+| [**BaixarEscPosNfce**](NfceApi.md#baixarescposnfce) | **GET** /nfce/{id}/escpos | Comandos ESC/POS para impressão do DANFCE |
 | [**BaixarPdfCancelamentoNfce**](NfceApi.md#baixarpdfcancelamentonfce) | **GET** /nfce/{id}/cancelamento/pdf | Baixar PDF do cancelamento |
+| [**BaixarPdfEventoNfce**](NfceApi.md#baixarpdfeventonfce) | **GET** /nfce/eventos/{id}/pdf | Baixar PDF do evento |
 | [**BaixarPdfInutilizacaoNfce**](NfceApi.md#baixarpdfinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/pdf | Baixar PDF da inutilização |
 | [**BaixarPdfNfce**](NfceApi.md#baixarpdfnfce) | **GET** /nfce/{id}/pdf | Baixar PDF do DANFCE |
 | [**BaixarXmlCancelamentoNfce**](NfceApi.md#baixarxmlcancelamentonfce) | **GET** /nfce/{id}/cancelamento/xml | Baixar XML do cancelamento |
+| [**BaixarXmlEventoNfce**](NfceApi.md#baixarxmleventonfce) | **GET** /nfce/eventos/{id}/xml | Baixar XML do evento |
 | [**BaixarXmlInutilizacaoNfce**](NfceApi.md#baixarxmlinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/xml | Baixar XML da inutilização |
 | [**BaixarXmlNfce**](NfceApi.md#baixarxmlnfce) | **GET** /nfce/{id}/xml | Baixar XML da NFC-e processada |
+| [**BaixarXmlNfceNota**](NfceApi.md#baixarxmlnfcenota) | **GET** /nfce/{id}/xml/nota | Baixar XML da NFC-e |
+| [**BaixarXmlNfceProtocolo**](NfceApi.md#baixarxmlnfceprotocolo) | **GET** /nfce/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ |
 | [**CancelarNfce**](NfceApi.md#cancelarnfce) | **POST** /nfce/{id}/cancelamento | Cancelar uma NFC-e autorizada |
 | [**ConsultarCancelamentoNfce**](NfceApi.md#consultarcancelamentonfce) | **GET** /nfce/{id}/cancelamento | Consultar o cancelamento da NFC-e |
+| [**ConsultarEventoNfce**](NfceApi.md#consultareventonfce) | **GET** /nfce/eventos/{id} | Consultar evento |
 | [**ConsultarInutilizacaoNfce**](NfceApi.md#consultarinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id} | Consultar a inutilização de sequência de numeração |
 | [**ConsultarLoteNfce**](NfceApi.md#consultarlotenfce) | **GET** /nfce/lotes/{id} | Consultar lote de NFC-e |
 | [**ConsultarNfce**](NfceApi.md#consultarnfce) | **GET** /nfce/{id} | Consultar NFC-e |
@@ -19,8 +25,118 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**EmitirLoteNfce**](NfceApi.md#emitirlotenfce) | **POST** /nfce/lotes | Emitir lote de NFC-e |
 | [**EmitirNfce**](NfceApi.md#emitirnfce) | **POST** /nfce | Emitir NFC-e |
 | [**InutilizarNumeracaoNfce**](NfceApi.md#inutilizarnumeracaonfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e |
+| [**ListarEventosNfce**](NfceApi.md#listareventosnfce) | **GET** /nfce/eventos | Listar eventos |
 | [**ListarLotesNfce**](NfceApi.md#listarlotesnfce) | **GET** /nfce/lotes | Listar lotes de NFC-e |
 | [**ListarNfce**](NfceApi.md#listarnfce) | **GET** /nfce | Listar NFC-e |
+| [**SincronizarNfce**](NfceApi.md#sincronizarnfce) | **POST** /nfce/{id}/sincronizar | Sincroniza dados na NFC-e a partir da SEFAZ |
+
+<a name="baixarescposnfce"></a>
+# **BaixarEscPosNfce**
+> FileParameter BaixarEscPosNfce (string id, int? modelo = null, int? colunas = null, bool? qrcodeLateral = null)
+
+Comandos ESC/POS para impressão do DANFCE
+
+ESC/POS é um sistema de comando criado pela Epson usado em diversos sistemas de impressoras POS.    Com o formato ESC/POS, você poderá imprimir nativamente em uma vasta quantidade de modelos de impressora térmicas utilizadas no Brasil e no mundo. Com ela, você consegue fazer o envio de comandos em ESC/POS direto para a porta da impressora.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarEscPosNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
+            var modelo = 1;  // int? | Modelo da impressora:  * `0` - Texto  * `1` - Epson  * `2` - Bematech  * `3` - Daruma  * `4` - Vox  * `5` - Diebold  * `6` - Epson P2  * `7` - CustomPos  * `8` - Star  * `9` - Zjiang  * `10` - GPrinter  * `11` - Datecs  * `12` - Sunmi  * `13` - Externo (optional)  (default to 1)
+            var colunas = 48;  // int? | Define o máximo de caracteres, em uma linha, usando a fonte normal.    Ex: 40, 42, 48, 58, 80. (optional)  (default to 48)
+            var qrcodeLateral = false;  // bool? | Imprime o QRCode na lateral do DANFCe.    OBS: não suportado por alguns modelos de impressora. (optional)  (default to false)
+
+            try
+            {
+                // Comandos ESC/POS para impressão do DANFCE
+                FileParameter result = apiInstance.BaixarEscPosNfce(id, modelo, colunas, qrcodeLateral);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.BaixarEscPosNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarEscPosNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Comandos ESC/POS para impressão do DANFCE
+    ApiResponse<FileParameter> response = apiInstance.BaixarEscPosNfceWithHttpInfo(id, modelo, colunas, qrcodeLateral);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.BaixarEscPosNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+| **modelo** | **int?** | Modelo da impressora:  * &#x60;0&#x60; - Texto  * &#x60;1&#x60; - Epson  * &#x60;2&#x60; - Bematech  * &#x60;3&#x60; - Daruma  * &#x60;4&#x60; - Vox  * &#x60;5&#x60; - Diebold  * &#x60;6&#x60; - Epson P2  * &#x60;7&#x60; - CustomPos  * &#x60;8&#x60; - Star  * &#x60;9&#x60; - Zjiang  * &#x60;10&#x60; - GPrinter  * &#x60;11&#x60; - Datecs  * &#x60;12&#x60; - Sunmi  * &#x60;13&#x60; - Externo | [optional] [default to 1] |
+| **colunas** | **int?** | Define o máximo de caracteres, em uma linha, usando a fonte normal.    Ex: 40, 42, 48, 58, 80. | [optional] [default to 48] |
+| **qrcodeLateral** | **bool?** | Imprime o QRCode na lateral do DANFCe.    OBS: não suportado por alguns modelos de impressora. | [optional] [default to false] |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
 <a name="baixarpdfcancelamentonfce"></a>
 # **BaixarPdfCancelamentoNfce**
@@ -100,6 +216,106 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarpdfeventonfce"></a>
+# **BaixarPdfEventoNfce**
+> FileParameter BaixarPdfEventoNfce (string id)
+
+Baixar PDF do evento
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarPdfEventoNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar PDF do evento
+                FileParameter result = apiInstance.BaixarPdfEventoNfce(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.BaixarPdfEventoNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarPdfEventoNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar PDF do evento
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfEventoNfceWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.BaixarPdfEventoNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -224,7 +440,7 @@ catch (ApiException e)
 
 <a name="baixarpdfnfce"></a>
 # **BaixarPdfNfce**
-> FileParameter BaixarPdfNfce (string id)
+> FileParameter BaixarPdfNfce (string id, bool? resumido = null, bool? qrcodeLateral = null)
 
 Baixar PDF do DANFCE
 
@@ -257,11 +473,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
+            var resumido = false;  // bool? | Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite. (optional)  (default to false)
+            var qrcodeLateral = false;  // bool? | Imprime o QRCode na lateral do DANFE NFC-e. (optional)  (default to false)
 
             try
             {
                 // Baixar PDF do DANFCE
-                FileParameter result = apiInstance.BaixarPdfNfce(id);
+                FileParameter result = apiInstance.BaixarPdfNfce(id, resumido, qrcodeLateral);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -282,7 +500,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Baixar PDF do DANFCE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfceWithHttpInfo(id);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfceWithHttpInfo(id, resumido, qrcodeLateral);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -300,6 +518,8 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+| **resumido** | **bool?** | Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite. | [optional] [default to false] |
+| **qrcodeLateral** | **bool?** | Imprime o QRCode na lateral do DANFE NFC-e. | [optional] [default to false] |
 
 ### Tipo de retorno
 
@@ -400,6 +620,106 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarxmleventonfce"></a>
+# **BaixarXmlEventoNfce**
+> FileParameter BaixarXmlEventoNfce (string id)
+
+Baixar XML do evento
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarXmlEventoNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar XML do evento
+                FileParameter result = apiInstance.BaixarXmlEventoNfce(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.BaixarXmlEventoNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarXmlEventoNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar XML do evento
+    ApiResponse<FileParameter> response = apiInstance.BaixarXmlEventoNfceWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.BaixarXmlEventoNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 
@@ -622,9 +942,209 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
+<a name="baixarxmlnfcenota"></a>
+# **BaixarXmlNfceNota**
+> FileParameter BaixarXmlNfceNota (string id)
+
+Baixar XML da NFC-e
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarXmlNfceNotaExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar XML da NFC-e
+                FileParameter result = apiInstance.BaixarXmlNfceNota(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.BaixarXmlNfceNota: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarXmlNfceNotaWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar XML da NFC-e
+    ApiResponse<FileParameter> response = apiInstance.BaixarXmlNfceNotaWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.BaixarXmlNfceNotaWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarxmlnfceprotocolo"></a>
+# **BaixarXmlNfceProtocolo**
+> FileParameter BaixarXmlNfceProtocolo (string id)
+
+Baixar XML do Protocolo da SEFAZ
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarXmlNfceProtocoloExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar XML do Protocolo da SEFAZ
+                FileParameter result = apiInstance.BaixarXmlNfceProtocolo(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.BaixarXmlNfceProtocolo: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarXmlNfceProtocoloWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar XML do Protocolo da SEFAZ
+    ApiResponse<FileParameter> response = apiInstance.BaixarXmlNfceProtocoloWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.BaixarXmlNfceProtocoloWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
 <a name="cancelarnfce"></a>
 # **CancelarNfce**
-> DfeCancelamento CancelarNfce (string id, NfePedidoCancelamento body)
+> DfeCancelamento CancelarNfce (string id, NfePedidoCancelamento body = null)
 
 Cancelar uma NFC-e autorizada
 
@@ -657,7 +1177,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
-            var body = new NfePedidoCancelamento(); // NfePedidoCancelamento | 
+            var body = new NfePedidoCancelamento(); // NfePedidoCancelamento |  (optional) 
 
             try
             {
@@ -701,7 +1221,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
-| **body** | [**NfePedidoCancelamento**](NfePedidoCancelamento.md) |  |  |
+| **body** | [**NfePedidoCancelamento**](NfePedidoCancelamento.md) |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -806,6 +1326,106 @@ catch (ApiException e)
 ### Tipo de retorno
 
 [**DfeCancelamento**](DfeCancelamento.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="consultareventonfce"></a>
+# **ConsultarEventoNfce**
+> DfeEvento ConsultarEventoNfce (string id)
+
+Consultar evento
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ConsultarEventoNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único do evento gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Consultar evento
+                DfeEvento result = apiInstance.ConsultarEventoNfce(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.ConsultarEventoNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ConsultarEventoNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Consultar evento
+    ApiResponse<DfeEvento> response = apiInstance.ConsultarEventoNfceWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.ConsultarEventoNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único do evento gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**DfeEvento**](DfeEvento.md)
 
 ### Autorização
 
@@ -1530,6 +2150,114 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
+<a name="listareventosnfce"></a>
+# **ListarEventosNfce**
+> DfeEventoListagem ListarEventosNfce (string dfeId, int? top = null, int? skip = null, bool? inlinecount = null)
+
+Listar eventos
+
+Retorna a lista de eventos vinculados a um documento fiscal de acordo com os critérios de busca utilizados. Os eventos são retornados ordenados pela data da criação, com as mais recentes aparecendo primeiro.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ListarEventosNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var dfeId = "dfeId_example";  // string | ID único gerado pela Nuvem Fiscal para o documento fiscal.
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
+
+            try
+            {
+                // Listar eventos
+                DfeEventoListagem result = apiInstance.ListarEventosNfce(dfeId, top, skip, inlinecount);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.ListarEventosNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ListarEventosNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Listar eventos
+    ApiResponse<DfeEventoListagem> response = apiInstance.ListarEventosNfceWithHttpInfo(dfeId, top, skip, inlinecount);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.ListarEventosNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **dfeId** | **string** | ID único gerado pela Nuvem Fiscal para o documento fiscal. |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
+
+### Tipo de retorno
+
+[**DfeEventoListagem**](DfeEventoListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
 <a name="listarlotesnfce"></a>
 # **ListarLotesNfce**
 > DfeLoteListagem ListarLotesNfce (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null)
@@ -1738,6 +2466,108 @@ catch (ApiException e)
 ### Tipo de retorno
 
 [**DfeListagem**](DfeListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="sincronizarnfce"></a>
+# **SincronizarNfce**
+> DfeSincronizacao SincronizarNfce (string id)
+
+Sincroniza dados na NFC-e a partir da SEFAZ
+
+Realiza a sincronização dos dados a partir da consulta da situação atual da NFC-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizada na SEFAZ (útil em casos de erros de transmissão com a SEFAZ, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status `autorizado`na Nuvem Fiscal, mas está cancelada na SEFAZ.  * Sincronizar todos os eventos de Cancelamento, Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos a partir da Nuvem Fiscal.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class SincronizarNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Sincroniza dados na NFC-e a partir da SEFAZ
+                DfeSincronizacao result = apiInstance.SincronizarNfce(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.SincronizarNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante SincronizarNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Sincroniza dados na NFC-e a partir da SEFAZ
+    ApiResponse<DfeSincronizacao> response = apiInstance.SincronizarNfceWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.SincronizarNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**DfeSincronizacao**](DfeSincronizacao.md)
 
 ### Autorização
 

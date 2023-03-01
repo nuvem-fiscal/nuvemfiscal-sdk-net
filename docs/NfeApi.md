@@ -14,6 +14,8 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**BaixarXmlEventoNfe**](NfeApi.md#baixarxmleventonfe) | **GET** /nfe/eventos/{id}/xml | Baixar XML do evento |
 | [**BaixarXmlInutilizacaoNfe**](NfeApi.md#baixarxmlinutilizacaonfe) | **GET** /nfe/inutilizacoes/{id}/xml | Baixar XML da inutilização |
 | [**BaixarXmlNfe**](NfeApi.md#baixarxmlnfe) | **GET** /nfe/{id}/xml | Baixar XML da NF-e processada |
+| [**BaixarXmlNfeNota**](NfeApi.md#baixarxmlnfenota) | **GET** /nfe/{id}/xml/nota | Baixar XML da NF-e |
+| [**BaixarXmlNfeProtocolo**](NfeApi.md#baixarxmlnfeprotocolo) | **GET** /nfe/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ |
 | [**CancelarNfe**](NfeApi.md#cancelarnfe) | **POST** /nfe/{id}/cancelamento | Cancelar uma NF-e autorizada |
 | [**ConsultarCancelamentoNfe**](NfeApi.md#consultarcancelamentonfe) | **GET** /nfe/{id}/cancelamento | Consultar o cancelamento da NF-e |
 | [**ConsultarCartaCorrecaoNfe**](NfeApi.md#consultarcartacorrecaonfe) | **GET** /nfe/{id}/carta-correcao | Consultar a solicitação de correção da NF-e |
@@ -26,8 +28,10 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**EmitirLoteNfe**](NfeApi.md#emitirlotenfe) | **POST** /nfe/lotes | Emitir lote de NF-e |
 | [**EmitirNfe**](NfeApi.md#emitirnfe) | **POST** /nfe | Emitir NF-e |
 | [**InutilizarNumeracaoNfe**](NfeApi.md#inutilizarnumeracaonfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e |
+| [**ListarEventosNfe**](NfeApi.md#listareventosnfe) | **GET** /nfe/eventos | Listar eventos |
 | [**ListarLotesNfe**](NfeApi.md#listarlotesnfe) | **GET** /nfe/lotes | Listar lotes de NF-e |
 | [**ListarNfe**](NfeApi.md#listarnfe) | **GET** /nfe | Listar NF-e |
+| [**SincronizarNfe**](NfeApi.md#sincronizarnfe) | **POST** /nfe/{id}/sincronizar | Sincroniza dados na NF-e a partir da SEFAZ |
 
 <a name="baixarpdfcancelamentonfe"></a>
 # **BaixarPdfCancelamentoNfe**
@@ -1029,9 +1033,209 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
+<a name="baixarxmlnfenota"></a>
+# **BaixarXmlNfeNota**
+> FileParameter BaixarXmlNfeNota (string id)
+
+Baixar XML da NF-e
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarXmlNfeNotaExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar XML da NF-e
+                FileParameter result = apiInstance.BaixarXmlNfeNota(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfeApi.BaixarXmlNfeNota: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarXmlNfeNotaWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar XML da NF-e
+    ApiResponse<FileParameter> response = apiInstance.BaixarXmlNfeNotaWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfeApi.BaixarXmlNfeNotaWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarxmlnfeprotocolo"></a>
+# **BaixarXmlNfeProtocolo**
+> FileParameter BaixarXmlNfeProtocolo (string id)
+
+Baixar XML do Protocolo da SEFAZ
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarXmlNfeProtocoloExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar XML do Protocolo da SEFAZ
+                FileParameter result = apiInstance.BaixarXmlNfeProtocolo(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfeApi.BaixarXmlNfeProtocolo: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarXmlNfeProtocoloWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar XML do Protocolo da SEFAZ
+    ApiResponse<FileParameter> response = apiInstance.BaixarXmlNfeProtocoloWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfeApi.BaixarXmlNfeProtocoloWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
 <a name="cancelarnfe"></a>
 # **CancelarNfe**
-> DfeCancelamento CancelarNfe (string id, NfePedidoCancelamento body)
+> DfeCancelamento CancelarNfe (string id, NfePedidoCancelamento body = null)
 
 Cancelar uma NF-e autorizada
 
@@ -1064,7 +1268,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
-            var body = new NfePedidoCancelamento(); // NfePedidoCancelamento | 
+            var body = new NfePedidoCancelamento(); // NfePedidoCancelamento |  (optional) 
 
             try
             {
@@ -1108,7 +1312,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
-| **body** | [**NfePedidoCancelamento**](NfePedidoCancelamento.md) |  |  |
+| **body** | [**NfePedidoCancelamento**](NfePedidoCancelamento.md) |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -2241,6 +2445,114 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
+<a name="listareventosnfe"></a>
+# **ListarEventosNfe**
+> DfeEventoListagem ListarEventosNfe (string dfeId, int? top = null, int? skip = null, bool? inlinecount = null)
+
+Listar eventos
+
+Retorna a lista de eventos vinculados a um documento fiscal de acordo com os critérios de busca utilizados. Os eventos são retornados ordenados pela data da criação, com as mais recentes aparecendo primeiro.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ListarEventosNfeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
+            var dfeId = "dfeId_example";  // string | ID único gerado pela Nuvem Fiscal para o documento fiscal.
+            var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
+            var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
+            var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
+
+            try
+            {
+                // Listar eventos
+                DfeEventoListagem result = apiInstance.ListarEventosNfe(dfeId, top, skip, inlinecount);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfeApi.ListarEventosNfe: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ListarEventosNfeWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Listar eventos
+    ApiResponse<DfeEventoListagem> response = apiInstance.ListarEventosNfeWithHttpInfo(dfeId, top, skip, inlinecount);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfeApi.ListarEventosNfeWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **dfeId** | **string** | ID único gerado pela Nuvem Fiscal para o documento fiscal. |  |
+| **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
+| **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
+| **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
+
+### Tipo de retorno
+
+[**DfeEventoListagem**](DfeEventoListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
 <a name="listarlotesnfe"></a>
 # **ListarLotesNfe**
 > DfeLoteListagem ListarLotesNfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null)
@@ -2449,6 +2761,108 @@ catch (ApiException e)
 ### Tipo de retorno
 
 [**DfeListagem**](DfeListagem.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="sincronizarnfe"></a>
+# **SincronizarNfe**
+> DfeSincronizacao SincronizarNfe (string id)
+
+Sincroniza dados na NF-e a partir da SEFAZ
+
+Realiza a sincronização dos dados a partir da consulta da situação atual da NF-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizada na SEFAZ (útil em casos de erros de transmissão com a SEFAZ, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status `autorizado`na Nuvem Fiscal, mas está cancelada na SEFAZ.  * Sincronizar todos os eventos de Cancelamento, Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos a partir da Nuvem Fiscal.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class SincronizarNfeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Sincroniza dados na NF-e a partir da SEFAZ
+                DfeSincronizacao result = apiInstance.SincronizarNfe(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfeApi.SincronizarNfe: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante SincronizarNfeWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Sincroniza dados na NF-e a partir da SEFAZ
+    ApiResponse<DfeSincronizacao> response = apiInstance.SincronizarNfeWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfeApi.SincronizarNfeWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
+
+### Tipo de retorno
+
+[**DfeSincronizacao**](DfeSincronizacao.md)
 
 ### Autorização
 

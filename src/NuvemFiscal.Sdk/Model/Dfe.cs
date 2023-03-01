@@ -115,7 +115,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="id">ID único gerado pela Nuvem Fiscal para este documento..</param>
         /// <param name="ambiente">ambiente.</param>
-        /// <param name="createdAt">Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato [&#x60;ISO 8601&#x60;](https://en.wikipedia.org/wiki/ISO_8601)..</param>
+        /// <param name="createdAt">Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;..</param>
         /// <param name="status">status.</param>
         /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
         /// <param name="dataEmissao">dataEmissao.</param>
@@ -149,9 +149,9 @@ namespace NuvemFiscal.Sdk.Model
         public string id { get; set; }
 
         /// <summary>
-        /// Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato [&#x60;ISO 8601&#x60;](https://en.wikipedia.org/wiki/ISO_8601).
+        /// Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.
         /// </summary>
-        /// <value>Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato [&#x60;ISO 8601&#x60;](https://en.wikipedia.org/wiki/ISO_8601).</value>
+        /// <value>Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.</value>
         [DataMember(Name = "created_at", EmitDefaultValue = false)]
         public DateTime created_at { get; set; }
 

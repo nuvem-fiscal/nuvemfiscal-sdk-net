@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.2.0
-- Versão do SDK: 2.4.0
+- Versão da API: 2.8.1
+- Versão do SDK: 2.5.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -206,14 +206,20 @@ Classe | Método | Endpoint | Descrição
 *MdfeApi* | [**IncluirDfeMdfe**](docs/MdfeApi.md#incluirdfemdfe) | **POST** /mdfe/{id}/inclusao-dfe | Incluir um DF-e em um MDF-e autorizado
 *MdfeApi* | [**ListarLotesMdfe**](docs/MdfeApi.md#listarlotesmdfe) | **GET** /mdfe/lotes | Listar lotes de MDF-e
 *MdfeApi* | [**ListarMdfe**](docs/MdfeApi.md#listarmdfe) | **GET** /mdfe | Listar MDF-e
+*NfceApi* | [**BaixarEscPosNfce**](docs/NfceApi.md#baixarescposnfce) | **GET** /nfce/{id}/escpos | Comandos ESC/POS para impressão do DANFCE
 *NfceApi* | [**BaixarPdfCancelamentoNfce**](docs/NfceApi.md#baixarpdfcancelamentonfce) | **GET** /nfce/{id}/cancelamento/pdf | Baixar PDF do cancelamento
+*NfceApi* | [**BaixarPdfEventoNfce**](docs/NfceApi.md#baixarpdfeventonfce) | **GET** /nfce/eventos/{id}/pdf | Baixar PDF do evento
 *NfceApi* | [**BaixarPdfInutilizacaoNfce**](docs/NfceApi.md#baixarpdfinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/pdf | Baixar PDF da inutilização
 *NfceApi* | [**BaixarPdfNfce**](docs/NfceApi.md#baixarpdfnfce) | **GET** /nfce/{id}/pdf | Baixar PDF do DANFCE
 *NfceApi* | [**BaixarXmlCancelamentoNfce**](docs/NfceApi.md#baixarxmlcancelamentonfce) | **GET** /nfce/{id}/cancelamento/xml | Baixar XML do cancelamento
+*NfceApi* | [**BaixarXmlEventoNfce**](docs/NfceApi.md#baixarxmleventonfce) | **GET** /nfce/eventos/{id}/xml | Baixar XML do evento
 *NfceApi* | [**BaixarXmlInutilizacaoNfce**](docs/NfceApi.md#baixarxmlinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/xml | Baixar XML da inutilização
 *NfceApi* | [**BaixarXmlNfce**](docs/NfceApi.md#baixarxmlnfce) | **GET** /nfce/{id}/xml | Baixar XML da NFC-e processada
+*NfceApi* | [**BaixarXmlNfceNota**](docs/NfceApi.md#baixarxmlnfcenota) | **GET** /nfce/{id}/xml/nota | Baixar XML da NFC-e
+*NfceApi* | [**BaixarXmlNfceProtocolo**](docs/NfceApi.md#baixarxmlnfceprotocolo) | **GET** /nfce/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ
 *NfceApi* | [**CancelarNfce**](docs/NfceApi.md#cancelarnfce) | **POST** /nfce/{id}/cancelamento | Cancelar uma NFC-e autorizada
 *NfceApi* | [**ConsultarCancelamentoNfce**](docs/NfceApi.md#consultarcancelamentonfce) | **GET** /nfce/{id}/cancelamento | Consultar o cancelamento da NFC-e
+*NfceApi* | [**ConsultarEventoNfce**](docs/NfceApi.md#consultareventonfce) | **GET** /nfce/eventos/{id} | Consultar evento
 *NfceApi* | [**ConsultarInutilizacaoNfce**](docs/NfceApi.md#consultarinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id} | Consultar a inutilização de sequência de numeração
 *NfceApi* | [**ConsultarLoteNfce**](docs/NfceApi.md#consultarlotenfce) | **GET** /nfce/lotes/{id} | Consultar lote de NFC-e
 *NfceApi* | [**ConsultarNfce**](docs/NfceApi.md#consultarnfce) | **GET** /nfce/{id} | Consultar NFC-e
@@ -221,8 +227,10 @@ Classe | Método | Endpoint | Descrição
 *NfceApi* | [**EmitirLoteNfce**](docs/NfceApi.md#emitirlotenfce) | **POST** /nfce/lotes | Emitir lote de NFC-e
 *NfceApi* | [**EmitirNfce**](docs/NfceApi.md#emitirnfce) | **POST** /nfce | Emitir NFC-e
 *NfceApi* | [**InutilizarNumeracaoNfce**](docs/NfceApi.md#inutilizarnumeracaonfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e
+*NfceApi* | [**ListarEventosNfce**](docs/NfceApi.md#listareventosnfce) | **GET** /nfce/eventos | Listar eventos
 *NfceApi* | [**ListarLotesNfce**](docs/NfceApi.md#listarlotesnfce) | **GET** /nfce/lotes | Listar lotes de NFC-e
 *NfceApi* | [**ListarNfce**](docs/NfceApi.md#listarnfce) | **GET** /nfce | Listar NFC-e
+*NfceApi* | [**SincronizarNfce**](docs/NfceApi.md#sincronizarnfce) | **POST** /nfce/{id}/sincronizar | Sincroniza dados na NFC-e a partir da SEFAZ
 *NfeApi* | [**BaixarPdfCancelamentoNfe**](docs/NfeApi.md#baixarpdfcancelamentonfe) | **GET** /nfe/{id}/cancelamento/pdf | Baixar PDF do cancelamento
 *NfeApi* | [**BaixarPdfCartaCorrecaoNfe**](docs/NfeApi.md#baixarpdfcartacorrecaonfe) | **GET** /nfe/{id}/carta-correcao/pdf | Baixar PDF da carta de correção
 *NfeApi* | [**BaixarPdfEventoNfe**](docs/NfeApi.md#baixarpdfeventonfe) | **GET** /nfe/eventos/{id}/pdf | Baixar PDF do evento
@@ -233,6 +241,8 @@ Classe | Método | Endpoint | Descrição
 *NfeApi* | [**BaixarXmlEventoNfe**](docs/NfeApi.md#baixarxmleventonfe) | **GET** /nfe/eventos/{id}/xml | Baixar XML do evento
 *NfeApi* | [**BaixarXmlInutilizacaoNfe**](docs/NfeApi.md#baixarxmlinutilizacaonfe) | **GET** /nfe/inutilizacoes/{id}/xml | Baixar XML da inutilização
 *NfeApi* | [**BaixarXmlNfe**](docs/NfeApi.md#baixarxmlnfe) | **GET** /nfe/{id}/xml | Baixar XML da NF-e processada
+*NfeApi* | [**BaixarXmlNfeNota**](docs/NfeApi.md#baixarxmlnfenota) | **GET** /nfe/{id}/xml/nota | Baixar XML da NF-e
+*NfeApi* | [**BaixarXmlNfeProtocolo**](docs/NfeApi.md#baixarxmlnfeprotocolo) | **GET** /nfe/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ
 *NfeApi* | [**CancelarNfe**](docs/NfeApi.md#cancelarnfe) | **POST** /nfe/{id}/cancelamento | Cancelar uma NF-e autorizada
 *NfeApi* | [**ConsultarCancelamentoNfe**](docs/NfeApi.md#consultarcancelamentonfe) | **GET** /nfe/{id}/cancelamento | Consultar o cancelamento da NF-e
 *NfeApi* | [**ConsultarCartaCorrecaoNfe**](docs/NfeApi.md#consultarcartacorrecaonfe) | **GET** /nfe/{id}/carta-correcao | Consultar a solicitação de correção da NF-e
@@ -245,9 +255,12 @@ Classe | Método | Endpoint | Descrição
 *NfeApi* | [**EmitirLoteNfe**](docs/NfeApi.md#emitirlotenfe) | **POST** /nfe/lotes | Emitir lote de NF-e
 *NfeApi* | [**EmitirNfe**](docs/NfeApi.md#emitirnfe) | **POST** /nfe | Emitir NF-e
 *NfeApi* | [**InutilizarNumeracaoNfe**](docs/NfeApi.md#inutilizarnumeracaonfe) | **POST** /nfe/inutilizacoes | Inutilizar uma sequência de numeração de NF-e
+*NfeApi* | [**ListarEventosNfe**](docs/NfeApi.md#listareventosnfe) | **GET** /nfe/eventos | Listar eventos
 *NfeApi* | [**ListarLotesNfe**](docs/NfeApi.md#listarlotesnfe) | **GET** /nfe/lotes | Listar lotes de NF-e
 *NfeApi* | [**ListarNfe**](docs/NfeApi.md#listarnfe) | **GET** /nfe | Listar NF-e
+*NfeApi* | [**SincronizarNfe**](docs/NfeApi.md#sincronizarnfe) | **POST** /nfe/{id}/sincronizar | Sincroniza dados na NF-e a partir da SEFAZ
 *NfseApi* | [**BaixarPdfNfse**](docs/NfseApi.md#baixarpdfnfse) | **GET** /nfse/{id}/pdf | Baixar PDF do DANFSE
+*NfseApi* | [**BaixarXmlDps**](docs/NfseApi.md#baixarxmldps) | **GET** /nfse/{id}/xml/dps | Baixar XML da DPS
 *NfseApi* | [**BaixarXmlNfse**](docs/NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada
 *NfseApi* | [**CancelarNfse**](docs/NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada
 *NfseApi* | [**ConsultarCancelamentoNfse**](docs/NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento | Consultar o cancelamento da NFS-e
@@ -390,6 +403,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfeCancelamento](docs/DfeCancelamento.md)
  - [Model.DfeCartaCorrecao](docs/DfeCartaCorrecao.md)
  - [Model.DfeEvento](docs/DfeEvento.md)
+ - [Model.DfeEventoListagem](docs/DfeEventoListagem.md)
  - [Model.DfeInutilizacao](docs/DfeInutilizacao.md)
  - [Model.DfeListagem](docs/DfeListagem.md)
  - [Model.DfeLote](docs/DfeLote.md)
@@ -397,6 +411,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfePedidoInutilizacao](docs/DfePedidoInutilizacao.md)
  - [Model.DfeRecibo](docs/DfeRecibo.md)
  - [Model.DfeSefazStatus](docs/DfeSefazStatus.md)
+ - [Model.DfeSincronizacao](docs/DfeSincronizacao.md)
  - [Model.DocDedRed](docs/DocDedRed.md)
  - [Model.DocNFNFS](docs/DocNFNFS.md)
  - [Model.DocOutNFSe](docs/DocOutNFSe.md)

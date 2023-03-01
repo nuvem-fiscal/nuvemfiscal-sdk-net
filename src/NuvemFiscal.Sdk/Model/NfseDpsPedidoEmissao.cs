@@ -29,6 +29,34 @@ namespace NuvemFiscal.Sdk.Model
     public partial class NfseDpsPedidoEmissao : IEquatable<NfseDpsPedidoEmissao>, IValidatableObject
     {
         /// <summary>
+        /// Default: &#x60;\&quot;padrao\&quot;&#x60;    Identificação do provedor para transmissão da DPS:   * &#x60;\&quot;padrao\&quot;&#x60;: Provedor padrão da prefeitura.   * &#x60;\&quot;nacional\&quot;&#x60;: Ambiente de Dados Nacional (ADN) do &lt;a href&#x3D;\&quot;https://www.gov.br/nfse/pt-br\&quot; target&#x3D;\&quot;blank\&quot;&gt;Sistema Nacional NFS-e&lt;/a&gt;.
+        /// </summary>
+        /// <value>Default: &#x60;\&quot;padrao\&quot;&#x60;    Identificação do provedor para transmissão da DPS:   * &#x60;\&quot;padrao\&quot;&#x60;: Provedor padrão da prefeitura.   * &#x60;\&quot;nacional\&quot;&#x60;: Ambiente de Dados Nacional (ADN) do &lt;a href&#x3D;\&quot;https://www.gov.br/nfse/pt-br\&quot; target&#x3D;\&quot;blank\&quot;&gt;Sistema Nacional NFS-e&lt;/a&gt;.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ProvedorEnum
+        {
+            /// <summary>
+            /// Enum Padrao for value: padrao
+            /// </summary>
+            [EnumMember(Value = "padrao")]
+            Padrao = 1,
+
+            /// <summary>
+            /// Enum Nacional for value: nacional
+            /// </summary>
+            [EnumMember(Value = "nacional")]
+            Nacional = 2
+
+        }
+
+
+        /// <summary>
+        /// Default: &#x60;\&quot;padrao\&quot;&#x60;    Identificação do provedor para transmissão da DPS:   * &#x60;\&quot;padrao\&quot;&#x60;: Provedor padrão da prefeitura.   * &#x60;\&quot;nacional\&quot;&#x60;: Ambiente de Dados Nacional (ADN) do &lt;a href&#x3D;\&quot;https://www.gov.br/nfse/pt-br\&quot; target&#x3D;\&quot;blank\&quot;&gt;Sistema Nacional NFS-e&lt;/a&gt;.
+        /// </summary>
+        /// <value>Default: &#x60;\&quot;padrao\&quot;&#x60;    Identificação do provedor para transmissão da DPS:   * &#x60;\&quot;padrao\&quot;&#x60;: Provedor padrão da prefeitura.   * &#x60;\&quot;nacional\&quot;&#x60;: Ambiente de Dados Nacional (ADN) do &lt;a href&#x3D;\&quot;https://www.gov.br/nfse/pt-br\&quot; target&#x3D;\&quot;blank\&quot;&gt;Sistema Nacional NFS-e&lt;/a&gt;.</value>
+        [DataMember(Name = "provedor", EmitDefaultValue = false)]
+        public ProvedorEnum? provedor { get; set; }
+        /// <summary>
         /// Identificação do Ambiente.
         /// </summary>
         /// <value>Identificação do Ambiente.</value>
@@ -64,10 +92,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfseDpsPedidoEmissao" /> class.
         /// </summary>
+        /// <param name="provedor">Default: &#x60;\&quot;padrao\&quot;&#x60;    Identificação do provedor para transmissão da DPS:   * &#x60;\&quot;padrao\&quot;&#x60;: Provedor padrão da prefeitura.   * &#x60;\&quot;nacional\&quot;&#x60;: Ambiente de Dados Nacional (ADN) do &lt;a href&#x3D;\&quot;https://www.gov.br/nfse/pt-br\&quot; target&#x3D;\&quot;blank\&quot;&gt;Sistema Nacional NFS-e&lt;/a&gt;..</param>
         /// <param name="ambiente">Identificação do Ambiente. (required).</param>
         /// <param name="referencia">Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento..</param>
         /// <param name="infDPS">infDPS (required).</param>
-        public NfseDpsPedidoEmissao(AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string), InfDPS infDPS = default(InfDPS))
+        public NfseDpsPedidoEmissao(ProvedorEnum? provedor = default(ProvedorEnum?), AmbienteEnum ambiente = default(AmbienteEnum), string referencia = default(string), InfDPS infDPS = default(InfDPS))
         {
             this.ambiente = ambiente;
             // to ensure "infDPS" is required (not null)
@@ -76,6 +105,7 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("infDPS is a required property for NfseDpsPedidoEmissao and cannot be null");
             }
             this.infDPS = infDPS;
+            this.provedor = provedor;
             this.referencia = referencia;
         }
 
@@ -100,6 +130,7 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class NfseDpsPedidoEmissao {\n");
+            sb.Append("  provedor: ").Append(provedor).Append("\n");
             sb.Append("  ambiente: ").Append(ambiente).Append("\n");
             sb.Append("  referencia: ").Append(referencia).Append("\n");
             sb.Append("  infDPS: ").Append(infDPS).Append("\n");
@@ -139,6 +170,10 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
+                    this.provedor == input.provedor ||
+                    this.provedor.Equals(input.provedor)
+                ) && 
+                (
                     this.ambiente == input.ambiente ||
                     this.ambiente.Equals(input.ambiente)
                 ) && 
@@ -163,6 +198,7 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.provedor.GetHashCode();
                 hashCode = (hashCode * 59) + this.ambiente.GetHashCode();
                 if (this.referencia != null)
                 {
