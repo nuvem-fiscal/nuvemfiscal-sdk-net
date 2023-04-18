@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.10.15
+  version: 2.10.16
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -194,16 +194,16 @@ paths:
         required: true
         schema:
           type: string
+      - description: Seu identificador único para o documento.
+        in: query
+        name: referencia
+        schema:
+          type: string
       - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
           \ producao"
         in: query
         name: ambiente
         required: true
-        schema:
-          type: string
-      - description: Seu identificador único para o documento.
-        in: query
-        name: referencia
         schema:
           type: string
       - description: Chave de acesso do DF-e.
@@ -1231,16 +1231,16 @@ paths:
         required: true
         schema:
           type: string
+      - description: Seu identificador único para o documento.
+        in: query
+        name: referencia
+        schema:
+          type: string
       - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
           \ producao"
         in: query
         name: ambiente
         required: true
-        schema:
-          type: string
-      - description: Seu identificador único para o documento.
-        in: query
-        name: referencia
         schema:
           type: string
       - description: Chave de acesso do DF-e.
@@ -1801,16 +1801,16 @@ paths:
         required: true
         schema:
           type: string
+      - description: Seu identificador único para o documento.
+        in: query
+        name: referencia
+        schema:
+          type: string
       - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
           \ producao"
         in: query
         name: ambiente
         required: true
-        schema:
-          type: string
-      - description: Seu identificador único para o documento.
-        in: query
-        name: referencia
         schema:
           type: string
       - description: Chave de acesso do DF-e.
@@ -2489,16 +2489,16 @@ paths:
         required: true
         schema:
           type: string
+      - description: Seu identificador único para o documento.
+        in: query
+        name: referencia
+        schema:
+          type: string
       - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
           \ producao"
         in: query
         name: ambiente
         required: true
-        schema:
-          type: string
-      - description: Seu identificador único para o documento.
-        in: query
-        name: referencia
         schema:
           type: string
       - description: Chave de acesso do DF-e.
@@ -3205,16 +3205,16 @@ paths:
         required: true
         schema:
           type: string
+      - description: Seu identificador único para o documento.
+        in: query
+        name: referencia
+        schema:
+          type: string
       - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
           \ producao"
         in: query
         name: ambiente
         required: true
-        schema:
-          type: string
-      - description: Seu identificador único para o documento.
-        in: query
-        name: referencia
         schema:
           type: string
       - description: Chave de acesso do DF-e.

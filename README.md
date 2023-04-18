@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.10.15
-- Versão do SDK: 2.6.0
+- Versão da API: 2.10.16
+- Versão do SDK: 2.7.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
