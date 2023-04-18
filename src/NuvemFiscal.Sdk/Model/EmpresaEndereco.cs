@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoPais">Código do país. (default to &quot;1058&quot;).</param>
         /// <param name="pais">Nome do país. (default to &quot;Brasil&quot;).</param>
         /// <param name="cep">CEP.  Utilize o valor sem máscara. (required).</param>
-        public EmpresaEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = "1058", string pais = "Brasil", string cep = default(string))
+        public EmpresaEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = @"1058", string pais = @"Brasil", string cep = default(string))
         {
             // to ensure "logradouro" is required (not null)
             if (logradouro == null)
@@ -87,9 +87,9 @@ namespace NuvemFiscal.Sdk.Model
             this.complemento = complemento;
             this.cidade = cidade;
             // use default value if no "codigoPais" provided
-            this.codigo_pais = codigoPais ?? "1058";
+            this.codigo_pais = codigoPais ?? @"1058";
             // use default value if no "pais" provided
-            this.pais = pais ?? "Brasil";
+            this.pais = pais ?? @"Brasil";
         }
 
         /// <summary>

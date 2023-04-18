@@ -276,10 +276,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>NfseListagem</returns>
-        NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string));
+        NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
 
         /// <summary>
         /// Listar NFS-e
@@ -293,10 +294,34 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of NfseListagem</returns>
-        ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string));
+        ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura
+        /// </summary>
+        /// <remarks>
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>NfseSincronizacao</returns>
+        NfseSincronizacao SincronizarNfse(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao));
+
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura
+        /// </summary>
+        /// <remarks>
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>ApiResponse of NfseSincronizacao</returns>
+        ApiResponse<NfseSincronizacao> SincronizarNfseWithHttpInfo(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao));
         #endregion Synchronous Operations
     }
 
@@ -610,11 +635,12 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseListagem</returns>
-        System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar NFS-e
@@ -628,11 +654,37 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura
+        /// </summary>
+        /// <remarks>
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NfseSincronizacao</returns>
+        System.Threading.Tasks.Task<NfseSincronizacao> SincronizarNfseAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura
+        /// </summary>
+        /// <remarks>
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NfseSincronizacao)</returns>
+        System.Threading.Tasks.Task<ApiResponse<NfseSincronizacao>> SincronizarNfseWithHttpInfoAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -2585,12 +2637,13 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>NfseListagem</returns>
-        public NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string))
+        public NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
             return localVarResponse.Data;
         }
 
@@ -2603,10 +2656,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of NfseListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -2645,14 +2699,18 @@ namespace NuvemFiscal.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$inlinecount", inlinecount));
             }
             localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (chave != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "chave", chave));
+            }
+            if (serie != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "serie", serie));
             }
 
             // authentication (jwt) required
@@ -2688,13 +2746,14 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseListagem</returns>
-        public async System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = await ListarNfseWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = await ListarNfseWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2707,11 +2766,12 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -2752,14 +2812,18 @@ namespace NuvemFiscal.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$inlinecount", inlinecount));
             }
             localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (chave != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "chave", chave));
+            }
+            if (serie != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "serie", serie));
             }
 
             // authentication (jwt) required
@@ -2781,6 +2845,151 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListarNfse", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>NfseSincronizacao</returns>
+        public NfseSincronizacao SincronizarNfse(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao> localVarResponse = SincronizarNfseWithHttpInfo(id, body);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>ApiResponse of NfseSincronizacao</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao> SincronizarNfseWithHttpInfo(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'id' when calling NfseApi->SincronizarNfse");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<NfseSincronizacao>("/nfse/{id}/sincronizar", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SincronizarNfse", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NfseSincronizacao</returns>
+        public async System.Threading.Tasks.Task<NfseSincronizacao> SincronizarNfseAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao> localVarResponse = await SincronizarNfseWithHttpInfoAsync(id, body, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NfseSincronizacao)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao>> SincronizarNfseWithHttpInfoAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'id' when calling NfseApi->SincronizarNfse");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<NfseSincronizacao>("/nfse/{id}/sincronizar", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SincronizarNfse", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -2372,7 +2372,7 @@ catch (ApiException e)
 
 <a name="listarnfce"></a>
 # **ListarNfce**
-> DfeListagem ListarNfce (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null)
+> DfeListagem ListarNfce (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null, string serie = null)
 
 Listar NFC-e
 
@@ -2411,13 +2411,14 @@ namespace Example
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
             var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
-            var referencia = "referencia_example";  // string |  (optional) 
+            var referencia = "referencia_example";  // string | Seu identificador único para o documento. (optional) 
             var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
+            var serie = "serie_example";  // string | Série do DF-e. (optional) 
 
             try
             {
                 // Listar NFC-e
-                DfeListagem result = apiInstance.ListarNfce(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
+                DfeListagem result = apiInstance.ListarNfce(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2438,7 +2439,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar NFC-e
-    ApiResponse<DfeListagem> response = apiInstance.ListarNfceWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
+    ApiResponse<DfeListagem> response = apiInstance.ListarNfceWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -2460,8 +2461,9 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
 | **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
-| **referencia** | **string** |  | [optional]  |
+| **referencia** | **string** | Seu identificador único para o documento. | [optional]  |
 | **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
+| **serie** | **string** | Série do DF-e. | [optional]  |
 
 ### Tipo de retorno
 

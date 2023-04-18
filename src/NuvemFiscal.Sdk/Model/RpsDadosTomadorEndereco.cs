@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoPais">codigoPais (default to &quot;1058&quot;).</param>
         /// <param name="pais">Nome do país..</param>
         /// <param name="cep">CEP.  Utilize o valor sem máscara..</param>
-        public RpsDadosTomadorEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = "1058", string pais = default(string), string cep = default(string))
+        public RpsDadosTomadorEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = @"1058", string pais = default(string), string cep = default(string))
         {
             this.logradouro = logradouro;
             this.numero = numero;
@@ -51,7 +51,7 @@ namespace NuvemFiscal.Sdk.Model
             this.cidade = cidade;
             this.uf = uf;
             // use default value if no "codigoPais" provided
-            this.codigo_pais = codigoPais ?? "1058";
+            this.codigo_pais = codigoPais ?? @"1058";
             this.pais = pais;
             this.cep = cep;
         }

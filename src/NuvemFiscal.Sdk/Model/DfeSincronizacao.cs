@@ -29,8 +29,9 @@ namespace NuvemFiscal.Sdk.Model
     public partial class DfeSincronizacao : IEquatable<DfeSincronizacao>, IValidatableObject
     {
         /// <summary>
-        /// Defines status
+        /// Situação atual da sincronização.
         /// </summary>
+        /// <value>Situação atual da sincronização.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -50,14 +51,15 @@ namespace NuvemFiscal.Sdk.Model
 
 
         /// <summary>
-        /// Gets or Sets status
+        /// Situação atual da sincronização.
         /// </summary>
+        /// <value>Situação atual da sincronização.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DfeSincronizacao" /> class.
         /// </summary>
-        /// <param name="status">status.</param>
+        /// <param name="status">Situação atual da sincronização..</param>
         /// <param name="codigoStatus">Código da situação atual do DF-e..</param>
         /// <param name="motivoStatus">Descrição literal da situação atual do DF-e..</param>
         /// <param name="dataRecebimento">Data e hora de processamento..</param>

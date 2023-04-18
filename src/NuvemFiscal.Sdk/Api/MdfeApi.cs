@@ -443,10 +443,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
-        DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string));
+        DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
 
         /// <summary>
         /// Listar MDF-e
@@ -460,10 +461,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
-        ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string));
+        ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
         #endregion Synchronous Operations
     }
 
@@ -986,11 +988,12 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeListagem</returns>
-        System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar MDF-e
@@ -1004,11 +1007,12 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -4238,12 +4242,13 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
-        public DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string))
+        public DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = ListarMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = ListarMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
             return localVarResponse.Data;
         }
 
@@ -4256,10 +4261,11 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -4298,14 +4304,18 @@ namespace NuvemFiscal.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$inlinecount", inlinecount));
             }
             localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (chave != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "chave", chave));
+            }
+            if (serie != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "serie", serie));
             }
 
             // authentication (jwt) required
@@ -4341,13 +4351,14 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeListagem</returns>
-        public async System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = await ListarMdfeWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, cancellationToken).ConfigureAwait(false);
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = await ListarMdfeWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4360,11 +4371,12 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="referencia"> (optional)</param>
+        /// <param name="referencia">Seu identificador único para o documento. (optional)</param>
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
+        /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -4405,14 +4417,18 @@ namespace NuvemFiscal.Sdk.Api
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "$inlinecount", inlinecount));
             }
             localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (referencia != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "referencia", referencia));
             }
-            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "ambiente", ambiente));
             if (chave != null)
             {
                 localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "chave", chave));
+            }
+            if (serie != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "serie", serie));
             }
 
             // authentication (jwt) required

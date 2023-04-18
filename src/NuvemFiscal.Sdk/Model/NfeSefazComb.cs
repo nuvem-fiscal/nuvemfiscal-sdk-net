@@ -47,7 +47,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="uFCons">Sigla da UF de Consumo. (required).</param>
         /// <param name="cIDE">cIDE.</param>
         /// <param name="encerrante">encerrante.</param>
-        public NfeSefazComb(int cProdANP = default(int), string descANP = default(string), decimal pGLP = default(decimal), decimal pGNn = default(decimal), decimal pGNi = default(decimal), decimal vPart = default(decimal), string cODIF = default(string), decimal qTemp = default(decimal), string uFCons = default(string), NfeSefazCIDE cIDE = default(NfeSefazCIDE), NfeSefazEncerrante encerrante = default(NfeSefazEncerrante))
+        /// <param name="pBio">Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador..</param>
+        /// <param name="origComb">origComb.</param>
+        public NfeSefazComb(int cProdANP = default(int), string descANP = default(string), decimal pGLP = default(decimal), decimal pGNn = default(decimal), decimal pGNi = default(decimal), decimal vPart = default(decimal), string cODIF = default(string), decimal qTemp = default(decimal), string uFCons = default(string), NfeSefazCIDE cIDE = default(NfeSefazCIDE), NfeSefazEncerrante encerrante = default(NfeSefazEncerrante), decimal pBio = default(decimal), List<NfeSefazOrigComb> origComb = default(List<NfeSefazOrigComb>))
         {
             this.cProdANP = cProdANP;
             // to ensure "descANP" is required (not null)
@@ -70,6 +72,8 @@ namespace NuvemFiscal.Sdk.Model
             this.qTemp = qTemp;
             this.CIDE = cIDE;
             this.encerrante = encerrante;
+            this.pBio = pBio;
+            this.origComb = origComb;
         }
 
         /// <summary>
@@ -148,6 +152,19 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazEncerrante encerrante { get; set; }
 
         /// <summary>
+        /// Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador.
+        /// </summary>
+        /// <value>Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador.</value>
+        [DataMember(Name = "pBio", EmitDefaultValue = false)]
+        public decimal pBio { get; set; }
+
+        /// <summary>
+        /// Gets or Sets origComb
+        /// </summary>
+        [DataMember(Name = "origComb", EmitDefaultValue = false)]
+        public List<NfeSefazOrigComb> origComb { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -166,6 +183,8 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  UFCons: ").Append(UFCons).Append("\n");
             sb.Append("  CIDE: ").Append(CIDE).Append("\n");
             sb.Append("  encerrante: ").Append(encerrante).Append("\n");
+            sb.Append("  pBio: ").Append(pBio).Append("\n");
+            sb.Append("  origComb: ").Append(origComb).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -249,6 +268,16 @@ namespace NuvemFiscal.Sdk.Model
                     this.encerrante == input.encerrante ||
                     (this.encerrante != null &&
                     this.encerrante.Equals(input.encerrante))
+                ) && 
+                (
+                    this.pBio == input.pBio ||
+                    this.pBio.Equals(input.pBio)
+                ) && 
+                (
+                    this.origComb == input.origComb ||
+                    this.origComb != null &&
+                    input.origComb != null &&
+                    this.origComb.SequenceEqual(input.origComb)
                 );
         }
 
@@ -286,6 +315,11 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.encerrante != null)
                 {
                     hashCode = (hashCode * 59) + this.encerrante.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.pBio.GetHashCode();
+                if (this.origComb != null)
+                {
+                    hashCode = (hashCode * 59) + this.origComb.GetHashCode();
                 }
                 return hashCode;
             }

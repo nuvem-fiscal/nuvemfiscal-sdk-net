@@ -6,12 +6,16 @@ Dados do ICMS Normal e ST.
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **ICMS00** | [**NfeSefazICMS00**](NfeSefazICMS00.md) |  | [optional] 
+**ICMS02** | [**NfeSefazICMS02**](NfeSefazICMS02.md) |  | [optional] 
 **ICMS10** | [**NfeSefazICMS10**](NfeSefazICMS10.md) |  | [optional] 
+**ICMS15** | [**NfeSefazICMS15**](NfeSefazICMS15.md) |  | [optional] 
 **ICMS20** | [**NfeSefazICMS20**](NfeSefazICMS20.md) |  | [optional] 
 **ICMS30** | [**NfeSefazICMS30**](NfeSefazICMS30.md) |  | [optional] 
 **ICMS40** | [**NfeSefazICMS40**](NfeSefazICMS40.md) |  | [optional] 
 **ICMS51** | [**NfeSefazICMS51**](NfeSefazICMS51.md) |  | [optional] 
+**ICMS53** | [**NfeSefazICMS53**](NfeSefazICMS53.md) |  | [optional] 
 **ICMS60** | [**NfeSefazICMS60**](NfeSefazICMS60.md) |  | [optional] 
+**ICMS61** | [**NfeSefazICMS61**](NfeSefazICMS61.md) |  | [optional] 
 **ICMS70** | [**NfeSefazICMS70**](NfeSefazICMS70.md) |  | [optional] 
 **ICMS90** | [**NfeSefazICMS90**](NfeSefazICMS90.md) |  | [optional] 
 **ICMSPart** | [**NfeSefazICMSPart**](NfeSefazICMSPart.md) |  | [optional] 

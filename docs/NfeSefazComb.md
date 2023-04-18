@@ -16,6 +16,8 @@ Nome | Tipo | Descrição | Comentários
 **UFCons** | **string** | Sigla da UF de Consumo. | 
 **CIDE** | [**NfeSefazCIDE**](NfeSefazCIDE.md) |  | [optional] 
 **encerrante** | [**NfeSefazEncerrante**](NfeSefazEncerrante.md) |  | [optional] 
+**pBio** | **decimal** | Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador. | [optional] 
+**origComb** | [**List&lt;NfeSefazOrigComb&gt;**](NfeSefazOrigComb.md) |  | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

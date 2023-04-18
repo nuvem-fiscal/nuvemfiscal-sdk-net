@@ -32,12 +32,16 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazICMS" /> class.
         /// </summary>
         /// <param name="iCMS00">iCMS00.</param>
+        /// <param name="iCMS02">iCMS02.</param>
         /// <param name="iCMS10">iCMS10.</param>
+        /// <param name="iCMS15">iCMS15.</param>
         /// <param name="iCMS20">iCMS20.</param>
         /// <param name="iCMS30">iCMS30.</param>
         /// <param name="iCMS40">iCMS40.</param>
         /// <param name="iCMS51">iCMS51.</param>
+        /// <param name="iCMS53">iCMS53.</param>
         /// <param name="iCMS60">iCMS60.</param>
+        /// <param name="iCMS61">iCMS61.</param>
         /// <param name="iCMS70">iCMS70.</param>
         /// <param name="iCMS90">iCMS90.</param>
         /// <param name="iCMSPart">iCMSPart.</param>
@@ -48,15 +52,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="iCMSSN202">iCMSSN202.</param>
         /// <param name="iCMSSN500">iCMSSN500.</param>
         /// <param name="iCMSSN900">iCMSSN900.</param>
-        public NfeSefazICMS(NfeSefazICMS00 iCMS00 = default(NfeSefazICMS00), NfeSefazICMS10 iCMS10 = default(NfeSefazICMS10), NfeSefazICMS20 iCMS20 = default(NfeSefazICMS20), NfeSefazICMS30 iCMS30 = default(NfeSefazICMS30), NfeSefazICMS40 iCMS40 = default(NfeSefazICMS40), NfeSefazICMS51 iCMS51 = default(NfeSefazICMS51), NfeSefazICMS60 iCMS60 = default(NfeSefazICMS60), NfeSefazICMS70 iCMS70 = default(NfeSefazICMS70), NfeSefazICMS90 iCMS90 = default(NfeSefazICMS90), NfeSefazICMSPart iCMSPart = default(NfeSefazICMSPart), NfeSefazICMSST iCMSST = default(NfeSefazICMSST), NfeSefazICMSSN101 iCMSSN101 = default(NfeSefazICMSSN101), NfeSefazICMSSN102 iCMSSN102 = default(NfeSefazICMSSN102), NfeSefazICMSSN201 iCMSSN201 = default(NfeSefazICMSSN201), NfeSefazICMSSN202 iCMSSN202 = default(NfeSefazICMSSN202), NfeSefazICMSSN500 iCMSSN500 = default(NfeSefazICMSSN500), NfeSefazICMSSN900 iCMSSN900 = default(NfeSefazICMSSN900))
+        public NfeSefazICMS(NfeSefazICMS00 iCMS00 = default(NfeSefazICMS00), NfeSefazICMS02 iCMS02 = default(NfeSefazICMS02), NfeSefazICMS10 iCMS10 = default(NfeSefazICMS10), NfeSefazICMS15 iCMS15 = default(NfeSefazICMS15), NfeSefazICMS20 iCMS20 = default(NfeSefazICMS20), NfeSefazICMS30 iCMS30 = default(NfeSefazICMS30), NfeSefazICMS40 iCMS40 = default(NfeSefazICMS40), NfeSefazICMS51 iCMS51 = default(NfeSefazICMS51), NfeSefazICMS53 iCMS53 = default(NfeSefazICMS53), NfeSefazICMS60 iCMS60 = default(NfeSefazICMS60), NfeSefazICMS61 iCMS61 = default(NfeSefazICMS61), NfeSefazICMS70 iCMS70 = default(NfeSefazICMS70), NfeSefazICMS90 iCMS90 = default(NfeSefazICMS90), NfeSefazICMSPart iCMSPart = default(NfeSefazICMSPart), NfeSefazICMSST iCMSST = default(NfeSefazICMSST), NfeSefazICMSSN101 iCMSSN101 = default(NfeSefazICMSSN101), NfeSefazICMSSN102 iCMSSN102 = default(NfeSefazICMSSN102), NfeSefazICMSSN201 iCMSSN201 = default(NfeSefazICMSSN201), NfeSefazICMSSN202 iCMSSN202 = default(NfeSefazICMSSN202), NfeSefazICMSSN500 iCMSSN500 = default(NfeSefazICMSSN500), NfeSefazICMSSN900 iCMSSN900 = default(NfeSefazICMSSN900))
         {
             this.ICMS00 = iCMS00;
+            this.ICMS02 = iCMS02;
             this.ICMS10 = iCMS10;
+            this.ICMS15 = iCMS15;
             this.ICMS20 = iCMS20;
             this.ICMS30 = iCMS30;
             this.ICMS40 = iCMS40;
             this.ICMS51 = iCMS51;
+            this.ICMS53 = iCMS53;
             this.ICMS60 = iCMS60;
+            this.ICMS61 = iCMS61;
             this.ICMS70 = iCMS70;
             this.ICMS90 = iCMS90;
             this.ICMSPart = iCMSPart;
@@ -76,10 +84,22 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazICMS00 ICMS00 { get; set; }
 
         /// <summary>
+        /// Gets or Sets ICMS02
+        /// </summary>
+        [DataMember(Name = "ICMS02", EmitDefaultValue = false)]
+        public NfeSefazICMS02 ICMS02 { get; set; }
+
+        /// <summary>
         /// Gets or Sets ICMS10
         /// </summary>
         [DataMember(Name = "ICMS10", EmitDefaultValue = false)]
         public NfeSefazICMS10 ICMS10 { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ICMS15
+        /// </summary>
+        [DataMember(Name = "ICMS15", EmitDefaultValue = false)]
+        public NfeSefazICMS15 ICMS15 { get; set; }
 
         /// <summary>
         /// Gets or Sets ICMS20
@@ -106,10 +126,22 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazICMS51 ICMS51 { get; set; }
 
         /// <summary>
+        /// Gets or Sets ICMS53
+        /// </summary>
+        [DataMember(Name = "ICMS53", EmitDefaultValue = false)]
+        public NfeSefazICMS53 ICMS53 { get; set; }
+
+        /// <summary>
         /// Gets or Sets ICMS60
         /// </summary>
         [DataMember(Name = "ICMS60", EmitDefaultValue = false)]
         public NfeSefazICMS60 ICMS60 { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ICMS61
+        /// </summary>
+        [DataMember(Name = "ICMS61", EmitDefaultValue = false)]
+        public NfeSefazICMS61 ICMS61 { get; set; }
 
         /// <summary>
         /// Gets or Sets ICMS70
@@ -180,12 +212,16 @@ namespace NuvemFiscal.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class NfeSefazICMS {\n");
             sb.Append("  ICMS00: ").Append(ICMS00).Append("\n");
+            sb.Append("  ICMS02: ").Append(ICMS02).Append("\n");
             sb.Append("  ICMS10: ").Append(ICMS10).Append("\n");
+            sb.Append("  ICMS15: ").Append(ICMS15).Append("\n");
             sb.Append("  ICMS20: ").Append(ICMS20).Append("\n");
             sb.Append("  ICMS30: ").Append(ICMS30).Append("\n");
             sb.Append("  ICMS40: ").Append(ICMS40).Append("\n");
             sb.Append("  ICMS51: ").Append(ICMS51).Append("\n");
+            sb.Append("  ICMS53: ").Append(ICMS53).Append("\n");
             sb.Append("  ICMS60: ").Append(ICMS60).Append("\n");
+            sb.Append("  ICMS61: ").Append(ICMS61).Append("\n");
             sb.Append("  ICMS70: ").Append(ICMS70).Append("\n");
             sb.Append("  ICMS90: ").Append(ICMS90).Append("\n");
             sb.Append("  ICMSPart: ").Append(ICMSPart).Append("\n");
@@ -237,9 +273,19 @@ namespace NuvemFiscal.Sdk.Model
                     this.ICMS00.Equals(input.ICMS00))
                 ) && 
                 (
+                    this.ICMS02 == input.ICMS02 ||
+                    (this.ICMS02 != null &&
+                    this.ICMS02.Equals(input.ICMS02))
+                ) && 
+                (
                     this.ICMS10 == input.ICMS10 ||
                     (this.ICMS10 != null &&
                     this.ICMS10.Equals(input.ICMS10))
+                ) && 
+                (
+                    this.ICMS15 == input.ICMS15 ||
+                    (this.ICMS15 != null &&
+                    this.ICMS15.Equals(input.ICMS15))
                 ) && 
                 (
                     this.ICMS20 == input.ICMS20 ||
@@ -262,9 +308,19 @@ namespace NuvemFiscal.Sdk.Model
                     this.ICMS51.Equals(input.ICMS51))
                 ) && 
                 (
+                    this.ICMS53 == input.ICMS53 ||
+                    (this.ICMS53 != null &&
+                    this.ICMS53.Equals(input.ICMS53))
+                ) && 
+                (
                     this.ICMS60 == input.ICMS60 ||
                     (this.ICMS60 != null &&
                     this.ICMS60.Equals(input.ICMS60))
+                ) && 
+                (
+                    this.ICMS61 == input.ICMS61 ||
+                    (this.ICMS61 != null &&
+                    this.ICMS61.Equals(input.ICMS61))
                 ) && 
                 (
                     this.ICMS70 == input.ICMS70 ||
@@ -331,9 +387,17 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.ICMS00.GetHashCode();
                 }
+                if (this.ICMS02 != null)
+                {
+                    hashCode = (hashCode * 59) + this.ICMS02.GetHashCode();
+                }
                 if (this.ICMS10 != null)
                 {
                     hashCode = (hashCode * 59) + this.ICMS10.GetHashCode();
+                }
+                if (this.ICMS15 != null)
+                {
+                    hashCode = (hashCode * 59) + this.ICMS15.GetHashCode();
                 }
                 if (this.ICMS20 != null)
                 {
@@ -351,9 +415,17 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.ICMS51.GetHashCode();
                 }
+                if (this.ICMS53 != null)
+                {
+                    hashCode = (hashCode * 59) + this.ICMS53.GetHashCode();
+                }
                 if (this.ICMS60 != null)
                 {
                     hashCode = (hashCode * 59) + this.ICMS60.GetHashCode();
+                }
+                if (this.ICMS61 != null)
+                {
+                    hashCode = (hashCode * 59) + this.ICMS61.GetHashCode();
                 }
                 if (this.ICMS70 != null)
                 {

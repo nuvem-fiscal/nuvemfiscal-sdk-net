@@ -17,6 +17,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**EmitirNfseDps**](NfseApi.md#emitirnfsedps) | **POST** /nfse/dps | Emitir NFS-e |
 | [**ListarLotesNfse**](NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | Listar lotes de NFS-e |
 | [**ListarNfse**](NfseApi.md#listarnfse) | **GET** /nfse | Listar NFS-e |
+| [**SincronizarNfse**](NfseApi.md#sincronizarnfse) | **POST** /nfse/{id}/sincronizar | Sincroniza dados na NFS-e a partir da Prefeitura |
 
 <a name="baixarpdfnfse"></a>
 # **BaixarPdfNfse**
@@ -1238,7 +1239,7 @@ catch (ApiException e)
 
 <a name="listarnfse"></a>
 # **ListarNfse**
-> NfseListagem ListarNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null)
+> NfseListagem ListarNfse (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null, string serie = null)
 
 Listar NFS-e
 
@@ -1277,13 +1278,14 @@ namespace Example
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
             var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
-            var referencia = "referencia_example";  // string |  (optional) 
+            var referencia = "referencia_example";  // string | Seu identificador único para o documento. (optional) 
             var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
+            var serie = "serie_example";  // string | Série do DF-e. (optional) 
 
             try
             {
                 // Listar NFS-e
-                NfseListagem result = apiInstance.ListarNfse(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
+                NfseListagem result = apiInstance.ListarNfse(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1304,7 +1306,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Listar NFS-e
-    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave);
+    ApiResponse<NfseListagem> response = apiInstance.ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1326,8 +1328,9 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
 | **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
-| **referencia** | **string** |  | [optional]  |
+| **referencia** | **string** | Seu identificador único para o documento. | [optional]  |
 | **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
+| **serie** | **string** | Série do DF-e. | [optional]  |
 
 ### Tipo de retorno
 
@@ -1340,6 +1343,110 @@ catch (ApiException e)
 ### Headers da requisição HTTP
 
  - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="sincronizarnfse"></a>
+# **SincronizarNfse**
+> NfseSincronizacao SincronizarNfse (string id, NfsePedidoSincronizacao body = null)
+
+Sincroniza dados na NFS-e a partir da Prefeitura
+
+Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status `autorizada`na Nuvem Fiscal, mas está cancelada na prefeitura.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class SincronizarNfseExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
+            var body = new NfsePedidoSincronizacao(); // NfsePedidoSincronizacao |  (optional) 
+
+            try
+            {
+                // Sincroniza dados na NFS-e a partir da Prefeitura
+                NfseSincronizacao result = apiInstance.SincronizarNfse(id, body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfseApi.SincronizarNfse: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante SincronizarNfseWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Sincroniza dados na NFS-e a partir da Prefeitura
+    ApiResponse<NfseSincronizacao> response = apiInstance.SincronizarNfseWithHttpInfo(id, body);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfseApi.SincronizarNfseWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
+| **body** | [**NfsePedidoSincronizacao**](NfsePedidoSincronizacao.md) |  | [optional]  |
+
+### Tipo de retorno
+
+[**NfseSincronizacao**](NfseSincronizacao.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 

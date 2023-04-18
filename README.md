@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.8.1
-- Versão do SDK: 2.5.0
+- Versão da API: 2.10.15
+- Versão do SDK: 2.6.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -272,6 +272,7 @@ Classe | Método | Endpoint | Descrição
 *NfseApi* | [**EmitirNfseDps**](docs/NfseApi.md#emitirnfsedps) | **POST** /nfse/dps | Emitir NFS-e
 *NfseApi* | [**ListarLotesNfse**](docs/NfseApi.md#listarlotesnfse) | **GET** /nfse/lotes | Listar lotes de NFS-e
 *NfseApi* | [**ListarNfse**](docs/NfseApi.md#listarnfse) | **GET** /nfse | Listar NFS-e
+*NfseApi* | [**SincronizarNfse**](docs/NfseApi.md#sincronizarnfse) | **POST** /nfse/{id}/sincronizar | Sincroniza dados na NFS-e a partir da Prefeitura
 
 
 <a name="documentation-for-models"></a>
@@ -557,12 +558,16 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfeSefazForDia](docs/NfeSefazForDia.md)
  - [Model.NfeSefazICMS](docs/NfeSefazICMS.md)
  - [Model.NfeSefazICMS00](docs/NfeSefazICMS00.md)
+ - [Model.NfeSefazICMS02](docs/NfeSefazICMS02.md)
  - [Model.NfeSefazICMS10](docs/NfeSefazICMS10.md)
+ - [Model.NfeSefazICMS15](docs/NfeSefazICMS15.md)
  - [Model.NfeSefazICMS20](docs/NfeSefazICMS20.md)
  - [Model.NfeSefazICMS30](docs/NfeSefazICMS30.md)
  - [Model.NfeSefazICMS40](docs/NfeSefazICMS40.md)
  - [Model.NfeSefazICMS51](docs/NfeSefazICMS51.md)
+ - [Model.NfeSefazICMS53](docs/NfeSefazICMS53.md)
  - [Model.NfeSefazICMS60](docs/NfeSefazICMS60.md)
+ - [Model.NfeSefazICMS61](docs/NfeSefazICMS61.md)
  - [Model.NfeSefazICMS70](docs/NfeSefazICMS70.md)
  - [Model.NfeSefazICMS90](docs/NfeSefazICMS90.md)
  - [Model.NfeSefazICMSPart](docs/NfeSefazICMSPart.md)
@@ -602,6 +607,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfeSefazObsCont](docs/NfeSefazObsCont.md)
  - [Model.NfeSefazObsFisco](docs/NfeSefazObsFisco.md)
  - [Model.NfeSefazObsItem](docs/NfeSefazObsItem.md)
+ - [Model.NfeSefazOrigComb](docs/NfeSefazOrigComb.md)
  - [Model.NfeSefazPIS](docs/NfeSefazPIS.md)
  - [Model.NfeSefazPISAliq](docs/NfeSefazPISAliq.md)
  - [Model.NfeSefazPISNT](docs/NfeSefazPISNT.md)
@@ -631,6 +637,8 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfseMensagemRetorno](docs/NfseMensagemRetorno.md)
  - [Model.NfsePedidoCancelamento](docs/NfsePedidoCancelamento.md)
  - [Model.NfsePedidoEmissao](docs/NfsePedidoEmissao.md)
+ - [Model.NfsePedidoSincronizacao](docs/NfsePedidoSincronizacao.md)
+ - [Model.NfseSincronizacao](docs/NfseSincronizacao.md)
  - [Model.Rps](docs/Rps.md)
  - [Model.RpsDados](docs/RpsDados.md)
  - [Model.RpsDadosConstrucaoCivil](docs/RpsDadosConstrucaoCivil.md)

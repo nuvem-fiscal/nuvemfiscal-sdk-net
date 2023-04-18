@@ -16,6 +16,9 @@ Nome | Tipo | Descrição | Comentários
 **vST** | **decimal** | Valor Total do ICMS ST. | 
 **vFCPST** | **decimal** | Valor Total do FCP (Fundo de Combate à Pobreza) retido por substituição tributária. | 
 **vFCPSTRet** | **decimal** | Valor Total do FCP (Fundo de Combate à Pobreza) retido anteriormente por substituição tributária. | 
+**vICMSMono** | **decimal** | Valor total do ICMS monofásico próprio. | [optional] 
+**vICMSMonoReten** | **decimal** | Valor total do ICMS monofásico sujeito a retenção. | [optional] 
+**vICMSMonoRet** | **decimal** | Valor do ICMS monofásico retido anteriormente. | [optional] 
 **vProd** | **decimal** | Valor Total dos produtos e serviços. | 
 **vFrete** | **decimal** | Valor Total do Frete. | 
 **vSeg** | **decimal** | Valor Total do Seguro. | 
