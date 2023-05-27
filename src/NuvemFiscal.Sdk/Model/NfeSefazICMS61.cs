@@ -38,9 +38,10 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="orig">Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%. (required).</param>
         /// <param name="cST">Tributção pelo ICMS  * 61 - Tributação monofásica sobre combustíveis cobrada anteriormente (required).</param>
-        /// <param name="adRemICMSRet">Alíquota ad rem do imposto retido anteriormen. (required).</param>
+        /// <param name="qBCMonoRet">Quantidade tributada retida anteriormente..</param>
+        /// <param name="adRemICMSRet">Alíquota ad rem do imposto retido anteriormente. (required).</param>
         /// <param name="vICMSMonoRet">Valor do ICMS retido anteriormente. (required).</param>
-        public NfeSefazICMS61(int orig = default(int), string cST = default(string), decimal adRemICMSRet = default(decimal), decimal vICMSMonoRet = default(decimal))
+        public NfeSefazICMS61(int orig = default(int), string cST = default(string), decimal qBCMonoRet = default(decimal), decimal adRemICMSRet = default(decimal), decimal vICMSMonoRet = default(decimal))
         {
             this.orig = orig;
             // to ensure "cST" is required (not null)
@@ -51,6 +52,7 @@ namespace NuvemFiscal.Sdk.Model
             this.CST = cST;
             this.adRemICMSRet = adRemICMSRet;
             this.vICMSMonoRet = vICMSMonoRet;
+            this.qBCMonoRet = qBCMonoRet;
         }
 
         /// <summary>
@@ -68,9 +70,16 @@ namespace NuvemFiscal.Sdk.Model
         public string CST { get; set; }
 
         /// <summary>
-        /// Alíquota ad rem do imposto retido anteriormen.
+        /// Quantidade tributada retida anteriormente.
         /// </summary>
-        /// <value>Alíquota ad rem do imposto retido anteriormen.</value>
+        /// <value>Quantidade tributada retida anteriormente.</value>
+        [DataMember(Name = "qBCMonoRet", EmitDefaultValue = false)]
+        public decimal qBCMonoRet { get; set; }
+
+        /// <summary>
+        /// Alíquota ad rem do imposto retido anteriormente.
+        /// </summary>
+        /// <value>Alíquota ad rem do imposto retido anteriormente.</value>
         [DataMember(Name = "adRemICMSRet", IsRequired = true, EmitDefaultValue = true)]
         public decimal adRemICMSRet { get; set; }
 
@@ -91,6 +100,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("class NfeSefazICMS61 {\n");
             sb.Append("  orig: ").Append(orig).Append("\n");
             sb.Append("  CST: ").Append(CST).Append("\n");
+            sb.Append("  qBCMonoRet: ").Append(qBCMonoRet).Append("\n");
             sb.Append("  adRemICMSRet: ").Append(adRemICMSRet).Append("\n");
             sb.Append("  vICMSMonoRet: ").Append(vICMSMonoRet).Append("\n");
             sb.Append("}\n");
@@ -138,6 +148,10 @@ namespace NuvemFiscal.Sdk.Model
                     this.CST.Equals(input.CST))
                 ) && 
                 (
+                    this.qBCMonoRet == input.qBCMonoRet ||
+                    this.qBCMonoRet.Equals(input.qBCMonoRet)
+                ) && 
+                (
                     this.adRemICMSRet == input.adRemICMSRet ||
                     this.adRemICMSRet.Equals(input.adRemICMSRet)
                 ) && 
@@ -161,6 +175,7 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.qBCMonoRet.GetHashCode();
                 hashCode = (hashCode * 59) + this.adRemICMSRet.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSMonoRet.GetHashCode();
                 return hashCode;

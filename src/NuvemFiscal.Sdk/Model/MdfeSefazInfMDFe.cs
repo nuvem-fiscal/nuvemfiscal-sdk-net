@@ -50,7 +50,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infAdic">infAdic.</param>
         /// <param name="infRespTec">infRespTec.</param>
         /// <param name="infSolicNFF">infSolicNFF.</param>
-        public MdfeSefazInfMDFe(string versao = default(string), string id = default(string), MdfeSefazIde ide = default(MdfeSefazIde), MdfeSefazEmit emit = default(MdfeSefazEmit), MdfeSefazInfModal infModal = default(MdfeSefazInfModal), MdfeSefazInfDoc infDoc = default(MdfeSefazInfDoc), List<MdfeSefazSeg> seg = default(List<MdfeSefazSeg>), MdfeSefazProdPred prodPred = default(MdfeSefazProdPred), MdfeSefazTot tot = default(MdfeSefazTot), List<MdfeSefazLacres> lacres = default(List<MdfeSefazLacres>), List<MdfeSefazAutXML> autXML = default(List<MdfeSefazAutXML>), MdfeSefazInfAdic infAdic = default(MdfeSefazInfAdic), MdfeSefazRespTec infRespTec = default(MdfeSefazRespTec), MdfeSefazInfSolicNFF infSolicNFF = default(MdfeSefazInfSolicNFF))
+        /// <param name="infPAA">infPAA.</param>
+        public MdfeSefazInfMDFe(string versao = default(string), string id = default(string), MdfeSefazIde ide = default(MdfeSefazIde), MdfeSefazEmit emit = default(MdfeSefazEmit), MdfeSefazInfModal infModal = default(MdfeSefazInfModal), MdfeSefazInfDoc infDoc = default(MdfeSefazInfDoc), List<MdfeSefazSeg> seg = default(List<MdfeSefazSeg>), MdfeSefazProdPred prodPred = default(MdfeSefazProdPred), MdfeSefazTot tot = default(MdfeSefazTot), List<MdfeSefazLacres> lacres = default(List<MdfeSefazLacres>), List<MdfeSefazAutXML> autXML = default(List<MdfeSefazAutXML>), MdfeSefazInfAdic infAdic = default(MdfeSefazInfAdic), MdfeSefazRespTec infRespTec = default(MdfeSefazRespTec), MdfeSefazInfSolicNFF infSolicNFF = default(MdfeSefazInfSolicNFF), MdfeSefazInfPAA infPAA = default(MdfeSefazInfPAA))
         {
             // to ensure "versao" is required (not null)
             if (versao == null)
@@ -96,6 +97,7 @@ namespace NuvemFiscal.Sdk.Model
             this.infAdic = infAdic;
             this.infRespTec = infRespTec;
             this.infSolicNFF = infSolicNFF;
+            this.infPAA = infPAA;
         }
 
         /// <summary>
@@ -185,6 +187,12 @@ namespace NuvemFiscal.Sdk.Model
         public MdfeSefazInfSolicNFF infSolicNFF { get; set; }
 
         /// <summary>
+        /// Gets or Sets infPAA
+        /// </summary>
+        [DataMember(Name = "infPAA", EmitDefaultValue = false)]
+        public MdfeSefazInfPAA infPAA { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -206,6 +214,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  infAdic: ").Append(infAdic).Append("\n");
             sb.Append("  infRespTec: ").Append(infRespTec).Append("\n");
             sb.Append("  infSolicNFF: ").Append(infSolicNFF).Append("\n");
+            sb.Append("  infPAA: ").Append(infPAA).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -313,6 +322,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.infSolicNFF == input.infSolicNFF ||
                     (this.infSolicNFF != null &&
                     this.infSolicNFF.Equals(input.infSolicNFF))
+                ) && 
+                (
+                    this.infPAA == input.infPAA ||
+                    (this.infPAA != null &&
+                    this.infPAA.Equals(input.infPAA))
                 );
         }
 
@@ -380,6 +394,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.infSolicNFF != null)
                 {
                     hashCode = (hashCode * 59) + this.infSolicNFF.GetHashCode();
+                }
+                if (this.infPAA != null)
+                {
+                    hashCode = (hashCode * 59) + this.infPAA.GetHashCode();
                 }
                 return hashCode;
             }

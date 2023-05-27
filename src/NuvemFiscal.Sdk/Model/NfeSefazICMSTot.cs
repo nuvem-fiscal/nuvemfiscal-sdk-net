@@ -47,8 +47,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vST">Valor Total do ICMS ST. (required).</param>
         /// <param name="vFCPST">Valor Total do FCP (Fundo de Combate à Pobreza) retido por substituição tributária. (required).</param>
         /// <param name="vFCPSTRet">Valor Total do FCP (Fundo de Combate à Pobreza) retido anteriormente por substituição tributária. (required).</param>
+        /// <param name="qBCMono">Valor total da quantidade tributada do ICMS monofásico próprio..</param>
         /// <param name="vICMSMono">Valor total do ICMS monofásico próprio..</param>
+        /// <param name="qBCMonoReten">Valor total da quantidade tributada do ICMS monofásico sujeito a retenção..</param>
         /// <param name="vICMSMonoReten">Valor total do ICMS monofásico sujeito a retenção..</param>
+        /// <param name="qBCMonoRet">Valor total da quantidade tributada do ICMS monofásico retido anteriormente..</param>
         /// <param name="vICMSMonoRet">Valor do ICMS monofásico retido anteriormente..</param>
         /// <param name="vProd">Valor Total dos produtos e serviços. (required).</param>
         /// <param name="vFrete">Valor Total do Frete. (required).</param>
@@ -62,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vOutro">Outras Despesas acessórias. (required).</param>
         /// <param name="vNF">Valor Total da NF-e. (required).</param>
         /// <param name="vTotTrib">Valor estimado total de impostos federais, estaduais e municipais..</param>
-        public NfeSefazICMSTot(decimal vBC = default(decimal), decimal vICMS = default(decimal), decimal vICMSDeson = default(decimal), decimal vFCPUFDest = default(decimal), decimal vICMSUFDest = default(decimal), decimal vICMSUFRemet = default(decimal), decimal vFCP = default(decimal), decimal vBCST = default(decimal), decimal vST = default(decimal), decimal vFCPST = default(decimal), decimal vFCPSTRet = default(decimal), decimal vICMSMono = default(decimal), decimal vICMSMonoReten = default(decimal), decimal vICMSMonoRet = default(decimal), decimal vProd = default(decimal), decimal vFrete = default(decimal), decimal vSeg = default(decimal), decimal vDesc = default(decimal), decimal vII = default(decimal), decimal vIPI = default(decimal), decimal vIPIDevol = default(decimal), decimal vPIS = default(decimal), decimal vCOFINS = default(decimal), decimal vOutro = default(decimal), decimal vNF = default(decimal), decimal vTotTrib = default(decimal))
+        public NfeSefazICMSTot(decimal vBC = default(decimal), decimal vICMS = default(decimal), decimal vICMSDeson = default(decimal), decimal vFCPUFDest = default(decimal), decimal vICMSUFDest = default(decimal), decimal vICMSUFRemet = default(decimal), decimal vFCP = default(decimal), decimal vBCST = default(decimal), decimal vST = default(decimal), decimal vFCPST = default(decimal), decimal vFCPSTRet = default(decimal), decimal qBCMono = default(decimal), decimal vICMSMono = default(decimal), decimal qBCMonoReten = default(decimal), decimal vICMSMonoReten = default(decimal), decimal qBCMonoRet = default(decimal), decimal vICMSMonoRet = default(decimal), decimal vProd = default(decimal), decimal vFrete = default(decimal), decimal vSeg = default(decimal), decimal vDesc = default(decimal), decimal vII = default(decimal), decimal vIPI = default(decimal), decimal vIPIDevol = default(decimal), decimal vPIS = default(decimal), decimal vCOFINS = default(decimal), decimal vOutro = default(decimal), decimal vNF = default(decimal), decimal vTotTrib = default(decimal))
         {
             this.vBC = vBC;
             this.vICMS = vICMS;
@@ -86,8 +89,11 @@ namespace NuvemFiscal.Sdk.Model
             this.vFCPUFDest = vFCPUFDest;
             this.vICMSUFDest = vICMSUFDest;
             this.vICMSUFRemet = vICMSUFRemet;
+            this.qBCMono = qBCMono;
             this.vICMSMono = vICMSMono;
+            this.qBCMonoReten = qBCMonoReten;
             this.vICMSMonoReten = vICMSMonoReten;
+            this.qBCMonoRet = qBCMonoRet;
             this.vICMSMonoRet = vICMSMonoRet;
             this.vTotTrib = vTotTrib;
         }
@@ -170,6 +176,13 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vFCPSTRet { get; set; }
 
         /// <summary>
+        /// Valor total da quantidade tributada do ICMS monofásico próprio.
+        /// </summary>
+        /// <value>Valor total da quantidade tributada do ICMS monofásico próprio.</value>
+        [DataMember(Name = "qBCMono", EmitDefaultValue = false)]
+        public decimal qBCMono { get; set; }
+
+        /// <summary>
         /// Valor total do ICMS monofásico próprio.
         /// </summary>
         /// <value>Valor total do ICMS monofásico próprio.</value>
@@ -177,11 +190,25 @@ namespace NuvemFiscal.Sdk.Model
         public decimal vICMSMono { get; set; }
 
         /// <summary>
+        /// Valor total da quantidade tributada do ICMS monofásico sujeito a retenção.
+        /// </summary>
+        /// <value>Valor total da quantidade tributada do ICMS monofásico sujeito a retenção.</value>
+        [DataMember(Name = "qBCMonoReten", EmitDefaultValue = false)]
+        public decimal qBCMonoReten { get; set; }
+
+        /// <summary>
         /// Valor total do ICMS monofásico sujeito a retenção.
         /// </summary>
         /// <value>Valor total do ICMS monofásico sujeito a retenção.</value>
         [DataMember(Name = "vICMSMonoReten", EmitDefaultValue = false)]
         public decimal vICMSMonoReten { get; set; }
+
+        /// <summary>
+        /// Valor total da quantidade tributada do ICMS monofásico retido anteriormente.
+        /// </summary>
+        /// <value>Valor total da quantidade tributada do ICMS monofásico retido anteriormente.</value>
+        [DataMember(Name = "qBCMonoRet", EmitDefaultValue = false)]
+        public decimal qBCMonoRet { get; set; }
 
         /// <summary>
         /// Valor do ICMS monofásico retido anteriormente.
@@ -293,8 +320,11 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  vST: ").Append(vST).Append("\n");
             sb.Append("  vFCPST: ").Append(vFCPST).Append("\n");
             sb.Append("  vFCPSTRet: ").Append(vFCPSTRet).Append("\n");
+            sb.Append("  qBCMono: ").Append(qBCMono).Append("\n");
             sb.Append("  vICMSMono: ").Append(vICMSMono).Append("\n");
+            sb.Append("  qBCMonoReten: ").Append(qBCMonoReten).Append("\n");
             sb.Append("  vICMSMonoReten: ").Append(vICMSMonoReten).Append("\n");
+            sb.Append("  qBCMonoRet: ").Append(qBCMonoRet).Append("\n");
             sb.Append("  vICMSMonoRet: ").Append(vICMSMonoRet).Append("\n");
             sb.Append("  vProd: ").Append(vProd).Append("\n");
             sb.Append("  vFrete: ").Append(vFrete).Append("\n");
@@ -388,12 +418,24 @@ namespace NuvemFiscal.Sdk.Model
                     this.vFCPSTRet.Equals(input.vFCPSTRet)
                 ) && 
                 (
+                    this.qBCMono == input.qBCMono ||
+                    this.qBCMono.Equals(input.qBCMono)
+                ) && 
+                (
                     this.vICMSMono == input.vICMSMono ||
                     this.vICMSMono.Equals(input.vICMSMono)
                 ) && 
                 (
+                    this.qBCMonoReten == input.qBCMonoReten ||
+                    this.qBCMonoReten.Equals(input.qBCMonoReten)
+                ) && 
+                (
                     this.vICMSMonoReten == input.vICMSMonoReten ||
                     this.vICMSMonoReten.Equals(input.vICMSMonoReten)
+                ) && 
+                (
+                    this.qBCMonoRet == input.qBCMonoRet ||
+                    this.qBCMonoRet.Equals(input.qBCMonoRet)
                 ) && 
                 (
                     this.vICMSMonoRet == input.vICMSMonoRet ||
@@ -469,8 +511,11 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.vST.GetHashCode();
                 hashCode = (hashCode * 59) + this.vFCPST.GetHashCode();
                 hashCode = (hashCode * 59) + this.vFCPSTRet.GetHashCode();
+                hashCode = (hashCode * 59) + this.qBCMono.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSMono.GetHashCode();
+                hashCode = (hashCode * 59) + this.qBCMonoReten.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSMonoReten.GetHashCode();
+                hashCode = (hashCode * 59) + this.qBCMonoRet.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSMonoRet.GetHashCode();
                 hashCode = (hashCode * 59) + this.vProd.GetHashCode();
                 hashCode = (hashCode * 59) + this.vFrete.GetHashCode();

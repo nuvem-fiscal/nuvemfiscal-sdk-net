@@ -19,6 +19,7 @@ Nome | Tipo | Descrição | Comentários
 **infAdic** | [**MdfeSefazInfAdic**](MdfeSefazInfAdic.md) |  | [optional] 
 **infRespTec** | [**MdfeSefazRespTec**](MdfeSefazRespTec.md) |  | [optional] 
 **infSolicNFF** | [**MdfeSefazInfSolicNFF**](MdfeSefazInfSolicNFF.md) |  | [optional] 
+**infPAA** | [**MdfeSefazInfPAA**](MdfeSefazInfPAA.md) |  | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

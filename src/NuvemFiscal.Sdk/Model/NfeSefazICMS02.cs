@@ -38,9 +38,10 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="orig">Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%. (required).</param>
         /// <param name="cST">Tributção pelo ICMS  * 02 - Tributação monofásica própria sobre combustíveis (required).</param>
+        /// <param name="qBCMono">Quantidade tributada..</param>
         /// <param name="adRemICMS">Alíquota ad rem do imposto. (required).</param>
         /// <param name="vICMSMono">Valor do ICMS própri. (required).</param>
-        public NfeSefazICMS02(int orig = default(int), string cST = default(string), decimal adRemICMS = default(decimal), decimal vICMSMono = default(decimal))
+        public NfeSefazICMS02(int orig = default(int), string cST = default(string), decimal qBCMono = default(decimal), decimal adRemICMS = default(decimal), decimal vICMSMono = default(decimal))
         {
             this.orig = orig;
             // to ensure "cST" is required (not null)
@@ -51,6 +52,7 @@ namespace NuvemFiscal.Sdk.Model
             this.CST = cST;
             this.adRemICMS = adRemICMS;
             this.vICMSMono = vICMSMono;
+            this.qBCMono = qBCMono;
         }
 
         /// <summary>
@@ -66,6 +68,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Tributção pelo ICMS  * 02 - Tributação monofásica própria sobre combustíveis</value>
         [DataMember(Name = "CST", IsRequired = true, EmitDefaultValue = true)]
         public string CST { get; set; }
+
+        /// <summary>
+        /// Quantidade tributada.
+        /// </summary>
+        /// <value>Quantidade tributada.</value>
+        [DataMember(Name = "qBCMono", EmitDefaultValue = false)]
+        public decimal qBCMono { get; set; }
 
         /// <summary>
         /// Alíquota ad rem do imposto.
@@ -91,6 +100,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("class NfeSefazICMS02 {\n");
             sb.Append("  orig: ").Append(orig).Append("\n");
             sb.Append("  CST: ").Append(CST).Append("\n");
+            sb.Append("  qBCMono: ").Append(qBCMono).Append("\n");
             sb.Append("  adRemICMS: ").Append(adRemICMS).Append("\n");
             sb.Append("  vICMSMono: ").Append(vICMSMono).Append("\n");
             sb.Append("}\n");
@@ -138,6 +148,10 @@ namespace NuvemFiscal.Sdk.Model
                     this.CST.Equals(input.CST))
                 ) && 
                 (
+                    this.qBCMono == input.qBCMono ||
+                    this.qBCMono.Equals(input.qBCMono)
+                ) && 
+                (
                     this.adRemICMS == input.adRemICMS ||
                     this.adRemICMS.Equals(input.adRemICMS)
                 ) && 
@@ -161,6 +175,7 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.qBCMono.GetHashCode();
                 hashCode = (hashCode * 59) + this.adRemICMS.GetHashCode();
                 hashCode = (hashCode * 59) + this.vICMSMono.GetHashCode();
                 return hashCode;
