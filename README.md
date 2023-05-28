@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.10.27
-- Versão do SDK: 2.8.0
+- Versão da API: 2.10.28
+- Versão do SDK: 2.9.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -492,7 +492,6 @@ Classe | Método | Endpoint | Descrição
  - [Model.MdfeSefazInfMunDescarga](docs/MdfeSefazInfMunDescarga.md)
  - [Model.MdfeSefazInfNFe](docs/MdfeSefazInfNFe.md)
  - [Model.MdfeSefazInfNFePeri](docs/MdfeSefazInfNFePeri.md)
- - [Model.MdfeSefazInfPAA](docs/MdfeSefazInfPAA.md)
  - [Model.MdfeSefazInfPag](docs/MdfeSefazInfPag.md)
  - [Model.MdfeSefazInfPercurso](docs/MdfeSefazInfPercurso.md)
  - [Model.MdfeSefazInfPrazo](docs/MdfeSefazInfPrazo.md)
@@ -507,11 +506,9 @@ Classe | Método | Endpoint | Descrição
  - [Model.MdfeSefazLacUnidCarga](docs/MdfeSefazLacUnidCarga.md)
  - [Model.MdfeSefazLacUnidTransp](docs/MdfeSefazLacUnidTransp.md)
  - [Model.MdfeSefazLacres](docs/MdfeSefazLacres.md)
- - [Model.MdfeSefazPAASignature](docs/MdfeSefazPAASignature.md)
  - [Model.MdfeSefazPeri](docs/MdfeSefazPeri.md)
  - [Model.MdfeSefazProdPred](docs/MdfeSefazProdPred.md)
  - [Model.MdfeSefazProp](docs/MdfeSefazProp.md)
- - [Model.MdfeSefazRSAKeyValueType](docs/MdfeSefazRSAKeyValueType.md)
  - [Model.MdfeSefazRespTec](docs/MdfeSefazRespTec.md)
  - [Model.MdfeSefazRodo](docs/MdfeSefazRodo.md)
  - [Model.MdfeSefazSeg](docs/MdfeSefazSeg.md)

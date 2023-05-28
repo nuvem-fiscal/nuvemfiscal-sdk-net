@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.10.27
+  version: 2.10.28
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -18753,13 +18753,6 @@ components:
                 nVoo: nVoo
                 dVoo: 2000-01-23
                 cAerDes: cAerDes
-            infPAA:
-              PAASignature:
-                RSAKeyValue:
-                  Exponent: Exponent
-                  Modulus: Modulus
-                SignatureValue: SignatureValue
-              CNPJPAA: CNPJPAA
             ide:
               cMDF: cMDF
               mod: 5
@@ -19781,13 +19774,6 @@ components:
                 nVoo: nVoo
                 dVoo: 2000-01-23
                 cAerDes: cAerDes
-            infPAA:
-              PAASignature:
-                RSAKeyValue:
-                  Exponent: Exponent
-                  Modulus: Modulus
-                SignatureValue: SignatureValue
-              CNPJPAA: CNPJPAA
             ide:
               cMDF: cMDF
               mod: 5
@@ -20835,13 +20821,6 @@ components:
               nVoo: nVoo
               dVoo: 2000-01-23
               cAerDes: cAerDes
-          infPAA:
-            PAASignature:
-              RSAKeyValue:
-                Exponent: Exponent
-                Modulus: Modulus
-              SignatureValue: SignatureValue
-            CNPJPAA: CNPJPAA
           ide:
             cMDF: cMDF
             mod: 5
@@ -21884,13 +21863,6 @@ components:
             nVoo: nVoo
             dVoo: 2000-01-23
             cAerDes: cAerDes
-        infPAA:
-          PAASignature:
-            RSAKeyValue:
-              Exponent: Exponent
-              Modulus: Modulus
-            SignatureValue: SignatureValue
-          CNPJPAA: CNPJPAA
         ide:
           cMDF: cMDF
           mod: 5
@@ -22693,8 +22665,6 @@ components:
           $ref: '#/components/schemas/MdfeSefazRespTec'
         infSolicNFF:
           $ref: '#/components/schemas/MdfeSefazInfSolicNFF'
-        infPAA:
-          $ref: '#/components/schemas/MdfeSefazInfPAA'
       required:
       - emit
       - ide
@@ -26234,55 +26204,6 @@ components:
           type: string
       required:
       - xSolic
-      type: object
-    MdfeSefazInfPAA:
-      description: Grupo de Informação do Provedor de Assinatura e Autorização.
-      example:
-        PAASignature:
-          RSAKeyValue:
-            Exponent: Exponent
-            Modulus: Modulus
-          SignatureValue: SignatureValue
-        CNPJPAA: CNPJPAA
-      properties:
-        CNPJPAA:
-          description: CNPJ do Provedor de Assinatura e Autorização.
-          type: string
-        PAASignature:
-          $ref: '#/components/schemas/MdfeSefazPAASignature'
-      required:
-      - CNPJPAA
-      - PAASignature
-      type: object
-    MdfeSefazPAASignature:
-      description: Assinatura RSA do Emitente para DFe gerados por PAA.
-      example:
-        RSAKeyValue:
-          Exponent: Exponent
-          Modulus: Modulus
-        SignatureValue: SignatureValue
-      properties:
-        SignatureValue:
-          description: "Assinatura digital padrão RSA.\r\nConverter o atributo Id\
-            \ do DFe para array de bytes e assinar com a chave privada do RSA com\
-            \ algoritmo SHA1 gerando um valor no formato base64."
-          type: string
-        RSAKeyValue:
-          $ref: '#/components/schemas/MdfeSefazRSAKeyValueType'
-      required:
-      - RSAKeyValue
-      - SignatureValue
-      type: object
-    MdfeSefazRSAKeyValueType:
-      description: Chave Publica no padrão XML RSA Key.
-      example:
-        Exponent: Exponent
-        Modulus: Modulus
-      properties:
-        Modulus:
-          type: string
-        Exponent:
-          type: string
       type: object
     MdfeSefazInfMDFeSupl:
       description: Informações suplementares do MDF-e.
