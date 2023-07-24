@@ -10,6 +10,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**AlterarConfigNfe**](EmpresaApi.md#alterarconfignfe) | **PUT** /empresas/{cpf_cnpj}/nfe | Alterar configuração de NF-e |
 | [**AlterarConfigNfse**](EmpresaApi.md#alterarconfignfse) | **PUT** /empresas/{cpf_cnpj}/nfse | Alterar configuração de NFS-e |
 | [**AtualizarEmpresa**](EmpresaApi.md#atualizarempresa) | **PUT** /empresas/{cpf_cnpj} | Alterar empresa |
+| [**BaixarLogotipoEmpresa**](EmpresaApi.md#baixarlogotipoempresa) | **GET** /empresas/{cpf_cnpj}/logotipo | Baixar logotipo |
 | [**CadastrarCertificadoEmpresa**](EmpresaApi.md#cadastrarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado | Cadastrar certificado |
 | [**ConsultarCertificadoEmpresa**](EmpresaApi.md#consultarcertificadoempresa) | **GET** /empresas/{cpf_cnpj}/certificado | Consultar certificado |
 | [**ConsultarConfigCte**](EmpresaApi.md#consultarconfigcte) | **GET** /empresas/{cpf_cnpj}/cte | Consultar configuração de CT-e |
@@ -20,8 +21,10 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**ConsultarEmpresa**](EmpresaApi.md#consultarempresa) | **GET** /empresas/{cpf_cnpj} | Consultar empresa |
 | [**CriarEmpresa**](EmpresaApi.md#criarempresa) | **POST** /empresas | Cadastrar empresa |
 | [**EnviarCertificadoEmpresa**](EmpresaApi.md#enviarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado/upload | Upload de certificado |
+| [**EnviarLogotipoEmpresa**](EmpresaApi.md#enviarlogotipoempresa) | **PUT** /empresas/{cpf_cnpj}/logotipo | Enviar logotipo |
 | [**ExcluirCertificadoEmpresa**](EmpresaApi.md#excluircertificadoempresa) | **DELETE** /empresas/{cpf_cnpj}/certificado | Deletar certificado |
 | [**ExcluirEmpresa**](EmpresaApi.md#excluirempresa) | **DELETE** /empresas/{cpf_cnpj} | Deletar empresa |
+| [**ExcluirLogotipoEmpresa**](EmpresaApi.md#excluirlogotipoempresa) | **DELETE** /empresas/{cpf_cnpj}/logotipo | Deletar logotipo |
 | [**ListarEmpresas**](EmpresaApi.md#listarempresas) | **GET** /empresas | Listar empresas |
 
 <a name="alterarconfigcte"></a>
@@ -58,7 +61,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var body = new EmpresaConfigCte(); // EmpresaConfigCte | 
 
             try
@@ -102,7 +105,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **body** | [**EmpresaConfigCte**](EmpresaConfigCte.md) |  |  |
 
 ### Tipo de retorno
@@ -160,7 +163,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var body = new EmpresaConfigMdfe(); // EmpresaConfigMdfe | 
 
             try
@@ -204,7 +207,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **body** | [**EmpresaConfigMdfe**](EmpresaConfigMdfe.md) |  |  |
 
 ### Tipo de retorno
@@ -262,7 +265,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var body = new EmpresaConfigNfce(); // EmpresaConfigNfce | 
 
             try
@@ -306,7 +309,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **body** | [**EmpresaConfigNfce**](EmpresaConfigNfce.md) |  |  |
 
 ### Tipo de retorno
@@ -364,7 +367,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var body = new EmpresaConfigNfe(); // EmpresaConfigNfe | 
 
             try
@@ -408,7 +411,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **body** | [**EmpresaConfigNfe**](EmpresaConfigNfe.md) |  |  |
 
 ### Tipo de retorno
@@ -466,7 +469,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var body = new EmpresaConfigNfse(); // EmpresaConfigNfse | 
 
             try
@@ -510,7 +513,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **body** | [**EmpresaConfigNfse**](EmpresaConfigNfse.md) |  |  |
 
 ### Tipo de retorno
@@ -570,7 +573,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var body = new Empresa(); // Empresa | 
 
             try
@@ -614,7 +617,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **body** | [**Empresa**](Empresa.md) |  |  |
 
 ### Tipo de retorno
@@ -629,6 +632,106 @@ catch (ApiException e)
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarlogotipoempresa"></a>
+# **BaixarLogotipoEmpresa**
+> FileParameter BaixarLogotipoEmpresa (string cpfCnpj)
+
+Baixar logotipo
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarLogotipoEmpresaExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
+
+            try
+            {
+                // Baixar logotipo
+                FileParameter result = apiInstance.BaixarLogotipoEmpresa(cpfCnpj);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmpresaApi.BaixarLogotipoEmpresa: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarLogotipoEmpresaWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar logotipo
+    ApiResponse<FileParameter> response = apiInstance.BaixarLogotipoEmpresaWithHttpInfo(cpfCnpj);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar EmpresaApi.BaixarLogotipoEmpresaWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
 
 
 ### Detalhes da resposta HTTP
@@ -674,7 +777,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var body = new EmpresaPedidoCadastroCertificado(); // EmpresaPedidoCadastroCertificado | 
 
             try
@@ -718,7 +821,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **body** | [**EmpresaPedidoCadastroCertificado**](EmpresaPedidoCadastroCertificado.md) |  |  |
 
 ### Tipo de retorno
@@ -776,7 +879,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -819,7 +922,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -876,7 +979,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -919,7 +1022,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -976,7 +1079,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -1019,7 +1122,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1076,7 +1179,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -1119,7 +1222,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1176,7 +1279,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -1219,7 +1322,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1276,7 +1379,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -1319,7 +1422,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1376,7 +1479,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -1419,7 +1522,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1580,7 +1683,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
             var input = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter |  (optional) 
 
             try
@@ -1624,7 +1727,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 | **input** | **FileParameter****FileParameter** |  | [optional]  |
 
 ### Tipo de retorno
@@ -1645,6 +1748,106 @@ catch (ApiException e)
 | Código status | Descrição | Headers da resposta |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="enviarlogotipoempresa"></a>
+# **EnviarLogotipoEmpresa**
+> void EnviarLogotipoEmpresa (string cpfCnpj, FileParameter input = null)
+
+Enviar logotipo
+
+Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: `image/png` e `image/jpeg`  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class EnviarLogotipoEmpresaExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
+            var input = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter |  (optional) 
+
+            try
+            {
+                // Enviar logotipo
+                apiInstance.EnviarLogotipoEmpresa(cpfCnpj, input);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmpresaApi.EnviarLogotipoEmpresa: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante EnviarLogotipoEmpresaWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Enviar logotipo
+    apiInstance.EnviarLogotipoEmpresaWithHttpInfo(cpfCnpj, input);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar EmpresaApi.EnviarLogotipoEmpresaWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
+| **input** | **FileParameter****FileParameter** |  | [optional]  |
+
+### Tipo de retorno
+
+void (empty response body)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: Não especificado
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **204** | Successful response |  -  |
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
@@ -1682,7 +1885,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -1721,7 +1924,7 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 
@@ -1778,7 +1981,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
-            var cpfCnpj = "cpfCnpj_example";  // string | 
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
 
             try
             {
@@ -1817,7 +2020,103 @@ catch (ApiException e)
 
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
-| **cpfCnpj** | **string** |  |  |
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
+
+### Tipo de retorno
+
+void (empty response body)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: Não especificado
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **204** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="excluirlogotipoempresa"></a>
+# **ExcluirLogotipoEmpresa**
+> void ExcluirLogotipoEmpresa (string cpfCnpj)
+
+Deletar logotipo
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ExcluirLogotipoEmpresaExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
+
+            try
+            {
+                // Deletar logotipo
+                apiInstance.ExcluirLogotipoEmpresa(cpfCnpj);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmpresaApi.ExcluirLogotipoEmpresa: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ExcluirLogotipoEmpresaWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Deletar logotipo
+    apiInstance.ExcluirLogotipoEmpresaWithHttpInfo(cpfCnpj);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar EmpresaApi.ExcluirLogotipoEmpresaWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
 
 ### Tipo de retorno
 

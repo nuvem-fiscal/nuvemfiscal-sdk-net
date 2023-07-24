@@ -440,7 +440,7 @@ catch (ApiException e)
 
 <a name="baixarpdfnfce"></a>
 # **BaixarPdfNfce**
-> FileParameter BaixarPdfNfce (string id, bool? resumido = null, bool? qrcodeLateral = null)
+> FileParameter BaixarPdfNfce (string id, bool? logotipo = null, string mensagemRodape = null, bool? resumido = null, bool? qrcodeLateral = null)
 
 Baixar PDF do DANFCE
 
@@ -473,13 +473,15 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
+            var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
+            var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
             var resumido = false;  // bool? | Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite. (optional)  (default to false)
             var qrcodeLateral = false;  // bool? | Imprime o QRCode na lateral do DANFE NFC-e. (optional)  (default to false)
 
             try
             {
                 // Baixar PDF do DANFCE
-                FileParameter result = apiInstance.BaixarPdfNfce(id, resumido, qrcodeLateral);
+                FileParameter result = apiInstance.BaixarPdfNfce(id, logotipo, mensagemRodape, resumido, qrcodeLateral);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -500,7 +502,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Baixar PDF do DANFCE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfceWithHttpInfo(id, resumido, qrcodeLateral);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfceWithHttpInfo(id, logotipo, mensagemRodape, resumido, qrcodeLateral);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -518,6 +520,8 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+| **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
+| **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
 | **resumido** | **bool?** | Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite. | [optional] [default to false] |
 | **qrcodeLateral** | **bool?** | Imprime o QRCode na lateral do DANFE NFC-e. | [optional] [default to false] |
 

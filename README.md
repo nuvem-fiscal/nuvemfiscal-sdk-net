@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.10.28
-- Versão do SDK: 2.9.0
+- Versão da API: 2.14.0
+- Versão do SDK: 2.10.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -171,6 +171,7 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**AlterarConfigNfe**](docs/EmpresaApi.md#alterarconfignfe) | **PUT** /empresas/{cpf_cnpj}/nfe | Alterar configuração de NF-e
 *EmpresaApi* | [**AlterarConfigNfse**](docs/EmpresaApi.md#alterarconfignfse) | **PUT** /empresas/{cpf_cnpj}/nfse | Alterar configuração de NFS-e
 *EmpresaApi* | [**AtualizarEmpresa**](docs/EmpresaApi.md#atualizarempresa) | **PUT** /empresas/{cpf_cnpj} | Alterar empresa
+*EmpresaApi* | [**BaixarLogotipoEmpresa**](docs/EmpresaApi.md#baixarlogotipoempresa) | **GET** /empresas/{cpf_cnpj}/logotipo | Baixar logotipo
 *EmpresaApi* | [**CadastrarCertificadoEmpresa**](docs/EmpresaApi.md#cadastrarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado | Cadastrar certificado
 *EmpresaApi* | [**ConsultarCertificadoEmpresa**](docs/EmpresaApi.md#consultarcertificadoempresa) | **GET** /empresas/{cpf_cnpj}/certificado | Consultar certificado
 *EmpresaApi* | [**ConsultarConfigCte**](docs/EmpresaApi.md#consultarconfigcte) | **GET** /empresas/{cpf_cnpj}/cte | Consultar configuração de CT-e
@@ -181,8 +182,10 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**ConsultarEmpresa**](docs/EmpresaApi.md#consultarempresa) | **GET** /empresas/{cpf_cnpj} | Consultar empresa
 *EmpresaApi* | [**CriarEmpresa**](docs/EmpresaApi.md#criarempresa) | **POST** /empresas | Cadastrar empresa
 *EmpresaApi* | [**EnviarCertificadoEmpresa**](docs/EmpresaApi.md#enviarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado/upload | Upload de certificado
+*EmpresaApi* | [**EnviarLogotipoEmpresa**](docs/EmpresaApi.md#enviarlogotipoempresa) | **PUT** /empresas/{cpf_cnpj}/logotipo | Enviar logotipo
 *EmpresaApi* | [**ExcluirCertificadoEmpresa**](docs/EmpresaApi.md#excluircertificadoempresa) | **DELETE** /empresas/{cpf_cnpj}/certificado | Deletar certificado
 *EmpresaApi* | [**ExcluirEmpresa**](docs/EmpresaApi.md#excluirempresa) | **DELETE** /empresas/{cpf_cnpj} | Deletar empresa
+*EmpresaApi* | [**ExcluirLogotipoEmpresa**](docs/EmpresaApi.md#excluirlogotipoempresa) | **DELETE** /empresas/{cpf_cnpj}/logotipo | Deletar logotipo
 *EmpresaApi* | [**ListarEmpresas**](docs/EmpresaApi.md#listarempresas) | **GET** /empresas | Listar empresas
 *MdfeApi* | [**BaixarPdfCancelamentoMdfe**](docs/MdfeApi.md#baixarpdfcancelamentomdfe) | **GET** /mdfe/{id}/cancelamento/pdf | Baixar PDF do cancelamento
 *MdfeApi* | [**BaixarPdfEncerramentoMdfe**](docs/MdfeApi.md#baixarpdfencerramentomdfe) | **GET** /mdfe/{id}/encerramento/pdf | Baixar PDF do encerramento
@@ -286,6 +289,8 @@ Classe | Método | Endpoint | Descrição
  - [Model.CnpjCnaeSecundario](docs/CnpjCnaeSecundario.md)
  - [Model.CnpjEmpresa](docs/CnpjEmpresa.md)
  - [Model.CnpjEndereco](docs/CnpjEndereco.md)
+ - [Model.CnpjFaixaEtaria](docs/CnpjFaixaEtaria.md)
+ - [Model.CnpjIdentificadorSocio](docs/CnpjIdentificadorSocio.md)
  - [Model.CnpjListagem](docs/CnpjListagem.md)
  - [Model.CnpjMotivoSituacaoCadastral](docs/CnpjMotivoSituacaoCadastral.md)
  - [Model.CnpjMunicipio](docs/CnpjMunicipio.md)
@@ -294,8 +299,11 @@ Classe | Método | Endpoint | Descrição
  - [Model.CnpjOpcaoSimples](docs/CnpjOpcaoSimples.md)
  - [Model.CnpjPais](docs/CnpjPais.md)
  - [Model.CnpjPorteEmpresa](docs/CnpjPorteEmpresa.md)
+ - [Model.CnpjQualificacaoSocio](docs/CnpjQualificacaoSocio.md)
+ - [Model.CnpjRepresentanteLegal](docs/CnpjRepresentanteLegal.md)
  - [Model.CnpjSituacaoCadastral](docs/CnpjSituacaoCadastral.md)
  - [Model.CnpjSituacaoEspecial](docs/CnpjSituacaoEspecial.md)
+ - [Model.CnpjSocio](docs/CnpjSocio.md)
  - [Model.CnpjTelefone](docs/CnpjTelefone.md)
  - [Model.ComExterior](docs/ComExterior.md)
  - [Model.ContaCota](docs/ContaCota.md)

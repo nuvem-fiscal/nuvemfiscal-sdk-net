@@ -25,6 +25,7 @@ Nome | Tipo | Descrição | Comentários
 **situacao_especial** | [**CnpjSituacaoEspecial**](CnpjSituacaoEspecial.md) |  | [optional] 
 **simples** | [**CnpjOpcaoSimples**](CnpjOpcaoSimples.md) |  | [optional] 
 **simei** | [**CnpjOpcaoSimei**](CnpjOpcaoSimei.md) |  | [optional] 
+**socios** | [**List&lt;CnpjSocio&gt;**](CnpjSocio.md) |  | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

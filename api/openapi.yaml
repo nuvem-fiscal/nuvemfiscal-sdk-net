@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.10.28
+  version: 2.14.0
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -826,7 +826,8 @@ paths:
     delete:
       operationId: ExcluirEmpresa
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -841,7 +842,8 @@ paths:
     get:
       operationId: ConsultarEmpresa
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -862,7 +864,8 @@ paths:
         \ campo não seja informado, o valor dele será apagado."
       operationId: AtualizarEmpresa
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -888,7 +891,8 @@ paths:
     delete:
       operationId: ExcluirCertificadoEmpresa
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -903,7 +907,8 @@ paths:
     get:
       operationId: ConsultarCertificadoEmpresa
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -924,7 +929,8 @@ paths:
         \ envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**."
       operationId: CadastrarCertificadoEmpresa
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -955,7 +961,8 @@ paths:
         \ envie a senha do certificado."
       operationId: EnviarCertificadoEmpresa
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -979,7 +986,8 @@ paths:
     get:
       operationId: ConsultarConfigCte
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -997,7 +1005,8 @@ paths:
     put:
       operationId: AlterarConfigCte
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1019,11 +1028,75 @@ paths:
       tags:
       - Empresa
       x-codegen-request-body-name: body
+  /empresas/{cpf_cnpj}/logotipo:
+    delete:
+      operationId: ExcluirLogotipoEmpresa
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: Successful response
+      summary: Deletar logotipo
+      tags:
+      - Empresa
+    get:
+      operationId: BaixarLogotipoEmpresa
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar logotipo
+      tags:
+      - Empresa
+    put:
+      description: "Cadastre ou atualize um logotipo e vincule a sua empresa.\r\n\r\
+        \n**Restrições:**\r\n* Tipos de mídia (MIME) suportados: `image/png` e `image/jpeg`\r\
+        \n* Tamanho máximo do arquivo: 200 KB\r\n\r\n**Cenários de uso:**\r\n* Quero\
+        \ que minhas notas sejam impressas com esse logotipo.\r\n* Quero trocar o\
+        \ logotipo utilizado em minhas impressões."
+      operationId: EnviarLogotipoEmpresa
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EnviarCertificadoEmpresa_request'
+      responses:
+        "204":
+          content: {}
+          description: Successful response
+      summary: Enviar logotipo
+      tags:
+      - Empresa
   /empresas/{cpf_cnpj}/mdfe:
     get:
       operationId: ConsultarConfigMdfe
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1041,7 +1114,8 @@ paths:
     put:
       operationId: AlterarConfigMdfe
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1067,7 +1141,8 @@ paths:
     get:
       operationId: ConsultarConfigNfce
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1085,7 +1160,8 @@ paths:
     put:
       operationId: AlterarConfigNfce
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1111,7 +1187,8 @@ paths:
     get:
       operationId: ConsultarConfigNfe
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1129,7 +1206,8 @@ paths:
     put:
       operationId: AlterarConfigNfe
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1155,7 +1233,8 @@ paths:
     get:
       operationId: ConsultarConfigNfse
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -1173,7 +1252,8 @@ paths:
     put:
       operationId: AlterarConfigNfse
       parameters:
-      - in: path
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
         name: cpf_cnpj
         required: true
         schema:
@@ -2336,6 +2416,23 @@ paths:
         required: true
         schema:
           type: string
+      - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
+          \ na empresa."
+        in: query
+        name: logotipo
+        schema:
+          default: false
+          type: boolean
+      - description: "Imprime mensagem no rodapé do documento.\r\n\r\nO caractere\
+          \ `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento\
+          \ das mensagens.\r\n\r\n**Exemplos de Uso:**\r\n* `\"esquerda\"`\r\n* `\"\
+          esquerda|centro\"`\r\n* `\"esquerda|centro|direita\"`\r\n* `\"|centro\"\
+          `, `\"|centro|\"`\r\n* `\"|centro|direita\"`\r\n* `\"||direita\"`\r\n* `\"\
+          esquerda||direita\"`"
+        in: query
+        name: mensagem_rodape
+        schema:
+          type: string
       - description: "Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico,\
           \ sem o detalhamento dos itens da venda, desde que a Unidade Federada permita\
           \ esta opção em sua legislação e o consumidor assim o solicite."
@@ -3064,6 +3161,23 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
+          \ na empresa."
+        in: query
+        name: logotipo
+        schema:
+          default: false
+          type: boolean
+      - description: "Imprime mensagem no rodapé do documento.\r\n\r\nO caractere\
+          \ `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento\
+          \ das mensagens.\r\n\r\n**Exemplos de Uso:**\r\n* `\"esquerda\"`\r\n* `\"\
+          esquerda|centro\"`\r\n* `\"esquerda|centro|direita\"`\r\n* `\"|centro\"\
+          `, `\"|centro|\"`\r\n* `\"|centro|direita\"`\r\n* `\"||direita\"`\r\n* `\"\
+          esquerda||direita\"`"
+        in: query
+        name: mensagem_rodape
         schema:
           type: string
       responses:
@@ -39150,6 +39264,49 @@ components:
         - numero: numero
           ddd: ddd
         matriz: true
+        socios:
+        - qualificacao:
+            codigo: codigo
+            descricao: descricao
+          representante_legal:
+            qualificacao:
+              codigo: codigo
+              descricao: descricao
+            cpf: cpf
+            nome: nome
+          data_entrada_sociedade: 2000-01-23
+          identificador_socio:
+            codigo: codigo
+            descricao: descricao
+          nome: nome
+          cpf_cnpj: cpf_cnpj
+          faixa_etaria:
+            codigo: codigo
+            descricao: descricao
+          pais:
+            codigo: codigo
+            descricao: descricao
+        - qualificacao:
+            codigo: codigo
+            descricao: descricao
+          representante_legal:
+            qualificacao:
+              codigo: codigo
+              descricao: descricao
+            cpf: cpf
+            nome: nome
+          data_entrada_sociedade: 2000-01-23
+          identificador_socio:
+            codigo: codigo
+            descricao: descricao
+          nome: nome
+          cpf_cnpj: cpf_cnpj
+          faixa_etaria:
+            codigo: codigo
+            descricao: descricao
+          pais:
+            codigo: codigo
+            descricao: descricao
         pais:
           codigo: codigo
           descricao: descricao
@@ -39243,6 +39400,10 @@ components:
           $ref: '#/components/schemas/CnpjOpcaoSimples'
         simei:
           $ref: '#/components/schemas/CnpjOpcaoSimei'
+        socios:
+          items:
+            $ref: '#/components/schemas/CnpjSocio'
+          type: array
       type: object
     CnpjNaturezaJuridica:
       description: Natureza jurídica.
@@ -39474,6 +39635,110 @@ components:
           format: date
           type: string
       type: object
+    CnpjSocio:
+      description: Quadro Societário.
+      example:
+        qualificacao:
+          codigo: codigo
+          descricao: descricao
+        representante_legal:
+          qualificacao:
+            codigo: codigo
+            descricao: descricao
+          cpf: cpf
+          nome: nome
+        data_entrada_sociedade: 2000-01-23
+        identificador_socio:
+          codigo: codigo
+          descricao: descricao
+        nome: nome
+        cpf_cnpj: cpf_cnpj
+        faixa_etaria:
+          codigo: codigo
+          descricao: descricao
+        pais:
+          codigo: codigo
+          descricao: descricao
+      properties:
+        identificador_socio:
+          $ref: '#/components/schemas/CnpjIdentificadorSocio'
+        nome:
+          description: "Nome do sócio pessoa física ou a razão social e/ou nome empresarial\
+            \ da\r\npessoa jurídica e/ou nome do sócio/razão social do sócio estrangeiro."
+          type: string
+        cpf_cnpj:
+          description: CPF ou CNPJ do sócio (sócio estrangeiro não tem esta informação).
+          type: string
+        qualificacao:
+          $ref: '#/components/schemas/CnpjQualificacaoSocio'
+        data_entrada_sociedade:
+          description: Data de entrada na sociedade.
+          format: date
+          type: string
+        pais:
+          $ref: '#/components/schemas/CnpjPais'
+        representante_legal:
+          $ref: '#/components/schemas/CnpjRepresentanteLegal'
+        faixa_etaria:
+          $ref: '#/components/schemas/CnpjFaixaEtaria'
+      type: object
+    CnpjIdentificadorSocio:
+      description: Identificador de sócio.
+      example:
+        codigo: codigo
+        descricao: descricao
+      properties:
+        codigo:
+          description: Código do identificador do sócio.
+          type: string
+        descricao:
+          description: Descrição do identificador do sócio.
+          type: string
+      type: object
+    CnpjQualificacaoSocio:
+      description: Qualificação.
+      example:
+        codigo: codigo
+        descricao: descricao
+      properties:
+        codigo:
+          description: Código da qualificação do sócio.
+          type: string
+        descricao:
+          description: Nome da qualificação do sócio.
+          type: string
+      type: object
+    CnpjRepresentanteLegal:
+      description: Representante legal.
+      example:
+        qualificacao:
+          codigo: codigo
+          descricao: descricao
+        cpf: cpf
+        nome: nome
+      properties:
+        cpf:
+          description: Número do cpf do representante legal.
+          type: string
+        nome:
+          description: Nome do representante legal.
+          type: string
+        qualificacao:
+          $ref: '#/components/schemas/CnpjQualificacaoSocio'
+      type: object
+    CnpjFaixaEtaria:
+      description: Faixa etária.
+      example:
+        codigo: codigo
+        descricao: descricao
+      properties:
+        codigo:
+          description: Código correspondente à faixa etária do sócio.
+          type: string
+        descricao:
+          description: Descrição correspondente à faixa etária do sócio.
+          type: string
+      type: object
     CnpjListagem:
       example:
         '@count': 0
@@ -39508,6 +39773,49 @@ components:
           - numero: numero
             ddd: ddd
           matriz: true
+          socios:
+          - qualificacao:
+              codigo: codigo
+              descricao: descricao
+            representante_legal:
+              qualificacao:
+                codigo: codigo
+                descricao: descricao
+              cpf: cpf
+              nome: nome
+            data_entrada_sociedade: 2000-01-23
+            identificador_socio:
+              codigo: codigo
+              descricao: descricao
+            nome: nome
+            cpf_cnpj: cpf_cnpj
+            faixa_etaria:
+              codigo: codigo
+              descricao: descricao
+            pais:
+              codigo: codigo
+              descricao: descricao
+          - qualificacao:
+              codigo: codigo
+              descricao: descricao
+            representante_legal:
+              qualificacao:
+                codigo: codigo
+                descricao: descricao
+              cpf: cpf
+              nome: nome
+            data_entrada_sociedade: 2000-01-23
+            identificador_socio:
+              codigo: codigo
+              descricao: descricao
+            nome: nome
+            cpf_cnpj: cpf_cnpj
+            faixa_etaria:
+              codigo: codigo
+              descricao: descricao
+            pais:
+              codigo: codigo
+              descricao: descricao
           pais:
             codigo: codigo
             descricao: descricao
@@ -39571,6 +39879,49 @@ components:
           - numero: numero
             ddd: ddd
           matriz: true
+          socios:
+          - qualificacao:
+              codigo: codigo
+              descricao: descricao
+            representante_legal:
+              qualificacao:
+                codigo: codigo
+                descricao: descricao
+              cpf: cpf
+              nome: nome
+            data_entrada_sociedade: 2000-01-23
+            identificador_socio:
+              codigo: codigo
+              descricao: descricao
+            nome: nome
+            cpf_cnpj: cpf_cnpj
+            faixa_etaria:
+              codigo: codigo
+              descricao: descricao
+            pais:
+              codigo: codigo
+              descricao: descricao
+          - qualificacao:
+              codigo: codigo
+              descricao: descricao
+            representante_legal:
+              qualificacao:
+                codigo: codigo
+                descricao: descricao
+              cpf: cpf
+              nome: nome
+            data_entrada_sociedade: 2000-01-23
+            identificador_socio:
+              codigo: codigo
+              descricao: descricao
+            nome: nome
+            cpf_cnpj: cpf_cnpj
+            faixa_etaria:
+              codigo: codigo
+              descricao: descricao
+            pais:
+              codigo: codigo
+              descricao: descricao
           pais:
             codigo: codigo
             descricao: descricao

@@ -52,7 +52,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="situacaoEspecial">situacaoEspecial.</param>
         /// <param name="simples">simples.</param>
         /// <param name="simei">simei.</param>
-        public CnpjEmpresa(string cnpj = default(string), string razaoSocial = default(string), string nomeFantasia = default(string), DateTime dataInicioAtividade = default(DateTime), bool matriz = default(bool), CnpjNaturezaJuridica naturezaJuridica = default(CnpjNaturezaJuridica), decimal capitalSocial = default(decimal), CnpjPorteEmpresa porte = default(CnpjPorteEmpresa), string enteFederativoResponsavel = default(string), CnpjSituacaoCadastral situacaoCadastral = default(CnpjSituacaoCadastral), CnpjMotivoSituacaoCadastral motivoSituacaoCadastral = default(CnpjMotivoSituacaoCadastral), string nomeDaCidadeNoExterior = default(string), CnpjPais pais = default(CnpjPais), CnpjCnae atividadePrincipal = default(CnpjCnae), List<CnpjCnaeSecundario> atividadesSecundarias = default(List<CnpjCnaeSecundario>), CnpjEndereco endereco = default(CnpjEndereco), List<CnpjTelefone> telefones = default(List<CnpjTelefone>), string email = default(string), CnpjSituacaoEspecial situacaoEspecial = default(CnpjSituacaoEspecial), CnpjOpcaoSimples simples = default(CnpjOpcaoSimples), CnpjOpcaoSimei simei = default(CnpjOpcaoSimei))
+        /// <param name="socios">socios.</param>
+        public CnpjEmpresa(string cnpj = default(string), string razaoSocial = default(string), string nomeFantasia = default(string), DateTime dataInicioAtividade = default(DateTime), bool matriz = default(bool), CnpjNaturezaJuridica naturezaJuridica = default(CnpjNaturezaJuridica), decimal capitalSocial = default(decimal), CnpjPorteEmpresa porte = default(CnpjPorteEmpresa), string enteFederativoResponsavel = default(string), CnpjSituacaoCadastral situacaoCadastral = default(CnpjSituacaoCadastral), CnpjMotivoSituacaoCadastral motivoSituacaoCadastral = default(CnpjMotivoSituacaoCadastral), string nomeDaCidadeNoExterior = default(string), CnpjPais pais = default(CnpjPais), CnpjCnae atividadePrincipal = default(CnpjCnae), List<CnpjCnaeSecundario> atividadesSecundarias = default(List<CnpjCnaeSecundario>), CnpjEndereco endereco = default(CnpjEndereco), List<CnpjTelefone> telefones = default(List<CnpjTelefone>), string email = default(string), CnpjSituacaoEspecial situacaoEspecial = default(CnpjSituacaoEspecial), CnpjOpcaoSimples simples = default(CnpjOpcaoSimples), CnpjOpcaoSimei simei = default(CnpjOpcaoSimei), List<CnpjSocio> socios = default(List<CnpjSocio>))
         {
             this.cnpj = cnpj;
             this.razao_social = razaoSocial;
@@ -75,6 +76,7 @@ namespace NuvemFiscal.Sdk.Model
             this.situacao_especial = situacaoEspecial;
             this.simples = simples;
             this.simei = simei;
+            this.socios = socios;
         }
 
         /// <summary>
@@ -214,6 +216,12 @@ namespace NuvemFiscal.Sdk.Model
         public CnpjOpcaoSimei simei { get; set; }
 
         /// <summary>
+        /// Gets or Sets socios
+        /// </summary>
+        [DataMember(Name = "socios", EmitDefaultValue = false)]
+        public List<CnpjSocio> socios { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -242,6 +250,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  situacao_especial: ").Append(situacao_especial).Append("\n");
             sb.Append("  simples: ").Append(simples).Append("\n");
             sb.Append("  simei: ").Append(simei).Append("\n");
+            sb.Append("  socios: ").Append(socios).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -381,6 +390,12 @@ namespace NuvemFiscal.Sdk.Model
                     this.simei == input.simei ||
                     (this.simei != null &&
                     this.simei.Equals(input.simei))
+                ) && 
+                (
+                    this.socios == input.socios ||
+                    this.socios != null &&
+                    input.socios != null &&
+                    this.socios.SequenceEqual(input.socios)
                 );
         }
 
@@ -470,6 +485,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.simei != null)
                 {
                     hashCode = (hashCode * 59) + this.simei.GetHashCode();
+                }
+                if (this.socios != null)
+                {
+                    hashCode = (hashCode * 59) + this.socios.GetHashCode();
                 }
                 return hashCode;
             }

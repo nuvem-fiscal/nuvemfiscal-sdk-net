@@ -27,7 +27,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de CT-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigCte</returns>
         EmpresaConfigCte AlterarConfigCte(string cpfCnpj, EmpresaConfigCte body);
@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigCte</returns>
         ApiResponse<EmpresaConfigCte> AlterarConfigCteWithHttpInfo(string cpfCnpj, EmpresaConfigCte body);
@@ -47,7 +47,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de MDF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigMdfe</returns>
         EmpresaConfigMdfe AlterarConfigMdfe(string cpfCnpj, EmpresaConfigMdfe body);
@@ -59,7 +59,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigMdfe</returns>
         ApiResponse<EmpresaConfigMdfe> AlterarConfigMdfeWithHttpInfo(string cpfCnpj, EmpresaConfigMdfe body);
@@ -67,7 +67,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFC-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigNfce</returns>
         EmpresaConfigNfce AlterarConfigNfce(string cpfCnpj, EmpresaConfigNfce body);
@@ -79,7 +79,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigNfce</returns>
         ApiResponse<EmpresaConfigNfce> AlterarConfigNfceWithHttpInfo(string cpfCnpj, EmpresaConfigNfce body);
@@ -87,7 +87,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigNfe</returns>
         EmpresaConfigNfe AlterarConfigNfe(string cpfCnpj, EmpresaConfigNfe body);
@@ -99,7 +99,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigNfe</returns>
         ApiResponse<EmpresaConfigNfe> AlterarConfigNfeWithHttpInfo(string cpfCnpj, EmpresaConfigNfe body);
@@ -107,7 +107,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFS-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigNfse</returns>
         EmpresaConfigNfse AlterarConfigNfse(string cpfCnpj, EmpresaConfigNfse body);
@@ -119,7 +119,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigNfse</returns>
         ApiResponse<EmpresaConfigNfse> AlterarConfigNfseWithHttpInfo(string cpfCnpj, EmpresaConfigNfse body);
@@ -130,7 +130,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>Empresa</returns>
         Empresa AtualizarEmpresa(string cpfCnpj, Empresa body);
@@ -142,10 +142,28 @@ namespace NuvemFiscal.Sdk.Api
         /// Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of Empresa</returns>
         ApiResponse<Empresa> AtualizarEmpresaWithHttpInfo(string cpfCnpj, Empresa body);
+        /// <summary>
+        /// Baixar logotipo
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>FileParameter</returns>
+        FileParameter BaixarLogotipoEmpresa(string cpfCnpj);
+
+        /// <summary>
+        /// Baixar logotipo
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> BaixarLogotipoEmpresaWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Cadastrar certificado
         /// </summary>
@@ -153,7 +171,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaCertificado</returns>
         EmpresaCertificado CadastrarCertificadoEmpresa(string cpfCnpj, EmpresaPedidoCadastroCertificado body);
@@ -165,7 +183,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
         ApiResponse<EmpresaCertificado> CadastrarCertificadoEmpresaWithHttpInfo(string cpfCnpj, EmpresaPedidoCadastroCertificado body);
@@ -173,7 +191,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar certificado
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaCertificado</returns>
         EmpresaCertificado ConsultarCertificadoEmpresa(string cpfCnpj);
 
@@ -184,14 +202,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
         ApiResponse<EmpresaCertificado> ConsultarCertificadoEmpresaWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Consultar configuração de CT-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigCte</returns>
         EmpresaConfigCte ConsultarConfigCte(string cpfCnpj);
 
@@ -202,14 +220,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigCte</returns>
         ApiResponse<EmpresaConfigCte> ConsultarConfigCteWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Consultar configuração de MDF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigMdfe</returns>
         EmpresaConfigMdfe ConsultarConfigMdfe(string cpfCnpj);
 
@@ -220,14 +238,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigMdfe</returns>
         ApiResponse<EmpresaConfigMdfe> ConsultarConfigMdfeWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Consultar configuração de NFC-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigNfce</returns>
         EmpresaConfigNfce ConsultarConfigNfce(string cpfCnpj);
 
@@ -238,14 +256,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigNfce</returns>
         ApiResponse<EmpresaConfigNfce> ConsultarConfigNfceWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Consultar configuração de NF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigNfe</returns>
         EmpresaConfigNfe ConsultarConfigNfe(string cpfCnpj);
 
@@ -256,14 +274,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigNfe</returns>
         ApiResponse<EmpresaConfigNfe> ConsultarConfigNfeWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Consultar configuração de NFS-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigNfse</returns>
         EmpresaConfigNfse ConsultarConfigNfse(string cpfCnpj);
 
@@ -274,14 +292,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigNfse</returns>
         ApiResponse<EmpresaConfigNfse> ConsultarConfigNfseWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Consultar empresa
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>Empresa</returns>
         Empresa ConsultarEmpresa(string cpfCnpj);
 
@@ -292,7 +310,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of Empresa</returns>
         ApiResponse<Empresa> ConsultarEmpresaWithHttpInfo(string cpfCnpj);
         /// <summary>
@@ -323,7 +341,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>EmpresaCertificado</returns>
         EmpresaCertificado EnviarCertificadoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter));
@@ -335,15 +353,38 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
         ApiResponse<EmpresaCertificado> EnviarCertificadoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter));
         /// <summary>
+        /// Enviar logotipo
+        /// </summary>
+        /// <remarks>
+        /// Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <returns></returns>
+        void EnviarLogotipoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter));
+
+        /// <summary>
+        /// Enviar logotipo
+        /// </summary>
+        /// <remarks>
+        /// Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> EnviarLogotipoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter));
+        /// <summary>
         /// Deletar certificado
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns></returns>
         void ExcluirCertificadoEmpresa(string cpfCnpj);
 
@@ -354,14 +395,14 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> ExcluirCertificadoEmpresaWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Deletar empresa
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns></returns>
         void ExcluirEmpresa(string cpfCnpj);
 
@@ -372,9 +413,27 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> ExcluirEmpresaWithHttpInfo(string cpfCnpj);
+        /// <summary>
+        /// Deletar logotipo
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns></returns>
+        void ExcluirLogotipoEmpresa(string cpfCnpj);
+
+        /// <summary>
+        /// Deletar logotipo
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ExcluirLogotipoEmpresaWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Listar empresas
         /// </summary>
@@ -418,7 +477,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigCte</returns>
@@ -431,7 +490,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigCte)</returns>
@@ -443,7 +502,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigMdfe</returns>
@@ -456,7 +515,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigMdfe)</returns>
@@ -468,7 +527,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfce</returns>
@@ -481,7 +540,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfce)</returns>
@@ -493,7 +552,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfe</returns>
@@ -506,7 +565,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfe)</returns>
@@ -518,7 +577,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfse</returns>
@@ -531,7 +590,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfse)</returns>
@@ -543,7 +602,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Empresa</returns>
@@ -556,11 +615,34 @@ namespace NuvemFiscal.Sdk.Api
         /// Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Empresa)</returns>
         System.Threading.Tasks.Task<ApiResponse<Empresa>> AtualizarEmpresaWithHttpInfoAsync(string cpfCnpj, Empresa body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Baixar logotipo
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> BaixarLogotipoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Baixar logotipo
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Cadastrar certificado
         /// </summary>
@@ -568,7 +650,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
@@ -581,7 +663,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
@@ -593,7 +675,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
         System.Threading.Tasks.Task<EmpresaCertificado> ConsultarCertificadoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -605,7 +687,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaCertificado>> ConsultarCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -616,7 +698,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigCte</returns>
         System.Threading.Tasks.Task<EmpresaConfigCte> ConsultarConfigCteAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -628,7 +710,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigCte)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaConfigCte>> ConsultarConfigCteWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -639,7 +721,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigMdfe</returns>
         System.Threading.Tasks.Task<EmpresaConfigMdfe> ConsultarConfigMdfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -651,7 +733,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigMdfe)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaConfigMdfe>> ConsultarConfigMdfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -662,7 +744,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfce</returns>
         System.Threading.Tasks.Task<EmpresaConfigNfce> ConsultarConfigNfceAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -674,7 +756,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfce)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaConfigNfce>> ConsultarConfigNfceWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -685,7 +767,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfe</returns>
         System.Threading.Tasks.Task<EmpresaConfigNfe> ConsultarConfigNfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -697,7 +779,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfe)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaConfigNfe>> ConsultarConfigNfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -708,7 +790,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfse</returns>
         System.Threading.Tasks.Task<EmpresaConfigNfse> ConsultarConfigNfseAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -720,7 +802,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfse)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaConfigNfse>> ConsultarConfigNfseWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -731,7 +813,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Empresa</returns>
         System.Threading.Tasks.Task<Empresa> ConsultarEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -743,7 +825,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Empresa)</returns>
         System.Threading.Tasks.Task<ApiResponse<Empresa>> ConsultarEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -777,7 +859,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
@@ -790,11 +872,36 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaCertificado>> EnviarCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Enviar logotipo
+        /// </summary>
+        /// <remarks>
+        /// Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task EnviarLogotipoEmpresaAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Enviar logotipo
+        /// </summary>
+        /// <remarks>
+        /// Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> EnviarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Deletar certificado
         /// </summary>
@@ -802,7 +909,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task ExcluirCertificadoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -814,7 +921,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> ExcluirCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -825,7 +932,7 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task ExcluirEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -837,10 +944,33 @@ namespace NuvemFiscal.Sdk.Api
         /// 
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> ExcluirEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Deletar logotipo
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ExcluirLogotipoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Deletar logotipo
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ExcluirLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Listar empresas
         /// </summary>
@@ -1087,7 +1217,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigCte</returns>
         public EmpresaConfigCte AlterarConfigCte(string cpfCnpj, EmpresaConfigCte body)
@@ -1100,7 +1230,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigCte</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigCte> AlterarConfigCteWithHttpInfo(string cpfCnpj, EmpresaConfigCte body)
@@ -1161,7 +1291,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigCte</returns>
@@ -1175,7 +1305,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigCte)</returns>
@@ -1240,7 +1370,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigMdfe</returns>
         public EmpresaConfigMdfe AlterarConfigMdfe(string cpfCnpj, EmpresaConfigMdfe body)
@@ -1253,7 +1383,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigMdfe</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigMdfe> AlterarConfigMdfeWithHttpInfo(string cpfCnpj, EmpresaConfigMdfe body)
@@ -1314,7 +1444,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigMdfe</returns>
@@ -1328,7 +1458,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigMdfe)</returns>
@@ -1393,7 +1523,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigNfce</returns>
         public EmpresaConfigNfce AlterarConfigNfce(string cpfCnpj, EmpresaConfigNfce body)
@@ -1406,7 +1536,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigNfce</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfce> AlterarConfigNfceWithHttpInfo(string cpfCnpj, EmpresaConfigNfce body)
@@ -1467,7 +1597,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfce</returns>
@@ -1481,7 +1611,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfce)</returns>
@@ -1546,7 +1676,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigNfe</returns>
         public EmpresaConfigNfe AlterarConfigNfe(string cpfCnpj, EmpresaConfigNfe body)
@@ -1559,7 +1689,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigNfe</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfe> AlterarConfigNfeWithHttpInfo(string cpfCnpj, EmpresaConfigNfe body)
@@ -1620,7 +1750,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfe</returns>
@@ -1634,7 +1764,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfe)</returns>
@@ -1699,7 +1829,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaConfigNfse</returns>
         public EmpresaConfigNfse AlterarConfigNfse(string cpfCnpj, EmpresaConfigNfse body)
@@ -1712,7 +1842,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaConfigNfse</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfse> AlterarConfigNfseWithHttpInfo(string cpfCnpj, EmpresaConfigNfse body)
@@ -1773,7 +1903,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfse</returns>
@@ -1787,7 +1917,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfse)</returns>
@@ -1852,7 +1982,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar empresa Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>Empresa</returns>
         public Empresa AtualizarEmpresa(string cpfCnpj, Empresa body)
@@ -1865,7 +1995,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar empresa Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of Empresa</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<Empresa> AtualizarEmpresaWithHttpInfo(string cpfCnpj, Empresa body)
@@ -1926,7 +2056,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar empresa Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Empresa</returns>
@@ -1940,7 +2070,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Alterar empresa Altera o cadastro de uma empresa (emitente/prestador) que esteja associada a sua conta.  Nesse método, por tratar-se de um PUT, caso algum campo não seja informado, o valor dele será apagado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Empresa)</returns>
@@ -2002,10 +2132,147 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
+        /// Baixar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>FileParameter</returns>
+        public FileParameter BaixarLogotipoEmpresa(string cpfCnpj)
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> localVarResponse = BaixarLogotipoEmpresaWithHttpInfo(cpfCnpj);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Baixar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarLogotipoEmpresaWithHttpInfo(string cpfCnpj)
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->BaixarLogotipoEmpresa");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "*/*"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileParameter>("/empresas/{cpf_cnpj}/logotipo", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("BaixarLogotipoEmpresa", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Baixar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> BaixarLogotipoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> localVarResponse = await BaixarLogotipoEmpresaWithHttpInfoAsync(cpfCnpj, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Baixar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->BaixarLogotipoEmpresa");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "*/*"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/empresas/{cpf_cnpj}/logotipo", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("BaixarLogotipoEmpresa", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Cadastrar certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>EmpresaCertificado</returns>
         public EmpresaCertificado CadastrarCertificadoEmpresa(string cpfCnpj, EmpresaPedidoCadastroCertificado body)
@@ -2018,7 +2285,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastrar certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado> CadastrarCertificadoEmpresaWithHttpInfo(string cpfCnpj, EmpresaPedidoCadastroCertificado body)
@@ -2079,7 +2346,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastrar certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
@@ -2093,7 +2360,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cadastrar certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * No parâmetro &#x60;certificado&#x60;, envie o binário do certificado digital (.pfx ou .p12) codificado em **base64**.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
@@ -2158,7 +2425,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaCertificado</returns>
         public EmpresaCertificado ConsultarCertificadoEmpresa(string cpfCnpj)
         {
@@ -2170,7 +2437,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado> ConsultarCertificadoEmpresaWithHttpInfo(string cpfCnpj)
         {
@@ -2224,7 +2491,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
         public async System.Threading.Tasks.Task<EmpresaCertificado> ConsultarCertificadoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2237,7 +2504,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado>> ConsultarCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2295,7 +2562,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigCte</returns>
         public EmpresaConfigCte ConsultarConfigCte(string cpfCnpj)
         {
@@ -2307,7 +2574,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigCte</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigCte> ConsultarConfigCteWithHttpInfo(string cpfCnpj)
         {
@@ -2361,7 +2628,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigCte</returns>
         public async System.Threading.Tasks.Task<EmpresaConfigCte> ConsultarConfigCteAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2374,7 +2641,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de CT-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigCte)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigCte>> ConsultarConfigCteWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2432,7 +2699,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigMdfe</returns>
         public EmpresaConfigMdfe ConsultarConfigMdfe(string cpfCnpj)
         {
@@ -2444,7 +2711,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigMdfe</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigMdfe> ConsultarConfigMdfeWithHttpInfo(string cpfCnpj)
         {
@@ -2498,7 +2765,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigMdfe</returns>
         public async System.Threading.Tasks.Task<EmpresaConfigMdfe> ConsultarConfigMdfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2511,7 +2778,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de MDF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigMdfe)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigMdfe>> ConsultarConfigMdfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2569,7 +2836,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigNfce</returns>
         public EmpresaConfigNfce ConsultarConfigNfce(string cpfCnpj)
         {
@@ -2581,7 +2848,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigNfce</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfce> ConsultarConfigNfceWithHttpInfo(string cpfCnpj)
         {
@@ -2635,7 +2902,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfce</returns>
         public async System.Threading.Tasks.Task<EmpresaConfigNfce> ConsultarConfigNfceAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2648,7 +2915,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFC-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfce)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfce>> ConsultarConfigNfceWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2706,7 +2973,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigNfe</returns>
         public EmpresaConfigNfe ConsultarConfigNfe(string cpfCnpj)
         {
@@ -2718,7 +2985,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigNfe</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfe> ConsultarConfigNfeWithHttpInfo(string cpfCnpj)
         {
@@ -2772,7 +3039,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfe</returns>
         public async System.Threading.Tasks.Task<EmpresaConfigNfe> ConsultarConfigNfeAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2785,7 +3052,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NF-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfe)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfe>> ConsultarConfigNfeWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2843,7 +3110,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>EmpresaConfigNfse</returns>
         public EmpresaConfigNfse ConsultarConfigNfse(string cpfCnpj)
         {
@@ -2855,7 +3122,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigNfse</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfse> ConsultarConfigNfseWithHttpInfo(string cpfCnpj)
         {
@@ -2909,7 +3176,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaConfigNfse</returns>
         public async System.Threading.Tasks.Task<EmpresaConfigNfse> ConsultarConfigNfseAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2922,7 +3189,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar configuração de NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigNfse)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigNfse>> ConsultarConfigNfseWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2980,7 +3247,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>Empresa</returns>
         public Empresa ConsultarEmpresa(string cpfCnpj)
         {
@@ -2992,7 +3259,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of Empresa</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<Empresa> ConsultarEmpresaWithHttpInfo(string cpfCnpj)
         {
@@ -3046,7 +3313,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Empresa</returns>
         public async System.Threading.Tasks.Task<Empresa> ConsultarEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3059,7 +3326,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Empresa)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Empresa>> ConsultarEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3256,7 +3523,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Upload de certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>EmpresaCertificado</returns>
         public EmpresaCertificado EnviarCertificadoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter))
@@ -3269,7 +3536,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Upload de certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado> EnviarCertificadoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter))
@@ -3329,7 +3596,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Upload de certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
@@ -3343,7 +3610,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Upload de certificado Cadastre ou atualize um certificado digital e vincule a sua empresa, para que possa iniciar a emissão de notas.  * Utilize o &#x60;content-type&#x60; igual a &#x60;multipart/form-data&#x60;.  * No parâmetro &#x60;file&#x60;, envie o binário do arquivo (.pfx ou .p12) do certificado digital.  * No parâmetro &#x60;password&#x60;, envie a senha do certificado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
@@ -3404,10 +3671,157 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
+        /// Enviar logotipo Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <returns></returns>
+        public void EnviarLogotipoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter))
+        {
+            EnviarLogotipoEmpresaWithHttpInfo(cpfCnpj, input);
+        }
+
+        /// <summary>
+        /// Enviar logotipo Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<Object> EnviarLogotipoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->EnviarLogotipoEmpresa");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+            if (input != null)
+            {
+                localVarRequestOptions.FileParameters.Add("Input", input);
+            }
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<Object>("/empresas/{cpf_cnpj}/logotipo", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EnviarLogotipoEmpresa", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Enviar logotipo Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task EnviarLogotipoEmpresaAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            await EnviarLogotipoEmpresaWithHttpInfoAsync(cpfCnpj, input, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Enviar logotipo Cadastre ou atualize um logotipo e vincule a sua empresa.    **Restrições:**  * Tipos de mídia (MIME) suportados: &#x60;image/png&#x60; e &#x60;image/jpeg&#x60;  * Tamanho máximo do arquivo: 200 KB    **Cenários de uso:**  * Quero que minhas notas sejam impressas com esse logotipo.  * Quero trocar o logotipo utilizado em minhas impressões.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="input"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Object>> EnviarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->EnviarLogotipoEmpresa");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+            if (input != null)
+            {
+                localVarRequestOptions.FileParameters.Add("Input", input);
+            }
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<Object>("/empresas/{cpf_cnpj}/logotipo", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EnviarLogotipoEmpresa", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Deletar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns></returns>
         public void ExcluirCertificadoEmpresa(string cpfCnpj)
         {
@@ -3418,7 +3832,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Deletar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<Object> ExcluirCertificadoEmpresaWithHttpInfo(string cpfCnpj)
         {
@@ -3471,7 +3885,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Deletar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task ExcluirCertificadoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3483,7 +3897,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Deletar certificado 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Object>> ExcluirCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3540,7 +3954,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Deletar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns></returns>
         public void ExcluirEmpresa(string cpfCnpj)
         {
@@ -3551,7 +3965,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Deletar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<Object> ExcluirEmpresaWithHttpInfo(string cpfCnpj)
         {
@@ -3604,7 +4018,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Deletar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task ExcluirEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3616,7 +4030,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Deletar empresa 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cpfCnpj"></param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Object>> ExcluirEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3663,6 +4077,139 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ExcluirEmpresa", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Deletar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns></returns>
+        public void ExcluirLogotipoEmpresa(string cpfCnpj)
+        {
+            ExcluirLogotipoEmpresaWithHttpInfo(cpfCnpj);
+        }
+
+        /// <summary>
+        /// Deletar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<Object> ExcluirLogotipoEmpresaWithHttpInfo(string cpfCnpj)
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->ExcluirLogotipoEmpresa");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<Object>("/empresas/{cpf_cnpj}/logotipo", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ExcluirLogotipoEmpresa", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Deletar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ExcluirLogotipoEmpresaAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            await ExcluirLogotipoEmpresaWithHttpInfoAsync(cpfCnpj, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Deletar logotipo 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Object>> ExcluirLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->ExcluirLogotipoEmpresa");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/empresas/{cpf_cnpj}/logotipo", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ExcluirLogotipoEmpresa", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
