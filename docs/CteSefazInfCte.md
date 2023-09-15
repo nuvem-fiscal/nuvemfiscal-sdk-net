@@ -5,7 +5,7 @@ Informações do CT-e.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**versao** | **string** | Versão do leiaute.  Ex: \&quot;3.00\&quot;. | 
+**versao** | **string** | Versão do leiaute.  Ex: \&quot;4.00\&quot;. | 
 **Id** | **string** | Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;. | [optional] 
 **ide** | [**CteSefazIde**](CteSefazIde.md) |  | 
 **compl** | [**CteSefazCompl**](CteSefazCompl.md) |  | [optional] 
@@ -17,8 +17,7 @@ Nome | Tipo | Descrição | Comentários
 **vPrest** | [**CteSefazVPrest**](CteSefazVPrest.md) |  | 
 **imp** | [**CteSefazInfCteImp**](CteSefazInfCteImp.md) |  | 
 **infCTeNorm** | [**CteSefazInfCTeNorm**](CteSefazInfCTeNorm.md) |  | [optional] 
-**infCteComp** | [**CteSefazInfCteComp**](CteSefazInfCteComp.md) |  | [optional] 
-**infCteAnu** | [**CteSefazInfCteAnu**](CteSefazInfCteAnu.md) |  | [optional] 
+**infCteComp** | [**List&lt;CteSefazInfCteComp&gt;**](CteSefazInfCteComp.md) |  | [optional] 
 **autXML** | [**List&lt;CteSefazAutXML&gt;**](CteSefazAutXML.md) |  | [optional] 
 **infRespTec** | [**CteSefazRespTec**](CteSefazRespTec.md) |  | [optional] 
 **infSolicNFF** | [**CteSefazInfSolicNFF**](CteSefazInfSolicNFF.md) |  | [optional] 

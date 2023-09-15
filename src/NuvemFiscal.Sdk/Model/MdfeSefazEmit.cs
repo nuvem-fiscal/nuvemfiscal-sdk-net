@@ -31,11 +31,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazEmit" /> class.
         /// </summary>
-        /// <param name="cNPJ">CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica..</param>
-        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física..</param>
-        /// <param name="iE">Inscrição Estadual do emitemte.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xNome">Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xFant">Nome fantasia do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="cNPJ">CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***..</param>
+        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.    ***Obrigatorio caso o emitente seja pessoa física***..</param>
+        /// <param name="iE">Inscrição Estadual do emitemte.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="xNome">Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="xFant">Nome fantasia do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         /// <param name="enderEmit">enderEmit.</param>
         public MdfeSefazEmit(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string xNome = default(string), string xFant = default(string), MdfeSefazEndeEmi enderEmit = default(MdfeSefazEndeEmi))
         {
@@ -48,37 +48,37 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica.
+        /// CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.
         /// </summary>
-        /// <value>CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica.</value>
+        /// <value>CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.</value>
         [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
         public string CNPJ { get; set; }
 
         /// <summary>
-        /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física.
+        /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.    ***Obrigatorio caso o emitente seja pessoa física***.
         /// </summary>
-        /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.  Obrigatorio caso o emitente seja pessoa física.</value>
+        /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.    ***Obrigatorio caso o emitente seja pessoa física***.</value>
         [DataMember(Name = "CPF", EmitDefaultValue = false)]
         public string CPF { get; set; }
 
         /// <summary>
-        /// Inscrição Estadual do emitemte.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Inscrição Estadual do emitemte.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Inscrição Estadual do emitemte.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Inscrição Estadual do emitemte.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "IE", EmitDefaultValue = false)]
         public string IE { get; set; }
 
         /// <summary>
-        /// Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xNome", EmitDefaultValue = false)]
         public string xNome { get; set; }
 
         /// <summary>
-        /// Nome fantasia do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Nome fantasia do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Nome fantasia do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Nome fantasia do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xFant", EmitDefaultValue = false)]
         public string xFant { get; set; }
 

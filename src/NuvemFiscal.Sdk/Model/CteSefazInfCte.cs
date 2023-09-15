@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazInfCte" /> class.
         /// </summary>
-        /// <param name="versao">Versão do leiaute.  Ex: \&quot;3.00\&quot;. (required).</param>
+        /// <param name="versao">Versão do leiaute.  Ex: \&quot;4.00\&quot;. (required).</param>
         /// <param name="id">Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;..</param>
         /// <param name="ide">ide (required).</param>
         /// <param name="compl">compl.</param>
@@ -49,11 +49,10 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="imp">imp (required).</param>
         /// <param name="infCTeNorm">infCTeNorm.</param>
         /// <param name="infCteComp">infCteComp.</param>
-        /// <param name="infCteAnu">infCteAnu.</param>
         /// <param name="autXML">autXML.</param>
         /// <param name="infRespTec">infRespTec.</param>
         /// <param name="infSolicNFF">infSolicNFF.</param>
-        public CteSefazInfCte(string versao = default(string), string id = default(string), CteSefazIde ide = default(CteSefazIde), CteSefazCompl compl = default(CteSefazCompl), CteSefazEmit emit = default(CteSefazEmit), CteSefazRem rem = default(CteSefazRem), CteSefazExped exped = default(CteSefazExped), CteSefazReceb receb = default(CteSefazReceb), CteSefazDest dest = default(CteSefazDest), CteSefazVPrest vPrest = default(CteSefazVPrest), CteSefazInfCteImp imp = default(CteSefazInfCteImp), CteSefazInfCTeNorm infCTeNorm = default(CteSefazInfCTeNorm), CteSefazInfCteComp infCteComp = default(CteSefazInfCteComp), CteSefazInfCteAnu infCteAnu = default(CteSefazInfCteAnu), List<CteSefazAutXML> autXML = default(List<CteSefazAutXML>), CteSefazRespTec infRespTec = default(CteSefazRespTec), CteSefazInfSolicNFF infSolicNFF = default(CteSefazInfSolicNFF))
+        public CteSefazInfCte(string versao = default(string), string id = default(string), CteSefazIde ide = default(CteSefazIde), CteSefazCompl compl = default(CteSefazCompl), CteSefazEmit emit = default(CteSefazEmit), CteSefazRem rem = default(CteSefazRem), CteSefazExped exped = default(CteSefazExped), CteSefazReceb receb = default(CteSefazReceb), CteSefazDest dest = default(CteSefazDest), CteSefazVPrest vPrest = default(CteSefazVPrest), CteSefazInfCteImp imp = default(CteSefazInfCteImp), CteSefazInfCTeNorm infCTeNorm = default(CteSefazInfCTeNorm), List<CteSefazInfCteComp> infCteComp = default(List<CteSefazInfCteComp>), List<CteSefazAutXML> autXML = default(List<CteSefazAutXML>), CteSefazRespTec infRespTec = default(CteSefazRespTec), CteSefazInfSolicNFF infSolicNFF = default(CteSefazInfSolicNFF))
         {
             // to ensure "versao" is required (not null)
             if (versao == null)
@@ -93,16 +92,15 @@ namespace NuvemFiscal.Sdk.Model
             this.dest = dest;
             this.infCTeNorm = infCTeNorm;
             this.infCteComp = infCteComp;
-            this.infCteAnu = infCteAnu;
             this.autXML = autXML;
             this.infRespTec = infRespTec;
             this.infSolicNFF = infSolicNFF;
         }
 
         /// <summary>
-        /// Versão do leiaute.  Ex: \&quot;3.00\&quot;.
+        /// Versão do leiaute.  Ex: \&quot;4.00\&quot;.
         /// </summary>
-        /// <value>Versão do leiaute.  Ex: \&quot;3.00\&quot;.</value>
+        /// <value>Versão do leiaute.  Ex: \&quot;4.00\&quot;.</value>
         [DataMember(Name = "versao", IsRequired = true, EmitDefaultValue = true)]
         public string versao { get; set; }
 
@@ -177,13 +175,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Gets or Sets infCteComp
         /// </summary>
         [DataMember(Name = "infCteComp", EmitDefaultValue = false)]
-        public CteSefazInfCteComp infCteComp { get; set; }
-
-        /// <summary>
-        /// Gets or Sets infCteAnu
-        /// </summary>
-        [DataMember(Name = "infCteAnu", EmitDefaultValue = false)]
-        public CteSefazInfCteAnu infCteAnu { get; set; }
+        public List<CteSefazInfCteComp> infCteComp { get; set; }
 
         /// <summary>
         /// Gets or Sets autXML
@@ -224,7 +216,6 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  imp: ").Append(imp).Append("\n");
             sb.Append("  infCTeNorm: ").Append(infCTeNorm).Append("\n");
             sb.Append("  infCteComp: ").Append(infCteComp).Append("\n");
-            sb.Append("  infCteAnu: ").Append(infCteAnu).Append("\n");
             sb.Append("  autXML: ").Append(autXML).Append("\n");
             sb.Append("  infRespTec: ").Append(infRespTec).Append("\n");
             sb.Append("  infSolicNFF: ").Append(infSolicNFF).Append("\n");
@@ -325,13 +316,9 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.infCteComp == input.infCteComp ||
-                    (this.infCteComp != null &&
-                    this.infCteComp.Equals(input.infCteComp))
-                ) && 
-                (
-                    this.infCteAnu == input.infCteAnu ||
-                    (this.infCteAnu != null &&
-                    this.infCteAnu.Equals(input.infCteAnu))
+                    this.infCteComp != null &&
+                    input.infCteComp != null &&
+                    this.infCteComp.SequenceEqual(input.infCteComp)
                 ) && 
                 (
                     this.autXML == input.autXML ||
@@ -411,10 +398,6 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.infCteComp != null)
                 {
                     hashCode = (hashCode * 59) + this.infCteComp.GetHashCode();
-                }
-                if (this.infCteAnu != null)
-                {
-                    hashCode = (hashCode * 59) + this.infCteAnu.GetHashCode();
                 }
                 if (this.autXML != null)
                 {

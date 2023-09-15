@@ -31,16 +31,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazInfCTeSupl" /> class.
         /// </summary>
-        /// <param name="qrCodCTe">Texto com o QR-Code impresso no DACTE.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="qrCodCTe">Texto com o QR-Code impresso no DACTE.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         public CteSefazInfCTeSupl(string qrCodCTe = default(string))
         {
             this.qrCodCTe = qrCodCTe;
         }
 
         /// <summary>
-        /// Texto com o QR-Code impresso no DACTE.  Geramos automaticamente quando nenhum valor é informado.
+        /// Texto com o QR-Code impresso no DACTE.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Texto com o QR-Code impresso no DACTE.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Texto com o QR-Code impresso no DACTE.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "qrCodCTe", EmitDefaultValue = false)]
         public string qrCodCTe { get; set; }
 

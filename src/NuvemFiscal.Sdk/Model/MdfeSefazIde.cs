@@ -43,8 +43,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="mod">Modelo do Manifesto Eletrônico.  Utilizar o código 58 para identificação do MDF-e..</param>
         /// <param name="serie">Série do Manifesto.  Informar a série do documento fiscal (informar zero se inexistente).  Série na faixa [920-969]: Reservada para emissão por contribuinte pessoa física com inscrição estadual. (required).</param>
         /// <param name="nMDF">Número do Manifesto.  Número que identifica o Manifesto. 1 a 999999999. (required).</param>
-        /// <param name="cMDF">Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado..</param>
-        /// <param name="cDV">Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="cMDF">Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
+        /// <param name="cDV">Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="modal">Modalidade de transporte.  * 1 - Rodoviário  * 2 - Aéreo  * 3 - Aquaviário  * 4 - Ferroviário (required).</param>
         /// <param name="dhEmi">Data e hora de emissão do Manifesto.  Formato AAAA-MM-DDTHH:MM:DD TZD. (required).</param>
         /// <param name="tpEmis">Forma de emissão do Manifesto.  * 1 - Normal  * 2 - Contingência  * 3 - Regime Especial NFF (required).</param>
@@ -157,16 +157,16 @@ namespace NuvemFiscal.Sdk.Model
         public int nMDF { get; set; }
 
         /// <summary>
-        /// Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.
+        /// Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "cMDF", EmitDefaultValue = false)]
         public string cMDF { get; set; }
 
         /// <summary>
-        /// Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.
+        /// Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "cDV", EmitDefaultValue = false)]
         public int cDV { get; set; }
 

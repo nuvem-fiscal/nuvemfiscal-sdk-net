@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazIde" /> class.
         /// </summary>
         /// <param name="cUF">Código da UF do emitente do CT-e.  Utilizar a Tabela do IBGE. (required).</param>
-        /// <param name="cCT">Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="cCT">Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="cFOP">Código Fiscal de Operações e Prestações. (required).</param>
         /// <param name="natOp">Natureza da Operação. (required).</param>
         /// <param name="mod">Modelo do documento fiscal.  Utilizar o código 57 para identificação do CT-e, emitido em substituição aos modelos de conhecimentos em papel..</param>
@@ -46,9 +46,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dhEmi">Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD. (required).</param>
         /// <param name="tpImp">Formato de impressão do DACTE:  * 1 - Retrato  * 2 - Paisagem (required).</param>
         /// <param name="tpEmis">Forma de emissão do CT-e.  Preencher com:  * 1 - Normal  * 3 - Regime Especial NFF  * 4 - EPEC pela SVC  * 5 - Contingência FSDA  * 7 - Autorização pela SVC-RS  * 8 - Autorização pela SVC-SP (required).</param>
-        /// <param name="cDV">Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="cDV">Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="tpAmb">Tipo do Ambiente:  * 1 - Produção  * 2 - Homologação.</param>
-        /// <param name="tpCTe">Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 2 - CT-e de Anulação  * 3 - CT-e de Substituição (required).</param>
+        /// <param name="tpCTe">Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 3 - CT-e de Substituição (required).</param>
         /// <param name="procEmi">Identificador do processo de emissão do CT-e.  Preencher com:  * 0 - emissão de CT-e com aplicativo do contribuinte  * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE (required).</param>
         /// <param name="verProc">Versão do processo de emissão.  Iinformar a versão do aplicativo emissor de CT-e. (required).</param>
         /// <param name="indGlobalizado">Indicador de CT-e Globalizado.  Informar valor 1 quando for Globalizado e não informar a tag quando não tratar de CT-e Globalizado..</param>
@@ -181,9 +181,9 @@ namespace NuvemFiscal.Sdk.Model
         public int cUF { get; set; }
 
         /// <summary>
-        /// Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.
+        /// Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "cCT", EmitDefaultValue = false)]
         public string cCT { get; set; }
 
@@ -244,9 +244,9 @@ namespace NuvemFiscal.Sdk.Model
         public int tpEmis { get; set; }
 
         /// <summary>
-        /// Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.
+        /// Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "cDV", EmitDefaultValue = false)]
         public int cDV { get; set; }
 
@@ -258,9 +258,9 @@ namespace NuvemFiscal.Sdk.Model
         public int tpAmb { get; set; }
 
         /// <summary>
-        /// Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 2 - CT-e de Anulação  * 3 - CT-e de Substituição
+        /// Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 3 - CT-e de Substituição
         /// </summary>
-        /// <value>Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 2 - CT-e de Anulação  * 3 - CT-e de Substituição</value>
+        /// <value>Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 3 - CT-e de Substituição</value>
         [DataMember(Name = "tpCTe", IsRequired = true, EmitDefaultValue = true)]
         public int tpCTe { get; set; }
 

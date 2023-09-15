@@ -31,16 +31,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MdfeSefazInfMDFeSupl" /> class.
         /// </summary>
-        /// <param name="qrCodMDFe">Texto com o QR-Code para consulta do MDF-e.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="qrCodMDFe">Texto com o QR-Code para consulta do MDF-e.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         public MdfeSefazInfMDFeSupl(string qrCodMDFe = default(string))
         {
             this.qrCodMDFe = qrCodMDFe;
         }
 
         /// <summary>
-        /// Texto com o QR-Code para consulta do MDF-e.  Geramos automaticamente quando nenhum valor é informado.
+        /// Texto com o QR-Code para consulta do MDF-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Texto com o QR-Code para consulta do MDF-e.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Texto com o QR-Code para consulta do MDF-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "qrCodMDFe", EmitDefaultValue = false)]
         public string qrCodMDFe { get; set; }
 

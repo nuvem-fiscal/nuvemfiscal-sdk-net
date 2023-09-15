@@ -21,7 +21,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
 <a name="baixarpdfnfse"></a>
 # **BaixarPdfNfse**
-> FileParameter BaixarPdfNfse (string id)
+> FileParameter BaixarPdfNfse (string id, bool? logotipo = null, string mensagemRodape = null)
 
 Baixar PDF do DANFSE
 
@@ -54,11 +54,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
+            var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
+            var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"`    Default: `\"\"` (optional) 
 
             try
             {
                 // Baixar PDF do DANFSE
-                FileParameter result = apiInstance.BaixarPdfNfse(id);
+                FileParameter result = apiInstance.BaixarPdfNfse(id, logotipo, mensagemRodape);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -79,7 +81,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Baixar PDF do DANFSE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfseWithHttpInfo(id);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfseWithHttpInfo(id, logotipo, mensagemRodape);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -97,6 +99,8 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
+| **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
+| **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; | [optional]  |
 
 ### Tipo de retorno
 

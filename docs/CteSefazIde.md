@@ -6,7 +6,7 @@ Identificação do CT-e.
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **cUF** | **int** | Código da UF do emitente do CT-e.  Utilizar a Tabela do IBGE. | 
-**cCT** | **string** | Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.  Geramos automaticamente quando nenhum valor é informado. | [optional] 
+**cCT** | **string** | Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.* | [optional] 
 **CFOP** | **string** | Código Fiscal de Operações e Prestações. | 
 **natOp** | **string** | Natureza da Operação. | 
 **mod** | **int** | Modelo do documento fiscal.  Utilizar o código 57 para identificação do CT-e, emitido em substituição aos modelos de conhecimentos em papel. | [optional] 
@@ -15,9 +15,9 @@ Nome | Tipo | Descrição | Comentários
 **dhEmi** | **DateTime** | Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD. | 
 **tpImp** | **int** | Formato de impressão do DACTE:  * 1 - Retrato  * 2 - Paisagem | 
 **tpEmis** | **int** | Forma de emissão do CT-e.  Preencher com:  * 1 - Normal  * 3 - Regime Especial NFF  * 4 - EPEC pela SVC  * 5 - Contingência FSDA  * 7 - Autorização pela SVC-RS  * 8 - Autorização pela SVC-SP | 
-**cDV** | **int** | Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.  Geramos automaticamente quando nenhum valor é informado. | [optional] 
+**cDV** | **int** | Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.* | [optional] 
 **tpAmb** | **int** | Tipo do Ambiente:  * 1 - Produção  * 2 - Homologação | [optional] 
-**tpCTe** | **int** | Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 2 - CT-e de Anulação  * 3 - CT-e de Substituição | 
+**tpCTe** | **int** | Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 3 - CT-e de Substituição | 
 **procEmi** | **int** | Identificador do processo de emissão do CT-e.  Preencher com:  * 0 - emissão de CT-e com aplicativo do contribuinte  * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE | 
 **verProc** | **string** | Versão do processo de emissão.  Iinformar a versão do aplicativo emissor de CT-e. | 
 **indGlobalizado** | **int** | Indicador de CT-e Globalizado.  Informar valor 1 quando for Globalizado e não informar a tag quando não tratar de CT-e Globalizado. | [optional] 

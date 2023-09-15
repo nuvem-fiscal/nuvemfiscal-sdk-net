@@ -73,7 +73,6 @@ namespace NuvemFiscal.Sdk.Model
         /// Gets or Sets competencia
         /// </summary>
         [DataMember(Name = "competencia", EmitDefaultValue = false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime competencia { get; set; }
 
         /// <summary>

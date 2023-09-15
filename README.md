@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.14.0
-- Versão do SDK: 2.10.0
+- Versão da API: 2.16.19
+- Versão do SDK: 2.11.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -145,26 +145,19 @@ Classe | Método | Endpoint | Descrição
 *CteApi* | [**BaixarPdfCartaCorrecaoCte**](docs/CteApi.md#baixarpdfcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/pdf | Baixar PDF da carta de correção
 *CteApi* | [**BaixarPdfCte**](docs/CteApi.md#baixarpdfcte) | **GET** /cte/{id}/pdf | Baixar PDF do DACTE
 *CteApi* | [**BaixarPdfEventoCte**](docs/CteApi.md#baixarpdfeventocte) | **GET** /cte/eventos/{id}/pdf | Baixar PDF do evento
-*CteApi* | [**BaixarPdfInutilizacaoCte**](docs/CteApi.md#baixarpdfinutilizacaocte) | **GET** /cte/inutilizacoes/{id}/pdf | Baixar PDF da inutilização
 *CteApi* | [**BaixarXmlCancelamentoCte**](docs/CteApi.md#baixarxmlcancelamentocte) | **GET** /cte/{id}/cancelamento/xml | Baixar XML do cancelamento
 *CteApi* | [**BaixarXmlCartaCorrecaoCte**](docs/CteApi.md#baixarxmlcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/xml | Baixar XML da carta de correção
 *CteApi* | [**BaixarXmlCte**](docs/CteApi.md#baixarxmlcte) | **GET** /cte/{id}/xml | Baixar XML do CT-e processado
 *CteApi* | [**BaixarXmlEventoCte**](docs/CteApi.md#baixarxmleventocte) | **GET** /cte/eventos/{id}/xml | Baixar XML do evento
-*CteApi* | [**BaixarXmlInutilizacaoCte**](docs/CteApi.md#baixarxmlinutilizacaocte) | **GET** /cte/inutilizacoes/{id}/xml | Baixar XML da inutilização
 *CteApi* | [**CancelarCte**](docs/CteApi.md#cancelarcte) | **POST** /cte/{id}/cancelamento | Cancelar um CT-e autorizado
 *CteApi* | [**ConsultarCancelamentoCte**](docs/CteApi.md#consultarcancelamentocte) | **GET** /cte/{id}/cancelamento | Consultar o cancelamento do CT-e
 *CteApi* | [**ConsultarCartaCorrecaoCte**](docs/CteApi.md#consultarcartacorrecaocte) | **GET** /cte/{id}/carta-correcao | Consultar a solicitação de correção do CT-e
 *CteApi* | [**ConsultarCte**](docs/CteApi.md#consultarcte) | **GET** /cte/{id} | Consultar CT-e
 *CteApi* | [**ConsultarEventoCte**](docs/CteApi.md#consultareventocte) | **GET** /cte/eventos/{id} | Consultar evento
-*CteApi* | [**ConsultarInutilizacaoCte**](docs/CteApi.md#consultarinutilizacaocte) | **GET** /cte/inutilizacoes/{id} | Consultar a inutilização de sequência de numeração
-*CteApi* | [**ConsultarLoteCte**](docs/CteApi.md#consultarlotecte) | **GET** /cte/lotes/{id} | Consultar lote de CT-e
 *CteApi* | [**ConsultarStatusSefazCte**](docs/CteApi.md#consultarstatussefazcte) | **GET** /cte/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
 *CteApi* | [**CriarCartaCorrecaoCte**](docs/CteApi.md#criarcartacorrecaocte) | **POST** /cte/{id}/carta-correcao | Solicitar correção do CT-e
 *CteApi* | [**EmitirCte**](docs/CteApi.md#emitircte) | **POST** /cte | Emitir CT-e
-*CteApi* | [**EmitirLoteCte**](docs/CteApi.md#emitirlotecte) | **POST** /cte/lotes | Emitir lote de CT-e
-*CteApi* | [**InutilizarNumeracaoCte**](docs/CteApi.md#inutilizarnumeracaocte) | **POST** /cte/inutilizacoes | Inutilizar uma sequência de numeração de CT-e
 *CteApi* | [**ListarCte**](docs/CteApi.md#listarcte) | **GET** /cte | Listar CT-e
-*CteApi* | [**ListarLotesCte**](docs/CteApi.md#listarlotescte) | **GET** /cte/lotes | Listar lotes de CT-e
 *EmpresaApi* | [**AlterarConfigCte**](docs/EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e
 *EmpresaApi* | [**AlterarConfigMdfe**](docs/EmpresaApi.md#alterarconfigmdfe) | **PUT** /empresas/{cpf_cnpj}/mdfe | Alterar configuração de MDF-e
 *EmpresaApi* | [**AlterarConfigNfce**](docs/EmpresaApi.md#alterarconfignfce) | **PUT** /empresas/{cpf_cnpj}/nfce | Alterar configuração de NFC-e
@@ -313,7 +306,6 @@ Classe | Método | Endpoint | Descrição
  - [Model.CtePedidoCancelamento](docs/CtePedidoCancelamento.md)
  - [Model.CtePedidoCartaCorrecao](docs/CtePedidoCartaCorrecao.md)
  - [Model.CtePedidoEmissao](docs/CtePedidoEmissao.md)
- - [Model.CtePedidoEmissaoLote](docs/CtePedidoEmissaoLote.md)
  - [Model.CteSefazAereo](docs/CteSefazAereo.md)
  - [Model.CteSefazAquav](docs/CteSefazAquav.md)
  - [Model.CteSefazAutXML](docs/CteSefazAutXML.md)
@@ -361,7 +353,6 @@ Classe | Método | Endpoint | Descrição
  - [Model.CteSefazInfCTeSupl](docs/CteSefazInfCTeSupl.md)
  - [Model.CteSefazInfCarga](docs/CteSefazInfCarga.md)
  - [Model.CteSefazInfCte](docs/CteSefazInfCte.md)
- - [Model.CteSefazInfCteAnu](docs/CteSefazInfCteAnu.md)
  - [Model.CteSefazInfCteComp](docs/CteSefazInfCteComp.md)
  - [Model.CteSefazInfCteImp](docs/CteSefazInfCteImp.md)
  - [Model.CteSefazInfCteSub](docs/CteSefazInfCteSub.md)
@@ -389,7 +380,6 @@ Classe | Método | Endpoint | Descrição
  - [Model.CteSefazPass](docs/CteSefazPass.md)
  - [Model.CteSefazPeri](docs/CteSefazPeri.md)
  - [Model.CteSefazReceb](docs/CteSefazReceb.md)
- - [Model.CteSefazRefNF](docs/CteSefazRefNF.md)
  - [Model.CteSefazRem](docs/CteSefazRem.md)
  - [Model.CteSefazRespTec](docs/CteSefazRespTec.md)
  - [Model.CteSefazRodo](docs/CteSefazRodo.md)
@@ -399,7 +389,6 @@ Classe | Método | Endpoint | Descrição
  - [Model.CteSefazTarifa](docs/CteSefazTarifa.md)
  - [Model.CteSefazToma3](docs/CteSefazToma3.md)
  - [Model.CteSefazToma4](docs/CteSefazToma4.md)
- - [Model.CteSefazTomaICMS](docs/CteSefazTomaICMS.md)
  - [Model.CteSefazTrafMut](docs/CteSefazTrafMut.md)
  - [Model.CteSefazUnidCarga](docs/CteSefazUnidCarga.md)
  - [Model.CteSefazUnidadeTransp](docs/CteSefazUnidadeTransp.md)

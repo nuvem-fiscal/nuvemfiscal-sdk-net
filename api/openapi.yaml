@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.14.0
+  version: 2.16.19
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -305,187 +305,6 @@ paths:
                 type: string
           description: Successful response
       summary: Baixar XML do evento
-      tags:
-      - Cte
-  /cte/inutilizacoes:
-    post:
-      operationId: InutilizarNumeracaoCte
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DfePedidoInutilizacao'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DfeInutilizacao'
-          description: Successful response
-      summary: Inutilizar uma sequência de numeração de CT-e
-      tags:
-      - Cte
-      x-codegen-request-body-name: body
-  /cte/inutilizacoes/{id}:
-    get:
-      operationId: ConsultarInutilizacaoCte
-      parameters:
-      - description: ID único do evento gerado pela Nuvem Fiscal.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DfeInutilizacao'
-          description: Successful response
-      summary: Consultar a inutilização de sequência de numeração
-      tags:
-      - Cte
-  /cte/inutilizacoes/{id}/pdf:
-    get:
-      operationId: BaixarPdfInutilizacaoCte
-      parameters:
-      - description: ID único do evento gerado pela Nuvem Fiscal.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                format: binary
-                type: string
-          description: Successful response
-      summary: Baixar PDF da inutilização
-      tags:
-      - Cte
-  /cte/inutilizacoes/{id}/xml:
-    get:
-      operationId: BaixarXmlInutilizacaoCte
-      parameters:
-      - description: ID único do evento gerado pela Nuvem Fiscal.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                format: binary
-                type: string
-          description: Successful response
-      summary: Baixar XML da inutilização
-      tags:
-      - Cte
-  /cte/lotes:
-    get:
-      description: "Retorna a lista dos lotes de acordo com os critérios de busca\
-        \ utilizados. Os lotes são retornados ordenados pela data da criação, com\
-        \ os mais recentes aparecendo primeiro."
-      operationId: ListarLotesCte
-      parameters:
-      - description: "Limite no número de objetos a serem retornados pela API, entre\
-          \ 1 e 100."
-        in: query
-        name: $top
-        schema:
-          default: 10
-          type: integer
-      - description: Quantidade de objetos que serão ignorados antes da lista começar
-          a ser retornada.
-        in: query
-        name: $skip
-        schema:
-          default: 0
-          type: integer
-      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
-          \ total de registros que o filtro retornaria, independente dos filtros de\
-          \ paginação."
-        in: query
-        name: $inlinecount
-        schema:
-          default: false
-          type: boolean
-      - description: "Filtrar pelo CPF ou CNPJ do emitente.\r\nUtilize o valor sem\
-          \ máscara."
-        in: query
-        name: cpf_cnpj
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: referencia
-        schema:
-          type: string
-      - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
-          \ producao"
-        in: query
-        name: ambiente
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DfeLoteListagem'
-          description: Successful response
-      summary: Listar lotes de CT-e
-      tags:
-      - Cte
-    post:
-      operationId: EmitirLoteCte
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CtePedidoEmissaoLote'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DfeLote'
-          description: Successful response
-      summary: Emitir lote de CT-e
-      tags:
-      - Cte
-      x-codegen-request-body-name: body
-  /cte/lotes/{id}:
-    get:
-      description: Consulta os detalhes de um lote já existente. Forneça o ID único
-        obtido de uma requisição de emissão ou de listagem de lotes e a Nuvem Fiscal
-        irá retornar as informações do lote correspondente.
-      operationId: ConsultarLoteCte
-      parameters:
-      - description: ID único do lote gerado pela Nuvem Fiscal.
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DfeLote'
-          description: Successful response
-      summary: Consultar lote de CT-e
       tags:
       - Cte
   /cte/sefaz/status:
@@ -3180,6 +2999,12 @@ paths:
         name: mensagem_rodape
         schema:
           type: string
+      - description: Imprime o documento com o bloco de canhoto.
+        in: query
+        name: canhoto
+        schema:
+          default: true
+          type: boolean
       responses:
         "200":
           content:
@@ -3588,6 +3413,23 @@ paths:
         in: path
         name: id
         required: true
+        schema:
+          type: string
+      - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
+          \ na empresa."
+        in: query
+        name: logotipo
+        schema:
+          default: false
+          type: boolean
+      - description: "Imprime mensagem no rodapé do documento.\r\n\r\nO caractere\
+          \ `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento\
+          \ das mensagens.\r\n\r\n**Exemplos de Uso:**\r\n* `\"esquerda\"`\r\n* `\"\
+          esquerda|centro\"`\r\n* `\"esquerda|centro|direita\"`\r\n* `\"|centro\"\
+          `, `\"|centro|\"`\r\n* `\"|centro|direita\"`\r\n* `\"||direita\"`\r\n* `\"\
+          esquerda||direita\"`\r\n\r\nDefault: `\"\"`"
+        in: query
+        name: mensagem_rodape
         schema:
           type: string
       responses:
@@ -4093,8 +3935,15 @@ components:
       type: object
     EmpresaConfigCte:
       example:
+        CRT: 0
         ambiente: homologacao
       properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor Individual (MEI)."
+          type: integer
         ambiente:
           description: Indica se a empresa irá emitir em produção ou homologação.
           enum:
@@ -4208,7 +4057,7 @@ components:
           natureza_tributacao: 0
           referencia: referencia
           data_emissao: 2000-01-23T04:56:07.000+00:00
-          competencia: 2000-01-23
+          competencia: 2000-01-23T04:56:07.000+00:00
         - servicos:
           - codigo_cnae: codigo_cnae
             tipo_tributacao: 2
@@ -4310,7 +4159,7 @@ components:
           natureza_tributacao: 0
           referencia: referencia
           data_emissao: 2000-01-23T04:56:07.000+00:00
-          competencia: 2000-01-23
+          competencia: 2000-01-23T04:56:07.000+00:00
         ambiente: homologacao
         referencia: referencia
       properties:
@@ -4434,7 +4283,7 @@ components:
         natureza_tributacao: 0
         referencia: referencia
         data_emissao: 2000-01-23T04:56:07.000+00:00
-        competencia: 2000-01-23
+        competencia: 2000-01-23T04:56:07.000+00:00
       properties:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
@@ -4449,7 +4298,7 @@ components:
         competencia:
           description: "Competência do RPS, no formato AAAA-MM-DD.\r\nCaso não informado,\
             \ será considerada a data da requisição à API da Nuvem Fiscal."
-          format: date
+          format: date-time
           type: string
         natureza_tributacao:
           description: "Natureza da tributação:\r\n* 1 - Simples Nacional;\r\n* 2\
@@ -4917,7 +4766,7 @@ components:
               art: art
             outras_informacoes: outras_informacoes
             natureza_tributacao: 6
-            competencia: 2000-01-23
+            competencia: 2000-01-23T04:56:07.000+00:00
           link_url: link_url
           id: id
           data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -5077,7 +4926,7 @@ components:
               art: art
             outras_informacoes: outras_informacoes
             natureza_tributacao: 6
-            competencia: 2000-01-23
+            competencia: 2000-01-23T04:56:07.000+00:00
           link_url: link_url
           id: id
           data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -5272,7 +5121,7 @@ components:
             art: art
           outras_informacoes: outras_informacoes
           natureza_tributacao: 6
-          competencia: 2000-01-23
+          competencia: 2000-01-23T04:56:07.000+00:00
         link_url: link_url
         id: id
         data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -5514,12 +5363,12 @@ components:
           art: art
         outras_informacoes: outras_informacoes
         natureza_tributacao: 6
-        competencia: 2000-01-23
+        competencia: 2000-01-23T04:56:07.000+00:00
       properties:
         rps:
           $ref: '#/components/schemas/RpsDados'
         competencia:
-          format: date
+          format: date-time
           type: string
         natureza_tributacao:
           description: "Natureza da tributação\r\n1 - Simples Nacional;\r\n2 - Fixo;\r\
@@ -8483,7 +8332,7 @@ components:
                 art: art
               outras_informacoes: outras_informacoes
               natureza_tributacao: 6
-              competencia: 2000-01-23
+              competencia: 2000-01-23T04:56:07.000+00:00
             link_url: link_url
             id: id
             data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -8643,7 +8492,7 @@ components:
                 art: art
               outras_informacoes: outras_informacoes
               natureza_tributacao: 6
-              competencia: 2000-01-23
+              competencia: 2000-01-23T04:56:07.000+00:00
             link_url: link_url
             id: id
             data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -8810,7 +8659,7 @@ components:
                 art: art
               outras_informacoes: outras_informacoes
               natureza_tributacao: 6
-              competencia: 2000-01-23
+              competencia: 2000-01-23T04:56:07.000+00:00
             link_url: link_url
             id: id
             data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -8970,7 +8819,7 @@ components:
                 art: art
               outras_informacoes: outras_informacoes
               natureza_tributacao: 6
-              competencia: 2000-01-23
+              competencia: 2000-01-23T04:56:07.000+00:00
             link_url: link_url
             id: id
             data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -9092,7 +8941,7 @@ components:
           natureza_tributacao: 0
           referencia: referencia
           data_emissao: 2000-01-23T04:56:07.000+00:00
-          competencia: 2000-01-23
+          competencia: 2000-01-23T04:56:07.000+00:00
         ambiente: homologacao
       properties:
         ambiente:
@@ -9265,7 +9114,7 @@ components:
               art: art
             outras_informacoes: outras_informacoes
             natureza_tributacao: 6
-            competencia: 2000-01-23
+            competencia: 2000-01-23T04:56:07.000+00:00
           link_url: link_url
           id: id
           data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -9425,7 +9274,7 @@ components:
               art: art
             outras_informacoes: outras_informacoes
             natureza_tributacao: 6
-            competencia: 2000-01-23
+            competencia: 2000-01-23T04:56:07.000+00:00
           link_url: link_url
           id: id
           data_emissao: 2000-01-23T04:56:07.000+00:00
@@ -9562,1864 +9411,16 @@ components:
           format: date-time
           type: string
       type: object
-    CtePedidoEmissaoLote:
-      example:
-        documentos:
-        - ambiente: homologacao
-          infCte:
-            infCteComp:
-              chCTe: chCTe
-            infCteAnu:
-              dEmi: 2000-01-23
-              chCte: chCte
-            infRespTec:
-              fone: fone
-              idCSRT: 7
-              CNPJ: CNPJ
-              hashCSRT: hashCSRT
-              xContato: xContato
-              email: email
-            infCTeNorm:
-              docAnt:
-                emiDocAnt:
-                - UF: UF
-                  xNome: xNome
-                  idDocAnt:
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  CPF: CPF
-                  CNPJ: CNPJ
-                  IE: IE
-                - UF: UF
-                  xNome: xNome
-                  idDocAnt:
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  CPF: CPF
-                  CNPJ: CNPJ
-                  IE: IE
-              cobr:
-                fat:
-                  vOrig: 7.835035282970782
-                  nFat: nFat
-                  vDesc: 0.4768402382624515
-                  vLiq: 3.1497903714250555
-                dup:
-                - dVenc: 2000-01-23
-                  nDup: nDup
-                  vDup: 2.380090174313445
-                - dVenc: 2000-01-23
-                  nDup: nDup
-                  vDup: 2.380090174313445
-              infModal:
-                versaoModal: versaoModal
-                duto:
-                  dFim: 2000-01-23
-                  vTar: 3.7814124730767915
-                  dIni: 2000-01-23
-                ferrov:
-                  fluxo: fluxo
-                  trafMut:
-                    respFat: 3
-                    ferrEmi: 9
-                    chCTeFerroOrigem: chCTeFerroOrigem
-                    ferroEnv:
-                    - xNome: xNome
-                      cInt: cInt
-                      enderFerro:
-                        xCpl: xCpl
-                        UF: UF
-                        xLgr: xLgr
-                        xMun: xMun
-                        nro: nro
-                        cMun: cMun
-                        xBairro: xBairro
-                        CEP: CEP
-                      CNPJ: CNPJ
-                      IE: IE
-                    - xNome: xNome
-                      cInt: cInt
-                      enderFerro:
-                        xCpl: xCpl
-                        UF: UF
-                        xLgr: xLgr
-                        xMun: xMun
-                        nro: nro
-                        cMun: cMun
-                        xBairro: xBairro
-                        CEP: CEP
-                      CNPJ: CNPJ
-                      IE: IE
-                    vFrete: 8.761432466225475
-                  tpTraf: 1
-                aquav:
-                  nViag: nViag
-                  tpNav: 7
-                  vPrest: 0.4182561061793122
-                  vAFRMM: 5.299143560275359
-                  balsa:
-                  - xBalsa: xBalsa
-                  - xBalsa: xBalsa
-                  direc: direc
-                  detCont:
-                  - infDoc:
-                      infNF:
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      infNFe:
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                    nCont: nCont
-                    lacre:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - infDoc:
-                      infNF:
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      infNFe:
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                    nCont: nCont
-                    lacre:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  xNavio: xNavio
-                  irin: irin
-                multimodal:
-                  seg:
-                    nApol: nApol
-                    nAver: nAver
-                    infSeg:
-                      xSeg: xSeg
-                      CNPJ: CNPJ
-                  COTM: COTM
-                  indNegociavel: 3
-                rodo:
-                  RNTRC: RNTRC
-                  occ:
-                  - nOcc: 8
-                    dEmi: 2000-01-23
-                    emiOcc:
-                      fone: fone
-                      UF: UF
-                      cInt: cInt
-                      CNPJ: CNPJ
-                      IE: IE
-                    serie: serie
-                  - nOcc: 8
-                    dEmi: 2000-01-23
-                    emiOcc:
-                      fone: fone
-                      UF: UF
-                      cInt: cInt
-                      CNPJ: CNPJ
-                      IE: IE
-                    serie: serie
-                aereo:
-                  natCarga:
-                    cInfManu:
-                    - cInfManu
-                    - cInfManu
-                    xDime: xDime
-                  tarifa:
-                    CL: CL
-                    vTar: 4.573936264232251
-                    cTar: cTar
-                  nMinu: 6
-                  peri:
-                  - nONU: nONU
-                    qTotEmb: qTotEmb
-                    infTotAP:
-                      uniAP: 9
-                      qTotProd: 8.863729185622827
-                  - nONU: nONU
-                    qTotEmb: qTotEmb
-                    infTotAP:
-                      uniAP: 9
-                      qTotProd: 8.863729185622827
-                  nOCA: nOCA
-                  dPrevAereo: 2000-01-23
-              infCarga:
-                vCarga: 7.260521264802104
-                xOutCat: xOutCat
-                infQ:
-                - tpMed: tpMed
-                  cUnid: cUnid
-                  qCarga: 9.132027271330688
-                - tpMed: tpMed
-                  cUnid: cUnid
-                  qCarga: 9.132027271330688
-                vCargaAverb: 0.8774076871421566
-                proPred: proPred
-              infServVinc:
-                infCTeMultimodal:
-                - chCTeMultimodal: chCTeMultimodal
-                - chCTeMultimodal: chCTeMultimodal
-              infCteSub:
-                refCteAnu: refCteAnu
-                tomaICMS:
-                  refCte: refCte
-                  refNFe: refNFe
-                  refNF:
-                    mod: mod
-                    subserie: 8
-                    dEmi: 2000-01-23
-                    CPF: CPF
-                    serie: 3
-                    valor: 0.4833312865174044
-                    CNPJ: CNPJ
-                    nro: 4
-                indAlteraToma: 0
-                chCte: chCte
-              infGlobalizado:
-                xObs: xObs
-              infDoc:
-                infNF:
-                - mod: mod
-                  vBCST: 7.933506881737151
-                  vProd: 4.86315908102884
-                  nRoma: nRoma
-                  nPeso: 8.251625748923757
-                  vNF: 6.073898085781152
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  dPrev: 2000-01-23
-                  nPed: nPed
-                  dEmi: 2000-01-23
-                  PIN: PIN
-                  vBC: 9.702963800023566
-                  vST: 5.507386964179881
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  vICMS: 0.5199002018724985
-                  serie: serie
-                  nDoc: nDoc
-                  nCFOP: nCFOP
-                - mod: mod
-                  vBCST: 7.933506881737151
-                  vProd: 4.86315908102884
-                  nRoma: nRoma
-                  nPeso: 8.251625748923757
-                  vNF: 6.073898085781152
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  dPrev: 2000-01-23
-                  nPed: nPed
-                  dEmi: 2000-01-23
-                  PIN: PIN
-                  vBC: 9.702963800023566
-                  vST: 5.507386964179881
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  vICMS: 0.5199002018724985
-                  serie: serie
-                  nDoc: nDoc
-                  nCFOP: nCFOP
-                infNFe:
-                - dPrev: 2000-01-23
-                  PIN: PIN
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  chave: chave
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                - dPrev: 2000-01-23
-                  PIN: PIN
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  chave: chave
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                infOutros:
-                - dPrev: 2000-01-23
-                  dEmi: 2000-01-23
-                  vDocFisc: 1.7325933120207193
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  nDoc: nDoc
-                  tpDoc: tpDoc
-                  descOutros: descOutros
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                - dPrev: 2000-01-23
-                  dEmi: 2000-01-23
-                  vDocFisc: 1.7325933120207193
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  nDoc: nDoc
-                  tpDoc: tpDoc
-                  descOutros: descOutros
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-              veicNovos:
-              - cMod: cMod
-                xCor: xCor
-                chassi: chassi
-                cCor: cCor
-                vUnit: 9.897492629215506
-                vFrete: 5.877124706116695
-              - cMod: cMod
-                xCor: xCor
-                chassi: chassi
-                cCor: cCor
-                vUnit: 9.897492629215506
-                vFrete: 5.877124706116695
-            ide:
-              mod: 6
-              indGlobalizado: 4
-              xDetRetira: xDetRetira
-              procEmi: 2
-              xMunFim: xMunFim
-              tpAmb: 9
-              tpCTe: 3
-              cMunIni: cMunIni
-              UFEnv: UFEnv
-              toma3:
-                toma: 1
-              tpEmis: 2
-              toma4:
-                fone: fone
-                xNome: xNome
-                xFant: xFant
-                CPF: CPF
-                toma: 6
-                CNPJ: CNPJ
-                IE: IE
-                email: email
-                enderToma:
-                  xCpl: xCpl
-                  UF: UF
-                  xPais: xPais
-                  cPais: cPais
-                  xLgr: xLgr
-                  xMun: xMun
-                  nro: nro
-                  cMun: cMun
-                  xBairro: xBairro
-                  CEP: CEP
-              cCT: cCT
-              natOp: natOp
-              retira: 1
-              CFOP: CFOP
-              cMunEnv: cMunEnv
-              UFIni: UFIni
-              nCT: 5
-              modal: modal
-              xMunIni: xMunIni
-              tpImp: 5
-              dhCont: 2000-01-23T04:56:07.000+00:00
-              xMunEnv: xMunEnv
-              dhEmi: 2000-01-23T04:56:07.000+00:00
-              indIEToma: 1
-              tpServ: 7
-              cDV: 7
-              cUF: 0
-              cMunFim: cMunFim
-              UFFim: UFFim
-              serie: 1
-              xJust: xJust
-              verProc: verProc
-            dest:
-              fone: fone
-              xNome: xNome
-              CPF: CPF
-              ISUF: ISUF
-              CNPJ: CNPJ
-              enderDest:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              IE: IE
-              email: email
-            imp:
-              vTotTrib: 5.533258397034986
-              ICMS:
-                ICMS90:
-                  pRedBC: 0.8851374739011653
-                  CST: CST
-                  vBC: 7.058770351582356
-                  vICMS: 0.10263654006109402
-                  vCred: 4.652396432933246
-                  pICMS: 6.519180951018382
-                ICMS00:
-                  CST: CST
-                  vBC: 3.5571952270680973
-                  vICMS: 1.284659006116532
-                  pICMS: 6.965117697638846
-                ICMS45:
-                  CST: CST
-                ICMS20:
-                  pRedBC: 2.8841621266687802
-                  CST: CST
-                  vBC: 6.778324963048013
-                  vICMS: 5.944895607614016
-                  pICMS: 6.878052220127876
-                ICMS60:
-                  CST: CST
-                  vBCSTRet: 6.704019297950036
-                  vCred: 7.143538047012306
-                  vICMSSTRet: 3.353193347011243
-                  pICMSSTRet: 3.0937452626664474
-                ICMSSN:
-                  indSN: 7
-                  CST: CST
-                ICMSOutraUF:
-                  pICMSOutraUF: 3.0205796992916243
-                  CST: CST
-                  vICMSOutraUF: 3.0576100241049344
-                  pRedBCOutraUF: 8.969578798196912
-                  vBCOutraUF: 7.740351818741173
-              ICMSUFFim:
-                pFCPUFFim: 4.078845849666752
-                vICMSUFIni: 4.678947989005849
-                pICMSInter: 6.628464275087742
-                vBCUFFim: 3.2588565619047607
-                pICMSUFFim: 0.2025324113236393
-                vFCPUFFim: 4.258773108174356
-                vICMSUFFim: 1.041444916118296
-              infAdFisco: infAdFisco
-            infSolicNFF:
-              xSolic: xSolic
-            vPrest:
-              vTPrest: 8.762042012749001
-              vRec: 9.018348186070783
-              Comp:
-              - xNome: xNome
-                vComp: 6.438423552598547
-              - xNome: xNome
-                vComp: 6.438423552598547
-            receb:
-              fone: fone
-              xNome: xNome
-              enderReceb:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              CPF: CPF
-              CNPJ: CNPJ
-              IE: IE
-              email: email
-            compl:
-              Entrega:
-                comHora:
-                  tpHor: 9
-                  hProg: hProg
-                semData:
-                  tpPer: 7
-                noPeriodo:
-                  tpPer: 4
-                  dFim: 2000-01-23
-                  dIni: 2000-01-23
-                noInter:
-                  hFim: hFim
-                  tpHor: 9
-                  hIni: hIni
-                comData:
-                  tpPer: 1
-                  dProg: 2000-01-23
-                semHora:
-                  tpHor: 5
-              ObsFisco:
-              - xCampo: xCampo
-                xTexto: xTexto
-              - xCampo: xCampo
-                xTexto: xTexto
-              fluxo:
-                xDest: xDest
-                xRota: xRota
-                pass:
-                - xPass: xPass
-                - xPass: xPass
-                xOrig: xOrig
-              origCalc: origCalc
-              xCaracAd: xCaracAd
-              ObsCont:
-              - xCampo: xCampo
-                xTexto: xTexto
-              - xCampo: xCampo
-                xTexto: xTexto
-              destCalc: destCalc
-              xCaracSer: xCaracSer
-              xEmi: xEmi
-              xObs: xObs
-            Id: Id
-            rem:
-              fone: fone
-              xNome: xNome
-              xFant: xFant
-              enderReme:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              CPF: CPF
-              CNPJ: CNPJ
-              IE: IE
-              email: email
-            exped:
-              fone: fone
-              xNome: xNome
-              CPF: CPF
-              CNPJ: CNPJ
-              IE: IE
-              enderExped:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              email: email
-            autXML:
-            - CPF: CPF
-              CNPJ: CNPJ
-            - CPF: CPF
-              CNPJ: CNPJ
-            emit:
-              xNome: xNome
-              CRT: 6
-              xFant: xFant
-              CPF: CPF
-              CNPJ: CNPJ
-              enderEmit:
-                xCpl: xCpl
-                fone: fone
-                UF: UF
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              IE: IE
-              IEST: IEST
-            versao: versao
-          referencia: referencia
-          infCTeSupl:
-            qrCodCTe: qrCodCTe
-        - ambiente: homologacao
-          infCte:
-            infCteComp:
-              chCTe: chCTe
-            infCteAnu:
-              dEmi: 2000-01-23
-              chCte: chCte
-            infRespTec:
-              fone: fone
-              idCSRT: 7
-              CNPJ: CNPJ
-              hashCSRT: hashCSRT
-              xContato: xContato
-              email: email
-            infCTeNorm:
-              docAnt:
-                emiDocAnt:
-                - UF: UF
-                  xNome: xNome
-                  idDocAnt:
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  CPF: CPF
-                  CNPJ: CNPJ
-                  IE: IE
-                - UF: UF
-                  xNome: xNome
-                  idDocAnt:
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  - idDocAntPap:
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    - dEmi: 2000-01-23
-                      serie: serie
-                      nDoc: nDoc
-                      tpDoc: tpDoc
-                      subser: subser
-                    idDocAntEle:
-                    - chCTe: chCTe
-                    - chCTe: chCTe
-                  CPF: CPF
-                  CNPJ: CNPJ
-                  IE: IE
-              cobr:
-                fat:
-                  vOrig: 7.835035282970782
-                  nFat: nFat
-                  vDesc: 0.4768402382624515
-                  vLiq: 3.1497903714250555
-                dup:
-                - dVenc: 2000-01-23
-                  nDup: nDup
-                  vDup: 2.380090174313445
-                - dVenc: 2000-01-23
-                  nDup: nDup
-                  vDup: 2.380090174313445
-              infModal:
-                versaoModal: versaoModal
-                duto:
-                  dFim: 2000-01-23
-                  vTar: 3.7814124730767915
-                  dIni: 2000-01-23
-                ferrov:
-                  fluxo: fluxo
-                  trafMut:
-                    respFat: 3
-                    ferrEmi: 9
-                    chCTeFerroOrigem: chCTeFerroOrigem
-                    ferroEnv:
-                    - xNome: xNome
-                      cInt: cInt
-                      enderFerro:
-                        xCpl: xCpl
-                        UF: UF
-                        xLgr: xLgr
-                        xMun: xMun
-                        nro: nro
-                        cMun: cMun
-                        xBairro: xBairro
-                        CEP: CEP
-                      CNPJ: CNPJ
-                      IE: IE
-                    - xNome: xNome
-                      cInt: cInt
-                      enderFerro:
-                        xCpl: xCpl
-                        UF: UF
-                        xLgr: xLgr
-                        xMun: xMun
-                        nro: nro
-                        cMun: cMun
-                        xBairro: xBairro
-                        CEP: CEP
-                      CNPJ: CNPJ
-                      IE: IE
-                    vFrete: 8.761432466225475
-                  tpTraf: 1
-                aquav:
-                  nViag: nViag
-                  tpNav: 7
-                  vPrest: 0.4182561061793122
-                  vAFRMM: 5.299143560275359
-                  balsa:
-                  - xBalsa: xBalsa
-                  - xBalsa: xBalsa
-                  direc: direc
-                  detCont:
-                  - infDoc:
-                      infNF:
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      infNFe:
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                    nCont: nCont
-                    lacre:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - infDoc:
-                      infNF:
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      - unidRat: 5.312489704336296
-                        serie: serie
-                        nDoc: nDoc
-                      infNFe:
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                      - unidRat: 8.37823741034869
-                        chave: chave
-                    nCont: nCont
-                    lacre:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  xNavio: xNavio
-                  irin: irin
-                multimodal:
-                  seg:
-                    nApol: nApol
-                    nAver: nAver
-                    infSeg:
-                      xSeg: xSeg
-                      CNPJ: CNPJ
-                  COTM: COTM
-                  indNegociavel: 3
-                rodo:
-                  RNTRC: RNTRC
-                  occ:
-                  - nOcc: 8
-                    dEmi: 2000-01-23
-                    emiOcc:
-                      fone: fone
-                      UF: UF
-                      cInt: cInt
-                      CNPJ: CNPJ
-                      IE: IE
-                    serie: serie
-                  - nOcc: 8
-                    dEmi: 2000-01-23
-                    emiOcc:
-                      fone: fone
-                      UF: UF
-                      cInt: cInt
-                      CNPJ: CNPJ
-                      IE: IE
-                    serie: serie
-                aereo:
-                  natCarga:
-                    cInfManu:
-                    - cInfManu
-                    - cInfManu
-                    xDime: xDime
-                  tarifa:
-                    CL: CL
-                    vTar: 4.573936264232251
-                    cTar: cTar
-                  nMinu: 6
-                  peri:
-                  - nONU: nONU
-                    qTotEmb: qTotEmb
-                    infTotAP:
-                      uniAP: 9
-                      qTotProd: 8.863729185622827
-                  - nONU: nONU
-                    qTotEmb: qTotEmb
-                    infTotAP:
-                      uniAP: 9
-                      qTotProd: 8.863729185622827
-                  nOCA: nOCA
-                  dPrevAereo: 2000-01-23
-              infCarga:
-                vCarga: 7.260521264802104
-                xOutCat: xOutCat
-                infQ:
-                - tpMed: tpMed
-                  cUnid: cUnid
-                  qCarga: 9.132027271330688
-                - tpMed: tpMed
-                  cUnid: cUnid
-                  qCarga: 9.132027271330688
-                vCargaAverb: 0.8774076871421566
-                proPred: proPred
-              infServVinc:
-                infCTeMultimodal:
-                - chCTeMultimodal: chCTeMultimodal
-                - chCTeMultimodal: chCTeMultimodal
-              infCteSub:
-                refCteAnu: refCteAnu
-                tomaICMS:
-                  refCte: refCte
-                  refNFe: refNFe
-                  refNF:
-                    mod: mod
-                    subserie: 8
-                    dEmi: 2000-01-23
-                    CPF: CPF
-                    serie: 3
-                    valor: 0.4833312865174044
-                    CNPJ: CNPJ
-                    nro: 4
-                indAlteraToma: 0
-                chCte: chCte
-              infGlobalizado:
-                xObs: xObs
-              infDoc:
-                infNF:
-                - mod: mod
-                  vBCST: 7.933506881737151
-                  vProd: 4.86315908102884
-                  nRoma: nRoma
-                  nPeso: 8.251625748923757
-                  vNF: 6.073898085781152
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  dPrev: 2000-01-23
-                  nPed: nPed
-                  dEmi: 2000-01-23
-                  PIN: PIN
-                  vBC: 9.702963800023566
-                  vST: 5.507386964179881
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  vICMS: 0.5199002018724985
-                  serie: serie
-                  nDoc: nDoc
-                  nCFOP: nCFOP
-                - mod: mod
-                  vBCST: 7.933506881737151
-                  vProd: 4.86315908102884
-                  nRoma: nRoma
-                  nPeso: 8.251625748923757
-                  vNF: 6.073898085781152
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  dPrev: 2000-01-23
-                  nPed: nPed
-                  dEmi: 2000-01-23
-                  PIN: PIN
-                  vBC: 9.702963800023566
-                  vST: 5.507386964179881
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  vICMS: 0.5199002018724985
-                  serie: serie
-                  nDoc: nDoc
-                  nCFOP: nCFOP
-                infNFe:
-                - dPrev: 2000-01-23
-                  PIN: PIN
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  chave: chave
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                - dPrev: 2000-01-23
-                  PIN: PIN
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  chave: chave
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                infOutros:
-                - dPrev: 2000-01-23
-                  dEmi: 2000-01-23
-                  vDocFisc: 1.7325933120207193
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  nDoc: nDoc
-                  tpDoc: tpDoc
-                  descOutros: descOutros
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                - dPrev: 2000-01-23
-                  dEmi: 2000-01-23
-                  vDocFisc: 1.7325933120207193
-                  infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
-                    idUnidCarga: idUnidCarga
-                    lacUnidCarga:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  nDoc: nDoc
-                  tpDoc: tpDoc
-                  descOutros: descOutros
-                  infUnidTransp:
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-                  - qtdRat: 2.9409642974827896
-                    tpUnidTransp: 0
-                    idUnidTransp: idUnidTransp
-                    infUnidCarga:
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    - qtdRat: 3.901545264248647
-                      tpUnidCarga: 4
-                      idUnidCarga: idUnidCarga
-                      lacUnidCarga:
-                      - nLacre: nLacre
-                      - nLacre: nLacre
-                    lacUnidTransp:
-                    - nLacre: nLacre
-                    - nLacre: nLacre
-              veicNovos:
-              - cMod: cMod
-                xCor: xCor
-                chassi: chassi
-                cCor: cCor
-                vUnit: 9.897492629215506
-                vFrete: 5.877124706116695
-              - cMod: cMod
-                xCor: xCor
-                chassi: chassi
-                cCor: cCor
-                vUnit: 9.897492629215506
-                vFrete: 5.877124706116695
-            ide:
-              mod: 6
-              indGlobalizado: 4
-              xDetRetira: xDetRetira
-              procEmi: 2
-              xMunFim: xMunFim
-              tpAmb: 9
-              tpCTe: 3
-              cMunIni: cMunIni
-              UFEnv: UFEnv
-              toma3:
-                toma: 1
-              tpEmis: 2
-              toma4:
-                fone: fone
-                xNome: xNome
-                xFant: xFant
-                CPF: CPF
-                toma: 6
-                CNPJ: CNPJ
-                IE: IE
-                email: email
-                enderToma:
-                  xCpl: xCpl
-                  UF: UF
-                  xPais: xPais
-                  cPais: cPais
-                  xLgr: xLgr
-                  xMun: xMun
-                  nro: nro
-                  cMun: cMun
-                  xBairro: xBairro
-                  CEP: CEP
-              cCT: cCT
-              natOp: natOp
-              retira: 1
-              CFOP: CFOP
-              cMunEnv: cMunEnv
-              UFIni: UFIni
-              nCT: 5
-              modal: modal
-              xMunIni: xMunIni
-              tpImp: 5
-              dhCont: 2000-01-23T04:56:07.000+00:00
-              xMunEnv: xMunEnv
-              dhEmi: 2000-01-23T04:56:07.000+00:00
-              indIEToma: 1
-              tpServ: 7
-              cDV: 7
-              cUF: 0
-              cMunFim: cMunFim
-              UFFim: UFFim
-              serie: 1
-              xJust: xJust
-              verProc: verProc
-            dest:
-              fone: fone
-              xNome: xNome
-              CPF: CPF
-              ISUF: ISUF
-              CNPJ: CNPJ
-              enderDest:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              IE: IE
-              email: email
-            imp:
-              vTotTrib: 5.533258397034986
-              ICMS:
-                ICMS90:
-                  pRedBC: 0.8851374739011653
-                  CST: CST
-                  vBC: 7.058770351582356
-                  vICMS: 0.10263654006109402
-                  vCred: 4.652396432933246
-                  pICMS: 6.519180951018382
-                ICMS00:
-                  CST: CST
-                  vBC: 3.5571952270680973
-                  vICMS: 1.284659006116532
-                  pICMS: 6.965117697638846
-                ICMS45:
-                  CST: CST
-                ICMS20:
-                  pRedBC: 2.8841621266687802
-                  CST: CST
-                  vBC: 6.778324963048013
-                  vICMS: 5.944895607614016
-                  pICMS: 6.878052220127876
-                ICMS60:
-                  CST: CST
-                  vBCSTRet: 6.704019297950036
-                  vCred: 7.143538047012306
-                  vICMSSTRet: 3.353193347011243
-                  pICMSSTRet: 3.0937452626664474
-                ICMSSN:
-                  indSN: 7
-                  CST: CST
-                ICMSOutraUF:
-                  pICMSOutraUF: 3.0205796992916243
-                  CST: CST
-                  vICMSOutraUF: 3.0576100241049344
-                  pRedBCOutraUF: 8.969578798196912
-                  vBCOutraUF: 7.740351818741173
-              ICMSUFFim:
-                pFCPUFFim: 4.078845849666752
-                vICMSUFIni: 4.678947989005849
-                pICMSInter: 6.628464275087742
-                vBCUFFim: 3.2588565619047607
-                pICMSUFFim: 0.2025324113236393
-                vFCPUFFim: 4.258773108174356
-                vICMSUFFim: 1.041444916118296
-              infAdFisco: infAdFisco
-            infSolicNFF:
-              xSolic: xSolic
-            vPrest:
-              vTPrest: 8.762042012749001
-              vRec: 9.018348186070783
-              Comp:
-              - xNome: xNome
-                vComp: 6.438423552598547
-              - xNome: xNome
-                vComp: 6.438423552598547
-            receb:
-              fone: fone
-              xNome: xNome
-              enderReceb:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              CPF: CPF
-              CNPJ: CNPJ
-              IE: IE
-              email: email
-            compl:
-              Entrega:
-                comHora:
-                  tpHor: 9
-                  hProg: hProg
-                semData:
-                  tpPer: 7
-                noPeriodo:
-                  tpPer: 4
-                  dFim: 2000-01-23
-                  dIni: 2000-01-23
-                noInter:
-                  hFim: hFim
-                  tpHor: 9
-                  hIni: hIni
-                comData:
-                  tpPer: 1
-                  dProg: 2000-01-23
-                semHora:
-                  tpHor: 5
-              ObsFisco:
-              - xCampo: xCampo
-                xTexto: xTexto
-              - xCampo: xCampo
-                xTexto: xTexto
-              fluxo:
-                xDest: xDest
-                xRota: xRota
-                pass:
-                - xPass: xPass
-                - xPass: xPass
-                xOrig: xOrig
-              origCalc: origCalc
-              xCaracAd: xCaracAd
-              ObsCont:
-              - xCampo: xCampo
-                xTexto: xTexto
-              - xCampo: xCampo
-                xTexto: xTexto
-              destCalc: destCalc
-              xCaracSer: xCaracSer
-              xEmi: xEmi
-              xObs: xObs
-            Id: Id
-            rem:
-              fone: fone
-              xNome: xNome
-              xFant: xFant
-              enderReme:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              CPF: CPF
-              CNPJ: CNPJ
-              IE: IE
-              email: email
-            exped:
-              fone: fone
-              xNome: xNome
-              CPF: CPF
-              CNPJ: CNPJ
-              IE: IE
-              enderExped:
-                xCpl: xCpl
-                UF: UF
-                xPais: xPais
-                cPais: cPais
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              email: email
-            autXML:
-            - CPF: CPF
-              CNPJ: CNPJ
-            - CPF: CPF
-              CNPJ: CNPJ
-            emit:
-              xNome: xNome
-              CRT: 6
-              xFant: xFant
-              CPF: CPF
-              CNPJ: CNPJ
-              enderEmit:
-                xCpl: xCpl
-                fone: fone
-                UF: UF
-                xLgr: xLgr
-                xMun: xMun
-                nro: nro
-                cMun: cMun
-                xBairro: xBairro
-                CEP: CEP
-              IE: IE
-              IEST: IEST
-            versao: versao
-          referencia: referencia
-          infCTeSupl:
-            qrCodCTe: qrCodCTe
-        ambiente: homologacao
-        id_lote: id_lote
-        referencia: referencia
-      properties:
-        documentos:
-          items:
-            $ref: '#/components/schemas/CtePedidoEmissao'
-          type: array
-        ambiente:
-          description: Identificação do Ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        referencia:
-          description: "Seu identificador para este documento. Opcional, ajuda a evitar\
-            \ o envio duplicado de um mesmo documento."
-          type: string
-        id_lote:
-          type: string
-      required:
-      - ambiente
-      - documentos
-      - id_lote
-      type: object
     CtePedidoEmissao:
       example:
         ambiente: homologacao
         infCte:
           infCteComp:
-            chCTe: chCTe
-          infCteAnu:
-            dEmi: 2000-01-23
-            chCte: chCte
+          - chCTe: chCTe
+          - chCTe: chCTe
           infRespTec:
             fone: fone
-            idCSRT: 7
+            idCSRT: 8
             CNPJ: CNPJ
             hashCSRT: hashCSRT
             xContato: xContato
@@ -11666,20 +9667,7 @@ components:
               - chCTeMultimodal: chCTeMultimodal
               - chCTeMultimodal: chCTeMultimodal
             infCteSub:
-              refCteAnu: refCteAnu
-              tomaICMS:
-                refCte: refCte
-                refNFe: refNFe
-                refNF:
-                  mod: mod
-                  subserie: 8
-                  dEmi: 2000-01-23
-                  CPF: CPF
-                  serie: 3
-                  valor: 0.4833312865174044
-                  CNPJ: CNPJ
-                  nro: 4
-              indAlteraToma: 0
+              indAlteraToma: 3
               chCte: chCte
             infGlobalizado:
               xObs: xObs
@@ -12342,13 +10330,11 @@ components:
       description: Informações do CT-e.
       example:
         infCteComp:
-          chCTe: chCTe
-        infCteAnu:
-          dEmi: 2000-01-23
-          chCte: chCte
+        - chCTe: chCTe
+        - chCTe: chCTe
         infRespTec:
           fone: fone
-          idCSRT: 7
+          idCSRT: 8
           CNPJ: CNPJ
           hashCSRT: hashCSRT
           xContato: xContato
@@ -12595,20 +10581,7 @@ components:
             - chCTeMultimodal: chCTeMultimodal
             - chCTeMultimodal: chCTeMultimodal
           infCteSub:
-            refCteAnu: refCteAnu
-            tomaICMS:
-              refCte: refCte
-              refNFe: refNFe
-              refNF:
-                mod: mod
-                subserie: 8
-                dEmi: 2000-01-23
-                CPF: CPF
-                serie: 3
-                valor: 0.4833312865174044
-                CNPJ: CNPJ
-                nro: 4
-            indAlteraToma: 0
+            indAlteraToma: 3
             chCte: chCte
           infGlobalizado:
             xObs: xObs
@@ -13247,7 +11220,7 @@ components:
         versao: versao
       properties:
         versao:
-          description: "Versão do leiaute.\r\nEx: \"3.00\"."
+          description: "Versão do leiaute.\r\nEx: \"4.00\"."
           type: string
         Id:
           description: "Identificador da tag a ser assinada.\r\nInformar a chave de\
@@ -13274,9 +11247,9 @@ components:
         infCTeNorm:
           $ref: '#/components/schemas/CteSefazInfCTeNorm'
         infCteComp:
-          $ref: '#/components/schemas/CteSefazInfCteComp'
-        infCteAnu:
-          $ref: '#/components/schemas/CteSefazInfCteAnu'
+          items:
+            $ref: '#/components/schemas/CteSefazInfCteComp'
+          type: array
         autXML:
           items:
             $ref: '#/components/schemas/CteSefazAutXML'
@@ -13357,8 +11330,8 @@ components:
         cCT:
           description: "Código numérico que compõe a Chave de Acesso.\r\nNúmero aleató\
             rio gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos\
-            \ indevidos ao documento.\r\nGeramos automaticamente quando nenhum valor\
-            \ é informado."
+            \ indevidos ao documento.\r\n\r\n*Geramos automaticamente quando nenhum\
+            \ valor é informado.*"
           type: string
         CFOP:
           description: Código Fiscal de Operações e Prestações.
@@ -13393,15 +11366,14 @@ components:
           description: "Digito Verificador da chave de acesso do CT-e.\r\nInformar\
             \ o dígito  de controle da chave de acesso do CT-e, que deve ser calculado\
             \ com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.\r\
-            \nGeramos automaticamente quando nenhum valor é informado."
+            \n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
           type: integer
         tpAmb:
           description: "Tipo do Ambiente:\r\n* 1 - Produção\r\n* 2 - Homologação"
           type: integer
         tpCTe:
           description: "Tipo do CT-e.\r\nPreencher com:\r\n* 0 - CT-e Normal\r\n*\
-            \ 1 - CT-e de Complemento de Valores\r\n* 2 - CT-e de Anulação\r\n* 3\
-            \ - CT-e de Substituição"
+            \ 1 - CT-e de Complemento de Valores\r\n* 3 - CT-e de Substituição"
           type: integer
         procEmi:
           description: "Identificador do processo de emissão do CT-e.\r\nPreencher\
@@ -13956,40 +11928,42 @@ components:
       properties:
         CNPJ:
           description: "CNPJ do emitente.\r\nInformar zeros não significativos.\r\n\
-            Obrigatório caso o emitente seja pessoa jurídica."
+            \r\n***Obrigatório caso o emitente seja pessoa jurídica***."
           type: string
         CPF:
           description: "CPF do emitente.\r\nInformar zeros não significativos.\r\n\
             Usar com série específica 920-969 para emitente pessoa física com inscriç\
-            ão estadual.\r\nObrigatorio caso o emitente seja pessoa física."
+            ão estadual.\r\n\r\n***Obrigatorio caso o emitente seja pessoa física***."
           type: string
         IE:
           description: "Inscrição Estadual do Emitente.\r\nA IE do emitente somente\
             \ ficará sem informação para o caso do Regime Especial da NFF (tpEmis=3).\r\
-            \nCaso não seja informado, será utilizado o do cadastro da empresa."
+            \n\r\n*Caso não seja informado, será utilizado o do cadastro da empresa.*"
           type: string
         IEST:
           description: Inscrição Estadual do Substituto Tributário.
           type: string
         xNome:
-          description: "Razão social ou Nome do emitente.\r\nCaso não seja informado,\
-            \ será utilizado o do cadastro da empresa."
+          description: "Razão social ou Nome do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
           type: string
         xFant:
-          description: "Nome fantasia.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "Nome fantasia.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         enderEmit:
           $ref: '#/components/schemas/CteSefazEndeEmi'
         CRT:
-          description: "Código do Regime Tributário.\r\nInformar: 1=Simples Nacional\r\
-            \n* 2 - Simples Nacional, excesso sublimite de receita bruta\r\n* 3 -\
-            \ Regime Normal"
+          description: "Código do Regime Tributário. Informar:\r\n* 1 - Simples Nacional;\r\
+            \n* 2 - Simples Nacional, excesso sublimite de receita bruta;\r\n* 3 -\
+            \ Regime Normal;\r\n* 4 - Simples Nacional - Microempreendedor Individual\
+            \ (MEI).\r\n\r\n*Caso não seja informado, será utilizado o do cadastro\
+            \ da empresa.*"
           type: integer
       type: object
     CteSefazEndeEmi:
-      description: "Endereço do emitente.\r\nCaso não seja informado, será utilizado\
-        \ o do cadastro da empresa."
+      description: "Endereço do emitente.\r\n\r\n*Caso não seja informado, será utilizado\
+        \ o do cadastro da empresa.*"
       example:
         xCpl: xCpl
         fone: fone
@@ -14002,40 +11976,40 @@ components:
         CEP: CEP
       properties:
         xLgr:
-          description: "Logradouro.\r\nCaso não seja informado, será utilizado o do\
-            \ cadastro da empresa."
+          description: "Logradouro.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         nro:
-          description: "Número.\r\nCaso não seja informado, será utilizado o do cadastro\
-            \ da empresa."
+          description: "Número.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
           type: string
         xCpl:
-          description: "Complemento.\r\nCaso não seja informado, será utilizado o\
-            \ do cadastro da empresa."
+          description: "Complemento.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         xBairro:
-          description: "Bairro.\r\nCaso não seja informado, será utilizado o do cadastro\
-            \ da empresa."
+          description: "Bairro.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
           type: string
         cMun:
-          description: "Código do município (utilizar a tabela do IBGE).\r\nCaso nã\
-            o seja informado, será utilizado o do cadastro da empresa."
+          description: "Código do município (utilizar a tabela do IBGE).\r\n\r\n*Caso\
+            \ não seja informado, será utilizado o do cadastro da empresa.*"
           type: string
         xMun:
-          description: "Nome do município.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "Nome do município.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         CEP:
-          description: "CEP.\r\nInformar zeros não significativos.\r\nCaso não seja\
-            \ informado, será utilizado o do cadastro da empresa."
+          description: "CEP.\r\nInformar zeros não significativos.\r\n\r\n*Caso nã\
+            o seja informado, será utilizado o do cadastro da empresa.*"
           type: string
         UF:
-          description: "Sigla da UF.\r\nCaso não seja informado, será utilizado o\
-            \ do cadastro da empresa."
+          description: "Sigla da UF.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         fone:
-          description: "Telefone.\r\nCaso não seja informado, será utilizado o do\
-            \ cadastro da empresa."
+          description: "Telefone.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
       type: object
     CteSefazRem:
@@ -14898,20 +12872,7 @@ components:
           - chCTeMultimodal: chCTeMultimodal
           - chCTeMultimodal: chCTeMultimodal
         infCteSub:
-          refCteAnu: refCteAnu
-          tomaICMS:
-            refCte: refCte
-            refNFe: refNFe
-            refNF:
-              mod: mod
-              subserie: 8
-              dEmi: 2000-01-23
-              CPF: CPF
-              serie: 3
-              valor: 0.4833312865174044
-              CNPJ: CNPJ
-              nro: 4
-          indAlteraToma: 0
+          indAlteraToma: 3
           chCte: chCte
         infGlobalizado:
           xObs: xObs
@@ -17427,106 +15388,17 @@ components:
     CteSefazInfCteSub:
       description: Informações do CT-e de substituição.
       example:
-        refCteAnu: refCteAnu
-        tomaICMS:
-          refCte: refCte
-          refNFe: refNFe
-          refNF:
-            mod: mod
-            subserie: 8
-            dEmi: 2000-01-23
-            CPF: CPF
-            serie: 3
-            valor: 0.4833312865174044
-            CNPJ: CNPJ
-            nro: 4
-        indAlteraToma: 0
+        indAlteraToma: 3
         chCte: chCte
       properties:
         chCte:
           description: Chave de acesso do CT-e a ser substituído (original).
           type: string
-        refCteAnu:
-          description: Chave de acesso do CT-e de Anulação.
-          type: string
-        tomaICMS:
-          $ref: '#/components/schemas/CteSefazTomaICMS'
         indAlteraToma:
           description: Indicador de CT-e Alteração de Tomador.
           type: integer
       required:
       - chCte
-      type: object
-    CteSefazTomaICMS:
-      description: "Tomador é contribuinte do ICMS, mas não é emitente de documento\
-        \ fiscal eletrônico."
-      example:
-        refCte: refCte
-        refNFe: refNFe
-        refNF:
-          mod: mod
-          subserie: 8
-          dEmi: 2000-01-23
-          CPF: CPF
-          serie: 3
-          valor: 0.4833312865174044
-          CNPJ: CNPJ
-          nro: 4
-      properties:
-        refNFe:
-          description: Chave de acesso da NF-e emitida pelo Tomador.
-          type: string
-        refNF:
-          $ref: '#/components/schemas/CteSefazRefNF'
-        refCte:
-          description: Chave de acesso do CT-e emitido pelo Tomador.
-          type: string
-      type: object
-    CteSefazRefNF:
-      description: Informação da NF ou CT emitido pelo Tomador.
-      example:
-        mod: mod
-        subserie: 8
-        dEmi: 2000-01-23
-        CPF: CPF
-        serie: 3
-        valor: 0.4833312865174044
-        CNPJ: CNPJ
-        nro: 4
-      properties:
-        CNPJ:
-          description: "CNPJ do Emitente.\r\nInformar o CNPJ do emitente do Documento\
-            \ Fiscal."
-          type: string
-        CPF:
-          description: "Número do CPF.\r\nInformar o CPF do emitente do documento\
-            \ fiscal."
-          type: string
-        mod:
-          description: Modelo do Documento Fiscal.
-          type: string
-        serie:
-          description: Serie do documento fiscal.
-          type: integer
-        subserie:
-          description: Subserie do documento fiscal.
-          type: integer
-        nro:
-          description: Número do documento fiscal.
-          type: integer
-        valor:
-          description: Valor do documento fiscal.
-          type: number
-        dEmi:
-          description: Data de emissão do documento fiscal.
-          format: date
-          type: string
-      required:
-      - dEmi
-      - mod
-      - nro
-      - serie
-      - valor
       type: object
     CteSefazInfGlobalizado:
       description: Informações do CT-e Globalizado.
@@ -17576,24 +15448,6 @@ components:
       required:
       - chCTe
       type: object
-    CteSefazInfCteAnu:
-      description: Detalhamento do CT-e do tipo Anulação.
-      example:
-        dEmi: 2000-01-23
-        chCte: chCte
-      properties:
-        chCte:
-          description: Chave de acesso do CT-e original a ser anulado e substituído.
-          type: string
-        dEmi:
-          description: Data de emissão da declaração do tomador não contribuinte do
-            ICMS.
-          format: date
-          type: string
-      required:
-      - chCte
-      - dEmi
-      type: object
     CteSefazAutXML:
       description: "Autorizados para download do XML do DF-e.\r\nInformar CNPJ ou\
         \ CPF. Preencher os zeros não significativos."
@@ -17612,7 +15466,7 @@ components:
       description: Informações do Responsável Técnico pela emissão do DF-e.
       example:
         fone: fone
-        idCSRT: 7
+        idCSRT: 8
         CNPJ: CNPJ
         hashCSRT: hashCSRT
         xContato: xContato
@@ -17672,140 +15526,8 @@ components:
         qrCodCTe: qrCodCTe
       properties:
         qrCodCTe:
-          description: "Texto com o QR-Code impresso no DACTE.\r\nGeramos automaticamente\
-            \ quando nenhum valor é informado."
-          type: string
-      type: object
-    DfeLote:
-      example:
-        recibo:
-          numero: numero
-          mensagem: mensagem
-          codigo_status: 6
-          codigo_mensagem: 1
-          motivo_status: motivo_status
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-        documentos:
-        - valor_total: 5.637376656633329
-          autorizacao:
-            ambiente: homologacao
-            mensagem: mensagem
-            codigo_status: 7
-            chave_acesso: chave_acesso
-            tipo_evento: tipo_evento
-            codigo_mensagem: 9
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            autor:
-              cpf_cnpj: cpf_cnpj
-            numero_protocolo: numero_protocolo
-            digest_value: digest_value
-            numero_sequencial: 2
-            id: id
-            motivo_status: motivo_status
-            status: pendente
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          numero: 5
-          ambiente: homologacao
-          serie: 1
-          chave: chave
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          modelo: 6
-          referencia: referencia
-          data_emissao: 2000-01-23T04:56:07.000+00:00
-          status: pendente
-        - valor_total: 5.637376656633329
-          autorizacao:
-            ambiente: homologacao
-            mensagem: mensagem
-            codigo_status: 7
-            chave_acesso: chave_acesso
-            tipo_evento: tipo_evento
-            codigo_mensagem: 9
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            autor:
-              cpf_cnpj: cpf_cnpj
-            numero_protocolo: numero_protocolo
-            digest_value: digest_value
-            numero_sequencial: 2
-            id: id
-            motivo_status: motivo_status
-            status: pendente
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          numero: 5
-          ambiente: homologacao
-          serie: 1
-          chave: chave
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          modelo: 6
-          referencia: referencia
-          data_emissao: 2000-01-23T04:56:07.000+00:00
-          status: pendente
-        ambiente: homologacao
-        id_lote: id_lote
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        referencia: referencia
-        status: pendente
-      properties:
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este documento.
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        status:
-          enum:
-          - pendente
-          - processado
-          - erro
-          type: string
-        ambiente:
-          enum:
-          - homologacao
-          - producao
-          type: string
-        referencia:
-          description: "Seu identificador único para este documento. Opcional, ajuda\
-            \ a evitar o envio duplicado de um mesmo documento."
-          type: string
-        id_lote:
-          type: string
-        recibo:
-          $ref: '#/components/schemas/DfeRecibo'
-        documentos:
-          items:
-            $ref: '#/components/schemas/Dfe'
-          type: array
-      type: object
-    DfeRecibo:
-      example:
-        numero: numero
-        mensagem: mensagem
-        codigo_status: 6
-        codigo_mensagem: 1
-        motivo_status: motivo_status
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        numero:
-          description: Número do Recibo
-          type: string
-        codigo_status:
-          description: Código do status da mensagem enviada.
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do serviço solicitado.
-          type: string
-        data_recebimento:
-          description: Data e hora de processamento.
-          format: date-time
-          type: string
-        codigo_mensagem:
-          description: Código da Mensagem.
-          type: integer
-        mensagem:
-          description: Mensagem da SEFAZ para o emissor.
+          description: "Texto com o QR-Code impresso no DACTE.\r\n\r\n*Geramos automaticamente\
+            \ quando nenhum valor é informado.*"
           type: string
       type: object
     Dfe:
@@ -17975,158 +15697,6 @@ components:
         cpf_cnpj:
           description: CPF/CNPJ do Autor.
           type: string
-      type: object
-    DfeLoteListagem:
-      example:
-        '@count': 0
-        data:
-        - recibo:
-            numero: numero
-            mensagem: mensagem
-            codigo_status: 6
-            codigo_mensagem: 1
-            motivo_status: motivo_status
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-          documentos:
-          - valor_total: 5.637376656633329
-            autorizacao:
-              ambiente: homologacao
-              mensagem: mensagem
-              codigo_status: 7
-              chave_acesso: chave_acesso
-              tipo_evento: tipo_evento
-              codigo_mensagem: 9
-              data_recebimento: 2000-01-23T04:56:07.000+00:00
-              autor:
-                cpf_cnpj: cpf_cnpj
-              numero_protocolo: numero_protocolo
-              digest_value: digest_value
-              numero_sequencial: 2
-              id: id
-              motivo_status: motivo_status
-              status: pendente
-              data_evento: 2000-01-23T04:56:07.000+00:00
-            numero: 5
-            ambiente: homologacao
-            serie: 1
-            chave: chave
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            modelo: 6
-            referencia: referencia
-            data_emissao: 2000-01-23T04:56:07.000+00:00
-            status: pendente
-          - valor_total: 5.637376656633329
-            autorizacao:
-              ambiente: homologacao
-              mensagem: mensagem
-              codigo_status: 7
-              chave_acesso: chave_acesso
-              tipo_evento: tipo_evento
-              codigo_mensagem: 9
-              data_recebimento: 2000-01-23T04:56:07.000+00:00
-              autor:
-                cpf_cnpj: cpf_cnpj
-              numero_protocolo: numero_protocolo
-              digest_value: digest_value
-              numero_sequencial: 2
-              id: id
-              motivo_status: motivo_status
-              status: pendente
-              data_evento: 2000-01-23T04:56:07.000+00:00
-            numero: 5
-            ambiente: homologacao
-            serie: 1
-            chave: chave
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            modelo: 6
-            referencia: referencia
-            data_emissao: 2000-01-23T04:56:07.000+00:00
-            status: pendente
-          ambiente: homologacao
-          id_lote: id_lote
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          referencia: referencia
-          status: pendente
-        - recibo:
-            numero: numero
-            mensagem: mensagem
-            codigo_status: 6
-            codigo_mensagem: 1
-            motivo_status: motivo_status
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-          documentos:
-          - valor_total: 5.637376656633329
-            autorizacao:
-              ambiente: homologacao
-              mensagem: mensagem
-              codigo_status: 7
-              chave_acesso: chave_acesso
-              tipo_evento: tipo_evento
-              codigo_mensagem: 9
-              data_recebimento: 2000-01-23T04:56:07.000+00:00
-              autor:
-                cpf_cnpj: cpf_cnpj
-              numero_protocolo: numero_protocolo
-              digest_value: digest_value
-              numero_sequencial: 2
-              id: id
-              motivo_status: motivo_status
-              status: pendente
-              data_evento: 2000-01-23T04:56:07.000+00:00
-            numero: 5
-            ambiente: homologacao
-            serie: 1
-            chave: chave
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            modelo: 6
-            referencia: referencia
-            data_emissao: 2000-01-23T04:56:07.000+00:00
-            status: pendente
-          - valor_total: 5.637376656633329
-            autorizacao:
-              ambiente: homologacao
-              mensagem: mensagem
-              codigo_status: 7
-              chave_acesso: chave_acesso
-              tipo_evento: tipo_evento
-              codigo_mensagem: 9
-              data_recebimento: 2000-01-23T04:56:07.000+00:00
-              autor:
-                cpf_cnpj: cpf_cnpj
-              numero_protocolo: numero_protocolo
-              digest_value: digest_value
-              numero_sequencial: 2
-              id: id
-              motivo_status: motivo_status
-              status: pendente
-              data_evento: 2000-01-23T04:56:07.000+00:00
-            numero: 5
-            ambiente: homologacao
-            serie: 1
-            chave: chave
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            modelo: 6
-            referencia: referencia
-            data_emissao: 2000-01-23T04:56:07.000+00:00
-            status: pendente
-          ambiente: homologacao
-          id_lote: id_lote
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          referencia: referencia
-          status: pendente
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/DfeLote'
-          type: array
       type: object
     DfeListagem:
       example:
@@ -18408,139 +15978,6 @@ components:
           type: string
       required:
       - correcoes
-      type: object
-    DfePedidoInutilizacao:
-      example:
-        ano: 0
-        numero_inicial: 1
-        ambiente: homologacao
-        numero_final: 5
-        justificativa: justificativa
-        serie: 6
-        cnpj: cnpj
-      properties:
-        ambiente:
-          description: Identificação do Ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        cnpj:
-          description: CNPJ do emitente.
-          type: string
-        ano:
-          description: Ano de inutilização da numeração.
-          type: integer
-        serie:
-          description: Série da NF-e.
-          type: integer
-        numero_inicial:
-          description: Número da NF-e inicial.
-          type: integer
-        numero_final:
-          description: Número da NF-e final.
-          type: integer
-        justificativa:
-          description: Justificativa do pedido de inutilização.
-          type: string
-      required:
-      - ambiente
-      - ano
-      - cnpj
-      - justificativa
-      - numero_final
-      - numero_inicial
-      - serie
-      type: object
-    DfeInutilizacao:
-      example:
-        ano: 0
-        numero_inicial: 5
-        ambiente: homologacao
-        mensagem: mensagem
-        codigo_status: 7
-        chave_acesso: chave_acesso
-        cnpj: cnpj
-        tipo_evento: tipo_evento
-        codigo_mensagem: 9
-        modelo: 6
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-        autor:
-          cpf_cnpj: cpf_cnpj
-        numero_protocolo: numero_protocolo
-        numero_final: 5
-        justificativa: justificativa
-        numero_sequencial: 2
-        serie: 1
-        id: id
-        motivo_status: motivo_status
-        status: pendente
-        data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        cnpj:
-          type: string
-        ano:
-          type: integer
-        modelo:
-          type: integer
-        serie:
-          type: integer
-        numero_inicial:
-          type: integer
-        numero_final:
-          type: integer
-        justificativa:
-          type: string
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este evento.
-          type: string
-        ambiente:
-          description: Identificação do ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        status:
-          description: Status do Evento.
-          enum:
-          - pendente
-          - registrado
-          - rejeitado
-          - erro
-          type: string
-        autor:
-          $ref: '#/components/schemas/DfeAutorEvento'
-        chave_acesso:
-          description: Chave de Acesso do documento vinculado ao evento.
-          type: string
-        data_evento:
-          description: Data e hora do Evento.
-          format: date-time
-          type: string
-        numero_sequencial:
-          description: Sequencial do evento para o mesmo tipo de evento.
-          type: integer
-        data_recebimento:
-          description: Data e hora do recebimento do Evento pela SEFAZ.
-          format: date-time
-          type: string
-        codigo_status:
-          description: Código do status de registro do Evento.
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do registro do Evento.
-          type: string
-        numero_protocolo:
-          description: Número do Protocolo de registro do Evento.
-          type: string
-        codigo_mensagem:
-          description: Código da Mensagem.
-          type: integer
-        mensagem:
-          description: Mensagem da SEFAZ para o emissor.
-          type: string
-        tipo_evento:
-          type: string
       type: object
     DfeEvento:
       example:
@@ -22854,13 +20291,13 @@ components:
         cMDF:
           description: "Código numérico que compõe a Chave de Acesso.\r\nCódigo aleató\
             rio gerado pelo emitente, com o objetivo de evitar acessos indevidos ao\
-            \ documento.\r\nGeramos automaticamente quando nenhum valor é informado."
+            \ documento.\r\n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
           type: string
         cDV:
           description: "Digito verificador da chave de acesso do Manifesto.\r\nInformar\
             \ o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado\
             \ com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.\r\
-            \nGeramos automaticamente quando nenhum valor é informado."
+            \n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
           type: integer
         modal:
           description: "Modalidade de transporte.\r\n* 1 - Rodoviário\r\n* 2 - Aé\
@@ -22977,33 +20414,33 @@ components:
       properties:
         CNPJ:
           description: "CNPJ do emitente.\r\nInformar zeros não significativos.\r\n\
-            Obrigatório caso o emitente seja pessoa jurídica."
+            \r\n***Obrigatório caso o emitente seja pessoa jurídica***."
           type: string
         CPF:
           description: "CPF do emitente.\r\nInformar zeros não significativos.\r\n\
             Usar com série específica 920-969 para emitente pessoa física com inscriç\
             ão estadual.\r\nPoderá ser usado também para emissão do Regime Especial\
-            \ da Nota Fiscal Fácil.\r\nObrigatorio caso o emitente seja pessoa fí\
-            sica."
+            \ da Nota Fiscal Fácil.\r\n\r\n***Obrigatorio caso o emitente seja pessoa\
+            \ física***."
           type: string
         IE:
-          description: "Inscrição Estadual do emitemte.\r\nCaso não seja informado,\
-            \ será utilizado o do cadastro da empresa."
+          description: "Inscrição Estadual do emitemte.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
           type: string
         xNome:
-          description: "Razão social ou Nome do emitente.\r\nCaso não seja informado,\
-            \ será utilizado o do cadastro da empresa."
+          description: "Razão social ou Nome do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
           type: string
         xFant:
-          description: "Nome fantasia do emitente.\r\nCaso não seja informado, será\
-            \ utilizado o do cadastro da empresa."
+          description: "Nome fantasia do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
           type: string
         enderEmit:
           $ref: '#/components/schemas/MdfeSefazEndeEmi'
       type: object
     MdfeSefazEndeEmi:
-      description: "Endereço do emitente.\r\nCaso não seja informado, será utilizado\
-        \ o do cadastro da empresa."
+      description: "Endereço do emitente.\r\n\r\n*Caso não seja informado, será utilizado\
+        \ o do cadastro da empresa.*"
       example:
         xCpl: xCpl
         fone: fone
@@ -23017,42 +20454,42 @@ components:
         CEP: CEP
       properties:
         xLgr:
-          description: "Logradouro.\r\nCaso não seja informado, será utilizado o do\
-            \ cadastro da empresa."
+          description: "Logradouro.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         nro:
-          description: "Número.\r\nCaso não seja informado, será utilizado o do cadastro\
-            \ da empresa."
+          description: "Número.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
           type: string
         xCpl:
-          description: "Complemento.\r\nCaso não seja informado, será utilizado o\
-            \ do cadastro da empresa."
+          description: "Complemento.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         xBairro:
-          description: "Bairro.\r\nCaso não seja informado, será utilizado o do cadastro\
-            \ da empresa."
+          description: "Bairro.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
           type: string
         cMun:
           description: "Código do município (utilizar a tabela do IBGE), informar\
-            \ 9999999 para operações com o exterior.\r\nCaso não seja informado, será\
-            \ utilizado o do cadastro da empresa."
+            \ 9999999 para operações com o exterior.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
           type: string
         xMun:
           description: "Nome do município, , informar EXTERIOR para operações com\
-            \ o exterior.\r\nCaso não seja informado, será utilizado o do cadastro\
-            \ da empresa."
+            \ o exterior.\r\n\r\n*Caso não seja informado, será utilizado o do cadastro\
+            \ da empresa.*"
           type: string
         CEP:
-          description: "CEP.\r\nInformar zeros não significativos.\r\nCaso não seja\
-            \ informado, será utilizado o do cadastro da empresa."
+          description: "CEP.\r\nInformar zeros não significativos.\r\n\r\n*Caso nã\
+            o seja informado, será utilizado o do cadastro da empresa.*"
           type: string
         UF:
           description: "Sigla da UF, , informar EX para operações com o exterior.\r\
-            \nCaso não seja informado, será utilizado o do cadastro da empresa."
+            \n\r\n*Caso não seja informado, será utilizado o do cadastro da empresa.*"
           type: string
         fone:
-          description: "Telefone.\r\nCaso não seja informado, será utilizado o do\
-            \ cadastro da empresa."
+          description: "Telefone.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         email:
           description: Endereço de E-mail.
@@ -26325,9 +23762,293 @@ components:
         qrCodMDFe: qrCodMDFe
       properties:
         qrCodMDFe:
-          description: "Texto com o QR-Code para consulta do MDF-e.\r\nGeramos automaticamente\
-            \ quando nenhum valor é informado."
+          description: "Texto com o QR-Code para consulta do MDF-e.\r\n\r\n*Geramos\
+            \ automaticamente quando nenhum valor é informado.*"
           type: string
+      type: object
+    DfeLote:
+      example:
+        recibo:
+          numero: numero
+          mensagem: mensagem
+          codigo_status: 6
+          codigo_mensagem: 1
+          motivo_status: motivo_status
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+        documentos:
+        - valor_total: 5.637376656633329
+          autorizacao:
+            ambiente: homologacao
+            mensagem: mensagem
+            codigo_status: 7
+            chave_acesso: chave_acesso
+            tipo_evento: tipo_evento
+            codigo_mensagem: 9
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            autor:
+              cpf_cnpj: cpf_cnpj
+            numero_protocolo: numero_protocolo
+            digest_value: digest_value
+            numero_sequencial: 2
+            id: id
+            motivo_status: motivo_status
+            status: pendente
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          numero: 5
+          ambiente: homologacao
+          serie: 1
+          chave: chave
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          modelo: 6
+          referencia: referencia
+          data_emissao: 2000-01-23T04:56:07.000+00:00
+          status: pendente
+        - valor_total: 5.637376656633329
+          autorizacao:
+            ambiente: homologacao
+            mensagem: mensagem
+            codigo_status: 7
+            chave_acesso: chave_acesso
+            tipo_evento: tipo_evento
+            codigo_mensagem: 9
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            autor:
+              cpf_cnpj: cpf_cnpj
+            numero_protocolo: numero_protocolo
+            digest_value: digest_value
+            numero_sequencial: 2
+            id: id
+            motivo_status: motivo_status
+            status: pendente
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          numero: 5
+          ambiente: homologacao
+          serie: 1
+          chave: chave
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          modelo: 6
+          referencia: referencia
+          data_emissao: 2000-01-23T04:56:07.000+00:00
+          status: pendente
+        ambiente: homologacao
+        id_lote: id_lote
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        referencia: referencia
+        status: pendente
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este documento.
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        status:
+          enum:
+          - pendente
+          - processado
+          - erro
+          type: string
+        ambiente:
+          enum:
+          - homologacao
+          - producao
+          type: string
+        referencia:
+          description: "Seu identificador único para este documento. Opcional, ajuda\
+            \ a evitar o envio duplicado de um mesmo documento."
+          type: string
+        id_lote:
+          type: string
+        recibo:
+          $ref: '#/components/schemas/DfeRecibo'
+        documentos:
+          items:
+            $ref: '#/components/schemas/Dfe'
+          type: array
+      type: object
+    DfeRecibo:
+      example:
+        numero: numero
+        mensagem: mensagem
+        codigo_status: 6
+        codigo_mensagem: 1
+        motivo_status: motivo_status
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        numero:
+          description: Número do Recibo
+          type: string
+        codigo_status:
+          description: Código do status da mensagem enviada.
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do serviço solicitado.
+          type: string
+        data_recebimento:
+          description: Data e hora de processamento.
+          format: date-time
+          type: string
+        codigo_mensagem:
+          description: Código da Mensagem.
+          type: integer
+        mensagem:
+          description: Mensagem da SEFAZ para o emissor.
+          type: string
+      type: object
+    DfeLoteListagem:
+      example:
+        '@count': 0
+        data:
+        - recibo:
+            numero: numero
+            mensagem: mensagem
+            codigo_status: 6
+            codigo_mensagem: 1
+            motivo_status: motivo_status
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+          documentos:
+          - valor_total: 5.637376656633329
+            autorizacao:
+              ambiente: homologacao
+              mensagem: mensagem
+              codigo_status: 7
+              chave_acesso: chave_acesso
+              tipo_evento: tipo_evento
+              codigo_mensagem: 9
+              data_recebimento: 2000-01-23T04:56:07.000+00:00
+              autor:
+                cpf_cnpj: cpf_cnpj
+              numero_protocolo: numero_protocolo
+              digest_value: digest_value
+              numero_sequencial: 2
+              id: id
+              motivo_status: motivo_status
+              status: pendente
+              data_evento: 2000-01-23T04:56:07.000+00:00
+            numero: 5
+            ambiente: homologacao
+            serie: 1
+            chave: chave
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            modelo: 6
+            referencia: referencia
+            data_emissao: 2000-01-23T04:56:07.000+00:00
+            status: pendente
+          - valor_total: 5.637376656633329
+            autorizacao:
+              ambiente: homologacao
+              mensagem: mensagem
+              codigo_status: 7
+              chave_acesso: chave_acesso
+              tipo_evento: tipo_evento
+              codigo_mensagem: 9
+              data_recebimento: 2000-01-23T04:56:07.000+00:00
+              autor:
+                cpf_cnpj: cpf_cnpj
+              numero_protocolo: numero_protocolo
+              digest_value: digest_value
+              numero_sequencial: 2
+              id: id
+              motivo_status: motivo_status
+              status: pendente
+              data_evento: 2000-01-23T04:56:07.000+00:00
+            numero: 5
+            ambiente: homologacao
+            serie: 1
+            chave: chave
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            modelo: 6
+            referencia: referencia
+            data_emissao: 2000-01-23T04:56:07.000+00:00
+            status: pendente
+          ambiente: homologacao
+          id_lote: id_lote
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          referencia: referencia
+          status: pendente
+        - recibo:
+            numero: numero
+            mensagem: mensagem
+            codigo_status: 6
+            codigo_mensagem: 1
+            motivo_status: motivo_status
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+          documentos:
+          - valor_total: 5.637376656633329
+            autorizacao:
+              ambiente: homologacao
+              mensagem: mensagem
+              codigo_status: 7
+              chave_acesso: chave_acesso
+              tipo_evento: tipo_evento
+              codigo_mensagem: 9
+              data_recebimento: 2000-01-23T04:56:07.000+00:00
+              autor:
+                cpf_cnpj: cpf_cnpj
+              numero_protocolo: numero_protocolo
+              digest_value: digest_value
+              numero_sequencial: 2
+              id: id
+              motivo_status: motivo_status
+              status: pendente
+              data_evento: 2000-01-23T04:56:07.000+00:00
+            numero: 5
+            ambiente: homologacao
+            serie: 1
+            chave: chave
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            modelo: 6
+            referencia: referencia
+            data_emissao: 2000-01-23T04:56:07.000+00:00
+            status: pendente
+          - valor_total: 5.637376656633329
+            autorizacao:
+              ambiente: homologacao
+              mensagem: mensagem
+              codigo_status: 7
+              chave_acesso: chave_acesso
+              tipo_evento: tipo_evento
+              codigo_mensagem: 9
+              data_recebimento: 2000-01-23T04:56:07.000+00:00
+              autor:
+                cpf_cnpj: cpf_cnpj
+              numero_protocolo: numero_protocolo
+              digest_value: digest_value
+              numero_sequencial: 2
+              id: id
+              motivo_status: motivo_status
+              status: pendente
+              data_evento: 2000-01-23T04:56:07.000+00:00
+            numero: 5
+            ambiente: homologacao
+            serie: 1
+            chave: chave
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            modelo: 6
+            referencia: referencia
+            data_emissao: 2000-01-23T04:56:07.000+00:00
+            status: pendente
+          ambiente: homologacao
+          id_lote: id_lote
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          referencia: referencia
+          status: pendente
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DfeLote'
+          type: array
       type: object
     MdfePedidoCancelamento:
       example:
@@ -32854,8 +30575,8 @@ components:
           type: integer
         cNF:
           description: "Código numérico que compõe a Chave de Acesso. Número aleató\
-            rio gerado pelo emitente para cada NF-e.\r\nGeramos automaticamente quando\
-            \ nenhum valor é informado."
+            rio gerado pelo emitente para cada NF-e.\r\n\r\n*Geramos automaticamente\
+            \ quando nenhum valor é informado.*"
           type: string
         natOp:
           description: Descrição da Natureza da Operação.
@@ -32904,8 +30625,8 @@ components:
             \ 7 - Contingência SVC - RS\r\n* 9 - Contingência off-line NFC-e"
           type: integer
         cDV:
-          description: "Digito Verificador da Chave de Acesso da NF-e.\r\nGeramos\
-            \ automaticamente quando nenhum valor é informado."
+          description: "Digito Verificador da Chave de Acesso da NF-e.\r\n\r\n*Geramos\
+            \ automaticamente quando nenhum valor é informado.*"
           type: integer
         tpAmb:
           description: "Identificação do Ambiente:\r\n* 1 - Produção\r\n* 2 - Homologaç\
@@ -33156,49 +30877,49 @@ components:
         IEST: IEST
       properties:
         CNPJ:
-          description: "Número do CNPJ do emitente.\r\nObrigatório caso o emitente\
-            \ seja pessoa jurídica."
+          description: "Número do CNPJ do emitente.\r\n\r\n***Obrigatório caso o emitente\
+            \ seja pessoa jurídica***."
           type: string
         CPF:
-          description: "Número do CPF do emitente.\r\nObrigatorio caso o emitente\
-            \ seja pessoa física."
+          description: "Número do CPF do emitente.\r\n\r\n***Obrigatorio caso o emitente\
+            \ seja pessoa física***."
           type: string
         xNome:
-          description: "Razão Social ou Nome do emitente.\r\nCaso não seja informado,\
-            \ será utilizado o do cadastro da empresa."
+          description: "Razão Social ou Nome do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
           type: string
         xFant:
-          description: "Nome fantasia.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "Nome fantasia.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         enderEmit:
           $ref: '#/components/schemas/NfeSefazEnderEmi'
         IE:
-          description: "Inscrição Estadual do Emitente.\r\nCaso não seja informado,\
-            \ será utilizado o do cadastro da empresa."
+          description: "Inscrição Estadual do Emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
           type: string
         IEST:
-          description: "Inscricao Estadual do Substituto Tributário.\r\nCaso não seja\
-            \ informado, será utilizado o do cadastro da empresa."
+          description: "Inscricao Estadual do Substituto Tributário.\r\n\r\n*Caso\
+            \ não seja informado, será utilizado o do cadastro da empresa.*"
           type: string
         IM:
-          description: "Inscrição Municipal.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "Inscrição Municipal.\r\n\r\n*Caso não seja informado, será\
+            \ utilizado o do cadastro da empresa.*"
           type: string
         CNAE:
-          description: "CNAE Fiscal.\r\nCaso não seja informado, será utilizado o\
-            \ do cadastro da empresa."
+          description: "CNAE Fiscal.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         CRT:
           description: "Código de Regime Tributário.\r\nEste campo será obrigatoriamente\
             \ preenchido com:\r\n* 1 - Simples Nacional\r\n* 2 - Simples Nacional\
-            \ - excesso de sublimite de receita bruta\r\n* 3 - Regime Normal\r\nCaso\
-            \ não seja informado, será utilizado o do cadastro da empresa."
+            \ - excesso de sublimite de receita bruta\r\n* 3 - Regime Normal\r\n\r\
+            \n*Caso não seja informado, será utilizado o do cadastro da empresa.*"
           type: integer
       type: object
     NfeSefazEnderEmi:
-      description: "Endereço do emitente.\r\nCaso não seja informado, será utilizado\
-        \ o do cadastro da empresa."
+      description: "Endereço do emitente.\r\n\r\n*Caso não seja informado, será utilizado\
+        \ o do cadastro da empresa.*"
       example:
         xCpl: xCpl
         fone: fone
@@ -33213,48 +30934,48 @@ components:
         CEP: CEP
       properties:
         xLgr:
-          description: "Logradouro.\r\nCaso não seja informado, será utilizado o do\
-            \ cadastro da empresa."
+          description: "Logradouro.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         nro:
-          description: "Número.\r\nCaso não seja informado, será utilizado o do cadastro\
-            \ da empresa."
+          description: "Número.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
           type: string
         xCpl:
-          description: "Complemento.\r\nCaso não seja informado, será utilizado o\
-            \ do cadastro da empresa."
+          description: "Complemento.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         xBairro:
-          description: "Bairro.\r\nCaso não seja informado, será utilizado o do cadastro\
-            \ da empresa."
+          description: "Bairro.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
           type: string
         cMun:
-          description: "Código do município.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "Código do município.\r\n\r\n*Caso não seja informado, será\
+            \ utilizado o do cadastro da empresa.*"
           type: string
         xMun:
-          description: "Nome do município.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "Nome do município.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         UF:
-          description: "Sigla da UF.\r\nCaso não seja informado, será utilizado o\
-            \ do cadastro da empresa."
+          description: "Sigla da UF.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         CEP:
-          description: "CEP - NT 2011/004.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "CEP - NT 2011/004.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         cPais:
-          description: "Código do país.\r\nCaso não seja informado, será utilizado\
-            \ o do cadastro da empresa."
+          description: "Código do país.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         xPais:
-          description: "Nome do país.\r\nCaso não seja informado, será utilizado o\
-            \ do cadastro da empresa."
+          description: "Nome do país.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
           type: string
         fone:
           description: "Preencher com Código DDD + número do telefone (v.2.0).\r\n\
-            Caso não seja informado, será utilizado o do cadastro da empresa."
+            \r\n*Caso não seja informado, será utilizado o do cadastro da empresa.*"
           type: string
       type: object
     NfeSefazAvulsa:
@@ -39063,13 +36784,14 @@ components:
         qrCode: qrCode
       properties:
         qrCode:
-          description: "Texto com o QR-Code impresso no DANFE NFC-e.\r\nGeramos automaticamente\
-            \ quando nenhum valor é informado."
+          description: "Texto com o QR-Code impresso no DANFE NFC-e.\r\n\r\n*Geramos\
+            \ automaticamente quando nenhum valor é informado.*"
           type: string
         urlChave:
           description: "Informar a URL da \"Consulta por chave de acesso da NFC-e\"\
             . A mesma URL que deve estar informada no DANFE NFC-e para consulta por\
-            \ chave de acesso.\r\nGeramos automaticamente quando nenhum valor é informado."
+            \ chave de acesso.\r\n\r\n*Geramos automaticamente quando nenhum valor\
+            \ é informado.*"
           type: string
       type: object
     NfePedidoCancelamento:
@@ -39110,6 +36832,139 @@ components:
       properties:
         correcao:
           description: Correção a ser considerada.
+          type: string
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este evento.
+          type: string
+        ambiente:
+          description: Identificação do ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        status:
+          description: Status do Evento.
+          enum:
+          - pendente
+          - registrado
+          - rejeitado
+          - erro
+          type: string
+        autor:
+          $ref: '#/components/schemas/DfeAutorEvento'
+        chave_acesso:
+          description: Chave de Acesso do documento vinculado ao evento.
+          type: string
+        data_evento:
+          description: Data e hora do Evento.
+          format: date-time
+          type: string
+        numero_sequencial:
+          description: Sequencial do evento para o mesmo tipo de evento.
+          type: integer
+        data_recebimento:
+          description: Data e hora do recebimento do Evento pela SEFAZ.
+          format: date-time
+          type: string
+        codigo_status:
+          description: Código do status de registro do Evento.
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do registro do Evento.
+          type: string
+        numero_protocolo:
+          description: Número do Protocolo de registro do Evento.
+          type: string
+        codigo_mensagem:
+          description: Código da Mensagem.
+          type: integer
+        mensagem:
+          description: Mensagem da SEFAZ para o emissor.
+          type: string
+        tipo_evento:
+          type: string
+      type: object
+    DfePedidoInutilizacao:
+      example:
+        ano: 0
+        numero_inicial: 1
+        ambiente: homologacao
+        numero_final: 5
+        justificativa: justificativa
+        serie: 6
+        cnpj: cnpj
+      properties:
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        cnpj:
+          description: CNPJ do emitente.
+          type: string
+        ano:
+          description: Ano de inutilização da numeração.
+          type: integer
+        serie:
+          description: Série da NF-e.
+          type: integer
+        numero_inicial:
+          description: Número da NF-e inicial.
+          type: integer
+        numero_final:
+          description: Número da NF-e final.
+          type: integer
+        justificativa:
+          description: Justificativa do pedido de inutilização.
+          type: string
+      required:
+      - ambiente
+      - ano
+      - cnpj
+      - justificativa
+      - numero_final
+      - numero_inicial
+      - serie
+      type: object
+    DfeInutilizacao:
+      example:
+        ano: 0
+        numero_inicial: 5
+        ambiente: homologacao
+        mensagem: mensagem
+        codigo_status: 7
+        chave_acesso: chave_acesso
+        cnpj: cnpj
+        tipo_evento: tipo_evento
+        codigo_mensagem: 9
+        modelo: 6
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        autor:
+          cpf_cnpj: cpf_cnpj
+        numero_protocolo: numero_protocolo
+        numero_final: 5
+        justificativa: justificativa
+        numero_sequencial: 2
+        serie: 1
+        id: id
+        motivo_status: motivo_status
+        status: pendente
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        cnpj:
+          type: string
+        ano:
+          type: integer
+        modelo:
+          type: integer
+        serie:
+          type: integer
+        numero_inicial:
+          type: integer
+        numero_final:
+          type: integer
+        justificativa:
           type: string
         id:
           description: ID único gerado pela Nuvem Fiscal para este evento.

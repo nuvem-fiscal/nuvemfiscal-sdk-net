@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazIde" /> class.
         /// </summary>
         /// <param name="cUF">Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE. (required).</param>
-        /// <param name="cNF">Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="cNF">Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="natOp">Descrição da Natureza da Operação. (required).</param>
         /// <param name="mod">Código do modelo do Documento Fiscal:  * 55 - NF-e  * 65 - NFC-e.</param>
         /// <param name="serie">Série do Documento Fiscal:  * Série normal 0-889  * Avulsa Fisco 890-899  * SCAN 900-999 (required).</param>
@@ -49,7 +49,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cMunFG">Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE). (required).</param>
         /// <param name="tpImp">Formato de impressão do DANFE:  * 0 - Sem DANFE  * 1 - DANFe Retrato  * 2 - DANFe Paisagem  * 3 - DANFe Simplificado  * 4 - DANFe NFC-e  * 5 - DANFe NFC-e em mensagem eletrônica (required).</param>
         /// <param name="tpEmis">Forma de emissão da NF-e  * 1 - Normal  * 2 - Contingência FS  * 3 - Regime Especial NFF (NT 2021.002)  * 4 - Contingência DPEC  * 5 - Contingência FSDA  * 6 - Contingência SVC - AN  * 7 - Contingência SVC - RS  * 9 - Contingência off-line NFC-e (required).</param>
-        /// <param name="cDV">Digito Verificador da Chave de Acesso da NF-e.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="cDV">Digito Verificador da Chave de Acesso da NF-e.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="tpAmb">Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação.</param>
         /// <param name="finNFe">Finalidade da emissão da NF-e:  * 1 - NFe normal  * 2 - NFe complementar  * 3 - NFe de ajuste  * 4 - Devolução/Retorno (required).</param>
         /// <param name="indFinal">Indica operação com consumidor final:  * 0 - Não  * 1 - Consumidor Final (required).</param>
@@ -111,9 +111,9 @@ namespace NuvemFiscal.Sdk.Model
         public int cUF { get; set; }
 
         /// <summary>
-        /// Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.  Geramos automaticamente quando nenhum valor é informado.
+        /// Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "cNF", EmitDefaultValue = false)]
         public string cNF { get; set; }
 
@@ -195,9 +195,9 @@ namespace NuvemFiscal.Sdk.Model
         public int tpEmis { get; set; }
 
         /// <summary>
-        /// Digito Verificador da Chave de Acesso da NF-e.  Geramos automaticamente quando nenhum valor é informado.
+        /// Digito Verificador da Chave de Acesso da NF-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Digito Verificador da Chave de Acesso da NF-e.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Digito Verificador da Chave de Acesso da NF-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "cDV", EmitDefaultValue = false)]
         public int cDV { get; set; }
 

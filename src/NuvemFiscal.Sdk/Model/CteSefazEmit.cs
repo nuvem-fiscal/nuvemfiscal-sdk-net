@@ -31,14 +31,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazEmit" /> class.
         /// </summary>
-        /// <param name="cNPJ">CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica..</param>
-        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física..</param>
-        /// <param name="iE">Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="cNPJ">CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***..</param>
+        /// <param name="cPF">CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.    ***Obrigatorio caso o emitente seja pessoa física***..</param>
+        /// <param name="iE">Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         /// <param name="iEST">Inscrição Estadual do Substituto Tributário..</param>
-        /// <param name="xNome">Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xFant">Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="xNome">Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="xFant">Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         /// <param name="enderEmit">enderEmit.</param>
-        /// <param name="cRT">Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional  * 2 - Simples Nacional, excesso sublimite de receita bruta  * 3 - Regime Normal.</param>
+        /// <param name="cRT">Código do Regime Tributário. Informar:  * 1 - Simples Nacional;  * 2 - Simples Nacional, excesso sublimite de receita bruta;  * 3 - Regime Normal;  * 4 - Simples Nacional - Microempreendedor Individual (MEI).    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         public CteSefazEmit(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string iEST = default(string), string xNome = default(string), string xFant = default(string), CteSefazEndeEmi enderEmit = default(CteSefazEndeEmi), int cRT = default(int))
         {
             this.CNPJ = cNPJ;
@@ -52,23 +52,23 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica.
+        /// CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.
         /// </summary>
-        /// <value>CNPJ do emitente.  Informar zeros não significativos.  Obrigatório caso o emitente seja pessoa jurídica.</value>
+        /// <value>CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.</value>
         [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
         public string CNPJ { get; set; }
 
         /// <summary>
-        /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física.
+        /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.    ***Obrigatorio caso o emitente seja pessoa física***.
         /// </summary>
-        /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Obrigatorio caso o emitente seja pessoa física.</value>
+        /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.    ***Obrigatorio caso o emitente seja pessoa física***.</value>
         [DataMember(Name = "CPF", EmitDefaultValue = false)]
         public string CPF { get; set; }
 
         /// <summary>
-        /// Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "IE", EmitDefaultValue = false)]
         public string IE { get; set; }
 
@@ -80,16 +80,16 @@ namespace NuvemFiscal.Sdk.Model
         public string IEST { get; set; }
 
         /// <summary>
-        /// Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Razão social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xNome", EmitDefaultValue = false)]
         public string xNome { get; set; }
 
         /// <summary>
-        /// Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xFant", EmitDefaultValue = false)]
         public string xFant { get; set; }
 
@@ -100,9 +100,9 @@ namespace NuvemFiscal.Sdk.Model
         public CteSefazEndeEmi enderEmit { get; set; }
 
         /// <summary>
-        /// Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional  * 2 - Simples Nacional, excesso sublimite de receita bruta  * 3 - Regime Normal
+        /// Código do Regime Tributário. Informar:  * 1 - Simples Nacional;  * 2 - Simples Nacional, excesso sublimite de receita bruta;  * 3 - Regime Normal;  * 4 - Simples Nacional - Microempreendedor Individual (MEI).    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Código do Regime Tributário.  Informar: 1&#x3D;Simples Nacional  * 2 - Simples Nacional, excesso sublimite de receita bruta  * 3 - Regime Normal</value>
+        /// <value>Código do Regime Tributário. Informar:  * 1 - Simples Nacional;  * 2 - Simples Nacional, excesso sublimite de receita bruta;  * 3 - Regime Normal;  * 4 - Simples Nacional - Microempreendedor Individual (MEI).    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "CRT", EmitDefaultValue = false)]
         public int CRT { get; set; }
 

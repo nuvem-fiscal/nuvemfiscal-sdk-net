@@ -435,7 +435,7 @@ catch (ApiException e)
 
 <a name="baixarpdfnfe"></a>
 # **BaixarPdfNfe**
-> FileParameter BaixarPdfNfe (string id, bool? logotipo = null, string mensagemRodape = null)
+> FileParameter BaixarPdfNfe (string id, bool? logotipo = null, string mensagemRodape = null, bool? canhoto = null)
 
 Baixar PDF do DANFE
 
@@ -470,11 +470,12 @@ namespace Example
             var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
             var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
             var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
+            var canhoto = true;  // bool? | Imprime o documento com o bloco de canhoto. (optional)  (default to true)
 
             try
             {
                 // Baixar PDF do DANFE
-                FileParameter result = apiInstance.BaixarPdfNfe(id, logotipo, mensagemRodape);
+                FileParameter result = apiInstance.BaixarPdfNfe(id, logotipo, mensagemRodape, canhoto);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -495,7 +496,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Baixar PDF do DANFE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfeWithHttpInfo(id, logotipo, mensagemRodape);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfeWithHttpInfo(id, logotipo, mensagemRodape, canhoto);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -515,6 +516,7 @@ catch (ApiException e)
 | **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
 | **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
 | **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
+| **canhoto** | **bool?** | Imprime o documento com o bloco de canhoto. | [optional] [default to true] |
 
 ### Tipo de retorno
 

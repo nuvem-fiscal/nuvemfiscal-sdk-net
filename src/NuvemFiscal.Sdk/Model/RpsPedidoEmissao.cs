@@ -94,7 +94,6 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Competência do RPS, no formato AAAA-MM-DD.  Caso não informado, será considerada a data da requisição à API da Nuvem Fiscal.</value>
         [DataMember(Name = "competencia", EmitDefaultValue = false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime competencia { get; set; }
 
         /// <summary>

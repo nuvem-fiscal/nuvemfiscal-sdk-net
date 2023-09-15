@@ -31,16 +31,16 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazEmit" /> class.
         /// </summary>
-        /// <param name="cNPJ">Número do CNPJ do emitente.  Obrigatório caso o emitente seja pessoa jurídica..</param>
-        /// <param name="cPF">Número do CPF do emitente.  Obrigatorio caso o emitente seja pessoa física..</param>
-        /// <param name="xNome">Razão Social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xFant">Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="cNPJ">Número do CNPJ do emitente.    ***Obrigatório caso o emitente seja pessoa jurídica***..</param>
+        /// <param name="cPF">Número do CPF do emitente.    ***Obrigatorio caso o emitente seja pessoa física***..</param>
+        /// <param name="xNome">Razão Social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="xFant">Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         /// <param name="enderEmit">enderEmit.</param>
-        /// <param name="iE">Inscrição Estadual do Emitente.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="iEST">Inscricao Estadual do Substituto Tributário.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="iM">Inscrição Municipal.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="cNAE">CNAE Fiscal.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="cRT">Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="iE">Inscrição Estadual do Emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="iEST">Inscricao Estadual do Substituto Tributário.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="iM">Inscrição Municipal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="cNAE">CNAE Fiscal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="cRT">Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         public NfeSefazEmit(string cNPJ = default(string), string cPF = default(string), string xNome = default(string), string xFant = default(string), NfeSefazEnderEmi enderEmit = default(NfeSefazEnderEmi), string iE = default(string), string iEST = default(string), string iM = default(string), string cNAE = default(string), int cRT = default(int))
         {
             this.CNPJ = cNPJ;
@@ -56,30 +56,30 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Número do CNPJ do emitente.  Obrigatório caso o emitente seja pessoa jurídica.
+        /// Número do CNPJ do emitente.    ***Obrigatório caso o emitente seja pessoa jurídica***.
         /// </summary>
-        /// <value>Número do CNPJ do emitente.  Obrigatório caso o emitente seja pessoa jurídica.</value>
+        /// <value>Número do CNPJ do emitente.    ***Obrigatório caso o emitente seja pessoa jurídica***.</value>
         [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
         public string CNPJ { get; set; }
 
         /// <summary>
-        /// Número do CPF do emitente.  Obrigatorio caso o emitente seja pessoa física.
+        /// Número do CPF do emitente.    ***Obrigatorio caso o emitente seja pessoa física***.
         /// </summary>
-        /// <value>Número do CPF do emitente.  Obrigatorio caso o emitente seja pessoa física.</value>
+        /// <value>Número do CPF do emitente.    ***Obrigatorio caso o emitente seja pessoa física***.</value>
         [DataMember(Name = "CPF", EmitDefaultValue = false)]
         public string CPF { get; set; }
 
         /// <summary>
-        /// Razão Social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Razão Social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Razão Social ou Nome do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Razão Social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xNome", EmitDefaultValue = false)]
         public string xNome { get; set; }
 
         /// <summary>
-        /// Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Nome fantasia.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xFant", EmitDefaultValue = false)]
         public string xFant { get; set; }
 
@@ -90,37 +90,37 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazEnderEmi enderEmit { get; set; }
 
         /// <summary>
-        /// Inscrição Estadual do Emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Inscrição Estadual do Emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Inscrição Estadual do Emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Inscrição Estadual do Emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "IE", EmitDefaultValue = false)]
         public string IE { get; set; }
 
         /// <summary>
-        /// Inscricao Estadual do Substituto Tributário.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Inscricao Estadual do Substituto Tributário.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Inscricao Estadual do Substituto Tributário.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Inscricao Estadual do Substituto Tributário.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "IEST", EmitDefaultValue = false)]
         public string IEST { get; set; }
 
         /// <summary>
-        /// Inscrição Municipal.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Inscrição Municipal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Inscrição Municipal.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Inscrição Municipal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "IM", EmitDefaultValue = false)]
         public string IM { get; set; }
 
         /// <summary>
-        /// CNAE Fiscal.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// CNAE Fiscal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>CNAE Fiscal.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>CNAE Fiscal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "CNAE", EmitDefaultValue = false)]
         public string CNAE { get; set; }
 
         /// <summary>
-        /// Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "CRT", EmitDefaultValue = false)]
         public int CRT { get; set; }
 

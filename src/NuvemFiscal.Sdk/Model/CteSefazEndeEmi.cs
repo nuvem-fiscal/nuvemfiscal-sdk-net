@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Endereço do emitente.  Caso não seja informado, será utilizado o do cadastro da empresa.
+    /// Endereço do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
     /// </summary>
     [DataContract(Name = "CteSefazEndeEmi")]
     public partial class CteSefazEndeEmi : IEquatable<CteSefazEndeEmi>, IValidatableObject
@@ -31,15 +31,15 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CteSefazEndeEmi" /> class.
         /// </summary>
-        /// <param name="xLgr">Logradouro.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="nro">Número.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xCpl">Complemento.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xBairro">Bairro.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="cMun">Código do município (utilizar a tabela do IBGE).  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="xMun">Nome do município.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="cEP">CEP.  Informar zeros não significativos.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="uF">Sigla da UF.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
-        /// <param name="fone">Telefone.  Caso não seja informado, será utilizado o do cadastro da empresa..</param>
+        /// <param name="xLgr">Logradouro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="nro">Número.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="xCpl">Complemento.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="xBairro">Bairro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="cMun">Código do município (utilizar a tabela do IBGE).    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="xMun">Nome do município.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="cEP">CEP.  Informar zeros não significativos.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="uF">Sigla da UF.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
+        /// <param name="fone">Telefone.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         public CteSefazEndeEmi(string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string), string cMun = default(string), string xMun = default(string), string cEP = default(string), string uF = default(string), string fone = default(string))
         {
             this.xLgr = xLgr;
@@ -54,65 +54,65 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Logradouro.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Logradouro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Logradouro.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Logradouro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xLgr", EmitDefaultValue = false)]
         public string xLgr { get; set; }
 
         /// <summary>
-        /// Número.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Número.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Número.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Número.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "nro", EmitDefaultValue = false)]
         public string nro { get; set; }
 
         /// <summary>
-        /// Complemento.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Complemento.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Complemento.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Complemento.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xCpl", EmitDefaultValue = false)]
         public string xCpl { get; set; }
 
         /// <summary>
-        /// Bairro.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Bairro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Bairro.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Bairro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xBairro", EmitDefaultValue = false)]
         public string xBairro { get; set; }
 
         /// <summary>
-        /// Código do município (utilizar a tabela do IBGE).  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Código do município (utilizar a tabela do IBGE).    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Código do município (utilizar a tabela do IBGE).  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Código do município (utilizar a tabela do IBGE).    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "cMun", EmitDefaultValue = false)]
         public string cMun { get; set; }
 
         /// <summary>
-        /// Nome do município.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Nome do município.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Nome do município.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Nome do município.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "xMun", EmitDefaultValue = false)]
         public string xMun { get; set; }
 
         /// <summary>
-        /// CEP.  Informar zeros não significativos.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// CEP.  Informar zeros não significativos.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>CEP.  Informar zeros não significativos.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>CEP.  Informar zeros não significativos.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "CEP", EmitDefaultValue = false)]
         public string CEP { get; set; }
 
         /// <summary>
-        /// Sigla da UF.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Sigla da UF.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Sigla da UF.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Sigla da UF.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "UF", EmitDefaultValue = false)]
         public string UF { get; set; }
 
         /// <summary>
-        /// Telefone.  Caso não seja informado, será utilizado o do cadastro da empresa.
+        /// Telefone.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
-        /// <value>Telefone.  Caso não seja informado, será utilizado o do cadastro da empresa.</value>
+        /// <value>Telefone.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
         [DataMember(Name = "fone", EmitDefaultValue = false)]
         public string fone { get; set; }
 

@@ -31,8 +31,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazInfNFeSupl" /> class.
         /// </summary>
-        /// <param name="qrCode">Texto com o QR-Code impresso no DANFE NFC-e.  Geramos automaticamente quando nenhum valor é informado..</param>
-        /// <param name="urlChave">Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.  Geramos automaticamente quando nenhum valor é informado..</param>
+        /// <param name="qrCode">Texto com o QR-Code impresso no DANFE NFC-e.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
+        /// <param name="urlChave">Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         public NfeSefazInfNFeSupl(string qrCode = default(string), string urlChave = default(string))
         {
             this.qrCode = qrCode;
@@ -40,16 +40,16 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Texto com o QR-Code impresso no DANFE NFC-e.  Geramos automaticamente quando nenhum valor é informado.
+        /// Texto com o QR-Code impresso no DANFE NFC-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Texto com o QR-Code impresso no DANFE NFC-e.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Texto com o QR-Code impresso no DANFE NFC-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "qrCode", EmitDefaultValue = false)]
         public string qrCode { get; set; }
 
         /// <summary>
-        /// Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.  Geramos automaticamente quando nenhum valor é informado.
+        /// Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.  Geramos automaticamente quando nenhum valor é informado.</value>
+        /// <value>Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*</value>
         [DataMember(Name = "urlChave", EmitDefaultValue = false)]
         public string urlChave { get; set; }
 

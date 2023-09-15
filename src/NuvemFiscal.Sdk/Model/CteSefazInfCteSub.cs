@@ -37,10 +37,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazInfCteSub" /> class.
         /// </summary>
         /// <param name="chCte">Chave de acesso do CT-e a ser substituído (original). (required).</param>
-        /// <param name="refCteAnu">Chave de acesso do CT-e de Anulação..</param>
-        /// <param name="tomaICMS">tomaICMS.</param>
         /// <param name="indAlteraToma">Indicador de CT-e Alteração de Tomador..</param>
-        public CteSefazInfCteSub(string chCte = default(string), string refCteAnu = default(string), CteSefazTomaICMS tomaICMS = default(CteSefazTomaICMS), int indAlteraToma = default(int))
+        public CteSefazInfCteSub(string chCte = default(string), int indAlteraToma = default(int))
         {
             // to ensure "chCte" is required (not null)
             if (chCte == null)
@@ -48,8 +46,6 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("chCte is a required property for CteSefazInfCteSub and cannot be null");
             }
             this.chCte = chCte;
-            this.refCteAnu = refCteAnu;
-            this.tomaICMS = tomaICMS;
             this.indAlteraToma = indAlteraToma;
         }
 
@@ -59,19 +55,6 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Chave de acesso do CT-e a ser substituído (original).</value>
         [DataMember(Name = "chCte", IsRequired = true, EmitDefaultValue = true)]
         public string chCte { get; set; }
-
-        /// <summary>
-        /// Chave de acesso do CT-e de Anulação.
-        /// </summary>
-        /// <value>Chave de acesso do CT-e de Anulação.</value>
-        [DataMember(Name = "refCteAnu", EmitDefaultValue = false)]
-        public string refCteAnu { get; set; }
-
-        /// <summary>
-        /// Gets or Sets tomaICMS
-        /// </summary>
-        [DataMember(Name = "tomaICMS", EmitDefaultValue = false)]
-        public CteSefazTomaICMS tomaICMS { get; set; }
 
         /// <summary>
         /// Indicador de CT-e Alteração de Tomador.
@@ -89,8 +72,6 @@ namespace NuvemFiscal.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CteSefazInfCteSub {\n");
             sb.Append("  chCte: ").Append(chCte).Append("\n");
-            sb.Append("  refCteAnu: ").Append(refCteAnu).Append("\n");
-            sb.Append("  tomaICMS: ").Append(tomaICMS).Append("\n");
             sb.Append("  indAlteraToma: ").Append(indAlteraToma).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -133,16 +114,6 @@ namespace NuvemFiscal.Sdk.Model
                     this.chCte.Equals(input.chCte))
                 ) && 
                 (
-                    this.refCteAnu == input.refCteAnu ||
-                    (this.refCteAnu != null &&
-                    this.refCteAnu.Equals(input.refCteAnu))
-                ) && 
-                (
-                    this.tomaICMS == input.tomaICMS ||
-                    (this.tomaICMS != null &&
-                    this.tomaICMS.Equals(input.tomaICMS))
-                ) && 
-                (
                     this.indAlteraToma == input.indAlteraToma ||
                     this.indAlteraToma.Equals(input.indAlteraToma)
                 );
@@ -160,14 +131,6 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.chCte != null)
                 {
                     hashCode = (hashCode * 59) + this.chCte.GetHashCode();
-                }
-                if (this.refCteAnu != null)
-                {
-                    hashCode = (hashCode * 59) + this.refCteAnu.GetHashCode();
-                }
-                if (this.tomaICMS != null)
-                {
-                    hashCode = (hashCode * 59) + this.tomaICMS.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.indAlteraToma.GetHashCode();
                 return hashCode;
