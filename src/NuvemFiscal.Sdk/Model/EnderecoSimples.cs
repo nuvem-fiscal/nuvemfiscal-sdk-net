@@ -71,7 +71,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CEP.
         /// </summary>
         /// <value>Número do CEP.</value>
-        [DataMember(Name = "CEP", EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", EmitDefaultValue = true)]
         public string CEP { get; set; }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Complemento do endereço.
         /// </summary>
         /// <value>Complemento do endereço.</value>
-        [DataMember(Name = "xCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "xCpl", EmitDefaultValue = true)]
         public string xCpl { get; set; }
 
         /// <summary>

@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vFor">Valor  dos fornecimentos. (required).</param>
         /// <param name="vTotDed">Valor Total das Deduções. (required).</param>
         /// <param name="vLiqFor">Valor Líquido dos fornecimentos. (required).</param>
-        public NfeSefazCana(string safra = default(string), string _ref = default(string), List<NfeSefazForDia> forDia = default(List<NfeSefazForDia>), decimal qTotMes = default(decimal), decimal qTotAnt = default(decimal), decimal qTotGer = default(decimal), List<NfeSefazDeduc> deduc = default(List<NfeSefazDeduc>), decimal vFor = default(decimal), decimal vTotDed = default(decimal), decimal vLiqFor = default(decimal))
+        public NfeSefazCana(string safra = default(string), string _ref = default(string), List<NfeSefazForDia> forDia = default(List<NfeSefazForDia>), decimal? qTotMes = default(decimal?), decimal? qTotAnt = default(decimal?), decimal? qTotGer = default(decimal?), List<NfeSefazDeduc> deduc = default(List<NfeSefazDeduc>), decimal? vFor = default(decimal?), decimal? vTotDed = default(decimal?), decimal? vLiqFor = default(decimal?))
         {
             // to ensure "safra" is required (not null)
             if (safra == null)
@@ -66,11 +66,41 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("forDia is a required property for NfeSefazCana and cannot be null");
             }
             this.forDia = forDia;
+            // to ensure "qTotMes" is required (not null)
+            if (qTotMes == null)
+            {
+                throw new ArgumentNullException("qTotMes is a required property for NfeSefazCana and cannot be null");
+            }
             this.qTotMes = qTotMes;
+            // to ensure "qTotAnt" is required (not null)
+            if (qTotAnt == null)
+            {
+                throw new ArgumentNullException("qTotAnt is a required property for NfeSefazCana and cannot be null");
+            }
             this.qTotAnt = qTotAnt;
+            // to ensure "qTotGer" is required (not null)
+            if (qTotGer == null)
+            {
+                throw new ArgumentNullException("qTotGer is a required property for NfeSefazCana and cannot be null");
+            }
             this.qTotGer = qTotGer;
+            // to ensure "vFor" is required (not null)
+            if (vFor == null)
+            {
+                throw new ArgumentNullException("vFor is a required property for NfeSefazCana and cannot be null");
+            }
             this.vFor = vFor;
+            // to ensure "vTotDed" is required (not null)
+            if (vTotDed == null)
+            {
+                throw new ArgumentNullException("vTotDed is a required property for NfeSefazCana and cannot be null");
+            }
             this.vTotDed = vTotDed;
+            // to ensure "vLiqFor" is required (not null)
+            if (vLiqFor == null)
+            {
+                throw new ArgumentNullException("vLiqFor is a required property for NfeSefazCana and cannot be null");
+            }
             this.vLiqFor = vLiqFor;
             this.deduc = deduc;
         }
@@ -100,21 +130,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Total do mês.</value>
         [DataMember(Name = "qTotMes", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qTotMes { get; set; }
+        public decimal? qTotMes { get; set; }
 
         /// <summary>
         /// Total Anterior.
         /// </summary>
         /// <value>Total Anterior.</value>
         [DataMember(Name = "qTotAnt", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qTotAnt { get; set; }
+        public decimal? qTotAnt { get; set; }
 
         /// <summary>
         /// Total Geral.
         /// </summary>
         /// <value>Total Geral.</value>
         [DataMember(Name = "qTotGer", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qTotGer { get; set; }
+        public decimal? qTotGer { get; set; }
 
         /// <summary>
         /// Gets or Sets deduc
@@ -127,21 +157,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor  dos fornecimentos.</value>
         [DataMember(Name = "vFor", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vFor { get; set; }
+        public decimal? vFor { get; set; }
 
         /// <summary>
         /// Valor Total das Deduções.
         /// </summary>
         /// <value>Valor Total das Deduções.</value>
         [DataMember(Name = "vTotDed", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vTotDed { get; set; }
+        public decimal? vTotDed { get; set; }
 
         /// <summary>
         /// Valor Líquido dos fornecimentos.
         /// </summary>
         /// <value>Valor Líquido dos fornecimentos.</value>
         [DataMember(Name = "vLiqFor", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vLiqFor { get; set; }
+        public decimal? vLiqFor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -214,15 +244,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qTotMes == input.qTotMes ||
-                    this.qTotMes.Equals(input.qTotMes)
+                    (this.qTotMes != null &&
+                    this.qTotMes.Equals(input.qTotMes))
                 ) && 
                 (
                     this.qTotAnt == input.qTotAnt ||
-                    this.qTotAnt.Equals(input.qTotAnt)
+                    (this.qTotAnt != null &&
+                    this.qTotAnt.Equals(input.qTotAnt))
                 ) && 
                 (
                     this.qTotGer == input.qTotGer ||
-                    this.qTotGer.Equals(input.qTotGer)
+                    (this.qTotGer != null &&
+                    this.qTotGer.Equals(input.qTotGer))
                 ) && 
                 (
                     this.deduc == input.deduc ||
@@ -232,15 +265,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vFor == input.vFor ||
-                    this.vFor.Equals(input.vFor)
+                    (this.vFor != null &&
+                    this.vFor.Equals(input.vFor))
                 ) && 
                 (
                     this.vTotDed == input.vTotDed ||
-                    this.vTotDed.Equals(input.vTotDed)
+                    (this.vTotDed != null &&
+                    this.vTotDed.Equals(input.vTotDed))
                 ) && 
                 (
                     this.vLiqFor == input.vLiqFor ||
-                    this.vLiqFor.Equals(input.vLiqFor)
+                    (this.vLiqFor != null &&
+                    this.vLiqFor.Equals(input.vLiqFor))
                 );
         }
 
@@ -265,16 +301,34 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.forDia.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qTotMes.GetHashCode();
-                hashCode = (hashCode * 59) + this.qTotAnt.GetHashCode();
-                hashCode = (hashCode * 59) + this.qTotGer.GetHashCode();
+                if (this.qTotMes != null)
+                {
+                    hashCode = (hashCode * 59) + this.qTotMes.GetHashCode();
+                }
+                if (this.qTotAnt != null)
+                {
+                    hashCode = (hashCode * 59) + this.qTotAnt.GetHashCode();
+                }
+                if (this.qTotGer != null)
+                {
+                    hashCode = (hashCode * 59) + this.qTotGer.GetHashCode();
+                }
                 if (this.deduc != null)
                 {
                     hashCode = (hashCode * 59) + this.deduc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vFor.GetHashCode();
-                hashCode = (hashCode * 59) + this.vTotDed.GetHashCode();
-                hashCode = (hashCode * 59) + this.vLiqFor.GetHashCode();
+                if (this.vFor != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFor.GetHashCode();
+                }
+                if (this.vTotDed != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTotDed.GetHashCode();
+                }
+                if (this.vLiqFor != null)
+                {
+                    hashCode = (hashCode * 59) + this.vLiqFor.GetHashCode();
+                }
                 return hashCode;
             }
         }

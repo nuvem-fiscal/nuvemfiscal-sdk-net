@@ -47,7 +47,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.
         /// </summary>
         /// <value>Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.</value>
-        [DataMember(Name = "xOrig", EmitDefaultValue = false)]
+        [DataMember(Name = "xOrig", EmitDefaultValue = true)]
         public string xOrig { get; set; }
 
         /// <summary>
@@ -60,14 +60,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.
         /// </summary>
         /// <value>Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino.  Observações para o modal aéreo:  * Preenchimento obrigatório para o modal aéreo.</value>
-        [DataMember(Name = "xDest", EmitDefaultValue = false)]
+        [DataMember(Name = "xDest", EmitDefaultValue = true)]
         public string xDest { get; set; }
 
         /// <summary>
         /// Código da Rota de Entrega.
         /// </summary>
         /// <value>Código da Rota de Entrega.</value>
-        [DataMember(Name = "xRota", EmitDefaultValue = false)]
+        [DataMember(Name = "xRota", EmitDefaultValue = true)]
         public string xRota { get; set; }
 
         /// <summary>

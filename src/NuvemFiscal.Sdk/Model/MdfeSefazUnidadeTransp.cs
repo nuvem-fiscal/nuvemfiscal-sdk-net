@@ -41,8 +41,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="lacUnidTransp">lacUnidTransp.</param>
         /// <param name="infUnidCarga">infUnidCarga.</param>
         /// <param name="qtdRat">Quantidade rateada (Peso,Volume)..</param>
-        public MdfeSefazUnidadeTransp(int tpUnidTransp = default(int), string idUnidTransp = default(string), List<MdfeSefazLacUnidTransp> lacUnidTransp = default(List<MdfeSefazLacUnidTransp>), List<MdfeSefazUnidCarga> infUnidCarga = default(List<MdfeSefazUnidCarga>), decimal qtdRat = default(decimal))
+        public MdfeSefazUnidadeTransp(int? tpUnidTransp = default(int?), string idUnidTransp = default(string), List<MdfeSefazLacUnidTransp> lacUnidTransp = default(List<MdfeSefazLacUnidTransp>), List<MdfeSefazUnidCarga> infUnidCarga = default(List<MdfeSefazUnidCarga>), decimal? qtdRat = default(decimal?))
         {
+            // to ensure "tpUnidTransp" is required (not null)
+            if (tpUnidTransp == null)
+            {
+                throw new ArgumentNullException("tpUnidTransp is a required property for MdfeSefazUnidadeTransp and cannot be null");
+            }
             this.tpUnidTransp = tpUnidTransp;
             // to ensure "idUnidTransp" is required (not null)
             if (idUnidTransp == null)
@@ -60,7 +65,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo da Unidade de Transporte.  * 1 - Rodoviário Tração  * 2 - Rodoviário Reboque  * 3 - Navio  * 4 - Balsa  * 5 - Aeronave  * 6 - Vagão  * 7 - Outros</value>
         [DataMember(Name = "tpUnidTransp", IsRequired = true, EmitDefaultValue = true)]
-        public int tpUnidTransp { get; set; }
+        public int? tpUnidTransp { get; set; }
 
         /// <summary>
         /// Identificação da Unidade de Transporte.  Informar a identificação conforme o tipo de unidade de transporte.  Por exemplo: para rodoviário tração ou reboque deverá preencher com a placa do veículo.
@@ -85,8 +90,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade rateada (Peso,Volume).
         /// </summary>
         /// <value>Quantidade rateada (Peso,Volume).</value>
-        [DataMember(Name = "qtdRat", EmitDefaultValue = false)]
-        public decimal qtdRat { get; set; }
+        [DataMember(Name = "qtdRat", EmitDefaultValue = true)]
+        public decimal? qtdRat { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,7 +143,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpUnidTransp == input.tpUnidTransp ||
-                    this.tpUnidTransp.Equals(input.tpUnidTransp)
+                    (this.tpUnidTransp != null &&
+                    this.tpUnidTransp.Equals(input.tpUnidTransp))
                 ) && 
                 (
                     this.idUnidTransp == input.idUnidTransp ||
@@ -159,7 +165,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qtdRat == input.qtdRat ||
-                    this.qtdRat.Equals(input.qtdRat)
+                    (this.qtdRat != null &&
+                    this.qtdRat.Equals(input.qtdRat))
                 );
         }
 
@@ -172,7 +179,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpUnidTransp.GetHashCode();
+                if (this.tpUnidTransp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpUnidTransp.GetHashCode();
+                }
                 if (this.idUnidTransp != null)
                 {
                     hashCode = (hashCode * 59) + this.idUnidTransp.GetHashCode();
@@ -185,7 +195,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.infUnidCarga.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qtdRat.GetHashCode();
+                if (this.qtdRat != null)
+                {
+                    hashCode = (hashCode * 59) + this.qtdRat.GetHashCode();
+                }
                 return hashCode;
             }
         }

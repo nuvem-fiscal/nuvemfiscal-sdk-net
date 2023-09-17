@@ -37,8 +37,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazSemHora" /> class.
         /// </summary>
         /// <param name="tpHor">Tipo de hora.  * 0 - Sem hora definida (required).</param>
-        public CteSefazSemHora(int tpHor = default(int))
+        public CteSefazSemHora(int? tpHor = default(int?))
         {
+            // to ensure "tpHor" is required (not null)
+            if (tpHor == null)
+            {
+                throw new ArgumentNullException("tpHor is a required property for CteSefazSemHora and cannot be null");
+            }
             this.tpHor = tpHor;
         }
 
@@ -47,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de hora.  * 0 - Sem hora definida</value>
         [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
-        public int tpHor { get; set; }
+        public int? tpHor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,7 +100,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpHor == input.tpHor ||
-                    this.tpHor.Equals(input.tpHor)
+                    (this.tpHor != null &&
+                    this.tpHor.Equals(input.tpHor))
                 );
         }
 
@@ -108,7 +114,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpHor.GetHashCode();
+                if (this.tpHor != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpHor.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cMod">Código Marca Modelo.  Utilizar tabela RENAVAM. (required).</param>
         /// <param name="vUnit">Valor Unitário do Veículo. (required).</param>
         /// <param name="vFrete">Frete Unitário. (required).</param>
-        public CteSefazVeicNovos(string chassi = default(string), string cCor = default(string), string xCor = default(string), string cMod = default(string), decimal vUnit = default(decimal), decimal vFrete = default(decimal))
+        public CteSefazVeicNovos(string chassi = default(string), string cCor = default(string), string xCor = default(string), string cMod = default(string), decimal? vUnit = default(decimal?), decimal? vFrete = default(decimal?))
         {
             // to ensure "chassi" is required (not null)
             if (chassi == null)
@@ -68,7 +68,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cMod is a required property for CteSefazVeicNovos and cannot be null");
             }
             this.cMod = cMod;
+            // to ensure "vUnit" is required (not null)
+            if (vUnit == null)
+            {
+                throw new ArgumentNullException("vUnit is a required property for CteSefazVeicNovos and cannot be null");
+            }
             this.vUnit = vUnit;
+            // to ensure "vFrete" is required (not null)
+            if (vFrete == null)
+            {
+                throw new ArgumentNullException("vFrete is a required property for CteSefazVeicNovos and cannot be null");
+            }
             this.vFrete = vFrete;
         }
 
@@ -105,14 +115,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor Unitário do Veículo.</value>
         [DataMember(Name = "vUnit", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vUnit { get; set; }
+        public decimal? vUnit { get; set; }
 
         /// <summary>
         /// Frete Unitário.
         /// </summary>
         /// <value>Frete Unitário.</value>
         [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vFrete { get; set; }
+        public decimal? vFrete { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -185,11 +195,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vUnit == input.vUnit ||
-                    this.vUnit.Equals(input.vUnit)
+                    (this.vUnit != null &&
+                    this.vUnit.Equals(input.vUnit))
                 ) && 
                 (
                     this.vFrete == input.vFrete ||
-                    this.vFrete.Equals(input.vFrete)
+                    (this.vFrete != null &&
+                    this.vFrete.Equals(input.vFrete))
                 );
         }
 
@@ -218,8 +230,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cMod.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vUnit.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFrete.GetHashCode();
+                if (this.vUnit != null)
+                {
+                    hashCode = (hashCode * 59) + this.vUnit.GetHashCode();
+                }
+                if (this.vFrete != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFrete.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -44,7 +44,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dPrev">Data prevista de entrega.  Formato AAAA-MM-DD..</param>
         /// <param name="infUnidCarga">infUnidCarga.</param>
         /// <param name="infUnidTransp">infUnidTransp.</param>
-        public CteSefazInfOutros(string tpDoc = default(string), string descOutros = default(string), string nDoc = default(string), DateTime dEmi = default(DateTime), decimal vDocFisc = default(decimal), DateTime dPrev = default(DateTime), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
+        public CteSefazInfOutros(string tpDoc = default(string), string descOutros = default(string), string nDoc = default(string), DateTime? dEmi = default(DateTime?), decimal? vDocFisc = default(decimal?), DateTime? dPrev = default(DateTime?), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
         {
             // to ensure "tpDoc" is required (not null)
             if (tpDoc == null)
@@ -72,38 +72,38 @@ namespace NuvemFiscal.Sdk.Model
         /// Descrição do documento.
         /// </summary>
         /// <value>Descrição do documento.</value>
-        [DataMember(Name = "descOutros", EmitDefaultValue = false)]
+        [DataMember(Name = "descOutros", EmitDefaultValue = true)]
         public string descOutros { get; set; }
 
         /// <summary>
         /// Número.
         /// </summary>
         /// <value>Número.</value>
-        [DataMember(Name = "nDoc", EmitDefaultValue = false)]
+        [DataMember(Name = "nDoc", EmitDefaultValue = true)]
         public string nDoc { get; set; }
 
         /// <summary>
         /// Data de Emissão.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data de Emissão.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dEmi", EmitDefaultValue = false)]
+        [DataMember(Name = "dEmi", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dEmi { get; set; }
+        public DateTime? dEmi { get; set; }
 
         /// <summary>
         /// Valor do documento.
         /// </summary>
         /// <value>Valor do documento.</value>
-        [DataMember(Name = "vDocFisc", EmitDefaultValue = false)]
-        public decimal vDocFisc { get; set; }
+        [DataMember(Name = "vDocFisc", EmitDefaultValue = true)]
+        public decimal? vDocFisc { get; set; }
 
         /// <summary>
         /// Data prevista de entrega.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data prevista de entrega.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dPrev", EmitDefaultValue = false)]
+        [DataMember(Name = "dPrev", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dPrev { get; set; }
+        public DateTime? dPrev { get; set; }
 
         /// <summary>
         /// Gets or Sets infUnidCarga
@@ -190,7 +190,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDocFisc == input.vDocFisc ||
-                    this.vDocFisc.Equals(input.vDocFisc)
+                    (this.vDocFisc != null &&
+                    this.vDocFisc.Equals(input.vDocFisc))
                 ) && 
                 (
                     this.dPrev == input.dPrev ||
@@ -236,7 +237,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dEmi.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDocFisc.GetHashCode();
+                if (this.vDocFisc != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDocFisc.GetHashCode();
+                }
                 if (this.dPrev != null)
                 {
                     hashCode = (hashCode * 59) + this.dPrev.GetHashCode();

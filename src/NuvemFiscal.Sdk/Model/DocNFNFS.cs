@@ -39,9 +39,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nNFS">Número da Nota Fiscal NF ou NFS. (required).</param>
         /// <param name="modNFS">Modelo da Nota Fiscal NF ou NFS. (required).</param>
         /// <param name="serieNFS">Série Nota Fiscal NF ou NFS. (required).</param>
-        public DocNFNFS(int nNFS = default(int), int modNFS = default(int), string serieNFS = default(string))
+        public DocNFNFS(int? nNFS = default(int?), int? modNFS = default(int?), string serieNFS = default(string))
         {
+            // to ensure "nNFS" is required (not null)
+            if (nNFS == null)
+            {
+                throw new ArgumentNullException("nNFS is a required property for DocNFNFS and cannot be null");
+            }
             this.nNFS = nNFS;
+            // to ensure "modNFS" is required (not null)
+            if (modNFS == null)
+            {
+                throw new ArgumentNullException("modNFS is a required property for DocNFNFS and cannot be null");
+            }
             this.modNFS = modNFS;
             // to ensure "serieNFS" is required (not null)
             if (serieNFS == null)
@@ -56,14 +66,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número da Nota Fiscal NF ou NFS.</value>
         [DataMember(Name = "nNFS", IsRequired = true, EmitDefaultValue = true)]
-        public int nNFS { get; set; }
+        public int? nNFS { get; set; }
 
         /// <summary>
         /// Modelo da Nota Fiscal NF ou NFS.
         /// </summary>
         /// <value>Modelo da Nota Fiscal NF ou NFS.</value>
         [DataMember(Name = "modNFS", IsRequired = true, EmitDefaultValue = true)]
-        public int modNFS { get; set; }
+        public int? modNFS { get; set; }
 
         /// <summary>
         /// Série Nota Fiscal NF ou NFS.
@@ -120,11 +130,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.nNFS == input.nNFS ||
-                    this.nNFS.Equals(input.nNFS)
+                    (this.nNFS != null &&
+                    this.nNFS.Equals(input.nNFS))
                 ) && 
                 (
                     this.modNFS == input.modNFS ||
-                    this.modNFS.Equals(input.modNFS)
+                    (this.modNFS != null &&
+                    this.modNFS.Equals(input.modNFS))
                 ) && 
                 (
                     this.serieNFS == input.serieNFS ||
@@ -142,8 +154,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.nNFS.GetHashCode();
-                hashCode = (hashCode * 59) + this.modNFS.GetHashCode();
+                if (this.nNFS != null)
+                {
+                    hashCode = (hashCode * 59) + this.nNFS.GetHashCode();
+                }
+                if (this.modNFS != null)
+                {
+                    hashCode = (hashCode * 59) + this.modNFS.GetHashCode();
+                }
                 if (this.serieNFS != null)
                 {
                     hashCode = (hashCode * 59) + this.serieNFS.GetHashCode();

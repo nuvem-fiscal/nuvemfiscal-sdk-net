@@ -62,14 +62,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CPF responsável pela geração do CIOT.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CPF responsável pela geração do CIOT.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Número do CNPJ responsável pela geração do CIOT.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ responsável pela geração do CIOT.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>

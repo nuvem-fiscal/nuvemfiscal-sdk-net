@@ -39,10 +39,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="tpPer">Tipo período.  * 4 - no período (required).</param>
         /// <param name="dIni">Data inicial.  Formato AAAA-MM-DD. (required).</param>
         /// <param name="dFim">Data final.  Formato AAAA-MM-DD. (required).</param>
-        public CteSefazNoPeriodo(int tpPer = default(int), DateTime dIni = default(DateTime), DateTime dFim = default(DateTime))
+        public CteSefazNoPeriodo(int? tpPer = default(int?), DateTime? dIni = default(DateTime?), DateTime? dFim = default(DateTime?))
         {
+            // to ensure "tpPer" is required (not null)
+            if (tpPer == null)
+            {
+                throw new ArgumentNullException("tpPer is a required property for CteSefazNoPeriodo and cannot be null");
+            }
             this.tpPer = tpPer;
+            // to ensure "dIni" is required (not null)
+            if (dIni == null)
+            {
+                throw new ArgumentNullException("dIni is a required property for CteSefazNoPeriodo and cannot be null");
+            }
             this.dIni = dIni;
+            // to ensure "dFim" is required (not null)
+            if (dFim == null)
+            {
+                throw new ArgumentNullException("dFim is a required property for CteSefazNoPeriodo and cannot be null");
+            }
             this.dFim = dFim;
         }
 
@@ -51,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo período.  * 4 - no período</value>
         [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
-        public int tpPer { get; set; }
+        public int? tpPer { get; set; }
 
         /// <summary>
         /// Data inicial.  Formato AAAA-MM-DD.
@@ -59,7 +74,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data inicial.  Formato AAAA-MM-DD.</value>
         [DataMember(Name = "dIni", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dIni { get; set; }
+        public DateTime? dIni { get; set; }
 
         /// <summary>
         /// Data final.  Formato AAAA-MM-DD.
@@ -67,7 +82,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data final.  Formato AAAA-MM-DD.</value>
         [DataMember(Name = "dFim", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dFim { get; set; }
+        public DateTime? dFim { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,7 +132,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpPer == input.tpPer ||
-                    this.tpPer.Equals(input.tpPer)
+                    (this.tpPer != null &&
+                    this.tpPer.Equals(input.tpPer))
                 ) && 
                 (
                     this.dIni == input.dIni ||
@@ -140,7 +156,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpPer.GetHashCode();
+                if (this.tpPer != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpPer.GetHashCode();
+                }
                 if (this.dIni != null)
                 {
                     hashCode = (hashCode * 59) + this.dIni.GetHashCode();

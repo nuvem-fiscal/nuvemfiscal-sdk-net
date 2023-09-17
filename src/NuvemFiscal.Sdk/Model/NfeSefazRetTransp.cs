@@ -42,11 +42,31 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vICMSRet">Valor do ICMS Retido. (required).</param>
         /// <param name="cFOP">Código Fiscal de Operações e Prestações. (required).</param>
         /// <param name="cMunFG">Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE). (required).</param>
-        public NfeSefazRetTransp(decimal vServ = default(decimal), decimal vBCRet = default(decimal), decimal pICMSRet = default(decimal), decimal vICMSRet = default(decimal), string cFOP = default(string), string cMunFG = default(string))
+        public NfeSefazRetTransp(decimal? vServ = default(decimal?), decimal? vBCRet = default(decimal?), decimal? pICMSRet = default(decimal?), decimal? vICMSRet = default(decimal?), string cFOP = default(string), string cMunFG = default(string))
         {
+            // to ensure "vServ" is required (not null)
+            if (vServ == null)
+            {
+                throw new ArgumentNullException("vServ is a required property for NfeSefazRetTransp and cannot be null");
+            }
             this.vServ = vServ;
+            // to ensure "vBCRet" is required (not null)
+            if (vBCRet == null)
+            {
+                throw new ArgumentNullException("vBCRet is a required property for NfeSefazRetTransp and cannot be null");
+            }
             this.vBCRet = vBCRet;
+            // to ensure "pICMSRet" is required (not null)
+            if (pICMSRet == null)
+            {
+                throw new ArgumentNullException("pICMSRet is a required property for NfeSefazRetTransp and cannot be null");
+            }
             this.pICMSRet = pICMSRet;
+            // to ensure "vICMSRet" is required (not null)
+            if (vICMSRet == null)
+            {
+                throw new ArgumentNullException("vICMSRet is a required property for NfeSefazRetTransp and cannot be null");
+            }
             this.vICMSRet = vICMSRet;
             // to ensure "cFOP" is required (not null)
             if (cFOP == null)
@@ -67,28 +87,28 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor do Serviço.</value>
         [DataMember(Name = "vServ", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vServ { get; set; }
+        public decimal? vServ { get; set; }
 
         /// <summary>
         /// BC da Retenção do ICMS.
         /// </summary>
         /// <value>BC da Retenção do ICMS.</value>
         [DataMember(Name = "vBCRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBCRet { get; set; }
+        public decimal? vBCRet { get; set; }
 
         /// <summary>
         /// Alíquota da Retenção.
         /// </summary>
         /// <value>Alíquota da Retenção.</value>
         [DataMember(Name = "pICMSRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMSRet { get; set; }
+        public decimal? pICMSRet { get; set; }
 
         /// <summary>
         /// Valor do ICMS Retido.
         /// </summary>
         /// <value>Valor do ICMS Retido.</value>
         [DataMember(Name = "vICMSRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSRet { get; set; }
+        public decimal? vICMSRet { get; set; }
 
         /// <summary>
         /// Código Fiscal de Operações e Prestações.
@@ -155,19 +175,23 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vServ == input.vServ ||
-                    this.vServ.Equals(input.vServ)
+                    (this.vServ != null &&
+                    this.vServ.Equals(input.vServ))
                 ) && 
                 (
                     this.vBCRet == input.vBCRet ||
-                    this.vBCRet.Equals(input.vBCRet)
+                    (this.vBCRet != null &&
+                    this.vBCRet.Equals(input.vBCRet))
                 ) && 
                 (
                     this.pICMSRet == input.pICMSRet ||
-                    this.pICMSRet.Equals(input.pICMSRet)
+                    (this.pICMSRet != null &&
+                    this.pICMSRet.Equals(input.pICMSRet))
                 ) && 
                 (
                     this.vICMSRet == input.vICMSRet ||
-                    this.vICMSRet.Equals(input.vICMSRet)
+                    (this.vICMSRet != null &&
+                    this.vICMSRet.Equals(input.vICMSRet))
                 ) && 
                 (
                     this.CFOP == input.CFOP ||
@@ -190,10 +214,22 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vServ.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMSRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSRet.GetHashCode();
+                if (this.vServ != null)
+                {
+                    hashCode = (hashCode * 59) + this.vServ.GetHashCode();
+                }
+                if (this.vBCRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCRet.GetHashCode();
+                }
+                if (this.pICMSRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMSRet.GetHashCode();
+                }
+                if (this.vICMSRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSRet.GetHashCode();
+                }
                 if (this.CFOP != null)
                 {
                     hashCode = (hashCode * 59) + this.CFOP.GetHashCode();

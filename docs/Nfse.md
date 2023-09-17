@@ -10,7 +10,7 @@ Nome | Tipo | Descrição | Comentários
 **numero** | **string** |  | [optional] 
 **codigo_verificacao** | **string** |  | [optional] 
 **link_url** | **string** |  | [optional] 
-**data_emissao** | **DateTime** |  | [optional] 
+**data_emissao** | **DateTime?** |  | [optional] 
 **ambiente** | **string** |  | [optional] 
 **referencia** | **string** |  | [optional] 
 **DPS** | [**DPS**](DPS.md) |  | [optional] 

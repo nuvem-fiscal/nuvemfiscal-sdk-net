@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nCompra">Número do comprovante de compra.  Número de ordem do comprovante de compra do Vale-Pedágio fornecido para cada veículo ou combinação veicular, por viagem..</param>
         /// <param name="vValePed">Valor do Vale-Pedagio.  Valor do Vale-Pedágio obrigatório necessário à livre circulação, desde a origem da operação de transporte até o destino, do transportador contratado. (required).</param>
         /// <param name="tpValePed">Tipo do Vale Pedagio.  * 01 - TAG  * 02 - Cupom  * 03 - Cartão.</param>
-        public MdfeSefazDisp(string cNPJForn = default(string), string cNPJPg = default(string), string cPFPg = default(string), string nCompra = default(string), decimal vValePed = default(decimal), string tpValePed = default(string))
+        public MdfeSefazDisp(string cNPJForn = default(string), string cNPJPg = default(string), string cPFPg = default(string), string nCompra = default(string), decimal? vValePed = default(decimal?), string tpValePed = default(string))
         {
             // to ensure "cNPJForn" is required (not null)
             if (cNPJForn == null)
@@ -50,6 +50,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cNPJForn is a required property for MdfeSefazDisp and cannot be null");
             }
             this.CNPJForn = cNPJForn;
+            // to ensure "vValePed" is required (not null)
+            if (vValePed == null)
+            {
+                throw new ArgumentNullException("vValePed is a required property for MdfeSefazDisp and cannot be null");
+            }
             this.vValePed = vValePed;
             this.CNPJPg = cNPJPg;
             this.CPFPg = cPFPg;
@@ -68,21 +73,21 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do responsável pelo pagamento do Vale-Pedágio.  * responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.  * Informar os zeros não significativos.
         /// </summary>
         /// <value>CNPJ do responsável pelo pagamento do Vale-Pedágio.  * responsável pelo pagamento do Vale Pedágio. Informar somente quando o responsável não for o emitente do MDF-e.  * Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJPg", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJPg", EmitDefaultValue = true)]
         public string CNPJPg { get; set; }
 
         /// <summary>
         /// CNPJ do responsável pelo pagamento do Vale-Pedágio.  Informar os zeros não significativos.
         /// </summary>
         /// <value>CNPJ do responsável pelo pagamento do Vale-Pedágio.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CPFPg", EmitDefaultValue = false)]
+        [DataMember(Name = "CPFPg", EmitDefaultValue = true)]
         public string CPFPg { get; set; }
 
         /// <summary>
         /// Número do comprovante de compra.  Número de ordem do comprovante de compra do Vale-Pedágio fornecido para cada veículo ou combinação veicular, por viagem.
         /// </summary>
         /// <value>Número do comprovante de compra.  Número de ordem do comprovante de compra do Vale-Pedágio fornecido para cada veículo ou combinação veicular, por viagem.</value>
-        [DataMember(Name = "nCompra", EmitDefaultValue = false)]
+        [DataMember(Name = "nCompra", EmitDefaultValue = true)]
         public string nCompra { get; set; }
 
         /// <summary>
@@ -90,13 +95,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor do Vale-Pedagio.  Valor do Vale-Pedágio obrigatório necessário à livre circulação, desde a origem da operação de transporte até o destino, do transportador contratado.</value>
         [DataMember(Name = "vValePed", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vValePed { get; set; }
+        public decimal? vValePed { get; set; }
 
         /// <summary>
         /// Tipo do Vale Pedagio.  * 01 - TAG  * 02 - Cupom  * 03 - Cartão
         /// </summary>
         /// <value>Tipo do Vale Pedagio.  * 01 - TAG  * 02 - Cupom  * 03 - Cartão</value>
-        [DataMember(Name = "tpValePed", EmitDefaultValue = false)]
+        [DataMember(Name = "tpValePed", EmitDefaultValue = true)]
         public string tpValePed { get; set; }
 
         /// <summary>
@@ -170,7 +175,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vValePed == input.vValePed ||
-                    this.vValePed.Equals(input.vValePed)
+                    (this.vValePed != null &&
+                    this.vValePed.Equals(input.vValePed))
                 ) && 
                 (
                     this.tpValePed == input.tpValePed ||
@@ -204,7 +210,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nCompra.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vValePed.GetHashCode();
+                if (this.vValePed != null)
+                {
+                    hashCode = (hashCode * 59) + this.vValePed.GetHashCode();
+                }
                 if (this.tpValePed != null)
                 {
                     hashCode = (hashCode * 59) + this.tpValePed.GetHashCode();

@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dPrev">Data prevista de entrega.  Formato AAAA-MM-DD..</param>
         /// <param name="infUnidCarga">infUnidCarga.</param>
         /// <param name="infUnidTransp">infUnidTransp.</param>
-        public CteSefazInfNF(string nRoma = default(string), string nPed = default(string), string mod = default(string), string serie = default(string), string nDoc = default(string), DateTime dEmi = default(DateTime), decimal vBC = default(decimal), decimal vICMS = default(decimal), decimal vBCST = default(decimal), decimal vST = default(decimal), decimal vProd = default(decimal), decimal vNF = default(decimal), string nCFOP = default(string), decimal nPeso = default(decimal), string pIN = default(string), DateTime dPrev = default(DateTime), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
+        public CteSefazInfNF(string nRoma = default(string), string nPed = default(string), string mod = default(string), string serie = default(string), string nDoc = default(string), DateTime? dEmi = default(DateTime?), decimal? vBC = default(decimal?), decimal? vICMS = default(decimal?), decimal? vBCST = default(decimal?), decimal? vST = default(decimal?), decimal? vProd = default(decimal?), decimal? vNF = default(decimal?), string nCFOP = default(string), decimal? nPeso = default(decimal?), string pIN = default(string), DateTime? dPrev = default(DateTime?), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
         {
             // to ensure "mod" is required (not null)
             if (mod == null)
@@ -74,12 +74,47 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("nDoc is a required property for CteSefazInfNF and cannot be null");
             }
             this.nDoc = nDoc;
+            // to ensure "dEmi" is required (not null)
+            if (dEmi == null)
+            {
+                throw new ArgumentNullException("dEmi is a required property for CteSefazInfNF and cannot be null");
+            }
             this.dEmi = dEmi;
+            // to ensure "vBC" is required (not null)
+            if (vBC == null)
+            {
+                throw new ArgumentNullException("vBC is a required property for CteSefazInfNF and cannot be null");
+            }
             this.vBC = vBC;
+            // to ensure "vICMS" is required (not null)
+            if (vICMS == null)
+            {
+                throw new ArgumentNullException("vICMS is a required property for CteSefazInfNF and cannot be null");
+            }
             this.vICMS = vICMS;
+            // to ensure "vBCST" is required (not null)
+            if (vBCST == null)
+            {
+                throw new ArgumentNullException("vBCST is a required property for CteSefazInfNF and cannot be null");
+            }
             this.vBCST = vBCST;
+            // to ensure "vST" is required (not null)
+            if (vST == null)
+            {
+                throw new ArgumentNullException("vST is a required property for CteSefazInfNF and cannot be null");
+            }
             this.vST = vST;
+            // to ensure "vProd" is required (not null)
+            if (vProd == null)
+            {
+                throw new ArgumentNullException("vProd is a required property for CteSefazInfNF and cannot be null");
+            }
             this.vProd = vProd;
+            // to ensure "vNF" is required (not null)
+            if (vNF == null)
+            {
+                throw new ArgumentNullException("vNF is a required property for CteSefazInfNF and cannot be null");
+            }
             this.vNF = vNF;
             // to ensure "nCFOP" is required (not null)
             if (nCFOP == null)
@@ -100,14 +135,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do Romaneio da NF.
         /// </summary>
         /// <value>Número do Romaneio da NF.</value>
-        [DataMember(Name = "nRoma", EmitDefaultValue = false)]
+        [DataMember(Name = "nRoma", EmitDefaultValue = true)]
         public string nRoma { get; set; }
 
         /// <summary>
         /// Número do Pedido da NF.
         /// </summary>
         /// <value>Número do Pedido da NF.</value>
-        [DataMember(Name = "nPed", EmitDefaultValue = false)]
+        [DataMember(Name = "nPed", EmitDefaultValue = true)]
         public string nPed { get; set; }
 
         /// <summary>
@@ -137,49 +172,49 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de Emissão.  Formato AAAA-MM-DD.</value>
         [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dEmi { get; set; }
+        public DateTime? dEmi { get; set; }
 
         /// <summary>
         /// Valor da Base de Cálculo do ICMS.
         /// </summary>
         /// <value>Valor da Base de Cálculo do ICMS.</value>
         [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBC { get; set; }
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Valor Total do ICMS.
         /// </summary>
         /// <value>Valor Total do ICMS.</value>
         [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMS { get; set; }
+        public decimal? vICMS { get; set; }
 
         /// <summary>
         /// Valor da Base de Cálculo do ICMS ST.
         /// </summary>
         /// <value>Valor da Base de Cálculo do ICMS ST.</value>
         [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBCST { get; set; }
+        public decimal? vBCST { get; set; }
 
         /// <summary>
         /// Valor Total do ICMS ST.
         /// </summary>
         /// <value>Valor Total do ICMS ST.</value>
         [DataMember(Name = "vST", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vST { get; set; }
+        public decimal? vST { get; set; }
 
         /// <summary>
         /// Valor Total dos Produtos.
         /// </summary>
         /// <value>Valor Total dos Produtos.</value>
         [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vProd { get; set; }
+        public decimal? vProd { get; set; }
 
         /// <summary>
         /// Valor Total da NF.
         /// </summary>
         /// <value>Valor Total da NF.</value>
         [DataMember(Name = "vNF", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vNF { get; set; }
+        public decimal? vNF { get; set; }
 
         /// <summary>
         /// CFOP Predominante.  CFOP da NF ou, na existência de mais de um, predominância pelo critério de valor econômico.
@@ -192,23 +227,23 @@ namespace NuvemFiscal.Sdk.Model
         /// Peso total em Kg.
         /// </summary>
         /// <value>Peso total em Kg.</value>
-        [DataMember(Name = "nPeso", EmitDefaultValue = false)]
-        public decimal nPeso { get; set; }
+        [DataMember(Name = "nPeso", EmitDefaultValue = true)]
+        public decimal? nPeso { get; set; }
 
         /// <summary>
         /// PIN SUFRAMA.  PIN atribuído pela SUFRAMA para a operação.
         /// </summary>
         /// <value>PIN SUFRAMA.  PIN atribuído pela SUFRAMA para a operação.</value>
-        [DataMember(Name = "PIN", EmitDefaultValue = false)]
+        [DataMember(Name = "PIN", EmitDefaultValue = true)]
         public string PIN { get; set; }
 
         /// <summary>
         /// Data prevista de entrega.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data prevista de entrega.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dPrev", EmitDefaultValue = false)]
+        [DataMember(Name = "dPrev", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dPrev { get; set; }
+        public DateTime? dPrev { get; set; }
 
         /// <summary>
         /// Gets or Sets infUnidCarga
@@ -315,27 +350,33 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.vICMS == input.vICMS ||
-                    this.vICMS.Equals(input.vICMS)
+                    (this.vICMS != null &&
+                    this.vICMS.Equals(input.vICMS))
                 ) && 
                 (
                     this.vBCST == input.vBCST ||
-                    this.vBCST.Equals(input.vBCST)
+                    (this.vBCST != null &&
+                    this.vBCST.Equals(input.vBCST))
                 ) && 
                 (
                     this.vST == input.vST ||
-                    this.vST.Equals(input.vST)
+                    (this.vST != null &&
+                    this.vST.Equals(input.vST))
                 ) && 
                 (
                     this.vProd == input.vProd ||
-                    this.vProd.Equals(input.vProd)
+                    (this.vProd != null &&
+                    this.vProd.Equals(input.vProd))
                 ) && 
                 (
                     this.vNF == input.vNF ||
-                    this.vNF.Equals(input.vNF)
+                    (this.vNF != null &&
+                    this.vNF.Equals(input.vNF))
                 ) && 
                 (
                     this.nCFOP == input.nCFOP ||
@@ -344,7 +385,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.nPeso == input.nPeso ||
-                    this.nPeso.Equals(input.nPeso)
+                    (this.nPeso != null &&
+                    this.nPeso.Equals(input.nPeso))
                 ) && 
                 (
                     this.PIN == input.PIN ||
@@ -403,17 +445,38 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dEmi.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCST.GetHashCode();
-                hashCode = (hashCode * 59) + this.vST.GetHashCode();
-                hashCode = (hashCode * 59) + this.vProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.vNF.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.vICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
+                }
+                if (this.vBCST != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCST.GetHashCode();
+                }
+                if (this.vST != null)
+                {
+                    hashCode = (hashCode * 59) + this.vST.GetHashCode();
+                }
+                if (this.vProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.vProd.GetHashCode();
+                }
+                if (this.vNF != null)
+                {
+                    hashCode = (hashCode * 59) + this.vNF.GetHashCode();
+                }
                 if (this.nCFOP != null)
                 {
                     hashCode = (hashCode * 59) + this.nCFOP.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.nPeso.GetHashCode();
+                if (this.nPeso != null)
+                {
+                    hashCode = (hashCode * 59) + this.nPeso.GetHashCode();
+                }
                 if (this.PIN != null)
                 {
                     hashCode = (hashCode * 59) + this.PIN.GetHashCode();

@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do município onde o serviço foi prestado (tabela do IBGE).    Caso não seja informado, será considerado o município do Prestador do serviço.
         /// </summary>
         /// <value>Código do município onde o serviço foi prestado (tabela do IBGE).    Caso não seja informado, será considerado o município do Prestador do serviço.</value>
-        [DataMember(Name = "cLocPrestacao", EmitDefaultValue = false)]
+        [DataMember(Name = "cLocPrestacao", EmitDefaultValue = true)]
         public string cLocPrestacao { get; set; }
 
         /// <summary>
         /// Código do país onde o serviço foi prestado (Tabela de Países ISO).
         /// </summary>
         /// <value>Código do país onde o serviço foi prestado (Tabela de Países ISO).</value>
-        [DataMember(Name = "cPaisPrestacao", EmitDefaultValue = false)]
+        [DataMember(Name = "cPaisPrestacao", EmitDefaultValue = true)]
         public string cPaisPrestacao { get; set; }
 
         /// <summary>

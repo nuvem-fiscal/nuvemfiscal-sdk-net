@@ -71,14 +71,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de tributação municipal do ISSQN.
         /// </summary>
         /// <value>Código de tributação municipal do ISSQN.</value>
-        [DataMember(Name = "cTribMun", EmitDefaultValue = false)]
+        [DataMember(Name = "cTribMun", EmitDefaultValue = true)]
         public string cTribMun { get; set; }
 
         /// <summary>
         /// Código CNAE (Classificação Nacional de Atividades Econômicas).
         /// </summary>
         /// <value>Código CNAE (Classificação Nacional de Atividades Econômicas).</value>
-        [DataMember(Name = "CNAE", EmitDefaultValue = false)]
+        [DataMember(Name = "CNAE", EmitDefaultValue = true)]
         public string CNAE { get; set; }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código NBS (Nomenclatura Brasileira de Serviços, Intangíveis e outras Operações que produzam Variações no Patrimônio) correspondente ao serviço prestado.
         /// </summary>
         /// <value>Código NBS (Nomenclatura Brasileira de Serviços, Intangíveis e outras Operações que produzam Variações no Patrimônio) correspondente ao serviço prestado.</value>
-        [DataMember(Name = "cNBS", EmitDefaultValue = false)]
+        [DataMember(Name = "cNBS", EmitDefaultValue = true)]
         public string cNBS { get; set; }
 
         /// <summary>

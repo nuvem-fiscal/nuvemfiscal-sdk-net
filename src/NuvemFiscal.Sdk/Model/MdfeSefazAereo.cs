@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cAerEmb">Aeródromo de Embarque.  O código de três letras IATA do aeroporto de partida deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI. (required).</param>
         /// <param name="cAerDes">Aeródromo de Destino.  O código de três letras IATA do aeroporto de destino deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI. (required).</param>
         /// <param name="dVoo">Data do Voo.  Formato AAAA-MM-DD. (required).</param>
-        public MdfeSefazAereo(string nac = default(string), string matr = default(string), string nVoo = default(string), string cAerEmb = default(string), string cAerDes = default(string), DateTime dVoo = default(DateTime))
+        public MdfeSefazAereo(string nac = default(string), string matr = default(string), string nVoo = default(string), string cAerEmb = default(string), string cAerDes = default(string), DateTime? dVoo = default(DateTime?))
         {
             // to ensure "nac" is required (not null)
             if (nac == null)
@@ -74,6 +74,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cAerDes is a required property for MdfeSefazAereo and cannot be null");
             }
             this.cAerDes = cAerDes;
+            // to ensure "dVoo" is required (not null)
+            if (dVoo == null)
+            {
+                throw new ArgumentNullException("dVoo is a required property for MdfeSefazAereo and cannot be null");
+            }
             this.dVoo = dVoo;
         }
 
@@ -118,7 +123,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data do Voo.  Formato AAAA-MM-DD.</value>
         [DataMember(Name = "dVoo", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dVoo { get; set; }
+        public DateTime? dVoo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

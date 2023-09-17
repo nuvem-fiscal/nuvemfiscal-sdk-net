@@ -49,28 +49,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Razão social ou Nome do contratante.
         /// </summary>
         /// <value>Razão social ou Nome do contratante.</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Número do CPF do contratante do serviço.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CPF do contratante do serviço.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Número do CNPJ do contratante do serviço.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ do contratante do serviço.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Identificador do contratante em caso de contratante estrangeiro.
         /// </summary>
         /// <value>Identificador do contratante em caso de contratante estrangeiro.</value>
-        [DataMember(Name = "idEstrangeiro", EmitDefaultValue = false)]
+        [DataMember(Name = "idEstrangeiro", EmitDefaultValue = true)]
         public string idEstrangeiro { get; set; }
 
         /// <summary>

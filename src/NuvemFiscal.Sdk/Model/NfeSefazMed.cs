@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cProdANVISA">Utilizar o número do registro ANVISA  ou preencher com o literal “ISENTO”, no caso de medicamento isento de registro na ANVISA. (required).</param>
         /// <param name="xMotivoIsencao">Obs.: Para medicamento isento de registro na ANVISA, informar o número da decisão que o isenta, como por exemplo o número da Resolução da Diretoria Colegiada da ANVISA (RDC)..</param>
         /// <param name="vPMC">Preço Máximo ao Consumidor. (required).</param>
-        public NfeSefazMed(string cProdANVISA = default(string), string xMotivoIsencao = default(string), decimal vPMC = default(decimal))
+        public NfeSefazMed(string cProdANVISA = default(string), string xMotivoIsencao = default(string), decimal? vPMC = default(decimal?))
         {
             // to ensure "cProdANVISA" is required (not null)
             if (cProdANVISA == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cProdANVISA is a required property for NfeSefazMed and cannot be null");
             }
             this.cProdANVISA = cProdANVISA;
+            // to ensure "vPMC" is required (not null)
+            if (vPMC == null)
+            {
+                throw new ArgumentNullException("vPMC is a required property for NfeSefazMed and cannot be null");
+            }
             this.vPMC = vPMC;
             this.xMotivoIsencao = xMotivoIsencao;
         }
@@ -62,7 +67,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Obs.: Para medicamento isento de registro na ANVISA, informar o número da decisão que o isenta, como por exemplo o número da Resolução da Diretoria Colegiada da ANVISA (RDC).
         /// </summary>
         /// <value>Obs.: Para medicamento isento de registro na ANVISA, informar o número da decisão que o isenta, como por exemplo o número da Resolução da Diretoria Colegiada da ANVISA (RDC).</value>
-        [DataMember(Name = "xMotivoIsencao", EmitDefaultValue = false)]
+        [DataMember(Name = "xMotivoIsencao", EmitDefaultValue = true)]
         public string xMotivoIsencao { get; set; }
 
         /// <summary>
@@ -70,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Preço Máximo ao Consumidor.</value>
         [DataMember(Name = "vPMC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vPMC { get; set; }
+        public decimal? vPMC { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -130,7 +135,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vPMC == input.vPMC ||
-                    this.vPMC.Equals(input.vPMC)
+                    (this.vPMC != null &&
+                    this.vPMC.Equals(input.vPMC))
                 );
         }
 
@@ -151,7 +157,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xMotivoIsencao.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vPMC.GetHashCode();
+                if (this.vPMC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPMC.GetHashCode();
+                }
                 return hashCode;
             }
         }

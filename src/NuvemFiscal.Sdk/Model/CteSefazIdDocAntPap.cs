@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="subser">Série do Documento Fiscal..</param>
         /// <param name="nDoc">Número do Documento Fiscal. (required).</param>
         /// <param name="dEmi">Data de emissão (AAAA-MM-DD). (required).</param>
-        public CteSefazIdDocAntPap(string tpDoc = default(string), string serie = default(string), string subser = default(string), string nDoc = default(string), DateTime dEmi = default(DateTime))
+        public CteSefazIdDocAntPap(string tpDoc = default(string), string serie = default(string), string subser = default(string), string nDoc = default(string), DateTime? dEmi = default(DateTime?))
         {
             // to ensure "tpDoc" is required (not null)
             if (tpDoc == null)
@@ -61,6 +61,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("nDoc is a required property for CteSefazIdDocAntPap and cannot be null");
             }
             this.nDoc = nDoc;
+            // to ensure "dEmi" is required (not null)
+            if (dEmi == null)
+            {
+                throw new ArgumentNullException("dEmi is a required property for CteSefazIdDocAntPap and cannot be null");
+            }
             this.dEmi = dEmi;
             this.subser = subser;
         }
@@ -83,7 +88,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Série do Documento Fiscal.
         /// </summary>
         /// <value>Série do Documento Fiscal.</value>
-        [DataMember(Name = "subser", EmitDefaultValue = false)]
+        [DataMember(Name = "subser", EmitDefaultValue = true)]
         public string subser { get; set; }
 
         /// <summary>
@@ -99,7 +104,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de emissão (AAAA-MM-DD).</value>
         [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dEmi { get; set; }
+        public DateTime? dEmi { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

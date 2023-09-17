@@ -46,9 +46,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nDI">Número da Declaração de Importação (DI/DSI/DA/DRI-E) averbado..</param>
         /// <param name="nRE">Número do Registro de Exportação (RE) averbado..</param>
         /// <param name="mdic">Compartilhar as informações da NFS-e gerada a partir desta DPS com a Secretaria de Comércio Exterior:  * 0 - Não enviar para o MDIC  * 1 - Enviar para o MDIC (required).</param>
-        public ComExterior(int mdPrestacao = default(int), int vincPrest = default(int), string tpMoeda = default(string), decimal vServMoeda = default(decimal), string mecAFComexP = default(string), string mecAFComexT = default(string), int movTempBens = default(int), string nDI = default(string), string nRE = default(string), int mdic = default(int))
+        public ComExterior(int? mdPrestacao = default(int?), int? vincPrest = default(int?), string tpMoeda = default(string), decimal? vServMoeda = default(decimal?), string mecAFComexP = default(string), string mecAFComexT = default(string), int? movTempBens = default(int?), string nDI = default(string), string nRE = default(string), int? mdic = default(int?))
         {
+            // to ensure "mdPrestacao" is required (not null)
+            if (mdPrestacao == null)
+            {
+                throw new ArgumentNullException("mdPrestacao is a required property for ComExterior and cannot be null");
+            }
             this.mdPrestacao = mdPrestacao;
+            // to ensure "vincPrest" is required (not null)
+            if (vincPrest == null)
+            {
+                throw new ArgumentNullException("vincPrest is a required property for ComExterior and cannot be null");
+            }
             this.vincPrest = vincPrest;
             // to ensure "tpMoeda" is required (not null)
             if (tpMoeda == null)
@@ -56,6 +66,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("tpMoeda is a required property for ComExterior and cannot be null");
             }
             this.tpMoeda = tpMoeda;
+            // to ensure "vServMoeda" is required (not null)
+            if (vServMoeda == null)
+            {
+                throw new ArgumentNullException("vServMoeda is a required property for ComExterior and cannot be null");
+            }
             this.vServMoeda = vServMoeda;
             // to ensure "mecAFComexP" is required (not null)
             if (mecAFComexP == null)
@@ -69,7 +84,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("mecAFComexT is a required property for ComExterior and cannot be null");
             }
             this.mecAFComexT = mecAFComexT;
+            // to ensure "movTempBens" is required (not null)
+            if (movTempBens == null)
+            {
+                throw new ArgumentNullException("movTempBens is a required property for ComExterior and cannot be null");
+            }
             this.movTempBens = movTempBens;
+            // to ensure "mdic" is required (not null)
+            if (mdic == null)
+            {
+                throw new ArgumentNullException("mdic is a required property for ComExterior and cannot be null");
+            }
             this.mdic = mdic;
             this.nDI = nDI;
             this.nRE = nRE;
@@ -80,14 +105,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Modo de Prestação:  * 0 - Desconhecido (tipo não informado na nota de origem)  * 1 - Transfronteiriço  * 2 - Consumo no Brasil  * 3 - Presença Comercial no Exterior  * 4 - Movimento Temporário de Pessoas Físicas</value>
         [DataMember(Name = "mdPrestacao", IsRequired = true, EmitDefaultValue = true)]
-        public int mdPrestacao { get; set; }
+        public int? mdPrestacao { get; set; }
 
         /// <summary>
         /// Vínculo entre as partes no negócio:  * 0 - Sem vínculo com o tomador/ Prestador  * 1 - Controlada  * 2 - Controladora  * 3 - Coligada  * 4 - Matriz  * 5 - Filial ou sucursal  * 6 - Outro vínculo
         /// </summary>
         /// <value>Vínculo entre as partes no negócio:  * 0 - Sem vínculo com o tomador/ Prestador  * 1 - Controlada  * 2 - Controladora  * 3 - Coligada  * 4 - Matriz  * 5 - Filial ou sucursal  * 6 - Outro vínculo</value>
         [DataMember(Name = "vincPrest", IsRequired = true, EmitDefaultValue = true)]
-        public int vincPrest { get; set; }
+        public int? vincPrest { get; set; }
 
         /// <summary>
         /// Identifica a moeda da transação comercial.
@@ -101,7 +126,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor do serviço prestado expresso em moeda estrangeira especificada em tpmoeda.</value>
         [DataMember(Name = "vServMoeda", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vServMoeda { get; set; }
+        public decimal? vServMoeda { get; set; }
 
         /// <summary>
         /// Mecanismo de apoio/fomento ao Comércio Exterior utilizado pelo prestador do serviço:  * 00 - Desconhecido (tipo não informado na nota de origem)  * 01 - Nenhum  * 02 - ACC - Adiantamento sobre Contrato de Câmbio - Redução a Zero do IR e do IOF  * 03 - ACE - Adiantamento sobre Cambiais Entregues - Redução a Zero do IR e do IOF  * 04 - BNDES-Exim Pós-Embarque - Serviços  * 05 - BNDES-Exim Pré-Embarque - Serviços  * 06 - FGE - Fundo de Garantia à Exportação  * 07 - PROEX - EQUALIZAÇÃO  * 08 - PROEX - Financiamento
@@ -122,20 +147,20 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Operação está vinculada à Movimentação Temporária de Bens:  * 0 - Desconhecido (tipo não informado na nota de origem)  * 1 - Não  * 2 - Vinculada - Declaração de Importação  * 3 - Vinculada - Declaração de Exportação</value>
         [DataMember(Name = "movTempBens", IsRequired = true, EmitDefaultValue = true)]
-        public int movTempBens { get; set; }
+        public int? movTempBens { get; set; }
 
         /// <summary>
         /// Número da Declaração de Importação (DI/DSI/DA/DRI-E) averbado.
         /// </summary>
         /// <value>Número da Declaração de Importação (DI/DSI/DA/DRI-E) averbado.</value>
-        [DataMember(Name = "nDI", EmitDefaultValue = false)]
+        [DataMember(Name = "nDI", EmitDefaultValue = true)]
         public string nDI { get; set; }
 
         /// <summary>
         /// Número do Registro de Exportação (RE) averbado.
         /// </summary>
         /// <value>Número do Registro de Exportação (RE) averbado.</value>
-        [DataMember(Name = "nRE", EmitDefaultValue = false)]
+        [DataMember(Name = "nRE", EmitDefaultValue = true)]
         public string nRE { get; set; }
 
         /// <summary>
@@ -143,7 +168,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Compartilhar as informações da NFS-e gerada a partir desta DPS com a Secretaria de Comércio Exterior:  * 0 - Não enviar para o MDIC  * 1 - Enviar para o MDIC</value>
         [DataMember(Name = "mdic", IsRequired = true, EmitDefaultValue = true)]
-        public int mdic { get; set; }
+        public int? mdic { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -200,11 +225,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.mdPrestacao == input.mdPrestacao ||
-                    this.mdPrestacao.Equals(input.mdPrestacao)
+                    (this.mdPrestacao != null &&
+                    this.mdPrestacao.Equals(input.mdPrestacao))
                 ) && 
                 (
                     this.vincPrest == input.vincPrest ||
-                    this.vincPrest.Equals(input.vincPrest)
+                    (this.vincPrest != null &&
+                    this.vincPrest.Equals(input.vincPrest))
                 ) && 
                 (
                     this.tpMoeda == input.tpMoeda ||
@@ -213,7 +240,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vServMoeda == input.vServMoeda ||
-                    this.vServMoeda.Equals(input.vServMoeda)
+                    (this.vServMoeda != null &&
+                    this.vServMoeda.Equals(input.vServMoeda))
                 ) && 
                 (
                     this.mecAFComexP == input.mecAFComexP ||
@@ -227,7 +255,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.movTempBens == input.movTempBens ||
-                    this.movTempBens.Equals(input.movTempBens)
+                    (this.movTempBens != null &&
+                    this.movTempBens.Equals(input.movTempBens))
                 ) && 
                 (
                     this.nDI == input.nDI ||
@@ -241,7 +270,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.mdic == input.mdic ||
-                    this.mdic.Equals(input.mdic)
+                    (this.mdic != null &&
+                    this.mdic.Equals(input.mdic))
                 );
         }
 
@@ -254,13 +284,22 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.mdPrestacao.GetHashCode();
-                hashCode = (hashCode * 59) + this.vincPrest.GetHashCode();
+                if (this.mdPrestacao != null)
+                {
+                    hashCode = (hashCode * 59) + this.mdPrestacao.GetHashCode();
+                }
+                if (this.vincPrest != null)
+                {
+                    hashCode = (hashCode * 59) + this.vincPrest.GetHashCode();
+                }
                 if (this.tpMoeda != null)
                 {
                     hashCode = (hashCode * 59) + this.tpMoeda.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vServMoeda.GetHashCode();
+                if (this.vServMoeda != null)
+                {
+                    hashCode = (hashCode * 59) + this.vServMoeda.GetHashCode();
+                }
                 if (this.mecAFComexP != null)
                 {
                     hashCode = (hashCode * 59) + this.mecAFComexP.GetHashCode();
@@ -269,7 +308,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.mecAFComexT.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.movTempBens.GetHashCode();
+                if (this.movTempBens != null)
+                {
+                    hashCode = (hashCode * 59) + this.movTempBens.GetHashCode();
+                }
                 if (this.nDI != null)
                 {
                     hashCode = (hashCode * 59) + this.nDI.GetHashCode();
@@ -278,7 +320,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nRE.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.mdic.GetHashCode();
+                if (this.mdic != null)
+                {
+                    hashCode = (hashCode * 59) + this.mdic.GetHashCode();
+                }
                 return hashCode;
             }
         }

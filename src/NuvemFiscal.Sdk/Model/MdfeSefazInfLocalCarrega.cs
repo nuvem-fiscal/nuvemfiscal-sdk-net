@@ -45,21 +45,21 @@ namespace NuvemFiscal.Sdk.Model
         /// CEP onde foi carregado o MDF-e.  Informar zeros não significativos.
         /// </summary>
         /// <value>CEP onde foi carregado o MDF-e.  Informar zeros não significativos.</value>
-        [DataMember(Name = "CEP", EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", EmitDefaultValue = true)]
         public string CEP { get; set; }
 
         /// <summary>
         /// Latitude do ponto geográfico onde foi carregado o MDF-e.
         /// </summary>
         /// <value>Latitude do ponto geográfico onde foi carregado o MDF-e.</value>
-        [DataMember(Name = "latitude", EmitDefaultValue = false)]
+        [DataMember(Name = "latitude", EmitDefaultValue = true)]
         public string latitude { get; set; }
 
         /// <summary>
         /// Latitude do ponto geográfico onde foi carregado o MDF-e.
         /// </summary>
         /// <value>Latitude do ponto geográfico onde foi carregado o MDF-e.</value>
-        [DataMember(Name = "longitude", EmitDefaultValue = false)]
+        [DataMember(Name = "longitude", EmitDefaultValue = true)]
         public string longitude { get; set; }
 
         /// <summary>

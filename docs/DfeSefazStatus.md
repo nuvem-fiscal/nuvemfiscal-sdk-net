@@ -9,8 +9,8 @@ Nome | Tipo | Descrição | Comentários
 **data_hora_consulta** | **DateTime** | Data e hora da consulta. | [optional] 
 **codigo_status** | **int** | Código do status da mensagem enviada. | [optional] 
 **motivo_status** | **string** | Descrição literal do status do serviço solicitado. | [optional] 
-**tempo_medio_resposta** | **int** | Tempo médio de resposta do serviço (em segundos) dos últimos 5 minutos. | [optional] 
-**data_hora_retorno** | **DateTime** | Data e hora prevista para o retorno dos serviços prestados. | [optional] 
+**tempo_medio_resposta** | **int?** | Tempo médio de resposta do serviço (em segundos) dos últimos 5 minutos. | [optional] 
+**data_hora_retorno** | **DateTime?** | Data e hora prevista para o retorno dos serviços prestados. | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

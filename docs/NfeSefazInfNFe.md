@@ -6,7 +6,7 @@ Informações da Nota Fiscal eletrônica.
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **versao** | **string** | Versão do leiaute (v4.00). | 
-**Id** | **string** | PL_005d - 11/08/09 - validação do Id. | [optional] 
+**Id** | **string** | PL_005d - 11/08/09 - validação do Id.    *Geramos automaticamente quando nenhum valor é informado.* | [optional] 
 **ide** | [**NfeSefazIde**](NfeSefazIde.md) |  | 
 **emit** | [**NfeSefazEmit**](NfeSefazEmit.md) |  | 
 **avulsa** | [**NfeSefazAvulsa**](NfeSefazAvulsa.md) |  | [optional] 

@@ -48,8 +48,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vDescCond">Valor desconto condicionado..</param>
         /// <param name="vISSRet">Valor Total Retenção ISS..</param>
         /// <param name="cRegTrib">Código do regime especial de tributação..</param>
-        public NfeSefazISSQNtot(decimal vServ = default(decimal), decimal vBC = default(decimal), decimal vISS = default(decimal), decimal vPIS = default(decimal), decimal vCOFINS = default(decimal), DateTime dCompet = default(DateTime), decimal vDeducao = default(decimal), decimal vOutro = default(decimal), decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal), decimal vISSRet = default(decimal), int cRegTrib = default(int))
+        public NfeSefazISSQNtot(decimal? vServ = default(decimal?), decimal? vBC = default(decimal?), decimal? vISS = default(decimal?), decimal? vPIS = default(decimal?), decimal? vCOFINS = default(decimal?), DateTime? dCompet = default(DateTime?), decimal? vDeducao = default(decimal?), decimal? vOutro = default(decimal?), decimal? vDescIncond = default(decimal?), decimal? vDescCond = default(decimal?), decimal? vISSRet = default(decimal?), int? cRegTrib = default(int?))
         {
+            // to ensure "dCompet" is required (not null)
+            if (dCompet == null)
+            {
+                throw new ArgumentNullException("dCompet is a required property for NfeSefazISSQNtot and cannot be null");
+            }
             this.dCompet = dCompet;
             this.vServ = vServ;
             this.vBC = vBC;
@@ -68,36 +73,36 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor Total dos Serviços sob não-incidência ou não tributados pelo ICMS.
         /// </summary>
         /// <value>Valor Total dos Serviços sob não-incidência ou não tributados pelo ICMS.</value>
-        [DataMember(Name = "vServ", EmitDefaultValue = false)]
-        public decimal vServ { get; set; }
+        [DataMember(Name = "vServ", EmitDefaultValue = true)]
+        public decimal? vServ { get; set; }
 
         /// <summary>
         /// Base de Cálculo do ISS.
         /// </summary>
         /// <value>Base de Cálculo do ISS.</value>
-        [DataMember(Name = "vBC", EmitDefaultValue = false)]
-        public decimal vBC { get; set; }
+        [DataMember(Name = "vBC", EmitDefaultValue = true)]
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Valor Total do ISS.
         /// </summary>
         /// <value>Valor Total do ISS.</value>
-        [DataMember(Name = "vISS", EmitDefaultValue = false)]
-        public decimal vISS { get; set; }
+        [DataMember(Name = "vISS", EmitDefaultValue = true)]
+        public decimal? vISS { get; set; }
 
         /// <summary>
         /// Valor do PIS sobre serviços.
         /// </summary>
         /// <value>Valor do PIS sobre serviços.</value>
-        [DataMember(Name = "vPIS", EmitDefaultValue = false)]
-        public decimal vPIS { get; set; }
+        [DataMember(Name = "vPIS", EmitDefaultValue = true)]
+        public decimal? vPIS { get; set; }
 
         /// <summary>
         /// Valor do COFINS sobre serviços.
         /// </summary>
         /// <value>Valor do COFINS sobre serviços.</value>
-        [DataMember(Name = "vCOFINS", EmitDefaultValue = false)]
-        public decimal vCOFINS { get; set; }
+        [DataMember(Name = "vCOFINS", EmitDefaultValue = true)]
+        public decimal? vCOFINS { get; set; }
 
         /// <summary>
         /// Data da prestação do serviço  (AAAA-MM-DD).
@@ -105,49 +110,49 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data da prestação do serviço  (AAAA-MM-DD).</value>
         [DataMember(Name = "dCompet", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dCompet { get; set; }
+        public DateTime? dCompet { get; set; }
 
         /// <summary>
         /// Valor dedução para redução da base de cálculo.
         /// </summary>
         /// <value>Valor dedução para redução da base de cálculo.</value>
-        [DataMember(Name = "vDeducao", EmitDefaultValue = false)]
-        public decimal vDeducao { get; set; }
+        [DataMember(Name = "vDeducao", EmitDefaultValue = true)]
+        public decimal? vDeducao { get; set; }
 
         /// <summary>
         /// Valor outras retenções.
         /// </summary>
         /// <value>Valor outras retenções.</value>
-        [DataMember(Name = "vOutro", EmitDefaultValue = false)]
-        public decimal vOutro { get; set; }
+        [DataMember(Name = "vOutro", EmitDefaultValue = true)]
+        public decimal? vOutro { get; set; }
 
         /// <summary>
         /// Valor desconto incondicionado.
         /// </summary>
         /// <value>Valor desconto incondicionado.</value>
-        [DataMember(Name = "vDescIncond", EmitDefaultValue = false)]
-        public decimal vDescIncond { get; set; }
+        [DataMember(Name = "vDescIncond", EmitDefaultValue = true)]
+        public decimal? vDescIncond { get; set; }
 
         /// <summary>
         /// Valor desconto condicionado.
         /// </summary>
         /// <value>Valor desconto condicionado.</value>
-        [DataMember(Name = "vDescCond", EmitDefaultValue = false)]
-        public decimal vDescCond { get; set; }
+        [DataMember(Name = "vDescCond", EmitDefaultValue = true)]
+        public decimal? vDescCond { get; set; }
 
         /// <summary>
         /// Valor Total Retenção ISS.
         /// </summary>
         /// <value>Valor Total Retenção ISS.</value>
-        [DataMember(Name = "vISSRet", EmitDefaultValue = false)]
-        public decimal vISSRet { get; set; }
+        [DataMember(Name = "vISSRet", EmitDefaultValue = true)]
+        public decimal? vISSRet { get; set; }
 
         /// <summary>
         /// Código do regime especial de tributação.
         /// </summary>
         /// <value>Código do regime especial de tributação.</value>
-        [DataMember(Name = "cRegTrib", EmitDefaultValue = false)]
-        public int cRegTrib { get; set; }
+        [DataMember(Name = "cRegTrib", EmitDefaultValue = true)]
+        public int? cRegTrib { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -206,23 +211,28 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vServ == input.vServ ||
-                    this.vServ.Equals(input.vServ)
+                    (this.vServ != null &&
+                    this.vServ.Equals(input.vServ))
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.vISS == input.vISS ||
-                    this.vISS.Equals(input.vISS)
+                    (this.vISS != null &&
+                    this.vISS.Equals(input.vISS))
                 ) && 
                 (
                     this.vPIS == input.vPIS ||
-                    this.vPIS.Equals(input.vPIS)
+                    (this.vPIS != null &&
+                    this.vPIS.Equals(input.vPIS))
                 ) && 
                 (
                     this.vCOFINS == input.vCOFINS ||
-                    this.vCOFINS.Equals(input.vCOFINS)
+                    (this.vCOFINS != null &&
+                    this.vCOFINS.Equals(input.vCOFINS))
                 ) && 
                 (
                     this.dCompet == input.dCompet ||
@@ -231,27 +241,33 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDeducao == input.vDeducao ||
-                    this.vDeducao.Equals(input.vDeducao)
+                    (this.vDeducao != null &&
+                    this.vDeducao.Equals(input.vDeducao))
                 ) && 
                 (
                     this.vOutro == input.vOutro ||
-                    this.vOutro.Equals(input.vOutro)
+                    (this.vOutro != null &&
+                    this.vOutro.Equals(input.vOutro))
                 ) && 
                 (
                     this.vDescIncond == input.vDescIncond ||
-                    this.vDescIncond.Equals(input.vDescIncond)
+                    (this.vDescIncond != null &&
+                    this.vDescIncond.Equals(input.vDescIncond))
                 ) && 
                 (
                     this.vDescCond == input.vDescCond ||
-                    this.vDescCond.Equals(input.vDescCond)
+                    (this.vDescCond != null &&
+                    this.vDescCond.Equals(input.vDescCond))
                 ) && 
                 (
                     this.vISSRet == input.vISSRet ||
-                    this.vISSRet.Equals(input.vISSRet)
+                    (this.vISSRet != null &&
+                    this.vISSRet.Equals(input.vISSRet))
                 ) && 
                 (
                     this.cRegTrib == input.cRegTrib ||
-                    this.cRegTrib.Equals(input.cRegTrib)
+                    (this.cRegTrib != null &&
+                    this.cRegTrib.Equals(input.cRegTrib))
                 );
         }
 
@@ -264,21 +280,54 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vServ.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.vISS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vPIS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCOFINS.GetHashCode();
+                if (this.vServ != null)
+                {
+                    hashCode = (hashCode * 59) + this.vServ.GetHashCode();
+                }
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.vISS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vISS.GetHashCode();
+                }
+                if (this.vPIS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPIS.GetHashCode();
+                }
+                if (this.vCOFINS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCOFINS.GetHashCode();
+                }
                 if (this.dCompet != null)
                 {
                     hashCode = (hashCode * 59) + this.dCompet.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDeducao.GetHashCode();
-                hashCode = (hashCode * 59) + this.vOutro.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDescIncond.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDescCond.GetHashCode();
-                hashCode = (hashCode * 59) + this.vISSRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.cRegTrib.GetHashCode();
+                if (this.vDeducao != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDeducao.GetHashCode();
+                }
+                if (this.vOutro != null)
+                {
+                    hashCode = (hashCode * 59) + this.vOutro.GetHashCode();
+                }
+                if (this.vDescIncond != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDescIncond.GetHashCode();
+                }
+                if (this.vDescCond != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDescCond.GetHashCode();
+                }
+                if (this.vISSRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vISSRet.GetHashCode();
+                }
+                if (this.cRegTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.cRegTrib.GetHashCode();
+                }
                 return hashCode;
             }
         }

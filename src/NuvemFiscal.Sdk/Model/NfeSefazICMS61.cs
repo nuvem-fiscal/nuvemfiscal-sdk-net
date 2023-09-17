@@ -41,8 +41,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="qBCMonoRet">Quantidade tributada retida anteriormente..</param>
         /// <param name="adRemICMSRet">Alíquota ad rem do imposto retido anteriormente. (required).</param>
         /// <param name="vICMSMonoRet">Valor do ICMS retido anteriormente. (required).</param>
-        public NfeSefazICMS61(int orig = default(int), string cST = default(string), decimal qBCMonoRet = default(decimal), decimal adRemICMSRet = default(decimal), decimal vICMSMonoRet = default(decimal))
+        public NfeSefazICMS61(int? orig = default(int?), string cST = default(string), decimal? qBCMonoRet = default(decimal?), decimal? adRemICMSRet = default(decimal?), decimal? vICMSMonoRet = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMS61 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -50,7 +55,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for NfeSefazICMS61 and cannot be null");
             }
             this.CST = cST;
+            // to ensure "adRemICMSRet" is required (not null)
+            if (adRemICMSRet == null)
+            {
+                throw new ArgumentNullException("adRemICMSRet is a required property for NfeSefazICMS61 and cannot be null");
+            }
             this.adRemICMSRet = adRemICMSRet;
+            // to ensure "vICMSMonoRet" is required (not null)
+            if (vICMSMonoRet == null)
+            {
+                throw new ArgumentNullException("vICMSMonoRet is a required property for NfeSefazICMS61 and cannot be null");
+            }
             this.vICMSMonoRet = vICMSMonoRet;
             this.qBCMonoRet = qBCMonoRet;
         }
@@ -60,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// Tributção pelo ICMS  * 61 - Tributação monofásica sobre combustíveis cobrada anteriormente
@@ -73,22 +88,22 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade tributada retida anteriormente.
         /// </summary>
         /// <value>Quantidade tributada retida anteriormente.</value>
-        [DataMember(Name = "qBCMonoRet", EmitDefaultValue = false)]
-        public decimal qBCMonoRet { get; set; }
+        [DataMember(Name = "qBCMonoRet", EmitDefaultValue = true)]
+        public decimal? qBCMonoRet { get; set; }
 
         /// <summary>
         /// Alíquota ad rem do imposto retido anteriormente.
         /// </summary>
         /// <value>Alíquota ad rem do imposto retido anteriormente.</value>
         [DataMember(Name = "adRemICMSRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal adRemICMSRet { get; set; }
+        public decimal? adRemICMSRet { get; set; }
 
         /// <summary>
         /// Valor do ICMS retido anteriormente.
         /// </summary>
         /// <value>Valor do ICMS retido anteriormente.</value>
         [DataMember(Name = "vICMSMonoRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSMonoRet { get; set; }
+        public decimal? vICMSMonoRet { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -140,7 +155,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CST == input.CST ||
@@ -149,15 +165,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qBCMonoRet == input.qBCMonoRet ||
-                    this.qBCMonoRet.Equals(input.qBCMonoRet)
+                    (this.qBCMonoRet != null &&
+                    this.qBCMonoRet.Equals(input.qBCMonoRet))
                 ) && 
                 (
                     this.adRemICMSRet == input.adRemICMSRet ||
-                    this.adRemICMSRet.Equals(input.adRemICMSRet)
+                    (this.adRemICMSRet != null &&
+                    this.adRemICMSRet.Equals(input.adRemICMSRet))
                 ) && 
                 (
                     this.vICMSMonoRet == input.vICMSMonoRet ||
-                    this.vICMSMonoRet.Equals(input.vICMSMonoRet)
+                    (this.vICMSMonoRet != null &&
+                    this.vICMSMonoRet.Equals(input.vICMSMonoRet))
                 );
         }
 
@@ -170,14 +189,26 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CST != null)
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qBCMonoRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.adRemICMSRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSMonoRet.GetHashCode();
+                if (this.qBCMonoRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.qBCMonoRet.GetHashCode();
+                }
+                if (this.adRemICMSRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.adRemICMSRet.GetHashCode();
+                }
+                if (this.vICMSMonoRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSMonoRet.GetHashCode();
+                }
                 return hashCode;
             }
         }

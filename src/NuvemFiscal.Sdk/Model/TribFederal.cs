@@ -35,7 +35,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vRetCP">Valor monetário do CP(R$)..</param>
         /// <param name="vRetIRRF">Valor monetário do IRRF (R$)..</param>
         /// <param name="vRetCSLL">Valor monetário do CSLL (R$)..</param>
-        public TribFederal(TribOutrosPisCofins piscofins = default(TribOutrosPisCofins), decimal vRetCP = default(decimal), decimal vRetIRRF = default(decimal), decimal vRetCSLL = default(decimal))
+        public TribFederal(TribOutrosPisCofins piscofins = default(TribOutrosPisCofins), decimal? vRetCP = default(decimal?), decimal? vRetIRRF = default(decimal?), decimal? vRetCSLL = default(decimal?))
         {
             this.piscofins = piscofins;
             this.vRetCP = vRetCP;
@@ -53,22 +53,22 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor monetário do CP(R$).
         /// </summary>
         /// <value>Valor monetário do CP(R$).</value>
-        [DataMember(Name = "vRetCP", EmitDefaultValue = false)]
-        public decimal vRetCP { get; set; }
+        [DataMember(Name = "vRetCP", EmitDefaultValue = true)]
+        public decimal? vRetCP { get; set; }
 
         /// <summary>
         /// Valor monetário do IRRF (R$).
         /// </summary>
         /// <value>Valor monetário do IRRF (R$).</value>
-        [DataMember(Name = "vRetIRRF", EmitDefaultValue = false)]
-        public decimal vRetIRRF { get; set; }
+        [DataMember(Name = "vRetIRRF", EmitDefaultValue = true)]
+        public decimal? vRetIRRF { get; set; }
 
         /// <summary>
         /// Valor monetário do CSLL (R$).
         /// </summary>
         /// <value>Valor monetário do CSLL (R$).</value>
-        [DataMember(Name = "vRetCSLL", EmitDefaultValue = false)]
-        public decimal vRetCSLL { get; set; }
+        [DataMember(Name = "vRetCSLL", EmitDefaultValue = true)]
+        public decimal? vRetCSLL { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -124,15 +124,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vRetCP == input.vRetCP ||
-                    this.vRetCP.Equals(input.vRetCP)
+                    (this.vRetCP != null &&
+                    this.vRetCP.Equals(input.vRetCP))
                 ) && 
                 (
                     this.vRetIRRF == input.vRetIRRF ||
-                    this.vRetIRRF.Equals(input.vRetIRRF)
+                    (this.vRetIRRF != null &&
+                    this.vRetIRRF.Equals(input.vRetIRRF))
                 ) && 
                 (
                     this.vRetCSLL == input.vRetCSLL ||
-                    this.vRetCSLL.Equals(input.vRetCSLL)
+                    (this.vRetCSLL != null &&
+                    this.vRetCSLL.Equals(input.vRetCSLL))
                 );
         }
 
@@ -149,9 +152,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.piscofins.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vRetCP.GetHashCode();
-                hashCode = (hashCode * 59) + this.vRetIRRF.GetHashCode();
-                hashCode = (hashCode * 59) + this.vRetCSLL.GetHashCode();
+                if (this.vRetCP != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRetCP.GetHashCode();
+                }
+                if (this.vRetIRRF != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRetIRRF.GetHashCode();
+                }
+                if (this.vRetCSLL != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRetCSLL.GetHashCode();
+                }
                 return hashCode;
             }
         }

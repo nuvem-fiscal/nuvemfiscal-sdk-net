@@ -40,9 +40,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nOcc">Número da Ordem de coleta. (required).</param>
         /// <param name="dEmi">Data de emissão da ordem de coleta.  Formato AAAA-MM-DD. (required).</param>
         /// <param name="emiOcc">emiOcc.</param>
-        public CteSefazOcc(string serie = default(string), int nOcc = default(int), DateTime dEmi = default(DateTime), CteSefazEmiOcc emiOcc = default(CteSefazEmiOcc))
+        public CteSefazOcc(string serie = default(string), int? nOcc = default(int?), DateTime? dEmi = default(DateTime?), CteSefazEmiOcc emiOcc = default(CteSefazEmiOcc))
         {
+            // to ensure "nOcc" is required (not null)
+            if (nOcc == null)
+            {
+                throw new ArgumentNullException("nOcc is a required property for CteSefazOcc and cannot be null");
+            }
             this.nOcc = nOcc;
+            // to ensure "dEmi" is required (not null)
+            if (dEmi == null)
+            {
+                throw new ArgumentNullException("dEmi is a required property for CteSefazOcc and cannot be null");
+            }
             this.dEmi = dEmi;
             this.serie = serie;
             this.emiOcc = emiOcc;
@@ -52,7 +62,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Série da OCC.
         /// </summary>
         /// <value>Série da OCC.</value>
-        [DataMember(Name = "serie", EmitDefaultValue = false)]
+        [DataMember(Name = "serie", EmitDefaultValue = true)]
         public string serie { get; set; }
 
         /// <summary>
@@ -60,7 +70,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número da Ordem de coleta.</value>
         [DataMember(Name = "nOcc", IsRequired = true, EmitDefaultValue = true)]
-        public int nOcc { get; set; }
+        public int? nOcc { get; set; }
 
         /// <summary>
         /// Data de emissão da ordem de coleta.  Formato AAAA-MM-DD.
@@ -68,7 +78,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de emissão da ordem de coleta.  Formato AAAA-MM-DD.</value>
         [DataMember(Name = "dEmi", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dEmi { get; set; }
+        public DateTime? dEmi { get; set; }
 
         /// <summary>
         /// Gets or Sets emiOcc
@@ -130,7 +140,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.nOcc == input.nOcc ||
-                    this.nOcc.Equals(input.nOcc)
+                    (this.nOcc != null &&
+                    this.nOcc.Equals(input.nOcc))
                 ) && 
                 (
                     this.dEmi == input.dEmi ||
@@ -157,7 +168,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.serie.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.nOcc.GetHashCode();
+                if (this.nOcc != null)
+                {
+                    hashCode = (hashCode * 59) + this.nOcc.GetHashCode();
+                }
                 if (this.dEmi != null)
                 {
                     hashCode = (hashCode * 59) + this.dEmi.GetHashCode();

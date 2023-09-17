@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cUnid">Código da Unidade de Medida.  Preencher com:  * 00 - M3  * 01 - KG  * 02 - TON  * 03 - UNIDADE  * 04 - LITROS  * 05 - MMBTU (required).</param>
         /// <param name="tpMed">Tipo da Medida.  Exemplos:  PESO BRUTO, PESO DECLARADO, PESO CUBADO, PESO AFORADO, PESO AFERIDO, PESO BASE DE CÁLCULO, LITRAGEM, CAIXAS e etc. (required).</param>
         /// <param name="qCarga">Quantidade. (required).</param>
-        public CteSefazInfQ(string cUnid = default(string), string tpMed = default(string), decimal qCarga = default(decimal))
+        public CteSefazInfQ(string cUnid = default(string), string tpMed = default(string), decimal? qCarga = default(decimal?))
         {
             // to ensure "cUnid" is required (not null)
             if (cUnid == null)
@@ -53,6 +53,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("tpMed is a required property for CteSefazInfQ and cannot be null");
             }
             this.tpMed = tpMed;
+            // to ensure "qCarga" is required (not null)
+            if (qCarga == null)
+            {
+                throw new ArgumentNullException("qCarga is a required property for CteSefazInfQ and cannot be null");
+            }
             this.qCarga = qCarga;
         }
 
@@ -75,7 +80,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade.</value>
         [DataMember(Name = "qCarga", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qCarga { get; set; }
+        public decimal? qCarga { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,7 +140,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qCarga == input.qCarga ||
-                    this.qCarga.Equals(input.qCarga)
+                    (this.qCarga != null &&
+                    this.qCarga.Equals(input.qCarga))
                 );
         }
 
@@ -156,7 +162,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.tpMed.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qCarga.GetHashCode();
+                if (this.qCarga != null)
+                {
+                    hashCode = (hashCode * 59) + this.qCarga.GetHashCode();
+                }
                 return hashCode;
             }
         }

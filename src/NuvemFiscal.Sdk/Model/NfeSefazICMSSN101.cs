@@ -40,8 +40,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cSOSN">* 101 - Tributada pelo Simples Nacional com permissão de crédito. (v.2.0) (required).</param>
         /// <param name="pCredSN">Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0). (required).</param>
         /// <param name="vCredICMSSN">Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0). (required).</param>
-        public NfeSefazICMSSN101(int orig = default(int), string cSOSN = default(string), decimal pCredSN = default(decimal), decimal vCredICMSSN = default(decimal))
+        public NfeSefazICMSSN101(int? orig = default(int?), string cSOSN = default(string), decimal? pCredSN = default(decimal?), decimal? vCredICMSSN = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMSSN101 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cSOSN" is required (not null)
             if (cSOSN == null)
@@ -49,7 +54,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cSOSN is a required property for NfeSefazICMSSN101 and cannot be null");
             }
             this.CSOSN = cSOSN;
+            // to ensure "pCredSN" is required (not null)
+            if (pCredSN == null)
+            {
+                throw new ArgumentNullException("pCredSN is a required property for NfeSefazICMSSN101 and cannot be null");
+            }
             this.pCredSN = pCredSN;
+            // to ensure "vCredICMSSN" is required (not null)
+            if (vCredICMSSN == null)
+            {
+                throw new ArgumentNullException("vCredICMSSN is a required property for NfeSefazICMSSN101 and cannot be null");
+            }
             this.vCredICMSSN = vCredICMSSN;
         }
 
@@ -58,7 +73,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// * 101 - Tributada pelo Simples Nacional com permissão de crédito. (v.2.0)
@@ -72,14 +87,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0).</value>
         [DataMember(Name = "pCredSN", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pCredSN { get; set; }
+        public decimal? pCredSN { get; set; }
 
         /// <summary>
         /// Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0).
         /// </summary>
         /// <value>Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0).</value>
         [DataMember(Name = "vCredICMSSN", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vCredICMSSN { get; set; }
+        public decimal? vCredICMSSN { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -130,7 +145,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CSOSN == input.CSOSN ||
@@ -139,11 +155,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.pCredSN == input.pCredSN ||
-                    this.pCredSN.Equals(input.pCredSN)
+                    (this.pCredSN != null &&
+                    this.pCredSN.Equals(input.pCredSN))
                 ) && 
                 (
                     this.vCredICMSSN == input.vCredICMSSN ||
-                    this.vCredICMSSN.Equals(input.vCredICMSSN)
+                    (this.vCredICMSSN != null &&
+                    this.vCredICMSSN.Equals(input.vCredICMSSN))
                 );
         }
 
@@ -156,13 +174,22 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CSOSN != null)
                 {
                     hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.pCredSN.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCredICMSSN.GetHashCode();
+                if (this.pCredSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.pCredSN.GetHashCode();
+                }
+                if (this.vCredICMSSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCredICMSSN.GetHashCode();
+                }
                 return hashCode;
             }
         }

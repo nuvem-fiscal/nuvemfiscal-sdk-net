@@ -40,8 +40,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cST">Tributação pelo ICMS  * 40 - Isenta  * 41 - Não tributada  * 50 - Suspensão  * 51 - Diferimento (required).</param>
         /// <param name="vICMSDeson">O valor do ICMS será informado apenas nas operações com veículos beneficiados com a desoneração condicional do ICMS..</param>
         /// <param name="motDesICMS">Este campo será preenchido quando o campo anterior estiver preenchido.  Informar o motivo da desoneração:  * 1 - Táxi  * 3 - Produtor Agropecuário  * 4 - Frotista/Locadora  * 5 - Diplomático/Consular  * 6 - Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 - CONTRAN e suas alterações)  * 7 - SUFRAMA  * 8 - Venda a órgão Público  * 9 - Outros  * 10 - Deficiente Condutor  * 11 - Deficiente não condutor  * 16 - Olimpíadas Rio 2016  * 90 - Solicitado pelo Fisco.</param>
-        public NfeSefazICMS40(int orig = default(int), string cST = default(string), decimal vICMSDeson = default(decimal), int motDesICMS = default(int))
+        public NfeSefazICMS40(int? orig = default(int?), string cST = default(string), decimal? vICMSDeson = default(decimal?), int? motDesICMS = default(int?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMS40 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -58,7 +63,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// Tributação pelo ICMS  * 40 - Isenta  * 41 - Não tributada  * 50 - Suspensão  * 51 - Diferimento
@@ -71,15 +76,15 @@ namespace NuvemFiscal.Sdk.Model
         /// O valor do ICMS será informado apenas nas operações com veículos beneficiados com a desoneração condicional do ICMS.
         /// </summary>
         /// <value>O valor do ICMS será informado apenas nas operações com veículos beneficiados com a desoneração condicional do ICMS.</value>
-        [DataMember(Name = "vICMSDeson", EmitDefaultValue = false)]
-        public decimal vICMSDeson { get; set; }
+        [DataMember(Name = "vICMSDeson", EmitDefaultValue = true)]
+        public decimal? vICMSDeson { get; set; }
 
         /// <summary>
         /// Este campo será preenchido quando o campo anterior estiver preenchido.  Informar o motivo da desoneração:  * 1 - Táxi  * 3 - Produtor Agropecuário  * 4 - Frotista/Locadora  * 5 - Diplomático/Consular  * 6 - Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 - CONTRAN e suas alterações)  * 7 - SUFRAMA  * 8 - Venda a órgão Público  * 9 - Outros  * 10 - Deficiente Condutor  * 11 - Deficiente não condutor  * 16 - Olimpíadas Rio 2016  * 90 - Solicitado pelo Fisco
         /// </summary>
         /// <value>Este campo será preenchido quando o campo anterior estiver preenchido.  Informar o motivo da desoneração:  * 1 - Táxi  * 3 - Produtor Agropecuário  * 4 - Frotista/Locadora  * 5 - Diplomático/Consular  * 6 - Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 - CONTRAN e suas alterações)  * 7 - SUFRAMA  * 8 - Venda a órgão Público  * 9 - Outros  * 10 - Deficiente Condutor  * 11 - Deficiente não condutor  * 16 - Olimpíadas Rio 2016  * 90 - Solicitado pelo Fisco</value>
-        [DataMember(Name = "motDesICMS", EmitDefaultValue = false)]
-        public int motDesICMS { get; set; }
+        [DataMember(Name = "motDesICMS", EmitDefaultValue = true)]
+        public int? motDesICMS { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -130,7 +135,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CST == input.CST ||
@@ -139,11 +145,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vICMSDeson == input.vICMSDeson ||
-                    this.vICMSDeson.Equals(input.vICMSDeson)
+                    (this.vICMSDeson != null &&
+                    this.vICMSDeson.Equals(input.vICMSDeson))
                 ) && 
                 (
                     this.motDesICMS == input.motDesICMS ||
-                    this.motDesICMS.Equals(input.motDesICMS)
+                    (this.motDesICMS != null &&
+                    this.motDesICMS.Equals(input.motDesICMS))
                 );
         }
 
@@ -156,13 +164,22 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CST != null)
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vICMSDeson.GetHashCode();
-                hashCode = (hashCode * 59) + this.motDesICMS.GetHashCode();
+                if (this.vICMSDeson != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSDeson.GetHashCode();
+                }
+                if (this.motDesICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.motDesICMS.GetHashCode();
+                }
                 return hashCode;
             }
         }

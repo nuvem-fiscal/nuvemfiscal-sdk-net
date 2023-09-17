@@ -45,8 +45,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="fone">Telefone..</param>
         /// <param name="enderToma">enderToma (required).</param>
         /// <param name="email">Endereço de email..</param>
-        public CteSefazToma4(int toma = default(int), string cNPJ = default(string), string cPF = default(string), string iE = default(string), string xNome = default(string), string xFant = default(string), string fone = default(string), CteSefazEndereco enderToma = default(CteSefazEndereco), string email = default(string))
+        public CteSefazToma4(int? toma = default(int?), string cNPJ = default(string), string cPF = default(string), string iE = default(string), string xNome = default(string), string xFant = default(string), string fone = default(string), CteSefazEndereco enderToma = default(CteSefazEndereco), string email = default(string))
         {
+            // to ensure "toma" is required (not null)
+            if (toma == null)
+            {
+                throw new ArgumentNullException("toma is a required property for CteSefazToma4 and cannot be null");
+            }
             this.toma = toma;
             // to ensure "xNome" is required (not null)
             if (xNome == null)
@@ -73,27 +78,27 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tomador do Serviço.  Preencher com:  * 4 - Outros  Obs: Informar os dados cadastrais do tomador do serviço.</value>
         [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = true)]
-        public int toma { get; set; }
+        public int? toma { get; set; }
 
         /// <summary>
         /// Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Número do CPF.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CPF.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Inscrição Estadual.  Informar a IE do tomador ou ISENTO se tomador é contribuinte do ICMS isento de inscrição no cadastro de contribuintes do ICMS. Caso o tomador não seja contribuinte do ICMS não informar o conteúdo.
         /// </summary>
         /// <value>Inscrição Estadual.  Informar a IE do tomador ou ISENTO se tomador é contribuinte do ICMS isento de inscrição no cadastro de contribuintes do ICMS. Caso o tomador não seja contribuinte do ICMS não informar o conteúdo.</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
@@ -107,14 +112,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome Fantasia.
         /// </summary>
         /// <value>Nome Fantasia.</value>
-        [DataMember(Name = "xFant", EmitDefaultValue = false)]
+        [DataMember(Name = "xFant", EmitDefaultValue = true)]
         public string xFant { get; set; }
 
         /// <summary>
         /// Telefone.
         /// </summary>
         /// <value>Telefone.</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>
@@ -127,7 +132,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Endereço de email.
         /// </summary>
         /// <value>Endereço de email.</value>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>
@@ -184,7 +189,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.toma == input.toma ||
-                    this.toma.Equals(input.toma)
+                    (this.toma != null &&
+                    this.toma.Equals(input.toma))
                 ) && 
                 (
                     this.CNPJ == input.CNPJ ||
@@ -237,7 +243,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.toma.GetHashCode();
+                if (this.toma != null)
+                {
+                    hashCode = (hashCode * 59) + this.toma.GetHashCode();
+                }
                 if (this.CNPJ != null)
                 {
                     hashCode = (hashCode * 59) + this.CNPJ.GetHashCode();

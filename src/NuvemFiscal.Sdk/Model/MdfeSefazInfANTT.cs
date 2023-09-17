@@ -49,7 +49,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Registro Nacional de Transportadores Rodoviários de Carga.  Registro obrigatório do emitente do MDF-e junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração.
         /// </summary>
         /// <value>Registro Nacional de Transportadores Rodoviários de Carga.  Registro obrigatório do emitente do MDF-e junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração.</value>
-        [DataMember(Name = "RNTRC", EmitDefaultValue = false)]
+        [DataMember(Name = "RNTRC", EmitDefaultValue = true)]
         public string RNTRC { get; set; }
 
         /// <summary>

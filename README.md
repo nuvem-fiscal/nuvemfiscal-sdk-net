@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.16.19
-- Versão do SDK: 2.11.0
+- Versão da API: 2.17.0
+- Versão do SDK: 2.12.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -256,6 +256,7 @@ Classe | Método | Endpoint | Descrição
 *NfeApi* | [**ListarNfe**](docs/NfeApi.md#listarnfe) | **GET** /nfe | Listar NF-e
 *NfeApi* | [**SincronizarNfe**](docs/NfeApi.md#sincronizarnfe) | **POST** /nfe/{id}/sincronizar | Sincroniza dados na NF-e a partir da SEFAZ
 *NfseApi* | [**BaixarPdfNfse**](docs/NfseApi.md#baixarpdfnfse) | **GET** /nfse/{id}/pdf | Baixar PDF do DANFSE
+*NfseApi* | [**BaixarXmlCancelamentoNfse**](docs/NfseApi.md#baixarxmlcancelamentonfse) | **GET** /nfse/{Id}/cancelamento/xml | Baixar XML do evento de cancelamento
 *NfseApi* | [**BaixarXmlDps**](docs/NfseApi.md#baixarxmldps) | **GET** /nfse/{id}/xml/dps | Baixar XML da DPS
 *NfseApi* | [**BaixarXmlNfse**](docs/NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada
 *NfseApi* | [**CancelarNfse**](docs/NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada

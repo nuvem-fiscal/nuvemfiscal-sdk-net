@@ -5,7 +5,7 @@ Dados dos detalhes da NF-e.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**nItem** | **int** | Número do item do NF. | 
+**nItem** | **int?** | Número do item do NF. | 
 **prod** | [**NfeSefazProd**](NfeSefazProd.md) |  | 
 **imposto** | [**NfeSefazImposto**](NfeSefazImposto.md) |  | 
 **impostoDevol** | [**NfeSefazImpostoDevol**](NfeSefazImpostoDevol.md) |  | [optional] 

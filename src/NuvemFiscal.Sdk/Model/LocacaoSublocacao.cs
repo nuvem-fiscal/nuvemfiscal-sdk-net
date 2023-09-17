@@ -40,9 +40,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="objeto">Tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso. (required).</param>
         /// <param name="extensao">Extensão total da ferrovia, rodovia, cabos, dutos ou condutos. (required).</param>
         /// <param name="nPostes">Número total de postes. (required).</param>
-        public LocacaoSublocacao(int categ = default(int), int objeto = default(int), string extensao = default(string), string nPostes = default(string))
+        public LocacaoSublocacao(int? categ = default(int?), int? objeto = default(int?), string extensao = default(string), string nPostes = default(string))
         {
+            // to ensure "categ" is required (not null)
+            if (categ == null)
+            {
+                throw new ArgumentNullException("categ is a required property for LocacaoSublocacao and cannot be null");
+            }
             this.categ = categ;
+            // to ensure "objeto" is required (not null)
+            if (objeto == null)
+            {
+                throw new ArgumentNullException("objeto is a required property for LocacaoSublocacao and cannot be null");
+            }
             this.objeto = objeto;
             // to ensure "extensao" is required (not null)
             if (extensao == null)
@@ -63,14 +73,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Categoria do serviço.</value>
         [DataMember(Name = "categ", IsRequired = true, EmitDefaultValue = true)]
-        public int categ { get; set; }
+        public int? categ { get; set; }
 
         /// <summary>
         /// Tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso.
         /// </summary>
         /// <value>Tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso.</value>
         [DataMember(Name = "objeto", IsRequired = true, EmitDefaultValue = true)]
-        public int objeto { get; set; }
+        public int? objeto { get; set; }
 
         /// <summary>
         /// Extensão total da ferrovia, rodovia, cabos, dutos ou condutos.
@@ -135,11 +145,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.categ == input.categ ||
-                    this.categ.Equals(input.categ)
+                    (this.categ != null &&
+                    this.categ.Equals(input.categ))
                 ) && 
                 (
                     this.objeto == input.objeto ||
-                    this.objeto.Equals(input.objeto)
+                    (this.objeto != null &&
+                    this.objeto.Equals(input.objeto))
                 ) && 
                 (
                     this.extensao == input.extensao ||
@@ -162,8 +174,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.categ.GetHashCode();
-                hashCode = (hashCode * 59) + this.objeto.GetHashCode();
+                if (this.categ != null)
+                {
+                    hashCode = (hashCode * 59) + this.categ.GetHashCode();
+                }
+                if (this.objeto != null)
+                {
+                    hashCode = (hashCode * 59) + this.objeto.GetHashCode();
+                }
                 if (this.extensao != null)
                 {
                     hashCode = (hashCode * 59) + this.extensao.GetHashCode();

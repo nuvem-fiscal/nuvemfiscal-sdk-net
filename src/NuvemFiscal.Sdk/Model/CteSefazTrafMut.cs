@@ -41,10 +41,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vFrete">Valor do Frete do Tráfego Mútuo. (required).</param>
         /// <param name="chCTeFerroOrigem">Chave de acesso do CT-e emitido pelo ferrovia de origem..</param>
         /// <param name="ferroEnv">ferroEnv.</param>
-        public CteSefazTrafMut(int respFat = default(int), int ferrEmi = default(int), decimal vFrete = default(decimal), string chCTeFerroOrigem = default(string), List<CteSefazFerroEnv> ferroEnv = default(List<CteSefazFerroEnv>))
+        public CteSefazTrafMut(int? respFat = default(int?), int? ferrEmi = default(int?), decimal? vFrete = default(decimal?), string chCTeFerroOrigem = default(string), List<CteSefazFerroEnv> ferroEnv = default(List<CteSefazFerroEnv>))
         {
+            // to ensure "respFat" is required (not null)
+            if (respFat == null)
+            {
+                throw new ArgumentNullException("respFat is a required property for CteSefazTrafMut and cannot be null");
+            }
             this.respFat = respFat;
+            // to ensure "ferrEmi" is required (not null)
+            if (ferrEmi == null)
+            {
+                throw new ArgumentNullException("ferrEmi is a required property for CteSefazTrafMut and cannot be null");
+            }
             this.ferrEmi = ferrEmi;
+            // to ensure "vFrete" is required (not null)
+            if (vFrete == null)
+            {
+                throw new ArgumentNullException("vFrete is a required property for CteSefazTrafMut and cannot be null");
+            }
             this.vFrete = vFrete;
             this.chCTeFerroOrigem = chCTeFerroOrigem;
             this.ferroEnv = ferroEnv;
@@ -55,27 +70,27 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Responsável pelo Faturamento.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino</value>
         [DataMember(Name = "respFat", IsRequired = true, EmitDefaultValue = true)]
-        public int respFat { get; set; }
+        public int? respFat { get; set; }
 
         /// <summary>
         /// Ferrovia Emitente do CTe.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino
         /// </summary>
         /// <value>Ferrovia Emitente do CTe.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino</value>
         [DataMember(Name = "ferrEmi", IsRequired = true, EmitDefaultValue = true)]
-        public int ferrEmi { get; set; }
+        public int? ferrEmi { get; set; }
 
         /// <summary>
         /// Valor do Frete do Tráfego Mútuo.
         /// </summary>
         /// <value>Valor do Frete do Tráfego Mútuo.</value>
         [DataMember(Name = "vFrete", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vFrete { get; set; }
+        public decimal? vFrete { get; set; }
 
         /// <summary>
         /// Chave de acesso do CT-e emitido pelo ferrovia de origem.
         /// </summary>
         /// <value>Chave de acesso do CT-e emitido pelo ferrovia de origem.</value>
-        [DataMember(Name = "chCTeFerroOrigem", EmitDefaultValue = false)]
+        [DataMember(Name = "chCTeFerroOrigem", EmitDefaultValue = true)]
         public string chCTeFerroOrigem { get; set; }
 
         /// <summary>
@@ -134,15 +149,18 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.respFat == input.respFat ||
-                    this.respFat.Equals(input.respFat)
+                    (this.respFat != null &&
+                    this.respFat.Equals(input.respFat))
                 ) && 
                 (
                     this.ferrEmi == input.ferrEmi ||
-                    this.ferrEmi.Equals(input.ferrEmi)
+                    (this.ferrEmi != null &&
+                    this.ferrEmi.Equals(input.ferrEmi))
                 ) && 
                 (
                     this.vFrete == input.vFrete ||
-                    this.vFrete.Equals(input.vFrete)
+                    (this.vFrete != null &&
+                    this.vFrete.Equals(input.vFrete))
                 ) && 
                 (
                     this.chCTeFerroOrigem == input.chCTeFerroOrigem ||
@@ -166,9 +184,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.respFat.GetHashCode();
-                hashCode = (hashCode * 59) + this.ferrEmi.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFrete.GetHashCode();
+                if (this.respFat != null)
+                {
+                    hashCode = (hashCode * 59) + this.respFat.GetHashCode();
+                }
+                if (this.ferrEmi != null)
+                {
+                    hashCode = (hashCode * 59) + this.ferrEmi.GetHashCode();
+                }
+                if (this.vFrete != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFrete.GetHashCode();
+                }
                 if (this.chCTeFerroOrigem != null)
                 {
                     hashCode = (hashCode * 59) + this.chCTeFerroOrigem.GetHashCode();

@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Texto com o QR-Code para consulta do MDF-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Texto com o QR-Code para consulta do MDF-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "qrCodMDFe", EmitDefaultValue = false)]
+        [DataMember(Name = "qrCodMDFe", EmitDefaultValue = true)]
         public string qrCodMDFe { get; set; }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="iM">Inscrição Municipal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         /// <param name="cNAE">CNAE Fiscal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         /// <param name="cRT">Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
-        public NfeSefazEmit(string cNPJ = default(string), string cPF = default(string), string xNome = default(string), string xFant = default(string), NfeSefazEnderEmi enderEmit = default(NfeSefazEnderEmi), string iE = default(string), string iEST = default(string), string iM = default(string), string cNAE = default(string), int cRT = default(int))
+        public NfeSefazEmit(string cNPJ = default(string), string cPF = default(string), string xNome = default(string), string xFant = default(string), NfeSefazEnderEmi enderEmit = default(NfeSefazEnderEmi), string iE = default(string), string iEST = default(string), string iM = default(string), string cNAE = default(string), int? cRT = default(int?))
         {
             this.CNPJ = cNPJ;
             this.CPF = cPF;
@@ -59,28 +59,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CNPJ do emitente.    ***Obrigatório caso o emitente seja pessoa jurídica***.
         /// </summary>
         /// <value>Número do CNPJ do emitente.    ***Obrigatório caso o emitente seja pessoa jurídica***.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Número do CPF do emitente.    ***Obrigatorio caso o emitente seja pessoa física***.
         /// </summary>
         /// <value>Número do CPF do emitente.    ***Obrigatorio caso o emitente seja pessoa física***.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Razão Social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Razão Social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xFant", EmitDefaultValue = false)]
+        [DataMember(Name = "xFant", EmitDefaultValue = true)]
         public string xFant { get; set; }
 
         /// <summary>
@@ -93,36 +93,36 @@ namespace NuvemFiscal.Sdk.Model
         /// Inscrição Estadual do Emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Inscrição Estadual do Emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// Inscricao Estadual do Substituto Tributário.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Inscricao Estadual do Substituto Tributário.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "IEST", EmitDefaultValue = false)]
+        [DataMember(Name = "IEST", EmitDefaultValue = true)]
         public string IEST { get; set; }
 
         /// <summary>
         /// Inscrição Municipal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Inscrição Municipal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "IM", EmitDefaultValue = false)]
+        [DataMember(Name = "IM", EmitDefaultValue = true)]
         public string IM { get; set; }
 
         /// <summary>
         /// CNAE Fiscal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>CNAE Fiscal.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "CNAE", EmitDefaultValue = false)]
+        [DataMember(Name = "CNAE", EmitDefaultValue = true)]
         public string CNAE { get; set; }
 
         /// <summary>
         /// Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Código de Regime Tributário.  Este campo será obrigatoriamente preenchido com:  * 1 - Simples Nacional  * 2 - Simples Nacional - excesso de sublimite de receita bruta  * 3 - Regime Normal    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "CRT", EmitDefaultValue = false)]
-        public int CRT { get; set; }
+        [DataMember(Name = "CRT", EmitDefaultValue = true)]
+        public int? CRT { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -224,7 +224,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CRT == input.CRT ||
-                    this.CRT.Equals(input.CRT)
+                    (this.CRT != null &&
+                    this.CRT.Equals(input.CRT))
                 );
         }
 
@@ -273,7 +274,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CNAE.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CRT.GetHashCode();
+                if (this.CRT != null)
+                {
+                    hashCode = (hashCode * 59) + this.CRT.GetHashCode();
+                }
                 return hashCode;
             }
         }

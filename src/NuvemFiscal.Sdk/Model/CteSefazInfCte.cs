@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazInfCte" /> class.
         /// </summary>
         /// <param name="versao">Versão do leiaute.  Ex: \&quot;4.00\&quot;. (required).</param>
-        /// <param name="id">Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;..</param>
+        /// <param name="id">Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="ide">ide (required).</param>
         /// <param name="compl">compl.</param>
         /// <param name="emit">emit (required).</param>
@@ -105,10 +105,10 @@ namespace NuvemFiscal.Sdk.Model
         public string versao { get; set; }
 
         /// <summary>
-        /// Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.
+        /// Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.</value>
-        [DataMember(Name = "Id", EmitDefaultValue = false)]
+        /// <value>Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.*</value>
+        [DataMember(Name = "Id", EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>

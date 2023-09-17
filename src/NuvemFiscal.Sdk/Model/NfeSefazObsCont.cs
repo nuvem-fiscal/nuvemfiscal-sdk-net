@@ -42,13 +42,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets xCampo
         /// </summary>
-        [DataMember(Name = "xCampo", EmitDefaultValue = false)]
+        [DataMember(Name = "xCampo", EmitDefaultValue = true)]
         public string xCampo { get; set; }
 
         /// <summary>
         /// Gets or Sets xTexto
         /// </summary>
-        [DataMember(Name = "xTexto", EmitDefaultValue = false)]
+        [DataMember(Name = "xTexto", EmitDefaultValue = true)]
         public string xTexto { get; set; }
 
         /// <summary>

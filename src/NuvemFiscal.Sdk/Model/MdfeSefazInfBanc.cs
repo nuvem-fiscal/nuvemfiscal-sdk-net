@@ -47,28 +47,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do banco.
         /// </summary>
         /// <value>Número do banco.</value>
-        [DataMember(Name = "codBanco", EmitDefaultValue = false)]
+        [DataMember(Name = "codBanco", EmitDefaultValue = true)]
         public string codBanco { get; set; }
 
         /// <summary>
         /// Número da agência bancária.
         /// </summary>
         /// <value>Número da agência bancária.</value>
-        [DataMember(Name = "codAgencia", EmitDefaultValue = false)]
+        [DataMember(Name = "codAgencia", EmitDefaultValue = true)]
         public string codAgencia { get; set; }
 
         /// <summary>
         /// Número do CNPJ da Instituição de Pagamento Eletrônico do Frete.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ da Instituição de Pagamento Eletrônico do Frete.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJIPEF", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJIPEF", EmitDefaultValue = true)]
         public string CNPJIPEF { get; set; }
 
         /// <summary>
         /// Chave PIX.  Informar a chave PIX para recebimento do frete.  Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição.
         /// </summary>
         /// <value>Chave PIX.  Informar a chave PIX para recebimento do frete.  Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição.</value>
-        [DataMember(Name = "PIX", EmitDefaultValue = false)]
+        [DataMember(Name = "PIX", EmitDefaultValue = true)]
         public string PIX { get; set; }
 
         /// <summary>

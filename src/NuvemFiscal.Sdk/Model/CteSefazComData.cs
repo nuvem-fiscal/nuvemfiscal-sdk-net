@@ -38,9 +38,19 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="tpPer">Tipo de data/período programado para entrega.  Preencher com:  * 1 - Na data  * 2 - Até a data  * 3 - A partir da data (required).</param>
         /// <param name="dProg">Data programada.  Formato AAAA-MM-DD. (required).</param>
-        public CteSefazComData(int tpPer = default(int), DateTime dProg = default(DateTime))
+        public CteSefazComData(int? tpPer = default(int?), DateTime? dProg = default(DateTime?))
         {
+            // to ensure "tpPer" is required (not null)
+            if (tpPer == null)
+            {
+                throw new ArgumentNullException("tpPer is a required property for CteSefazComData and cannot be null");
+            }
             this.tpPer = tpPer;
+            // to ensure "dProg" is required (not null)
+            if (dProg == null)
+            {
+                throw new ArgumentNullException("dProg is a required property for CteSefazComData and cannot be null");
+            }
             this.dProg = dProg;
         }
 
@@ -49,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de data/período programado para entrega.  Preencher com:  * 1 - Na data  * 2 - Até a data  * 3 - A partir da data</value>
         [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
-        public int tpPer { get; set; }
+        public int? tpPer { get; set; }
 
         /// <summary>
         /// Data programada.  Formato AAAA-MM-DD.
@@ -57,7 +67,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data programada.  Formato AAAA-MM-DD.</value>
         [DataMember(Name = "dProg", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dProg { get; set; }
+        public DateTime? dProg { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -106,7 +116,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpPer == input.tpPer ||
-                    this.tpPer.Equals(input.tpPer)
+                    (this.tpPer != null &&
+                    this.tpPer.Equals(input.tpPer))
                 ) && 
                 (
                     this.dProg == input.dProg ||
@@ -124,7 +135,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpPer.GetHashCode();
+                if (this.tpPer != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpPer.GetHashCode();
+                }
                 if (this.dProg != null)
                 {
                     hashCode = (hashCode * 59) + this.dProg.GetHashCode();

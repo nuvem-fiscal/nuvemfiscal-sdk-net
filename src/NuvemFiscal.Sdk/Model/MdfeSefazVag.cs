@@ -43,9 +43,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nVag">Número de Identificação do vagão. (required).</param>
         /// <param name="nSeq">Sequencia do vagão na composição..</param>
         /// <param name="tU">Tonelada Útil.  Unidade de peso referente à carga útil (apenas o peso da carga transportada), expressa em toneladas. (required).</param>
-        public MdfeSefazVag(decimal pesoBC = default(decimal), decimal pesoR = default(decimal), string tpVag = default(string), string serie = default(string), int nVag = default(int), int nSeq = default(int), decimal tU = default(decimal))
+        public MdfeSefazVag(decimal? pesoBC = default(decimal?), decimal? pesoR = default(decimal?), string tpVag = default(string), string serie = default(string), int? nVag = default(int?), int? nSeq = default(int?), decimal? tU = default(decimal?))
         {
+            // to ensure "pesoBC" is required (not null)
+            if (pesoBC == null)
+            {
+                throw new ArgumentNullException("pesoBC is a required property for MdfeSefazVag and cannot be null");
+            }
             this.pesoBC = pesoBC;
+            // to ensure "pesoR" is required (not null)
+            if (pesoR == null)
+            {
+                throw new ArgumentNullException("pesoR is a required property for MdfeSefazVag and cannot be null");
+            }
             this.pesoR = pesoR;
             // to ensure "serie" is required (not null)
             if (serie == null)
@@ -53,7 +63,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("serie is a required property for MdfeSefazVag and cannot be null");
             }
             this.serie = serie;
+            // to ensure "nVag" is required (not null)
+            if (nVag == null)
+            {
+                throw new ArgumentNullException("nVag is a required property for MdfeSefazVag and cannot be null");
+            }
             this.nVag = nVag;
+            // to ensure "tU" is required (not null)
+            if (tU == null)
+            {
+                throw new ArgumentNullException("tU is a required property for MdfeSefazVag and cannot be null");
+            }
             this.TU = tU;
             this.tpVag = tpVag;
             this.nSeq = nSeq;
@@ -64,20 +84,20 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Peso Base de Cálculo de Frete em Toneladas.</value>
         [DataMember(Name = "pesoBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pesoBC { get; set; }
+        public decimal? pesoBC { get; set; }
 
         /// <summary>
         /// Peso Real em Toneladas.
         /// </summary>
         /// <value>Peso Real em Toneladas.</value>
         [DataMember(Name = "pesoR", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pesoR { get; set; }
+        public decimal? pesoR { get; set; }
 
         /// <summary>
         /// Tipo de Vagão.
         /// </summary>
         /// <value>Tipo de Vagão.</value>
-        [DataMember(Name = "tpVag", EmitDefaultValue = false)]
+        [DataMember(Name = "tpVag", EmitDefaultValue = true)]
         public string tpVag { get; set; }
 
         /// <summary>
@@ -92,21 +112,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número de Identificação do vagão.</value>
         [DataMember(Name = "nVag", IsRequired = true, EmitDefaultValue = true)]
-        public int nVag { get; set; }
+        public int? nVag { get; set; }
 
         /// <summary>
         /// Sequencia do vagão na composição.
         /// </summary>
         /// <value>Sequencia do vagão na composição.</value>
-        [DataMember(Name = "nSeq", EmitDefaultValue = false)]
-        public int nSeq { get; set; }
+        [DataMember(Name = "nSeq", EmitDefaultValue = true)]
+        public int? nSeq { get; set; }
 
         /// <summary>
         /// Tonelada Útil.  Unidade de peso referente à carga útil (apenas o peso da carga transportada), expressa em toneladas.
         /// </summary>
         /// <value>Tonelada Útil.  Unidade de peso referente à carga útil (apenas o peso da carga transportada), expressa em toneladas.</value>
         [DataMember(Name = "TU", IsRequired = true, EmitDefaultValue = true)]
-        public decimal TU { get; set; }
+        public decimal? TU { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -160,11 +180,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.pesoBC == input.pesoBC ||
-                    this.pesoBC.Equals(input.pesoBC)
+                    (this.pesoBC != null &&
+                    this.pesoBC.Equals(input.pesoBC))
                 ) && 
                 (
                     this.pesoR == input.pesoR ||
-                    this.pesoR.Equals(input.pesoR)
+                    (this.pesoR != null &&
+                    this.pesoR.Equals(input.pesoR))
                 ) && 
                 (
                     this.tpVag == input.tpVag ||
@@ -178,15 +200,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.nVag == input.nVag ||
-                    this.nVag.Equals(input.nVag)
+                    (this.nVag != null &&
+                    this.nVag.Equals(input.nVag))
                 ) && 
                 (
                     this.nSeq == input.nSeq ||
-                    this.nSeq.Equals(input.nSeq)
+                    (this.nSeq != null &&
+                    this.nSeq.Equals(input.nSeq))
                 ) && 
                 (
                     this.TU == input.TU ||
-                    this.TU.Equals(input.TU)
+                    (this.TU != null &&
+                    this.TU.Equals(input.TU))
                 );
         }
 
@@ -199,8 +224,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.pesoBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pesoR.GetHashCode();
+                if (this.pesoBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.pesoBC.GetHashCode();
+                }
+                if (this.pesoR != null)
+                {
+                    hashCode = (hashCode * 59) + this.pesoR.GetHashCode();
+                }
                 if (this.tpVag != null)
                 {
                     hashCode = (hashCode * 59) + this.tpVag.GetHashCode();
@@ -209,9 +240,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.serie.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.nVag.GetHashCode();
-                hashCode = (hashCode * 59) + this.nSeq.GetHashCode();
-                hashCode = (hashCode * 59) + this.TU.GetHashCode();
+                if (this.nVag != null)
+                {
+                    hashCode = (hashCode * 59) + this.nVag.GetHashCode();
+                }
+                if (this.nSeq != null)
+                {
+                    hashCode = (hashCode * 59) + this.nSeq.GetHashCode();
+                }
+                if (this.TU != null)
+                {
+                    hashCode = (hashCode * 59) + this.TU.GetHashCode();
+                }
                 return hashCode;
             }
         }

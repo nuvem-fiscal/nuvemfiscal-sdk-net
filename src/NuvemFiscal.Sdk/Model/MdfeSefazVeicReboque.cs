@@ -45,7 +45,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="prop">prop.</param>
         /// <param name="tpCar">Tipo de Carroceria.  Preencher com:  * 00 - não aplicável  * 01 - Aberta  * 02 - Fechada/Baú  * 03 - Granelera  * 04 - Porta Container  * 05 - Sider (required).</param>
         /// <param name="uF">UF em que veículo está licenciado.  Sigla da UF de licenciamento do veículo..</param>
-        public MdfeSefazVeicReboque(string cInt = default(string), string placa = default(string), string rENAVAM = default(string), int tara = default(int), int capKG = default(int), int capM3 = default(int), MdfeSefazVeicReboqueProp prop = default(MdfeSefazVeicReboqueProp), string tpCar = default(string), string uF = default(string))
+        public MdfeSefazVeicReboque(string cInt = default(string), string placa = default(string), string rENAVAM = default(string), int? tara = default(int?), int? capKG = default(int?), int? capM3 = default(int?), MdfeSefazVeicReboqueProp prop = default(MdfeSefazVeicReboqueProp), string tpCar = default(string), string uF = default(string))
         {
             // to ensure "placa" is required (not null)
             if (placa == null)
@@ -53,7 +53,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("placa is a required property for MdfeSefazVeicReboque and cannot be null");
             }
             this.placa = placa;
+            // to ensure "tara" is required (not null)
+            if (tara == null)
+            {
+                throw new ArgumentNullException("tara is a required property for MdfeSefazVeicReboque and cannot be null");
+            }
             this.tara = tara;
+            // to ensure "capKG" is required (not null)
+            if (capKG == null)
+            {
+                throw new ArgumentNullException("capKG is a required property for MdfeSefazVeicReboque and cannot be null");
+            }
             this.capKG = capKG;
             // to ensure "tpCar" is required (not null)
             if (tpCar == null)
@@ -72,7 +82,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código interno do veículo.
         /// </summary>
         /// <value>Código interno do veículo.</value>
-        [DataMember(Name = "cInt", EmitDefaultValue = false)]
+        [DataMember(Name = "cInt", EmitDefaultValue = true)]
         public string cInt { get; set; }
 
         /// <summary>
@@ -86,7 +96,7 @@ namespace NuvemFiscal.Sdk.Model
         /// RENAVAM do veículo.
         /// </summary>
         /// <value>RENAVAM do veículo.</value>
-        [DataMember(Name = "RENAVAM", EmitDefaultValue = false)]
+        [DataMember(Name = "RENAVAM", EmitDefaultValue = true)]
         public string RENAVAM { get; set; }
 
         /// <summary>
@@ -94,21 +104,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tara em KG.</value>
         [DataMember(Name = "tara", IsRequired = true, EmitDefaultValue = true)]
-        public int tara { get; set; }
+        public int? tara { get; set; }
 
         /// <summary>
         /// Capacidade em KG.
         /// </summary>
         /// <value>Capacidade em KG.</value>
         [DataMember(Name = "capKG", IsRequired = true, EmitDefaultValue = true)]
-        public int capKG { get; set; }
+        public int? capKG { get; set; }
 
         /// <summary>
         /// Capacidade em M3.
         /// </summary>
         /// <value>Capacidade em M3.</value>
-        [DataMember(Name = "capM3", EmitDefaultValue = false)]
-        public int capM3 { get; set; }
+        [DataMember(Name = "capM3", EmitDefaultValue = true)]
+        public int? capM3 { get; set; }
 
         /// <summary>
         /// Gets or Sets prop
@@ -127,7 +137,7 @@ namespace NuvemFiscal.Sdk.Model
         /// UF em que veículo está licenciado.  Sigla da UF de licenciamento do veículo.
         /// </summary>
         /// <value>UF em que veículo está licenciado.  Sigla da UF de licenciamento do veículo.</value>
-        [DataMember(Name = "UF", EmitDefaultValue = false)]
+        [DataMember(Name = "UF", EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>
@@ -199,15 +209,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tara == input.tara ||
-                    this.tara.Equals(input.tara)
+                    (this.tara != null &&
+                    this.tara.Equals(input.tara))
                 ) && 
                 (
                     this.capKG == input.capKG ||
-                    this.capKG.Equals(input.capKG)
+                    (this.capKG != null &&
+                    this.capKG.Equals(input.capKG))
                 ) && 
                 (
                     this.capM3 == input.capM3 ||
-                    this.capM3.Equals(input.capM3)
+                    (this.capM3 != null &&
+                    this.capM3.Equals(input.capM3))
                 ) && 
                 (
                     this.prop == input.prop ||
@@ -247,9 +260,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.RENAVAM.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tara.GetHashCode();
-                hashCode = (hashCode * 59) + this.capKG.GetHashCode();
-                hashCode = (hashCode * 59) + this.capM3.GetHashCode();
+                if (this.tara != null)
+                {
+                    hashCode = (hashCode * 59) + this.tara.GetHashCode();
+                }
+                if (this.capKG != null)
+                {
+                    hashCode = (hashCode * 59) + this.capKG.GetHashCode();
+                }
+                if (this.capM3 != null)
+                {
+                    hashCode = (hashCode * 59) + this.capM3.GetHashCode();
+                }
                 if (this.prop != null)
                 {
                     hashCode = (hashCode * 59) + this.prop.GetHashCode();

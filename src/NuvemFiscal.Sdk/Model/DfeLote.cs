@@ -126,13 +126,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.
         /// </summary>
         /// <value>Seu identificador único para este documento. Opcional, ajuda a evitar o envio duplicado de um mesmo documento.</value>
-        [DataMember(Name = "referencia", EmitDefaultValue = false)]
+        [DataMember(Name = "referencia", EmitDefaultValue = true)]
         public string referencia { get; set; }
 
         /// <summary>
         /// Gets or Sets id_lote
         /// </summary>
-        [DataMember(Name = "id_lote", EmitDefaultValue = false)]
+        [DataMember(Name = "id_lote", EmitDefaultValue = true)]
         public string id_lote { get; set; }
 
         /// <summary>

@@ -39,10 +39,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="indImport">Indicador de importação 0&#x3D;Nacional  * 1 - Importado (required).</param>
         /// <param name="cUFOrig">UF de origem do produtor ou do importado. (required).</param>
         /// <param name="pOrig">Percentual originário para a UF. (required).</param>
-        public NfeSefazOrigComb(int indImport = default(int), int cUFOrig = default(int), decimal pOrig = default(decimal))
+        public NfeSefazOrigComb(int? indImport = default(int?), int? cUFOrig = default(int?), decimal? pOrig = default(decimal?))
         {
+            // to ensure "indImport" is required (not null)
+            if (indImport == null)
+            {
+                throw new ArgumentNullException("indImport is a required property for NfeSefazOrigComb and cannot be null");
+            }
             this.indImport = indImport;
+            // to ensure "cUFOrig" is required (not null)
+            if (cUFOrig == null)
+            {
+                throw new ArgumentNullException("cUFOrig is a required property for NfeSefazOrigComb and cannot be null");
+            }
             this.cUFOrig = cUFOrig;
+            // to ensure "pOrig" is required (not null)
+            if (pOrig == null)
+            {
+                throw new ArgumentNullException("pOrig is a required property for NfeSefazOrigComb and cannot be null");
+            }
             this.pOrig = pOrig;
         }
 
@@ -51,21 +66,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indicador de importação 0&#x3D;Nacional  * 1 - Importado</value>
         [DataMember(Name = "indImport", IsRequired = true, EmitDefaultValue = true)]
-        public int indImport { get; set; }
+        public int? indImport { get; set; }
 
         /// <summary>
         /// UF de origem do produtor ou do importado.
         /// </summary>
         /// <value>UF de origem do produtor ou do importado.</value>
         [DataMember(Name = "cUFOrig", IsRequired = true, EmitDefaultValue = true)]
-        public int cUFOrig { get; set; }
+        public int? cUFOrig { get; set; }
 
         /// <summary>
         /// Percentual originário para a UF.
         /// </summary>
         /// <value>Percentual originário para a UF.</value>
         [DataMember(Name = "pOrig", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pOrig { get; set; }
+        public decimal? pOrig { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,15 +130,18 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.indImport == input.indImport ||
-                    this.indImport.Equals(input.indImport)
+                    (this.indImport != null &&
+                    this.indImport.Equals(input.indImport))
                 ) && 
                 (
                     this.cUFOrig == input.cUFOrig ||
-                    this.cUFOrig.Equals(input.cUFOrig)
+                    (this.cUFOrig != null &&
+                    this.cUFOrig.Equals(input.cUFOrig))
                 ) && 
                 (
                     this.pOrig == input.pOrig ||
-                    this.pOrig.Equals(input.pOrig)
+                    (this.pOrig != null &&
+                    this.pOrig.Equals(input.pOrig))
                 );
         }
 
@@ -136,9 +154,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.indImport.GetHashCode();
-                hashCode = (hashCode * 59) + this.cUFOrig.GetHashCode();
-                hashCode = (hashCode * 59) + this.pOrig.GetHashCode();
+                if (this.indImport != null)
+                {
+                    hashCode = (hashCode * 59) + this.indImport.GetHashCode();
+                }
+                if (this.cUFOrig != null)
+                {
+                    hashCode = (hashCode * 59) + this.cUFOrig.GetHashCode();
+                }
+                if (this.pOrig != null)
+                {
+                    hashCode = (hashCode * 59) + this.pOrig.GetHashCode();
+                }
                 return hashCode;
             }
         }

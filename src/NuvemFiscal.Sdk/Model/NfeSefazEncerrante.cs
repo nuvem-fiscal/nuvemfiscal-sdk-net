@@ -41,11 +41,31 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nTanque">Numero de identificação do tanque ao qual o bico está interligado. (required).</param>
         /// <param name="vEncIni">Valor do Encerrante no ínicio do abastecimento. (required).</param>
         /// <param name="vEncFin">Valor do Encerrante no final do abastecimento. (required).</param>
-        public NfeSefazEncerrante(int nBico = default(int), int nBomba = default(int), int nTanque = default(int), decimal vEncIni = default(decimal), decimal vEncFin = default(decimal))
+        public NfeSefazEncerrante(int? nBico = default(int?), int? nBomba = default(int?), int? nTanque = default(int?), decimal? vEncIni = default(decimal?), decimal? vEncFin = default(decimal?))
         {
+            // to ensure "nBico" is required (not null)
+            if (nBico == null)
+            {
+                throw new ArgumentNullException("nBico is a required property for NfeSefazEncerrante and cannot be null");
+            }
             this.nBico = nBico;
+            // to ensure "nTanque" is required (not null)
+            if (nTanque == null)
+            {
+                throw new ArgumentNullException("nTanque is a required property for NfeSefazEncerrante and cannot be null");
+            }
             this.nTanque = nTanque;
+            // to ensure "vEncIni" is required (not null)
+            if (vEncIni == null)
+            {
+                throw new ArgumentNullException("vEncIni is a required property for NfeSefazEncerrante and cannot be null");
+            }
             this.vEncIni = vEncIni;
+            // to ensure "vEncFin" is required (not null)
+            if (vEncFin == null)
+            {
+                throw new ArgumentNullException("vEncFin is a required property for NfeSefazEncerrante and cannot be null");
+            }
             this.vEncFin = vEncFin;
             this.nBomba = nBomba;
         }
@@ -55,35 +75,35 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Numero de identificação do Bico utilizado no abastecimento.</value>
         [DataMember(Name = "nBico", IsRequired = true, EmitDefaultValue = true)]
-        public int nBico { get; set; }
+        public int? nBico { get; set; }
 
         /// <summary>
         /// Numero de identificação da bomba ao qual o bico está interligado.
         /// </summary>
         /// <value>Numero de identificação da bomba ao qual o bico está interligado.</value>
-        [DataMember(Name = "nBomba", EmitDefaultValue = false)]
-        public int nBomba { get; set; }
+        [DataMember(Name = "nBomba", EmitDefaultValue = true)]
+        public int? nBomba { get; set; }
 
         /// <summary>
         /// Numero de identificação do tanque ao qual o bico está interligado.
         /// </summary>
         /// <value>Numero de identificação do tanque ao qual o bico está interligado.</value>
         [DataMember(Name = "nTanque", IsRequired = true, EmitDefaultValue = true)]
-        public int nTanque { get; set; }
+        public int? nTanque { get; set; }
 
         /// <summary>
         /// Valor do Encerrante no ínicio do abastecimento.
         /// </summary>
         /// <value>Valor do Encerrante no ínicio do abastecimento.</value>
         [DataMember(Name = "vEncIni", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vEncIni { get; set; }
+        public decimal? vEncIni { get; set; }
 
         /// <summary>
         /// Valor do Encerrante no final do abastecimento.
         /// </summary>
         /// <value>Valor do Encerrante no final do abastecimento.</value>
         [DataMember(Name = "vEncFin", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vEncFin { get; set; }
+        public decimal? vEncFin { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,23 +155,28 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.nBico == input.nBico ||
-                    this.nBico.Equals(input.nBico)
+                    (this.nBico != null &&
+                    this.nBico.Equals(input.nBico))
                 ) && 
                 (
                     this.nBomba == input.nBomba ||
-                    this.nBomba.Equals(input.nBomba)
+                    (this.nBomba != null &&
+                    this.nBomba.Equals(input.nBomba))
                 ) && 
                 (
                     this.nTanque == input.nTanque ||
-                    this.nTanque.Equals(input.nTanque)
+                    (this.nTanque != null &&
+                    this.nTanque.Equals(input.nTanque))
                 ) && 
                 (
                     this.vEncIni == input.vEncIni ||
-                    this.vEncIni.Equals(input.vEncIni)
+                    (this.vEncIni != null &&
+                    this.vEncIni.Equals(input.vEncIni))
                 ) && 
                 (
                     this.vEncFin == input.vEncFin ||
-                    this.vEncFin.Equals(input.vEncFin)
+                    (this.vEncFin != null &&
+                    this.vEncFin.Equals(input.vEncFin))
                 );
         }
 
@@ -164,11 +189,26 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.nBico.GetHashCode();
-                hashCode = (hashCode * 59) + this.nBomba.GetHashCode();
-                hashCode = (hashCode * 59) + this.nTanque.GetHashCode();
-                hashCode = (hashCode * 59) + this.vEncIni.GetHashCode();
-                hashCode = (hashCode * 59) + this.vEncFin.GetHashCode();
+                if (this.nBico != null)
+                {
+                    hashCode = (hashCode * 59) + this.nBico.GetHashCode();
+                }
+                if (this.nBomba != null)
+                {
+                    hashCode = (hashCode * 59) + this.nBomba.GetHashCode();
+                }
+                if (this.nTanque != null)
+                {
+                    hashCode = (hashCode * 59) + this.nTanque.GetHashCode();
+                }
+                if (this.vEncIni != null)
+                {
+                    hashCode = (hashCode * 59) + this.vEncIni.GetHashCode();
+                }
+                if (this.vEncFin != null)
+                {
+                    hashCode = (hashCode * 59) + this.vEncFin.GetHashCode();
+                }
                 return hashCode;
             }
         }

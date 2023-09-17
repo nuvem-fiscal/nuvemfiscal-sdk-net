@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cL">Classe.  Preencher com:  * M - Tarifa Mínima  * G - Tarifa Geral  * E - Tarifa Específica (required).</param>
         /// <param name="cTar">Código da Tarifa.  Deverão ser incluídos os códigos de três dígitos, correspondentes à tarifa..</param>
         /// <param name="vTar">Valor da Tarifa.  Valor da tarifa por kg quando for o caso. (required).</param>
-        public CteSefazTarifa(string cL = default(string), string cTar = default(string), decimal vTar = default(decimal))
+        public CteSefazTarifa(string cL = default(string), string cTar = default(string), decimal? vTar = default(decimal?))
         {
             // to ensure "cL" is required (not null)
             if (cL == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cL is a required property for CteSefazTarifa and cannot be null");
             }
             this.CL = cL;
+            // to ensure "vTar" is required (not null)
+            if (vTar == null)
+            {
+                throw new ArgumentNullException("vTar is a required property for CteSefazTarifa and cannot be null");
+            }
             this.vTar = vTar;
             this.cTar = cTar;
         }
@@ -62,7 +67,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código da Tarifa.  Deverão ser incluídos os códigos de três dígitos, correspondentes à tarifa.
         /// </summary>
         /// <value>Código da Tarifa.  Deverão ser incluídos os códigos de três dígitos, correspondentes à tarifa.</value>
-        [DataMember(Name = "cTar", EmitDefaultValue = false)]
+        [DataMember(Name = "cTar", EmitDefaultValue = true)]
         public string cTar { get; set; }
 
         /// <summary>
@@ -70,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da Tarifa.  Valor da tarifa por kg quando for o caso.</value>
         [DataMember(Name = "vTar", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vTar { get; set; }
+        public decimal? vTar { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -130,7 +135,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vTar == input.vTar ||
-                    this.vTar.Equals(input.vTar)
+                    (this.vTar != null &&
+                    this.vTar.Equals(input.vTar))
                 );
         }
 
@@ -151,7 +157,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cTar.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vTar.GetHashCode();
+                if (this.vTar != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTar.GetHashCode();
+                }
                 return hashCode;
             }
         }

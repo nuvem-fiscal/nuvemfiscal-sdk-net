@@ -106,21 +106,21 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ.
         /// </summary>
         /// <value>CNPJ.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// CPF (v2.0).
         /// </summary>
         /// <value>CPF (v2.0).</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Razão Social ou Nome do Expedidor/Recebedor.
         /// </summary>
         /// <value>Razão Social ou Nome do Expedidor/Recebedor.</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Complemento.
         /// </summary>
         /// <value>Complemento.</value>
-        [DataMember(Name = "xCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "xCpl", EmitDefaultValue = true)]
         public string xCpl { get; set; }
 
         /// <summary>
@@ -176,42 +176,42 @@ namespace NuvemFiscal.Sdk.Model
         /// CEP.
         /// </summary>
         /// <value>CEP.</value>
-        [DataMember(Name = "CEP", EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", EmitDefaultValue = true)]
         public string CEP { get; set; }
 
         /// <summary>
         /// Código de Pais.
         /// </summary>
         /// <value>Código de Pais.</value>
-        [DataMember(Name = "cPais", EmitDefaultValue = false)]
+        [DataMember(Name = "cPais", EmitDefaultValue = true)]
         public string cPais { get; set; }
 
         /// <summary>
         /// Nome do país.
         /// </summary>
         /// <value>Nome do país.</value>
-        [DataMember(Name = "xPais", EmitDefaultValue = false)]
+        [DataMember(Name = "xPais", EmitDefaultValue = true)]
         public string xPais { get; set; }
 
         /// <summary>
         /// Telefone, preencher com Código DDD + número do telefone , nas operações com exterior é permtido informar o código do país + código da localidade + número do telefone.
         /// </summary>
         /// <value>Telefone, preencher com Código DDD + número do telefone , nas operações com exterior é permtido informar o código do país + código da localidade + número do telefone.</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>
         /// Informar o e-mail do expedidor/Recebedor. O campo pode ser utilizado para informar o e-mail de recepção da NF-e indicada pelo expedidor.
         /// </summary>
         /// <value>Informar o e-mail do expedidor/Recebedor. O campo pode ser utilizado para informar o e-mail de recepção da NF-e indicada pelo expedidor.</value>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>
         /// Inscrição Estadual (v2.0).
         /// </summary>
         /// <value>Inscrição Estadual (v2.0).</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>

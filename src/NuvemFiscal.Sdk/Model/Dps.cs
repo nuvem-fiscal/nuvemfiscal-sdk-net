@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Série do DPS.
         /// </summary>
         /// <value>Série do DPS.</value>
-        [DataMember(Name = "serie", EmitDefaultValue = false)]
+        [DataMember(Name = "serie", EmitDefaultValue = true)]
         public string serie { get; set; }
 
         /// <summary>
         /// Número do DPS.
         /// </summary>
         /// <value>Número do DPS.</value>
-        [DataMember(Name = "nDPS", EmitDefaultValue = false)]
+        [DataMember(Name = "nDPS", EmitDefaultValue = true)]
         public string nDPS { get; set; }
 
         /// <summary>

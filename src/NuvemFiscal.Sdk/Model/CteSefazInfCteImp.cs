@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vTotTrib">Valor Total dos Tributos..</param>
         /// <param name="infAdFisco">Informações adicionais de interesse do Fisco.  Norma referenciada, informações complementares, etc..</param>
         /// <param name="iCMSUFFim">iCMSUFFim.</param>
-        public CteSefazInfCteImp(CteSefazImp iCMS = default(CteSefazImp), decimal vTotTrib = default(decimal), string infAdFisco = default(string), CteSefazICMSUFFim iCMSUFFim = default(CteSefazICMSUFFim))
+        public CteSefazInfCteImp(CteSefazImp iCMS = default(CteSefazImp), decimal? vTotTrib = default(decimal?), string infAdFisco = default(string), CteSefazICMSUFFim iCMSUFFim = default(CteSefazICMSUFFim))
         {
             // to ensure "iCMS" is required (not null)
             if (iCMS == null)
@@ -63,14 +63,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor Total dos Tributos.
         /// </summary>
         /// <value>Valor Total dos Tributos.</value>
-        [DataMember(Name = "vTotTrib", EmitDefaultValue = false)]
-        public decimal vTotTrib { get; set; }
+        [DataMember(Name = "vTotTrib", EmitDefaultValue = true)]
+        public decimal? vTotTrib { get; set; }
 
         /// <summary>
         /// Informações adicionais de interesse do Fisco.  Norma referenciada, informações complementares, etc.
         /// </summary>
         /// <value>Informações adicionais de interesse do Fisco.  Norma referenciada, informações complementares, etc.</value>
-        [DataMember(Name = "infAdFisco", EmitDefaultValue = false)]
+        [DataMember(Name = "infAdFisco", EmitDefaultValue = true)]
         public string infAdFisco { get; set; }
 
         /// <summary>
@@ -133,7 +133,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vTotTrib == input.vTotTrib ||
-                    this.vTotTrib.Equals(input.vTotTrib)
+                    (this.vTotTrib != null &&
+                    this.vTotTrib.Equals(input.vTotTrib))
                 ) && 
                 (
                     this.infAdFisco == input.infAdFisco ||
@@ -160,7 +161,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.ICMS.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vTotTrib.GetHashCode();
+                if (this.vTotTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTotTrib.GetHashCode();
+                }
                 if (this.infAdFisco != null)
                 {
                     hashCode = (hashCode * 59) + this.infAdFisco.GetHashCode();

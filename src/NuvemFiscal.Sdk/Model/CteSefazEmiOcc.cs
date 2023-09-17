@@ -76,7 +76,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código interno de uso da transportadora.  Uso intermo das transportadoras.
         /// </summary>
         /// <value>Código interno de uso da transportadora.  Uso intermo das transportadoras.</value>
-        [DataMember(Name = "cInt", EmitDefaultValue = false)]
+        [DataMember(Name = "cInt", EmitDefaultValue = true)]
         public string cInt { get; set; }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Telefone.
         /// </summary>
         /// <value>Telefone.</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>

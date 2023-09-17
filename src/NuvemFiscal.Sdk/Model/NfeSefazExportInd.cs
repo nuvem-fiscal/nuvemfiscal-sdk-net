@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nRE">Registro de exportação. (required).</param>
         /// <param name="chNFe">Chave de acesso da NF-e recebida para exportação. (required).</param>
         /// <param name="qExport">Quantidade do item efetivamente exportado. (required).</param>
-        public NfeSefazExportInd(string nRE = default(string), string chNFe = default(string), decimal qExport = default(decimal))
+        public NfeSefazExportInd(string nRE = default(string), string chNFe = default(string), decimal? qExport = default(decimal?))
         {
             // to ensure "nRE" is required (not null)
             if (nRE == null)
@@ -53,6 +53,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("chNFe is a required property for NfeSefazExportInd and cannot be null");
             }
             this.chNFe = chNFe;
+            // to ensure "qExport" is required (not null)
+            if (qExport == null)
+            {
+                throw new ArgumentNullException("qExport is a required property for NfeSefazExportInd and cannot be null");
+            }
             this.qExport = qExport;
         }
 
@@ -75,7 +80,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade do item efetivamente exportado.</value>
         [DataMember(Name = "qExport", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qExport { get; set; }
+        public decimal? qExport { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,7 +140,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qExport == input.qExport ||
-                    this.qExport.Equals(input.qExport)
+                    (this.qExport != null &&
+                    this.qExport.Equals(input.qExport))
                 );
         }
 
@@ -156,7 +162,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.chNFe.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qExport.GetHashCode();
+                if (this.qExport != null)
+                {
+                    hashCode = (hashCode * 59) + this.qExport.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -42,8 +42,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="mod">Código do modelo do Documento Fiscal. Utilizar 01 para NF modelo 1/1A e 02 para NF modelo 02. (required).</param>
         /// <param name="serie">Série do Documento Fiscal, informar zero se inexistente. (required).</param>
         /// <param name="nNF">Número do Documento Fiscal. (required).</param>
-        public NfeSefazRefNF(int cUF = default(int), string aAMM = default(string), string cNPJ = default(string), string mod = default(string), int serie = default(int), int nNF = default(int))
+        public NfeSefazRefNF(int? cUF = default(int?), string aAMM = default(string), string cNPJ = default(string), string mod = default(string), int? serie = default(int?), int? nNF = default(int?))
         {
+            // to ensure "cUF" is required (not null)
+            if (cUF == null)
+            {
+                throw new ArgumentNullException("cUF is a required property for NfeSefazRefNF and cannot be null");
+            }
             this.cUF = cUF;
             // to ensure "aAMM" is required (not null)
             if (aAMM == null)
@@ -63,7 +68,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("mod is a required property for NfeSefazRefNF and cannot be null");
             }
             this.mod = mod;
+            // to ensure "serie" is required (not null)
+            if (serie == null)
+            {
+                throw new ArgumentNullException("serie is a required property for NfeSefazRefNF and cannot be null");
+            }
             this.serie = serie;
+            // to ensure "nNF" is required (not null)
+            if (nNF == null)
+            {
+                throw new ArgumentNullException("nNF is a required property for NfeSefazRefNF and cannot be null");
+            }
             this.nNF = nNF;
         }
 
@@ -72,7 +87,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE.</value>
         [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
-        public int cUF { get; set; }
+        public int? cUF { get; set; }
 
         /// <summary>
         /// AAMM da emissão.
@@ -100,14 +115,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Série do Documento Fiscal, informar zero se inexistente.</value>
         [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
-        public int serie { get; set; }
+        public int? serie { get; set; }
 
         /// <summary>
         /// Número do Documento Fiscal.
         /// </summary>
         /// <value>Número do Documento Fiscal.</value>
         [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = true)]
-        public int nNF { get; set; }
+        public int? nNF { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -160,7 +175,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.cUF == input.cUF ||
-                    this.cUF.Equals(input.cUF)
+                    (this.cUF != null &&
+                    this.cUF.Equals(input.cUF))
                 ) && 
                 (
                     this.AAMM == input.AAMM ||
@@ -179,11 +195,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.serie == input.serie ||
-                    this.serie.Equals(input.serie)
+                    (this.serie != null &&
+                    this.serie.Equals(input.serie))
                 ) && 
                 (
                     this.nNF == input.nNF ||
-                    this.nNF.Equals(input.nNF)
+                    (this.nNF != null &&
+                    this.nNF.Equals(input.nNF))
                 );
         }
 
@@ -196,7 +214,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.cUF.GetHashCode();
+                if (this.cUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.cUF.GetHashCode();
+                }
                 if (this.AAMM != null)
                 {
                     hashCode = (hashCode * 59) + this.AAMM.GetHashCode();
@@ -209,8 +230,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.mod.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.serie.GetHashCode();
-                hashCode = (hashCode * 59) + this.nNF.GetHashCode();
+                if (this.serie != null)
+                {
+                    hashCode = (hashCode * 59) + this.serie.GetHashCode();
+                }
+                if (this.nNF != null)
+                {
+                    hashCode = (hashCode * 59) + this.nNF.GetHashCode();
+                }
                 return hashCode;
             }
         }

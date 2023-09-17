@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="chave">Chave de acesso da NF-e. (required).</param>
         /// <param name="unidRat">Unidade de medida rateada (Peso,Volume)..</param>
-        public CteSefazDetContInfDocInfNFe(string chave = default(string), decimal unidRat = default(decimal))
+        public CteSefazDetContInfDocInfNFe(string chave = default(string), decimal? unidRat = default(decimal?))
         {
             // to ensure "chave" is required (not null)
             if (chave == null)
@@ -60,8 +60,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Unidade de medida rateada (Peso,Volume).
         /// </summary>
         /// <value>Unidade de medida rateada (Peso,Volume).</value>
-        [DataMember(Name = "unidRat", EmitDefaultValue = false)]
-        public decimal unidRat { get; set; }
+        [DataMember(Name = "unidRat", EmitDefaultValue = true)]
+        public decimal? unidRat { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +115,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.unidRat == input.unidRat ||
-                    this.unidRat.Equals(input.unidRat)
+                    (this.unidRat != null &&
+                    this.unidRat.Equals(input.unidRat))
                 );
         }
 
@@ -132,7 +133,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.chave.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.unidRat.GetHashCode();
+                if (this.unidRat != null)
+                {
+                    hashCode = (hashCode * 59) + this.unidRat.GetHashCode();
+                }
                 return hashCode;
             }
         }

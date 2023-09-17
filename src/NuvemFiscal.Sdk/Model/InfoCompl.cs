@@ -45,21 +45,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificador de Documento de Responsabilidade Técnica: ART, RRT, DRT, Outros.
         /// </summary>
         /// <value>Identificador de Documento de Responsabilidade Técnica: ART, RRT, DRT, Outros.</value>
-        [DataMember(Name = "idDocTec", EmitDefaultValue = false)]
+        [DataMember(Name = "idDocTec", EmitDefaultValue = true)]
         public string idDocTec { get; set; }
 
         /// <summary>
         /// Chave da nota, número identificador da nota, número do contrato ou outro identificador de documento emitido pelo prestador de serviços, que subsidia a emissão dessa nota pelo tomador do serviço ou intermediário (preenchimento obrigatório caso a nota esteja sendo emitida pelo Tomador ou intermediário do serviço).
         /// </summary>
         /// <value>Chave da nota, número identificador da nota, número do contrato ou outro identificador de documento emitido pelo prestador de serviços, que subsidia a emissão dessa nota pelo tomador do serviço ou intermediário (preenchimento obrigatório caso a nota esteja sendo emitida pelo Tomador ou intermediário do serviço).</value>
-        [DataMember(Name = "docRef", EmitDefaultValue = false)]
+        [DataMember(Name = "docRef", EmitDefaultValue = true)]
         public string docRef { get; set; }
 
         /// <summary>
         /// Informações complementares.
         /// </summary>
         /// <value>Informações complementares.</value>
-        [DataMember(Name = "xInfComp", EmitDefaultValue = false)]
+        [DataMember(Name = "xInfComp", EmitDefaultValue = true)]
         public string xInfComp { get; set; }
 
         /// <summary>

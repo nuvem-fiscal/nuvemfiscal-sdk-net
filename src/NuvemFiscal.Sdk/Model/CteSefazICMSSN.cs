@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="cST">Classificação Tributária do Serviço.  * 90 - ICMS Simples Nacional (required).</param>
         /// <param name="indSN">Indica se o contribuinte é Simples Nacional   1&#x3D;Sim. (required).</param>
-        public CteSefazICMSSN(string cST = default(string), int indSN = default(int))
+        public CteSefazICMSSN(string cST = default(string), int? indSN = default(int?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -46,6 +46,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for CteSefazICMSSN and cannot be null");
             }
             this.CST = cST;
+            // to ensure "indSN" is required (not null)
+            if (indSN == null)
+            {
+                throw new ArgumentNullException("indSN is a required property for CteSefazICMSSN and cannot be null");
+            }
             this.indSN = indSN;
         }
 
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indica se o contribuinte é Simples Nacional   1&#x3D;Sim.</value>
         [DataMember(Name = "indSN", IsRequired = true, EmitDefaultValue = true)]
-        public int indSN { get; set; }
+        public int? indSN { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +120,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indSN == input.indSN ||
-                    this.indSN.Equals(input.indSN)
+                    (this.indSN != null &&
+                    this.indSN.Equals(input.indSN))
                 );
         }
 
@@ -132,7 +138,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indSN.GetHashCode();
+                if (this.indSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.indSN.GetHashCode();
+                }
                 return hashCode;
             }
         }

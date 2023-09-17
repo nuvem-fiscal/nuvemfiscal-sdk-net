@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="indReentrega">Indicador de Reentrega..</param>
         /// <param name="infUnidTransp">infUnidTransp.</param>
         /// <param name="peri">peri.</param>
-        public MdfeSefazInfNFe(string chNFe = default(string), string segCodBarra = default(string), int indReentrega = default(int), List<MdfeSefazUnidadeTransp> infUnidTransp = default(List<MdfeSefazUnidadeTransp>), List<MdfeSefazInfNFePeri> peri = default(List<MdfeSefazInfNFePeri>))
+        public MdfeSefazInfNFe(string chNFe = default(string), string segCodBarra = default(string), int? indReentrega = default(int?), List<MdfeSefazUnidadeTransp> infUnidTransp = default(List<MdfeSefazUnidadeTransp>), List<MdfeSefazInfNFePeri> peri = default(List<MdfeSefazInfNFePeri>))
         {
             // to ensure "chNFe" is required (not null)
             if (chNFe == null)
@@ -66,15 +66,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Segundo código de barras.
         /// </summary>
         /// <value>Segundo código de barras.</value>
-        [DataMember(Name = "SegCodBarra", EmitDefaultValue = false)]
+        [DataMember(Name = "SegCodBarra", EmitDefaultValue = true)]
         public string SegCodBarra { get; set; }
 
         /// <summary>
         /// Indicador de Reentrega.
         /// </summary>
         /// <value>Indicador de Reentrega.</value>
-        [DataMember(Name = "indReentrega", EmitDefaultValue = false)]
-        public int indReentrega { get; set; }
+        [DataMember(Name = "indReentrega", EmitDefaultValue = true)]
+        public int? indReentrega { get; set; }
 
         /// <summary>
         /// Gets or Sets infUnidTransp
@@ -148,7 +148,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indReentrega == input.indReentrega ||
-                    this.indReentrega.Equals(input.indReentrega)
+                    (this.indReentrega != null &&
+                    this.indReentrega.Equals(input.indReentrega))
                 ) && 
                 (
                     this.infUnidTransp == input.infUnidTransp ||
@@ -181,7 +182,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.SegCodBarra.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indReentrega.GetHashCode();
+                if (this.indReentrega != null)
+                {
+                    hashCode = (hashCode * 59) + this.indReentrega.GetHashCode();
+                }
                 if (this.infUnidTransp != null)
                 {
                     hashCode = (hashCode * 59) + this.infUnidTransp.GetHashCode();

@@ -39,8 +39,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nDup">Número da duplicata..</param>
         /// <param name="dVenc">Data de vencimento da duplicata (AAAA-MM-DD)..</param>
         /// <param name="vDup">Valor da duplicata. (required).</param>
-        public NfeSefazDup(string nDup = default(string), DateTime dVenc = default(DateTime), decimal vDup = default(decimal))
+        public NfeSefazDup(string nDup = default(string), DateTime? dVenc = default(DateTime?), decimal? vDup = default(decimal?))
         {
+            // to ensure "vDup" is required (not null)
+            if (vDup == null)
+            {
+                throw new ArgumentNullException("vDup is a required property for NfeSefazDup and cannot be null");
+            }
             this.vDup = vDup;
             this.nDup = nDup;
             this.dVenc = dVenc;
@@ -50,23 +55,23 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da duplicata.
         /// </summary>
         /// <value>Número da duplicata.</value>
-        [DataMember(Name = "nDup", EmitDefaultValue = false)]
+        [DataMember(Name = "nDup", EmitDefaultValue = true)]
         public string nDup { get; set; }
 
         /// <summary>
         /// Data de vencimento da duplicata (AAAA-MM-DD).
         /// </summary>
         /// <value>Data de vencimento da duplicata (AAAA-MM-DD).</value>
-        [DataMember(Name = "dVenc", EmitDefaultValue = false)]
+        [DataMember(Name = "dVenc", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dVenc { get; set; }
+        public DateTime? dVenc { get; set; }
 
         /// <summary>
         /// Valor da duplicata.
         /// </summary>
         /// <value>Valor da duplicata.</value>
         [DataMember(Name = "vDup", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vDup { get; set; }
+        public decimal? vDup { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,7 +131,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDup == input.vDup ||
-                    this.vDup.Equals(input.vDup)
+                    (this.vDup != null &&
+                    this.vDup.Equals(input.vDup))
                 );
         }
 
@@ -147,7 +153,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dVenc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDup.GetHashCode();
+                if (this.vDup != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDup.GetHashCode();
+                }
                 return hashCode;
             }
         }

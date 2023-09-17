@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cOFINS">cOFINS.</param>
         /// <param name="cOFINSST">cOFINSST.</param>
         /// <param name="iCMSUFDest">iCMSUFDest.</param>
-        public NfeSefazImposto(decimal vTotTrib = default(decimal), NfeSefazICMS iCMS = default(NfeSefazICMS), NfeSefazIpi iPI = default(NfeSefazIpi), NfeSefazII iI = default(NfeSefazII), NfeSefazISSQN iSSQN = default(NfeSefazISSQN), NfeSefazPIS pIS = default(NfeSefazPIS), NfeSefazPISST pISST = default(NfeSefazPISST), NfeSefazCOFINS cOFINS = default(NfeSefazCOFINS), NfeSefazCOFINSST cOFINSST = default(NfeSefazCOFINSST), NfeSefazICMSUFDest iCMSUFDest = default(NfeSefazICMSUFDest))
+        public NfeSefazImposto(decimal? vTotTrib = default(decimal?), NfeSefazICMS iCMS = default(NfeSefazICMS), NfeSefazIpi iPI = default(NfeSefazIpi), NfeSefazII iI = default(NfeSefazII), NfeSefazISSQN iSSQN = default(NfeSefazISSQN), NfeSefazPIS pIS = default(NfeSefazPIS), NfeSefazPISST pISST = default(NfeSefazPISST), NfeSefazCOFINS cOFINS = default(NfeSefazCOFINS), NfeSefazCOFINSST cOFINSST = default(NfeSefazCOFINSST), NfeSefazICMSUFDest iCMSUFDest = default(NfeSefazICMSUFDest))
         {
             this.vTotTrib = vTotTrib;
             this.ICMS = iCMS;
@@ -59,8 +59,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor estimado total de impostos federais, estaduais e municipais.
         /// </summary>
         /// <value>Valor estimado total de impostos federais, estaduais e municipais.</value>
-        [DataMember(Name = "vTotTrib", EmitDefaultValue = false)]
-        public decimal vTotTrib { get; set; }
+        [DataMember(Name = "vTotTrib", EmitDefaultValue = true)]
+        public decimal? vTotTrib { get; set; }
 
         /// <summary>
         /// Gets or Sets ICMS
@@ -171,7 +171,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vTotTrib == input.vTotTrib ||
-                    this.vTotTrib.Equals(input.vTotTrib)
+                    (this.vTotTrib != null &&
+                    this.vTotTrib.Equals(input.vTotTrib))
                 ) && 
                 (
                     this.ICMS == input.ICMS ||
@@ -229,7 +230,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vTotTrib.GetHashCode();
+                if (this.vTotTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTotTrib.GetHashCode();
+                }
                 if (this.ICMS != null)
                 {
                     hashCode = (hashCode * 59) + this.ICMS.GetHashCode();

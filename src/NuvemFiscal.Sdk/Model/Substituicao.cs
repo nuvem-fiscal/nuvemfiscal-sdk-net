@@ -74,7 +74,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Descrição do motivo da substituição da NFS-e.
         /// </summary>
         /// <value>Descrição do motivo da substituição da NFS-e.</value>
-        [DataMember(Name = "xMotivo", EmitDefaultValue = false)]
+        [DataMember(Name = "xMotivo", EmitDefaultValue = true)]
         public string xMotivo { get; set; }
 
         /// <summary>

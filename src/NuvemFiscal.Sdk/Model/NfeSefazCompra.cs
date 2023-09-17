@@ -45,21 +45,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Informação da Nota de Empenho de compras públicas (NT2011/004).
         /// </summary>
         /// <value>Informação da Nota de Empenho de compras públicas (NT2011/004).</value>
-        [DataMember(Name = "xNEmp", EmitDefaultValue = false)]
+        [DataMember(Name = "xNEmp", EmitDefaultValue = true)]
         public string xNEmp { get; set; }
 
         /// <summary>
         /// Informação do pedido.
         /// </summary>
         /// <value>Informação do pedido.</value>
-        [DataMember(Name = "xPed", EmitDefaultValue = false)]
+        [DataMember(Name = "xPed", EmitDefaultValue = true)]
         public string xPed { get; set; }
 
         /// <summary>
         /// Informação do contrato.
         /// </summary>
         /// <value>Informação do contrato.</value>
-        [DataMember(Name = "xCont", EmitDefaultValue = false)]
+        [DataMember(Name = "xCont", EmitDefaultValue = true)]
         public string xCont { get; set; }
 
         /// <summary>

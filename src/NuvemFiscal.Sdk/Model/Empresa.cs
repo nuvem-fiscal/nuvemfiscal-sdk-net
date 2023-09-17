@@ -36,9 +36,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Empresa" /> class.
         /// </summary>
-        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (required).</param>
-        /// <param name="createdAt">Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado..</param>
-        /// <param name="updatedAt">Data e hora que o objeto foi alterado pela última vez na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado..</param>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (required).</param>
+        /// <param name="createdAt">Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    *A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado*..</param>
+        /// <param name="updatedAt">Data e hora que o objeto foi alterado pela última vez na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    *A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado*..</param>
         /// <param name="inscricaoEstadual">Inscrição estadual da empresa..</param>
         /// <param name="inscricaoMunicipal">Inscrição municipal da empresa..</param>
         /// <param name="nomeRazaoSocial">Razão social da empresa. (required).</param>
@@ -81,23 +81,23 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
+        /// CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.
         /// </summary>
-        /// <value>CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</value>
+        /// <value>CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</value>
         [DataMember(Name = "cpf_cnpj", IsRequired = true, EmitDefaultValue = true)]
         public string cpf_cnpj { get; set; }
 
         /// <summary>
-        /// Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado.
+        /// Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    *A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado*.
         /// </summary>
-        /// <value>Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado.</value>
+        /// <value>Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    *A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado*.</value>
         [DataMember(Name = "created_at", EmitDefaultValue = false)]
         public DateTime created_at { get; set; }
 
         /// <summary>
-        /// Data e hora que o objeto foi alterado pela última vez na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado.
+        /// Data e hora que o objeto foi alterado pela última vez na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    *A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado*.
         /// </summary>
-        /// <value>Data e hora que o objeto foi alterado pela última vez na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado.</value>
+        /// <value>Data e hora que o objeto foi alterado pela última vez na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;.    *A Nuvem Fiscal gerencia esse campo automaticamente. Caso algum valor seja enviado, ele será ignorado*.</value>
         [DataMember(Name = "updated_at", EmitDefaultValue = false)]
         public DateTime updated_at { get; set; }
 

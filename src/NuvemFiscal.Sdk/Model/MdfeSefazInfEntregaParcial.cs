@@ -38,9 +38,19 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="qtdTotal">Quantidade total de volumes. (required).</param>
         /// <param name="qtdParcial">Quantidade de volumes enviados no MDF-e. (required).</param>
-        public MdfeSefazInfEntregaParcial(decimal qtdTotal = default(decimal), decimal qtdParcial = default(decimal))
+        public MdfeSefazInfEntregaParcial(decimal? qtdTotal = default(decimal?), decimal? qtdParcial = default(decimal?))
         {
+            // to ensure "qtdTotal" is required (not null)
+            if (qtdTotal == null)
+            {
+                throw new ArgumentNullException("qtdTotal is a required property for MdfeSefazInfEntregaParcial and cannot be null");
+            }
             this.qtdTotal = qtdTotal;
+            // to ensure "qtdParcial" is required (not null)
+            if (qtdParcial == null)
+            {
+                throw new ArgumentNullException("qtdParcial is a required property for MdfeSefazInfEntregaParcial and cannot be null");
+            }
             this.qtdParcial = qtdParcial;
         }
 
@@ -49,14 +59,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade total de volumes.</value>
         [DataMember(Name = "qtdTotal", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qtdTotal { get; set; }
+        public decimal? qtdTotal { get; set; }
 
         /// <summary>
         /// Quantidade de volumes enviados no MDF-e.
         /// </summary>
         /// <value>Quantidade de volumes enviados no MDF-e.</value>
         [DataMember(Name = "qtdParcial", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qtdParcial { get; set; }
+        public decimal? qtdParcial { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,11 +115,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.qtdTotal == input.qtdTotal ||
-                    this.qtdTotal.Equals(input.qtdTotal)
+                    (this.qtdTotal != null &&
+                    this.qtdTotal.Equals(input.qtdTotal))
                 ) && 
                 (
                     this.qtdParcial == input.qtdParcial ||
-                    this.qtdParcial.Equals(input.qtdParcial)
+                    (this.qtdParcial != null &&
+                    this.qtdParcial.Equals(input.qtdParcial))
                 );
         }
 
@@ -122,8 +134,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.qtdTotal.GetHashCode();
-                hashCode = (hashCode * 59) + this.qtdParcial.GetHashCode();
+                if (this.qtdTotal != null)
+                {
+                    hashCode = (hashCode * 59) + this.qtdTotal.GetHashCode();
+                }
+                if (this.qtdParcial != null)
+                {
+                    hashCode = (hashCode * 59) + this.qtdParcial.GetHashCode();
+                }
                 return hashCode;
             }
         }

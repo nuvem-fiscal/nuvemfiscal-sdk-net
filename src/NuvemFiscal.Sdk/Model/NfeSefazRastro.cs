@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dFab">Data de fabricação/produção. Formato \&quot;AAAA-MM-DD\&quot;. (required).</param>
         /// <param name="dVal">Data de validade. Informar o último dia do mês caso a validade não especifique o dia. Formato \&quot;AAAA-MM-DD\&quot;. (required).</param>
         /// <param name="cAgreg">cAgreg.</param>
-        public NfeSefazRastro(string nLote = default(string), decimal qLote = default(decimal), DateTime dFab = default(DateTime), DateTime dVal = default(DateTime), string cAgreg = default(string))
+        public NfeSefazRastro(string nLote = default(string), decimal? qLote = default(decimal?), DateTime? dFab = default(DateTime?), DateTime? dVal = default(DateTime?), string cAgreg = default(string))
         {
             // to ensure "nLote" is required (not null)
             if (nLote == null)
@@ -49,8 +49,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("nLote is a required property for NfeSefazRastro and cannot be null");
             }
             this.nLote = nLote;
+            // to ensure "qLote" is required (not null)
+            if (qLote == null)
+            {
+                throw new ArgumentNullException("qLote is a required property for NfeSefazRastro and cannot be null");
+            }
             this.qLote = qLote;
+            // to ensure "dFab" is required (not null)
+            if (dFab == null)
+            {
+                throw new ArgumentNullException("dFab is a required property for NfeSefazRastro and cannot be null");
+            }
             this.dFab = dFab;
+            // to ensure "dVal" is required (not null)
+            if (dVal == null)
+            {
+                throw new ArgumentNullException("dVal is a required property for NfeSefazRastro and cannot be null");
+            }
             this.dVal = dVal;
             this.cAgreg = cAgreg;
         }
@@ -67,7 +82,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade de produto no lote.</value>
         [DataMember(Name = "qLote", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qLote { get; set; }
+        public decimal? qLote { get; set; }
 
         /// <summary>
         /// Data de fabricação/produção. Formato \&quot;AAAA-MM-DD\&quot;.
@@ -75,7 +90,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de fabricação/produção. Formato \&quot;AAAA-MM-DD\&quot;.</value>
         [DataMember(Name = "dFab", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dFab { get; set; }
+        public DateTime? dFab { get; set; }
 
         /// <summary>
         /// Data de validade. Informar o último dia do mês caso a validade não especifique o dia. Formato \&quot;AAAA-MM-DD\&quot;.
@@ -83,12 +98,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de validade. Informar o último dia do mês caso a validade não especifique o dia. Formato \&quot;AAAA-MM-DD\&quot;.</value>
         [DataMember(Name = "dVal", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dVal { get; set; }
+        public DateTime? dVal { get; set; }
 
         /// <summary>
         /// Gets or Sets cAgreg
         /// </summary>
-        [DataMember(Name = "cAgreg", EmitDefaultValue = false)]
+        [DataMember(Name = "cAgreg", EmitDefaultValue = true)]
         public string cAgreg { get; set; }
 
         /// <summary>
@@ -146,7 +161,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qLote == input.qLote ||
-                    this.qLote.Equals(input.qLote)
+                    (this.qLote != null &&
+                    this.qLote.Equals(input.qLote))
                 ) && 
                 (
                     this.dFab == input.dFab ||
@@ -178,7 +194,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nLote.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qLote.GetHashCode();
+                if (this.qLote != null)
+                {
+                    hashCode = (hashCode * 59) + this.qLote.GetHashCode();
+                }
                 if (this.dFab != null)
                 {
                     hashCode = (hashCode * 59) + this.dFab.GetHashCode();

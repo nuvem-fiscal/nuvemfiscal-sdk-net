@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="idUnidCargaVazia">Identificação da unidades de carga vazia. (required).</param>
         /// <param name="tpUnidCargaVazia">Tipo da unidade de carga vazia.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros (required).</param>
-        public MdfeSefazInfUnidCargaVazia(string idUnidCargaVazia = default(string), int tpUnidCargaVazia = default(int))
+        public MdfeSefazInfUnidCargaVazia(string idUnidCargaVazia = default(string), int? tpUnidCargaVazia = default(int?))
         {
             // to ensure "idUnidCargaVazia" is required (not null)
             if (idUnidCargaVazia == null)
@@ -46,6 +46,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("idUnidCargaVazia is a required property for MdfeSefazInfUnidCargaVazia and cannot be null");
             }
             this.idUnidCargaVazia = idUnidCargaVazia;
+            // to ensure "tpUnidCargaVazia" is required (not null)
+            if (tpUnidCargaVazia == null)
+            {
+                throw new ArgumentNullException("tpUnidCargaVazia is a required property for MdfeSefazInfUnidCargaVazia and cannot be null");
+            }
             this.tpUnidCargaVazia = tpUnidCargaVazia;
         }
 
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo da unidade de carga vazia.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros</value>
         [DataMember(Name = "tpUnidCargaVazia", IsRequired = true, EmitDefaultValue = true)]
-        public int tpUnidCargaVazia { get; set; }
+        public int? tpUnidCargaVazia { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +120,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpUnidCargaVazia == input.tpUnidCargaVazia ||
-                    this.tpUnidCargaVazia.Equals(input.tpUnidCargaVazia)
+                    (this.tpUnidCargaVazia != null &&
+                    this.tpUnidCargaVazia.Equals(input.tpUnidCargaVazia))
                 );
         }
 
@@ -132,7 +138,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.idUnidCargaVazia.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpUnidCargaVazia.GetHashCode();
+                if (this.tpUnidCargaVazia != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpUnidCargaVazia.GetHashCode();
+                }
                 return hashCode;
             }
         }

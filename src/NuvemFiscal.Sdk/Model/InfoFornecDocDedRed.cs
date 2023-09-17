@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="end">end.</param>
         /// <param name="fone">Número do telefone do prestador:  Preencher com o Código DDD + número do telefone.  Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone)..</param>
         /// <param name="email">* E-mail.</param>
-        public InfoFornecDocDedRed(string cNPJ = default(string), string cPF = default(string), string nIF = default(string), int cNaoNIF = default(int), string cAEPF = default(string), string iM = default(string), string xNome = default(string), Endereco end = default(Endereco), string fone = default(string), string email = default(string))
+        public InfoFornecDocDedRed(string cNPJ = default(string), string cPF = default(string), string nIF = default(string), int? cNaoNIF = default(int?), string cAEPF = default(string), string iM = default(string), string xNome = default(string), Endereco end = default(Endereco), string fone = default(string), string email = default(string))
         {
             // to ensure "xNome" is required (not null)
             if (xNome == null)
@@ -69,42 +69,42 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CNPJ.
         /// </summary>
         /// <value>Número do CNPJ.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Número do CPF.
         /// </summary>
         /// <value>Número do CPF.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior.
         /// </summary>
         /// <value>Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior.</value>
-        [DataMember(Name = "NIF", EmitDefaultValue = false)]
+        [DataMember(Name = "NIF", EmitDefaultValue = true)]
         public string NIF { get; set; }
 
         /// <summary>
         /// Motivo para não informação do NIF:  * 0 - Não informado na nota de origem  * 1 - Dispensado do NIF  * 2 - Não exigência do NIF
         /// </summary>
         /// <value>Motivo para não informação do NIF:  * 0 - Não informado na nota de origem  * 1 - Dispensado do NIF  * 2 - Não exigência do NIF</value>
-        [DataMember(Name = "cNaoNIF", EmitDefaultValue = false)]
-        public int cNaoNIF { get; set; }
+        [DataMember(Name = "cNaoNIF", EmitDefaultValue = true)]
+        public int? cNaoNIF { get; set; }
 
         /// <summary>
         /// Número do Cadastro de Atividade Econômica da Pessoa Física (CAEPF).
         /// </summary>
         /// <value>Número do Cadastro de Atividade Econômica da Pessoa Física (CAEPF).</value>
-        [DataMember(Name = "CAEPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CAEPF", EmitDefaultValue = true)]
         public string CAEPF { get; set; }
 
         /// <summary>
         /// Número da inscrição municipal.
         /// </summary>
         /// <value>Número da inscrição municipal.</value>
-        [DataMember(Name = "IM", EmitDefaultValue = false)]
+        [DataMember(Name = "IM", EmitDefaultValue = true)]
         public string IM { get; set; }
 
         /// <summary>
@@ -124,14 +124,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do telefone do prestador:  Preencher com o Código DDD + número do telefone.  Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone).
         /// </summary>
         /// <value>Número do telefone do prestador:  Preencher com o Código DDD + número do telefone.  Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone).</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>
         /// * E-mail
         /// </summary>
         /// <value>* E-mail</value>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>
@@ -204,7 +204,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cNaoNIF == input.cNaoNIF ||
-                    this.cNaoNIF.Equals(input.cNaoNIF)
+                    (this.cNaoNIF != null &&
+                    this.cNaoNIF.Equals(input.cNaoNIF))
                 ) && 
                 (
                     this.CAEPF == input.CAEPF ||
@@ -259,7 +260,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.NIF.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cNaoNIF.GetHashCode();
+                if (this.cNaoNIF != null)
+                {
+                    hashCode = (hashCode * 59) + this.cNaoNIF.GetHashCode();
+                }
                 if (this.CAEPF != null)
                 {
                     hashCode = (hashCode * 59) + this.CAEPF.GetHashCode();

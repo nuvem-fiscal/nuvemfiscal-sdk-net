@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="xNome">Nome do componente.  Exxemplos: FRETE PESO, FRETE VALOR, SEC/CAT, ADEME, AGENDAMENTO, etc. (required).</param>
         /// <param name="vComp">Valor do componente. (required).</param>
-        public CteSefazComp(string xNome = default(string), decimal vComp = default(decimal))
+        public CteSefazComp(string xNome = default(string), decimal? vComp = default(decimal?))
         {
             // to ensure "xNome" is required (not null)
             if (xNome == null)
@@ -46,6 +46,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xNome is a required property for CteSefazComp and cannot be null");
             }
             this.xNome = xNome;
+            // to ensure "vComp" is required (not null)
+            if (vComp == null)
+            {
+                throw new ArgumentNullException("vComp is a required property for CteSefazComp and cannot be null");
+            }
             this.vComp = vComp;
         }
 
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor do componente.</value>
         [DataMember(Name = "vComp", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vComp { get; set; }
+        public decimal? vComp { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +120,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vComp == input.vComp ||
-                    this.vComp.Equals(input.vComp)
+                    (this.vComp != null &&
+                    this.vComp.Equals(input.vComp))
                 );
         }
 
@@ -132,7 +138,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xNome.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vComp.GetHashCode();
+                if (this.vComp != null)
+                {
+                    hashCode = (hashCode * 59) + this.vComp.GetHashCode();
+                }
                 return hashCode;
             }
         }

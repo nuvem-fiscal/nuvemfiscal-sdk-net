@@ -46,8 +46,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="iSUF">Inscrição na SUFRAMA (Obrigatório nas operações com as áreas com benefícios de incentivos fiscais sob controle da SUFRAMA) PL_005d - 11/08/09 - alterado para aceitar 8 ou 9 dígitos..</param>
         /// <param name="iM">Inscrição Municipal do tomador do serviço..</param>
         /// <param name="email">Informar o e-mail do destinatário. O campo pode ser utilizado para informar o e-mail  de recepção da NF-e indicada pelo destinatário..</param>
-        public NfeSefazDest(string cNPJ = default(string), string cPF = default(string), string idEstrangeiro = default(string), string xNome = default(string), NfeSefazEndereco enderDest = default(NfeSefazEndereco), int indIEDest = default(int), string iE = default(string), string iSUF = default(string), string iM = default(string), string email = default(string))
+        public NfeSefazDest(string cNPJ = default(string), string cPF = default(string), string idEstrangeiro = default(string), string xNome = default(string), NfeSefazEndereco enderDest = default(NfeSefazEndereco), int? indIEDest = default(int?), string iE = default(string), string iSUF = default(string), string iM = default(string), string email = default(string))
         {
+            // to ensure "indIEDest" is required (not null)
+            if (indIEDest == null)
+            {
+                throw new ArgumentNullException("indIEDest is a required property for NfeSefazDest and cannot be null");
+            }
             this.indIEDest = indIEDest;
             this.CNPJ = cNPJ;
             this.CPF = cPF;
@@ -64,28 +69,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CNPJ.
         /// </summary>
         /// <value>Número do CNPJ.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Número do CPF.
         /// </summary>
         /// <value>Número do CPF.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Identificador do destinatário, em caso de comprador estrangeiro.
         /// </summary>
         /// <value>Identificador do destinatário, em caso de comprador estrangeiro.</value>
-        [DataMember(Name = "idEstrangeiro", EmitDefaultValue = false)]
+        [DataMember(Name = "idEstrangeiro", EmitDefaultValue = true)]
         public string idEstrangeiro { get; set; }
 
         /// <summary>
         /// Razão Social ou nome do destinatário.
         /// </summary>
         /// <value>Razão Social ou nome do destinatário.</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
@@ -99,34 +104,34 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indicador da IE do destinatário:  * 1 - Contribuinte ICMSpagamento à vista  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte</value>
         [DataMember(Name = "indIEDest", IsRequired = true, EmitDefaultValue = true)]
-        public int indIEDest { get; set; }
+        public int? indIEDest { get; set; }
 
         /// <summary>
         /// Inscrição Estadual (obrigatório nas operações com contribuintes do ICMS).
         /// </summary>
         /// <value>Inscrição Estadual (obrigatório nas operações com contribuintes do ICMS).</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// Inscrição na SUFRAMA (Obrigatório nas operações com as áreas com benefícios de incentivos fiscais sob controle da SUFRAMA) PL_005d - 11/08/09 - alterado para aceitar 8 ou 9 dígitos.
         /// </summary>
         /// <value>Inscrição na SUFRAMA (Obrigatório nas operações com as áreas com benefícios de incentivos fiscais sob controle da SUFRAMA) PL_005d - 11/08/09 - alterado para aceitar 8 ou 9 dígitos.</value>
-        [DataMember(Name = "ISUF", EmitDefaultValue = false)]
+        [DataMember(Name = "ISUF", EmitDefaultValue = true)]
         public string ISUF { get; set; }
 
         /// <summary>
         /// Inscrição Municipal do tomador do serviço.
         /// </summary>
         /// <value>Inscrição Municipal do tomador do serviço.</value>
-        [DataMember(Name = "IM", EmitDefaultValue = false)]
+        [DataMember(Name = "IM", EmitDefaultValue = true)]
         public string IM { get; set; }
 
         /// <summary>
         /// Informar o e-mail do destinatário. O campo pode ser utilizado para informar o e-mail  de recepção da NF-e indicada pelo destinatário.
         /// </summary>
         /// <value>Informar o e-mail do destinatário. O campo pode ser utilizado para informar o e-mail  de recepção da NF-e indicada pelo destinatário.</value>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>
@@ -209,7 +214,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indIEDest == input.indIEDest ||
-                    this.indIEDest.Equals(input.indIEDest)
+                    (this.indIEDest != null &&
+                    this.indIEDest.Equals(input.indIEDest))
                 ) && 
                 (
                     this.IE == input.IE ||
@@ -262,7 +268,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.enderDest.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indIEDest.GetHashCode();
+                if (this.indIEDest != null)
+                {
+                    hashCode = (hashCode * 59) + this.indIEDest.GetHashCode();
+                }
                 if (this.IE != null)
                 {
                     hashCode = (hashCode * 59) + this.IE.GetHashCode();

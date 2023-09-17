@@ -39,9 +39,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vTPrest">Valor Total da Prestação do Serviço.  Pode conter zeros quando o CT-e for de complemento de ICMS. (required).</param>
         /// <param name="vRec">Valor a Receber. (required).</param>
         /// <param name="comp">comp.</param>
-        public CteSefazVPrest(decimal vTPrest = default(decimal), decimal vRec = default(decimal), List<CteSefazComp> comp = default(List<CteSefazComp>))
+        public CteSefazVPrest(decimal? vTPrest = default(decimal?), decimal? vRec = default(decimal?), List<CteSefazComp> comp = default(List<CteSefazComp>))
         {
+            // to ensure "vTPrest" is required (not null)
+            if (vTPrest == null)
+            {
+                throw new ArgumentNullException("vTPrest is a required property for CteSefazVPrest and cannot be null");
+            }
             this.vTPrest = vTPrest;
+            // to ensure "vRec" is required (not null)
+            if (vRec == null)
+            {
+                throw new ArgumentNullException("vRec is a required property for CteSefazVPrest and cannot be null");
+            }
             this.vRec = vRec;
             this.Comp = comp;
         }
@@ -51,14 +61,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor Total da Prestação do Serviço.  Pode conter zeros quando o CT-e for de complemento de ICMS.</value>
         [DataMember(Name = "vTPrest", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vTPrest { get; set; }
+        public decimal? vTPrest { get; set; }
 
         /// <summary>
         /// Valor a Receber.
         /// </summary>
         /// <value>Valor a Receber.</value>
         [DataMember(Name = "vRec", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vRec { get; set; }
+        public decimal? vRec { get; set; }
 
         /// <summary>
         /// Gets or Sets Comp
@@ -114,11 +124,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vTPrest == input.vTPrest ||
-                    this.vTPrest.Equals(input.vTPrest)
+                    (this.vTPrest != null &&
+                    this.vTPrest.Equals(input.vTPrest))
                 ) && 
                 (
                     this.vRec == input.vRec ||
-                    this.vRec.Equals(input.vRec)
+                    (this.vRec != null &&
+                    this.vRec.Equals(input.vRec))
                 ) && 
                 (
                     this.Comp == input.Comp ||
@@ -137,8 +149,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vTPrest.GetHashCode();
-                hashCode = (hashCode * 59) + this.vRec.GetHashCode();
+                if (this.vTPrest != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTPrest.GetHashCode();
+                }
+                if (this.vRec != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRec.GetHashCode();
+                }
                 if (this.Comp != null)
                 {
                     hashCode = (hashCode * 59) + this.Comp.GetHashCode();

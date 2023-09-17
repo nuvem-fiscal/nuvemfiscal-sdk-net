@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ Autorizado.
         /// </summary>
         /// <value>CNPJ Autorizado.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// CPF Autorizado.
         /// </summary>
         /// <value>CPF Autorizado.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>

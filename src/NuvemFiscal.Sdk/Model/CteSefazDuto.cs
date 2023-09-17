@@ -39,9 +39,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vTar">Valor da tarifa..</param>
         /// <param name="dIni">Data de Início da prestação do serviço. (required).</param>
         /// <param name="dFim">Data de Fim da prestação do serviço. (required).</param>
-        public CteSefazDuto(decimal vTar = default(decimal), DateTime dIni = default(DateTime), DateTime dFim = default(DateTime))
+        public CteSefazDuto(decimal? vTar = default(decimal?), DateTime? dIni = default(DateTime?), DateTime? dFim = default(DateTime?))
         {
+            // to ensure "dIni" is required (not null)
+            if (dIni == null)
+            {
+                throw new ArgumentNullException("dIni is a required property for CteSefazDuto and cannot be null");
+            }
             this.dIni = dIni;
+            // to ensure "dFim" is required (not null)
+            if (dFim == null)
+            {
+                throw new ArgumentNullException("dFim is a required property for CteSefazDuto and cannot be null");
+            }
             this.dFim = dFim;
             this.vTar = vTar;
         }
@@ -50,8 +60,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da tarifa.
         /// </summary>
         /// <value>Valor da tarifa.</value>
-        [DataMember(Name = "vTar", EmitDefaultValue = false)]
-        public decimal vTar { get; set; }
+        [DataMember(Name = "vTar", EmitDefaultValue = true)]
+        public decimal? vTar { get; set; }
 
         /// <summary>
         /// Data de Início da prestação do serviço.
@@ -59,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de Início da prestação do serviço.</value>
         [DataMember(Name = "dIni", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dIni { get; set; }
+        public DateTime? dIni { get; set; }
 
         /// <summary>
         /// Data de Fim da prestação do serviço.
@@ -67,7 +77,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de Fim da prestação do serviço.</value>
         [DataMember(Name = "dFim", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dFim { get; set; }
+        public DateTime? dFim { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,7 +127,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vTar == input.vTar ||
-                    this.vTar.Equals(input.vTar)
+                    (this.vTar != null &&
+                    this.vTar.Equals(input.vTar))
                 ) && 
                 (
                     this.dIni == input.dIni ||
@@ -140,7 +151,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vTar.GetHashCode();
+                if (this.vTar != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTar.GetHashCode();
+                }
                 if (this.dIni != null)
                 {
                     hashCode = (hashCode * 59) + this.dIni.GetHashCode();

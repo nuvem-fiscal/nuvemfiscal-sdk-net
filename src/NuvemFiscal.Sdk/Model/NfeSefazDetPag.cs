@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xPag">Descrição do Meio de Pagamento..</param>
         /// <param name="vPag">Valor do Pagamento. Esta tag poderá ser omitida quando a tag tPag&#x3D;90 (Sem Pagamento), caso contrário deverá ser preenchida. (required).</param>
         /// <param name="card">card.</param>
-        public NfeSefazDetPag(int indPag = default(int), string tPag = default(string), string xPag = default(string), decimal vPag = default(decimal), NfeSefazCard card = default(NfeSefazCard))
+        public NfeSefazDetPag(int? indPag = default(int?), string tPag = default(string), string xPag = default(string), decimal? vPag = default(decimal?), NfeSefazCard card = default(NfeSefazCard))
         {
             // to ensure "tPag" is required (not null)
             if (tPag == null)
@@ -49,6 +49,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("tPag is a required property for NfeSefazDetPag and cannot be null");
             }
             this.tPag = tPag;
+            // to ensure "vPag" is required (not null)
+            if (vPag == null)
+            {
+                throw new ArgumentNullException("vPag is a required property for NfeSefazDetPag and cannot be null");
+            }
             this.vPag = vPag;
             this.indPag = indPag;
             this.xPag = xPag;
@@ -59,8 +64,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo
         /// </summary>
         /// <value>Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo</value>
-        [DataMember(Name = "indPag", EmitDefaultValue = false)]
-        public int indPag { get; set; }
+        [DataMember(Name = "indPag", EmitDefaultValue = true)]
+        public int? indPag { get; set; }
 
         /// <summary>
         /// Forma de Pagamento:.
@@ -73,7 +78,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Descrição do Meio de Pagamento.
         /// </summary>
         /// <value>Descrição do Meio de Pagamento.</value>
-        [DataMember(Name = "xPag", EmitDefaultValue = false)]
+        [DataMember(Name = "xPag", EmitDefaultValue = true)]
         public string xPag { get; set; }
 
         /// <summary>
@@ -81,7 +86,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor do Pagamento. Esta tag poderá ser omitida quando a tag tPag&#x3D;90 (Sem Pagamento), caso contrário deverá ser preenchida.</value>
         [DataMember(Name = "vPag", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vPag { get; set; }
+        public decimal? vPag { get; set; }
 
         /// <summary>
         /// Gets or Sets card
@@ -139,7 +144,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.indPag == input.indPag ||
-                    this.indPag.Equals(input.indPag)
+                    (this.indPag != null &&
+                    this.indPag.Equals(input.indPag))
                 ) && 
                 (
                     this.tPag == input.tPag ||
@@ -153,7 +159,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vPag == input.vPag ||
-                    this.vPag.Equals(input.vPag)
+                    (this.vPag != null &&
+                    this.vPag.Equals(input.vPag))
                 ) && 
                 (
                     this.card == input.card ||
@@ -171,7 +178,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.indPag.GetHashCode();
+                if (this.indPag != null)
+                {
+                    hashCode = (hashCode * 59) + this.indPag.GetHashCode();
+                }
                 if (this.tPag != null)
                 {
                     hashCode = (hashCode * 59) + this.tPag.GetHashCode();
@@ -180,7 +190,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xPag.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vPag.GetHashCode();
+                if (this.vPag != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPag.GetHashCode();
+                }
                 if (this.card != null)
                 {
                     hashCode = (hashCode * 59) + this.card.GetHashCode();

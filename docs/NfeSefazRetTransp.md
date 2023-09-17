@@ -5,10 +5,10 @@ Dados da retenção  ICMS do Transporte.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**vServ** | **decimal** | Valor do Serviço. | 
-**vBCRet** | **decimal** | BC da Retenção do ICMS. | 
-**pICMSRet** | **decimal** | Alíquota da Retenção. | 
-**vICMSRet** | **decimal** | Valor do ICMS Retido. | 
+**vServ** | **decimal?** | Valor do Serviço. | 
+**vBCRet** | **decimal?** | BC da Retenção do ICMS. | 
+**pICMSRet** | **decimal?** | Alíquota da Retenção. | 
+**vICMSRet** | **decimal?** | Valor do ICMS Retido. | 
 **CFOP** | **string** | Código Fiscal de Operações e Prestações. | 
 **cMunFG** | **string** | Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE). | 
 

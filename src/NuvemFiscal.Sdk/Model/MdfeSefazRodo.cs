@@ -77,7 +77,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de Agendamento no porto.
         /// </summary>
         /// <value>Código de Agendamento no porto.</value>
-        [DataMember(Name = "codAgPorto", EmitDefaultValue = false)]
+        [DataMember(Name = "codAgPorto", EmitDefaultValue = true)]
         public string codAgPorto { get; set; }
 
         /// <summary>

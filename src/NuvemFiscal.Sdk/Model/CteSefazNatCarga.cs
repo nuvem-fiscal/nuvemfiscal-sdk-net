@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Dimensão.  Formato:1234X1234X1234 (cm). Esse campo deve sempre que possível ser preenchido. Entretanto, quando for impossível o preenchimento das dimensões, fica obrigatório o preenchimento da cubagem em metro cúbico do leiaute do CT-e da estrutura genérica (infQ).
         /// </summary>
         /// <value>Dimensão.  Formato:1234X1234X1234 (cm). Esse campo deve sempre que possível ser preenchido. Entretanto, quando for impossível o preenchimento das dimensões, fica obrigatório o preenchimento da cubagem em metro cúbico do leiaute do CT-e da estrutura genérica (infQ).</value>
-        [DataMember(Name = "xDime", EmitDefaultValue = false)]
+        [DataMember(Name = "xDime", EmitDefaultValue = true)]
         public string xDime { get; set; }
 
         /// <summary>

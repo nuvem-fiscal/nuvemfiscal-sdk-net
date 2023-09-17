@@ -48,11 +48,31 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vDedutivelRedutivel">Valor monetário total dedutível/redutível no documento informado (R$).  Este é o valor total no documento informado que é passível de dedução/redução. (required).</param>
         /// <param name="vDeducaoReducao">Valor monetário utilizado para dedução/redução do valor do serviço da NFS-e que está sendo emitida (R$).  Deve ser menor ou igual ao valor deduzível/redutível (vDedutivelRedutivel). (required).</param>
         /// <param name="fornec">fornec.</param>
-        public DocDedRed(string chNFSe = default(string), string chNFe = default(string), DocOutNFSe nFSeMun = default(DocOutNFSe), DocNFNFS nFNFS = default(DocNFNFS), string nDocFisc = default(string), string nDoc = default(string), int tpDedRed = default(int), string xDescOutDed = default(string), DateTime dtEmiDoc = default(DateTime), decimal vDedutivelRedutivel = default(decimal), decimal vDeducaoReducao = default(decimal), InfoFornecDocDedRed fornec = default(InfoFornecDocDedRed))
+        public DocDedRed(string chNFSe = default(string), string chNFe = default(string), DocOutNFSe nFSeMun = default(DocOutNFSe), DocNFNFS nFNFS = default(DocNFNFS), string nDocFisc = default(string), string nDoc = default(string), int? tpDedRed = default(int?), string xDescOutDed = default(string), DateTime? dtEmiDoc = default(DateTime?), decimal? vDedutivelRedutivel = default(decimal?), decimal? vDeducaoReducao = default(decimal?), InfoFornecDocDedRed fornec = default(InfoFornecDocDedRed))
         {
+            // to ensure "tpDedRed" is required (not null)
+            if (tpDedRed == null)
+            {
+                throw new ArgumentNullException("tpDedRed is a required property for DocDedRed and cannot be null");
+            }
             this.tpDedRed = tpDedRed;
+            // to ensure "dtEmiDoc" is required (not null)
+            if (dtEmiDoc == null)
+            {
+                throw new ArgumentNullException("dtEmiDoc is a required property for DocDedRed and cannot be null");
+            }
             this.dtEmiDoc = dtEmiDoc;
+            // to ensure "vDedutivelRedutivel" is required (not null)
+            if (vDedutivelRedutivel == null)
+            {
+                throw new ArgumentNullException("vDedutivelRedutivel is a required property for DocDedRed and cannot be null");
+            }
             this.vDedutivelRedutivel = vDedutivelRedutivel;
+            // to ensure "vDeducaoReducao" is required (not null)
+            if (vDeducaoReducao == null)
+            {
+                throw new ArgumentNullException("vDeducaoReducao is a required property for DocDedRed and cannot be null");
+            }
             this.vDeducaoReducao = vDeducaoReducao;
             this.chNFSe = chNFSe;
             this.chNFe = chNFe;
@@ -68,14 +88,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Chave de Acesso da NFS-e (Padrão Nacional).
         /// </summary>
         /// <value>Chave de Acesso da NFS-e (Padrão Nacional).</value>
-        [DataMember(Name = "chNFSe", EmitDefaultValue = false)]
+        [DataMember(Name = "chNFSe", EmitDefaultValue = true)]
         public string chNFSe { get; set; }
 
         /// <summary>
         /// Chave de Acesso da NF-e.
         /// </summary>
         /// <value>Chave de Acesso da NF-e.</value>
-        [DataMember(Name = "chNFe", EmitDefaultValue = false)]
+        [DataMember(Name = "chNFe", EmitDefaultValue = true)]
         public string chNFe { get; set; }
 
         /// <summary>
@@ -94,14 +114,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número de documento fiscal.
         /// </summary>
         /// <value>Número de documento fiscal.</value>
-        [DataMember(Name = "nDocFisc", EmitDefaultValue = false)]
+        [DataMember(Name = "nDocFisc", EmitDefaultValue = true)]
         public string nDocFisc { get; set; }
 
         /// <summary>
         /// Número de documento não fiscal.
         /// </summary>
         /// <value>Número de documento não fiscal.</value>
-        [DataMember(Name = "nDoc", EmitDefaultValue = false)]
+        [DataMember(Name = "nDoc", EmitDefaultValue = true)]
         public string nDoc { get; set; }
 
         /// <summary>
@@ -109,13 +129,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Identificação da Dedução/Redução:  * 1 - Alimentação e bebidas/frigobar  * 2 - Materiais  * 3 - Produção externa  * 4 - Reembolso de despesas  * 5 - Repasse consorciado  * 6 - Repasse plano de saúde  * 7 - Serviços  * 8 - Subempreitada de mão de obra  * 99 - Outras deduções</value>
         [DataMember(Name = "tpDedRed", IsRequired = true, EmitDefaultValue = true)]
-        public int tpDedRed { get; set; }
+        public int? tpDedRed { get; set; }
 
         /// <summary>
         /// Descrição da Dedução/Redução quando a opção é \&quot;99 - Outras Deduções\&quot;.
         /// </summary>
         /// <value>Descrição da Dedução/Redução quando a opção é \&quot;99 - Outras Deduções\&quot;.</value>
-        [DataMember(Name = "xDescOutDed", EmitDefaultValue = false)]
+        [DataMember(Name = "xDescOutDed", EmitDefaultValue = true)]
         public string xDescOutDed { get; set; }
 
         /// <summary>
@@ -124,21 +144,21 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data da emissão do documento dedutível. Ano, mês e dia (AAAA-MM-DD).</value>
         [DataMember(Name = "dtEmiDoc", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dtEmiDoc { get; set; }
+        public DateTime? dtEmiDoc { get; set; }
 
         /// <summary>
         /// Valor monetário total dedutível/redutível no documento informado (R$).  Este é o valor total no documento informado que é passível de dedução/redução.
         /// </summary>
         /// <value>Valor monetário total dedutível/redutível no documento informado (R$).  Este é o valor total no documento informado que é passível de dedução/redução.</value>
         [DataMember(Name = "vDedutivelRedutivel", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vDedutivelRedutivel { get; set; }
+        public decimal? vDedutivelRedutivel { get; set; }
 
         /// <summary>
         /// Valor monetário utilizado para dedução/redução do valor do serviço da NFS-e que está sendo emitida (R$).  Deve ser menor ou igual ao valor deduzível/redutível (vDedutivelRedutivel).
         /// </summary>
         /// <value>Valor monetário utilizado para dedução/redução do valor do serviço da NFS-e que está sendo emitida (R$).  Deve ser menor ou igual ao valor deduzível/redutível (vDedutivelRedutivel).</value>
         [DataMember(Name = "vDeducaoReducao", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vDeducaoReducao { get; set; }
+        public decimal? vDeducaoReducao { get; set; }
 
         /// <summary>
         /// Gets or Sets fornec
@@ -233,7 +253,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpDedRed == input.tpDedRed ||
-                    this.tpDedRed.Equals(input.tpDedRed)
+                    (this.tpDedRed != null &&
+                    this.tpDedRed.Equals(input.tpDedRed))
                 ) && 
                 (
                     this.xDescOutDed == input.xDescOutDed ||
@@ -247,11 +268,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDedutivelRedutivel == input.vDedutivelRedutivel ||
-                    this.vDedutivelRedutivel.Equals(input.vDedutivelRedutivel)
+                    (this.vDedutivelRedutivel != null &&
+                    this.vDedutivelRedutivel.Equals(input.vDedutivelRedutivel))
                 ) && 
                 (
                     this.vDeducaoReducao == input.vDeducaoReducao ||
-                    this.vDeducaoReducao.Equals(input.vDeducaoReducao)
+                    (this.vDeducaoReducao != null &&
+                    this.vDeducaoReducao.Equals(input.vDeducaoReducao))
                 ) && 
                 (
                     this.fornec == input.fornec ||
@@ -293,7 +316,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nDoc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpDedRed.GetHashCode();
+                if (this.tpDedRed != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpDedRed.GetHashCode();
+                }
                 if (this.xDescOutDed != null)
                 {
                     hashCode = (hashCode * 59) + this.xDescOutDed.GetHashCode();
@@ -302,8 +328,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dtEmiDoc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDedutivelRedutivel.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDeducaoReducao.GetHashCode();
+                if (this.vDedutivelRedutivel != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDedutivelRedutivel.GetHashCode();
+                }
+                if (this.vDeducaoReducao != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDeducaoReducao.GetHashCode();
+                }
                 if (this.fornec != null)
                 {
                     hashCode = (hashCode * 59) + this.fornec.GetHashCode();

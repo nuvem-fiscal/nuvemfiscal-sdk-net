@@ -40,8 +40,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nBM">Identificador do benefício municipal parametrizado pelo município. (required).</param>
         /// <param name="vRedBCBM">Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)..</param>
         /// <param name="pRedBCBM">Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)..</param>
-        public BeneficioMunicipal(int tpBM = default(int), string nBM = default(string), decimal vRedBCBM = default(decimal), decimal pRedBCBM = default(decimal))
+        public BeneficioMunicipal(int? tpBM = default(int?), string nBM = default(string), decimal? vRedBCBM = default(decimal?), decimal? pRedBCBM = default(decimal?))
         {
+            // to ensure "tpBM" is required (not null)
+            if (tpBM == null)
+            {
+                throw new ArgumentNullException("tpBM is a required property for BeneficioMunicipal and cannot be null");
+            }
             this.tpBM = tpBM;
             // to ensure "nBM" is required (not null)
             if (nBM == null)
@@ -58,7 +63,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo do Benefício Municipal:  * 1 - Alíquota Diferenciada  * 2 - Redução da BC  * 3 - Isenção</value>
         [DataMember(Name = "tpBM", IsRequired = true, EmitDefaultValue = true)]
-        public int tpBM { get; set; }
+        public int? tpBM { get; set; }
 
         /// <summary>
         /// Identificador do benefício municipal parametrizado pelo município.
@@ -71,15 +76,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).
         /// </summary>
         /// <value>Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).</value>
-        [DataMember(Name = "vRedBCBM", EmitDefaultValue = false)]
-        public decimal vRedBCBM { get; set; }
+        [DataMember(Name = "vRedBCBM", EmitDefaultValue = true)]
+        public decimal? vRedBCBM { get; set; }
 
         /// <summary>
         /// Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).
         /// </summary>
         /// <value>Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).</value>
-        [DataMember(Name = "pRedBCBM", EmitDefaultValue = false)]
-        public decimal pRedBCBM { get; set; }
+        [DataMember(Name = "pRedBCBM", EmitDefaultValue = true)]
+        public decimal? pRedBCBM { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -130,7 +135,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpBM == input.tpBM ||
-                    this.tpBM.Equals(input.tpBM)
+                    (this.tpBM != null &&
+                    this.tpBM.Equals(input.tpBM))
                 ) && 
                 (
                     this.nBM == input.nBM ||
@@ -139,11 +145,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vRedBCBM == input.vRedBCBM ||
-                    this.vRedBCBM.Equals(input.vRedBCBM)
+                    (this.vRedBCBM != null &&
+                    this.vRedBCBM.Equals(input.vRedBCBM))
                 ) && 
                 (
                     this.pRedBCBM == input.pRedBCBM ||
-                    this.pRedBCBM.Equals(input.pRedBCBM)
+                    (this.pRedBCBM != null &&
+                    this.pRedBCBM.Equals(input.pRedBCBM))
                 );
         }
 
@@ -156,13 +164,22 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpBM.GetHashCode();
+                if (this.tpBM != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpBM.GetHashCode();
+                }
                 if (this.nBM != null)
                 {
                     hashCode = (hashCode * 59) + this.nBM.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vRedBCBM.GetHashCode();
-                hashCode = (hashCode * 59) + this.pRedBCBM.GetHashCode();
+                if (this.vRedBCBM != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRedBCBM.GetHashCode();
+                }
+                if (this.pRedBCBM != null)
+                {
+                    hashCode = (hashCode * 59) + this.pRedBCBM.GetHashCode();
+                }
                 return hashCode;
             }
         }

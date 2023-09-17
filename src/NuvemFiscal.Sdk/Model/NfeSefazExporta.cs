@@ -74,7 +74,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Descrição do local de despacho.
         /// </summary>
         /// <value>Descrição do local de despacho.</value>
-        [DataMember(Name = "xLocDespacho", EmitDefaultValue = false)]
+        [DataMember(Name = "xLocDespacho", EmitDefaultValue = true)]
         public string xLocDespacho { get; set; }
 
         /// <summary>

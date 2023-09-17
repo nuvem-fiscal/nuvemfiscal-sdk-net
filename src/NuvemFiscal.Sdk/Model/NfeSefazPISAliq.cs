@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBC">Valor da BC do PIS. (required).</param>
         /// <param name="pPIS">Alíquota do PIS (em percentual). (required).</param>
         /// <param name="vPIS">Valor do PIS. (required).</param>
-        public NfeSefazPISAliq(string cST = default(string), decimal vBC = default(decimal), decimal pPIS = default(decimal), decimal vPIS = default(decimal))
+        public NfeSefazPISAliq(string cST = default(string), decimal? vBC = default(decimal?), decimal? pPIS = default(decimal?), decimal? vPIS = default(decimal?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -48,8 +48,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for NfeSefazPISAliq and cannot be null");
             }
             this.CST = cST;
+            // to ensure "vBC" is required (not null)
+            if (vBC == null)
+            {
+                throw new ArgumentNullException("vBC is a required property for NfeSefazPISAliq and cannot be null");
+            }
             this.vBC = vBC;
+            // to ensure "pPIS" is required (not null)
+            if (pPIS == null)
+            {
+                throw new ArgumentNullException("pPIS is a required property for NfeSefazPISAliq and cannot be null");
+            }
             this.pPIS = pPIS;
+            // to ensure "vPIS" is required (not null)
+            if (vPIS == null)
+            {
+                throw new ArgumentNullException("vPIS is a required property for NfeSefazPISAliq and cannot be null");
+            }
             this.vPIS = vPIS;
         }
 
@@ -65,21 +80,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da BC do PIS.</value>
         [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBC { get; set; }
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do PIS (em percentual).
         /// </summary>
         /// <value>Alíquota do PIS (em percentual).</value>
         [DataMember(Name = "pPIS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pPIS { get; set; }
+        public decimal? pPIS { get; set; }
 
         /// <summary>
         /// Valor do PIS.
         /// </summary>
         /// <value>Valor do PIS.</value>
         [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vPIS { get; set; }
+        public decimal? vPIS { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,15 +150,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pPIS == input.pPIS ||
-                    this.pPIS.Equals(input.pPIS)
+                    (this.pPIS != null &&
+                    this.pPIS.Equals(input.pPIS))
                 ) && 
                 (
                     this.vPIS == input.vPIS ||
-                    this.vPIS.Equals(input.vPIS)
+                    (this.vPIS != null &&
+                    this.vPIS.Equals(input.vPIS))
                 );
         }
 
@@ -160,9 +178,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pPIS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vPIS.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pPIS != null)
+                {
+                    hashCode = (hashCode * 59) + this.pPIS.GetHashCode();
+                }
+                if (this.vPIS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPIS.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cMunNFSeMun">Código Município emissor da nota eletrônica municipal (Tabela do IBGE). (required).</param>
         /// <param name="nNFSeMun">Número da nota eletrônica municipal. (required).</param>
         /// <param name="cVerifNFSeMun">Código de Verificação da nota eletrônica municipal. (required).</param>
-        public DocOutNFSe(string cMunNFSeMun = default(string), int nNFSeMun = default(int), string cVerifNFSeMun = default(string))
+        public DocOutNFSe(string cMunNFSeMun = default(string), int? nNFSeMun = default(int?), string cVerifNFSeMun = default(string))
         {
             // to ensure "cMunNFSeMun" is required (not null)
             if (cMunNFSeMun == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cMunNFSeMun is a required property for DocOutNFSe and cannot be null");
             }
             this.cMunNFSeMun = cMunNFSeMun;
+            // to ensure "nNFSeMun" is required (not null)
+            if (nNFSeMun == null)
+            {
+                throw new ArgumentNullException("nNFSeMun is a required property for DocOutNFSe and cannot be null");
+            }
             this.nNFSeMun = nNFSeMun;
             // to ensure "cVerifNFSeMun" is required (not null)
             if (cVerifNFSeMun == null)
@@ -68,7 +73,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número da nota eletrônica municipal.</value>
         [DataMember(Name = "nNFSeMun", IsRequired = true, EmitDefaultValue = true)]
-        public int nNFSeMun { get; set; }
+        public int? nNFSeMun { get; set; }
 
         /// <summary>
         /// Código de Verificação da nota eletrônica municipal.
@@ -130,7 +135,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.nNFSeMun == input.nNFSeMun ||
-                    this.nNFSeMun.Equals(input.nNFSeMun)
+                    (this.nNFSeMun != null &&
+                    this.nNFSeMun.Equals(input.nNFSeMun))
                 ) && 
                 (
                     this.cVerifNFSeMun == input.cVerifNFSeMun ||
@@ -152,7 +158,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cMunNFSeMun.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.nNFSeMun.GetHashCode();
+                if (this.nNFSeMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.nNFSeMun.GetHashCode();
+                }
                 if (this.cVerifNFSeMun != null)
                 {
                     hashCode = (hashCode * 59) + this.cVerifNFSeMun.GetHashCode();

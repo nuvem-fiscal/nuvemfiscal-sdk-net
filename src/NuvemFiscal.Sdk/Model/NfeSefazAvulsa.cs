@@ -47,7 +47,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vDAR">Valor Total constante no DAR..</param>
         /// <param name="repEmi">Repartição Fiscal emitente. (required).</param>
         /// <param name="dPag">Data de pagamento do DAR (AAAA-MM-DD)..</param>
-        public NfeSefazAvulsa(string cNPJ = default(string), string xOrgao = default(string), string matr = default(string), string xAgente = default(string), string fone = default(string), string uF = default(string), string nDAR = default(string), DateTime dEmi = default(DateTime), decimal vDAR = default(decimal), string repEmi = default(string), DateTime dPag = default(DateTime))
+        public NfeSefazAvulsa(string cNPJ = default(string), string xOrgao = default(string), string matr = default(string), string xAgente = default(string), string fone = default(string), string uF = default(string), string nDAR = default(string), DateTime? dEmi = default(DateTime?), decimal? vDAR = default(decimal?), string repEmi = default(string), DateTime? dPag = default(DateTime?))
         {
             // to ensure "cNPJ" is required (not null)
             if (cNPJ == null)
@@ -124,7 +124,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Telefone.
         /// </summary>
         /// <value>Telefone.</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>
@@ -138,23 +138,23 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do Documento de Arrecadação de Receita.
         /// </summary>
         /// <value>Número do Documento de Arrecadação de Receita.</value>
-        [DataMember(Name = "nDAR", EmitDefaultValue = false)]
+        [DataMember(Name = "nDAR", EmitDefaultValue = true)]
         public string nDAR { get; set; }
 
         /// <summary>
         /// Data de emissão do DAR (AAAA-MM-DD).
         /// </summary>
         /// <value>Data de emissão do DAR (AAAA-MM-DD).</value>
-        [DataMember(Name = "dEmi", EmitDefaultValue = false)]
+        [DataMember(Name = "dEmi", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dEmi { get; set; }
+        public DateTime? dEmi { get; set; }
 
         /// <summary>
         /// Valor Total constante no DAR.
         /// </summary>
         /// <value>Valor Total constante no DAR.</value>
-        [DataMember(Name = "vDAR", EmitDefaultValue = false)]
-        public decimal vDAR { get; set; }
+        [DataMember(Name = "vDAR", EmitDefaultValue = true)]
+        public decimal? vDAR { get; set; }
 
         /// <summary>
         /// Repartição Fiscal emitente.
@@ -167,9 +167,9 @@ namespace NuvemFiscal.Sdk.Model
         /// Data de pagamento do DAR (AAAA-MM-DD).
         /// </summary>
         /// <value>Data de pagamento do DAR (AAAA-MM-DD).</value>
-        [DataMember(Name = "dPag", EmitDefaultValue = false)]
+        [DataMember(Name = "dPag", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dPag { get; set; }
+        public DateTime? dPag { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -267,7 +267,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDAR == input.vDAR ||
-                    this.vDAR.Equals(input.vDAR)
+                    (this.vDAR != null &&
+                    this.vDAR.Equals(input.vDAR))
                 ) && 
                 (
                     this.repEmi == input.repEmi ||
@@ -322,7 +323,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dEmi.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDAR.GetHashCode();
+                if (this.vDAR != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDAR.GetHashCode();
+                }
                 if (this.repEmi != null)
                 {
                     hashCode = (hashCode * 59) + this.repEmi.GetHashCode();

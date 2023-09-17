@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="idUnidTranspVazia">Identificação da unidades de transporte vazia. (required).</param>
         /// <param name="tpUnidTranspVazia">Tipo da unidade de transporte vazia.  Deve ser preenchido com “1” para Rodoviário Tração do tipo caminhão ou “2” para Rodoviário reboque do tipo carreta. (required).</param>
-        public MdfeSefazInfUnidTranspVazia(string idUnidTranspVazia = default(string), int tpUnidTranspVazia = default(int))
+        public MdfeSefazInfUnidTranspVazia(string idUnidTranspVazia = default(string), int? tpUnidTranspVazia = default(int?))
         {
             // to ensure "idUnidTranspVazia" is required (not null)
             if (idUnidTranspVazia == null)
@@ -46,6 +46,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("idUnidTranspVazia is a required property for MdfeSefazInfUnidTranspVazia and cannot be null");
             }
             this.idUnidTranspVazia = idUnidTranspVazia;
+            // to ensure "tpUnidTranspVazia" is required (not null)
+            if (tpUnidTranspVazia == null)
+            {
+                throw new ArgumentNullException("tpUnidTranspVazia is a required property for MdfeSefazInfUnidTranspVazia and cannot be null");
+            }
             this.tpUnidTranspVazia = tpUnidTranspVazia;
         }
 
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo da unidade de transporte vazia.  Deve ser preenchido com “1” para Rodoviário Tração do tipo caminhão ou “2” para Rodoviário reboque do tipo carreta.</value>
         [DataMember(Name = "tpUnidTranspVazia", IsRequired = true, EmitDefaultValue = true)]
-        public int tpUnidTranspVazia { get; set; }
+        public int? tpUnidTranspVazia { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +120,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpUnidTranspVazia == input.tpUnidTranspVazia ||
-                    this.tpUnidTranspVazia.Equals(input.tpUnidTranspVazia)
+                    (this.tpUnidTranspVazia != null &&
+                    this.tpUnidTranspVazia.Equals(input.tpUnidTranspVazia))
                 );
         }
 
@@ -132,7 +138,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.idUnidTranspVazia.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpUnidTranspVazia.GetHashCode();
+                if (this.tpUnidTranspVazia != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpUnidTranspVazia.GetHashCode();
+                }
                 return hashCode;
             }
         }

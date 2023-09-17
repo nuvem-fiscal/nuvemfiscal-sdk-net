@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vPis">Valor monetário do PIS (R$)..</param>
         /// <param name="vCofins">Valor monetário do COFINS (R$)..</param>
         /// <param name="tpRetPisCofins">Tipo de retencao do Pis/Cofins:  * 1 - Retido  * 2 - Não Retido.</param>
-        public TribOutrosPisCofins(string cST = default(string), decimal vBCPisCofins = default(decimal), decimal pAliqPis = default(decimal), decimal pAliqCofins = default(decimal), decimal vPis = default(decimal), decimal vCofins = default(decimal), int tpRetPisCofins = default(int))
+        public TribOutrosPisCofins(string cST = default(string), decimal? vBCPisCofins = default(decimal?), decimal? pAliqPis = default(decimal?), decimal? pAliqCofins = default(decimal?), decimal? vPis = default(decimal?), decimal? vCofins = default(decimal?), int? tpRetPisCofins = default(int?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -70,43 +70,43 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da Base de Cálculo do PIS/COFINS (R$).
         /// </summary>
         /// <value>Valor da Base de Cálculo do PIS/COFINS (R$).</value>
-        [DataMember(Name = "vBCPisCofins", EmitDefaultValue = false)]
-        public decimal vBCPisCofins { get; set; }
+        [DataMember(Name = "vBCPisCofins", EmitDefaultValue = true)]
+        public decimal? vBCPisCofins { get; set; }
 
         /// <summary>
         /// Valor da Alíquota do PIS (%%).
         /// </summary>
         /// <value>Valor da Alíquota do PIS (%%).</value>
-        [DataMember(Name = "pAliqPis", EmitDefaultValue = false)]
-        public decimal pAliqPis { get; set; }
+        [DataMember(Name = "pAliqPis", EmitDefaultValue = true)]
+        public decimal? pAliqPis { get; set; }
 
         /// <summary>
         /// Valor da Alíquota da COFINS (%%).
         /// </summary>
         /// <value>Valor da Alíquota da COFINS (%%).</value>
-        [DataMember(Name = "pAliqCofins", EmitDefaultValue = false)]
-        public decimal pAliqCofins { get; set; }
+        [DataMember(Name = "pAliqCofins", EmitDefaultValue = true)]
+        public decimal? pAliqCofins { get; set; }
 
         /// <summary>
         /// Valor monetário do PIS (R$).
         /// </summary>
         /// <value>Valor monetário do PIS (R$).</value>
-        [DataMember(Name = "vPis", EmitDefaultValue = false)]
-        public decimal vPis { get; set; }
+        [DataMember(Name = "vPis", EmitDefaultValue = true)]
+        public decimal? vPis { get; set; }
 
         /// <summary>
         /// Valor monetário do COFINS (R$).
         /// </summary>
         /// <value>Valor monetário do COFINS (R$).</value>
-        [DataMember(Name = "vCofins", EmitDefaultValue = false)]
-        public decimal vCofins { get; set; }
+        [DataMember(Name = "vCofins", EmitDefaultValue = true)]
+        public decimal? vCofins { get; set; }
 
         /// <summary>
         /// Tipo de retencao do Pis/Cofins:  * 1 - Retido  * 2 - Não Retido
         /// </summary>
         /// <value>Tipo de retencao do Pis/Cofins:  * 1 - Retido  * 2 - Não Retido</value>
-        [DataMember(Name = "tpRetPisCofins", EmitDefaultValue = false)]
-        public int tpRetPisCofins { get; set; }
+        [DataMember(Name = "tpRetPisCofins", EmitDefaultValue = true)]
+        public int? tpRetPisCofins { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -165,27 +165,33 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBCPisCofins == input.vBCPisCofins ||
-                    this.vBCPisCofins.Equals(input.vBCPisCofins)
+                    (this.vBCPisCofins != null &&
+                    this.vBCPisCofins.Equals(input.vBCPisCofins))
                 ) && 
                 (
                     this.pAliqPis == input.pAliqPis ||
-                    this.pAliqPis.Equals(input.pAliqPis)
+                    (this.pAliqPis != null &&
+                    this.pAliqPis.Equals(input.pAliqPis))
                 ) && 
                 (
                     this.pAliqCofins == input.pAliqCofins ||
-                    this.pAliqCofins.Equals(input.pAliqCofins)
+                    (this.pAliqCofins != null &&
+                    this.pAliqCofins.Equals(input.pAliqCofins))
                 ) && 
                 (
                     this.vPis == input.vPis ||
-                    this.vPis.Equals(input.vPis)
+                    (this.vPis != null &&
+                    this.vPis.Equals(input.vPis))
                 ) && 
                 (
                     this.vCofins == input.vCofins ||
-                    this.vCofins.Equals(input.vCofins)
+                    (this.vCofins != null &&
+                    this.vCofins.Equals(input.vCofins))
                 ) && 
                 (
                     this.tpRetPisCofins == input.tpRetPisCofins ||
-                    this.tpRetPisCofins.Equals(input.tpRetPisCofins)
+                    (this.tpRetPisCofins != null &&
+                    this.tpRetPisCofins.Equals(input.tpRetPisCofins))
                 );
         }
 
@@ -202,12 +208,30 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBCPisCofins.GetHashCode();
-                hashCode = (hashCode * 59) + this.pAliqPis.GetHashCode();
-                hashCode = (hashCode * 59) + this.pAliqCofins.GetHashCode();
-                hashCode = (hashCode * 59) + this.vPis.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCofins.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpRetPisCofins.GetHashCode();
+                if (this.vBCPisCofins != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCPisCofins.GetHashCode();
+                }
+                if (this.pAliqPis != null)
+                {
+                    hashCode = (hashCode * 59) + this.pAliqPis.GetHashCode();
+                }
+                if (this.pAliqCofins != null)
+                {
+                    hashCode = (hashCode * 59) + this.pAliqCofins.GetHashCode();
+                }
+                if (this.vPis != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPis.GetHashCode();
+                }
+                if (this.vCofins != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCofins.GetHashCode();
+                }
+                if (this.tpRetPisCofins != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpRetPisCofins.GetHashCode();
+                }
                 return hashCode;
             }
         }

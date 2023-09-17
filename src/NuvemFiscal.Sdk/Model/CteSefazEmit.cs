@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xFant">Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
         /// <param name="enderEmit">enderEmit.</param>
         /// <param name="cRT">Código do Regime Tributário. Informar:  * 1 - Simples Nacional;  * 2 - Simples Nacional, excesso sublimite de receita bruta;  * 3 - Regime Normal;  * 4 - Simples Nacional - Microempreendedor Individual (MEI).    *Caso não seja informado, será utilizado o do cadastro da empresa.*.</param>
-        public CteSefazEmit(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string iEST = default(string), string xNome = default(string), string xFant = default(string), CteSefazEndeEmi enderEmit = default(CteSefazEndeEmi), int cRT = default(int))
+        public CteSefazEmit(string cNPJ = default(string), string cPF = default(string), string iE = default(string), string iEST = default(string), string xNome = default(string), string xFant = default(string), CteSefazEndeEmi enderEmit = default(CteSefazEndeEmi), int? cRT = default(int?))
         {
             this.CNPJ = cNPJ;
             this.CPF = cPF;
@@ -55,42 +55,42 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.
         /// </summary>
         /// <value>CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.    ***Obrigatorio caso o emitente seja pessoa física***.
         /// </summary>
         /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.    ***Obrigatorio caso o emitente seja pessoa física***.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Inscrição Estadual do Emitente.  A IE do emitente somente ficará sem informação para o caso do Regime Especial da NFF (tpEmis&#x3D;3).    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// Inscrição Estadual do Substituto Tributário.
         /// </summary>
         /// <value>Inscrição Estadual do Substituto Tributário.</value>
-        [DataMember(Name = "IEST", EmitDefaultValue = false)]
+        [DataMember(Name = "IEST", EmitDefaultValue = true)]
         public string IEST { get; set; }
 
         /// <summary>
         /// Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Nome fantasia.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xFant", EmitDefaultValue = false)]
+        [DataMember(Name = "xFant", EmitDefaultValue = true)]
         public string xFant { get; set; }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do Regime Tributário. Informar:  * 1 - Simples Nacional;  * 2 - Simples Nacional, excesso sublimite de receita bruta;  * 3 - Regime Normal;  * 4 - Simples Nacional - Microempreendedor Individual (MEI).    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Código do Regime Tributário. Informar:  * 1 - Simples Nacional;  * 2 - Simples Nacional, excesso sublimite de receita bruta;  * 3 - Regime Normal;  * 4 - Simples Nacional - Microempreendedor Individual (MEI).    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "CRT", EmitDefaultValue = false)]
-        public int CRT { get; set; }
+        [DataMember(Name = "CRT", EmitDefaultValue = true)]
+        public int? CRT { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -194,7 +194,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.CRT == input.CRT ||
-                    this.CRT.Equals(input.CRT)
+                    (this.CRT != null &&
+                    this.CRT.Equals(input.CRT))
                 );
         }
 
@@ -235,7 +236,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.enderEmit.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CRT.GetHashCode();
+                if (this.CRT != null)
+                {
+                    hashCode = (hashCode * 59) + this.CRT.GetHashCode();
+                }
                 return hashCode;
             }
         }

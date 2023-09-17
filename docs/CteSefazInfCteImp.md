@@ -6,7 +6,7 @@ Informações relativas aos Impostos.
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **ICMS** | [**CteSefazImp**](CteSefazImp.md) |  | 
-**vTotTrib** | **decimal** | Valor Total dos Tributos. | [optional] 
+**vTotTrib** | **decimal?** | Valor Total dos Tributos. | [optional] 
 **infAdFisco** | **string** | Informações adicionais de interesse do Fisco.  Norma referenciada, informações complementares, etc. | [optional] 
 **ICMSUFFim** | [**CteSefazICMSUFFim**](CteSefazICMSUFFim.md) |  | [optional] 
 

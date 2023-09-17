@@ -12,7 +12,7 @@ Nome | Tipo | Descrição | Comentários
 **cPrtEmb** | **string** | Código do Porto de Embarque.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes. | 
 **cPrtDest** | **string** | Código do Porto de Destino.  Preencher de acordo com Tabela de Portos definida no Ministério dos Transportes. | 
 **prtTrans** | **string** | Porto de Transbordo. | [optional] 
-**tpNav** | **int** | Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem | [optional] 
+**tpNav** | **int?** | Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem | [optional] 
 **infTermCarreg** | [**List&lt;MdfeSefazInfTermCarreg&gt;**](MdfeSefazInfTermCarreg.md) |  | [optional] 
 **infTermDescarreg** | [**List&lt;MdfeSefazInfTermDescarreg&gt;**](MdfeSefazInfTermDescarreg.md) |  | [optional] 
 **infEmbComb** | [**List&lt;MdfeSefazInfEmbComb&gt;**](MdfeSefazInfEmbComb.md) |  | [optional] 

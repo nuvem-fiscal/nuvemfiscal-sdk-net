@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do município, conforme Tabela do IBGE.
         /// </summary>
         /// <value>Código do município, conforme Tabela do IBGE.</value>
-        [DataMember(Name = "cMun", EmitDefaultValue = false)]
+        [DataMember(Name = "cMun", EmitDefaultValue = true)]
         public string cMun { get; set; }
 
         /// <summary>
         /// Número do CEP.
         /// </summary>
         /// <value>Número do CEP.</value>
-        [DataMember(Name = "CEP", EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", EmitDefaultValue = true)]
         public string CEP { get; set; }
 
         /// <summary>

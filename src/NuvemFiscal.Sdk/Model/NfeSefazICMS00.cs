@@ -44,8 +44,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vICMS">Valor do ICMS. (required).</param>
         /// <param name="pFCP">Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP)..</param>
         /// <param name="vFCP">Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP)..</param>
-        public NfeSefazICMS00(int orig = default(int), string cST = default(string), int modBC = default(int), decimal vBC = default(decimal), decimal pICMS = default(decimal), decimal vICMS = default(decimal), decimal pFCP = default(decimal), decimal vFCP = default(decimal))
+        public NfeSefazICMS00(int? orig = default(int?), string cST = default(string), int? modBC = default(int?), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMS = default(decimal?), decimal? pFCP = default(decimal?), decimal? vFCP = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMS00 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -53,9 +58,29 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for NfeSefazICMS00 and cannot be null");
             }
             this.CST = cST;
+            // to ensure "modBC" is required (not null)
+            if (modBC == null)
+            {
+                throw new ArgumentNullException("modBC is a required property for NfeSefazICMS00 and cannot be null");
+            }
             this.modBC = modBC;
+            // to ensure "vBC" is required (not null)
+            if (vBC == null)
+            {
+                throw new ArgumentNullException("vBC is a required property for NfeSefazICMS00 and cannot be null");
+            }
             this.vBC = vBC;
+            // to ensure "pICMS" is required (not null)
+            if (pICMS == null)
+            {
+                throw new ArgumentNullException("pICMS is a required property for NfeSefazICMS00 and cannot be null");
+            }
             this.pICMS = pICMS;
+            // to ensure "vICMS" is required (not null)
+            if (vICMS == null)
+            {
+                throw new ArgumentNullException("vICMS is a required property for NfeSefazICMS00 and cannot be null");
+            }
             this.vICMS = vICMS;
             this.pFCP = pFCP;
             this.vFCP = vFCP;
@@ -66,7 +91,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// Tributção pelo ICMS  * 00 - Tributada integralmente
@@ -80,42 +105,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Modalidade de determinação da BC do ICMS:  * 0 - Margem Valor Agregado (%%)  * 1 - Pauta (valor)  * 2 - Preço Tabelado Máximo (valor)  * 3 - Valor da Operação</value>
         [DataMember(Name = "modBC", IsRequired = true, EmitDefaultValue = true)]
-        public int modBC { get; set; }
+        public int? modBC { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS.
         /// </summary>
         /// <value>Valor da BC do ICMS.</value>
         [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBC { get; set; }
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS.
         /// </summary>
         /// <value>Alíquota do ICMS.</value>
         [DataMember(Name = "pICMS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMS { get; set; }
+        public decimal? pICMS { get; set; }
 
         /// <summary>
         /// Valor do ICMS.
         /// </summary>
         /// <value>Valor do ICMS.</value>
         [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMS { get; set; }
+        public decimal? vICMS { get; set; }
 
         /// <summary>
         /// Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP).
         /// </summary>
         /// <value>Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP).</value>
-        [DataMember(Name = "pFCP", EmitDefaultValue = false)]
-        public decimal pFCP { get; set; }
+        [DataMember(Name = "pFCP", EmitDefaultValue = true)]
+        public decimal? pFCP { get; set; }
 
         /// <summary>
         /// Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
         /// </summary>
         /// <value>Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP).</value>
-        [DataMember(Name = "vFCP", EmitDefaultValue = false)]
-        public decimal vFCP { get; set; }
+        [DataMember(Name = "vFCP", EmitDefaultValue = true)]
+        public decimal? vFCP { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -170,7 +195,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CST == input.CST ||
@@ -179,27 +205,33 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.modBC == input.modBC ||
-                    this.modBC.Equals(input.modBC)
+                    (this.modBC != null &&
+                    this.modBC.Equals(input.modBC))
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pICMS == input.pICMS ||
-                    this.pICMS.Equals(input.pICMS)
+                    (this.pICMS != null &&
+                    this.pICMS.Equals(input.pICMS))
                 ) && 
                 (
                     this.vICMS == input.vICMS ||
-                    this.vICMS.Equals(input.vICMS)
+                    (this.vICMS != null &&
+                    this.vICMS.Equals(input.vICMS))
                 ) && 
                 (
                     this.pFCP == input.pFCP ||
-                    this.pFCP.Equals(input.pFCP)
+                    (this.pFCP != null &&
+                    this.pFCP.Equals(input.pFCP))
                 ) && 
                 (
                     this.vFCP == input.vFCP ||
-                    this.vFCP.Equals(input.vFCP)
+                    (this.vFCP != null &&
+                    this.vFCP.Equals(input.vFCP))
                 );
         }
 
@@ -212,17 +244,38 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CST != null)
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.modBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.pFCP.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFCP.GetHashCode();
+                if (this.modBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.modBC.GetHashCode();
+                }
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMS.GetHashCode();
+                }
+                if (this.vICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
+                }
+                if (this.pFCP != null)
+                {
+                    hashCode = (hashCode * 59) + this.pFCP.GetHashCode();
+                }
+                if (this.vFCP != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFCP.GetHashCode();
+                }
                 return hashCode;
             }
         }

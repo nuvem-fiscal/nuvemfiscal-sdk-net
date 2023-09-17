@@ -5,7 +5,7 @@ Dados dos transportes da NF-e.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**modFrete** | **int** | Modalidade do frete  * 0 - Contratação do Frete por conta do Remetente (CIF)  * 1 - Contratação do Frete por conta do destinatário/remetente (FOB)  * 2 - Contratação do Frete por conta de terceiros  * 3 - Transporte próprio por conta do remetente  * 4 - Transporte próprio por conta do destinatário  * 9 - Sem Ocorrência de transporte | 
+**modFrete** | **int?** | Modalidade do frete  * 0 - Contratação do Frete por conta do Remetente (CIF)  * 1 - Contratação do Frete por conta do destinatário/remetente (FOB)  * 2 - Contratação do Frete por conta de terceiros  * 3 - Transporte próprio por conta do remetente  * 4 - Transporte próprio por conta do destinatário  * 9 - Sem Ocorrência de transporte | 
 **transporta** | [**NfeSefazTransporta**](NfeSefazTransporta.md) |  | [optional] 
 **retTransp** | [**NfeSefazRetTransp**](NfeSefazRetTransp.md) |  | [optional] 
 **veicTransp** | [**NfeSefazVeiculo**](NfeSefazVeiculo.md) |  | [optional] 

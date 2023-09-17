@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="serie">Série. (required).</param>
         /// <param name="nDoc">Número. (required).</param>
         /// <param name="unidRat">Unidade de medida rateada (Peso,Volume)..</param>
-        public CteSefazDetContInfDocInfNF(string serie = default(string), string nDoc = default(string), decimal unidRat = default(decimal))
+        public CteSefazDetContInfDocInfNF(string serie = default(string), string nDoc = default(string), decimal? unidRat = default(decimal?))
         {
             // to ensure "serie" is required (not null)
             if (serie == null)
@@ -74,8 +74,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Unidade de medida rateada (Peso,Volume).
         /// </summary>
         /// <value>Unidade de medida rateada (Peso,Volume).</value>
-        [DataMember(Name = "unidRat", EmitDefaultValue = false)]
-        public decimal unidRat { get; set; }
+        [DataMember(Name = "unidRat", EmitDefaultValue = true)]
+        public decimal? unidRat { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,7 +135,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.unidRat == input.unidRat ||
-                    this.unidRat.Equals(input.unidRat)
+                    (this.unidRat != null &&
+                    this.unidRat.Equals(input.unidRat))
                 );
         }
 
@@ -156,7 +157,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nDoc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.unidRat.GetHashCode();
+                if (this.unidRat != null)
+                {
+                    hashCode = (hashCode * 59) + this.unidRat.GetHashCode();
+                }
                 return hashCode;
             }
         }

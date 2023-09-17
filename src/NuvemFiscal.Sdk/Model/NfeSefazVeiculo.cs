@@ -62,14 +62,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Sigla da UF.
         /// </summary>
         /// <value>Sigla da UF.</value>
-        [DataMember(Name = "UF", EmitDefaultValue = false)]
+        [DataMember(Name = "UF", EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>
         /// Registro Nacional de Transportador de Carga (ANTT).
         /// </summary>
         /// <value>Registro Nacional de Transportador de Carga (ANTT).</value>
-        [DataMember(Name = "RNTC", EmitDefaultValue = false)]
+        [DataMember(Name = "RNTC", EmitDefaultValue = true)]
         public string RNTC { get; set; }
 
         /// <summary>

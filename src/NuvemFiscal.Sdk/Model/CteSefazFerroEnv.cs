@@ -76,14 +76,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código interno da Ferrovia envolvida.  Uso da transportadora.
         /// </summary>
         /// <value>Código interno da Ferrovia envolvida.  Uso da transportadora.</value>
-        [DataMember(Name = "cInt", EmitDefaultValue = false)]
+        [DataMember(Name = "cInt", EmitDefaultValue = true)]
         public string cInt { get; set; }
 
         /// <summary>
         /// Inscrição Estadual.
         /// </summary>
         /// <value>Inscrição Estadual.</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>

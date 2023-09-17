@@ -34,7 +34,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="pDR">Valor percentual padrão para dedução/redução do valor do serviço..</param>
         /// <param name="vDR">Valor monetário padrão para dedução/redução do valor do serviço..</param>
         /// <param name="documentos">documentos.</param>
-        public InfoDedRed(decimal pDR = default(decimal), decimal vDR = default(decimal), ListaDocDedRed documentos = default(ListaDocDedRed))
+        public InfoDedRed(decimal? pDR = default(decimal?), decimal? vDR = default(decimal?), ListaDocDedRed documentos = default(ListaDocDedRed))
         {
             this.pDR = pDR;
             this.vDR = vDR;
@@ -45,15 +45,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor percentual padrão para dedução/redução do valor do serviço.
         /// </summary>
         /// <value>Valor percentual padrão para dedução/redução do valor do serviço.</value>
-        [DataMember(Name = "pDR", EmitDefaultValue = false)]
-        public decimal pDR { get; set; }
+        [DataMember(Name = "pDR", EmitDefaultValue = true)]
+        public decimal? pDR { get; set; }
 
         /// <summary>
         /// Valor monetário padrão para dedução/redução do valor do serviço.
         /// </summary>
         /// <value>Valor monetário padrão para dedução/redução do valor do serviço.</value>
-        [DataMember(Name = "vDR", EmitDefaultValue = false)]
-        public decimal vDR { get; set; }
+        [DataMember(Name = "vDR", EmitDefaultValue = true)]
+        public decimal? vDR { get; set; }
 
         /// <summary>
         /// Gets or Sets documentos
@@ -109,11 +109,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.pDR == input.pDR ||
-                    this.pDR.Equals(input.pDR)
+                    (this.pDR != null &&
+                    this.pDR.Equals(input.pDR))
                 ) && 
                 (
                     this.vDR == input.vDR ||
-                    this.vDR.Equals(input.vDR)
+                    (this.vDR != null &&
+                    this.vDR.Equals(input.vDR))
                 ) && 
                 (
                     this.documentos == input.documentos ||
@@ -131,8 +133,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.pDR.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDR.GetHashCode();
+                if (this.pDR != null)
+                {
+                    hashCode = (hashCode * 59) + this.pDR.GetHashCode();
+                }
+                if (this.vDR != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDR.GetHashCode();
+                }
                 if (this.documentos != null)
                 {
                     hashCode = (hashCode * 59) + this.documentos.GetHashCode();

@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dataEncerramento">Data que o manifesto foi encerrado.    Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API..</param>
         /// <param name="uf">UF de encerramento do manifesto. (required).</param>
         /// <param name="codigoMunicipio">Código IBGE do Município de encerramento do manifesto. (required).</param>
-        public MdfePedidoEncerramento(DateTime dataEncerramento = default(DateTime), string uf = default(string), string codigoMunicipio = default(string))
+        public MdfePedidoEncerramento(DateTime? dataEncerramento = default(DateTime?), string uf = default(string), string codigoMunicipio = default(string))
         {
             // to ensure "uf" is required (not null)
             if (uf == null)
@@ -60,9 +60,9 @@ namespace NuvemFiscal.Sdk.Model
         /// Data que o manifesto foi encerrado.    Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API.
         /// </summary>
         /// <value>Data que o manifesto foi encerrado.    Opcional. Caso não seja informada, será utilizada a data em que a solicitação foi feita à API.</value>
-        [DataMember(Name = "data_encerramento", EmitDefaultValue = false)]
+        [DataMember(Name = "data_encerramento", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime data_encerramento { get; set; }
+        public DateTime? data_encerramento { get; set; }
 
         /// <summary>
         /// UF de encerramento do manifesto.

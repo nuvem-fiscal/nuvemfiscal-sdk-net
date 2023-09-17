@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="tpComp">Tipo do Componente.  Preencher com: 01 - Vale Pedágio  * 02 - Impostos, taxas e contribuições  * 03 - Despesas (bancárias, meios de pagamento, outras)  * 99 - Outros (required).</param>
         /// <param name="vComp">Valor do componente. (required).</param>
         /// <param name="xComp">Descrição do componente do tipo Outros..</param>
-        public MdfeSefazComp(string tpComp = default(string), decimal vComp = default(decimal), string xComp = default(string))
+        public MdfeSefazComp(string tpComp = default(string), decimal? vComp = default(decimal?), string xComp = default(string))
         {
             // to ensure "tpComp" is required (not null)
             if (tpComp == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("tpComp is a required property for MdfeSefazComp and cannot be null");
             }
             this.tpComp = tpComp;
+            // to ensure "vComp" is required (not null)
+            if (vComp == null)
+            {
+                throw new ArgumentNullException("vComp is a required property for MdfeSefazComp and cannot be null");
+            }
             this.vComp = vComp;
             this.xComp = xComp;
         }
@@ -63,13 +68,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor do componente.</value>
         [DataMember(Name = "vComp", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vComp { get; set; }
+        public decimal? vComp { get; set; }
 
         /// <summary>
         /// Descrição do componente do tipo Outros.
         /// </summary>
         /// <value>Descrição do componente do tipo Outros.</value>
-        [DataMember(Name = "xComp", EmitDefaultValue = false)]
+        [DataMember(Name = "xComp", EmitDefaultValue = true)]
         public string xComp { get; set; }
 
         /// <summary>
@@ -125,7 +130,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vComp == input.vComp ||
-                    this.vComp.Equals(input.vComp)
+                    (this.vComp != null &&
+                    this.vComp.Equals(input.vComp))
                 ) && 
                 (
                     this.xComp == input.xComp ||
@@ -147,7 +153,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.tpComp.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vComp.GetHashCode();
+                if (this.vComp != null)
+                {
+                    hashCode = (hashCode * 59) + this.vComp.GetHashCode();
+                }
                 if (this.xComp != null)
                 {
                     hashCode = (hashCode * 59) + this.xComp.GetHashCode();

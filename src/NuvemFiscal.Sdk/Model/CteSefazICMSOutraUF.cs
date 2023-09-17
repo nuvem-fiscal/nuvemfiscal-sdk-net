@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBCOutraUF">Valor da BC do ICMS. (required).</param>
         /// <param name="pICMSOutraUF">Alíquota do ICMS. (required).</param>
         /// <param name="vICMSOutraUF">Valor do ICMS devido outra UF. (required).</param>
-        public CteSefazICMSOutraUF(string cST = default(string), decimal pRedBCOutraUF = default(decimal), decimal vBCOutraUF = default(decimal), decimal pICMSOutraUF = default(decimal), decimal vICMSOutraUF = default(decimal))
+        public CteSefazICMSOutraUF(string cST = default(string), decimal? pRedBCOutraUF = default(decimal?), decimal? vBCOutraUF = default(decimal?), decimal? pICMSOutraUF = default(decimal?), decimal? vICMSOutraUF = default(decimal?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -49,8 +49,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for CteSefazICMSOutraUF and cannot be null");
             }
             this.CST = cST;
+            // to ensure "vBCOutraUF" is required (not null)
+            if (vBCOutraUF == null)
+            {
+                throw new ArgumentNullException("vBCOutraUF is a required property for CteSefazICMSOutraUF and cannot be null");
+            }
             this.vBCOutraUF = vBCOutraUF;
+            // to ensure "pICMSOutraUF" is required (not null)
+            if (pICMSOutraUF == null)
+            {
+                throw new ArgumentNullException("pICMSOutraUF is a required property for CteSefazICMSOutraUF and cannot be null");
+            }
             this.pICMSOutraUF = pICMSOutraUF;
+            // to ensure "vICMSOutraUF" is required (not null)
+            if (vICMSOutraUF == null)
+            {
+                throw new ArgumentNullException("vICMSOutraUF is a required property for CteSefazICMSOutraUF and cannot be null");
+            }
             this.vICMSOutraUF = vICMSOutraUF;
             this.pRedBCOutraUF = pRedBCOutraUF;
         }
@@ -66,29 +81,29 @@ namespace NuvemFiscal.Sdk.Model
         /// Percentual de redução da BC.
         /// </summary>
         /// <value>Percentual de redução da BC.</value>
-        [DataMember(Name = "pRedBCOutraUF", EmitDefaultValue = false)]
-        public decimal pRedBCOutraUF { get; set; }
+        [DataMember(Name = "pRedBCOutraUF", EmitDefaultValue = true)]
+        public decimal? pRedBCOutraUF { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS.
         /// </summary>
         /// <value>Valor da BC do ICMS.</value>
         [DataMember(Name = "vBCOutraUF", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBCOutraUF { get; set; }
+        public decimal? vBCOutraUF { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS.
         /// </summary>
         /// <value>Alíquota do ICMS.</value>
         [DataMember(Name = "pICMSOutraUF", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMSOutraUF { get; set; }
+        public decimal? pICMSOutraUF { get; set; }
 
         /// <summary>
         /// Valor do ICMS devido outra UF.
         /// </summary>
         /// <value>Valor do ICMS devido outra UF.</value>
         [DataMember(Name = "vICMSOutraUF", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSOutraUF { get; set; }
+        public decimal? vICMSOutraUF { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,19 +160,23 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.pRedBCOutraUF == input.pRedBCOutraUF ||
-                    this.pRedBCOutraUF.Equals(input.pRedBCOutraUF)
+                    (this.pRedBCOutraUF != null &&
+                    this.pRedBCOutraUF.Equals(input.pRedBCOutraUF))
                 ) && 
                 (
                     this.vBCOutraUF == input.vBCOutraUF ||
-                    this.vBCOutraUF.Equals(input.vBCOutraUF)
+                    (this.vBCOutraUF != null &&
+                    this.vBCOutraUF.Equals(input.vBCOutraUF))
                 ) && 
                 (
                     this.pICMSOutraUF == input.pICMSOutraUF ||
-                    this.pICMSOutraUF.Equals(input.pICMSOutraUF)
+                    (this.pICMSOutraUF != null &&
+                    this.pICMSOutraUF.Equals(input.pICMSOutraUF))
                 ) && 
                 (
                     this.vICMSOutraUF == input.vICMSOutraUF ||
-                    this.vICMSOutraUF.Equals(input.vICMSOutraUF)
+                    (this.vICMSOutraUF != null &&
+                    this.vICMSOutraUF.Equals(input.vICMSOutraUF))
                 );
         }
 
@@ -174,10 +193,22 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.pRedBCOutraUF.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCOutraUF.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMSOutraUF.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSOutraUF.GetHashCode();
+                if (this.pRedBCOutraUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.pRedBCOutraUF.GetHashCode();
+                }
+                if (this.vBCOutraUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCOutraUF.GetHashCode();
+                }
+                if (this.pICMSOutraUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMSOutraUF.GetHashCode();
+                }
+                if (this.vICMSOutraUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSOutraUF.GetHashCode();
+                }
                 return hashCode;
             }
         }

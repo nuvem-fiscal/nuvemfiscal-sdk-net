@@ -42,8 +42,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vCarga">Valor total da carga / mercadorias transportadas. (required).</param>
         /// <param name="cUnid">Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  * 01 - KG  * 02 - TON (required).</param>
         /// <param name="qCarga">Peso Bruto Total da Carga / Mercadorias transportadas. (required).</param>
-        public MdfeSefazTot(int qCTe = default(int), int qNFe = default(int), int qMDFe = default(int), decimal vCarga = default(decimal), string cUnid = default(string), decimal qCarga = default(decimal))
+        public MdfeSefazTot(int? qCTe = default(int?), int? qNFe = default(int?), int? qMDFe = default(int?), decimal? vCarga = default(decimal?), string cUnid = default(string), decimal? qCarga = default(decimal?))
         {
+            // to ensure "vCarga" is required (not null)
+            if (vCarga == null)
+            {
+                throw new ArgumentNullException("vCarga is a required property for MdfeSefazTot and cannot be null");
+            }
             this.vCarga = vCarga;
             // to ensure "cUnid" is required (not null)
             if (cUnid == null)
@@ -51,6 +56,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cUnid is a required property for MdfeSefazTot and cannot be null");
             }
             this.cUnid = cUnid;
+            // to ensure "qCarga" is required (not null)
+            if (qCarga == null)
+            {
+                throw new ArgumentNullException("qCarga is a required property for MdfeSefazTot and cannot be null");
+            }
             this.qCarga = qCarga;
             this.qCTe = qCTe;
             this.qNFe = qNFe;
@@ -61,29 +71,29 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade total de CT-e relacionados no Manifesto.
         /// </summary>
         /// <value>Quantidade total de CT-e relacionados no Manifesto.</value>
-        [DataMember(Name = "qCTe", EmitDefaultValue = false)]
-        public int qCTe { get; set; }
+        [DataMember(Name = "qCTe", EmitDefaultValue = true)]
+        public int? qCTe { get; set; }
 
         /// <summary>
         /// Quantidade total de NF-e relacionadas no Manifesto.
         /// </summary>
         /// <value>Quantidade total de NF-e relacionadas no Manifesto.</value>
-        [DataMember(Name = "qNFe", EmitDefaultValue = false)]
-        public int qNFe { get; set; }
+        [DataMember(Name = "qNFe", EmitDefaultValue = true)]
+        public int? qNFe { get; set; }
 
         /// <summary>
         /// Quantidade total de MDF-e relacionados no Manifesto Aquaviário.
         /// </summary>
         /// <value>Quantidade total de MDF-e relacionados no Manifesto Aquaviário.</value>
-        [DataMember(Name = "qMDFe", EmitDefaultValue = false)]
-        public int qMDFe { get; set; }
+        [DataMember(Name = "qMDFe", EmitDefaultValue = true)]
+        public int? qMDFe { get; set; }
 
         /// <summary>
         /// Valor total da carga / mercadorias transportadas.
         /// </summary>
         /// <value>Valor total da carga / mercadorias transportadas.</value>
         [DataMember(Name = "vCarga", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vCarga { get; set; }
+        public decimal? vCarga { get; set; }
 
         /// <summary>
         /// Código da unidade de medida do Peso Bruto da Carga / Mercadorias transportadas.  * 01 - KG  * 02 - TON
@@ -97,7 +107,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Peso Bruto Total da Carga / Mercadorias transportadas.</value>
         [DataMember(Name = "qCarga", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qCarga { get; set; }
+        public decimal? qCarga { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,19 +160,23 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.qCTe == input.qCTe ||
-                    this.qCTe.Equals(input.qCTe)
+                    (this.qCTe != null &&
+                    this.qCTe.Equals(input.qCTe))
                 ) && 
                 (
                     this.qNFe == input.qNFe ||
-                    this.qNFe.Equals(input.qNFe)
+                    (this.qNFe != null &&
+                    this.qNFe.Equals(input.qNFe))
                 ) && 
                 (
                     this.qMDFe == input.qMDFe ||
-                    this.qMDFe.Equals(input.qMDFe)
+                    (this.qMDFe != null &&
+                    this.qMDFe.Equals(input.qMDFe))
                 ) && 
                 (
                     this.vCarga == input.vCarga ||
-                    this.vCarga.Equals(input.vCarga)
+                    (this.vCarga != null &&
+                    this.vCarga.Equals(input.vCarga))
                 ) && 
                 (
                     this.cUnid == input.cUnid ||
@@ -171,7 +185,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qCarga == input.qCarga ||
-                    this.qCarga.Equals(input.qCarga)
+                    (this.qCarga != null &&
+                    this.qCarga.Equals(input.qCarga))
                 );
         }
 
@@ -184,15 +199,30 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.qCTe.GetHashCode();
-                hashCode = (hashCode * 59) + this.qNFe.GetHashCode();
-                hashCode = (hashCode * 59) + this.qMDFe.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCarga.GetHashCode();
+                if (this.qCTe != null)
+                {
+                    hashCode = (hashCode * 59) + this.qCTe.GetHashCode();
+                }
+                if (this.qNFe != null)
+                {
+                    hashCode = (hashCode * 59) + this.qNFe.GetHashCode();
+                }
+                if (this.qMDFe != null)
+                {
+                    hashCode = (hashCode * 59) + this.qMDFe.GetHashCode();
+                }
+                if (this.vCarga != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCarga.GetHashCode();
+                }
                 if (this.cUnid != null)
                 {
                     hashCode = (hashCode * 59) + this.cUnid.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qCarga.GetHashCode();
+                if (this.qCarga != null)
+                {
+                    hashCode = (hashCode * 59) + this.qCarga.GetHashCode();
+                }
                 return hashCode;
             }
         }

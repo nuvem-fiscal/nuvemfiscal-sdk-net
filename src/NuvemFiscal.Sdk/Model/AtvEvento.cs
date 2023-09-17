@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dtFim">Data de fim da atividade de evento. Ano, Mês e Dia (AAAA-MM-DD). (required).</param>
         /// <param name="id">Identificação da Atividade de Evento (código identificador de evento determinado pela Administração Tributária Municipal)..</param>
         /// <param name="end">end.</param>
-        public AtvEvento(string desc = default(string), DateTime dtIni = default(DateTime), DateTime dtFim = default(DateTime), string id = default(string), EnderecoSimples end = default(EnderecoSimples))
+        public AtvEvento(string desc = default(string), DateTime? dtIni = default(DateTime?), DateTime? dtFim = default(DateTime?), string id = default(string), EnderecoSimples end = default(EnderecoSimples))
         {
             // to ensure "desc" is required (not null)
             if (desc == null)
@@ -49,7 +49,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("desc is a required property for AtvEvento and cannot be null");
             }
             this.desc = desc;
+            // to ensure "dtIni" is required (not null)
+            if (dtIni == null)
+            {
+                throw new ArgumentNullException("dtIni is a required property for AtvEvento and cannot be null");
+            }
             this.dtIni = dtIni;
+            // to ensure "dtFim" is required (not null)
+            if (dtFim == null)
+            {
+                throw new ArgumentNullException("dtFim is a required property for AtvEvento and cannot be null");
+            }
             this.dtFim = dtFim;
             this.id = id;
             this.end = end;
@@ -68,7 +78,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de início da atividade de evento. Ano, Mês e Dia (AAAA-MM-DD).</value>
         [DataMember(Name = "dtIni", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dtIni { get; set; }
+        public DateTime? dtIni { get; set; }
 
         /// <summary>
         /// Data de fim da atividade de evento. Ano, Mês e Dia (AAAA-MM-DD).
@@ -76,13 +86,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de fim da atividade de evento. Ano, Mês e Dia (AAAA-MM-DD).</value>
         [DataMember(Name = "dtFim", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dtFim { get; set; }
+        public DateTime? dtFim { get; set; }
 
         /// <summary>
         /// Identificação da Atividade de Evento (código identificador de evento determinado pela Administração Tributária Municipal).
         /// </summary>
         /// <value>Identificação da Atividade de Evento (código identificador de evento determinado pela Administração Tributária Municipal).</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = true)]
         public string id { get; set; }
 
         /// <summary>

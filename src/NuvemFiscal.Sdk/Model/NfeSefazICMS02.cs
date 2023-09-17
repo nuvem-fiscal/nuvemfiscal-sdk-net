@@ -41,8 +41,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="qBCMono">Quantidade tributada..</param>
         /// <param name="adRemICMS">Alíquota ad rem do imposto. (required).</param>
         /// <param name="vICMSMono">Valor do ICMS própri. (required).</param>
-        public NfeSefazICMS02(int orig = default(int), string cST = default(string), decimal qBCMono = default(decimal), decimal adRemICMS = default(decimal), decimal vICMSMono = default(decimal))
+        public NfeSefazICMS02(int? orig = default(int?), string cST = default(string), decimal? qBCMono = default(decimal?), decimal? adRemICMS = default(decimal?), decimal? vICMSMono = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMS02 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -50,7 +55,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for NfeSefazICMS02 and cannot be null");
             }
             this.CST = cST;
+            // to ensure "adRemICMS" is required (not null)
+            if (adRemICMS == null)
+            {
+                throw new ArgumentNullException("adRemICMS is a required property for NfeSefazICMS02 and cannot be null");
+            }
             this.adRemICMS = adRemICMS;
+            // to ensure "vICMSMono" is required (not null)
+            if (vICMSMono == null)
+            {
+                throw new ArgumentNullException("vICMSMono is a required property for NfeSefazICMS02 and cannot be null");
+            }
             this.vICMSMono = vICMSMono;
             this.qBCMono = qBCMono;
         }
@@ -60,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// Tributção pelo ICMS  * 02 - Tributação monofásica própria sobre combustíveis
@@ -73,22 +88,22 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade tributada.
         /// </summary>
         /// <value>Quantidade tributada.</value>
-        [DataMember(Name = "qBCMono", EmitDefaultValue = false)]
-        public decimal qBCMono { get; set; }
+        [DataMember(Name = "qBCMono", EmitDefaultValue = true)]
+        public decimal? qBCMono { get; set; }
 
         /// <summary>
         /// Alíquota ad rem do imposto.
         /// </summary>
         /// <value>Alíquota ad rem do imposto.</value>
         [DataMember(Name = "adRemICMS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal adRemICMS { get; set; }
+        public decimal? adRemICMS { get; set; }
 
         /// <summary>
         /// Valor do ICMS própri.
         /// </summary>
         /// <value>Valor do ICMS própri.</value>
         [DataMember(Name = "vICMSMono", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSMono { get; set; }
+        public decimal? vICMSMono { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -140,7 +155,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CST == input.CST ||
@@ -149,15 +165,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qBCMono == input.qBCMono ||
-                    this.qBCMono.Equals(input.qBCMono)
+                    (this.qBCMono != null &&
+                    this.qBCMono.Equals(input.qBCMono))
                 ) && 
                 (
                     this.adRemICMS == input.adRemICMS ||
-                    this.adRemICMS.Equals(input.adRemICMS)
+                    (this.adRemICMS != null &&
+                    this.adRemICMS.Equals(input.adRemICMS))
                 ) && 
                 (
                     this.vICMSMono == input.vICMSMono ||
-                    this.vICMSMono.Equals(input.vICMSMono)
+                    (this.vICMSMono != null &&
+                    this.vICMSMono.Equals(input.vICMSMono))
                 );
         }
 
@@ -170,14 +189,26 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CST != null)
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qBCMono.GetHashCode();
-                hashCode = (hashCode * 59) + this.adRemICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSMono.GetHashCode();
+                if (this.qBCMono != null)
+                {
+                    hashCode = (hashCode * 59) + this.qBCMono.GetHashCode();
+                }
+                if (this.adRemICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.adRemICMS.GetHashCode();
+                }
+                if (this.vICMSMono != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSMono.GetHashCode();
+                }
                 return hashCode;
             }
         }

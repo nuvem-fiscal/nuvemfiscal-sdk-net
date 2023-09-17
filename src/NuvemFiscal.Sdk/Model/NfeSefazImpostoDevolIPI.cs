@@ -37,8 +37,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazImpostoDevolIPI" /> class.
         /// </summary>
         /// <param name="vIPIDevol">Valor do IPI devolvido. (required).</param>
-        public NfeSefazImpostoDevolIPI(decimal vIPIDevol = default(decimal))
+        public NfeSefazImpostoDevolIPI(decimal? vIPIDevol = default(decimal?))
         {
+            // to ensure "vIPIDevol" is required (not null)
+            if (vIPIDevol == null)
+            {
+                throw new ArgumentNullException("vIPIDevol is a required property for NfeSefazImpostoDevolIPI and cannot be null");
+            }
             this.vIPIDevol = vIPIDevol;
         }
 
@@ -47,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor do IPI devolvido.</value>
         [DataMember(Name = "vIPIDevol", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vIPIDevol { get; set; }
+        public decimal? vIPIDevol { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,7 +100,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vIPIDevol == input.vIPIDevol ||
-                    this.vIPIDevol.Equals(input.vIPIDevol)
+                    (this.vIPIDevol != null &&
+                    this.vIPIDevol.Equals(input.vIPIDevol))
                 );
         }
 
@@ -108,7 +114,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vIPIDevol.GetHashCode();
+                if (this.vIPIDevol != null)
+                {
+                    hashCode = (hashCode * 59) + this.vIPIDevol.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -110,7 +110,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Complemento.
         /// </summary>
         /// <value>Complemento.</value>
-        [DataMember(Name = "xCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "xCpl", EmitDefaultValue = true)]
         public string xCpl { get; set; }
 
         /// <summary>
@@ -145,28 +145,28 @@ namespace NuvemFiscal.Sdk.Model
         /// CEP.
         /// </summary>
         /// <value>CEP.</value>
-        [DataMember(Name = "CEP", EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", EmitDefaultValue = true)]
         public string CEP { get; set; }
 
         /// <summary>
         /// Código de Pais.
         /// </summary>
         /// <value>Código de Pais.</value>
-        [DataMember(Name = "cPais", EmitDefaultValue = false)]
+        [DataMember(Name = "cPais", EmitDefaultValue = true)]
         public string cPais { get; set; }
 
         /// <summary>
         /// Nome do país.
         /// </summary>
         /// <value>Nome do país.</value>
-        [DataMember(Name = "xPais", EmitDefaultValue = false)]
+        [DataMember(Name = "xPais", EmitDefaultValue = true)]
         public string xPais { get; set; }
 
         /// <summary>
         /// Telefone, preencher com Código DDD + número do telefone , nas operações com exterior é permtido informar o código do país + código da localidade + número do telefone.
         /// </summary>
         /// <value>Telefone, preencher com Código DDD + número do telefone , nas operações com exterior é permtido informar o código do país + código da localidade + número do telefone.</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>

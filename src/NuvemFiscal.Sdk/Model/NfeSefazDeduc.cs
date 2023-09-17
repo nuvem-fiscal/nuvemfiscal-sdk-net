@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="xDed">Descrição da Dedução. (required).</param>
         /// <param name="vDed">valor da dedução. (required).</param>
-        public NfeSefazDeduc(string xDed = default(string), decimal vDed = default(decimal))
+        public NfeSefazDeduc(string xDed = default(string), decimal? vDed = default(decimal?))
         {
             // to ensure "xDed" is required (not null)
             if (xDed == null)
@@ -46,6 +46,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xDed is a required property for NfeSefazDeduc and cannot be null");
             }
             this.xDed = xDed;
+            // to ensure "vDed" is required (not null)
+            if (vDed == null)
+            {
+                throw new ArgumentNullException("vDed is a required property for NfeSefazDeduc and cannot be null");
+            }
             this.vDed = vDed;
         }
 
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>valor da dedução.</value>
         [DataMember(Name = "vDed", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vDed { get; set; }
+        public decimal? vDed { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +120,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDed == input.vDed ||
-                    this.vDed.Equals(input.vDed)
+                    (this.vDed != null &&
+                    this.vDed.Equals(input.vDed))
                 );
         }
 
@@ -132,7 +138,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xDed.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDed.GetHashCode();
+                if (this.vDed != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDed.GetHashCode();
+                }
                 return hashCode;
             }
         }

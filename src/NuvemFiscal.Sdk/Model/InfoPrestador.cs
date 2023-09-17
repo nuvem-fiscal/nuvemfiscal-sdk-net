@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CNPJ.  Obrigatório caso o emitente seja pessoa jurídica.
         /// </summary>
         /// <value>Número do CNPJ.  Obrigatório caso o emitente seja pessoa jurídica.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Número do CPF.  Obrigatorio caso o emitente seja pessoa física.
         /// </summary>
         /// <value>Número do CPF.  Obrigatorio caso o emitente seja pessoa física.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>

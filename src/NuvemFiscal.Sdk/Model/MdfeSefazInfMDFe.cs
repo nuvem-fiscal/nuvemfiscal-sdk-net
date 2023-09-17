@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="MdfeSefazInfMDFe" /> class.
         /// </summary>
         /// <param name="versao">Versão do leiaute.  Ex: \&quot;3.00\&quot;. (required).</param>
-        /// <param name="id">Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;..</param>
+        /// <param name="id">Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="ide">ide (required).</param>
         /// <param name="emit">emit (required).</param>
         /// <param name="infModal">infModal (required).</param>
@@ -106,10 +106,10 @@ namespace NuvemFiscal.Sdk.Model
         public string versao { get; set; }
 
         /// <summary>
-        /// Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.
+        /// Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.</value>
-        [DataMember(Name = "Id", EmitDefaultValue = false)]
+        /// <value>Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.*</value>
+        [DataMember(Name = "Id", EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>

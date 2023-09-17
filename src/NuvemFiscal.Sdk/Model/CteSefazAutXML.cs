@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do autorizado.  Informar zeros não significativos.
         /// </summary>
         /// <value>CNPJ do autorizado.  Informar zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// CPF do autorizado.  Informar zeros não significativos.
         /// </summary>
         /// <value>CPF do autorizado.  Informar zeros não significativos.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>

@@ -39,10 +39,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vTotTribFed">Valor monetário total aproximado dos tributos federais (R$). (required).</param>
         /// <param name="vTotTribEst">Valor monetário total aproximado dos tributos estaduais (R$). (required).</param>
         /// <param name="vTotTribMun">Valor monetário total aproximado dos tributos municipais (R$). (required).</param>
-        public TribTotalMonet(decimal vTotTribFed = default(decimal), decimal vTotTribEst = default(decimal), decimal vTotTribMun = default(decimal))
+        public TribTotalMonet(decimal? vTotTribFed = default(decimal?), decimal? vTotTribEst = default(decimal?), decimal? vTotTribMun = default(decimal?))
         {
+            // to ensure "vTotTribFed" is required (not null)
+            if (vTotTribFed == null)
+            {
+                throw new ArgumentNullException("vTotTribFed is a required property for TribTotalMonet and cannot be null");
+            }
             this.vTotTribFed = vTotTribFed;
+            // to ensure "vTotTribEst" is required (not null)
+            if (vTotTribEst == null)
+            {
+                throw new ArgumentNullException("vTotTribEst is a required property for TribTotalMonet and cannot be null");
+            }
             this.vTotTribEst = vTotTribEst;
+            // to ensure "vTotTribMun" is required (not null)
+            if (vTotTribMun == null)
+            {
+                throw new ArgumentNullException("vTotTribMun is a required property for TribTotalMonet and cannot be null");
+            }
             this.vTotTribMun = vTotTribMun;
         }
 
@@ -51,21 +66,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor monetário total aproximado dos tributos federais (R$).</value>
         [DataMember(Name = "vTotTribFed", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vTotTribFed { get; set; }
+        public decimal? vTotTribFed { get; set; }
 
         /// <summary>
         /// Valor monetário total aproximado dos tributos estaduais (R$).
         /// </summary>
         /// <value>Valor monetário total aproximado dos tributos estaduais (R$).</value>
         [DataMember(Name = "vTotTribEst", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vTotTribEst { get; set; }
+        public decimal? vTotTribEst { get; set; }
 
         /// <summary>
         /// Valor monetário total aproximado dos tributos municipais (R$).
         /// </summary>
         /// <value>Valor monetário total aproximado dos tributos municipais (R$).</value>
         [DataMember(Name = "vTotTribMun", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vTotTribMun { get; set; }
+        public decimal? vTotTribMun { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,15 +130,18 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vTotTribFed == input.vTotTribFed ||
-                    this.vTotTribFed.Equals(input.vTotTribFed)
+                    (this.vTotTribFed != null &&
+                    this.vTotTribFed.Equals(input.vTotTribFed))
                 ) && 
                 (
                     this.vTotTribEst == input.vTotTribEst ||
-                    this.vTotTribEst.Equals(input.vTotTribEst)
+                    (this.vTotTribEst != null &&
+                    this.vTotTribEst.Equals(input.vTotTribEst))
                 ) && 
                 (
                     this.vTotTribMun == input.vTotTribMun ||
-                    this.vTotTribMun.Equals(input.vTotTribMun)
+                    (this.vTotTribMun != null &&
+                    this.vTotTribMun.Equals(input.vTotTribMun))
                 );
         }
 
@@ -136,9 +154,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vTotTribFed.GetHashCode();
-                hashCode = (hashCode * 59) + this.vTotTribEst.GetHashCode();
-                hashCode = (hashCode * 59) + this.vTotTribMun.GetHashCode();
+                if (this.vTotTribFed != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTotTribFed.GetHashCode();
+                }
+                if (this.vTotTribEst != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTotTribEst.GetHashCode();
+                }
+                if (this.vTotTribMun != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTotTribMun.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="campoAlterado">Nome do campo modificado do CT-e Original. (required).</param>
         /// <param name="valorAlterado">Valor correspondente à alteração. (required).</param>
         /// <param name="numeroItemAlterado">Preencher com o indice do item alterado caso a alteração ocorra em uma lista.  OBS: O indice inicia sempre em 1..</param>
-        public CteInfCorrecao(string grupoAlterado = default(string), string campoAlterado = default(string), string valorAlterado = default(string), int numeroItemAlterado = default(int))
+        public CteInfCorrecao(string grupoAlterado = default(string), string campoAlterado = default(string), string valorAlterado = default(string), int? numeroItemAlterado = default(int?))
         {
             // to ensure "grupoAlterado" is required (not null)
             if (grupoAlterado == null)
@@ -88,8 +88,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Preencher com o indice do item alterado caso a alteração ocorra em uma lista.  OBS: O indice inicia sempre em 1.
         /// </summary>
         /// <value>Preencher com o indice do item alterado caso a alteração ocorra em uma lista.  OBS: O indice inicia sempre em 1.</value>
-        [DataMember(Name = "numero_item_alterado", EmitDefaultValue = false)]
-        public int numero_item_alterado { get; set; }
+        [DataMember(Name = "numero_item_alterado", EmitDefaultValue = true)]
+        public int? numero_item_alterado { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -155,7 +155,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.numero_item_alterado == input.numero_item_alterado ||
-                    this.numero_item_alterado.Equals(input.numero_item_alterado)
+                    (this.numero_item_alterado != null &&
+                    this.numero_item_alterado.Equals(input.numero_item_alterado))
                 );
         }
 
@@ -180,7 +181,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.valor_alterado.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.numero_item_alterado.GetHashCode();
+                if (this.numero_item_alterado != null)
+                {
+                    hashCode = (hashCode * 59) + this.numero_item_alterado.GetHashCode();
+                }
                 return hashCode;
             }
         }

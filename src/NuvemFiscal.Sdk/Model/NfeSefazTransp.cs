@@ -44,8 +44,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vagao">Identificação do vagão (v2.0)..</param>
         /// <param name="balsa">Identificação da balsa (v2.0)..</param>
         /// <param name="vol">vol.</param>
-        public NfeSefazTransp(int modFrete = default(int), NfeSefazTransporta transporta = default(NfeSefazTransporta), NfeSefazRetTransp retTransp = default(NfeSefazRetTransp), NfeSefazVeiculo veicTransp = default(NfeSefazVeiculo), List<NfeSefazVeiculo> reboque = default(List<NfeSefazVeiculo>), string vagao = default(string), string balsa = default(string), List<NfeSefazVol> vol = default(List<NfeSefazVol>))
+        public NfeSefazTransp(int? modFrete = default(int?), NfeSefazTransporta transporta = default(NfeSefazTransporta), NfeSefazRetTransp retTransp = default(NfeSefazRetTransp), NfeSefazVeiculo veicTransp = default(NfeSefazVeiculo), List<NfeSefazVeiculo> reboque = default(List<NfeSefazVeiculo>), string vagao = default(string), string balsa = default(string), List<NfeSefazVol> vol = default(List<NfeSefazVol>))
         {
+            // to ensure "modFrete" is required (not null)
+            if (modFrete == null)
+            {
+                throw new ArgumentNullException("modFrete is a required property for NfeSefazTransp and cannot be null");
+            }
             this.modFrete = modFrete;
             this.transporta = transporta;
             this.retTransp = retTransp;
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Modalidade do frete  * 0 - Contratação do Frete por conta do Remetente (CIF)  * 1 - Contratação do Frete por conta do destinatário/remetente (FOB)  * 2 - Contratação do Frete por conta de terceiros  * 3 - Transporte próprio por conta do remetente  * 4 - Transporte próprio por conta do destinatário  * 9 - Sem Ocorrência de transporte</value>
         [DataMember(Name = "modFrete", IsRequired = true, EmitDefaultValue = true)]
-        public int modFrete { get; set; }
+        public int? modFrete { get; set; }
 
         /// <summary>
         /// Gets or Sets transporta
@@ -91,14 +96,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação do vagão (v2.0).
         /// </summary>
         /// <value>Identificação do vagão (v2.0).</value>
-        [DataMember(Name = "vagao", EmitDefaultValue = false)]
+        [DataMember(Name = "vagao", EmitDefaultValue = true)]
         public string vagao { get; set; }
 
         /// <summary>
         /// Identificação da balsa (v2.0).
         /// </summary>
         /// <value>Identificação da balsa (v2.0).</value>
-        [DataMember(Name = "balsa", EmitDefaultValue = false)]
+        [DataMember(Name = "balsa", EmitDefaultValue = true)]
         public string balsa { get; set; }
 
         /// <summary>
@@ -160,7 +165,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.modFrete == input.modFrete ||
-                    this.modFrete.Equals(input.modFrete)
+                    (this.modFrete != null &&
+                    this.modFrete.Equals(input.modFrete))
                 ) && 
                 (
                     this.transporta == input.transporta ||
@@ -210,7 +216,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.modFrete.GetHashCode();
+                if (this.modFrete != null)
+                {
+                    hashCode = (hashCode * 59) + this.modFrete.GetHashCode();
+                }
                 if (this.transporta != null)
                 {
                     hashCode = (hashCode * 59) + this.transporta.GetHashCode();

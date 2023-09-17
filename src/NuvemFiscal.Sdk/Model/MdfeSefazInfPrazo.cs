@@ -39,10 +39,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nParcela">Número da Parcela. (required).</param>
         /// <param name="dVenc">Data de vencimento da Parcela (AAAA-MM-DD). (required).</param>
         /// <param name="vParcela">Valor da Parcela. (required).</param>
-        public MdfeSefazInfPrazo(int nParcela = default(int), DateTime dVenc = default(DateTime), decimal vParcela = default(decimal))
+        public MdfeSefazInfPrazo(int? nParcela = default(int?), DateTime? dVenc = default(DateTime?), decimal? vParcela = default(decimal?))
         {
+            // to ensure "nParcela" is required (not null)
+            if (nParcela == null)
+            {
+                throw new ArgumentNullException("nParcela is a required property for MdfeSefazInfPrazo and cannot be null");
+            }
             this.nParcela = nParcela;
+            // to ensure "dVenc" is required (not null)
+            if (dVenc == null)
+            {
+                throw new ArgumentNullException("dVenc is a required property for MdfeSefazInfPrazo and cannot be null");
+            }
             this.dVenc = dVenc;
+            // to ensure "vParcela" is required (not null)
+            if (vParcela == null)
+            {
+                throw new ArgumentNullException("vParcela is a required property for MdfeSefazInfPrazo and cannot be null");
+            }
             this.vParcela = vParcela;
         }
 
@@ -51,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número da Parcela.</value>
         [DataMember(Name = "nParcela", IsRequired = true, EmitDefaultValue = true)]
-        public int nParcela { get; set; }
+        public int? nParcela { get; set; }
 
         /// <summary>
         /// Data de vencimento da Parcela (AAAA-MM-DD).
@@ -59,14 +74,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de vencimento da Parcela (AAAA-MM-DD).</value>
         [DataMember(Name = "dVenc", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dVenc { get; set; }
+        public DateTime? dVenc { get; set; }
 
         /// <summary>
         /// Valor da Parcela.
         /// </summary>
         /// <value>Valor da Parcela.</value>
         [DataMember(Name = "vParcela", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vParcela { get; set; }
+        public decimal? vParcela { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,7 +131,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.nParcela == input.nParcela ||
-                    this.nParcela.Equals(input.nParcela)
+                    (this.nParcela != null &&
+                    this.nParcela.Equals(input.nParcela))
                 ) && 
                 (
                     this.dVenc == input.dVenc ||
@@ -125,7 +141,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vParcela == input.vParcela ||
-                    this.vParcela.Equals(input.vParcela)
+                    (this.vParcela != null &&
+                    this.vParcela.Equals(input.vParcela))
                 );
         }
 
@@ -138,12 +155,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.nParcela.GetHashCode();
+                if (this.nParcela != null)
+                {
+                    hashCode = (hashCode * 59) + this.nParcela.GetHashCode();
+                }
                 if (this.dVenc != null)
                 {
                     hashCode = (hashCode * 59) + this.dVenc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vParcela.GetHashCode();
+                if (this.vParcela != null)
+                {
+                    hashCode = (hashCode * 59) + this.vParcela.GetHashCode();
+                }
                 return hashCode;
             }
         }

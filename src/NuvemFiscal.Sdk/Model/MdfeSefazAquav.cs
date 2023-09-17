@@ -50,7 +50,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infEmbComb">infEmbComb.</param>
         /// <param name="infUnidCargaVazia">infUnidCargaVazia.</param>
         /// <param name="infUnidTranspVazia">infUnidTranspVazia.</param>
-        public MdfeSefazAquav(string irin = default(string), string tpEmb = default(string), string cEmbar = default(string), string xEmbar = default(string), string nViag = default(string), string cPrtEmb = default(string), string cPrtDest = default(string), string prtTrans = default(string), int tpNav = default(int), List<MdfeSefazInfTermCarreg> infTermCarreg = default(List<MdfeSefazInfTermCarreg>), List<MdfeSefazInfTermDescarreg> infTermDescarreg = default(List<MdfeSefazInfTermDescarreg>), List<MdfeSefazInfEmbComb> infEmbComb = default(List<MdfeSefazInfEmbComb>), List<MdfeSefazInfUnidCargaVazia> infUnidCargaVazia = default(List<MdfeSefazInfUnidCargaVazia>), List<MdfeSefazInfUnidTranspVazia> infUnidTranspVazia = default(List<MdfeSefazInfUnidTranspVazia>))
+        public MdfeSefazAquav(string irin = default(string), string tpEmb = default(string), string cEmbar = default(string), string xEmbar = default(string), string nViag = default(string), string cPrtEmb = default(string), string cPrtDest = default(string), string prtTrans = default(string), int? tpNav = default(int?), List<MdfeSefazInfTermCarreg> infTermCarreg = default(List<MdfeSefazInfTermCarreg>), List<MdfeSefazInfTermDescarreg> infTermDescarreg = default(List<MdfeSefazInfTermDescarreg>), List<MdfeSefazInfEmbComb> infEmbComb = default(List<MdfeSefazInfEmbComb>), List<MdfeSefazInfUnidCargaVazia> infUnidCargaVazia = default(List<MdfeSefazInfUnidCargaVazia>), List<MdfeSefazInfUnidTranspVazia> infUnidTranspVazia = default(List<MdfeSefazInfUnidTranspVazia>))
         {
             // to ensure "irin" is required (not null)
             if (irin == null)
@@ -156,15 +156,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Porto de Transbordo.
         /// </summary>
         /// <value>Porto de Transbordo.</value>
-        [DataMember(Name = "prtTrans", EmitDefaultValue = false)]
+        [DataMember(Name = "prtTrans", EmitDefaultValue = true)]
         public string prtTrans { get; set; }
 
         /// <summary>
         /// Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem
         /// </summary>
         /// <value>Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem</value>
-        [DataMember(Name = "tpNav", EmitDefaultValue = false)]
-        public int tpNav { get; set; }
+        [DataMember(Name = "tpNav", EmitDefaultValue = true)]
+        public int? tpNav { get; set; }
 
         /// <summary>
         /// Gets or Sets infTermCarreg
@@ -295,7 +295,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpNav == input.tpNav ||
-                    this.tpNav.Equals(input.tpNav)
+                    (this.tpNav != null &&
+                    this.tpNav.Equals(input.tpNav))
                 ) && 
                 (
                     this.infTermCarreg == input.infTermCarreg ||
@@ -370,7 +371,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.prtTrans.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpNav.GetHashCode();
+                if (this.tpNav != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpNav.GetHashCode();
+                }
                 if (this.infTermCarreg != null)
                 {
                     hashCode = (hashCode * 59) + this.infTermCarreg.GetHashCode();

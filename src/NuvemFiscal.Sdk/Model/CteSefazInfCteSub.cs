@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="chCte">Chave de acesso do CT-e a ser substituído (original). (required).</param>
         /// <param name="indAlteraToma">Indicador de CT-e Alteração de Tomador..</param>
-        public CteSefazInfCteSub(string chCte = default(string), int indAlteraToma = default(int))
+        public CteSefazInfCteSub(string chCte = default(string), int? indAlteraToma = default(int?))
         {
             // to ensure "chCte" is required (not null)
             if (chCte == null)
@@ -60,8 +60,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador de CT-e Alteração de Tomador.
         /// </summary>
         /// <value>Indicador de CT-e Alteração de Tomador.</value>
-        [DataMember(Name = "indAlteraToma", EmitDefaultValue = false)]
-        public int indAlteraToma { get; set; }
+        [DataMember(Name = "indAlteraToma", EmitDefaultValue = true)]
+        public int? indAlteraToma { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +115,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indAlteraToma == input.indAlteraToma ||
-                    this.indAlteraToma.Equals(input.indAlteraToma)
+                    (this.indAlteraToma != null &&
+                    this.indAlteraToma.Equals(input.indAlteraToma))
                 );
         }
 
@@ -132,7 +133,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.chCte.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indAlteraToma.GetHashCode();
+                if (this.indAlteraToma != null)
+                {
+                    hashCode = (hashCode * 59) + this.indAlteraToma.GetHashCode();
+                }
                 return hashCode;
             }
         }

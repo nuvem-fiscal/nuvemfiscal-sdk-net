@@ -40,11 +40,31 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vDespAdu">Valor das despesas aduaneiras. (required).</param>
         /// <param name="vII">Valor do Imposto de Importação. (required).</param>
         /// <param name="vIOF">Valor do Imposto sobre Operações Financeiras. (required).</param>
-        public NfeSefazII(decimal vBC = default(decimal), decimal vDespAdu = default(decimal), decimal vII = default(decimal), decimal vIOF = default(decimal))
+        public NfeSefazII(decimal? vBC = default(decimal?), decimal? vDespAdu = default(decimal?), decimal? vII = default(decimal?), decimal? vIOF = default(decimal?))
         {
+            // to ensure "vBC" is required (not null)
+            if (vBC == null)
+            {
+                throw new ArgumentNullException("vBC is a required property for NfeSefazII and cannot be null");
+            }
             this.vBC = vBC;
+            // to ensure "vDespAdu" is required (not null)
+            if (vDespAdu == null)
+            {
+                throw new ArgumentNullException("vDespAdu is a required property for NfeSefazII and cannot be null");
+            }
             this.vDespAdu = vDespAdu;
+            // to ensure "vII" is required (not null)
+            if (vII == null)
+            {
+                throw new ArgumentNullException("vII is a required property for NfeSefazII and cannot be null");
+            }
             this.vII = vII;
+            // to ensure "vIOF" is required (not null)
+            if (vIOF == null)
+            {
+                throw new ArgumentNullException("vIOF is a required property for NfeSefazII and cannot be null");
+            }
             this.vIOF = vIOF;
         }
 
@@ -53,28 +73,28 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Base da BC do Imposto de Importação.</value>
         [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBC { get; set; }
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Valor das despesas aduaneiras.
         /// </summary>
         /// <value>Valor das despesas aduaneiras.</value>
         [DataMember(Name = "vDespAdu", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vDespAdu { get; set; }
+        public decimal? vDespAdu { get; set; }
 
         /// <summary>
         /// Valor do Imposto de Importação.
         /// </summary>
         /// <value>Valor do Imposto de Importação.</value>
         [DataMember(Name = "vII", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vII { get; set; }
+        public decimal? vII { get; set; }
 
         /// <summary>
         /// Valor do Imposto sobre Operações Financeiras.
         /// </summary>
         /// <value>Valor do Imposto sobre Operações Financeiras.</value>
         [DataMember(Name = "vIOF", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vIOF { get; set; }
+        public decimal? vIOF { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,19 +145,23 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.vDespAdu == input.vDespAdu ||
-                    this.vDespAdu.Equals(input.vDespAdu)
+                    (this.vDespAdu != null &&
+                    this.vDespAdu.Equals(input.vDespAdu))
                 ) && 
                 (
                     this.vII == input.vII ||
-                    this.vII.Equals(input.vII)
+                    (this.vII != null &&
+                    this.vII.Equals(input.vII))
                 ) && 
                 (
                     this.vIOF == input.vIOF ||
-                    this.vIOF.Equals(input.vIOF)
+                    (this.vIOF != null &&
+                    this.vIOF.Equals(input.vIOF))
                 );
         }
 
@@ -150,10 +174,22 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDespAdu.GetHashCode();
-                hashCode = (hashCode * 59) + this.vII.GetHashCode();
-                hashCode = (hashCode * 59) + this.vIOF.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.vDespAdu != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDespAdu.GetHashCode();
+                }
+                if (this.vII != null)
+                {
+                    hashCode = (hashCode * 59) + this.vII.GetHashCode();
+                }
+                if (this.vIOF != null)
+                {
+                    hashCode = (hashCode * 59) + this.vIOF.GetHashCode();
+                }
                 return hashCode;
             }
         }

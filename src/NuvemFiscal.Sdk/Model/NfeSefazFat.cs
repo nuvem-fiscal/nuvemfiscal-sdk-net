@@ -35,7 +35,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vOrig">Valor original da fatura..</param>
         /// <param name="vDesc">Valor do desconto da fatura..</param>
         /// <param name="vLiq">Valor líquido da fatura..</param>
-        public NfeSefazFat(string nFat = default(string), decimal vOrig = default(decimal), decimal vDesc = default(decimal), decimal vLiq = default(decimal))
+        public NfeSefazFat(string nFat = default(string), decimal? vOrig = default(decimal?), decimal? vDesc = default(decimal?), decimal? vLiq = default(decimal?))
         {
             this.nFat = nFat;
             this.vOrig = vOrig;
@@ -47,29 +47,29 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da fatura.
         /// </summary>
         /// <value>Número da fatura.</value>
-        [DataMember(Name = "nFat", EmitDefaultValue = false)]
+        [DataMember(Name = "nFat", EmitDefaultValue = true)]
         public string nFat { get; set; }
 
         /// <summary>
         /// Valor original da fatura.
         /// </summary>
         /// <value>Valor original da fatura.</value>
-        [DataMember(Name = "vOrig", EmitDefaultValue = false)]
-        public decimal vOrig { get; set; }
+        [DataMember(Name = "vOrig", EmitDefaultValue = true)]
+        public decimal? vOrig { get; set; }
 
         /// <summary>
         /// Valor do desconto da fatura.
         /// </summary>
         /// <value>Valor do desconto da fatura.</value>
-        [DataMember(Name = "vDesc", EmitDefaultValue = false)]
-        public decimal vDesc { get; set; }
+        [DataMember(Name = "vDesc", EmitDefaultValue = true)]
+        public decimal? vDesc { get; set; }
 
         /// <summary>
         /// Valor líquido da fatura.
         /// </summary>
         /// <value>Valor líquido da fatura.</value>
-        [DataMember(Name = "vLiq", EmitDefaultValue = false)]
-        public decimal vLiq { get; set; }
+        [DataMember(Name = "vLiq", EmitDefaultValue = true)]
+        public decimal? vLiq { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,15 +125,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vOrig == input.vOrig ||
-                    this.vOrig.Equals(input.vOrig)
+                    (this.vOrig != null &&
+                    this.vOrig.Equals(input.vOrig))
                 ) && 
                 (
                     this.vDesc == input.vDesc ||
-                    this.vDesc.Equals(input.vDesc)
+                    (this.vDesc != null &&
+                    this.vDesc.Equals(input.vDesc))
                 ) && 
                 (
                     this.vLiq == input.vLiq ||
-                    this.vLiq.Equals(input.vLiq)
+                    (this.vLiq != null &&
+                    this.vLiq.Equals(input.vLiq))
                 );
         }
 
@@ -150,9 +153,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nFat.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vOrig.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDesc.GetHashCode();
-                hashCode = (hashCode * 59) + this.vLiq.GetHashCode();
+                if (this.vOrig != null)
+                {
+                    hashCode = (hashCode * 59) + this.vOrig.GetHashCode();
+                }
+                if (this.vDesc != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDesc.GetHashCode();
+                }
+                if (this.vLiq != null)
+                {
+                    hashCode = (hashCode * 59) + this.vLiq.GetHashCode();
+                }
                 return hashCode;
             }
         }

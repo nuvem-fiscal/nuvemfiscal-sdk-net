@@ -34,7 +34,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="opSimpNac">Situação perante o Simples Nacional:  * 1 - Não Optante;  * 2 - Optante - Microempreendedor Individual (MEI);  * 3 - Optante - Microempresa ou Empresa de Pequeno Porte (ME/EPP)..</param>
         /// <param name="regApTribSN">Opção para que o contribuinte optante pelo Simples Nacional ME/EPP (opSimpNac &#x3D; 3) possa indicar, ao emitir o documento fiscal, em qual regime de apuração os tributos federais e municipal estão inseridos, caso tenha ultrapassado algum sublimite ou limite definido para o Simples Nacional.  * 1 – Regime de apuração dos tributos federais e municipal pelo SN;  * 2 – Regime de apuração dos tributos federais pelo SN e ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;  * 3 – Regime de apuração dos tributos federais e municipal por fora do SN conforme respectivas legilações federal e municipal de cada tributo..</param>
         /// <param name="regEspTrib">Tipos de Regimes Especiais de Tributação:  * 0 - Nenhum;  * 1 - Ato Cooperado (Cooperativa);  * 2 - Estimativa;  * 3 - Microempresa Municipal;  * 4 - Notário ou Registrador;  * 5 - Profissional Autônomo;  * 6 - Sociedade de Profissionais..</param>
-        public EmpresaConfigNfseRegTrib(int opSimpNac = default(int), int regApTribSN = default(int), int regEspTrib = default(int))
+        public EmpresaConfigNfseRegTrib(int? opSimpNac = default(int?), int? regApTribSN = default(int?), int? regEspTrib = default(int?))
         {
             this.opSimpNac = opSimpNac;
             this.regApTribSN = regApTribSN;
@@ -45,22 +45,22 @@ namespace NuvemFiscal.Sdk.Model
         /// Situação perante o Simples Nacional:  * 1 - Não Optante;  * 2 - Optante - Microempreendedor Individual (MEI);  * 3 - Optante - Microempresa ou Empresa de Pequeno Porte (ME/EPP).
         /// </summary>
         /// <value>Situação perante o Simples Nacional:  * 1 - Não Optante;  * 2 - Optante - Microempreendedor Individual (MEI);  * 3 - Optante - Microempresa ou Empresa de Pequeno Porte (ME/EPP).</value>
-        [DataMember(Name = "opSimpNac", EmitDefaultValue = false)]
-        public int opSimpNac { get; set; }
+        [DataMember(Name = "opSimpNac", EmitDefaultValue = true)]
+        public int? opSimpNac { get; set; }
 
         /// <summary>
         /// Opção para que o contribuinte optante pelo Simples Nacional ME/EPP (opSimpNac &#x3D; 3) possa indicar, ao emitir o documento fiscal, em qual regime de apuração os tributos federais e municipal estão inseridos, caso tenha ultrapassado algum sublimite ou limite definido para o Simples Nacional.  * 1 – Regime de apuração dos tributos federais e municipal pelo SN;  * 2 – Regime de apuração dos tributos federais pelo SN e ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;  * 3 – Regime de apuração dos tributos federais e municipal por fora do SN conforme respectivas legilações federal e municipal de cada tributo.
         /// </summary>
         /// <value>Opção para que o contribuinte optante pelo Simples Nacional ME/EPP (opSimpNac &#x3D; 3) possa indicar, ao emitir o documento fiscal, em qual regime de apuração os tributos federais e municipal estão inseridos, caso tenha ultrapassado algum sublimite ou limite definido para o Simples Nacional.  * 1 – Regime de apuração dos tributos federais e municipal pelo SN;  * 2 – Regime de apuração dos tributos federais pelo SN e ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;  * 3 – Regime de apuração dos tributos federais e municipal por fora do SN conforme respectivas legilações federal e municipal de cada tributo.</value>
-        [DataMember(Name = "regApTribSN", EmitDefaultValue = false)]
-        public int regApTribSN { get; set; }
+        [DataMember(Name = "regApTribSN", EmitDefaultValue = true)]
+        public int? regApTribSN { get; set; }
 
         /// <summary>
         /// Tipos de Regimes Especiais de Tributação:  * 0 - Nenhum;  * 1 - Ato Cooperado (Cooperativa);  * 2 - Estimativa;  * 3 - Microempresa Municipal;  * 4 - Notário ou Registrador;  * 5 - Profissional Autônomo;  * 6 - Sociedade de Profissionais.
         /// </summary>
         /// <value>Tipos de Regimes Especiais de Tributação:  * 0 - Nenhum;  * 1 - Ato Cooperado (Cooperativa);  * 2 - Estimativa;  * 3 - Microempresa Municipal;  * 4 - Notário ou Registrador;  * 5 - Profissional Autônomo;  * 6 - Sociedade de Profissionais.</value>
-        [DataMember(Name = "regEspTrib", EmitDefaultValue = false)]
-        public int regEspTrib { get; set; }
+        [DataMember(Name = "regEspTrib", EmitDefaultValue = true)]
+        public int? regEspTrib { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -110,15 +110,18 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.opSimpNac == input.opSimpNac ||
-                    this.opSimpNac.Equals(input.opSimpNac)
+                    (this.opSimpNac != null &&
+                    this.opSimpNac.Equals(input.opSimpNac))
                 ) && 
                 (
                     this.regApTribSN == input.regApTribSN ||
-                    this.regApTribSN.Equals(input.regApTribSN)
+                    (this.regApTribSN != null &&
+                    this.regApTribSN.Equals(input.regApTribSN))
                 ) && 
                 (
                     this.regEspTrib == input.regEspTrib ||
-                    this.regEspTrib.Equals(input.regEspTrib)
+                    (this.regEspTrib != null &&
+                    this.regEspTrib.Equals(input.regEspTrib))
                 );
         }
 
@@ -131,9 +134,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.opSimpNac.GetHashCode();
-                hashCode = (hashCode * 59) + this.regApTribSN.GetHashCode();
-                hashCode = (hashCode * 59) + this.regEspTrib.GetHashCode();
+                if (this.opSimpNac != null)
+                {
+                    hashCode = (hashCode * 59) + this.opSimpNac.GetHashCode();
+                }
+                if (this.regApTribSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.regApTribSN.GetHashCode();
+                }
+                if (this.regEspTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.regEspTrib.GetHashCode();
+                }
                 return hashCode;
             }
         }

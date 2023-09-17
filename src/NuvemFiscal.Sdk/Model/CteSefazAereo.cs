@@ -42,8 +42,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="natCarga">natCarga (required).</param>
         /// <param name="tarifa">tarifa (required).</param>
         /// <param name="peri">peri.</param>
-        public CteSefazAereo(int nMinu = default(int), string nOCA = default(string), DateTime dPrevAereo = default(DateTime), CteSefazNatCarga natCarga = default(CteSefazNatCarga), CteSefazTarifa tarifa = default(CteSefazTarifa), List<CteSefazPeri> peri = default(List<CteSefazPeri>))
+        public CteSefazAereo(int? nMinu = default(int?), string nOCA = default(string), DateTime? dPrevAereo = default(DateTime?), CteSefazNatCarga natCarga = default(CteSefazNatCarga), CteSefazTarifa tarifa = default(CteSefazTarifa), List<CteSefazPeri> peri = default(List<CteSefazPeri>))
         {
+            // to ensure "dPrevAereo" is required (not null)
+            if (dPrevAereo == null)
+            {
+                throw new ArgumentNullException("dPrevAereo is a required property for CteSefazAereo and cannot be null");
+            }
             this.dPrevAereo = dPrevAereo;
             // to ensure "natCarga" is required (not null)
             if (natCarga == null)
@@ -66,14 +71,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da Minuta.  Documento que precede o CT-e, assinado pelo expedidor, espécie de pedido de serviço.
         /// </summary>
         /// <value>Número da Minuta.  Documento que precede o CT-e, assinado pelo expedidor, espécie de pedido de serviço.</value>
-        [DataMember(Name = "nMinu", EmitDefaultValue = false)]
-        public int nMinu { get; set; }
+        [DataMember(Name = "nMinu", EmitDefaultValue = true)]
+        public int? nMinu { get; set; }
 
         /// <summary>
         /// Número Operacional do Conhecimento Aéreo.  Representa o número de controle comumente utilizado pelo conhecimento aéreo composto por uma sequência numérica de onze dígitos. Os três primeiros dígitos representam um código que os operadores de transporte aéreo associados à IATA possuem. Em seguida um número de série de sete dígitos determinados pelo operador de transporte aéreo. Para finalizar, um dígito verificador, que é um sistema de módulo sete imponderado o qual divide o número de série do conhecimento aéreo por sete e usa o resto como dígito de verificação.
         /// </summary>
         /// <value>Número Operacional do Conhecimento Aéreo.  Representa o número de controle comumente utilizado pelo conhecimento aéreo composto por uma sequência numérica de onze dígitos. Os três primeiros dígitos representam um código que os operadores de transporte aéreo associados à IATA possuem. Em seguida um número de série de sete dígitos determinados pelo operador de transporte aéreo. Para finalizar, um dígito verificador, que é um sistema de módulo sete imponderado o qual divide o número de série do conhecimento aéreo por sete e usa o resto como dígito de verificação.</value>
-        [DataMember(Name = "nOCA", EmitDefaultValue = false)]
+        [DataMember(Name = "nOCA", EmitDefaultValue = true)]
         public string nOCA { get; set; }
 
         /// <summary>
@@ -82,7 +87,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data prevista da entrega.  Formato AAAA-MM-DD.</value>
         [DataMember(Name = "dPrevAereo", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dPrevAereo { get; set; }
+        public DateTime? dPrevAereo { get; set; }
 
         /// <summary>
         /// Gets or Sets natCarga
@@ -153,7 +158,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.nMinu == input.nMinu ||
-                    this.nMinu.Equals(input.nMinu)
+                    (this.nMinu != null &&
+                    this.nMinu.Equals(input.nMinu))
                 ) && 
                 (
                     this.nOCA == input.nOCA ||
@@ -192,7 +198,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.nMinu.GetHashCode();
+                if (this.nMinu != null)
+                {
+                    hashCode = (hashCode * 59) + this.nMinu.GetHashCode();
+                }
                 if (this.nOCA != null)
                 {
                     hashCode = (hashCode * 59) + this.nOCA.GetHashCode();

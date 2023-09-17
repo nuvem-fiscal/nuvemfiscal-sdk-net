@@ -49,8 +49,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="encerrante">encerrante.</param>
         /// <param name="pBio">Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador..</param>
         /// <param name="origComb">origComb.</param>
-        public NfeSefazComb(int cProdANP = default(int), string descANP = default(string), decimal pGLP = default(decimal), decimal pGNn = default(decimal), decimal pGNi = default(decimal), decimal vPart = default(decimal), string cODIF = default(string), decimal qTemp = default(decimal), string uFCons = default(string), NfeSefazCIDE cIDE = default(NfeSefazCIDE), NfeSefazEncerrante encerrante = default(NfeSefazEncerrante), decimal pBio = default(decimal), List<NfeSefazOrigComb> origComb = default(List<NfeSefazOrigComb>))
+        public NfeSefazComb(int? cProdANP = default(int?), string descANP = default(string), decimal? pGLP = default(decimal?), decimal? pGNn = default(decimal?), decimal? pGNi = default(decimal?), decimal? vPart = default(decimal?), string cODIF = default(string), decimal? qTemp = default(decimal?), string uFCons = default(string), NfeSefazCIDE cIDE = default(NfeSefazCIDE), NfeSefazEncerrante encerrante = default(NfeSefazEncerrante), decimal? pBio = default(decimal?), List<NfeSefazOrigComb> origComb = default(List<NfeSefazOrigComb>))
         {
+            // to ensure "cProdANP" is required (not null)
+            if (cProdANP == null)
+            {
+                throw new ArgumentNullException("cProdANP is a required property for NfeSefazComb and cannot be null");
+            }
             this.cProdANP = cProdANP;
             // to ensure "descANP" is required (not null)
             if (descANP == null)
@@ -81,7 +86,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código de produto da ANP. codificação de produtos do SIMP (http://www.anp.gov.br).</value>
         [DataMember(Name = "cProdANP", IsRequired = true, EmitDefaultValue = true)]
-        public int cProdANP { get; set; }
+        public int? cProdANP { get; set; }
 
         /// <summary>
         /// Descrição do Produto conforme ANP. Utilizar a descrição de produtos do Sistema de Informações de Movimentação de Produtos - SIMP (http://www.anp.gov.br/simp/).
@@ -94,43 +99,43 @@ namespace NuvemFiscal.Sdk.Model
         /// Percentual do GLP derivado do petróleo no produto GLP (cProdANP&#x3D;210203001). Informar em número decimal o percentual do GLP derivado de petróleo no produto GLP. Valores 0 a 100.
         /// </summary>
         /// <value>Percentual do GLP derivado do petróleo no produto GLP (cProdANP&#x3D;210203001). Informar em número decimal o percentual do GLP derivado de petróleo no produto GLP. Valores 0 a 100.</value>
-        [DataMember(Name = "pGLP", EmitDefaultValue = false)]
-        public decimal pGLP { get; set; }
+        [DataMember(Name = "pGLP", EmitDefaultValue = true)]
+        public decimal? pGLP { get; set; }
 
         /// <summary>
         /// Percentual de gás natural nacional - GLGNn para o produto GLP (cProdANP&#x3D;210203001). Informar em número decimal o percentual do Gás Natural Nacional - GLGNn para o produto GLP. Valores de 0 a 100.
         /// </summary>
         /// <value>Percentual de gás natural nacional - GLGNn para o produto GLP (cProdANP&#x3D;210203001). Informar em número decimal o percentual do Gás Natural Nacional - GLGNn para o produto GLP. Valores de 0 a 100.</value>
-        [DataMember(Name = "pGNn", EmitDefaultValue = false)]
-        public decimal pGNn { get; set; }
+        [DataMember(Name = "pGNn", EmitDefaultValue = true)]
+        public decimal? pGNn { get; set; }
 
         /// <summary>
         /// Percentual de gás natural importado GLGNi para o produto GLP (cProdANP&#x3D;210203001). Informar em número deciaml o percentual do Gás Natural Importado - GLGNi para o produto GLP. Valores de 0 a 100.
         /// </summary>
         /// <value>Percentual de gás natural importado GLGNi para o produto GLP (cProdANP&#x3D;210203001). Informar em número deciaml o percentual do Gás Natural Importado - GLGNi para o produto GLP. Valores de 0 a 100.</value>
-        [DataMember(Name = "pGNi", EmitDefaultValue = false)]
-        public decimal pGNi { get; set; }
+        [DataMember(Name = "pGNi", EmitDefaultValue = true)]
+        public decimal? pGNi { get; set; }
 
         /// <summary>
         /// Valor de partida (cProdANP&#x3D;210203001). Deve ser informado neste campo o valor por quilograma sem ICMS.
         /// </summary>
         /// <value>Valor de partida (cProdANP&#x3D;210203001). Deve ser informado neste campo o valor por quilograma sem ICMS.</value>
-        [DataMember(Name = "vPart", EmitDefaultValue = false)]
-        public decimal vPart { get; set; }
+        [DataMember(Name = "vPart", EmitDefaultValue = true)]
+        public decimal? vPart { get; set; }
 
         /// <summary>
         /// Código de autorização / registro do CODIF. Informar apenas quando a UF utilizar o CODIF (Sistema de Controle do    Diferimento do Imposto nas Operações com AEAC - Álcool Etílico Anidro Combustível).
         /// </summary>
         /// <value>Código de autorização / registro do CODIF. Informar apenas quando a UF utilizar o CODIF (Sistema de Controle do    Diferimento do Imposto nas Operações com AEAC - Álcool Etílico Anidro Combustível).</value>
-        [DataMember(Name = "CODIF", EmitDefaultValue = false)]
+        [DataMember(Name = "CODIF", EmitDefaultValue = true)]
         public string CODIF { get; set; }
 
         /// <summary>
         /// Quantidade de combustível  faturada à temperatura ambiente.  Informar quando a quantidade  faturada informada no campo  qCom (I10) tiver sido ajustada para  uma temperatura diferente da  ambiente.
         /// </summary>
         /// <value>Quantidade de combustível  faturada à temperatura ambiente.  Informar quando a quantidade  faturada informada no campo  qCom (I10) tiver sido ajustada para  uma temperatura diferente da  ambiente.</value>
-        [DataMember(Name = "qTemp", EmitDefaultValue = false)]
-        public decimal qTemp { get; set; }
+        [DataMember(Name = "qTemp", EmitDefaultValue = true)]
+        public decimal? qTemp { get; set; }
 
         /// <summary>
         /// Sigla da UF de Consumo.
@@ -155,8 +160,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador.
         /// </summary>
         /// <value>Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador.</value>
-        [DataMember(Name = "pBio", EmitDefaultValue = false)]
-        public decimal pBio { get; set; }
+        [DataMember(Name = "pBio", EmitDefaultValue = true)]
+        public decimal? pBio { get; set; }
 
         /// <summary>
         /// Gets or Sets origComb
@@ -222,7 +227,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.cProdANP == input.cProdANP ||
-                    this.cProdANP.Equals(input.cProdANP)
+                    (this.cProdANP != null &&
+                    this.cProdANP.Equals(input.cProdANP))
                 ) && 
                 (
                     this.descANP == input.descANP ||
@@ -231,19 +237,23 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.pGLP == input.pGLP ||
-                    this.pGLP.Equals(input.pGLP)
+                    (this.pGLP != null &&
+                    this.pGLP.Equals(input.pGLP))
                 ) && 
                 (
                     this.pGNn == input.pGNn ||
-                    this.pGNn.Equals(input.pGNn)
+                    (this.pGNn != null &&
+                    this.pGNn.Equals(input.pGNn))
                 ) && 
                 (
                     this.pGNi == input.pGNi ||
-                    this.pGNi.Equals(input.pGNi)
+                    (this.pGNi != null &&
+                    this.pGNi.Equals(input.pGNi))
                 ) && 
                 (
                     this.vPart == input.vPart ||
-                    this.vPart.Equals(input.vPart)
+                    (this.vPart != null &&
+                    this.vPart.Equals(input.vPart))
                 ) && 
                 (
                     this.CODIF == input.CODIF ||
@@ -252,7 +262,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qTemp == input.qTemp ||
-                    this.qTemp.Equals(input.qTemp)
+                    (this.qTemp != null &&
+                    this.qTemp.Equals(input.qTemp))
                 ) && 
                 (
                     this.UFCons == input.UFCons ||
@@ -271,7 +282,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.pBio == input.pBio ||
-                    this.pBio.Equals(input.pBio)
+                    (this.pBio != null &&
+                    this.pBio.Equals(input.pBio))
                 ) && 
                 (
                     this.origComb == input.origComb ||
@@ -290,20 +302,38 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.cProdANP.GetHashCode();
+                if (this.cProdANP != null)
+                {
+                    hashCode = (hashCode * 59) + this.cProdANP.GetHashCode();
+                }
                 if (this.descANP != null)
                 {
                     hashCode = (hashCode * 59) + this.descANP.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.pGLP.GetHashCode();
-                hashCode = (hashCode * 59) + this.pGNn.GetHashCode();
-                hashCode = (hashCode * 59) + this.pGNi.GetHashCode();
-                hashCode = (hashCode * 59) + this.vPart.GetHashCode();
+                if (this.pGLP != null)
+                {
+                    hashCode = (hashCode * 59) + this.pGLP.GetHashCode();
+                }
+                if (this.pGNn != null)
+                {
+                    hashCode = (hashCode * 59) + this.pGNn.GetHashCode();
+                }
+                if (this.pGNi != null)
+                {
+                    hashCode = (hashCode * 59) + this.pGNi.GetHashCode();
+                }
+                if (this.vPart != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPart.GetHashCode();
+                }
                 if (this.CODIF != null)
                 {
                     hashCode = (hashCode * 59) + this.CODIF.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qTemp.GetHashCode();
+                if (this.qTemp != null)
+                {
+                    hashCode = (hashCode * 59) + this.qTemp.GetHashCode();
+                }
                 if (this.UFCons != null)
                 {
                     hashCode = (hashCode * 59) + this.UFCons.GetHashCode();
@@ -316,7 +346,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.encerrante.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.pBio.GetHashCode();
+                if (this.pBio != null)
+                {
+                    hashCode = (hashCode * 59) + this.pBio.GetHashCode();
+                }
                 if (this.origComb != null)
                 {
                     hashCode = (hashCode * 59) + this.origComb.GetHashCode();

@@ -39,10 +39,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="qBCProd">BC do CIDE ( Quantidade comercializada). (required).</param>
         /// <param name="vAliqProd">Alíquota do CIDE  (em reais). (required).</param>
         /// <param name="vCIDE">Valor do CIDE. (required).</param>
-        public NfeSefazCIDE(decimal qBCProd = default(decimal), decimal vAliqProd = default(decimal), decimal vCIDE = default(decimal))
+        public NfeSefazCIDE(decimal? qBCProd = default(decimal?), decimal? vAliqProd = default(decimal?), decimal? vCIDE = default(decimal?))
         {
+            // to ensure "qBCProd" is required (not null)
+            if (qBCProd == null)
+            {
+                throw new ArgumentNullException("qBCProd is a required property for NfeSefazCIDE and cannot be null");
+            }
             this.qBCProd = qBCProd;
+            // to ensure "vAliqProd" is required (not null)
+            if (vAliqProd == null)
+            {
+                throw new ArgumentNullException("vAliqProd is a required property for NfeSefazCIDE and cannot be null");
+            }
             this.vAliqProd = vAliqProd;
+            // to ensure "vCIDE" is required (not null)
+            if (vCIDE == null)
+            {
+                throw new ArgumentNullException("vCIDE is a required property for NfeSefazCIDE and cannot be null");
+            }
             this.vCIDE = vCIDE;
         }
 
@@ -51,21 +66,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>BC do CIDE ( Quantidade comercializada).</value>
         [DataMember(Name = "qBCProd", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qBCProd { get; set; }
+        public decimal? qBCProd { get; set; }
 
         /// <summary>
         /// Alíquota do CIDE  (em reais).
         /// </summary>
         /// <value>Alíquota do CIDE  (em reais).</value>
         [DataMember(Name = "vAliqProd", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vAliqProd { get; set; }
+        public decimal? vAliqProd { get; set; }
 
         /// <summary>
         /// Valor do CIDE.
         /// </summary>
         /// <value>Valor do CIDE.</value>
         [DataMember(Name = "vCIDE", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vCIDE { get; set; }
+        public decimal? vCIDE { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,15 +130,18 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.qBCProd == input.qBCProd ||
-                    this.qBCProd.Equals(input.qBCProd)
+                    (this.qBCProd != null &&
+                    this.qBCProd.Equals(input.qBCProd))
                 ) && 
                 (
                     this.vAliqProd == input.vAliqProd ||
-                    this.vAliqProd.Equals(input.vAliqProd)
+                    (this.vAliqProd != null &&
+                    this.vAliqProd.Equals(input.vAliqProd))
                 ) && 
                 (
                     this.vCIDE == input.vCIDE ||
-                    this.vCIDE.Equals(input.vCIDE)
+                    (this.vCIDE != null &&
+                    this.vCIDE.Equals(input.vCIDE))
                 );
         }
 
@@ -136,9 +154,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.qBCProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.vAliqProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCIDE.GetHashCode();
+                if (this.qBCProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.qBCProd.GetHashCode();
+                }
+                if (this.vAliqProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.vAliqProd.GetHashCode();
+                }
+                if (this.vCIDE != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCIDE.GetHashCode();
+                }
                 return hashCode;
             }
         }

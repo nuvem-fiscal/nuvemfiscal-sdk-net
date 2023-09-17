@@ -5,9 +5,9 @@ Detalhamento de informações para o tráfego mútuo.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**respFat** | **int** | Responsável pelo Faturamento.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino | 
-**ferrEmi** | **int** | Ferrovia Emitente do CTe.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino | 
-**vFrete** | **decimal** | Valor do Frete do Tráfego Mútuo. | 
+**respFat** | **int?** | Responsável pelo Faturamento.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino | 
+**ferrEmi** | **int?** | Ferrovia Emitente do CTe.  Preencher com:  * 1 - Ferrovia de origem  * 2 - Ferrovia de destino | 
+**vFrete** | **decimal?** | Valor do Frete do Tráfego Mútuo. | 
 **chCTeFerroOrigem** | **string** | Chave de acesso do CT-e emitido pelo ferrovia de origem. | [optional] 
 **ferroEnv** | [**List&lt;CteSefazFerroEnv&gt;**](CteSefazFerroEnv.md) |  | [optional] 
 

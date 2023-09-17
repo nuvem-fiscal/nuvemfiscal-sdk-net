@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vICMSSTRet">Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” - que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído. (required).</param>
         /// <param name="pICMSSTRet">Alíquota do ICMS.  Percentual de Alíquota incidente na prestação de serviço de transporte. (required).</param>
         /// <param name="vCred">Valor do Crédito outorgado/Presumido.  Preencher somente quando o transportador substituído, for optante pelo crédito outorgado previsto no Convênio 106/96 e corresponde ao percentual de 20%% do valor do ICMS ST retido..</param>
-        public CteSefazICMS60(string cST = default(string), decimal vBCSTRet = default(decimal), decimal vICMSSTRet = default(decimal), decimal pICMSSTRet = default(decimal), decimal vCred = default(decimal))
+        public CteSefazICMS60(string cST = default(string), decimal? vBCSTRet = default(decimal?), decimal? vICMSSTRet = default(decimal?), decimal? pICMSSTRet = default(decimal?), decimal? vCred = default(decimal?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -49,8 +49,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for CteSefazICMS60 and cannot be null");
             }
             this.CST = cST;
+            // to ensure "vBCSTRet" is required (not null)
+            if (vBCSTRet == null)
+            {
+                throw new ArgumentNullException("vBCSTRet is a required property for CteSefazICMS60 and cannot be null");
+            }
             this.vBCSTRet = vBCSTRet;
+            // to ensure "vICMSSTRet" is required (not null)
+            if (vICMSSTRet == null)
+            {
+                throw new ArgumentNullException("vICMSSTRet is a required property for CteSefazICMS60 and cannot be null");
+            }
             this.vICMSSTRet = vICMSSTRet;
+            // to ensure "pICMSSTRet" is required (not null)
+            if (pICMSSTRet == null)
+            {
+                throw new ArgumentNullException("pICMSSTRet is a required property for CteSefazICMS60 and cannot be null");
+            }
             this.pICMSSTRet = pICMSSTRet;
             this.vCred = vCred;
         }
@@ -67,28 +82,28 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da BC do ICMS ST retido.  Valor do frete sobre o qual será calculado o ICMS a ser substituído na Prestação.</value>
         [DataMember(Name = "vBCSTRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBCSTRet { get; set; }
+        public decimal? vBCSTRet { get; set; }
 
         /// <summary>
         /// Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” - que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.
         /// </summary>
         /// <value>Valor do ICMS ST retido.  Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” - que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.</value>
         [DataMember(Name = "vICMSSTRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSSTRet { get; set; }
+        public decimal? vICMSSTRet { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS.  Percentual de Alíquota incidente na prestação de serviço de transporte.
         /// </summary>
         /// <value>Alíquota do ICMS.  Percentual de Alíquota incidente na prestação de serviço de transporte.</value>
         [DataMember(Name = "pICMSSTRet", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMSSTRet { get; set; }
+        public decimal? pICMSSTRet { get; set; }
 
         /// <summary>
         /// Valor do Crédito outorgado/Presumido.  Preencher somente quando o transportador substituído, for optante pelo crédito outorgado previsto no Convênio 106/96 e corresponde ao percentual de 20%% do valor do ICMS ST retido.
         /// </summary>
         /// <value>Valor do Crédito outorgado/Presumido.  Preencher somente quando o transportador substituído, for optante pelo crédito outorgado previsto no Convênio 106/96 e corresponde ao percentual de 20%% do valor do ICMS ST retido.</value>
-        [DataMember(Name = "vCred", EmitDefaultValue = false)]
-        public decimal vCred { get; set; }
+        [DataMember(Name = "vCred", EmitDefaultValue = true)]
+        public decimal? vCred { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,19 +160,23 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBCSTRet == input.vBCSTRet ||
-                    this.vBCSTRet.Equals(input.vBCSTRet)
+                    (this.vBCSTRet != null &&
+                    this.vBCSTRet.Equals(input.vBCSTRet))
                 ) && 
                 (
                     this.vICMSSTRet == input.vICMSSTRet ||
-                    this.vICMSSTRet.Equals(input.vICMSSTRet)
+                    (this.vICMSSTRet != null &&
+                    this.vICMSSTRet.Equals(input.vICMSSTRet))
                 ) && 
                 (
                     this.pICMSSTRet == input.pICMSSTRet ||
-                    this.pICMSSTRet.Equals(input.pICMSSTRet)
+                    (this.pICMSSTRet != null &&
+                    this.pICMSSTRet.Equals(input.pICMSSTRet))
                 ) && 
                 (
                     this.vCred == input.vCred ||
-                    this.vCred.Equals(input.vCred)
+                    (this.vCred != null &&
+                    this.vCred.Equals(input.vCred))
                 );
         }
 
@@ -174,10 +193,22 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBCSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMSSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCred.GetHashCode();
+                if (this.vBCSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCSTRet.GetHashCode();
+                }
+                if (this.vICMSSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSSTRet.GetHashCode();
+                }
+                if (this.pICMSSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMSSTRet.GetHashCode();
+                }
+                if (this.vCred != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCred.GetHashCode();
+                }
                 return hashCode;
             }
         }

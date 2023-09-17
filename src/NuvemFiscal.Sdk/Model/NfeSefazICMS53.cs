@@ -46,8 +46,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vICMSMono">Valor do ICMS próprio devido..</param>
         /// <param name="qBCMonoDif">Quantidade tributada diferida.  OBS: Campo revogado pela NT2023.001v1.20.</param>
         /// <param name="adRemICMSDif">Alíquota ad rem do imposto diferido.  OBS: Campo revogado pela NT2023.001v1.20.</param>
-        public NfeSefazICMS53(int orig = default(int), string cST = default(string), decimal qBCMono = default(decimal), decimal adRemICMS = default(decimal), decimal vICMSMonoOp = default(decimal), decimal pDif = default(decimal), decimal vICMSMonoDif = default(decimal), decimal vICMSMono = default(decimal), decimal qBCMonoDif = default(decimal), decimal adRemICMSDif = default(decimal))
+        public NfeSefazICMS53(int? orig = default(int?), string cST = default(string), decimal? qBCMono = default(decimal?), decimal? adRemICMS = default(decimal?), decimal? vICMSMonoOp = default(decimal?), decimal? pDif = default(decimal?), decimal? vICMSMonoDif = default(decimal?), decimal? vICMSMono = default(decimal?), decimal? qBCMonoDif = default(decimal?), decimal? adRemICMSDif = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMS53 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -70,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// Tributção pelo ICMS  * 53 - Tributação monofásica sobre combustíveis com recolhimento diferido
@@ -83,57 +88,57 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade tributada.
         /// </summary>
         /// <value>Quantidade tributada.</value>
-        [DataMember(Name = "qBCMono", EmitDefaultValue = false)]
-        public decimal qBCMono { get; set; }
+        [DataMember(Name = "qBCMono", EmitDefaultValue = true)]
+        public decimal? qBCMono { get; set; }
 
         /// <summary>
         /// Alíquota ad rem do imposto.
         /// </summary>
         /// <value>Alíquota ad rem do imposto.</value>
-        [DataMember(Name = "adRemICMS", EmitDefaultValue = false)]
-        public decimal adRemICMS { get; set; }
+        [DataMember(Name = "adRemICMS", EmitDefaultValue = true)]
+        public decimal? adRemICMS { get; set; }
 
         /// <summary>
         /// Valor do ICMS da operação.
         /// </summary>
         /// <value>Valor do ICMS da operação.</value>
-        [DataMember(Name = "vICMSMonoOp", EmitDefaultValue = false)]
-        public decimal vICMSMonoOp { get; set; }
+        [DataMember(Name = "vICMSMonoOp", EmitDefaultValue = true)]
+        public decimal? vICMSMonoOp { get; set; }
 
         /// <summary>
         /// Percentual do diferemento.
         /// </summary>
         /// <value>Percentual do diferemento.</value>
-        [DataMember(Name = "pDif", EmitDefaultValue = false)]
-        public decimal pDif { get; set; }
+        [DataMember(Name = "pDif", EmitDefaultValue = true)]
+        public decimal? pDif { get; set; }
 
         /// <summary>
         /// Valor do ICMS diferido.
         /// </summary>
         /// <value>Valor do ICMS diferido.</value>
-        [DataMember(Name = "vICMSMonoDif", EmitDefaultValue = false)]
-        public decimal vICMSMonoDif { get; set; }
+        [DataMember(Name = "vICMSMonoDif", EmitDefaultValue = true)]
+        public decimal? vICMSMonoDif { get; set; }
 
         /// <summary>
         /// Valor do ICMS próprio devido.
         /// </summary>
         /// <value>Valor do ICMS próprio devido.</value>
-        [DataMember(Name = "vICMSMono", EmitDefaultValue = false)]
-        public decimal vICMSMono { get; set; }
+        [DataMember(Name = "vICMSMono", EmitDefaultValue = true)]
+        public decimal? vICMSMono { get; set; }
 
         /// <summary>
         /// Quantidade tributada diferida.  OBS: Campo revogado pela NT2023.001v1.20
         /// </summary>
         /// <value>Quantidade tributada diferida.  OBS: Campo revogado pela NT2023.001v1.20</value>
-        [DataMember(Name = "qBCMonoDif", EmitDefaultValue = false)]
-        public decimal qBCMonoDif { get; set; }
+        [DataMember(Name = "qBCMonoDif", EmitDefaultValue = true)]
+        public decimal? qBCMonoDif { get; set; }
 
         /// <summary>
         /// Alíquota ad rem do imposto diferido.  OBS: Campo revogado pela NT2023.001v1.20
         /// </summary>
         /// <value>Alíquota ad rem do imposto diferido.  OBS: Campo revogado pela NT2023.001v1.20</value>
-        [DataMember(Name = "adRemICMSDif", EmitDefaultValue = false)]
-        public decimal adRemICMSDif { get; set; }
+        [DataMember(Name = "adRemICMSDif", EmitDefaultValue = true)]
+        public decimal? adRemICMSDif { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -190,7 +195,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CST == input.CST ||
@@ -199,35 +205,43 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qBCMono == input.qBCMono ||
-                    this.qBCMono.Equals(input.qBCMono)
+                    (this.qBCMono != null &&
+                    this.qBCMono.Equals(input.qBCMono))
                 ) && 
                 (
                     this.adRemICMS == input.adRemICMS ||
-                    this.adRemICMS.Equals(input.adRemICMS)
+                    (this.adRemICMS != null &&
+                    this.adRemICMS.Equals(input.adRemICMS))
                 ) && 
                 (
                     this.vICMSMonoOp == input.vICMSMonoOp ||
-                    this.vICMSMonoOp.Equals(input.vICMSMonoOp)
+                    (this.vICMSMonoOp != null &&
+                    this.vICMSMonoOp.Equals(input.vICMSMonoOp))
                 ) && 
                 (
                     this.pDif == input.pDif ||
-                    this.pDif.Equals(input.pDif)
+                    (this.pDif != null &&
+                    this.pDif.Equals(input.pDif))
                 ) && 
                 (
                     this.vICMSMonoDif == input.vICMSMonoDif ||
-                    this.vICMSMonoDif.Equals(input.vICMSMonoDif)
+                    (this.vICMSMonoDif != null &&
+                    this.vICMSMonoDif.Equals(input.vICMSMonoDif))
                 ) && 
                 (
                     this.vICMSMono == input.vICMSMono ||
-                    this.vICMSMono.Equals(input.vICMSMono)
+                    (this.vICMSMono != null &&
+                    this.vICMSMono.Equals(input.vICMSMono))
                 ) && 
                 (
                     this.qBCMonoDif == input.qBCMonoDif ||
-                    this.qBCMonoDif.Equals(input.qBCMonoDif)
+                    (this.qBCMonoDif != null &&
+                    this.qBCMonoDif.Equals(input.qBCMonoDif))
                 ) && 
                 (
                     this.adRemICMSDif == input.adRemICMSDif ||
-                    this.adRemICMSDif.Equals(input.adRemICMSDif)
+                    (this.adRemICMSDif != null &&
+                    this.adRemICMSDif.Equals(input.adRemICMSDif))
                 );
         }
 
@@ -240,19 +254,46 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CST != null)
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qBCMono.GetHashCode();
-                hashCode = (hashCode * 59) + this.adRemICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSMonoOp.GetHashCode();
-                hashCode = (hashCode * 59) + this.pDif.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSMonoDif.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSMono.GetHashCode();
-                hashCode = (hashCode * 59) + this.qBCMonoDif.GetHashCode();
-                hashCode = (hashCode * 59) + this.adRemICMSDif.GetHashCode();
+                if (this.qBCMono != null)
+                {
+                    hashCode = (hashCode * 59) + this.qBCMono.GetHashCode();
+                }
+                if (this.adRemICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.adRemICMS.GetHashCode();
+                }
+                if (this.vICMSMonoOp != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSMonoOp.GetHashCode();
+                }
+                if (this.pDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.pDif.GetHashCode();
+                }
+                if (this.vICMSMonoDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSMonoDif.GetHashCode();
+                }
+                if (this.vICMSMono != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSMono.GetHashCode();
+                }
+                if (this.qBCMonoDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.qBCMonoDif.GetHashCode();
+                }
+                if (this.adRemICMSDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.adRemICMSDif.GetHashCode();
+                }
                 return hashCode;
             }
         }

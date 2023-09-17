@@ -52,8 +52,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="pFCPDif">Percentual do diferimento do ICMS relativo ao Fundo de Combate à Pobreza (FCP)..</param>
         /// <param name="vFCPDif">Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) diferido..</param>
         /// <param name="vFCPEfet">Valor efetivo do ICMS relativo ao Fundo de Combate à Pobreza (FCP)..</param>
-        public NfeSefazICMS51(int orig = default(int), string cST = default(string), int modBC = default(int), decimal pRedBC = default(decimal), decimal vBC = default(decimal), decimal pICMS = default(decimal), decimal vICMSOp = default(decimal), decimal pDif = default(decimal), decimal vICMSDif = default(decimal), decimal vICMS = default(decimal), decimal vBCFCP = default(decimal), decimal pFCP = default(decimal), decimal vFCP = default(decimal), decimal pFCPDif = default(decimal), decimal vFCPDif = default(decimal), decimal vFCPEfet = default(decimal))
+        public NfeSefazICMS51(int? orig = default(int?), string cST = default(string), int? modBC = default(int?), decimal? pRedBC = default(decimal?), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMSOp = default(decimal?), decimal? pDif = default(decimal?), decimal? vICMSDif = default(decimal?), decimal? vICMS = default(decimal?), decimal? vBCFCP = default(decimal?), decimal? pFCP = default(decimal?), decimal? vFCP = default(decimal?), decimal? pFCPDif = default(decimal?), decimal? vFCPDif = default(decimal?), decimal? vFCPEfet = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMS51 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -82,7 +87,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// Tributção pelo ICMS  * 20 - Com redução de base de cálculo
@@ -95,99 +100,99 @@ namespace NuvemFiscal.Sdk.Model
         /// Modalidade de determinação da BC do ICMS:  * 0 - Margem Valor Agregado (%%)  * 1 - Pauta (valor)  * 2 - Preço Tabelado Máximo (valor)  * 3 - Valor da Operação
         /// </summary>
         /// <value>Modalidade de determinação da BC do ICMS:  * 0 - Margem Valor Agregado (%%)  * 1 - Pauta (valor)  * 2 - Preço Tabelado Máximo (valor)  * 3 - Valor da Operação</value>
-        [DataMember(Name = "modBC", EmitDefaultValue = false)]
-        public int modBC { get; set; }
+        [DataMember(Name = "modBC", EmitDefaultValue = true)]
+        public int? modBC { get; set; }
 
         /// <summary>
         /// Percentual de redução da BC.
         /// </summary>
         /// <value>Percentual de redução da BC.</value>
-        [DataMember(Name = "pRedBC", EmitDefaultValue = false)]
-        public decimal pRedBC { get; set; }
+        [DataMember(Name = "pRedBC", EmitDefaultValue = true)]
+        public decimal? pRedBC { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS.
         /// </summary>
         /// <value>Valor da BC do ICMS.</value>
-        [DataMember(Name = "vBC", EmitDefaultValue = false)]
-        public decimal vBC { get; set; }
+        [DataMember(Name = "vBC", EmitDefaultValue = true)]
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do imposto.
         /// </summary>
         /// <value>Alíquota do imposto.</value>
-        [DataMember(Name = "pICMS", EmitDefaultValue = false)]
-        public decimal pICMS { get; set; }
+        [DataMember(Name = "pICMS", EmitDefaultValue = true)]
+        public decimal? pICMS { get; set; }
 
         /// <summary>
         /// Valor do ICMS da Operação.
         /// </summary>
         /// <value>Valor do ICMS da Operação.</value>
-        [DataMember(Name = "vICMSOp", EmitDefaultValue = false)]
-        public decimal vICMSOp { get; set; }
+        [DataMember(Name = "vICMSOp", EmitDefaultValue = true)]
+        public decimal? vICMSOp { get; set; }
 
         /// <summary>
         /// Percentual do diferemento.
         /// </summary>
         /// <value>Percentual do diferemento.</value>
-        [DataMember(Name = "pDif", EmitDefaultValue = false)]
-        public decimal pDif { get; set; }
+        [DataMember(Name = "pDif", EmitDefaultValue = true)]
+        public decimal? pDif { get; set; }
 
         /// <summary>
         /// Valor do ICMS da diferido.
         /// </summary>
         /// <value>Valor do ICMS da diferido.</value>
-        [DataMember(Name = "vICMSDif", EmitDefaultValue = false)]
-        public decimal vICMSDif { get; set; }
+        [DataMember(Name = "vICMSDif", EmitDefaultValue = true)]
+        public decimal? vICMSDif { get; set; }
 
         /// <summary>
         /// Valor do ICMS.
         /// </summary>
         /// <value>Valor do ICMS.</value>
-        [DataMember(Name = "vICMS", EmitDefaultValue = false)]
-        public decimal vICMS { get; set; }
+        [DataMember(Name = "vICMS", EmitDefaultValue = true)]
+        public decimal? vICMS { get; set; }
 
         /// <summary>
         /// Valor da Base de cálculo do FCP.
         /// </summary>
         /// <value>Valor da Base de cálculo do FCP.</value>
-        [DataMember(Name = "vBCFCP", EmitDefaultValue = false)]
-        public decimal vBCFCP { get; set; }
+        [DataMember(Name = "vBCFCP", EmitDefaultValue = true)]
+        public decimal? vBCFCP { get; set; }
 
         /// <summary>
         /// Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP).
         /// </summary>
         /// <value>Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP).</value>
-        [DataMember(Name = "pFCP", EmitDefaultValue = false)]
-        public decimal pFCP { get; set; }
+        [DataMember(Name = "pFCP", EmitDefaultValue = true)]
+        public decimal? pFCP { get; set; }
 
         /// <summary>
         /// Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
         /// </summary>
         /// <value>Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP).</value>
-        [DataMember(Name = "vFCP", EmitDefaultValue = false)]
-        public decimal vFCP { get; set; }
+        [DataMember(Name = "vFCP", EmitDefaultValue = true)]
+        public decimal? vFCP { get; set; }
 
         /// <summary>
         /// Percentual do diferimento do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
         /// </summary>
         /// <value>Percentual do diferimento do ICMS relativo ao Fundo de Combate à Pobreza (FCP).</value>
-        [DataMember(Name = "pFCPDif", EmitDefaultValue = false)]
-        public decimal pFCPDif { get; set; }
+        [DataMember(Name = "pFCPDif", EmitDefaultValue = true)]
+        public decimal? pFCPDif { get; set; }
 
         /// <summary>
         /// Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) diferido.
         /// </summary>
         /// <value>Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) diferido.</value>
-        [DataMember(Name = "vFCPDif", EmitDefaultValue = false)]
-        public decimal vFCPDif { get; set; }
+        [DataMember(Name = "vFCPDif", EmitDefaultValue = true)]
+        public decimal? vFCPDif { get; set; }
 
         /// <summary>
         /// Valor efetivo do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
         /// </summary>
         /// <value>Valor efetivo do ICMS relativo ao Fundo de Combate à Pobreza (FCP).</value>
-        [DataMember(Name = "vFCPEfet", EmitDefaultValue = false)]
-        public decimal vFCPEfet { get; set; }
+        [DataMember(Name = "vFCPEfet", EmitDefaultValue = true)]
+        public decimal? vFCPEfet { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -250,7 +255,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CST == input.CST ||
@@ -259,59 +265,73 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.modBC == input.modBC ||
-                    this.modBC.Equals(input.modBC)
+                    (this.modBC != null &&
+                    this.modBC.Equals(input.modBC))
                 ) && 
                 (
                     this.pRedBC == input.pRedBC ||
-                    this.pRedBC.Equals(input.pRedBC)
+                    (this.pRedBC != null &&
+                    this.pRedBC.Equals(input.pRedBC))
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pICMS == input.pICMS ||
-                    this.pICMS.Equals(input.pICMS)
+                    (this.pICMS != null &&
+                    this.pICMS.Equals(input.pICMS))
                 ) && 
                 (
                     this.vICMSOp == input.vICMSOp ||
-                    this.vICMSOp.Equals(input.vICMSOp)
+                    (this.vICMSOp != null &&
+                    this.vICMSOp.Equals(input.vICMSOp))
                 ) && 
                 (
                     this.pDif == input.pDif ||
-                    this.pDif.Equals(input.pDif)
+                    (this.pDif != null &&
+                    this.pDif.Equals(input.pDif))
                 ) && 
                 (
                     this.vICMSDif == input.vICMSDif ||
-                    this.vICMSDif.Equals(input.vICMSDif)
+                    (this.vICMSDif != null &&
+                    this.vICMSDif.Equals(input.vICMSDif))
                 ) && 
                 (
                     this.vICMS == input.vICMS ||
-                    this.vICMS.Equals(input.vICMS)
+                    (this.vICMS != null &&
+                    this.vICMS.Equals(input.vICMS))
                 ) && 
                 (
                     this.vBCFCP == input.vBCFCP ||
-                    this.vBCFCP.Equals(input.vBCFCP)
+                    (this.vBCFCP != null &&
+                    this.vBCFCP.Equals(input.vBCFCP))
                 ) && 
                 (
                     this.pFCP == input.pFCP ||
-                    this.pFCP.Equals(input.pFCP)
+                    (this.pFCP != null &&
+                    this.pFCP.Equals(input.pFCP))
                 ) && 
                 (
                     this.vFCP == input.vFCP ||
-                    this.vFCP.Equals(input.vFCP)
+                    (this.vFCP != null &&
+                    this.vFCP.Equals(input.vFCP))
                 ) && 
                 (
                     this.pFCPDif == input.pFCPDif ||
-                    this.pFCPDif.Equals(input.pFCPDif)
+                    (this.pFCPDif != null &&
+                    this.pFCPDif.Equals(input.pFCPDif))
                 ) && 
                 (
                     this.vFCPDif == input.vFCPDif ||
-                    this.vFCPDif.Equals(input.vFCPDif)
+                    (this.vFCPDif != null &&
+                    this.vFCPDif.Equals(input.vFCPDif))
                 ) && 
                 (
                     this.vFCPEfet == input.vFCPEfet ||
-                    this.vFCPEfet.Equals(input.vFCPEfet)
+                    (this.vFCPEfet != null &&
+                    this.vFCPEfet.Equals(input.vFCPEfet))
                 );
         }
 
@@ -324,25 +344,70 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CST != null)
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.modBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pRedBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSOp.GetHashCode();
-                hashCode = (hashCode * 59) + this.pDif.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSDif.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCFCP.GetHashCode();
-                hashCode = (hashCode * 59) + this.pFCP.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFCP.GetHashCode();
-                hashCode = (hashCode * 59) + this.pFCPDif.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFCPDif.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFCPEfet.GetHashCode();
+                if (this.modBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.modBC.GetHashCode();
+                }
+                if (this.pRedBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.pRedBC.GetHashCode();
+                }
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMS.GetHashCode();
+                }
+                if (this.vICMSOp != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSOp.GetHashCode();
+                }
+                if (this.pDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.pDif.GetHashCode();
+                }
+                if (this.vICMSDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSDif.GetHashCode();
+                }
+                if (this.vICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
+                }
+                if (this.vBCFCP != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCFCP.GetHashCode();
+                }
+                if (this.pFCP != null)
+                {
+                    hashCode = (hashCode * 59) + this.pFCP.GetHashCode();
+                }
+                if (this.vFCP != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFCP.GetHashCode();
+                }
+                if (this.pFCPDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.pFCPDif.GetHashCode();
+                }
+                if (this.vFCPDif != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFCPDif.GetHashCode();
+                }
+                if (this.vFCPEfet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFCPEfet.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -40,8 +40,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cNPJ">CNPJ da instituição de pagamento..</param>
         /// <param name="tBand">Bandeira da operadora de cartão..</param>
         /// <param name="cAut">Número de autorização da operação cartão de crédito/débito..</param>
-        public NfeSefazCard(int tpIntegra = default(int), string cNPJ = default(string), string tBand = default(string), string cAut = default(string))
+        public NfeSefazCard(int? tpIntegra = default(int?), string cNPJ = default(string), string tBand = default(string), string cAut = default(string))
         {
+            // to ensure "tpIntegra" is required (not null)
+            if (tpIntegra == null)
+            {
+                throw new ArgumentNullException("tpIntegra is a required property for NfeSefazCard and cannot be null");
+            }
             this.tpIntegra = tpIntegra;
             this.CNPJ = cNPJ;
             this.tBand = tBand;
@@ -53,27 +58,27 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/  * 1 - Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico  * 2 - Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS</value>
         [DataMember(Name = "tpIntegra", IsRequired = true, EmitDefaultValue = true)]
-        public int tpIntegra { get; set; }
+        public int? tpIntegra { get; set; }
 
         /// <summary>
         /// CNPJ da instituição de pagamento.
         /// </summary>
         /// <value>CNPJ da instituição de pagamento.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Bandeira da operadora de cartão.
         /// </summary>
         /// <value>Bandeira da operadora de cartão.</value>
-        [DataMember(Name = "tBand", EmitDefaultValue = false)]
+        [DataMember(Name = "tBand", EmitDefaultValue = true)]
         public string tBand { get; set; }
 
         /// <summary>
         /// Número de autorização da operação cartão de crédito/débito.
         /// </summary>
         /// <value>Número de autorização da operação cartão de crédito/débito.</value>
-        [DataMember(Name = "cAut", EmitDefaultValue = false)]
+        [DataMember(Name = "cAut", EmitDefaultValue = true)]
         public string cAut { get; set; }
 
         /// <summary>
@@ -125,7 +130,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpIntegra == input.tpIntegra ||
-                    this.tpIntegra.Equals(input.tpIntegra)
+                    (this.tpIntegra != null &&
+                    this.tpIntegra.Equals(input.tpIntegra))
                 ) && 
                 (
                     this.CNPJ == input.CNPJ ||
@@ -153,7 +159,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpIntegra.GetHashCode();
+                if (this.tpIntegra != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpIntegra.GetHashCode();
+                }
                 if (this.CNPJ != null)
                 {
                     hashCode = (hashCode * 59) + this.CNPJ.GetHashCode();

@@ -81,7 +81,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="motivo">motivo.</param>
         /// <param name="dataHora">dataHora.</param>
         /// <param name="mensagens">mensagens.</param>
-        public NfseCancelamento(string id = default(string), StatusEnum? status = default(StatusEnum?), string codigo = default(string), string motivo = default(string), DateTime dataHora = default(DateTime), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>))
+        public NfseCancelamento(string id = default(string), StatusEnum? status = default(StatusEnum?), string codigo = default(string), string motivo = default(string), DateTime? dataHora = default(DateTime?), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>))
         {
             this.id = id;
             this.status = status;
@@ -113,8 +113,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets data_hora
         /// </summary>
-        [DataMember(Name = "data_hora", EmitDefaultValue = false)]
-        public DateTime data_hora { get; set; }
+        [DataMember(Name = "data_hora", EmitDefaultValue = true)]
+        public DateTime? data_hora { get; set; }
 
         /// <summary>
         /// Gets or Sets mensagens

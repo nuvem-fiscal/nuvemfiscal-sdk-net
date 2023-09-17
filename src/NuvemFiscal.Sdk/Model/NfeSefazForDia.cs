@@ -38,9 +38,19 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="dia">Número do dia. (required).</param>
         /// <param name="qtde">Quantidade em quilogramas - peso líquido. (required).</param>
-        public NfeSefazForDia(int dia = default(int), decimal qtde = default(decimal))
+        public NfeSefazForDia(int? dia = default(int?), decimal? qtde = default(decimal?))
         {
+            // to ensure "dia" is required (not null)
+            if (dia == null)
+            {
+                throw new ArgumentNullException("dia is a required property for NfeSefazForDia and cannot be null");
+            }
             this.dia = dia;
+            // to ensure "qtde" is required (not null)
+            if (qtde == null)
+            {
+                throw new ArgumentNullException("qtde is a required property for NfeSefazForDia and cannot be null");
+            }
             this.qtde = qtde;
         }
 
@@ -49,14 +59,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número do dia.</value>
         [DataMember(Name = "dia", IsRequired = true, EmitDefaultValue = true)]
-        public int dia { get; set; }
+        public int? dia { get; set; }
 
         /// <summary>
         /// Quantidade em quilogramas - peso líquido.
         /// </summary>
         /// <value>Quantidade em quilogramas - peso líquido.</value>
         [DataMember(Name = "qtde", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qtde { get; set; }
+        public decimal? qtde { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,11 +115,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.dia == input.dia ||
-                    this.dia.Equals(input.dia)
+                    (this.dia != null &&
+                    this.dia.Equals(input.dia))
                 ) && 
                 (
                     this.qtde == input.qtde ||
-                    this.qtde.Equals(input.qtde)
+                    (this.qtde != null &&
+                    this.qtde.Equals(input.qtde))
                 );
         }
 
@@ -122,8 +134,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.dia.GetHashCode();
-                hashCode = (hashCode * 59) + this.qtde.GetHashCode();
+                if (this.dia != null)
+                {
+                    hashCode = (hashCode * 59) + this.dia.GetHashCode();
+                }
+                if (this.qtde != null)
+                {
+                    hashCode = (hashCode * 59) + this.qtde.GetHashCode();
+                }
                 return hashCode;
             }
         }

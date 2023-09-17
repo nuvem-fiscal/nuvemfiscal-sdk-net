@@ -57,14 +57,49 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dhIniViagem">Data e hora previstos de inicio da viagem.  Formato AAAA-MM-DDTHH:MM:DD TZD..</param>
         /// <param name="indCanalVerde">Indicador de participação do Canal Verde..</param>
         /// <param name="indCarregaPosterior">Indicador de MDF-e com inclusão da Carga posterior a emissão por evento de inclusão de DF-e..</param>
-        public MdfeSefazIde(int cUF = default(int), int tpAmb = default(int), int tpEmit = default(int), int tpTransp = default(int), int mod = default(int), int serie = default(int), int nMDF = default(int), string cMDF = default(string), int cDV = default(int), int modal = default(int), DateTime dhEmi = default(DateTime), int tpEmis = default(int), string procEmi = default(string), string verProc = default(string), string uFIni = default(string), string uFFim = default(string), List<MdfeSefazInfMunCarrega> infMunCarrega = default(List<MdfeSefazInfMunCarrega>), List<MdfeSefazInfPercurso> infPercurso = default(List<MdfeSefazInfPercurso>), DateTime dhIniViagem = default(DateTime), int indCanalVerde = default(int), int indCarregaPosterior = default(int))
+        public MdfeSefazIde(int? cUF = default(int?), int? tpAmb = default(int?), int? tpEmit = default(int?), int? tpTransp = default(int?), int? mod = default(int?), int? serie = default(int?), int? nMDF = default(int?), string cMDF = default(string), int? cDV = default(int?), int? modal = default(int?), DateTime? dhEmi = default(DateTime?), int? tpEmis = default(int?), string procEmi = default(string), string verProc = default(string), string uFIni = default(string), string uFFim = default(string), List<MdfeSefazInfMunCarrega> infMunCarrega = default(List<MdfeSefazInfMunCarrega>), List<MdfeSefazInfPercurso> infPercurso = default(List<MdfeSefazInfPercurso>), DateTime? dhIniViagem = default(DateTime?), int? indCanalVerde = default(int?), int? indCarregaPosterior = default(int?))
         {
+            // to ensure "cUF" is required (not null)
+            if (cUF == null)
+            {
+                throw new ArgumentNullException("cUF is a required property for MdfeSefazIde and cannot be null");
+            }
             this.cUF = cUF;
+            // to ensure "tpEmit" is required (not null)
+            if (tpEmit == null)
+            {
+                throw new ArgumentNullException("tpEmit is a required property for MdfeSefazIde and cannot be null");
+            }
             this.tpEmit = tpEmit;
+            // to ensure "serie" is required (not null)
+            if (serie == null)
+            {
+                throw new ArgumentNullException("serie is a required property for MdfeSefazIde and cannot be null");
+            }
             this.serie = serie;
+            // to ensure "nMDF" is required (not null)
+            if (nMDF == null)
+            {
+                throw new ArgumentNullException("nMDF is a required property for MdfeSefazIde and cannot be null");
+            }
             this.nMDF = nMDF;
+            // to ensure "modal" is required (not null)
+            if (modal == null)
+            {
+                throw new ArgumentNullException("modal is a required property for MdfeSefazIde and cannot be null");
+            }
             this.modal = modal;
+            // to ensure "dhEmi" is required (not null)
+            if (dhEmi == null)
+            {
+                throw new ArgumentNullException("dhEmi is a required property for MdfeSefazIde and cannot be null");
+            }
             this.dhEmi = dhEmi;
+            // to ensure "tpEmis" is required (not null)
+            if (tpEmis == null)
+            {
+                throw new ArgumentNullException("tpEmis is a required property for MdfeSefazIde and cannot be null");
+            }
             this.tpEmis = tpEmis;
             // to ensure "procEmi" is required (not null)
             if (procEmi == null)
@@ -112,84 +147,84 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código da UF do emitente do MDF-e.  Código da UF do emitente do Documento Fiscal. Utilizar a  Tabela do IBGE de código de unidades da federação.</value>
         [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
-        public int cUF { get; set; }
+        public int? cUF { get; set; }
 
         /// <summary>
         /// Tipo do Ambiente.  * 1 - Produção  * 2 - Homologação
         /// </summary>
         /// <value>Tipo do Ambiente.  * 1 - Produção  * 2 - Homologação</value>
-        [DataMember(Name = "tpAmb", EmitDefaultValue = false)]
-        public int tpAmb { get; set; }
+        [DataMember(Name = "tpAmb", EmitDefaultValue = true)]
+        public int? tpAmb { get; set; }
 
         /// <summary>
         /// Tipo do Emitente.  * 1 - Prestador de serviço de transporte  * 2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado  OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.
         /// </summary>
         /// <value>Tipo do Emitente.  * 1 - Prestador de serviço de transporte  * 2 - Transportador de Carga Própria 3 - Prestador de serviço de transporte que emitirá CT-e Globalizado  OBS: Deve ser preenchido com 2 para emitentes de NF-e e pelas transportadoras quando estiverem fazendo transporte de carga própria. Deve ser preenchido com 3 para transportador de carga que emitirá à posteriori CT-e Globalizado relacionando as NF-e.</value>
         [DataMember(Name = "tpEmit", IsRequired = true, EmitDefaultValue = true)]
-        public int tpEmit { get; set; }
+        public int? tpEmit { get; set; }
 
         /// <summary>
         /// Tipo do Transportador.  * 1 - ETC  * 2 - TAC  * 3 - CTC
         /// </summary>
         /// <value>Tipo do Transportador.  * 1 - ETC  * 2 - TAC  * 3 - CTC</value>
-        [DataMember(Name = "tpTransp", EmitDefaultValue = false)]
-        public int tpTransp { get; set; }
+        [DataMember(Name = "tpTransp", EmitDefaultValue = true)]
+        public int? tpTransp { get; set; }
 
         /// <summary>
         /// Modelo do Manifesto Eletrônico.  Utilizar o código 58 para identificação do MDF-e.
         /// </summary>
         /// <value>Modelo do Manifesto Eletrônico.  Utilizar o código 58 para identificação do MDF-e.</value>
-        [DataMember(Name = "mod", EmitDefaultValue = false)]
-        public int mod { get; set; }
+        [DataMember(Name = "mod", EmitDefaultValue = true)]
+        public int? mod { get; set; }
 
         /// <summary>
         /// Série do Manifesto.  Informar a série do documento fiscal (informar zero se inexistente).  Série na faixa [920-969]: Reservada para emissão por contribuinte pessoa física com inscrição estadual.
         /// </summary>
         /// <value>Série do Manifesto.  Informar a série do documento fiscal (informar zero se inexistente).  Série na faixa [920-969]: Reservada para emissão por contribuinte pessoa física com inscrição estadual.</value>
         [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
-        public int serie { get; set; }
+        public int? serie { get; set; }
 
         /// <summary>
         /// Número do Manifesto.  Número que identifica o Manifesto. 1 a 999999999.
         /// </summary>
         /// <value>Número do Manifesto.  Número que identifica o Manifesto. 1 a 999999999.</value>
         [DataMember(Name = "nMDF", IsRequired = true, EmitDefaultValue = true)]
-        public int nMDF { get; set; }
+        public int? nMDF { get; set; }
 
         /// <summary>
         /// Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Código numérico que compõe a Chave de Acesso.  Código aleatório gerado pelo emitente, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "cMDF", EmitDefaultValue = false)]
+        [DataMember(Name = "cMDF", EmitDefaultValue = true)]
         public string cMDF { get; set; }
 
         /// <summary>
         /// Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Digito verificador da chave de acesso do Manifesto.  Informar o dígito  de controle da chave de acesso do MDF-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "cDV", EmitDefaultValue = false)]
-        public int cDV { get; set; }
+        [DataMember(Name = "cDV", EmitDefaultValue = true)]
+        public int? cDV { get; set; }
 
         /// <summary>
         /// Modalidade de transporte.  * 1 - Rodoviário  * 2 - Aéreo  * 3 - Aquaviário  * 4 - Ferroviário
         /// </summary>
         /// <value>Modalidade de transporte.  * 1 - Rodoviário  * 2 - Aéreo  * 3 - Aquaviário  * 4 - Ferroviário</value>
         [DataMember(Name = "modal", IsRequired = true, EmitDefaultValue = true)]
-        public int modal { get; set; }
+        public int? modal { get; set; }
 
         /// <summary>
         /// Data e hora de emissão do Manifesto.  Formato AAAA-MM-DDTHH:MM:DD TZD.
         /// </summary>
         /// <value>Data e hora de emissão do Manifesto.  Formato AAAA-MM-DDTHH:MM:DD TZD.</value>
         [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime dhEmi { get; set; }
+        public DateTime? dhEmi { get; set; }
 
         /// <summary>
         /// Forma de emissão do Manifesto.  * 1 - Normal  * 2 - Contingência  * 3 - Regime Especial NFF
         /// </summary>
         /// <value>Forma de emissão do Manifesto.  * 1 - Normal  * 2 - Contingência  * 3 - Regime Especial NFF</value>
         [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
-        public int tpEmis { get; set; }
+        public int? tpEmis { get; set; }
 
         /// <summary>
         /// Identificação do processo de emissão do Manifesto.  * 0 - emissão de MDF-e com aplicativo do contribuinte
@@ -235,22 +270,22 @@ namespace NuvemFiscal.Sdk.Model
         /// Data e hora previstos de inicio da viagem.  Formato AAAA-MM-DDTHH:MM:DD TZD.
         /// </summary>
         /// <value>Data e hora previstos de inicio da viagem.  Formato AAAA-MM-DDTHH:MM:DD TZD.</value>
-        [DataMember(Name = "dhIniViagem", EmitDefaultValue = false)]
-        public DateTime dhIniViagem { get; set; }
+        [DataMember(Name = "dhIniViagem", EmitDefaultValue = true)]
+        public DateTime? dhIniViagem { get; set; }
 
         /// <summary>
         /// Indicador de participação do Canal Verde.
         /// </summary>
         /// <value>Indicador de participação do Canal Verde.</value>
-        [DataMember(Name = "indCanalVerde", EmitDefaultValue = false)]
-        public int indCanalVerde { get; set; }
+        [DataMember(Name = "indCanalVerde", EmitDefaultValue = true)]
+        public int? indCanalVerde { get; set; }
 
         /// <summary>
         /// Indicador de MDF-e com inclusão da Carga posterior a emissão por evento de inclusão de DF-e.
         /// </summary>
         /// <value>Indicador de MDF-e com inclusão da Carga posterior a emissão por evento de inclusão de DF-e.</value>
-        [DataMember(Name = "indCarregaPosterior", EmitDefaultValue = false)]
-        public int indCarregaPosterior { get; set; }
+        [DataMember(Name = "indCarregaPosterior", EmitDefaultValue = true)]
+        public int? indCarregaPosterior { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -318,31 +353,38 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.cUF == input.cUF ||
-                    this.cUF.Equals(input.cUF)
+                    (this.cUF != null &&
+                    this.cUF.Equals(input.cUF))
                 ) && 
                 (
                     this.tpAmb == input.tpAmb ||
-                    this.tpAmb.Equals(input.tpAmb)
+                    (this.tpAmb != null &&
+                    this.tpAmb.Equals(input.tpAmb))
                 ) && 
                 (
                     this.tpEmit == input.tpEmit ||
-                    this.tpEmit.Equals(input.tpEmit)
+                    (this.tpEmit != null &&
+                    this.tpEmit.Equals(input.tpEmit))
                 ) && 
                 (
                     this.tpTransp == input.tpTransp ||
-                    this.tpTransp.Equals(input.tpTransp)
+                    (this.tpTransp != null &&
+                    this.tpTransp.Equals(input.tpTransp))
                 ) && 
                 (
                     this.mod == input.mod ||
-                    this.mod.Equals(input.mod)
+                    (this.mod != null &&
+                    this.mod.Equals(input.mod))
                 ) && 
                 (
                     this.serie == input.serie ||
-                    this.serie.Equals(input.serie)
+                    (this.serie != null &&
+                    this.serie.Equals(input.serie))
                 ) && 
                 (
                     this.nMDF == input.nMDF ||
-                    this.nMDF.Equals(input.nMDF)
+                    (this.nMDF != null &&
+                    this.nMDF.Equals(input.nMDF))
                 ) && 
                 (
                     this.cMDF == input.cMDF ||
@@ -351,11 +393,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.cDV == input.cDV ||
-                    this.cDV.Equals(input.cDV)
+                    (this.cDV != null &&
+                    this.cDV.Equals(input.cDV))
                 ) && 
                 (
                     this.modal == input.modal ||
-                    this.modal.Equals(input.modal)
+                    (this.modal != null &&
+                    this.modal.Equals(input.modal))
                 ) && 
                 (
                     this.dhEmi == input.dhEmi ||
@@ -364,7 +408,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpEmis == input.tpEmis ||
-                    this.tpEmis.Equals(input.tpEmis)
+                    (this.tpEmis != null &&
+                    this.tpEmis.Equals(input.tpEmis))
                 ) && 
                 (
                     this.procEmi == input.procEmi ||
@@ -405,11 +450,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indCanalVerde == input.indCanalVerde ||
-                    this.indCanalVerde.Equals(input.indCanalVerde)
+                    (this.indCanalVerde != null &&
+                    this.indCanalVerde.Equals(input.indCanalVerde))
                 ) && 
                 (
                     this.indCarregaPosterior == input.indCarregaPosterior ||
-                    this.indCarregaPosterior.Equals(input.indCarregaPosterior)
+                    (this.indCarregaPosterior != null &&
+                    this.indCarregaPosterior.Equals(input.indCarregaPosterior))
                 );
         }
 
@@ -422,24 +469,54 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.cUF.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpEmit.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpTransp.GetHashCode();
-                hashCode = (hashCode * 59) + this.mod.GetHashCode();
-                hashCode = (hashCode * 59) + this.serie.GetHashCode();
-                hashCode = (hashCode * 59) + this.nMDF.GetHashCode();
+                if (this.cUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.cUF.GetHashCode();
+                }
+                if (this.tpAmb != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
+                }
+                if (this.tpEmit != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpEmit.GetHashCode();
+                }
+                if (this.tpTransp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpTransp.GetHashCode();
+                }
+                if (this.mod != null)
+                {
+                    hashCode = (hashCode * 59) + this.mod.GetHashCode();
+                }
+                if (this.serie != null)
+                {
+                    hashCode = (hashCode * 59) + this.serie.GetHashCode();
+                }
+                if (this.nMDF != null)
+                {
+                    hashCode = (hashCode * 59) + this.nMDF.GetHashCode();
+                }
                 if (this.cMDF != null)
                 {
                     hashCode = (hashCode * 59) + this.cMDF.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.cDV.GetHashCode();
-                hashCode = (hashCode * 59) + this.modal.GetHashCode();
+                if (this.cDV != null)
+                {
+                    hashCode = (hashCode * 59) + this.cDV.GetHashCode();
+                }
+                if (this.modal != null)
+                {
+                    hashCode = (hashCode * 59) + this.modal.GetHashCode();
+                }
                 if (this.dhEmi != null)
                 {
                     hashCode = (hashCode * 59) + this.dhEmi.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpEmis.GetHashCode();
+                if (this.tpEmis != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpEmis.GetHashCode();
+                }
                 if (this.procEmi != null)
                 {
                     hashCode = (hashCode * 59) + this.procEmi.GetHashCode();
@@ -468,8 +545,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dhIniViagem.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indCanalVerde.GetHashCode();
-                hashCode = (hashCode * 59) + this.indCarregaPosterior.GetHashCode();
+                if (this.indCanalVerde != null)
+                {
+                    hashCode = (hashCode * 59) + this.indCanalVerde.GetHashCode();
+                }
+                if (this.indCarregaPosterior != null)
+                {
+                    hashCode = (hashCode * 59) + this.indCarregaPosterior.GetHashCode();
+                }
                 return hashCode;
             }
         }

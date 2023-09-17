@@ -39,8 +39,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="tpTraf">Tipo de Tráfego.  Preencher com:  * 0 - Próprio  * 1 - Mútuo  * 2 - Rodoferroviário  * 3 - Rodoviário (required).</param>
         /// <param name="trafMut">trafMut.</param>
         /// <param name="fluxo">Fluxo Ferroviário.  Trata-se de um número identificador do contrato firmado com o cliente. (required).</param>
-        public CteSefazFerrov(int tpTraf = default(int), CteSefazTrafMut trafMut = default(CteSefazTrafMut), string fluxo = default(string))
+        public CteSefazFerrov(int? tpTraf = default(int?), CteSefazTrafMut trafMut = default(CteSefazTrafMut), string fluxo = default(string))
         {
+            // to ensure "tpTraf" is required (not null)
+            if (tpTraf == null)
+            {
+                throw new ArgumentNullException("tpTraf is a required property for CteSefazFerrov and cannot be null");
+            }
             this.tpTraf = tpTraf;
             // to ensure "fluxo" is required (not null)
             if (fluxo == null)
@@ -56,7 +61,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de Tráfego.  Preencher com:  * 0 - Próprio  * 1 - Mútuo  * 2 - Rodoferroviário  * 3 - Rodoviário</value>
         [DataMember(Name = "tpTraf", IsRequired = true, EmitDefaultValue = true)]
-        public int tpTraf { get; set; }
+        public int? tpTraf { get; set; }
 
         /// <summary>
         /// Gets or Sets trafMut
@@ -119,7 +124,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpTraf == input.tpTraf ||
-                    this.tpTraf.Equals(input.tpTraf)
+                    (this.tpTraf != null &&
+                    this.tpTraf.Equals(input.tpTraf))
                 ) && 
                 (
                     this.trafMut == input.trafMut ||
@@ -142,7 +148,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpTraf.GetHashCode();
+                if (this.tpTraf != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpTraf.GetHashCode();
+                }
                 if (this.trafMut != null)
                 {
                     hashCode = (hashCode * 59) + this.trafMut.GetHashCode();

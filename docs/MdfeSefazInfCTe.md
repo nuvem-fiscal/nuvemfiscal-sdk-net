@@ -7,7 +7,7 @@ Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **chCTe** | **string** | Conhecimento Eletrônico - Chave de Acesso. | 
 **SegCodBarra** | **string** | Segundo código de barras. | [optional] 
-**indReentrega** | **int** | Indicador de Reentrega. | [optional] 
+**indReentrega** | **int?** | Indicador de Reentrega. | [optional] 
 **infUnidTransp** | [**List&lt;MdfeSefazUnidadeTransp&gt;**](MdfeSefazUnidadeTransp.md) |  | [optional] 
 **peri** | [**List&lt;MdfeSefazPeri&gt;**](MdfeSefazPeri.md) |  | [optional] 
 **infEntregaParcial** | [**MdfeSefazInfEntregaParcial**](MdfeSefazInfEntregaParcial.md) |  | [optional] 

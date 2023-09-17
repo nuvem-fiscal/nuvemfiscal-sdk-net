@@ -40,8 +40,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nSerie">Número de série da arma. (required).</param>
         /// <param name="nCano">Número de série do cano. (required).</param>
         /// <param name="descr">Descrição completa da arma, compreendendo: calibre, marca, capacidade, tipo de funcionamento, comprimento e demais elementos que permitam a sua perfeita identificação. (required).</param>
-        public NfeSefazArma(int tpArma = default(int), string nSerie = default(string), string nCano = default(string), string descr = default(string))
+        public NfeSefazArma(int? tpArma = default(int?), string nSerie = default(string), string nCano = default(string), string descr = default(string))
         {
+            // to ensure "tpArma" is required (not null)
+            if (tpArma == null)
+            {
+                throw new ArgumentNullException("tpArma is a required property for NfeSefazArma and cannot be null");
+            }
             this.tpArma = tpArma;
             // to ensure "nSerie" is required (not null)
             if (nSerie == null)
@@ -68,7 +73,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indicador do tipo de arma de fogo (0 - Uso permitido; 1 - Uso restrito).</value>
         [DataMember(Name = "tpArma", IsRequired = true, EmitDefaultValue = true)]
-        public int tpArma { get; set; }
+        public int? tpArma { get; set; }
 
         /// <summary>
         /// Número de série da arma.
@@ -140,7 +145,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpArma == input.tpArma ||
-                    this.tpArma.Equals(input.tpArma)
+                    (this.tpArma != null &&
+                    this.tpArma.Equals(input.tpArma))
                 ) && 
                 (
                     this.nSerie == input.nSerie ||
@@ -168,7 +174,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpArma.GetHashCode();
+                if (this.tpArma != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpArma.GetHashCode();
+                }
                 if (this.nSerie != null)
                 {
                     hashCode = (hashCode * 59) + this.nSerie.GetHashCode();

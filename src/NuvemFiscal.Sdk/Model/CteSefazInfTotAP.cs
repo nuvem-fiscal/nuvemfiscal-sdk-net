@@ -38,9 +38,19 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="qTotProd">Quantidade total de artigos perigosos.  15 posições, sendo 11 inteiras e 4 decimais.  Deve indicar a quantidade total do artigo perigoso, tendo como base a unidade referenciada na Tabela 3-1 do Doc 9284, por exemplo: litros  quilogramas  quilograma bruto etc. O preenchimento não deve, entretanto, incluir a unidade de medida. No caso de transporte de material radioativo, deve-se indicar o somatório dos Índices de Transporte (TI). Não indicar a quantidade do artigo perigoso por embalagem. (required).</param>
         /// <param name="uniAP">Unidade de medida.  * 1 - KG  * 2 - KG G (quilograma bruto)  * 3 - LITROS  * 4 - TI (índice de transporte para radioativos)  * 5 - Unidades (apenas para artigos perigosos medidos em unidades que não se enquadram nos itens acima. Exemplo: baterias, celulares, equipamentos, veículos, dentre outros) (required).</param>
-        public CteSefazInfTotAP(decimal qTotProd = default(decimal), int uniAP = default(int))
+        public CteSefazInfTotAP(decimal? qTotProd = default(decimal?), int? uniAP = default(int?))
         {
+            // to ensure "qTotProd" is required (not null)
+            if (qTotProd == null)
+            {
+                throw new ArgumentNullException("qTotProd is a required property for CteSefazInfTotAP and cannot be null");
+            }
             this.qTotProd = qTotProd;
+            // to ensure "uniAP" is required (not null)
+            if (uniAP == null)
+            {
+                throw new ArgumentNullException("uniAP is a required property for CteSefazInfTotAP and cannot be null");
+            }
             this.uniAP = uniAP;
         }
 
@@ -49,14 +59,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade total de artigos perigosos.  15 posições, sendo 11 inteiras e 4 decimais.  Deve indicar a quantidade total do artigo perigoso, tendo como base a unidade referenciada na Tabela 3-1 do Doc 9284, por exemplo: litros  quilogramas  quilograma bruto etc. O preenchimento não deve, entretanto, incluir a unidade de medida. No caso de transporte de material radioativo, deve-se indicar o somatório dos Índices de Transporte (TI). Não indicar a quantidade do artigo perigoso por embalagem.</value>
         [DataMember(Name = "qTotProd", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qTotProd { get; set; }
+        public decimal? qTotProd { get; set; }
 
         /// <summary>
         /// Unidade de medida.  * 1 - KG  * 2 - KG G (quilograma bruto)  * 3 - LITROS  * 4 - TI (índice de transporte para radioativos)  * 5 - Unidades (apenas para artigos perigosos medidos em unidades que não se enquadram nos itens acima. Exemplo: baterias, celulares, equipamentos, veículos, dentre outros)
         /// </summary>
         /// <value>Unidade de medida.  * 1 - KG  * 2 - KG G (quilograma bruto)  * 3 - LITROS  * 4 - TI (índice de transporte para radioativos)  * 5 - Unidades (apenas para artigos perigosos medidos em unidades que não se enquadram nos itens acima. Exemplo: baterias, celulares, equipamentos, veículos, dentre outros)</value>
         [DataMember(Name = "uniAP", IsRequired = true, EmitDefaultValue = true)]
-        public int uniAP { get; set; }
+        public int? uniAP { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,11 +115,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.qTotProd == input.qTotProd ||
-                    this.qTotProd.Equals(input.qTotProd)
+                    (this.qTotProd != null &&
+                    this.qTotProd.Equals(input.qTotProd))
                 ) && 
                 (
                     this.uniAP == input.uniAP ||
-                    this.uniAP.Equals(input.uniAP)
+                    (this.uniAP != null &&
+                    this.uniAP.Equals(input.uniAP))
                 );
         }
 
@@ -122,8 +134,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.qTotProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.uniAP.GetHashCode();
+                if (this.qTotProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.qTotProd.GetHashCode();
+                }
+                if (this.uniAP != null)
+                {
+                    hashCode = (hashCode * 59) + this.uniAP.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -38,8 +38,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="vReceb">Valor monetário recebido pelo intermediário do serviço (R$)..</param>
         /// <param name="vServ">Valor dos serviços em R$. (required).</param>
-        public VServPrest(decimal vReceb = default(decimal), decimal vServ = default(decimal))
+        public VServPrest(decimal? vReceb = default(decimal?), decimal? vServ = default(decimal?))
         {
+            // to ensure "vServ" is required (not null)
+            if (vServ == null)
+            {
+                throw new ArgumentNullException("vServ is a required property for VServPrest and cannot be null");
+            }
             this.vServ = vServ;
             this.vReceb = vReceb;
         }
@@ -48,15 +53,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor monetário recebido pelo intermediário do serviço (R$).
         /// </summary>
         /// <value>Valor monetário recebido pelo intermediário do serviço (R$).</value>
-        [DataMember(Name = "vReceb", EmitDefaultValue = false)]
-        public decimal vReceb { get; set; }
+        [DataMember(Name = "vReceb", EmitDefaultValue = true)]
+        public decimal? vReceb { get; set; }
 
         /// <summary>
         /// Valor dos serviços em R$.
         /// </summary>
         /// <value>Valor dos serviços em R$.</value>
         [DataMember(Name = "vServ", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vServ { get; set; }
+        public decimal? vServ { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,11 +110,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vReceb == input.vReceb ||
-                    this.vReceb.Equals(input.vReceb)
+                    (this.vReceb != null &&
+                    this.vReceb.Equals(input.vReceb))
                 ) && 
                 (
                     this.vServ == input.vServ ||
-                    this.vServ.Equals(input.vServ)
+                    (this.vServ != null &&
+                    this.vServ.Equals(input.vServ))
                 );
         }
 
@@ -122,8 +129,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vReceb.GetHashCode();
-                hashCode = (hashCode * 59) + this.vServ.GetHashCode();
+                if (this.vReceb != null)
+                {
+                    hashCode = (hashCode * 59) + this.vReceb.GetHashCode();
+                }
+                if (this.vServ != null)
+                {
+                    hashCode = (hashCode * 59) + this.vServ.GetHashCode();
+                }
                 return hashCode;
             }
         }

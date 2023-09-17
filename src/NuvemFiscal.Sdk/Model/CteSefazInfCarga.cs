@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xOutCat">Outras características da carga.  \&quot;FRIA\&quot;, \&quot;GRANEL\&quot;, \&quot;REFRIGERADA\&quot;, \&quot;Medidas: 12X12X12\&quot;..</param>
         /// <param name="infQ">infQ (required).</param>
         /// <param name="vCargaAverb">Valor da Carga para efeito de averbação.  Normalmente igual ao valor declarado da mercadoria, diferente por exemplo, quando a mercadoria transportada é isenta de tributos nacionais para exportação, onde é preciso averbar um valor maior, pois no caso de indenização, o valor a ser pago será maior..</param>
-        public CteSefazInfCarga(decimal vCarga = default(decimal), string proPred = default(string), string xOutCat = default(string), List<CteSefazInfQ> infQ = default(List<CteSefazInfQ>), decimal vCargaAverb = default(decimal))
+        public CteSefazInfCarga(decimal? vCarga = default(decimal?), string proPred = default(string), string xOutCat = default(string), List<CteSefazInfQ> infQ = default(List<CteSefazInfQ>), decimal? vCargaAverb = default(decimal?))
         {
             // to ensure "proPred" is required (not null)
             if (proPred == null)
@@ -64,8 +64,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor total da carga.  Dever ser informado para todos os modais, com exceção para o Dutoviário.
         /// </summary>
         /// <value>Valor total da carga.  Dever ser informado para todos os modais, com exceção para o Dutoviário.</value>
-        [DataMember(Name = "vCarga", EmitDefaultValue = false)]
-        public decimal vCarga { get; set; }
+        [DataMember(Name = "vCarga", EmitDefaultValue = true)]
+        public decimal? vCarga { get; set; }
 
         /// <summary>
         /// Produto predominante.  Informar a descrição do produto predominante.
@@ -78,7 +78,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Outras características da carga.  \&quot;FRIA\&quot;, \&quot;GRANEL\&quot;, \&quot;REFRIGERADA\&quot;, \&quot;Medidas: 12X12X12\&quot;.
         /// </summary>
         /// <value>Outras características da carga.  \&quot;FRIA\&quot;, \&quot;GRANEL\&quot;, \&quot;REFRIGERADA\&quot;, \&quot;Medidas: 12X12X12\&quot;.</value>
-        [DataMember(Name = "xOutCat", EmitDefaultValue = false)]
+        [DataMember(Name = "xOutCat", EmitDefaultValue = true)]
         public string xOutCat { get; set; }
 
         /// <summary>
@@ -91,8 +91,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da Carga para efeito de averbação.  Normalmente igual ao valor declarado da mercadoria, diferente por exemplo, quando a mercadoria transportada é isenta de tributos nacionais para exportação, onde é preciso averbar um valor maior, pois no caso de indenização, o valor a ser pago será maior.
         /// </summary>
         /// <value>Valor da Carga para efeito de averbação.  Normalmente igual ao valor declarado da mercadoria, diferente por exemplo, quando a mercadoria transportada é isenta de tributos nacionais para exportação, onde é preciso averbar um valor maior, pois no caso de indenização, o valor a ser pago será maior.</value>
-        [DataMember(Name = "vCargaAverb", EmitDefaultValue = false)]
-        public decimal vCargaAverb { get; set; }
+        [DataMember(Name = "vCargaAverb", EmitDefaultValue = true)]
+        public decimal? vCargaAverb { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -144,7 +144,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vCarga == input.vCarga ||
-                    this.vCarga.Equals(input.vCarga)
+                    (this.vCarga != null &&
+                    this.vCarga.Equals(input.vCarga))
                 ) && 
                 (
                     this.proPred == input.proPred ||
@@ -164,7 +165,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vCargaAverb == input.vCargaAverb ||
-                    this.vCargaAverb.Equals(input.vCargaAverb)
+                    (this.vCargaAverb != null &&
+                    this.vCargaAverb.Equals(input.vCargaAverb))
                 );
         }
 
@@ -177,7 +179,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vCarga.GetHashCode();
+                if (this.vCarga != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCarga.GetHashCode();
+                }
                 if (this.proPred != null)
                 {
                     hashCode = (hashCode * 59) + this.proPred.GetHashCode();
@@ -190,7 +195,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.infQ.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vCargaAverb.GetHashCode();
+                if (this.vCargaAverb != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCargaAverb.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xEmb">Embalagem do produto. (required).</param>
         /// <param name="qVolEmb">Volume do produto na embalagem. (required).</param>
         /// <param name="uEmb">Unidade de Medida da Embalagem. (required).</param>
-        public NfeSefazInfProdEmb(string xEmb = default(string), decimal qVolEmb = default(decimal), string uEmb = default(string))
+        public NfeSefazInfProdEmb(string xEmb = default(string), decimal? qVolEmb = default(decimal?), string uEmb = default(string))
         {
             // to ensure "xEmb" is required (not null)
             if (xEmb == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xEmb is a required property for NfeSefazInfProdEmb and cannot be null");
             }
             this.xEmb = xEmb;
+            // to ensure "qVolEmb" is required (not null)
+            if (qVolEmb == null)
+            {
+                throw new ArgumentNullException("qVolEmb is a required property for NfeSefazInfProdEmb and cannot be null");
+            }
             this.qVolEmb = qVolEmb;
             // to ensure "uEmb" is required (not null)
             if (uEmb == null)
@@ -68,7 +73,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Volume do produto na embalagem.</value>
         [DataMember(Name = "qVolEmb", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qVolEmb { get; set; }
+        public decimal? qVolEmb { get; set; }
 
         /// <summary>
         /// Unidade de Medida da Embalagem.
@@ -130,7 +135,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qVolEmb == input.qVolEmb ||
-                    this.qVolEmb.Equals(input.qVolEmb)
+                    (this.qVolEmb != null &&
+                    this.qVolEmb.Equals(input.qVolEmb))
                 ) && 
                 (
                     this.uEmb == input.uEmb ||
@@ -152,7 +158,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xEmb.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qVolEmb.GetHashCode();
+                if (this.qVolEmb != null)
+                {
+                    hashCode = (hashCode * 59) + this.qVolEmb.GetHashCode();
+                }
                 if (this.uEmb != null)
                 {
                     hashCode = (hashCode * 59) + this.uEmb.GetHashCode();

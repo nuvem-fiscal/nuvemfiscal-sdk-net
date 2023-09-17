@@ -73,21 +73,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome apropriado para embarque do produto.  Ver a legislação de transporte de produtos perigosos aplicada ao modo de transporte.
         /// </summary>
         /// <value>Nome apropriado para embarque do produto.  Ver a legislação de transporte de produtos perigosos aplicada ao modo de transporte.</value>
-        [DataMember(Name = "xNomeAE", EmitDefaultValue = false)]
+        [DataMember(Name = "xNomeAE", EmitDefaultValue = true)]
         public string xNomeAE { get; set; }
 
         /// <summary>
         /// Classe ou subclasse/divisão, e risco subsidiário/risco secundário.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal.
         /// </summary>
         /// <value>Classe ou subclasse/divisão, e risco subsidiário/risco secundário.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal.</value>
-        [DataMember(Name = "xClaRisco", EmitDefaultValue = false)]
+        [DataMember(Name = "xClaRisco", EmitDefaultValue = true)]
         public string xClaRisco { get; set; }
 
         /// <summary>
         /// Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal  Preenchimento obrigatório para o modal aéreo.  A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo.
         /// </summary>
         /// <value>Grupo de Embalagem.  Ver a legislação de transporte de produtos perigosos aplicadas ao modal  Preenchimento obrigatório para o modal aéreo.  A legislação para o modal rodoviário e ferroviário não atribui grupo de embalagem para todos os produtos, portanto haverá casos de não preenchimento desse campo.</value>
-        [DataMember(Name = "grEmb", EmitDefaultValue = false)]
+        [DataMember(Name = "grEmb", EmitDefaultValue = true)]
         public string grEmb { get; set; }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade e Tipo de volumes.  Preencher conforme a legislação de transporte de produtos perigosos aplicada ao modal.
         /// </summary>
         /// <value>Quantidade e Tipo de volumes.  Preencher conforme a legislação de transporte de produtos perigosos aplicada ao modal.</value>
-        [DataMember(Name = "qVolTipo", EmitDefaultValue = false)]
+        [DataMember(Name = "qVolTipo", EmitDefaultValue = true)]
         public string qVolTipo { get; set; }
 
         /// <summary>

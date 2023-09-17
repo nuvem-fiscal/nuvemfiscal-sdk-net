@@ -45,9 +45,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="irin">Irin do navio sempre deverá ser informado. (required).</param>
         /// <param name="detCont">detCont.</param>
         /// <param name="tpNav">Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem.</param>
-        public CteSefazAquav(decimal vPrest = default(decimal), decimal vAFRMM = default(decimal), string xNavio = default(string), List<CteSefazBalsa> balsa = default(List<CteSefazBalsa>), string nViag = default(string), string direc = default(string), string irin = default(string), List<CteSefazDetCont> detCont = default(List<CteSefazDetCont>), int tpNav = default(int))
+        public CteSefazAquav(decimal? vPrest = default(decimal?), decimal? vAFRMM = default(decimal?), string xNavio = default(string), List<CteSefazBalsa> balsa = default(List<CteSefazBalsa>), string nViag = default(string), string direc = default(string), string irin = default(string), List<CteSefazDetCont> detCont = default(List<CteSefazDetCont>), int? tpNav = default(int?))
         {
+            // to ensure "vPrest" is required (not null)
+            if (vPrest == null)
+            {
+                throw new ArgumentNullException("vPrest is a required property for CteSefazAquav and cannot be null");
+            }
             this.vPrest = vPrest;
+            // to ensure "vAFRMM" is required (not null)
+            if (vAFRMM == null)
+            {
+                throw new ArgumentNullException("vAFRMM is a required property for CteSefazAquav and cannot be null");
+            }
             this.vAFRMM = vAFRMM;
             // to ensure "xNavio" is required (not null)
             if (xNavio == null)
@@ -78,14 +88,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da Prestação Base de Cálculo do AFRMM.</value>
         [DataMember(Name = "vPrest", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vPrest { get; set; }
+        public decimal? vPrest { get; set; }
 
         /// <summary>
         /// AFRMM (Adicional de Frete para Renovação da Marinha Mercante).
         /// </summary>
         /// <value>AFRMM (Adicional de Frete para Renovação da Marinha Mercante).</value>
         [DataMember(Name = "vAFRMM", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vAFRMM { get; set; }
+        public decimal? vAFRMM { get; set; }
 
         /// <summary>
         /// Identificação do Navio.
@@ -104,7 +114,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da Viagem.
         /// </summary>
         /// <value>Número da Viagem.</value>
-        [DataMember(Name = "nViag", EmitDefaultValue = false)]
+        [DataMember(Name = "nViag", EmitDefaultValue = true)]
         public string nViag { get; set; }
 
         /// <summary>
@@ -131,8 +141,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem
         /// </summary>
         /// <value>Tipo de Navegação.  Preencher com:  * 0 - Interior  * 1 - Cabotagem</value>
-        [DataMember(Name = "tpNav", EmitDefaultValue = false)]
-        public int tpNav { get; set; }
+        [DataMember(Name = "tpNav", EmitDefaultValue = true)]
+        public int? tpNav { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -188,11 +198,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vPrest == input.vPrest ||
-                    this.vPrest.Equals(input.vPrest)
+                    (this.vPrest != null &&
+                    this.vPrest.Equals(input.vPrest))
                 ) && 
                 (
                     this.vAFRMM == input.vAFRMM ||
-                    this.vAFRMM.Equals(input.vAFRMM)
+                    (this.vAFRMM != null &&
+                    this.vAFRMM.Equals(input.vAFRMM))
                 ) && 
                 (
                     this.xNavio == input.xNavio ||
@@ -228,7 +240,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpNav == input.tpNav ||
-                    this.tpNav.Equals(input.tpNav)
+                    (this.tpNav != null &&
+                    this.tpNav.Equals(input.tpNav))
                 );
         }
 
@@ -241,8 +254,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vPrest.GetHashCode();
-                hashCode = (hashCode * 59) + this.vAFRMM.GetHashCode();
+                if (this.vPrest != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPrest.GetHashCode();
+                }
+                if (this.vAFRMM != null)
+                {
+                    hashCode = (hashCode * 59) + this.vAFRMM.GetHashCode();
+                }
                 if (this.xNavio != null)
                 {
                     hashCode = (hashCode * 59) + this.xNavio.GetHashCode();
@@ -267,7 +286,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.detCont.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpNav.GetHashCode();
+                if (this.tpNav != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpNav.GetHashCode();
+                }
                 return hashCode;
             }
         }

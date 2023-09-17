@@ -113,7 +113,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="codigoMensagem">Código da Mensagem..</param>
         /// <param name="mensagem">Mensagem da SEFAZ para o emissor..</param>
         /// <param name="tipoEvento">tipoEvento.</param>
-        public DfeEvento(string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), StatusEnum? status = default(StatusEnum?), DfeAutorEvento autor = default(DfeAutorEvento), string chaveAcesso = default(string), DateTime dataEvento = default(DateTime), int numeroSequencial = default(int), DateTime dataRecebimento = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), string numeroProtocolo = default(string), int codigoMensagem = default(int), string mensagem = default(string), string tipoEvento = default(string))
+        public DfeEvento(string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), StatusEnum? status = default(StatusEnum?), DfeAutorEvento autor = default(DfeAutorEvento), string chaveAcesso = default(string), DateTime dataEvento = default(DateTime), int numeroSequencial = default(int), DateTime? dataRecebimento = default(DateTime?), int codigoStatus = default(int), string motivoStatus = default(string), string numeroProtocolo = default(string), int codigoMensagem = default(int), string mensagem = default(string), string tipoEvento = default(string))
         {
             this.id = id;
             this.ambiente = ambiente;
@@ -169,8 +169,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Data e hora do recebimento do Evento pela SEFAZ.
         /// </summary>
         /// <value>Data e hora do recebimento do Evento pela SEFAZ.</value>
-        [DataMember(Name = "data_recebimento", EmitDefaultValue = false)]
-        public DateTime data_recebimento { get; set; }
+        [DataMember(Name = "data_recebimento", EmitDefaultValue = true)]
+        public DateTime? data_recebimento { get; set; }
 
         /// <summary>
         /// Código do status de registro do Evento.

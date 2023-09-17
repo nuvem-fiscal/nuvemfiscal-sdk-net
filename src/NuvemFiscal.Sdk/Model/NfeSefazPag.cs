@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="detPag">detPag (required).</param>
         /// <param name="vTroco">Valor do Troco..</param>
-        public NfeSefazPag(List<NfeSefazDetPag> detPag = default(List<NfeSefazDetPag>), decimal vTroco = default(decimal))
+        public NfeSefazPag(List<NfeSefazDetPag> detPag = default(List<NfeSefazDetPag>), decimal? vTroco = default(decimal?))
         {
             // to ensure "detPag" is required (not null)
             if (detPag == null)
@@ -59,8 +59,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do Troco.
         /// </summary>
         /// <value>Valor do Troco.</value>
-        [DataMember(Name = "vTroco", EmitDefaultValue = false)]
-        public decimal vTroco { get; set; }
+        [DataMember(Name = "vTroco", EmitDefaultValue = true)]
+        public decimal? vTroco { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +115,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vTroco == input.vTroco ||
-                    this.vTroco.Equals(input.vTroco)
+                    (this.vTroco != null &&
+                    this.vTroco.Equals(input.vTroco))
                 );
         }
 
@@ -132,7 +133,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.detPag.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vTroco.GetHashCode();
+                if (this.vTroco != null)
+                {
+                    hashCode = (hashCode * 59) + this.vTroco.GetHashCode();
+                }
                 return hashCode;
             }
         }

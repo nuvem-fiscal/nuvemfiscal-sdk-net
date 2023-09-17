@@ -108,7 +108,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Complemento.
         /// </summary>
         /// <value>Complemento.</value>
-        [DataMember(Name = "xCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "xCpl", EmitDefaultValue = true)]
         public string xCpl { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace NuvemFiscal.Sdk.Model
         /// CEP.  Informar os zeros não significativos.
         /// </summary>
         /// <value>CEP.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CEP", EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", EmitDefaultValue = true)]
         public string CEP { get; set; }
 
         /// <summary>
@@ -150,14 +150,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do país.  Utilizar a tabela do BACEN.
         /// </summary>
         /// <value>Código do país.  Utilizar a tabela do BACEN.</value>
-        [DataMember(Name = "cPais", EmitDefaultValue = false)]
+        [DataMember(Name = "cPais", EmitDefaultValue = true)]
         public string cPais { get; set; }
 
         /// <summary>
         /// Nome do país.
         /// </summary>
         /// <value>Nome do país.</value>
-        [DataMember(Name = "xPais", EmitDefaultValue = false)]
+        [DataMember(Name = "xPais", EmitDefaultValue = true)]
         public string xPais { get; set; }
 
         /// <summary>

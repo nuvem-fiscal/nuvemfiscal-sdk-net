@@ -120,7 +120,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cancelamento">cancelamento.</param>
         /// <param name="mensagens">mensagens.</param>
         /// <param name="declaracaoPrestacaoServico">declaracaoPrestacaoServico.</param>
-        public Nfse(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string numero = default(string), string codigoVerificacao = default(string), string linkUrl = default(string), DateTime dataEmissao = default(DateTime), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), DPS dPS = default(DPS), NfseCancelamento cancelamento = default(NfseCancelamento), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>), Rps declaracaoPrestacaoServico = default(Rps))
+        public Nfse(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string numero = default(string), string codigoVerificacao = default(string), string linkUrl = default(string), DateTime? dataEmissao = default(DateTime?), AmbienteEnum? ambiente = default(AmbienteEnum?), string referencia = default(string), DPS dPS = default(DPS), NfseCancelamento cancelamento = default(NfseCancelamento), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>), Rps declaracaoPrestacaoServico = default(Rps))
         {
             this.id = id;
             this.created_at = createdAt;
@@ -171,8 +171,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Gets or Sets data_emissao
         /// </summary>
-        [DataMember(Name = "data_emissao", EmitDefaultValue = false)]
-        public DateTime data_emissao { get; set; }
+        [DataMember(Name = "data_emissao", EmitDefaultValue = true)]
+        public DateTime? data_emissao { get; set; }
 
         /// <summary>
         /// Gets or Sets referencia

@@ -444,7 +444,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>EmpresaListagem</returns>
         EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string));
 
@@ -458,7 +458,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>ApiResponse of EmpresaListagem</returns>
         ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string));
         #endregion Synchronous Operations
@@ -981,7 +981,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaListagem</returns>
         System.Threading.Tasks.Task<EmpresaListagem> ListarEmpresasAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -996,7 +996,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaListagem)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaListagem>> ListarEmpresasWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -4223,7 +4223,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>EmpresaListagem</returns>
         public EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string))
         {
@@ -4238,7 +4238,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>ApiResponse of EmpresaListagem</returns>
         public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string))
         {
@@ -4306,7 +4306,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaListagem</returns>
         public async System.Threading.Tasks.Task<EmpresaListagem> ListarEmpresasAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4322,7 +4322,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="top">Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional, default to 10)</param>
         /// <param name="skip">Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional, default to 0)</param>
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
-        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.  Utilize o valor sem máscara. (optional)</param>
+        /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaListagem)</returns>
         public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem>> ListarEmpresasWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

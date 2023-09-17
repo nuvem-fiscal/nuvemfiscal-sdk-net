@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do ato concessório de Drawback.
         /// </summary>
         /// <value>Número do ato concessório de Drawback.</value>
-        [DataMember(Name = "nDraw", EmitDefaultValue = false)]
+        [DataMember(Name = "nDraw", EmitDefaultValue = true)]
         public string nDraw { get; set; }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBC">Valor da BC do COFINS. (required).</param>
         /// <param name="pCOFINS">Alíquota do COFINS (em percentual). (required).</param>
         /// <param name="vCOFINS">Valor do COFINS. (required).</param>
-        public NfeSefazCOFINSAliq(string cST = default(string), decimal vBC = default(decimal), decimal pCOFINS = default(decimal), decimal vCOFINS = default(decimal))
+        public NfeSefazCOFINSAliq(string cST = default(string), decimal? vBC = default(decimal?), decimal? pCOFINS = default(decimal?), decimal? vCOFINS = default(decimal?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -48,8 +48,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for NfeSefazCOFINSAliq and cannot be null");
             }
             this.CST = cST;
+            // to ensure "vBC" is required (not null)
+            if (vBC == null)
+            {
+                throw new ArgumentNullException("vBC is a required property for NfeSefazCOFINSAliq and cannot be null");
+            }
             this.vBC = vBC;
+            // to ensure "pCOFINS" is required (not null)
+            if (pCOFINS == null)
+            {
+                throw new ArgumentNullException("pCOFINS is a required property for NfeSefazCOFINSAliq and cannot be null");
+            }
             this.pCOFINS = pCOFINS;
+            // to ensure "vCOFINS" is required (not null)
+            if (vCOFINS == null)
+            {
+                throw new ArgumentNullException("vCOFINS is a required property for NfeSefazCOFINSAliq and cannot be null");
+            }
             this.vCOFINS = vCOFINS;
         }
 
@@ -65,21 +80,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da BC do COFINS.</value>
         [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBC { get; set; }
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do COFINS (em percentual).
         /// </summary>
         /// <value>Alíquota do COFINS (em percentual).</value>
         [DataMember(Name = "pCOFINS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pCOFINS { get; set; }
+        public decimal? pCOFINS { get; set; }
 
         /// <summary>
         /// Valor do COFINS.
         /// </summary>
         /// <value>Valor do COFINS.</value>
         [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vCOFINS { get; set; }
+        public decimal? vCOFINS { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,15 +150,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pCOFINS == input.pCOFINS ||
-                    this.pCOFINS.Equals(input.pCOFINS)
+                    (this.pCOFINS != null &&
+                    this.pCOFINS.Equals(input.pCOFINS))
                 ) && 
                 (
                     this.vCOFINS == input.vCOFINS ||
-                    this.vCOFINS.Equals(input.vCOFINS)
+                    (this.vCOFINS != null &&
+                    this.vCOFINS.Equals(input.vCOFINS))
                 );
         }
 
@@ -160,9 +178,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pCOFINS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCOFINS.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pCOFINS != null)
+                {
+                    hashCode = (hashCode * 59) + this.pCOFINS.GetHashCode();
+                }
+                if (this.vCOFINS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCOFINS.GetHashCode();
+                }
                 return hashCode;
             }
         }

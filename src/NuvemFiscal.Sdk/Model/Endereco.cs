@@ -63,28 +63,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo e nome do logradouro da localização do imóvel.
         /// </summary>
         /// <value>Tipo e nome do logradouro da localização do imóvel.</value>
-        [DataMember(Name = "xLgr", EmitDefaultValue = false)]
+        [DataMember(Name = "xLgr", EmitDefaultValue = true)]
         public string xLgr { get; set; }
 
         /// <summary>
         /// Número do imóvel.
         /// </summary>
         /// <value>Número do imóvel.</value>
-        [DataMember(Name = "nro", EmitDefaultValue = false)]
+        [DataMember(Name = "nro", EmitDefaultValue = true)]
         public string nro { get; set; }
 
         /// <summary>
         /// Complemento do endereço.
         /// </summary>
         /// <value>Complemento do endereço.</value>
-        [DataMember(Name = "xCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "xCpl", EmitDefaultValue = true)]
         public string xCpl { get; set; }
 
         /// <summary>
         /// Bairro.
         /// </summary>
         /// <value>Bairro.</value>
-        [DataMember(Name = "xBairro", EmitDefaultValue = false)]
+        [DataMember(Name = "xBairro", EmitDefaultValue = true)]
         public string xBairro { get; set; }
 
         /// <summary>

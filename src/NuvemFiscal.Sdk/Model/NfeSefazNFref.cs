@@ -51,14 +51,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Chave de acesso das NF-e referenciadas. Chave de acesso compostas por Código da UF (tabela do IBGE) + AAMM da emissão + CNPJ do Emitente + modelo, série e número da NF-e Referenciada + Código Numérico + DV.
         /// </summary>
         /// <value>Chave de acesso das NF-e referenciadas. Chave de acesso compostas por Código da UF (tabela do IBGE) + AAMM da emissão + CNPJ do Emitente + modelo, série e número da NF-e Referenciada + Código Numérico + DV.</value>
-        [DataMember(Name = "refNFe", EmitDefaultValue = false)]
+        [DataMember(Name = "refNFe", EmitDefaultValue = true)]
         public string refNFe { get; set; }
 
         /// <summary>
         /// Referencia uma NF-e (modelo 55) emitida anteriormente pela sua Chave de Acesso com código numérico zerado, permitindo manter o sigilo da NF-e referenciada.
         /// </summary>
         /// <value>Referencia uma NF-e (modelo 55) emitida anteriormente pela sua Chave de Acesso com código numérico zerado, permitindo manter o sigilo da NF-e referenciada.</value>
-        [DataMember(Name = "refNFeSig", EmitDefaultValue = false)]
+        [DataMember(Name = "refNFeSig", EmitDefaultValue = true)]
         public string refNFeSig { get; set; }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Utilizar esta TAG para referenciar um CT-e emitido anteriormente, vinculada a NF-e atual.
         /// </summary>
         /// <value>Utilizar esta TAG para referenciar um CT-e emitido anteriormente, vinculada a NF-e atual.</value>
-        [DataMember(Name = "refCTe", EmitDefaultValue = false)]
+        [DataMember(Name = "refCTe", EmitDefaultValue = true)]
         public string refCTe { get; set; }
 
         /// <summary>

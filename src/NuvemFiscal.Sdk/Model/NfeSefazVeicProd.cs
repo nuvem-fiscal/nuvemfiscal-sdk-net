@@ -60,8 +60,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cCorDENATRAN">Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO  * 02 - AZUL  * 03 - BEGE  * 04 - BRANCA  * 05 - CINZA  * 06 - DOURADA  * 07 - GRENA  * 08 - LARANJA  * 09 - MARROM  * 10 - PRATA  * 11 - PRETA  * 12 - ROSA  * 13 - ROXA  * 14 - VERDE  * 15 - VERMELHA  * 16 - FANTASIA (required).</param>
         /// <param name="lota">Quantidade máxima de permitida de passageiros sentados, inclusive motorista. (required).</param>
         /// <param name="tpRest">Restrição  * 0 - Não há  * 1 - Alienação Fiduciária  * 2 - Arrendamento Mercantil  * 3 - Reserva de Domínio  * 4 - Penhor de Veículos  * 9 - outras (required).</param>
-        public NfeSefazVeicProd(int tpOp = default(int), string chassi = default(string), string cCor = default(string), string xCor = default(string), string pot = default(string), string cilin = default(string), string pesoL = default(string), string pesoB = default(string), string nSerie = default(string), string tpComb = default(string), string nMotor = default(string), string cMT = default(string), string dist = default(string), int anoMod = default(int), int anoFab = default(int), string tpPint = default(string), int tpVeic = default(int), int espVeic = default(int), string vIN = default(string), int condVeic = default(int), string cMod = default(string), string cCorDENATRAN = default(string), int lota = default(int), int tpRest = default(int))
+        public NfeSefazVeicProd(int? tpOp = default(int?), string chassi = default(string), string cCor = default(string), string xCor = default(string), string pot = default(string), string cilin = default(string), string pesoL = default(string), string pesoB = default(string), string nSerie = default(string), string tpComb = default(string), string nMotor = default(string), string cMT = default(string), string dist = default(string), int? anoMod = default(int?), int? anoFab = default(int?), string tpPint = default(string), int? tpVeic = default(int?), int? espVeic = default(int?), string vIN = default(string), int? condVeic = default(int?), string cMod = default(string), string cCorDENATRAN = default(string), int? lota = default(int?), int? tpRest = default(int?))
         {
+            // to ensure "tpOp" is required (not null)
+            if (tpOp == null)
+            {
+                throw new ArgumentNullException("tpOp is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.tpOp = tpOp;
             // to ensure "chassi" is required (not null)
             if (chassi == null)
@@ -135,7 +140,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("dist is a required property for NfeSefazVeicProd and cannot be null");
             }
             this.dist = dist;
+            // to ensure "anoMod" is required (not null)
+            if (anoMod == null)
+            {
+                throw new ArgumentNullException("anoMod is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.anoMod = anoMod;
+            // to ensure "anoFab" is required (not null)
+            if (anoFab == null)
+            {
+                throw new ArgumentNullException("anoFab is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.anoFab = anoFab;
             // to ensure "tpPint" is required (not null)
             if (tpPint == null)
@@ -143,7 +158,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("tpPint is a required property for NfeSefazVeicProd and cannot be null");
             }
             this.tpPint = tpPint;
+            // to ensure "tpVeic" is required (not null)
+            if (tpVeic == null)
+            {
+                throw new ArgumentNullException("tpVeic is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.tpVeic = tpVeic;
+            // to ensure "espVeic" is required (not null)
+            if (espVeic == null)
+            {
+                throw new ArgumentNullException("espVeic is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.espVeic = espVeic;
             // to ensure "vIN" is required (not null)
             if (vIN == null)
@@ -151,6 +176,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("vIN is a required property for NfeSefazVeicProd and cannot be null");
             }
             this.VIN = vIN;
+            // to ensure "condVeic" is required (not null)
+            if (condVeic == null)
+            {
+                throw new ArgumentNullException("condVeic is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.condVeic = condVeic;
             // to ensure "cMod" is required (not null)
             if (cMod == null)
@@ -164,7 +194,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cCorDENATRAN is a required property for NfeSefazVeicProd and cannot be null");
             }
             this.cCorDENATRAN = cCorDENATRAN;
+            // to ensure "lota" is required (not null)
+            if (lota == null)
+            {
+                throw new ArgumentNullException("lota is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.lota = lota;
+            // to ensure "tpRest" is required (not null)
+            if (tpRest == null)
+            {
+                throw new ArgumentNullException("tpRest is a required property for NfeSefazVeicProd and cannot be null");
+            }
             this.tpRest = tpRest;
         }
 
@@ -173,7 +213,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo da Operação (1 - Venda concessionária; 2 - Faturamento direto; 3 - Venda direta; 0 - Outros).</value>
         [DataMember(Name = "tpOp", IsRequired = true, EmitDefaultValue = true)]
-        public int tpOp { get; set; }
+        public int? tpOp { get; set; }
 
         /// <summary>
         /// Chassi do veículo - VIN (código-identificação-veículo).
@@ -264,14 +304,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Ano Modelo de Fabricação.</value>
         [DataMember(Name = "anoMod", IsRequired = true, EmitDefaultValue = true)]
-        public int anoMod { get; set; }
+        public int? anoMod { get; set; }
 
         /// <summary>
         /// Ano de Fabricação.
         /// </summary>
         /// <value>Ano de Fabricação.</value>
         [DataMember(Name = "anoFab", IsRequired = true, EmitDefaultValue = true)]
-        public int anoFab { get; set; }
+        public int? anoFab { get; set; }
 
         /// <summary>
         /// Tipo de pintura.
@@ -285,14 +325,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de veículo (utilizar tabela RENAVAM).</value>
         [DataMember(Name = "tpVeic", IsRequired = true, EmitDefaultValue = true)]
-        public int tpVeic { get; set; }
+        public int? tpVeic { get; set; }
 
         /// <summary>
         /// Espécie de veículo (utilizar tabela RENAVAM).
         /// </summary>
         /// <value>Espécie de veículo (utilizar tabela RENAVAM).</value>
         [DataMember(Name = "espVeic", IsRequired = true, EmitDefaultValue = true)]
-        public int espVeic { get; set; }
+        public int? espVeic { get; set; }
 
         /// <summary>
         /// Informa-se o veículo tem VIN (chassi) remarcado.  * R-Remarcado  * N-NormalVIN
@@ -306,7 +346,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Condição do veículo (1 - acabado; 2 - inacabado; 3 - semi-acabado).</value>
         [DataMember(Name = "condVeic", IsRequired = true, EmitDefaultValue = true)]
-        public int condVeic { get; set; }
+        public int? condVeic { get; set; }
 
         /// <summary>
         /// Código Marca Modelo (utilizar tabela RENAVAM).
@@ -327,14 +367,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade máxima de permitida de passageiros sentados, inclusive motorista.</value>
         [DataMember(Name = "lota", IsRequired = true, EmitDefaultValue = true)]
-        public int lota { get; set; }
+        public int? lota { get; set; }
 
         /// <summary>
         /// Restrição  * 0 - Não há  * 1 - Alienação Fiduciária  * 2 - Arrendamento Mercantil  * 3 - Reserva de Domínio  * 4 - Penhor de Veículos  * 9 - outras
         /// </summary>
         /// <value>Restrição  * 0 - Não há  * 1 - Alienação Fiduciária  * 2 - Arrendamento Mercantil  * 3 - Reserva de Domínio  * 4 - Penhor de Veículos  * 9 - outras</value>
         [DataMember(Name = "tpRest", IsRequired = true, EmitDefaultValue = true)]
-        public int tpRest { get; set; }
+        public int? tpRest { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -405,7 +445,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpOp == input.tpOp ||
-                    this.tpOp.Equals(input.tpOp)
+                    (this.tpOp != null &&
+                    this.tpOp.Equals(input.tpOp))
                 ) && 
                 (
                     this.chassi == input.chassi ||
@@ -469,11 +510,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.anoMod == input.anoMod ||
-                    this.anoMod.Equals(input.anoMod)
+                    (this.anoMod != null &&
+                    this.anoMod.Equals(input.anoMod))
                 ) && 
                 (
                     this.anoFab == input.anoFab ||
-                    this.anoFab.Equals(input.anoFab)
+                    (this.anoFab != null &&
+                    this.anoFab.Equals(input.anoFab))
                 ) && 
                 (
                     this.tpPint == input.tpPint ||
@@ -482,11 +525,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpVeic == input.tpVeic ||
-                    this.tpVeic.Equals(input.tpVeic)
+                    (this.tpVeic != null &&
+                    this.tpVeic.Equals(input.tpVeic))
                 ) && 
                 (
                     this.espVeic == input.espVeic ||
-                    this.espVeic.Equals(input.espVeic)
+                    (this.espVeic != null &&
+                    this.espVeic.Equals(input.espVeic))
                 ) && 
                 (
                     this.VIN == input.VIN ||
@@ -495,7 +540,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.condVeic == input.condVeic ||
-                    this.condVeic.Equals(input.condVeic)
+                    (this.condVeic != null &&
+                    this.condVeic.Equals(input.condVeic))
                 ) && 
                 (
                     this.cMod == input.cMod ||
@@ -509,11 +555,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.lota == input.lota ||
-                    this.lota.Equals(input.lota)
+                    (this.lota != null &&
+                    this.lota.Equals(input.lota))
                 ) && 
                 (
                     this.tpRest == input.tpRest ||
-                    this.tpRest.Equals(input.tpRest)
+                    (this.tpRest != null &&
+                    this.tpRest.Equals(input.tpRest))
                 );
         }
 
@@ -526,7 +574,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpOp.GetHashCode();
+                if (this.tpOp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpOp.GetHashCode();
+                }
                 if (this.chassi != null)
                 {
                     hashCode = (hashCode * 59) + this.chassi.GetHashCode();
@@ -575,19 +626,34 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dist.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.anoMod.GetHashCode();
-                hashCode = (hashCode * 59) + this.anoFab.GetHashCode();
+                if (this.anoMod != null)
+                {
+                    hashCode = (hashCode * 59) + this.anoMod.GetHashCode();
+                }
+                if (this.anoFab != null)
+                {
+                    hashCode = (hashCode * 59) + this.anoFab.GetHashCode();
+                }
                 if (this.tpPint != null)
                 {
                     hashCode = (hashCode * 59) + this.tpPint.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpVeic.GetHashCode();
-                hashCode = (hashCode * 59) + this.espVeic.GetHashCode();
+                if (this.tpVeic != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpVeic.GetHashCode();
+                }
+                if (this.espVeic != null)
+                {
+                    hashCode = (hashCode * 59) + this.espVeic.GetHashCode();
+                }
                 if (this.VIN != null)
                 {
                     hashCode = (hashCode * 59) + this.VIN.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.condVeic.GetHashCode();
+                if (this.condVeic != null)
+                {
+                    hashCode = (hashCode * 59) + this.condVeic.GetHashCode();
+                }
                 if (this.cMod != null)
                 {
                     hashCode = (hashCode * 59) + this.cMod.GetHashCode();
@@ -596,8 +662,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cCorDENATRAN.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.lota.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpRest.GetHashCode();
+                if (this.lota != null)
+                {
+                    hashCode = (hashCode * 59) + this.lota.GetHashCode();
+                }
+                if (this.tpRest != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpRest.GetHashCode();
+                }
                 return hashCode;
             }
         }

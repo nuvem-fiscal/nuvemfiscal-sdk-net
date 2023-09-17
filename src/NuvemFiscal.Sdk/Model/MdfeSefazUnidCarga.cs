@@ -40,8 +40,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="idUnidCarga">Identificação da Unidade de Carga.  Informar a identificação da unidade de carga, por exemplo: número do container. (required).</param>
         /// <param name="lacUnidCarga">lacUnidCarga.</param>
         /// <param name="qtdRat">Quantidade rateada (Peso,Volume)..</param>
-        public MdfeSefazUnidCarga(int tpUnidCarga = default(int), string idUnidCarga = default(string), List<MdfeSefazLacUnidCarga> lacUnidCarga = default(List<MdfeSefazLacUnidCarga>), decimal qtdRat = default(decimal))
+        public MdfeSefazUnidCarga(int? tpUnidCarga = default(int?), string idUnidCarga = default(string), List<MdfeSefazLacUnidCarga> lacUnidCarga = default(List<MdfeSefazLacUnidCarga>), decimal? qtdRat = default(decimal?))
         {
+            // to ensure "tpUnidCarga" is required (not null)
+            if (tpUnidCarga == null)
+            {
+                throw new ArgumentNullException("tpUnidCarga is a required property for MdfeSefazUnidCarga and cannot be null");
+            }
             this.tpUnidCarga = tpUnidCarga;
             // to ensure "idUnidCarga" is required (not null)
             if (idUnidCarga == null)
@@ -58,7 +63,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo da Unidade de Carga.  * 1 - Container  * 2 - ULD  * 3 - Pallet  * 4 - Outros</value>
         [DataMember(Name = "tpUnidCarga", IsRequired = true, EmitDefaultValue = true)]
-        public int tpUnidCarga { get; set; }
+        public int? tpUnidCarga { get; set; }
 
         /// <summary>
         /// Identificação da Unidade de Carga.  Informar a identificação da unidade de carga, por exemplo: número do container.
@@ -77,8 +82,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade rateada (Peso,Volume).
         /// </summary>
         /// <value>Quantidade rateada (Peso,Volume).</value>
-        [DataMember(Name = "qtdRat", EmitDefaultValue = false)]
-        public decimal qtdRat { get; set; }
+        [DataMember(Name = "qtdRat", EmitDefaultValue = true)]
+        public decimal? qtdRat { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -129,7 +134,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpUnidCarga == input.tpUnidCarga ||
-                    this.tpUnidCarga.Equals(input.tpUnidCarga)
+                    (this.tpUnidCarga != null &&
+                    this.tpUnidCarga.Equals(input.tpUnidCarga))
                 ) && 
                 (
                     this.idUnidCarga == input.idUnidCarga ||
@@ -144,7 +150,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qtdRat == input.qtdRat ||
-                    this.qtdRat.Equals(input.qtdRat)
+                    (this.qtdRat != null &&
+                    this.qtdRat.Equals(input.qtdRat))
                 );
         }
 
@@ -157,7 +164,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpUnidCarga.GetHashCode();
+                if (this.tpUnidCarga != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpUnidCarga.GetHashCode();
+                }
                 if (this.idUnidCarga != null)
                 {
                     hashCode = (hashCode * 59) + this.idUnidCarga.GetHashCode();
@@ -166,7 +176,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.lacUnidCarga.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qtdRat.GetHashCode();
+                if (this.qtdRat != null)
+                {
+                    hashCode = (hashCode * 59) + this.qtdRat.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazInfNFe" /> class.
         /// </summary>
         /// <param name="versao">Versão do leiaute (v4.00). (required).</param>
-        /// <param name="id">PL_005d - 11/08/09 - validação do Id..</param>
+        /// <param name="id">PL_005d - 11/08/09 - validação do Id.    *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="ide">ide (required).</param>
         /// <param name="emit">emit (required).</param>
         /// <param name="avulsa">avulsa.</param>
@@ -125,10 +125,10 @@ namespace NuvemFiscal.Sdk.Model
         public string versao { get; set; }
 
         /// <summary>
-        /// PL_005d - 11/08/09 - validação do Id.
+        /// PL_005d - 11/08/09 - validação do Id.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>PL_005d - 11/08/09 - validação do Id.</value>
-        [DataMember(Name = "Id", EmitDefaultValue = false)]
+        /// <value>PL_005d - 11/08/09 - validação do Id.    *Geramos automaticamente quando nenhum valor é informado.*</value>
+        [DataMember(Name = "Id", EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>

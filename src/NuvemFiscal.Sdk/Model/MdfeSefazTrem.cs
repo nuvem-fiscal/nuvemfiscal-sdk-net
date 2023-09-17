@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="xOri">Origem do Trem.  Sigla da estação de origem. (required).</param>
         /// <param name="xDest">Destino do Trem.  Sigla da estação de destino. (required).</param>
         /// <param name="qVag">Quantidade de vagões carregados. (required).</param>
-        public MdfeSefazTrem(string xPref = default(string), DateTime dhTrem = default(DateTime), string xOri = default(string), string xDest = default(string), int qVag = default(int))
+        public MdfeSefazTrem(string xPref = default(string), DateTime? dhTrem = default(DateTime?), string xOri = default(string), string xDest = default(string), int? qVag = default(int?))
         {
             // to ensure "xPref" is required (not null)
             if (xPref == null)
@@ -61,6 +61,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xDest is a required property for MdfeSefazTrem and cannot be null");
             }
             this.xDest = xDest;
+            // to ensure "qVag" is required (not null)
+            if (qVag == null)
+            {
+                throw new ArgumentNullException("qVag is a required property for MdfeSefazTrem and cannot be null");
+            }
             this.qVag = qVag;
             this.dhTrem = dhTrem;
         }
@@ -76,8 +81,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Data e hora de liberação do trem na origem.
         /// </summary>
         /// <value>Data e hora de liberação do trem na origem.</value>
-        [DataMember(Name = "dhTrem", EmitDefaultValue = false)]
-        public DateTime dhTrem { get; set; }
+        [DataMember(Name = "dhTrem", EmitDefaultValue = true)]
+        public DateTime? dhTrem { get; set; }
 
         /// <summary>
         /// Origem do Trem.  Sigla da estação de origem.
@@ -98,7 +103,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade de vagões carregados.</value>
         [DataMember(Name = "qVag", IsRequired = true, EmitDefaultValue = true)]
-        public int qVag { get; set; }
+        public int? qVag { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -170,7 +175,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qVag == input.qVag ||
-                    this.qVag.Equals(input.qVag)
+                    (this.qVag != null &&
+                    this.qVag.Equals(input.qVag))
                 );
         }
 
@@ -199,7 +205,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xDest.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qVag.GetHashCode();
+                if (this.qVag != null)
+                {
+                    hashCode = (hashCode * 59) + this.qVag.GetHashCode();
+                }
                 return hashCode;
             }
         }

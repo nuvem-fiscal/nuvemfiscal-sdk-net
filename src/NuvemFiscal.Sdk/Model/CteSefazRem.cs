@@ -70,21 +70,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ.  Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Número do CPF.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CPF.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Inscrição Estadual.  Informar a IE do remetente ou ISENTO se remetente é contribuinte do ICMS isento de inscrição no cadastro de contribuintes do ICMS. Caso o remetente não seja contribuinte do ICMS não informar a tag.
         /// </summary>
         /// <value>Inscrição Estadual.  Informar a IE do remetente ou ISENTO se remetente é contribuinte do ICMS isento de inscrição no cadastro de contribuintes do ICMS. Caso o remetente não seja contribuinte do ICMS não informar a tag.</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
@@ -98,14 +98,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Nome fantasia.
         /// </summary>
         /// <value>Nome fantasia.</value>
-        [DataMember(Name = "xFant", EmitDefaultValue = false)]
+        [DataMember(Name = "xFant", EmitDefaultValue = true)]
         public string xFant { get; set; }
 
         /// <summary>
         /// Telefone.
         /// </summary>
         /// <value>Telefone.</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Endereço de email.
         /// </summary>
         /// <value>Endereço de email.</value>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>

@@ -39,8 +39,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="tpHor">Tipo de hora.  * 4 - No intervalo de tempo (required).</param>
         /// <param name="hIni">Hora inicial.  Formato HH:MM:SS. (required).</param>
         /// <param name="hFim">Hora final.  Formato HH:MM:SS. (required).</param>
-        public CteSefazNoInter(int tpHor = default(int), string hIni = default(string), string hFim = default(string))
+        public CteSefazNoInter(int? tpHor = default(int?), string hIni = default(string), string hFim = default(string))
         {
+            // to ensure "tpHor" is required (not null)
+            if (tpHor == null)
+            {
+                throw new ArgumentNullException("tpHor is a required property for CteSefazNoInter and cannot be null");
+            }
             this.tpHor = tpHor;
             // to ensure "hIni" is required (not null)
             if (hIni == null)
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de hora.  * 4 - No intervalo de tempo</value>
         [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
-        public int tpHor { get; set; }
+        public int? tpHor { get; set; }
 
         /// <summary>
         /// Hora inicial.  Formato HH:MM:SS.
@@ -125,7 +130,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpHor == input.tpHor ||
-                    this.tpHor.Equals(input.tpHor)
+                    (this.tpHor != null &&
+                    this.tpHor.Equals(input.tpHor))
                 ) && 
                 (
                     this.hIni == input.hIni ||
@@ -148,7 +154,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpHor.GetHashCode();
+                if (this.tpHor != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpHor.GetHashCode();
+                }
                 if (this.hIni != null)
                 {
                     hashCode = (hashCode * 59) + this.hIni.GetHashCode();

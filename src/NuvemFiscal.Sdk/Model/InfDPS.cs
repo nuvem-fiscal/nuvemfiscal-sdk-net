@@ -46,9 +46,19 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="interm">interm.</param>
         /// <param name="serv">serv (required).</param>
         /// <param name="valores">valores (required).</param>
-        public InfDPS(int tpAmb = default(int), DateTime dhEmi = default(DateTime), string verAplic = default(string), DateTime dCompet = default(DateTime), Substituicao subst = default(Substituicao), InfoPrestador prest = default(InfoPrestador), InfoTomador toma = default(InfoTomador), InfoIntermediario interm = default(InfoIntermediario), Serv serv = default(Serv), InfoValores valores = default(InfoValores))
+        public InfDPS(int? tpAmb = default(int?), DateTime? dhEmi = default(DateTime?), string verAplic = default(string), DateTime? dCompet = default(DateTime?), Substituicao subst = default(Substituicao), InfoPrestador prest = default(InfoPrestador), InfoTomador toma = default(InfoTomador), InfoIntermediario interm = default(InfoIntermediario), Serv serv = default(Serv), InfoValores valores = default(InfoValores))
         {
+            // to ensure "dhEmi" is required (not null)
+            if (dhEmi == null)
+            {
+                throw new ArgumentNullException("dhEmi is a required property for InfDPS and cannot be null");
+            }
             this.dhEmi = dhEmi;
+            // to ensure "dCompet" is required (not null)
+            if (dCompet == null)
+            {
+                throw new ArgumentNullException("dCompet is a required property for InfDPS and cannot be null");
+            }
             this.dCompet = dCompet;
             // to ensure "prest" is required (not null)
             if (prest == null)
@@ -79,21 +89,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação
         /// </summary>
         /// <value>Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação</value>
-        [DataMember(Name = "tpAmb", EmitDefaultValue = false)]
-        public int tpAmb { get; set; }
+        [DataMember(Name = "tpAmb", EmitDefaultValue = true)]
+        public int? tpAmb { get; set; }
 
         /// <summary>
         /// Data e hora da emissão do DPS. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD.
         /// </summary>
         /// <value>Data e hora da emissão do DPS. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD.</value>
         [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime dhEmi { get; set; }
+        public DateTime? dhEmi { get; set; }
 
         /// <summary>
         /// Versão do aplicativo que gerou o DPS.
         /// </summary>
         /// <value>Versão do aplicativo que gerou o DPS.</value>
-        [DataMember(Name = "verAplic", EmitDefaultValue = false)]
+        [DataMember(Name = "verAplic", EmitDefaultValue = true)]
         public string verAplic { get; set; }
 
         /// <summary>
@@ -102,7 +112,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD).</value>
         [DataMember(Name = "dCompet", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dCompet { get; set; }
+        public DateTime? dCompet { get; set; }
 
         /// <summary>
         /// Gets or Sets subst
@@ -195,7 +205,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpAmb == input.tpAmb ||
-                    this.tpAmb.Equals(input.tpAmb)
+                    (this.tpAmb != null &&
+                    this.tpAmb.Equals(input.tpAmb))
                 ) && 
                 (
                     this.dhEmi == input.dhEmi ||
@@ -253,7 +264,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
+                if (this.tpAmb != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
+                }
                 if (this.dhEmi != null)
                 {
                     hashCode = (hashCode * 59) + this.dhEmi.GetHashCode();

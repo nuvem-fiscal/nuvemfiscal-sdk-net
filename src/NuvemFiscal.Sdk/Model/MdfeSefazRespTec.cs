@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="fone">Telefone da pessoa jurídica a ser contatada.  Preencher com o Código DDD + número do telefone. (required).</param>
         /// <param name="idCSRT">Identificador do código de segurança do responsável técnico.  Identificador do CSRT utilizado para geração do hash..</param>
         /// <param name="hashCSRT">Hash do token do código de segurança do responsável técnico.  O hashCSRT é o resultado das funções SHA-1 e base64 do token CSRT fornecido pelo fisco + chave de acesso do DF-e. (Implementação em futura NT)  Observação: 28 caracteres são representados no schema como 20 bytes do tipo base64Binary..</param>
-        public MdfeSefazRespTec(string cNPJ = default(string), string xContato = default(string), string email = default(string), string fone = default(string), int idCSRT = default(int), string hashCSRT = default(string))
+        public MdfeSefazRespTec(string cNPJ = default(string), string xContato = default(string), string email = default(string), string fone = default(string), int? idCSRT = default(int?), string hashCSRT = default(string))
         {
             // to ensure "cNPJ" is required (not null)
             if (cNPJ == null)
@@ -104,14 +104,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificador do código de segurança do responsável técnico.  Identificador do CSRT utilizado para geração do hash.
         /// </summary>
         /// <value>Identificador do código de segurança do responsável técnico.  Identificador do CSRT utilizado para geração do hash.</value>
-        [DataMember(Name = "idCSRT", EmitDefaultValue = false)]
-        public int idCSRT { get; set; }
+        [DataMember(Name = "idCSRT", EmitDefaultValue = true)]
+        public int? idCSRT { get; set; }
 
         /// <summary>
         /// Hash do token do código de segurança do responsável técnico.  O hashCSRT é o resultado das funções SHA-1 e base64 do token CSRT fornecido pelo fisco + chave de acesso do DF-e. (Implementação em futura NT)  Observação: 28 caracteres são representados no schema como 20 bytes do tipo base64Binary.
         /// </summary>
         /// <value>Hash do token do código de segurança do responsável técnico.  O hashCSRT é o resultado das funções SHA-1 e base64 do token CSRT fornecido pelo fisco + chave de acesso do DF-e. (Implementação em futura NT)  Observação: 28 caracteres são representados no schema como 20 bytes do tipo base64Binary.</value>
-        [DataMember(Name = "hashCSRT", EmitDefaultValue = false)]
+        [DataMember(Name = "hashCSRT", EmitDefaultValue = true)]
         public string hashCSRT { get; set; }
 
         /// <summary>
@@ -185,7 +185,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.idCSRT == input.idCSRT ||
-                    this.idCSRT.Equals(input.idCSRT)
+                    (this.idCSRT != null &&
+                    this.idCSRT.Equals(input.idCSRT))
                 ) && 
                 (
                     this.hashCSRT == input.hashCSRT ||
@@ -219,7 +220,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.fone.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.idCSRT.GetHashCode();
+                if (this.idCSRT != null)
+                {
+                    hashCode = (hashCode * 59) + this.idCSRT.GetHashCode();
+                }
                 if (this.hashCSRT != null)
                 {
                     hashCode = (hashCode * 59) + this.hashCSRT.GetHashCode();

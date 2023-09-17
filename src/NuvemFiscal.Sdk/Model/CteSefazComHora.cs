@@ -38,8 +38,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="tpHor">Tipo de hora.  Preencher com:  * 1 - No horário  * 2 - Até o horário  * 3 - A partir do horário (required).</param>
         /// <param name="hProg">Hora programada.  Formato HH:MM:SS. (required).</param>
-        public CteSefazComHora(int tpHor = default(int), string hProg = default(string))
+        public CteSefazComHora(int? tpHor = default(int?), string hProg = default(string))
         {
+            // to ensure "tpHor" is required (not null)
+            if (tpHor == null)
+            {
+                throw new ArgumentNullException("tpHor is a required property for CteSefazComHora and cannot be null");
+            }
             this.tpHor = tpHor;
             // to ensure "hProg" is required (not null)
             if (hProg == null)
@@ -54,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de hora.  Preencher com:  * 1 - No horário  * 2 - Até o horário  * 3 - A partir do horário</value>
         [DataMember(Name = "tpHor", IsRequired = true, EmitDefaultValue = true)]
-        public int tpHor { get; set; }
+        public int? tpHor { get; set; }
 
         /// <summary>
         /// Hora programada.  Formato HH:MM:SS.
@@ -110,7 +115,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpHor == input.tpHor ||
-                    this.tpHor.Equals(input.tpHor)
+                    (this.tpHor != null &&
+                    this.tpHor.Equals(input.tpHor))
                 ) && 
                 (
                     this.hProg == input.hProg ||
@@ -128,7 +134,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpHor.GetHashCode();
+                if (this.tpHor != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpHor.GetHashCode();
+                }
                 if (this.hProg != null)
                 {
                     hashCode = (hashCode * 59) + this.hProg.GetHashCode();

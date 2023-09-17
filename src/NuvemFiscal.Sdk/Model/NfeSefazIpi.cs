@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cEnq">Código de Enquadramento Legal do IPI (tabela a ser criada pela RFB). (required).</param>
         /// <param name="iPITrib">iPITrib.</param>
         /// <param name="iPINT">iPINT.</param>
-        public NfeSefazIpi(string cNPJProd = default(string), string cSelo = default(string), int qSelo = default(int), string cEnq = default(string), NfeSefazIPITrib iPITrib = default(NfeSefazIPITrib), NfeSefazIPINT iPINT = default(NfeSefazIPINT))
+        public NfeSefazIpi(string cNPJProd = default(string), string cSelo = default(string), int? qSelo = default(int?), string cEnq = default(string), NfeSefazIPITrib iPITrib = default(NfeSefazIPITrib), NfeSefazIPINT iPINT = default(NfeSefazIPINT))
         {
             // to ensure "cEnq" is required (not null)
             if (cEnq == null)
@@ -61,22 +61,22 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do produtor da mercadoria, quando diferente do emitente. Somente para os casos de exportação direta ou indireta.
         /// </summary>
         /// <value>CNPJ do produtor da mercadoria, quando diferente do emitente. Somente para os casos de exportação direta ou indireta.</value>
-        [DataMember(Name = "CNPJProd", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJProd", EmitDefaultValue = true)]
         public string CNPJProd { get; set; }
 
         /// <summary>
         /// Código do selo de controle do IPI.
         /// </summary>
         /// <value>Código do selo de controle do IPI.</value>
-        [DataMember(Name = "cSelo", EmitDefaultValue = false)]
+        [DataMember(Name = "cSelo", EmitDefaultValue = true)]
         public string cSelo { get; set; }
 
         /// <summary>
         /// Quantidade de selo de controle do IPI.
         /// </summary>
         /// <value>Quantidade de selo de controle do IPI.</value>
-        [DataMember(Name = "qSelo", EmitDefaultValue = false)]
-        public int qSelo { get; set; }
+        [DataMember(Name = "qSelo", EmitDefaultValue = true)]
+        public int? qSelo { get; set; }
 
         /// <summary>
         /// Código de Enquadramento Legal do IPI (tabela a ser criada pela RFB).
@@ -158,7 +158,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qSelo == input.qSelo ||
-                    this.qSelo.Equals(input.qSelo)
+                    (this.qSelo != null &&
+                    this.qSelo.Equals(input.qSelo))
                 ) && 
                 (
                     this.cEnq == input.cEnq ||
@@ -194,7 +195,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cSelo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qSelo.GetHashCode();
+                if (this.qSelo != null)
+                {
+                    hashCode = (hashCode * 59) + this.qSelo.GetHashCode();
+                }
                 if (this.cEnq != null)
                 {
                     hashCode = (hashCode * 59) + this.cEnq.GetHashCode();

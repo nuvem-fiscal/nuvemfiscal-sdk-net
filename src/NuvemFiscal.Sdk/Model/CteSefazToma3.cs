@@ -37,8 +37,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazToma3" /> class.
         /// </summary>
         /// <param name="toma">Tomador do Serviço.  Preencher com:  * 0 - Remetente  * 1 - Expedidor  * 2 - Recebedor  * 3 - Destinatário  Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo. (required).</param>
-        public CteSefazToma3(int toma = default(int))
+        public CteSefazToma3(int? toma = default(int?))
         {
+            // to ensure "toma" is required (not null)
+            if (toma == null)
+            {
+                throw new ArgumentNullException("toma is a required property for CteSefazToma3 and cannot be null");
+            }
             this.toma = toma;
         }
 
@@ -47,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tomador do Serviço.  Preencher com:  * 0 - Remetente  * 1 - Expedidor  * 2 - Recebedor  * 3 - Destinatário  Serão utilizadas as informações contidas no respectivo grupo, conforme indicado pelo conteúdo deste campo.</value>
         [DataMember(Name = "toma", IsRequired = true, EmitDefaultValue = true)]
-        public int toma { get; set; }
+        public int? toma { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,7 +100,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.toma == input.toma ||
-                    this.toma.Equals(input.toma)
+                    (this.toma != null &&
+                    this.toma.Equals(input.toma))
                 );
         }
 
@@ -108,7 +114,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.toma.GetHashCode();
+                if (this.toma != null)
+                {
+                    hashCode = (hashCode * 59) + this.toma.GetHashCode();
+                }
                 return hashCode;
             }
         }

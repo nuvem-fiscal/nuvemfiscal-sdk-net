@@ -45,7 +45,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="uf">Sigla do estado. (required).</param>
         /// <param name="codigoPais">Código do país. (default to &quot;1058&quot;).</param>
         /// <param name="pais">Nome do país. (default to &quot;Brasil&quot;).</param>
-        /// <param name="cep">CEP.  Utilize o valor sem máscara. (required).</param>
+        /// <param name="cep">CEP.    *Utilize o valor sem máscara*. (required).</param>
         public EmpresaEndereco(string logradouro = default(string), string numero = default(string), string complemento = default(string), string bairro = default(string), string codigoMunicipio = default(string), string cidade = default(string), string uf = default(string), string codigoPais = @"1058", string pais = @"Brasil", string cep = default(string))
         {
             // to ensure "logradouro" is required (not null)
@@ -156,9 +156,9 @@ namespace NuvemFiscal.Sdk.Model
         public string pais { get; set; }
 
         /// <summary>
-        /// CEP.  Utilize o valor sem máscara.
+        /// CEP.    *Utilize o valor sem máscara*.
         /// </summary>
-        /// <value>CEP.  Utilize o valor sem máscara.</value>
+        /// <value>CEP.    *Utilize o valor sem máscara*.</value>
         [DataMember(Name = "cep", IsRequired = true, EmitDefaultValue = true)]
         public string cep { get; set; }
 

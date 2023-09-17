@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Informações adicionais de interesse do Fisco.  Norma referenciada, informações complementares, etc.
         /// </summary>
         /// <value>Informações adicionais de interesse do Fisco.  Norma referenciada, informações complementares, etc.</value>
-        [DataMember(Name = "infAdFisco", EmitDefaultValue = false)]
+        [DataMember(Name = "infAdFisco", EmitDefaultValue = true)]
         public string infAdFisco { get; set; }
 
         /// <summary>
         /// Informações complementares de interesse do Contribuinte.
         /// </summary>
         /// <value>Informações complementares de interesse do Contribuinte.</value>
-        [DataMember(Name = "infCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "infCpl", EmitDefaultValue = true)]
         public string infCpl { get; set; }
 
         /// <summary>

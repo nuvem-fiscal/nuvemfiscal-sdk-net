@@ -51,35 +51,35 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.
         /// </summary>
         /// <value>CNPJ do emitente.  Informar zeros não significativos.    ***Obrigatório caso o emitente seja pessoa jurídica***.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.    ***Obrigatorio caso o emitente seja pessoa física***.
         /// </summary>
         /// <value>CPF do emitente.  Informar zeros não significativos.  Usar com série específica 920-969 para emitente pessoa física com inscrição estadual.  Poderá ser usado também para emissão do Regime Especial da Nota Fiscal Fácil.    ***Obrigatorio caso o emitente seja pessoa física***.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Inscrição Estadual do emitemte.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Inscrição Estadual do emitemte.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Razão social ou Nome do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Nome fantasia do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Nome fantasia do emitente.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xFant", EmitDefaultValue = false)]
+        [DataMember(Name = "xFant", EmitDefaultValue = true)]
         public string xFant { get; set; }
 
         /// <summary>

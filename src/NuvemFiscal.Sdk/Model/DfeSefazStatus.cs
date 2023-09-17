@@ -178,7 +178,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="motivoStatus">Descrição literal do status do serviço solicitado..</param>
         /// <param name="tempoMedioResposta">Tempo médio de resposta do serviço (em segundos) dos últimos 5 minutos..</param>
         /// <param name="dataHoraRetorno">Data e hora prevista para o retorno dos serviços prestados..</param>
-        public DfeSefazStatus(AutorizadorEnum? autorizador = default(AutorizadorEnum?), AmbienteEnum? ambiente = default(AmbienteEnum?), DateTime dataHoraConsulta = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), int tempoMedioResposta = default(int), DateTime dataHoraRetorno = default(DateTime))
+        public DfeSefazStatus(AutorizadorEnum? autorizador = default(AutorizadorEnum?), AmbienteEnum? ambiente = default(AmbienteEnum?), DateTime dataHoraConsulta = default(DateTime), int codigoStatus = default(int), string motivoStatus = default(string), int? tempoMedioResposta = default(int?), DateTime? dataHoraRetorno = default(DateTime?))
         {
             this.autorizador = autorizador;
             this.ambiente = ambiente;
@@ -214,15 +214,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Tempo médio de resposta do serviço (em segundos) dos últimos 5 minutos.
         /// </summary>
         /// <value>Tempo médio de resposta do serviço (em segundos) dos últimos 5 minutos.</value>
-        [DataMember(Name = "tempo_medio_resposta", EmitDefaultValue = false)]
-        public int tempo_medio_resposta { get; set; }
+        [DataMember(Name = "tempo_medio_resposta", EmitDefaultValue = true)]
+        public int? tempo_medio_resposta { get; set; }
 
         /// <summary>
         /// Data e hora prevista para o retorno dos serviços prestados.
         /// </summary>
         /// <value>Data e hora prevista para o retorno dos serviços prestados.</value>
-        [DataMember(Name = "data_hora_retorno", EmitDefaultValue = false)]
-        public DateTime data_hora_retorno { get; set; }
+        [DataMember(Name = "data_hora_retorno", EmitDefaultValue = true)]
+        public DateTime? data_hora_retorno { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -298,7 +298,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tempo_medio_resposta == input.tempo_medio_resposta ||
-                    this.tempo_medio_resposta.Equals(input.tempo_medio_resposta)
+                    (this.tempo_medio_resposta != null &&
+                    this.tempo_medio_resposta.Equals(input.tempo_medio_resposta))
                 ) && 
                 (
                     this.data_hora_retorno == input.data_hora_retorno ||
@@ -327,7 +328,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.motivo_status.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tempo_medio_resposta.GetHashCode();
+                if (this.tempo_medio_resposta != null)
+                {
+                    hashCode = (hashCode * 59) + this.tempo_medio_resposta.GetHashCode();
+                }
                 if (this.data_hora_retorno != null)
                 {
                     hashCode = (hashCode * 59) + this.data_hora_retorno.GetHashCode();

@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nProc">Indentificador do processo ou ato  concessório. (required).</param>
         /// <param name="indProc">Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 9 - Outros (required).</param>
         /// <param name="tpAto">Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica.</param>
-        public NfeSefazProcRef(string nProc = default(string), int indProc = default(int), string tpAto = default(string))
+        public NfeSefazProcRef(string nProc = default(string), int? indProc = default(int?), string tpAto = default(string))
         {
             // to ensure "nProc" is required (not null)
             if (nProc == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("nProc is a required property for NfeSefazProcRef and cannot be null");
             }
             this.nProc = nProc;
+            // to ensure "indProc" is required (not null)
+            if (indProc == null)
+            {
+                throw new ArgumentNullException("indProc is a required property for NfeSefazProcRef and cannot be null");
+            }
             this.indProc = indProc;
             this.tpAto = tpAto;
         }
@@ -63,13 +68,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 9 - Outros</value>
         [DataMember(Name = "indProc", IsRequired = true, EmitDefaultValue = true)]
-        public int indProc { get; set; }
+        public int? indProc { get; set; }
 
         /// <summary>
         /// Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica
         /// </summary>
         /// <value>Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica</value>
-        [DataMember(Name = "tpAto", EmitDefaultValue = false)]
+        [DataMember(Name = "tpAto", EmitDefaultValue = true)]
         public string tpAto { get; set; }
 
         /// <summary>
@@ -125,7 +130,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indProc == input.indProc ||
-                    this.indProc.Equals(input.indProc)
+                    (this.indProc != null &&
+                    this.indProc.Equals(input.indProc))
                 ) && 
                 (
                     this.tpAto == input.tpAto ||
@@ -147,7 +153,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nProc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indProc.GetHashCode();
+                if (this.indProc != null)
+                {
+                    hashCode = (hashCode * 59) + this.indProc.GetHashCode();
+                }
                 if (this.tpAto != null)
                 {
                     hashCode = (hashCode * 59) + this.tpAto.GetHashCode();

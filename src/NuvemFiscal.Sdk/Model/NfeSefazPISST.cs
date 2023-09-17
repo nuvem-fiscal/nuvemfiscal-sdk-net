@@ -42,8 +42,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vAliqProd">Alíquota do PIS ST (em reais)..</param>
         /// <param name="vPIS">Valor do PIS ST. (required).</param>
         /// <param name="indSomaPISST">Indica se o valor do PISST compõe o valor total da NF-e..</param>
-        public NfeSefazPISST(decimal vBC = default(decimal), decimal pPIS = default(decimal), decimal qBCProd = default(decimal), decimal vAliqProd = default(decimal), decimal vPIS = default(decimal), int indSomaPISST = default(int))
+        public NfeSefazPISST(decimal? vBC = default(decimal?), decimal? pPIS = default(decimal?), decimal? qBCProd = default(decimal?), decimal? vAliqProd = default(decimal?), decimal? vPIS = default(decimal?), int? indSomaPISST = default(int?))
         {
+            // to ensure "vPIS" is required (not null)
+            if (vPIS == null)
+            {
+                throw new ArgumentNullException("vPIS is a required property for NfeSefazPISST and cannot be null");
+            }
             this.vPIS = vPIS;
             this.vBC = vBC;
             this.pPIS = pPIS;
@@ -56,43 +61,43 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do PIS ST.
         /// </summary>
         /// <value>Valor da BC do PIS ST.</value>
-        [DataMember(Name = "vBC", EmitDefaultValue = false)]
-        public decimal vBC { get; set; }
+        [DataMember(Name = "vBC", EmitDefaultValue = true)]
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do PIS ST (em percentual).
         /// </summary>
         /// <value>Alíquota do PIS ST (em percentual).</value>
-        [DataMember(Name = "pPIS", EmitDefaultValue = false)]
-        public decimal pPIS { get; set; }
+        [DataMember(Name = "pPIS", EmitDefaultValue = true)]
+        public decimal? pPIS { get; set; }
 
         /// <summary>
         /// Quantidade Vendida.
         /// </summary>
         /// <value>Quantidade Vendida.</value>
-        [DataMember(Name = "qBCProd", EmitDefaultValue = false)]
-        public decimal qBCProd { get; set; }
+        [DataMember(Name = "qBCProd", EmitDefaultValue = true)]
+        public decimal? qBCProd { get; set; }
 
         /// <summary>
         /// Alíquota do PIS ST (em reais).
         /// </summary>
         /// <value>Alíquota do PIS ST (em reais).</value>
-        [DataMember(Name = "vAliqProd", EmitDefaultValue = false)]
-        public decimal vAliqProd { get; set; }
+        [DataMember(Name = "vAliqProd", EmitDefaultValue = true)]
+        public decimal? vAliqProd { get; set; }
 
         /// <summary>
         /// Valor do PIS ST.
         /// </summary>
         /// <value>Valor do PIS ST.</value>
         [DataMember(Name = "vPIS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vPIS { get; set; }
+        public decimal? vPIS { get; set; }
 
         /// <summary>
         /// Indica se o valor do PISST compõe o valor total da NF-e.
         /// </summary>
         /// <value>Indica se o valor do PISST compõe o valor total da NF-e.</value>
-        [DataMember(Name = "indSomaPISST", EmitDefaultValue = false)]
-        public int indSomaPISST { get; set; }
+        [DataMember(Name = "indSomaPISST", EmitDefaultValue = true)]
+        public int? indSomaPISST { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,27 +150,33 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pPIS == input.pPIS ||
-                    this.pPIS.Equals(input.pPIS)
+                    (this.pPIS != null &&
+                    this.pPIS.Equals(input.pPIS))
                 ) && 
                 (
                     this.qBCProd == input.qBCProd ||
-                    this.qBCProd.Equals(input.qBCProd)
+                    (this.qBCProd != null &&
+                    this.qBCProd.Equals(input.qBCProd))
                 ) && 
                 (
                     this.vAliqProd == input.vAliqProd ||
-                    this.vAliqProd.Equals(input.vAliqProd)
+                    (this.vAliqProd != null &&
+                    this.vAliqProd.Equals(input.vAliqProd))
                 ) && 
                 (
                     this.vPIS == input.vPIS ||
-                    this.vPIS.Equals(input.vPIS)
+                    (this.vPIS != null &&
+                    this.vPIS.Equals(input.vPIS))
                 ) && 
                 (
                     this.indSomaPISST == input.indSomaPISST ||
-                    this.indSomaPISST.Equals(input.indSomaPISST)
+                    (this.indSomaPISST != null &&
+                    this.indSomaPISST.Equals(input.indSomaPISST))
                 );
         }
 
@@ -178,12 +189,30 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pPIS.GetHashCode();
-                hashCode = (hashCode * 59) + this.qBCProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.vAliqProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.vPIS.GetHashCode();
-                hashCode = (hashCode * 59) + this.indSomaPISST.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pPIS != null)
+                {
+                    hashCode = (hashCode * 59) + this.pPIS.GetHashCode();
+                }
+                if (this.qBCProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.qBCProd.GetHashCode();
+                }
+                if (this.vAliqProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.vAliqProd.GetHashCode();
+                }
+                if (this.vPIS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vPIS.GetHashCode();
+                }
+                if (this.indSomaPISST != null)
+                {
+                    hashCode = (hashCode * 59) + this.indSomaPISST.GetHashCode();
+                }
                 return hashCode;
             }
         }

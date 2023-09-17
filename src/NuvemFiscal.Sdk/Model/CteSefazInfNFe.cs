@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dPrev">Data prevista de entrega.  Formato AAAA-MM-DD..</param>
         /// <param name="infUnidCarga">infUnidCarga.</param>
         /// <param name="infUnidTransp">infUnidTransp.</param>
-        public CteSefazInfNFe(string chave = default(string), string pIN = default(string), DateTime dPrev = default(DateTime), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
+        public CteSefazInfNFe(string chave = default(string), string pIN = default(string), DateTime? dPrev = default(DateTime?), List<CteSefazUnidCarga> infUnidCarga = default(List<CteSefazUnidCarga>), List<CteSefazUnidadeTransp> infUnidTransp = default(List<CteSefazUnidadeTransp>))
         {
             // to ensure "chave" is required (not null)
             if (chave == null)
@@ -66,16 +66,16 @@ namespace NuvemFiscal.Sdk.Model
         /// PIN SUFRAMA.  PIN atribuído pela SUFRAMA para a operação.
         /// </summary>
         /// <value>PIN SUFRAMA.  PIN atribuído pela SUFRAMA para a operação.</value>
-        [DataMember(Name = "PIN", EmitDefaultValue = false)]
+        [DataMember(Name = "PIN", EmitDefaultValue = true)]
         public string PIN { get; set; }
 
         /// <summary>
         /// Data prevista de entrega.  Formato AAAA-MM-DD.
         /// </summary>
         /// <value>Data prevista de entrega.  Formato AAAA-MM-DD.</value>
-        [DataMember(Name = "dPrev", EmitDefaultValue = false)]
+        [DataMember(Name = "dPrev", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dPrev { get; set; }
+        public DateTime? dPrev { get; set; }
 
         /// <summary>
         /// Gets or Sets infUnidCarga

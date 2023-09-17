@@ -75,7 +75,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="arma">arma.</param>
         /// <param name="comb">comb.</param>
         /// <param name="nRECOPI">Número do RECOPI..</param>
-        public NfeSefazProd(string cProd = default(string), string cEAN = default(string), string cBarra = default(string), string xProd = default(string), string nCM = default(string), List<string> nVE = default(List<string>), string cEST = default(string), string indEscala = default(string), string cNPJFab = default(string), string cBenef = default(string), string eXTIPI = default(string), string cFOP = default(string), string uCom = default(string), decimal qCom = default(decimal), decimal vUnCom = default(decimal), decimal vProd = default(decimal), string cEANTrib = default(string), string cBarraTrib = default(string), string uTrib = default(string), decimal qTrib = default(decimal), decimal vUnTrib = default(decimal), decimal vFrete = default(decimal), decimal vSeg = default(decimal), decimal vDesc = default(decimal), decimal vOutro = default(decimal), int indTot = default(int), List<NfeSefazDI> dI = default(List<NfeSefazDI>), List<NfeSefazDetExport> detExport = default(List<NfeSefazDetExport>), string xPed = default(string), int nItemPed = default(int), string nFCI = default(string), List<NfeSefazRastro> rastro = default(List<NfeSefazRastro>), NfeSefazInfProdNFF infProdNFF = default(NfeSefazInfProdNFF), NfeSefazInfProdEmb infProdEmb = default(NfeSefazInfProdEmb), NfeSefazVeicProd veicProd = default(NfeSefazVeicProd), NfeSefazMed med = default(NfeSefazMed), List<NfeSefazArma> arma = default(List<NfeSefazArma>), NfeSefazComb comb = default(NfeSefazComb), string nRECOPI = default(string))
+        public NfeSefazProd(string cProd = default(string), string cEAN = default(string), string cBarra = default(string), string xProd = default(string), string nCM = default(string), List<string> nVE = default(List<string>), string cEST = default(string), string indEscala = default(string), string cNPJFab = default(string), string cBenef = default(string), string eXTIPI = default(string), string cFOP = default(string), string uCom = default(string), decimal? qCom = default(decimal?), decimal? vUnCom = default(decimal?), decimal? vProd = default(decimal?), string cEANTrib = default(string), string cBarraTrib = default(string), string uTrib = default(string), decimal? qTrib = default(decimal?), decimal? vUnTrib = default(decimal?), decimal? vFrete = default(decimal?), decimal? vSeg = default(decimal?), decimal? vDesc = default(decimal?), decimal? vOutro = default(decimal?), int? indTot = default(int?), List<NfeSefazDI> dI = default(List<NfeSefazDI>), List<NfeSefazDetExport> detExport = default(List<NfeSefazDetExport>), string xPed = default(string), int? nItemPed = default(int?), string nFCI = default(string), List<NfeSefazRastro> rastro = default(List<NfeSefazRastro>), NfeSefazInfProdNFF infProdNFF = default(NfeSefazInfProdNFF), NfeSefazInfProdEmb infProdEmb = default(NfeSefazInfProdEmb), NfeSefazVeicProd veicProd = default(NfeSefazVeicProd), NfeSefazMed med = default(NfeSefazMed), List<NfeSefazArma> arma = default(List<NfeSefazArma>), NfeSefazComb comb = default(NfeSefazComb), string nRECOPI = default(string))
         {
             // to ensure "cProd" is required (not null)
             if (cProd == null)
@@ -113,8 +113,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("uCom is a required property for NfeSefazProd and cannot be null");
             }
             this.uCom = uCom;
+            // to ensure "qCom" is required (not null)
+            if (qCom == null)
+            {
+                throw new ArgumentNullException("qCom is a required property for NfeSefazProd and cannot be null");
+            }
             this.qCom = qCom;
+            // to ensure "vUnCom" is required (not null)
+            if (vUnCom == null)
+            {
+                throw new ArgumentNullException("vUnCom is a required property for NfeSefazProd and cannot be null");
+            }
             this.vUnCom = vUnCom;
+            // to ensure "vProd" is required (not null)
+            if (vProd == null)
+            {
+                throw new ArgumentNullException("vProd is a required property for NfeSefazProd and cannot be null");
+            }
             this.vProd = vProd;
             // to ensure "cEANTrib" is required (not null)
             if (cEANTrib == null)
@@ -128,8 +143,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("uTrib is a required property for NfeSefazProd and cannot be null");
             }
             this.uTrib = uTrib;
+            // to ensure "qTrib" is required (not null)
+            if (qTrib == null)
+            {
+                throw new ArgumentNullException("qTrib is a required property for NfeSefazProd and cannot be null");
+            }
             this.qTrib = qTrib;
+            // to ensure "vUnTrib" is required (not null)
+            if (vUnTrib == null)
+            {
+                throw new ArgumentNullException("vUnTrib is a required property for NfeSefazProd and cannot be null");
+            }
             this.vUnTrib = vUnTrib;
+            // to ensure "indTot" is required (not null)
+            if (indTot == null)
+            {
+                throw new ArgumentNullException("indTot is a required property for NfeSefazProd and cannot be null");
+            }
             this.indTot = indTot;
             this.cBarra = cBarra;
             this.NVE = nVE;
@@ -176,7 +206,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Codigo de barras diferente do padrão GTIN.
         /// </summary>
         /// <value>Codigo de barras diferente do padrão GTIN.</value>
-        [DataMember(Name = "cBarra", EmitDefaultValue = false)]
+        [DataMember(Name = "cBarra", EmitDefaultValue = true)]
         public string cBarra { get; set; }
 
         /// <summary>
@@ -204,33 +234,33 @@ namespace NuvemFiscal.Sdk.Model
         /// Codigo especificador da Substuicao Tributaria - CEST, que identifica a mercadoria sujeita aos regimes de  substituicao tributária e de antecipação do recolhimento  do imposto.
         /// </summary>
         /// <value>Codigo especificador da Substuicao Tributaria - CEST, que identifica a mercadoria sujeita aos regimes de  substituicao tributária e de antecipação do recolhimento  do imposto.</value>
-        [DataMember(Name = "CEST", EmitDefaultValue = false)]
+        [DataMember(Name = "CEST", EmitDefaultValue = true)]
         public string CEST { get; set; }
 
         /// <summary>
         /// Gets or Sets indEscala
         /// </summary>
-        [DataMember(Name = "indEscala", EmitDefaultValue = false)]
+        [DataMember(Name = "indEscala", EmitDefaultValue = true)]
         public string indEscala { get; set; }
 
         /// <summary>
         /// CNPJ do Fabricante da Mercadoria, obrigatório para produto em escala NÃO relevante.
         /// </summary>
         /// <value>CNPJ do Fabricante da Mercadoria, obrigatório para produto em escala NÃO relevante.</value>
-        [DataMember(Name = "CNPJFab", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJFab", EmitDefaultValue = true)]
         public string CNPJFab { get; set; }
 
         /// <summary>
         /// Gets or Sets cBenef
         /// </summary>
-        [DataMember(Name = "cBenef", EmitDefaultValue = false)]
+        [DataMember(Name = "cBenef", EmitDefaultValue = true)]
         public string cBenef { get; set; }
 
         /// <summary>
         /// Código EX TIPI (3 posições).
         /// </summary>
         /// <value>Código EX TIPI (3 posições).</value>
-        [DataMember(Name = "EXTIPI", EmitDefaultValue = false)]
+        [DataMember(Name = "EXTIPI", EmitDefaultValue = true)]
         public string EXTIPI { get; set; }
 
         /// <summary>
@@ -252,21 +282,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade Comercial  do produto, alterado para aceitar de 0 a 4 casas decimais e 11 inteiros.</value>
         [DataMember(Name = "qCom", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qCom { get; set; }
+        public decimal? qCom { get; set; }
 
         /// <summary>
         /// Valor unitário de comercialização  - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.
         /// </summary>
         /// <value>Valor unitário de comercialização  - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.</value>
         [DataMember(Name = "vUnCom", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vUnCom { get; set; }
+        public decimal? vUnCom { get; set; }
 
         /// <summary>
         /// Valor bruto do produto ou serviço.
         /// </summary>
         /// <value>Valor bruto do produto ou serviço.</value>
         [DataMember(Name = "vProd", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vProd { get; set; }
+        public decimal? vProd { get; set; }
 
         /// <summary>
         /// GTIN (Global Trade Item Number) da unidade tributável, antigo código EAN ou código de barras.
@@ -279,7 +309,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Código de barras da unidade tributável diferente do padrão GTIN.
         /// </summary>
         /// <value>Código de barras da unidade tributável diferente do padrão GTIN.</value>
-        [DataMember(Name = "cBarraTrib", EmitDefaultValue = false)]
+        [DataMember(Name = "cBarraTrib", EmitDefaultValue = true)]
         public string cBarraTrib { get; set; }
 
         /// <summary>
@@ -294,49 +324,49 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade Tributável - alterado para aceitar de 0 a 4 casas decimais e 11 inteiros.</value>
         [DataMember(Name = "qTrib", IsRequired = true, EmitDefaultValue = true)]
-        public decimal qTrib { get; set; }
+        public decimal? qTrib { get; set; }
 
         /// <summary>
         /// Valor unitário de tributação - - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.
         /// </summary>
         /// <value>Valor unitário de tributação - - alterado para aceitar 0 a 10 casas decimais e 11 inteiros.</value>
         [DataMember(Name = "vUnTrib", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vUnTrib { get; set; }
+        public decimal? vUnTrib { get; set; }
 
         /// <summary>
         /// Valor Total do Frete.
         /// </summary>
         /// <value>Valor Total do Frete.</value>
-        [DataMember(Name = "vFrete", EmitDefaultValue = false)]
-        public decimal vFrete { get; set; }
+        [DataMember(Name = "vFrete", EmitDefaultValue = true)]
+        public decimal? vFrete { get; set; }
 
         /// <summary>
         /// Valor Total do Seguro.
         /// </summary>
         /// <value>Valor Total do Seguro.</value>
-        [DataMember(Name = "vSeg", EmitDefaultValue = false)]
-        public decimal vSeg { get; set; }
+        [DataMember(Name = "vSeg", EmitDefaultValue = true)]
+        public decimal? vSeg { get; set; }
 
         /// <summary>
         /// Valor do Desconto.
         /// </summary>
         /// <value>Valor do Desconto.</value>
-        [DataMember(Name = "vDesc", EmitDefaultValue = false)]
-        public decimal vDesc { get; set; }
+        [DataMember(Name = "vDesc", EmitDefaultValue = true)]
+        public decimal? vDesc { get; set; }
 
         /// <summary>
         /// Outras despesas acessórias.
         /// </summary>
         /// <value>Outras despesas acessórias.</value>
-        [DataMember(Name = "vOutro", EmitDefaultValue = false)]
-        public decimal vOutro { get; set; }
+        [DataMember(Name = "vOutro", EmitDefaultValue = true)]
+        public decimal? vOutro { get; set; }
 
         /// <summary>
         /// Este campo deverá ser preenchido com:  * 0 - o valor do item (vProd) não compõe o valor total da NF-e (vProd)  * 1 - o valor do item (vProd) compõe o valor total da NF-e (vProd)
         /// </summary>
         /// <value>Este campo deverá ser preenchido com:  * 0 - o valor do item (vProd) não compõe o valor total da NF-e (vProd)  * 1 - o valor do item (vProd) compõe o valor total da NF-e (vProd)</value>
         [DataMember(Name = "indTot", IsRequired = true, EmitDefaultValue = true)]
-        public int indTot { get; set; }
+        public int? indTot { get; set; }
 
         /// <summary>
         /// Gets or Sets DI
@@ -354,21 +384,21 @@ namespace NuvemFiscal.Sdk.Model
         /// pedido de compra - Informação de interesse do emissor para controle do B2B.
         /// </summary>
         /// <value>pedido de compra - Informação de interesse do emissor para controle do B2B.</value>
-        [DataMember(Name = "xPed", EmitDefaultValue = false)]
+        [DataMember(Name = "xPed", EmitDefaultValue = true)]
         public string xPed { get; set; }
 
         /// <summary>
         /// Número do Item do Pedido de Compra - Identificação do número do item do pedido de Compra.
         /// </summary>
         /// <value>Número do Item do Pedido de Compra - Identificação do número do item do pedido de Compra.</value>
-        [DataMember(Name = "nItemPed", EmitDefaultValue = false)]
-        public int nItemPed { get; set; }
+        [DataMember(Name = "nItemPed", EmitDefaultValue = true)]
+        public int? nItemPed { get; set; }
 
         /// <summary>
         /// Número de controle da FCI - Ficha de Conteúdo de Importação.
         /// </summary>
         /// <value>Número de controle da FCI - Ficha de Conteúdo de Importação.</value>
-        [DataMember(Name = "nFCI", EmitDefaultValue = false)]
+        [DataMember(Name = "nFCI", EmitDefaultValue = true)]
         public string nFCI { get; set; }
 
         /// <summary>
@@ -417,7 +447,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do RECOPI.
         /// </summary>
         /// <value>Número do RECOPI.</value>
-        [DataMember(Name = "nRECOPI", EmitDefaultValue = false)]
+        [DataMember(Name = "nRECOPI", EmitDefaultValue = true)]
         public string nRECOPI { get; set; }
 
         /// <summary>
@@ -570,15 +600,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qCom == input.qCom ||
-                    this.qCom.Equals(input.qCom)
+                    (this.qCom != null &&
+                    this.qCom.Equals(input.qCom))
                 ) && 
                 (
                     this.vUnCom == input.vUnCom ||
-                    this.vUnCom.Equals(input.vUnCom)
+                    (this.vUnCom != null &&
+                    this.vUnCom.Equals(input.vUnCom))
                 ) && 
                 (
                     this.vProd == input.vProd ||
-                    this.vProd.Equals(input.vProd)
+                    (this.vProd != null &&
+                    this.vProd.Equals(input.vProd))
                 ) && 
                 (
                     this.cEANTrib == input.cEANTrib ||
@@ -597,31 +630,38 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.qTrib == input.qTrib ||
-                    this.qTrib.Equals(input.qTrib)
+                    (this.qTrib != null &&
+                    this.qTrib.Equals(input.qTrib))
                 ) && 
                 (
                     this.vUnTrib == input.vUnTrib ||
-                    this.vUnTrib.Equals(input.vUnTrib)
+                    (this.vUnTrib != null &&
+                    this.vUnTrib.Equals(input.vUnTrib))
                 ) && 
                 (
                     this.vFrete == input.vFrete ||
-                    this.vFrete.Equals(input.vFrete)
+                    (this.vFrete != null &&
+                    this.vFrete.Equals(input.vFrete))
                 ) && 
                 (
                     this.vSeg == input.vSeg ||
-                    this.vSeg.Equals(input.vSeg)
+                    (this.vSeg != null &&
+                    this.vSeg.Equals(input.vSeg))
                 ) && 
                 (
                     this.vDesc == input.vDesc ||
-                    this.vDesc.Equals(input.vDesc)
+                    (this.vDesc != null &&
+                    this.vDesc.Equals(input.vDesc))
                 ) && 
                 (
                     this.vOutro == input.vOutro ||
-                    this.vOutro.Equals(input.vOutro)
+                    (this.vOutro != null &&
+                    this.vOutro.Equals(input.vOutro))
                 ) && 
                 (
                     this.indTot == input.indTot ||
-                    this.indTot.Equals(input.indTot)
+                    (this.indTot != null &&
+                    this.indTot.Equals(input.indTot))
                 ) && 
                 (
                     this.DI == input.DI ||
@@ -642,7 +682,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.nItemPed == input.nItemPed ||
-                    this.nItemPed.Equals(input.nItemPed)
+                    (this.nItemPed != null &&
+                    this.nItemPed.Equals(input.nItemPed))
                 ) && 
                 (
                     this.nFCI == input.nFCI ||
@@ -754,9 +795,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.uCom.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qCom.GetHashCode();
-                hashCode = (hashCode * 59) + this.vUnCom.GetHashCode();
-                hashCode = (hashCode * 59) + this.vProd.GetHashCode();
+                if (this.qCom != null)
+                {
+                    hashCode = (hashCode * 59) + this.qCom.GetHashCode();
+                }
+                if (this.vUnCom != null)
+                {
+                    hashCode = (hashCode * 59) + this.vUnCom.GetHashCode();
+                }
+                if (this.vProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.vProd.GetHashCode();
+                }
                 if (this.cEANTrib != null)
                 {
                     hashCode = (hashCode * 59) + this.cEANTrib.GetHashCode();
@@ -769,13 +819,34 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.uTrib.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.qTrib.GetHashCode();
-                hashCode = (hashCode * 59) + this.vUnTrib.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFrete.GetHashCode();
-                hashCode = (hashCode * 59) + this.vSeg.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDesc.GetHashCode();
-                hashCode = (hashCode * 59) + this.vOutro.GetHashCode();
-                hashCode = (hashCode * 59) + this.indTot.GetHashCode();
+                if (this.qTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.qTrib.GetHashCode();
+                }
+                if (this.vUnTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.vUnTrib.GetHashCode();
+                }
+                if (this.vFrete != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFrete.GetHashCode();
+                }
+                if (this.vSeg != null)
+                {
+                    hashCode = (hashCode * 59) + this.vSeg.GetHashCode();
+                }
+                if (this.vDesc != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDesc.GetHashCode();
+                }
+                if (this.vOutro != null)
+                {
+                    hashCode = (hashCode * 59) + this.vOutro.GetHashCode();
+                }
+                if (this.indTot != null)
+                {
+                    hashCode = (hashCode * 59) + this.indTot.GetHashCode();
+                }
                 if (this.DI != null)
                 {
                     hashCode = (hashCode * 59) + this.DI.GetHashCode();
@@ -788,7 +859,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.xPed.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.nItemPed.GetHashCode();
+                if (this.nItemPed != null)
+                {
+                    hashCode = (hashCode * 59) + this.nItemPed.GetHashCode();
+                }
                 if (this.nFCI != null)
                 {
                     hashCode = (hashCode * 59) + this.nFCI.GetHashCode();

@@ -43,14 +43,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Texto com o QR-Code impresso no DANFE NFC-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Texto com o QR-Code impresso no DANFE NFC-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "qrCode", EmitDefaultValue = false)]
+        [DataMember(Name = "qrCode", EmitDefaultValue = true)]
         public string qrCode { get; set; }
 
         /// <summary>
         /// Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Informar a URL da \&quot;Consulta por chave de acesso da NFC-e\&quot;. A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "urlChave", EmitDefaultValue = false)]
+        [DataMember(Name = "urlChave", EmitDefaultValue = true)]
         public string urlChave { get; set; }
 
         /// <summary>

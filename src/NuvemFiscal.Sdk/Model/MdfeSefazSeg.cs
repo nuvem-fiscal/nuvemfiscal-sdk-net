@@ -69,7 +69,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da Apólice.  Obrigatório pela lei 11.442/07 (RCTRC).
         /// </summary>
         /// <value>Número da Apólice.  Obrigatório pela lei 11.442/07 (RCTRC).</value>
-        [DataMember(Name = "nApol", EmitDefaultValue = false)]
+        [DataMember(Name = "nApol", EmitDefaultValue = true)]
         public string nApol { get; set; }
 
         /// <summary>

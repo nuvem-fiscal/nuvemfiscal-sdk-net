@@ -5,6 +5,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | Método | Endpoint | Descrição |
 |--------|--------------|-------------|
 | [**BaixarPdfNfse**](NfseApi.md#baixarpdfnfse) | **GET** /nfse/{id}/pdf | Baixar PDF do DANFSE |
+| [**BaixarXmlCancelamentoNfse**](NfseApi.md#baixarxmlcancelamentonfse) | **GET** /nfse/{Id}/cancelamento/xml | Baixar XML do evento de cancelamento |
 | [**BaixarXmlDps**](NfseApi.md#baixarxmldps) | **GET** /nfse/{id}/xml/dps | Baixar XML da DPS |
 | [**BaixarXmlNfse**](NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada |
 | [**CancelarNfse**](NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada |
@@ -101,6 +102,106 @@ catch (ApiException e)
 | **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
 | **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
 | **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; | [optional]  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarxmlcancelamentonfse"></a>
+# **BaixarXmlCancelamentoNfse**
+> FileParameter BaixarXmlCancelamentoNfse (string id)
+
+Baixar XML do evento de cancelamento
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarXmlCancelamentoNfseExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfseApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFS-e gerado pela Nuvem Fiscal.
+
+            try
+            {
+                // Baixar XML do evento de cancelamento
+                FileParameter result = apiInstance.BaixarXmlCancelamentoNfse(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfseApi.BaixarXmlCancelamentoNfse: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarXmlCancelamentoNfseWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar XML do evento de cancelamento
+    ApiResponse<FileParameter> response = apiInstance.BaixarXmlCancelamentoNfseWithHttpInfo(id);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfseApi.BaixarXmlCancelamentoNfseWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFS-e gerado pela Nuvem Fiscal. |  |
 
 ### Tipo de retorno
 

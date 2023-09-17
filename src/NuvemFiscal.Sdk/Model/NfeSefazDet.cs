@@ -42,8 +42,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="impostoDevol">impostoDevol.</param>
         /// <param name="infAdProd">Informações adicionais do produto (norma referenciada, informações complementares, etc)..</param>
         /// <param name="obsItem">obsItem.</param>
-        public NfeSefazDet(int nItem = default(int), NfeSefazProd prod = default(NfeSefazProd), NfeSefazImposto imposto = default(NfeSefazImposto), NfeSefazImpostoDevol impostoDevol = default(NfeSefazImpostoDevol), string infAdProd = default(string), NfeSefazObsItem obsItem = default(NfeSefazObsItem))
+        public NfeSefazDet(int? nItem = default(int?), NfeSefazProd prod = default(NfeSefazProd), NfeSefazImposto imposto = default(NfeSefazImposto), NfeSefazImpostoDevol impostoDevol = default(NfeSefazImpostoDevol), string infAdProd = default(string), NfeSefazObsItem obsItem = default(NfeSefazObsItem))
         {
+            // to ensure "nItem" is required (not null)
+            if (nItem == null)
+            {
+                throw new ArgumentNullException("nItem is a required property for NfeSefazDet and cannot be null");
+            }
             this.nItem = nItem;
             // to ensure "prod" is required (not null)
             if (prod == null)
@@ -67,7 +72,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número do item do NF.</value>
         [DataMember(Name = "nItem", IsRequired = true, EmitDefaultValue = true)]
-        public int nItem { get; set; }
+        public int? nItem { get; set; }
 
         /// <summary>
         /// Gets or Sets prod
@@ -91,7 +96,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Informações adicionais do produto (norma referenciada, informações complementares, etc).
         /// </summary>
         /// <value>Informações adicionais do produto (norma referenciada, informações complementares, etc).</value>
-        [DataMember(Name = "infAdProd", EmitDefaultValue = false)]
+        [DataMember(Name = "infAdProd", EmitDefaultValue = true)]
         public string infAdProd { get; set; }
 
         /// <summary>
@@ -151,7 +156,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.nItem == input.nItem ||
-                    this.nItem.Equals(input.nItem)
+                    (this.nItem != null &&
+                    this.nItem.Equals(input.nItem))
                 ) && 
                 (
                     this.prod == input.prod ||
@@ -189,7 +195,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.nItem.GetHashCode();
+                if (this.nItem != null)
+                {
+                    hashCode = (hashCode * 59) + this.nItem.GetHashCode();
+                }
                 if (this.prod != null)
                 {
                     hashCode = (hashCode * 59) + this.prod.GetHashCode();

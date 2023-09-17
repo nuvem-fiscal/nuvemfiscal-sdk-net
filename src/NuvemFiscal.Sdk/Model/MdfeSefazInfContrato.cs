@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="nroContrato">Número do contrato do transportador com o contratante quando este existir para prestações continuadas. (required).</param>
         /// <param name="vContratoGlobal">Valor global do contrato. (required).</param>
-        public MdfeSefazInfContrato(string nroContrato = default(string), decimal vContratoGlobal = default(decimal))
+        public MdfeSefazInfContrato(string nroContrato = default(string), decimal? vContratoGlobal = default(decimal?))
         {
             // to ensure "nroContrato" is required (not null)
             if (nroContrato == null)
@@ -46,6 +46,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("nroContrato is a required property for MdfeSefazInfContrato and cannot be null");
             }
             this.NroContrato = nroContrato;
+            // to ensure "vContratoGlobal" is required (not null)
+            if (vContratoGlobal == null)
+            {
+                throw new ArgumentNullException("vContratoGlobal is a required property for MdfeSefazInfContrato and cannot be null");
+            }
             this.vContratoGlobal = vContratoGlobal;
         }
 
@@ -61,7 +66,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor global do contrato.</value>
         [DataMember(Name = "vContratoGlobal", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vContratoGlobal { get; set; }
+        public decimal? vContratoGlobal { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +120,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vContratoGlobal == input.vContratoGlobal ||
-                    this.vContratoGlobal.Equals(input.vContratoGlobal)
+                    (this.vContratoGlobal != null &&
+                    this.vContratoGlobal.Equals(input.vContratoGlobal))
                 );
         }
 
@@ -132,7 +138,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.NroContrato.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vContratoGlobal.GetHashCode();
+                if (this.vContratoGlobal != null)
+                {
+                    hashCode = (hashCode * 59) + this.vContratoGlobal.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -33,7 +33,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="vDescIncond">Valor monetário do desconto incondicionado (R$)..</param>
         /// <param name="vDescCond">Valor monetário do desconto condicionado (R$)..</param>
-        public VDescCondIncond(decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal))
+        public VDescCondIncond(decimal? vDescIncond = default(decimal?), decimal? vDescCond = default(decimal?))
         {
             this.vDescIncond = vDescIncond;
             this.vDescCond = vDescCond;
@@ -43,15 +43,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor monetário do desconto incondicionado (R$).
         /// </summary>
         /// <value>Valor monetário do desconto incondicionado (R$).</value>
-        [DataMember(Name = "vDescIncond", EmitDefaultValue = false)]
-        public decimal vDescIncond { get; set; }
+        [DataMember(Name = "vDescIncond", EmitDefaultValue = true)]
+        public decimal? vDescIncond { get; set; }
 
         /// <summary>
         /// Valor monetário do desconto condicionado (R$).
         /// </summary>
         /// <value>Valor monetário do desconto condicionado (R$).</value>
-        [DataMember(Name = "vDescCond", EmitDefaultValue = false)]
-        public decimal vDescCond { get; set; }
+        [DataMember(Name = "vDescCond", EmitDefaultValue = true)]
+        public decimal? vDescCond { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,11 +100,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vDescIncond == input.vDescIncond ||
-                    this.vDescIncond.Equals(input.vDescIncond)
+                    (this.vDescIncond != null &&
+                    this.vDescIncond.Equals(input.vDescIncond))
                 ) && 
                 (
                     this.vDescCond == input.vDescCond ||
-                    this.vDescCond.Equals(input.vDescCond)
+                    (this.vDescCond != null &&
+                    this.vDescCond.Equals(input.vDescCond))
                 );
         }
 
@@ -117,8 +119,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vDescIncond.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDescCond.GetHashCode();
+                if (this.vDescIncond != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDescIncond.GetHashCode();
+                }
+                if (this.vDescCond != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDescCond.GetHashCode();
+                }
                 return hashCode;
             }
         }

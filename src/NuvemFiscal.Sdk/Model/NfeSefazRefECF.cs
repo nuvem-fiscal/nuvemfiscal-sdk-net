@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="mod">Código do modelo do Documento Fiscal  Preencher com \&quot;2B\&quot;, quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com \&quot;2C\&quot;, quando se tratar de Cupom Fiscal PDV, ou \&quot;2D\&quot;, quando se tratar de Cupom Fiscal (emitido por ECF). (required).</param>
         /// <param name="nECF">Informar o número de ordem seqüencial do ECF que emitiu o Cupom Fiscal vinculado à NF-e. (required).</param>
         /// <param name="nCOO">Informar o Número do Contador de Ordem de Operação - COO vinculado à NF-e. (required).</param>
-        public NfeSefazRefECF(string mod = default(string), int nECF = default(int), int nCOO = default(int))
+        public NfeSefazRefECF(string mod = default(string), int? nECF = default(int?), int? nCOO = default(int?))
         {
             // to ensure "mod" is required (not null)
             if (mod == null)
@@ -47,7 +47,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("mod is a required property for NfeSefazRefECF and cannot be null");
             }
             this.mod = mod;
+            // to ensure "nECF" is required (not null)
+            if (nECF == null)
+            {
+                throw new ArgumentNullException("nECF is a required property for NfeSefazRefECF and cannot be null");
+            }
             this.nECF = nECF;
+            // to ensure "nCOO" is required (not null)
+            if (nCOO == null)
+            {
+                throw new ArgumentNullException("nCOO is a required property for NfeSefazRefECF and cannot be null");
+            }
             this.nCOO = nCOO;
         }
 
@@ -63,14 +73,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Informar o número de ordem seqüencial do ECF que emitiu o Cupom Fiscal vinculado à NF-e.</value>
         [DataMember(Name = "nECF", IsRequired = true, EmitDefaultValue = true)]
-        public int nECF { get; set; }
+        public int? nECF { get; set; }
 
         /// <summary>
         /// Informar o Número do Contador de Ordem de Operação - COO vinculado à NF-e.
         /// </summary>
         /// <value>Informar o Número do Contador de Ordem de Operação - COO vinculado à NF-e.</value>
         [DataMember(Name = "nCOO", IsRequired = true, EmitDefaultValue = true)]
-        public int nCOO { get; set; }
+        public int? nCOO { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,11 +135,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.nECF == input.nECF ||
-                    this.nECF.Equals(input.nECF)
+                    (this.nECF != null &&
+                    this.nECF.Equals(input.nECF))
                 ) && 
                 (
                     this.nCOO == input.nCOO ||
-                    this.nCOO.Equals(input.nCOO)
+                    (this.nCOO != null &&
+                    this.nCOO.Equals(input.nCOO))
                 );
         }
 
@@ -146,8 +158,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.mod.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.nECF.GetHashCode();
-                hashCode = (hashCode * 59) + this.nCOO.GetHashCode();
+                if (this.nECF != null)
+                {
+                    hashCode = (hashCode * 59) + this.nECF.GetHashCode();
+                }
+                if (this.nCOO != null)
+                {
+                    hashCode = (hashCode * 59) + this.nCOO.GetHashCode();
+                }
                 return hashCode;
             }
         }

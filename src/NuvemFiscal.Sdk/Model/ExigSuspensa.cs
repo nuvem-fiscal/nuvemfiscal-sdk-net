@@ -38,8 +38,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="tpSusp">Opção para Exigibilidade Suspensa:  * 1 - Exigibilidade Suspensa por Decisão Judicial  * 2 - Exigibilidade Suspensa por Processo Administrativo (required).</param>
         /// <param name="nProcesso">Número do processo judicial ou administrativo de suspensão da exigibilidade. (required).</param>
-        public ExigSuspensa(int tpSusp = default(int), string nProcesso = default(string))
+        public ExigSuspensa(int? tpSusp = default(int?), string nProcesso = default(string))
         {
+            // to ensure "tpSusp" is required (not null)
+            if (tpSusp == null)
+            {
+                throw new ArgumentNullException("tpSusp is a required property for ExigSuspensa and cannot be null");
+            }
             this.tpSusp = tpSusp;
             // to ensure "nProcesso" is required (not null)
             if (nProcesso == null)
@@ -54,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Opção para Exigibilidade Suspensa:  * 1 - Exigibilidade Suspensa por Decisão Judicial  * 2 - Exigibilidade Suspensa por Processo Administrativo</value>
         [DataMember(Name = "tpSusp", IsRequired = true, EmitDefaultValue = true)]
-        public int tpSusp { get; set; }
+        public int? tpSusp { get; set; }
 
         /// <summary>
         /// Número do processo judicial ou administrativo de suspensão da exigibilidade.
@@ -110,7 +115,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpSusp == input.tpSusp ||
-                    this.tpSusp.Equals(input.tpSusp)
+                    (this.tpSusp != null &&
+                    this.tpSusp.Equals(input.tpSusp))
                 ) && 
                 (
                     this.nProcesso == input.nProcesso ||
@@ -128,7 +134,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpSusp.GetHashCode();
+                if (this.tpSusp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpSusp.GetHashCode();
+                }
                 if (this.nProcesso != null)
                 {
                     hashCode = (hashCode * 59) + this.nProcesso.GetHashCode();

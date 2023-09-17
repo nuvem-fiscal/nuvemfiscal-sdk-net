@@ -43,14 +43,49 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vFCPUFFim">Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP) da UF de término da prestação. (required).</param>
         /// <param name="vICMSUFFim">Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte. (required).</param>
         /// <param name="vICMSUFIni">Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte. (required).</param>
-        public CteSefazICMSUFFim(decimal vBCUFFim = default(decimal), decimal pFCPUFFim = default(decimal), decimal pICMSUFFim = default(decimal), decimal pICMSInter = default(decimal), decimal vFCPUFFim = default(decimal), decimal vICMSUFFim = default(decimal), decimal vICMSUFIni = default(decimal))
+        public CteSefazICMSUFFim(decimal? vBCUFFim = default(decimal?), decimal? pFCPUFFim = default(decimal?), decimal? pICMSUFFim = default(decimal?), decimal? pICMSInter = default(decimal?), decimal? vFCPUFFim = default(decimal?), decimal? vICMSUFFim = default(decimal?), decimal? vICMSUFIni = default(decimal?))
         {
+            // to ensure "vBCUFFim" is required (not null)
+            if (vBCUFFim == null)
+            {
+                throw new ArgumentNullException("vBCUFFim is a required property for CteSefazICMSUFFim and cannot be null");
+            }
             this.vBCUFFim = vBCUFFim;
+            // to ensure "pFCPUFFim" is required (not null)
+            if (pFCPUFFim == null)
+            {
+                throw new ArgumentNullException("pFCPUFFim is a required property for CteSefazICMSUFFim and cannot be null");
+            }
             this.pFCPUFFim = pFCPUFFim;
+            // to ensure "pICMSUFFim" is required (not null)
+            if (pICMSUFFim == null)
+            {
+                throw new ArgumentNullException("pICMSUFFim is a required property for CteSefazICMSUFFim and cannot be null");
+            }
             this.pICMSUFFim = pICMSUFFim;
+            // to ensure "pICMSInter" is required (not null)
+            if (pICMSInter == null)
+            {
+                throw new ArgumentNullException("pICMSInter is a required property for CteSefazICMSUFFim and cannot be null");
+            }
             this.pICMSInter = pICMSInter;
+            // to ensure "vFCPUFFim" is required (not null)
+            if (vFCPUFFim == null)
+            {
+                throw new ArgumentNullException("vFCPUFFim is a required property for CteSefazICMSUFFim and cannot be null");
+            }
             this.vFCPUFFim = vFCPUFFim;
+            // to ensure "vICMSUFFim" is required (not null)
+            if (vICMSUFFim == null)
+            {
+                throw new ArgumentNullException("vICMSUFFim is a required property for CteSefazICMSUFFim and cannot be null");
+            }
             this.vICMSUFFim = vICMSUFFim;
+            // to ensure "vICMSUFIni" is required (not null)
+            if (vICMSUFIni == null)
+            {
+                throw new ArgumentNullException("vICMSUFIni is a required property for CteSefazICMSUFFim and cannot be null");
+            }
             this.vICMSUFIni = vICMSUFIni;
         }
 
@@ -59,49 +94,49 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da BC do ICMS na UF de término da prestação do serviço de transporte.</value>
         [DataMember(Name = "vBCUFFim", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBCUFFim { get; set; }
+        public decimal? vBCUFFim { get; set; }
 
         /// <summary>
         /// Percentual do ICMS relativo ao Fundo de Combate à pobreza (FCP) na UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.
         /// </summary>
         /// <value>Percentual do ICMS relativo ao Fundo de Combate à pobreza (FCP) na UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.</value>
         [DataMember(Name = "pFCPUFFim", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pFCPUFFim { get; set; }
+        public decimal? pFCPUFFim { get; set; }
 
         /// <summary>
         /// Alíquota interna da UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.
         /// </summary>
         /// <value>Alíquota interna da UF de término da prestação do serviço de transporte.  Alíquota adotada nas operações internas na UF do destinatário.</value>
         [DataMember(Name = "pICMSUFFim", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMSUFFim { get; set; }
+        public decimal? pICMSUFFim { get; set; }
 
         /// <summary>
         /// Alíquota interestadual das UF envolvidas.  Alíquota interestadual das UF envolvidas.
         /// </summary>
         /// <value>Alíquota interestadual das UF envolvidas.  Alíquota interestadual das UF envolvidas.</value>
         [DataMember(Name = "pICMSInter", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMSInter { get; set; }
+        public decimal? pICMSInter { get; set; }
 
         /// <summary>
         /// Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP) da UF de término da prestação.
         /// </summary>
         /// <value>Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP) da UF de término da prestação.</value>
         [DataMember(Name = "vFCPUFFim", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vFCPUFFim { get; set; }
+        public decimal? vFCPUFFim { get; set; }
 
         /// <summary>
         /// Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte.
         /// </summary>
         /// <value>Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte.</value>
         [DataMember(Name = "vICMSUFFim", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSUFFim { get; set; }
+        public decimal? vICMSUFFim { get; set; }
 
         /// <summary>
         /// Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte.
         /// </summary>
         /// <value>Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte.</value>
         [DataMember(Name = "vICMSUFIni", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSUFIni { get; set; }
+        public decimal? vICMSUFIni { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -155,31 +190,38 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vBCUFFim == input.vBCUFFim ||
-                    this.vBCUFFim.Equals(input.vBCUFFim)
+                    (this.vBCUFFim != null &&
+                    this.vBCUFFim.Equals(input.vBCUFFim))
                 ) && 
                 (
                     this.pFCPUFFim == input.pFCPUFFim ||
-                    this.pFCPUFFim.Equals(input.pFCPUFFim)
+                    (this.pFCPUFFim != null &&
+                    this.pFCPUFFim.Equals(input.pFCPUFFim))
                 ) && 
                 (
                     this.pICMSUFFim == input.pICMSUFFim ||
-                    this.pICMSUFFim.Equals(input.pICMSUFFim)
+                    (this.pICMSUFFim != null &&
+                    this.pICMSUFFim.Equals(input.pICMSUFFim))
                 ) && 
                 (
                     this.pICMSInter == input.pICMSInter ||
-                    this.pICMSInter.Equals(input.pICMSInter)
+                    (this.pICMSInter != null &&
+                    this.pICMSInter.Equals(input.pICMSInter))
                 ) && 
                 (
                     this.vFCPUFFim == input.vFCPUFFim ||
-                    this.vFCPUFFim.Equals(input.vFCPUFFim)
+                    (this.vFCPUFFim != null &&
+                    this.vFCPUFFim.Equals(input.vFCPUFFim))
                 ) && 
                 (
                     this.vICMSUFFim == input.vICMSUFFim ||
-                    this.vICMSUFFim.Equals(input.vICMSUFFim)
+                    (this.vICMSUFFim != null &&
+                    this.vICMSUFFim.Equals(input.vICMSUFFim))
                 ) && 
                 (
                     this.vICMSUFIni == input.vICMSUFIni ||
-                    this.vICMSUFIni.Equals(input.vICMSUFIni)
+                    (this.vICMSUFIni != null &&
+                    this.vICMSUFIni.Equals(input.vICMSUFIni))
                 );
         }
 
@@ -192,13 +234,34 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vBCUFFim.GetHashCode();
-                hashCode = (hashCode * 59) + this.pFCPUFFim.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMSUFFim.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMSInter.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFCPUFFim.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSUFFim.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSUFIni.GetHashCode();
+                if (this.vBCUFFim != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCUFFim.GetHashCode();
+                }
+                if (this.pFCPUFFim != null)
+                {
+                    hashCode = (hashCode * 59) + this.pFCPUFFim.GetHashCode();
+                }
+                if (this.pICMSUFFim != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMSUFFim.GetHashCode();
+                }
+                if (this.pICMSInter != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMSInter.GetHashCode();
+                }
+                if (this.vFCPUFFim != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFCPUFFim.GetHashCode();
+                }
+                if (this.vICMSUFFim != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSUFFim.GetHashCode();
+                }
+                if (this.vICMSUFIni != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSUFIni.GetHashCode();
+                }
                 return hashCode;
             }
         }

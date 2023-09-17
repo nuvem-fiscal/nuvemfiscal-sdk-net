@@ -40,7 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBC">Valor da BC do ICMS. (required).</param>
         /// <param name="pICMS">Alíquota do ICMS. (required).</param>
         /// <param name="vICMS">Valor do ICMS. (required).</param>
-        public CteSefazICMS00(string cST = default(string), decimal vBC = default(decimal), decimal pICMS = default(decimal), decimal vICMS = default(decimal))
+        public CteSefazICMS00(string cST = default(string), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMS = default(decimal?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -48,8 +48,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for CteSefazICMS00 and cannot be null");
             }
             this.CST = cST;
+            // to ensure "vBC" is required (not null)
+            if (vBC == null)
+            {
+                throw new ArgumentNullException("vBC is a required property for CteSefazICMS00 and cannot be null");
+            }
             this.vBC = vBC;
+            // to ensure "pICMS" is required (not null)
+            if (pICMS == null)
+            {
+                throw new ArgumentNullException("pICMS is a required property for CteSefazICMS00 and cannot be null");
+            }
             this.pICMS = pICMS;
+            // to ensure "vICMS" is required (not null)
+            if (vICMS == null)
+            {
+                throw new ArgumentNullException("vICMS is a required property for CteSefazICMS00 and cannot be null");
+            }
             this.vICMS = vICMS;
         }
 
@@ -65,21 +80,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da BC do ICMS.</value>
         [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBC { get; set; }
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS.
         /// </summary>
         /// <value>Alíquota do ICMS.</value>
         [DataMember(Name = "pICMS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMS { get; set; }
+        public decimal? pICMS { get; set; }
 
         /// <summary>
         /// Valor do ICMS.
         /// </summary>
         /// <value>Valor do ICMS.</value>
         [DataMember(Name = "vICMS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMS { get; set; }
+        public decimal? vICMS { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,15 +150,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pICMS == input.pICMS ||
-                    this.pICMS.Equals(input.pICMS)
+                    (this.pICMS != null &&
+                    this.pICMS.Equals(input.pICMS))
                 ) && 
                 (
                     this.vICMS == input.vICMS ||
-                    this.vICMS.Equals(input.vICMS)
+                    (this.vICMS != null &&
+                    this.vICMS.Equals(input.vICMS))
                 );
         }
 
@@ -160,9 +178,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMS.GetHashCode();
+                }
+                if (this.vICMS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMS.GetHashCode();
+                }
                 return hashCode;
             }
         }

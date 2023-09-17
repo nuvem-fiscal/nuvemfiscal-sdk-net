@@ -53,49 +53,49 @@ namespace NuvemFiscal.Sdk.Model
         /// CNPJ do transportador.
         /// </summary>
         /// <value>CNPJ do transportador.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// CPF do transportador.
         /// </summary>
         /// <value>CPF do transportador.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Razão Social ou nome do transportador.
         /// </summary>
         /// <value>Razão Social ou nome do transportador.</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Inscrição Estadual (v2.0).
         /// </summary>
         /// <value>Inscrição Estadual (v2.0).</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// Endereço completo.
         /// </summary>
         /// <value>Endereço completo.</value>
-        [DataMember(Name = "xEnder", EmitDefaultValue = false)]
+        [DataMember(Name = "xEnder", EmitDefaultValue = true)]
         public string xEnder { get; set; }
 
         /// <summary>
         /// Nome do munícipio.
         /// </summary>
         /// <value>Nome do munícipio.</value>
-        [DataMember(Name = "xMun", EmitDefaultValue = false)]
+        [DataMember(Name = "xMun", EmitDefaultValue = true)]
         public string xMun { get; set; }
 
         /// <summary>
         /// Sigla da UF.
         /// </summary>
         /// <value>Sigla da UF.</value>
-        [DataMember(Name = "UF", EmitDefaultValue = false)]
+        [DataMember(Name = "UF", EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>

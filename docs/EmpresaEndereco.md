@@ -14,7 +14,7 @@ Nome | Tipo | Descrição | Comentários
 **uf** | **string** | Sigla do estado. | 
 **codigo_pais** | **string** | Código do país. | [optional] [default to "1058"]
 **pais** | **string** | Nome do país. | [optional] [default to "Brasil"]
-**cep** | **string** | CEP.  Utilize o valor sem máscara. | 
+**cep** | **string** | CEP.    *Utilize o valor sem máscara*. | 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

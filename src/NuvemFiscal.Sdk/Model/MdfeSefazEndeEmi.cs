@@ -59,70 +59,70 @@ namespace NuvemFiscal.Sdk.Model
         /// Logradouro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Logradouro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xLgr", EmitDefaultValue = false)]
+        [DataMember(Name = "xLgr", EmitDefaultValue = true)]
         public string xLgr { get; set; }
 
         /// <summary>
         /// Número.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Número.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "nro", EmitDefaultValue = false)]
+        [DataMember(Name = "nro", EmitDefaultValue = true)]
         public string nro { get; set; }
 
         /// <summary>
         /// Complemento.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Complemento.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "xCpl", EmitDefaultValue = true)]
         public string xCpl { get; set; }
 
         /// <summary>
         /// Bairro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Bairro.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xBairro", EmitDefaultValue = false)]
+        [DataMember(Name = "xBairro", EmitDefaultValue = true)]
         public string xBairro { get; set; }
 
         /// <summary>
         /// Código do município (utilizar a tabela do IBGE), informar 9999999 para operações com o exterior.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Código do município (utilizar a tabela do IBGE), informar 9999999 para operações com o exterior.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "cMun", EmitDefaultValue = false)]
+        [DataMember(Name = "cMun", EmitDefaultValue = true)]
         public string cMun { get; set; }
 
         /// <summary>
         /// Nome do município, , informar EXTERIOR para operações com o exterior.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Nome do município, , informar EXTERIOR para operações com o exterior.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "xMun", EmitDefaultValue = false)]
+        [DataMember(Name = "xMun", EmitDefaultValue = true)]
         public string xMun { get; set; }
 
         /// <summary>
         /// CEP.  Informar zeros não significativos.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>CEP.  Informar zeros não significativos.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "CEP", EmitDefaultValue = false)]
+        [DataMember(Name = "CEP", EmitDefaultValue = true)]
         public string CEP { get; set; }
 
         /// <summary>
         /// Sigla da UF, , informar EX para operações com o exterior.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Sigla da UF, , informar EX para operações com o exterior.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "UF", EmitDefaultValue = false)]
+        [DataMember(Name = "UF", EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>
         /// Telefone.    *Caso não seja informado, será utilizado o do cadastro da empresa.*
         /// </summary>
         /// <value>Telefone.    *Caso não seja informado, será utilizado o do cadastro da empresa.*</value>
-        [DataMember(Name = "fone", EmitDefaultValue = false)]
+        [DataMember(Name = "fone", EmitDefaultValue = true)]
         public string fone { get; set; }
 
         /// <summary>
         /// Endereço de E-mail.
         /// </summary>
         /// <value>Endereço de E-mail.</value>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public string email { get; set; }
 
         /// <summary>

@@ -59,21 +59,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Característica adicional do transporte.  Texto livre:  REENTREGA  DEVOLUÇÃO  REFATURAMENTO  etc.
         /// </summary>
         /// <value>Característica adicional do transporte.  Texto livre:  REENTREGA  DEVOLUÇÃO  REFATURAMENTO  etc.</value>
-        [DataMember(Name = "xCaracAd", EmitDefaultValue = false)]
+        [DataMember(Name = "xCaracAd", EmitDefaultValue = true)]
         public string xCaracAd { get; set; }
 
         /// <summary>
         /// Característica adicional do serviço.  Texto livre:  ENTREGA EXPRESSA  LOGÍSTICA REVERSA  CONVENCIONAL  EMERGENCIAL  etc.
         /// </summary>
         /// <value>Característica adicional do serviço.  Texto livre:  ENTREGA EXPRESSA  LOGÍSTICA REVERSA  CONVENCIONAL  EMERGENCIAL  etc.</value>
-        [DataMember(Name = "xCaracSer", EmitDefaultValue = false)]
+        [DataMember(Name = "xCaracSer", EmitDefaultValue = true)]
         public string xCaracSer { get; set; }
 
         /// <summary>
         /// Funcionário emissor do CTe.
         /// </summary>
         /// <value>Funcionário emissor do CTe.</value>
-        [DataMember(Name = "xEmi", EmitDefaultValue = false)]
+        [DataMember(Name = "xEmi", EmitDefaultValue = true)]
         public string xEmi { get; set; }
 
         /// <summary>
@@ -92,21 +92,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Município de origem para efeito de cálculo do frete.
         /// </summary>
         /// <value>Município de origem para efeito de cálculo do frete.</value>
-        [DataMember(Name = "origCalc", EmitDefaultValue = false)]
+        [DataMember(Name = "origCalc", EmitDefaultValue = true)]
         public string origCalc { get; set; }
 
         /// <summary>
         /// Município de destino para efeito de cálculo do frete.
         /// </summary>
         /// <value>Município de destino para efeito de cálculo do frete.</value>
-        [DataMember(Name = "destCalc", EmitDefaultValue = false)]
+        [DataMember(Name = "destCalc", EmitDefaultValue = true)]
         public string destCalc { get; set; }
 
         /// <summary>
         /// Observações Gerais.
         /// </summary>
         /// <value>Observações Gerais.</value>
-        [DataMember(Name = "xObs", EmitDefaultValue = false)]
+        [DataMember(Name = "xObs", EmitDefaultValue = true)]
         public string xObs { get; set; }
 
         /// <summary>

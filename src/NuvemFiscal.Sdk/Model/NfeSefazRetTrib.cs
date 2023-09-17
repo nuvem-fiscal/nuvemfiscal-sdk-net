@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vIRRF">Valor Retido de IRRF..</param>
         /// <param name="vBCRetPrev">Base de Cálculo da Retenção da Previdêncica Social..</param>
         /// <param name="vRetPrev">Valor da Retenção da Previdêncica Social..</param>
-        public NfeSefazRetTrib(decimal vRetPIS = default(decimal), decimal vRetCOFINS = default(decimal), decimal vRetCSLL = default(decimal), decimal vBCIRRF = default(decimal), decimal vIRRF = default(decimal), decimal vBCRetPrev = default(decimal), decimal vRetPrev = default(decimal))
+        public NfeSefazRetTrib(decimal? vRetPIS = default(decimal?), decimal? vRetCOFINS = default(decimal?), decimal? vRetCSLL = default(decimal?), decimal? vBCIRRF = default(decimal?), decimal? vIRRF = default(decimal?), decimal? vBCRetPrev = default(decimal?), decimal? vRetPrev = default(decimal?))
         {
             this.vRetPIS = vRetPIS;
             this.vRetCOFINS = vRetCOFINS;
@@ -53,50 +53,50 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor Retido de PIS.
         /// </summary>
         /// <value>Valor Retido de PIS.</value>
-        [DataMember(Name = "vRetPIS", EmitDefaultValue = false)]
-        public decimal vRetPIS { get; set; }
+        [DataMember(Name = "vRetPIS", EmitDefaultValue = true)]
+        public decimal? vRetPIS { get; set; }
 
         /// <summary>
         /// Valor Retido de COFINS.
         /// </summary>
         /// <value>Valor Retido de COFINS.</value>
-        [DataMember(Name = "vRetCOFINS", EmitDefaultValue = false)]
-        public decimal vRetCOFINS { get; set; }
+        [DataMember(Name = "vRetCOFINS", EmitDefaultValue = true)]
+        public decimal? vRetCOFINS { get; set; }
 
         /// <summary>
         /// Valor Retido de CSLL.
         /// </summary>
         /// <value>Valor Retido de CSLL.</value>
-        [DataMember(Name = "vRetCSLL", EmitDefaultValue = false)]
-        public decimal vRetCSLL { get; set; }
+        [DataMember(Name = "vRetCSLL", EmitDefaultValue = true)]
+        public decimal? vRetCSLL { get; set; }
 
         /// <summary>
         /// Base de Cálculo do IRRF.
         /// </summary>
         /// <value>Base de Cálculo do IRRF.</value>
-        [DataMember(Name = "vBCIRRF", EmitDefaultValue = false)]
-        public decimal vBCIRRF { get; set; }
+        [DataMember(Name = "vBCIRRF", EmitDefaultValue = true)]
+        public decimal? vBCIRRF { get; set; }
 
         /// <summary>
         /// Valor Retido de IRRF.
         /// </summary>
         /// <value>Valor Retido de IRRF.</value>
-        [DataMember(Name = "vIRRF", EmitDefaultValue = false)]
-        public decimal vIRRF { get; set; }
+        [DataMember(Name = "vIRRF", EmitDefaultValue = true)]
+        public decimal? vIRRF { get; set; }
 
         /// <summary>
         /// Base de Cálculo da Retenção da Previdêncica Social.
         /// </summary>
         /// <value>Base de Cálculo da Retenção da Previdêncica Social.</value>
-        [DataMember(Name = "vBCRetPrev", EmitDefaultValue = false)]
-        public decimal vBCRetPrev { get; set; }
+        [DataMember(Name = "vBCRetPrev", EmitDefaultValue = true)]
+        public decimal? vBCRetPrev { get; set; }
 
         /// <summary>
         /// Valor da Retenção da Previdêncica Social.
         /// </summary>
         /// <value>Valor da Retenção da Previdêncica Social.</value>
-        [DataMember(Name = "vRetPrev", EmitDefaultValue = false)]
-        public decimal vRetPrev { get; set; }
+        [DataMember(Name = "vRetPrev", EmitDefaultValue = true)]
+        public decimal? vRetPrev { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,31 +150,38 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vRetPIS == input.vRetPIS ||
-                    this.vRetPIS.Equals(input.vRetPIS)
+                    (this.vRetPIS != null &&
+                    this.vRetPIS.Equals(input.vRetPIS))
                 ) && 
                 (
                     this.vRetCOFINS == input.vRetCOFINS ||
-                    this.vRetCOFINS.Equals(input.vRetCOFINS)
+                    (this.vRetCOFINS != null &&
+                    this.vRetCOFINS.Equals(input.vRetCOFINS))
                 ) && 
                 (
                     this.vRetCSLL == input.vRetCSLL ||
-                    this.vRetCSLL.Equals(input.vRetCSLL)
+                    (this.vRetCSLL != null &&
+                    this.vRetCSLL.Equals(input.vRetCSLL))
                 ) && 
                 (
                     this.vBCIRRF == input.vBCIRRF ||
-                    this.vBCIRRF.Equals(input.vBCIRRF)
+                    (this.vBCIRRF != null &&
+                    this.vBCIRRF.Equals(input.vBCIRRF))
                 ) && 
                 (
                     this.vIRRF == input.vIRRF ||
-                    this.vIRRF.Equals(input.vIRRF)
+                    (this.vIRRF != null &&
+                    this.vIRRF.Equals(input.vIRRF))
                 ) && 
                 (
                     this.vBCRetPrev == input.vBCRetPrev ||
-                    this.vBCRetPrev.Equals(input.vBCRetPrev)
+                    (this.vBCRetPrev != null &&
+                    this.vBCRetPrev.Equals(input.vBCRetPrev))
                 ) && 
                 (
                     this.vRetPrev == input.vRetPrev ||
-                    this.vRetPrev.Equals(input.vRetPrev)
+                    (this.vRetPrev != null &&
+                    this.vRetPrev.Equals(input.vRetPrev))
                 );
         }
 
@@ -187,13 +194,34 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vRetPIS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vRetCOFINS.GetHashCode();
-                hashCode = (hashCode * 59) + this.vRetCSLL.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCIRRF.GetHashCode();
-                hashCode = (hashCode * 59) + this.vIRRF.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCRetPrev.GetHashCode();
-                hashCode = (hashCode * 59) + this.vRetPrev.GetHashCode();
+                if (this.vRetPIS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRetPIS.GetHashCode();
+                }
+                if (this.vRetCOFINS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRetCOFINS.GetHashCode();
+                }
+                if (this.vRetCSLL != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRetCSLL.GetHashCode();
+                }
+                if (this.vBCIRRF != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCIRRF.GetHashCode();
+                }
+                if (this.vIRRF != null)
+                {
+                    hashCode = (hashCode * 59) + this.vIRRF.GetHashCode();
+                }
+                if (this.vBCRetPrev != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCRetPrev.GetHashCode();
+                }
+                if (this.vRetPrev != null)
+                {
+                    hashCode = (hashCode * 59) + this.vRetPrev.GetHashCode();
+                }
                 return hashCode;
             }
         }

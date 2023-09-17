@@ -6,7 +6,7 @@ Informações do MDF-e.
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **versao** | **string** | Versão do leiaute.  Ex: \&quot;3.00\&quot;. | 
-**Id** | **string** | Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;. | [optional] 
+**Id** | **string** | Identificador da tag a ser assinada.  Informar a chave de acesso do MDF-e e precedida do literal \&quot;MDFe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.* | [optional] 
 **ide** | [**MdfeSefazIde**](MdfeSefazIde.md) |  | 
 **emit** | [**MdfeSefazEmit**](MdfeSefazEmit.md) |  | 
 **infModal** | [**MdfeSefazInfModal**](MdfeSefazInfModal.md) |  | 

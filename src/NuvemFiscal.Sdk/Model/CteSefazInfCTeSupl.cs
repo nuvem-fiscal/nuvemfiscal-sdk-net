@@ -41,7 +41,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Texto com o QR-Code impresso no DACTE.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Texto com o QR-Code impresso no DACTE.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "qrCodCTe", EmitDefaultValue = false)]
+        [DataMember(Name = "qrCodCTe", EmitDefaultValue = true)]
         public string qrCodCTe { get; set; }
 
         /// <summary>

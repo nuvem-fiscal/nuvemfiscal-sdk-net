@@ -70,8 +70,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="toma4">toma4.</param>
         /// <param name="dhCont">Data e Hora da entrada em contingência.  Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS..</param>
         /// <param name="xJust">Justificativa da entrada em contingência..</param>
-        public CteSefazIde(int cUF = default(int), string cCT = default(string), string cFOP = default(string), string natOp = default(string), int mod = default(int), int serie = default(int), int nCT = default(int), DateTime dhEmi = default(DateTime), int tpImp = default(int), int tpEmis = default(int), int cDV = default(int), int tpAmb = default(int), int tpCTe = default(int), int procEmi = default(int), string verProc = default(string), int indGlobalizado = default(int), string cMunEnv = default(string), string xMunEnv = default(string), string uFEnv = default(string), string modal = default(string), int tpServ = default(int), string cMunIni = default(string), string xMunIni = default(string), string uFIni = default(string), string cMunFim = default(string), string xMunFim = default(string), string uFFim = default(string), int retira = default(int), string xDetRetira = default(string), int indIEToma = default(int), CteSefazToma3 toma3 = default(CteSefazToma3), CteSefazToma4 toma4 = default(CteSefazToma4), DateTime dhCont = default(DateTime), string xJust = default(string))
+        public CteSefazIde(int? cUF = default(int?), string cCT = default(string), string cFOP = default(string), string natOp = default(string), int? mod = default(int?), int? serie = default(int?), int? nCT = default(int?), DateTime? dhEmi = default(DateTime?), int? tpImp = default(int?), int? tpEmis = default(int?), int? cDV = default(int?), int? tpAmb = default(int?), int? tpCTe = default(int?), int? procEmi = default(int?), string verProc = default(string), int? indGlobalizado = default(int?), string cMunEnv = default(string), string xMunEnv = default(string), string uFEnv = default(string), string modal = default(string), int? tpServ = default(int?), string cMunIni = default(string), string xMunIni = default(string), string uFIni = default(string), string cMunFim = default(string), string xMunFim = default(string), string uFFim = default(string), int? retira = default(int?), string xDetRetira = default(string), int? indIEToma = default(int?), CteSefazToma3 toma3 = default(CteSefazToma3), CteSefazToma4 toma4 = default(CteSefazToma4), DateTime? dhCont = default(DateTime?), string xJust = default(string))
         {
+            // to ensure "cUF" is required (not null)
+            if (cUF == null)
+            {
+                throw new ArgumentNullException("cUF is a required property for CteSefazIde and cannot be null");
+            }
             this.cUF = cUF;
             // to ensure "cFOP" is required (not null)
             if (cFOP == null)
@@ -85,12 +90,47 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("natOp is a required property for CteSefazIde and cannot be null");
             }
             this.natOp = natOp;
+            // to ensure "serie" is required (not null)
+            if (serie == null)
+            {
+                throw new ArgumentNullException("serie is a required property for CteSefazIde and cannot be null");
+            }
             this.serie = serie;
+            // to ensure "nCT" is required (not null)
+            if (nCT == null)
+            {
+                throw new ArgumentNullException("nCT is a required property for CteSefazIde and cannot be null");
+            }
             this.nCT = nCT;
+            // to ensure "dhEmi" is required (not null)
+            if (dhEmi == null)
+            {
+                throw new ArgumentNullException("dhEmi is a required property for CteSefazIde and cannot be null");
+            }
             this.dhEmi = dhEmi;
+            // to ensure "tpImp" is required (not null)
+            if (tpImp == null)
+            {
+                throw new ArgumentNullException("tpImp is a required property for CteSefazIde and cannot be null");
+            }
             this.tpImp = tpImp;
+            // to ensure "tpEmis" is required (not null)
+            if (tpEmis == null)
+            {
+                throw new ArgumentNullException("tpEmis is a required property for CteSefazIde and cannot be null");
+            }
             this.tpEmis = tpEmis;
+            // to ensure "tpCTe" is required (not null)
+            if (tpCTe == null)
+            {
+                throw new ArgumentNullException("tpCTe is a required property for CteSefazIde and cannot be null");
+            }
             this.tpCTe = tpCTe;
+            // to ensure "procEmi" is required (not null)
+            if (procEmi == null)
+            {
+                throw new ArgumentNullException("procEmi is a required property for CteSefazIde and cannot be null");
+            }
             this.procEmi = procEmi;
             // to ensure "verProc" is required (not null)
             if (verProc == null)
@@ -122,6 +162,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("modal is a required property for CteSefazIde and cannot be null");
             }
             this.modal = modal;
+            // to ensure "tpServ" is required (not null)
+            if (tpServ == null)
+            {
+                throw new ArgumentNullException("tpServ is a required property for CteSefazIde and cannot be null");
+            }
             this.tpServ = tpServ;
             // to ensure "cMunIni" is required (not null)
             if (cMunIni == null)
@@ -159,7 +204,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("uFFim is a required property for CteSefazIde and cannot be null");
             }
             this.UFFim = uFFim;
+            // to ensure "retira" is required (not null)
+            if (retira == null)
+            {
+                throw new ArgumentNullException("retira is a required property for CteSefazIde and cannot be null");
+            }
             this.retira = retira;
+            // to ensure "indIEToma" is required (not null)
+            if (indIEToma == null)
+            {
+                throw new ArgumentNullException("indIEToma is a required property for CteSefazIde and cannot be null");
+            }
             this.indIEToma = indIEToma;
             this.cCT = cCT;
             this.mod = mod;
@@ -178,13 +233,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código da UF do emitente do CT-e.  Utilizar a Tabela do IBGE.</value>
         [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
-        public int cUF { get; set; }
+        public int? cUF { get; set; }
 
         /// <summary>
         /// Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Código numérico que compõe a Chave de Acesso.  Número aleatório gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "cCT", EmitDefaultValue = false)]
+        [DataMember(Name = "cCT", EmitDefaultValue = true)]
         public string cCT { get; set; }
 
         /// <summary>
@@ -205,71 +260,71 @@ namespace NuvemFiscal.Sdk.Model
         /// Modelo do documento fiscal.  Utilizar o código 57 para identificação do CT-e, emitido em substituição aos modelos de conhecimentos em papel.
         /// </summary>
         /// <value>Modelo do documento fiscal.  Utilizar o código 57 para identificação do CT-e, emitido em substituição aos modelos de conhecimentos em papel.</value>
-        [DataMember(Name = "mod", EmitDefaultValue = false)]
-        public int mod { get; set; }
+        [DataMember(Name = "mod", EmitDefaultValue = true)]
+        public int? mod { get; set; }
 
         /// <summary>
         /// Série do CT-e.  Preencher com \&quot;0\&quot; no caso de série única.
         /// </summary>
         /// <value>Série do CT-e.  Preencher com \&quot;0\&quot; no caso de série única.</value>
         [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
-        public int serie { get; set; }
+        public int? serie { get; set; }
 
         /// <summary>
         /// Número do CT-e.
         /// </summary>
         /// <value>Número do CT-e.</value>
         [DataMember(Name = "nCT", IsRequired = true, EmitDefaultValue = true)]
-        public int nCT { get; set; }
+        public int? nCT { get; set; }
 
         /// <summary>
         /// Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD.
         /// </summary>
         /// <value>Data e hora de emissão do CT-e.  Formato AAAA-MM-DDTHH:MM:DD TZD.</value>
         [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime dhEmi { get; set; }
+        public DateTime? dhEmi { get; set; }
 
         /// <summary>
         /// Formato de impressão do DACTE:  * 1 - Retrato  * 2 - Paisagem
         /// </summary>
         /// <value>Formato de impressão do DACTE:  * 1 - Retrato  * 2 - Paisagem</value>
         [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = true)]
-        public int tpImp { get; set; }
+        public int? tpImp { get; set; }
 
         /// <summary>
         /// Forma de emissão do CT-e.  Preencher com:  * 1 - Normal  * 3 - Regime Especial NFF  * 4 - EPEC pela SVC  * 5 - Contingência FSDA  * 7 - Autorização pela SVC-RS  * 8 - Autorização pela SVC-SP
         /// </summary>
         /// <value>Forma de emissão do CT-e.  Preencher com:  * 1 - Normal  * 3 - Regime Especial NFF  * 4 - EPEC pela SVC  * 5 - Contingência FSDA  * 7 - Autorização pela SVC-RS  * 8 - Autorização pela SVC-SP</value>
         [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
-        public int tpEmis { get; set; }
+        public int? tpEmis { get; set; }
 
         /// <summary>
         /// Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Digito Verificador da chave de acesso do CT-e.  Informar o dígito  de controle da chave de acesso do CT-e, que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "cDV", EmitDefaultValue = false)]
-        public int cDV { get; set; }
+        [DataMember(Name = "cDV", EmitDefaultValue = true)]
+        public int? cDV { get; set; }
 
         /// <summary>
         /// Tipo do Ambiente:  * 1 - Produção  * 2 - Homologação
         /// </summary>
         /// <value>Tipo do Ambiente:  * 1 - Produção  * 2 - Homologação</value>
-        [DataMember(Name = "tpAmb", EmitDefaultValue = false)]
-        public int tpAmb { get; set; }
+        [DataMember(Name = "tpAmb", EmitDefaultValue = true)]
+        public int? tpAmb { get; set; }
 
         /// <summary>
         /// Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 3 - CT-e de Substituição
         /// </summary>
         /// <value>Tipo do CT-e.  Preencher com:  * 0 - CT-e Normal  * 1 - CT-e de Complemento de Valores  * 3 - CT-e de Substituição</value>
         [DataMember(Name = "tpCTe", IsRequired = true, EmitDefaultValue = true)]
-        public int tpCTe { get; set; }
+        public int? tpCTe { get; set; }
 
         /// <summary>
         /// Identificador do processo de emissão do CT-e.  Preencher com:  * 0 - emissão de CT-e com aplicativo do contribuinte  * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE
         /// </summary>
         /// <value>Identificador do processo de emissão do CT-e.  Preencher com:  * 0 - emissão de CT-e com aplicativo do contribuinte  * 3 - emissão CT-e pelo contribuinte com aplicativo fornecido pelo SEBRAE</value>
         [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
-        public int procEmi { get; set; }
+        public int? procEmi { get; set; }
 
         /// <summary>
         /// Versão do processo de emissão.  Iinformar a versão do aplicativo emissor de CT-e.
@@ -282,8 +337,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador de CT-e Globalizado.  Informar valor 1 quando for Globalizado e não informar a tag quando não tratar de CT-e Globalizado.
         /// </summary>
         /// <value>Indicador de CT-e Globalizado.  Informar valor 1 quando for Globalizado e não informar a tag quando não tratar de CT-e Globalizado.</value>
-        [DataMember(Name = "indGlobalizado", EmitDefaultValue = false)]
-        public int indGlobalizado { get; set; }
+        [DataMember(Name = "indGlobalizado", EmitDefaultValue = true)]
+        public int? indGlobalizado { get; set; }
 
         /// <summary>
         /// Código do Município de envio do CT-e (de onde o documento foi transmitido).  Utilizar a tabela do IBGE. Informar 9999999 para as operações com o exterior.
@@ -318,7 +373,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo do Serviço.  Preencher com:  * 0 - Normal  * 1 - Subcontratação  * 2 - Redespacho  * 3 - Redespacho Intermediário  * 4 - Serviço Vinculado a Multimodal</value>
         [DataMember(Name = "tpServ", IsRequired = true, EmitDefaultValue = true)]
-        public int tpServ { get; set; }
+        public int? tpServ { get; set; }
 
         /// <summary>
         /// Código do Município de início da prestação.  Utilizar a tabela do IBGE. Informar 9999999 para operações com o exterior.
@@ -367,13 +422,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indicador se o Recebedor retira no Aeroporto, Filial, Porto ou Estação de Destino? Preencher com:  * 0 - Sim  * 1 - Não</value>
         [DataMember(Name = "retira", IsRequired = true, EmitDefaultValue = true)]
-        public int retira { get; set; }
+        public int? retira { get; set; }
 
         /// <summary>
         /// Detalhes do retira.
         /// </summary>
         /// <value>Detalhes do retira.</value>
-        [DataMember(Name = "xDetRetira", EmitDefaultValue = false)]
+        [DataMember(Name = "xDetRetira", EmitDefaultValue = true)]
         public string xDetRetira { get; set; }
 
         /// <summary>
@@ -381,7 +436,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indicador do papel do tomador na prestação do serviço:  * 1 - Contribuinte ICMS  * 2 - Contribuinte isento de inscrição  * 9 - Não Contribuinte  Aplica-se ao tomador que for indicado no toma3 ou toma4.</value>
         [DataMember(Name = "indIEToma", IsRequired = true, EmitDefaultValue = true)]
-        public int indIEToma { get; set; }
+        public int? indIEToma { get; set; }
 
         /// <summary>
         /// Gets or Sets toma3
@@ -399,14 +454,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Data e Hora da entrada em contingência.  Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS.
         /// </summary>
         /// <value>Data e Hora da entrada em contingência.  Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS.</value>
-        [DataMember(Name = "dhCont", EmitDefaultValue = false)]
-        public DateTime dhCont { get; set; }
+        [DataMember(Name = "dhCont", EmitDefaultValue = true)]
+        public DateTime? dhCont { get; set; }
 
         /// <summary>
         /// Justificativa da entrada em contingência.
         /// </summary>
         /// <value>Justificativa da entrada em contingência.</value>
-        [DataMember(Name = "xJust", EmitDefaultValue = false)]
+        [DataMember(Name = "xJust", EmitDefaultValue = true)]
         public string xJust { get; set; }
 
         /// <summary>
@@ -488,7 +543,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.cUF == input.cUF ||
-                    this.cUF.Equals(input.cUF)
+                    (this.cUF != null &&
+                    this.cUF.Equals(input.cUF))
                 ) && 
                 (
                     this.cCT == input.cCT ||
@@ -507,15 +563,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.mod == input.mod ||
-                    this.mod.Equals(input.mod)
+                    (this.mod != null &&
+                    this.mod.Equals(input.mod))
                 ) && 
                 (
                     this.serie == input.serie ||
-                    this.serie.Equals(input.serie)
+                    (this.serie != null &&
+                    this.serie.Equals(input.serie))
                 ) && 
                 (
                     this.nCT == input.nCT ||
-                    this.nCT.Equals(input.nCT)
+                    (this.nCT != null &&
+                    this.nCT.Equals(input.nCT))
                 ) && 
                 (
                     this.dhEmi == input.dhEmi ||
@@ -524,27 +583,33 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpImp == input.tpImp ||
-                    this.tpImp.Equals(input.tpImp)
+                    (this.tpImp != null &&
+                    this.tpImp.Equals(input.tpImp))
                 ) && 
                 (
                     this.tpEmis == input.tpEmis ||
-                    this.tpEmis.Equals(input.tpEmis)
+                    (this.tpEmis != null &&
+                    this.tpEmis.Equals(input.tpEmis))
                 ) && 
                 (
                     this.cDV == input.cDV ||
-                    this.cDV.Equals(input.cDV)
+                    (this.cDV != null &&
+                    this.cDV.Equals(input.cDV))
                 ) && 
                 (
                     this.tpAmb == input.tpAmb ||
-                    this.tpAmb.Equals(input.tpAmb)
+                    (this.tpAmb != null &&
+                    this.tpAmb.Equals(input.tpAmb))
                 ) && 
                 (
                     this.tpCTe == input.tpCTe ||
-                    this.tpCTe.Equals(input.tpCTe)
+                    (this.tpCTe != null &&
+                    this.tpCTe.Equals(input.tpCTe))
                 ) && 
                 (
                     this.procEmi == input.procEmi ||
-                    this.procEmi.Equals(input.procEmi)
+                    (this.procEmi != null &&
+                    this.procEmi.Equals(input.procEmi))
                 ) && 
                 (
                     this.verProc == input.verProc ||
@@ -553,7 +618,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indGlobalizado == input.indGlobalizado ||
-                    this.indGlobalizado.Equals(input.indGlobalizado)
+                    (this.indGlobalizado != null &&
+                    this.indGlobalizado.Equals(input.indGlobalizado))
                 ) && 
                 (
                     this.cMunEnv == input.cMunEnv ||
@@ -577,7 +643,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpServ == input.tpServ ||
-                    this.tpServ.Equals(input.tpServ)
+                    (this.tpServ != null &&
+                    this.tpServ.Equals(input.tpServ))
                 ) && 
                 (
                     this.cMunIni == input.cMunIni ||
@@ -611,7 +678,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.retira == input.retira ||
-                    this.retira.Equals(input.retira)
+                    (this.retira != null &&
+                    this.retira.Equals(input.retira))
                 ) && 
                 (
                     this.xDetRetira == input.xDetRetira ||
@@ -620,7 +688,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indIEToma == input.indIEToma ||
-                    this.indIEToma.Equals(input.indIEToma)
+                    (this.indIEToma != null &&
+                    this.indIEToma.Equals(input.indIEToma))
                 ) && 
                 (
                     this.toma3 == input.toma3 ||
@@ -653,7 +722,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.cUF.GetHashCode();
+                if (this.cUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.cUF.GetHashCode();
+                }
                 if (this.cCT != null)
                 {
                     hashCode = (hashCode * 59) + this.cCT.GetHashCode();
@@ -666,24 +738,54 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.natOp.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.mod.GetHashCode();
-                hashCode = (hashCode * 59) + this.serie.GetHashCode();
-                hashCode = (hashCode * 59) + this.nCT.GetHashCode();
+                if (this.mod != null)
+                {
+                    hashCode = (hashCode * 59) + this.mod.GetHashCode();
+                }
+                if (this.serie != null)
+                {
+                    hashCode = (hashCode * 59) + this.serie.GetHashCode();
+                }
+                if (this.nCT != null)
+                {
+                    hashCode = (hashCode * 59) + this.nCT.GetHashCode();
+                }
                 if (this.dhEmi != null)
                 {
                     hashCode = (hashCode * 59) + this.dhEmi.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpImp.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpEmis.GetHashCode();
-                hashCode = (hashCode * 59) + this.cDV.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpCTe.GetHashCode();
-                hashCode = (hashCode * 59) + this.procEmi.GetHashCode();
+                if (this.tpImp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpImp.GetHashCode();
+                }
+                if (this.tpEmis != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpEmis.GetHashCode();
+                }
+                if (this.cDV != null)
+                {
+                    hashCode = (hashCode * 59) + this.cDV.GetHashCode();
+                }
+                if (this.tpAmb != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
+                }
+                if (this.tpCTe != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpCTe.GetHashCode();
+                }
+                if (this.procEmi != null)
+                {
+                    hashCode = (hashCode * 59) + this.procEmi.GetHashCode();
+                }
                 if (this.verProc != null)
                 {
                     hashCode = (hashCode * 59) + this.verProc.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indGlobalizado.GetHashCode();
+                if (this.indGlobalizado != null)
+                {
+                    hashCode = (hashCode * 59) + this.indGlobalizado.GetHashCode();
+                }
                 if (this.cMunEnv != null)
                 {
                     hashCode = (hashCode * 59) + this.cMunEnv.GetHashCode();
@@ -700,7 +802,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.modal.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpServ.GetHashCode();
+                if (this.tpServ != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpServ.GetHashCode();
+                }
                 if (this.cMunIni != null)
                 {
                     hashCode = (hashCode * 59) + this.cMunIni.GetHashCode();
@@ -725,12 +830,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.UFFim.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.retira.GetHashCode();
+                if (this.retira != null)
+                {
+                    hashCode = (hashCode * 59) + this.retira.GetHashCode();
+                }
                 if (this.xDetRetira != null)
                 {
                     hashCode = (hashCode * 59) + this.xDetRetira.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indIEToma.GetHashCode();
+                if (this.indIEToma != null)
+                {
+                    hashCode = (hashCode * 59) + this.indIEToma.GetHashCode();
+                }
                 if (this.toma3 != null)
                 {
                     hashCode = (hashCode * 59) + this.toma3.GetHashCode();

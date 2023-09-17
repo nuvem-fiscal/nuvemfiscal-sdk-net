@@ -9,7 +9,7 @@ Nome | Tipo | Descrição | Comentários
 **serie** | **string** | Série do Documento Fiscal. | 
 **subser** | **string** | Série do Documento Fiscal. | [optional] 
 **nDoc** | **string** | Número do Documento Fiscal. | 
-**dEmi** | **DateTime** | Data de emissão (AAAA-MM-DD). | 
+**dEmi** | **DateTime?** | Data de emissão (AAAA-MM-DD). | 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

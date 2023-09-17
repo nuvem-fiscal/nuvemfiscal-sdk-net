@@ -6,7 +6,7 @@ Informações do CT-e.
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **versao** | **string** | Versão do leiaute.  Ex: \&quot;4.00\&quot;. | 
-**Id** | **string** | Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;. | [optional] 
+**Id** | **string** | Identificador da tag a ser assinada.  Informar a chave de acesso do CT-e e precedida do literal \&quot;CTe\&quot;.    *Geramos automaticamente quando nenhum valor é informado.* | [optional] 
 **ide** | [**CteSefazIde**](CteSefazIde.md) |  | 
 **compl** | [**CteSefazCompl**](CteSefazCompl.md) |  | [optional] 
 **emit** | [**CteSefazEmit**](CteSefazEmit.md) |  | 

@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cOTM">Número do Certificado do Operador de Transporte Multimodal. (required).</param>
         /// <param name="indNegociavel">Indicador Negociável  Preencher com: 0 - Não Negociável  * 1 - Negociável (required).</param>
         /// <param name="seg">seg.</param>
-        public CteSefazMultimodal(string cOTM = default(string), int indNegociavel = default(int), CteSefazSeg seg = default(CteSefazSeg))
+        public CteSefazMultimodal(string cOTM = default(string), int? indNegociavel = default(int?), CteSefazSeg seg = default(CteSefazSeg))
         {
             // to ensure "cOTM" is required (not null)
             if (cOTM == null)
@@ -47,6 +47,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cOTM is a required property for CteSefazMultimodal and cannot be null");
             }
             this.COTM = cOTM;
+            // to ensure "indNegociavel" is required (not null)
+            if (indNegociavel == null)
+            {
+                throw new ArgumentNullException("indNegociavel is a required property for CteSefazMultimodal and cannot be null");
+            }
             this.indNegociavel = indNegociavel;
             this.seg = seg;
         }
@@ -63,7 +68,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indicador Negociável  Preencher com: 0 - Não Negociável  * 1 - Negociável</value>
         [DataMember(Name = "indNegociavel", IsRequired = true, EmitDefaultValue = true)]
-        public int indNegociavel { get; set; }
+        public int? indNegociavel { get; set; }
 
         /// <summary>
         /// Gets or Sets seg
@@ -124,7 +129,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indNegociavel == input.indNegociavel ||
-                    this.indNegociavel.Equals(input.indNegociavel)
+                    (this.indNegociavel != null &&
+                    this.indNegociavel.Equals(input.indNegociavel))
                 ) && 
                 (
                     this.seg == input.seg ||
@@ -146,7 +152,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.COTM.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indNegociavel.GetHashCode();
+                if (this.indNegociavel != null)
+                {
+                    hashCode = (hashCode * 59) + this.indNegociavel.GetHashCode();
+                }
                 if (this.seg != null)
                 {
                     hashCode = (hashCode * 59) + this.seg.GetHashCode();

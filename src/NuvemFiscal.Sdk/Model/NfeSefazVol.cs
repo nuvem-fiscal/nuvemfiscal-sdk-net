@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="pesoL">Peso líquido (em kg)..</param>
         /// <param name="pesoB">Peso bruto (em kg)..</param>
         /// <param name="lacres">lacres.</param>
-        public NfeSefazVol(int qVol = default(int), string esp = default(string), string marca = default(string), string nVol = default(string), decimal pesoL = default(decimal), decimal pesoB = default(decimal), List<NfeSefazLacres> lacres = default(List<NfeSefazLacres>))
+        public NfeSefazVol(int? qVol = default(int?), string esp = default(string), string marca = default(string), string nVol = default(string), decimal? pesoL = default(decimal?), decimal? pesoB = default(decimal?), List<NfeSefazLacres> lacres = default(List<NfeSefazLacres>))
         {
             this.qVol = qVol;
             this.esp = esp;
@@ -53,43 +53,43 @@ namespace NuvemFiscal.Sdk.Model
         /// Quantidade de volumes transportados.
         /// </summary>
         /// <value>Quantidade de volumes transportados.</value>
-        [DataMember(Name = "qVol", EmitDefaultValue = false)]
-        public int qVol { get; set; }
+        [DataMember(Name = "qVol", EmitDefaultValue = true)]
+        public int? qVol { get; set; }
 
         /// <summary>
         /// Espécie dos volumes transportados.
         /// </summary>
         /// <value>Espécie dos volumes transportados.</value>
-        [DataMember(Name = "esp", EmitDefaultValue = false)]
+        [DataMember(Name = "esp", EmitDefaultValue = true)]
         public string esp { get; set; }
 
         /// <summary>
         /// Marca dos volumes transportados.
         /// </summary>
         /// <value>Marca dos volumes transportados.</value>
-        [DataMember(Name = "marca", EmitDefaultValue = false)]
+        [DataMember(Name = "marca", EmitDefaultValue = true)]
         public string marca { get; set; }
 
         /// <summary>
         /// Numeração dos volumes transportados.
         /// </summary>
         /// <value>Numeração dos volumes transportados.</value>
-        [DataMember(Name = "nVol", EmitDefaultValue = false)]
+        [DataMember(Name = "nVol", EmitDefaultValue = true)]
         public string nVol { get; set; }
 
         /// <summary>
         /// Peso líquido (em kg).
         /// </summary>
         /// <value>Peso líquido (em kg).</value>
-        [DataMember(Name = "pesoL", EmitDefaultValue = false)]
-        public decimal pesoL { get; set; }
+        [DataMember(Name = "pesoL", EmitDefaultValue = true)]
+        public decimal? pesoL { get; set; }
 
         /// <summary>
         /// Peso bruto (em kg).
         /// </summary>
         /// <value>Peso bruto (em kg).</value>
-        [DataMember(Name = "pesoB", EmitDefaultValue = false)]
-        public decimal pesoB { get; set; }
+        [DataMember(Name = "pesoB", EmitDefaultValue = true)]
+        public decimal? pesoB { get; set; }
 
         /// <summary>
         /// Gets or Sets lacres
@@ -149,7 +149,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.qVol == input.qVol ||
-                    this.qVol.Equals(input.qVol)
+                    (this.qVol != null &&
+                    this.qVol.Equals(input.qVol))
                 ) && 
                 (
                     this.esp == input.esp ||
@@ -168,11 +169,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.pesoL == input.pesoL ||
-                    this.pesoL.Equals(input.pesoL)
+                    (this.pesoL != null &&
+                    this.pesoL.Equals(input.pesoL))
                 ) && 
                 (
                     this.pesoB == input.pesoB ||
-                    this.pesoB.Equals(input.pesoB)
+                    (this.pesoB != null &&
+                    this.pesoB.Equals(input.pesoB))
                 ) && 
                 (
                     this.lacres == input.lacres ||
@@ -191,7 +194,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.qVol.GetHashCode();
+                if (this.qVol != null)
+                {
+                    hashCode = (hashCode * 59) + this.qVol.GetHashCode();
+                }
                 if (this.esp != null)
                 {
                     hashCode = (hashCode * 59) + this.esp.GetHashCode();
@@ -204,8 +210,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nVol.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.pesoL.GetHashCode();
-                hashCode = (hashCode * 59) + this.pesoB.GetHashCode();
+                if (this.pesoL != null)
+                {
+                    hashCode = (hashCode * 59) + this.pesoL.GetHashCode();
+                }
+                if (this.pesoB != null)
+                {
+                    hashCode = (hashCode * 59) + this.pesoB.GetHashCode();
+                }
                 if (this.lacres != null)
                 {
                     hashCode = (hashCode * 59) + this.lacres.GetHashCode();

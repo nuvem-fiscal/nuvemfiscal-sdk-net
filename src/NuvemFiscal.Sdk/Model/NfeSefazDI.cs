@@ -48,7 +48,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="uFTerceiro">Sigla da UF do adquirente ou do encomendante..</param>
         /// <param name="cExportador">Código do exportador (usado nos sistemas internos de informação do emitente da NF-e). (required).</param>
         /// <param name="adi">adi (required).</param>
-        public NfeSefazDI(string nDI = default(string), DateTime dDI = default(DateTime), string xLocDesemb = default(string), string uFDesemb = default(string), DateTime dDesemb = default(DateTime), int tpViaTransp = default(int), decimal vAFRMM = default(decimal), int tpIntermedio = default(int), string cNPJ = default(string), string uFTerceiro = default(string), string cExportador = default(string), List<NfeSefazAdi> adi = default(List<NfeSefazAdi>))
+        public NfeSefazDI(string nDI = default(string), DateTime? dDI = default(DateTime?), string xLocDesemb = default(string), string uFDesemb = default(string), DateTime? dDesemb = default(DateTime?), int? tpViaTransp = default(int?), decimal? vAFRMM = default(decimal?), int? tpIntermedio = default(int?), string cNPJ = default(string), string uFTerceiro = default(string), string cExportador = default(string), List<NfeSefazAdi> adi = default(List<NfeSefazAdi>))
         {
             // to ensure "nDI" is required (not null)
             if (nDI == null)
@@ -56,6 +56,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("nDI is a required property for NfeSefazDI and cannot be null");
             }
             this.nDI = nDI;
+            // to ensure "dDI" is required (not null)
+            if (dDI == null)
+            {
+                throw new ArgumentNullException("dDI is a required property for NfeSefazDI and cannot be null");
+            }
             this.dDI = dDI;
             // to ensure "xLocDesemb" is required (not null)
             if (xLocDesemb == null)
@@ -69,8 +74,23 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("uFDesemb is a required property for NfeSefazDI and cannot be null");
             }
             this.UFDesemb = uFDesemb;
+            // to ensure "dDesemb" is required (not null)
+            if (dDesemb == null)
+            {
+                throw new ArgumentNullException("dDesemb is a required property for NfeSefazDI and cannot be null");
+            }
             this.dDesemb = dDesemb;
+            // to ensure "tpViaTransp" is required (not null)
+            if (tpViaTransp == null)
+            {
+                throw new ArgumentNullException("tpViaTransp is a required property for NfeSefazDI and cannot be null");
+            }
             this.tpViaTransp = tpViaTransp;
+            // to ensure "tpIntermedio" is required (not null)
+            if (tpIntermedio == null)
+            {
+                throw new ArgumentNullException("tpIntermedio is a required property for NfeSefazDI and cannot be null");
+            }
             this.tpIntermedio = tpIntermedio;
             // to ensure "cExportador" is required (not null)
             if (cExportador == null)
@@ -102,7 +122,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data de registro da DI/DSI/DA (AAAA-MM-DD).</value>
         [DataMember(Name = "dDI", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dDI { get; set; }
+        public DateTime? dDI { get; set; }
 
         /// <summary>
         /// Local do desembaraço aduaneiro.
@@ -124,41 +144,41 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Data do desembaraço aduaneiro (AAAA-MM-DD).</value>
         [DataMember(Name = "dDesemb", IsRequired = true, EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime dDesemb { get; set; }
+        public DateTime? dDesemb { get; set; }
 
         /// <summary>
         /// Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque
         /// </summary>
         /// <value>Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque</value>
         [DataMember(Name = "tpViaTransp", IsRequired = true, EmitDefaultValue = true)]
-        public int tpViaTransp { get; set; }
+        public int? tpViaTransp { get; set; }
 
         /// <summary>
         /// Valor Adicional ao frete para renovação de marinha mercante.
         /// </summary>
         /// <value>Valor Adicional ao frete para renovação de marinha mercante.</value>
-        [DataMember(Name = "vAFRMM", EmitDefaultValue = false)]
-        public decimal vAFRMM { get; set; }
+        [DataMember(Name = "vAFRMM", EmitDefaultValue = true)]
+        public decimal? vAFRMM { get; set; }
 
         /// <summary>
         /// Forma de Importação quanto a intermediação  * 1 - por conta propria  * 2 - por conta e ordem  * 3 - encomenda
         /// </summary>
         /// <value>Forma de Importação quanto a intermediação  * 1 - por conta propria  * 2 - por conta e ordem  * 3 - encomenda</value>
         [DataMember(Name = "tpIntermedio", IsRequired = true, EmitDefaultValue = true)]
-        public int tpIntermedio { get; set; }
+        public int? tpIntermedio { get; set; }
 
         /// <summary>
         /// CNPJ do adquirente ou do encomendante.
         /// </summary>
         /// <value>CNPJ do adquirente ou do encomendante.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Sigla da UF do adquirente ou do encomendante.
         /// </summary>
         /// <value>Sigla da UF do adquirente ou do encomendante.</value>
-        [DataMember(Name = "UFTerceiro", EmitDefaultValue = false)]
+        [DataMember(Name = "UFTerceiro", EmitDefaultValue = true)]
         public string UFTerceiro { get; set; }
 
         /// <summary>
@@ -256,15 +276,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpViaTransp == input.tpViaTransp ||
-                    this.tpViaTransp.Equals(input.tpViaTransp)
+                    (this.tpViaTransp != null &&
+                    this.tpViaTransp.Equals(input.tpViaTransp))
                 ) && 
                 (
                     this.vAFRMM == input.vAFRMM ||
-                    this.vAFRMM.Equals(input.vAFRMM)
+                    (this.vAFRMM != null &&
+                    this.vAFRMM.Equals(input.vAFRMM))
                 ) && 
                 (
                     this.tpIntermedio == input.tpIntermedio ||
-                    this.tpIntermedio.Equals(input.tpIntermedio)
+                    (this.tpIntermedio != null &&
+                    this.tpIntermedio.Equals(input.tpIntermedio))
                 ) && 
                 (
                     this.CNPJ == input.CNPJ ||
@@ -318,9 +341,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dDesemb.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpViaTransp.GetHashCode();
-                hashCode = (hashCode * 59) + this.vAFRMM.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpIntermedio.GetHashCode();
+                if (this.tpViaTransp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpViaTransp.GetHashCode();
+                }
+                if (this.vAFRMM != null)
+                {
+                    hashCode = (hashCode * 59) + this.vAFRMM.GetHashCode();
+                }
+                if (this.tpIntermedio != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpIntermedio.GetHashCode();
+                }
                 if (this.CNPJ != null)
                 {
                     hashCode = (hashCode * 59) + this.CNPJ.GetHashCode();

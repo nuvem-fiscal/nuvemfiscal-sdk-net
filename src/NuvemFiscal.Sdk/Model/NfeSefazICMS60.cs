@@ -49,8 +49,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vBCEfet">Valor da base de cálculo efetiva..</param>
         /// <param name="pICMSEfet">Alíquota do ICMS efetiva..</param>
         /// <param name="vICMSEfet">Valor do ICMS efetivo..</param>
-        public NfeSefazICMS60(int orig = default(int), string cST = default(string), decimal vBCSTRet = default(decimal), decimal pST = default(decimal), decimal vICMSSubstituto = default(decimal), decimal vICMSSTRet = default(decimal), decimal vBCFCPSTRet = default(decimal), decimal pFCPSTRet = default(decimal), decimal vFCPSTRet = default(decimal), decimal pRedBCEfet = default(decimal), decimal vBCEfet = default(decimal), decimal pICMSEfet = default(decimal), decimal vICMSEfet = default(decimal))
+        public NfeSefazICMS60(int? orig = default(int?), string cST = default(string), decimal? vBCSTRet = default(decimal?), decimal? pST = default(decimal?), decimal? vICMSSubstituto = default(decimal?), decimal? vICMSSTRet = default(decimal?), decimal? vBCFCPSTRet = default(decimal?), decimal? pFCPSTRet = default(decimal?), decimal? vFCPSTRet = default(decimal?), decimal? pRedBCEfet = default(decimal?), decimal? vBCEfet = default(decimal?), decimal? pICMSEfet = default(decimal?), decimal? vICMSEfet = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMS60 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -76,7 +81,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// Tributação pelo ICMS  * 60 - ICMS cobrado anteriormente por substituição tributária
@@ -89,78 +94,78 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do ICMS ST retido anteriormente.
         /// </summary>
         /// <value>Valor da BC do ICMS ST retido anteriormente.</value>
-        [DataMember(Name = "vBCSTRet", EmitDefaultValue = false)]
-        public decimal vBCSTRet { get; set; }
+        [DataMember(Name = "vBCSTRet", EmitDefaultValue = true)]
+        public decimal? vBCSTRet { get; set; }
 
         /// <summary>
         /// Aliquota suportada pelo consumidor final.
         /// </summary>
         /// <value>Aliquota suportada pelo consumidor final.</value>
-        [DataMember(Name = "pST", EmitDefaultValue = false)]
-        public decimal pST { get; set; }
+        [DataMember(Name = "pST", EmitDefaultValue = true)]
+        public decimal? pST { get; set; }
 
         /// <summary>
         /// Valor do ICMS Próprio do Substituto cobrado em operação anterior.
         /// </summary>
         /// <value>Valor do ICMS Próprio do Substituto cobrado em operação anterior.</value>
-        [DataMember(Name = "vICMSSubstituto", EmitDefaultValue = false)]
-        public decimal vICMSSubstituto { get; set; }
+        [DataMember(Name = "vICMSSubstituto", EmitDefaultValue = true)]
+        public decimal? vICMSSubstituto { get; set; }
 
         /// <summary>
         /// Valor do ICMS ST retido anteriormente.
         /// </summary>
         /// <value>Valor do ICMS ST retido anteriormente.</value>
-        [DataMember(Name = "vICMSSTRet", EmitDefaultValue = false)]
-        public decimal vICMSSTRet { get; set; }
+        [DataMember(Name = "vICMSSTRet", EmitDefaultValue = true)]
+        public decimal? vICMSSTRet { get; set; }
 
         /// <summary>
         /// Valor da Base de cálculo do FCP retido anteriormente por ST.
         /// </summary>
         /// <value>Valor da Base de cálculo do FCP retido anteriormente por ST.</value>
-        [DataMember(Name = "vBCFCPSTRet", EmitDefaultValue = false)]
-        public decimal vBCFCPSTRet { get; set; }
+        [DataMember(Name = "vBCFCPSTRet", EmitDefaultValue = true)]
+        public decimal? vBCFCPSTRet { get; set; }
 
         /// <summary>
         /// Percentual de FCP retido anteriormente por substituição tributária.
         /// </summary>
         /// <value>Percentual de FCP retido anteriormente por substituição tributária.</value>
-        [DataMember(Name = "pFCPSTRet", EmitDefaultValue = false)]
-        public decimal pFCPSTRet { get; set; }
+        [DataMember(Name = "pFCPSTRet", EmitDefaultValue = true)]
+        public decimal? pFCPSTRet { get; set; }
 
         /// <summary>
         /// Valor do FCP retido por substituição tributária.
         /// </summary>
         /// <value>Valor do FCP retido por substituição tributária.</value>
-        [DataMember(Name = "vFCPSTRet", EmitDefaultValue = false)]
-        public decimal vFCPSTRet { get; set; }
+        [DataMember(Name = "vFCPSTRet", EmitDefaultValue = true)]
+        public decimal? vFCPSTRet { get; set; }
 
         /// <summary>
         /// Percentual de redução da base de cálculo efetiva.
         /// </summary>
         /// <value>Percentual de redução da base de cálculo efetiva.</value>
-        [DataMember(Name = "pRedBCEfet", EmitDefaultValue = false)]
-        public decimal pRedBCEfet { get; set; }
+        [DataMember(Name = "pRedBCEfet", EmitDefaultValue = true)]
+        public decimal? pRedBCEfet { get; set; }
 
         /// <summary>
         /// Valor da base de cálculo efetiva.
         /// </summary>
         /// <value>Valor da base de cálculo efetiva.</value>
-        [DataMember(Name = "vBCEfet", EmitDefaultValue = false)]
-        public decimal vBCEfet { get; set; }
+        [DataMember(Name = "vBCEfet", EmitDefaultValue = true)]
+        public decimal? vBCEfet { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS efetiva.
         /// </summary>
         /// <value>Alíquota do ICMS efetiva.</value>
-        [DataMember(Name = "pICMSEfet", EmitDefaultValue = false)]
-        public decimal pICMSEfet { get; set; }
+        [DataMember(Name = "pICMSEfet", EmitDefaultValue = true)]
+        public decimal? pICMSEfet { get; set; }
 
         /// <summary>
         /// Valor do ICMS efetivo.
         /// </summary>
         /// <value>Valor do ICMS efetivo.</value>
-        [DataMember(Name = "vICMSEfet", EmitDefaultValue = false)]
-        public decimal vICMSEfet { get; set; }
+        [DataMember(Name = "vICMSEfet", EmitDefaultValue = true)]
+        public decimal? vICMSEfet { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -220,7 +225,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CST == input.CST ||
@@ -229,47 +235,58 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBCSTRet == input.vBCSTRet ||
-                    this.vBCSTRet.Equals(input.vBCSTRet)
+                    (this.vBCSTRet != null &&
+                    this.vBCSTRet.Equals(input.vBCSTRet))
                 ) && 
                 (
                     this.pST == input.pST ||
-                    this.pST.Equals(input.pST)
+                    (this.pST != null &&
+                    this.pST.Equals(input.pST))
                 ) && 
                 (
                     this.vICMSSubstituto == input.vICMSSubstituto ||
-                    this.vICMSSubstituto.Equals(input.vICMSSubstituto)
+                    (this.vICMSSubstituto != null &&
+                    this.vICMSSubstituto.Equals(input.vICMSSubstituto))
                 ) && 
                 (
                     this.vICMSSTRet == input.vICMSSTRet ||
-                    this.vICMSSTRet.Equals(input.vICMSSTRet)
+                    (this.vICMSSTRet != null &&
+                    this.vICMSSTRet.Equals(input.vICMSSTRet))
                 ) && 
                 (
                     this.vBCFCPSTRet == input.vBCFCPSTRet ||
-                    this.vBCFCPSTRet.Equals(input.vBCFCPSTRet)
+                    (this.vBCFCPSTRet != null &&
+                    this.vBCFCPSTRet.Equals(input.vBCFCPSTRet))
                 ) && 
                 (
                     this.pFCPSTRet == input.pFCPSTRet ||
-                    this.pFCPSTRet.Equals(input.pFCPSTRet)
+                    (this.pFCPSTRet != null &&
+                    this.pFCPSTRet.Equals(input.pFCPSTRet))
                 ) && 
                 (
                     this.vFCPSTRet == input.vFCPSTRet ||
-                    this.vFCPSTRet.Equals(input.vFCPSTRet)
+                    (this.vFCPSTRet != null &&
+                    this.vFCPSTRet.Equals(input.vFCPSTRet))
                 ) && 
                 (
                     this.pRedBCEfet == input.pRedBCEfet ||
-                    this.pRedBCEfet.Equals(input.pRedBCEfet)
+                    (this.pRedBCEfet != null &&
+                    this.pRedBCEfet.Equals(input.pRedBCEfet))
                 ) && 
                 (
                     this.vBCEfet == input.vBCEfet ||
-                    this.vBCEfet.Equals(input.vBCEfet)
+                    (this.vBCEfet != null &&
+                    this.vBCEfet.Equals(input.vBCEfet))
                 ) && 
                 (
                     this.pICMSEfet == input.pICMSEfet ||
-                    this.pICMSEfet.Equals(input.pICMSEfet)
+                    (this.pICMSEfet != null &&
+                    this.pICMSEfet.Equals(input.pICMSEfet))
                 ) && 
                 (
                     this.vICMSEfet == input.vICMSEfet ||
-                    this.vICMSEfet.Equals(input.vICMSEfet)
+                    (this.vICMSEfet != null &&
+                    this.vICMSEfet.Equals(input.vICMSEfet))
                 );
         }
 
@@ -282,22 +299,58 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CST != null)
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBCSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.pST.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSSubstituto.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCFCPSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.pFCPSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFCPSTRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.pRedBCEfet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCEfet.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMSEfet.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSEfet.GetHashCode();
+                if (this.vBCSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCSTRet.GetHashCode();
+                }
+                if (this.pST != null)
+                {
+                    hashCode = (hashCode * 59) + this.pST.GetHashCode();
+                }
+                if (this.vICMSSubstituto != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSSubstituto.GetHashCode();
+                }
+                if (this.vICMSSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSSTRet.GetHashCode();
+                }
+                if (this.vBCFCPSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCFCPSTRet.GetHashCode();
+                }
+                if (this.pFCPSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.pFCPSTRet.GetHashCode();
+                }
+                if (this.vFCPSTRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFCPSTRet.GetHashCode();
+                }
+                if (this.pRedBCEfet != null)
+                {
+                    hashCode = (hashCode * 59) + this.pRedBCEfet.GetHashCode();
+                }
+                if (this.vBCEfet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCEfet.GetHashCode();
+                }
+                if (this.pICMSEfet != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMSEfet.GetHashCode();
+                }
+                if (this.vICMSEfet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSEfet.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -41,8 +41,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cFabricante">Código do fabricante estrangeiro (usado nos sistemas internos de informação do emitente da NF-e). (required).</param>
         /// <param name="vDescDI">Valor do desconto do item da DI - adição..</param>
         /// <param name="nDraw">Número do ato concessório de Drawback..</param>
-        public NfeSefazAdi(int nAdicao = default(int), int nSeqAdic = default(int), string cFabricante = default(string), decimal vDescDI = default(decimal), string nDraw = default(string))
+        public NfeSefazAdi(int? nAdicao = default(int?), int? nSeqAdic = default(int?), string cFabricante = default(string), decimal? vDescDI = default(decimal?), string nDraw = default(string))
         {
+            // to ensure "nSeqAdic" is required (not null)
+            if (nSeqAdic == null)
+            {
+                throw new ArgumentNullException("nSeqAdic is a required property for NfeSefazAdi and cannot be null");
+            }
             this.nSeqAdic = nSeqAdic;
             // to ensure "cFabricante" is required (not null)
             if (cFabricante == null)
@@ -59,15 +64,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Número da Adição.
         /// </summary>
         /// <value>Número da Adição.</value>
-        [DataMember(Name = "nAdicao", EmitDefaultValue = false)]
-        public int nAdicao { get; set; }
+        [DataMember(Name = "nAdicao", EmitDefaultValue = true)]
+        public int? nAdicao { get; set; }
 
         /// <summary>
         /// Número seqüencial do item dentro da Adição.
         /// </summary>
         /// <value>Número seqüencial do item dentro da Adição.</value>
         [DataMember(Name = "nSeqAdic", IsRequired = true, EmitDefaultValue = true)]
-        public int nSeqAdic { get; set; }
+        public int? nSeqAdic { get; set; }
 
         /// <summary>
         /// Código do fabricante estrangeiro (usado nos sistemas internos de informação do emitente da NF-e).
@@ -80,14 +85,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor do desconto do item da DI - adição.
         /// </summary>
         /// <value>Valor do desconto do item da DI - adição.</value>
-        [DataMember(Name = "vDescDI", EmitDefaultValue = false)]
-        public decimal vDescDI { get; set; }
+        [DataMember(Name = "vDescDI", EmitDefaultValue = true)]
+        public decimal? vDescDI { get; set; }
 
         /// <summary>
         /// Número do ato concessório de Drawback.
         /// </summary>
         /// <value>Número do ato concessório de Drawback.</value>
-        [DataMember(Name = "nDraw", EmitDefaultValue = false)]
+        [DataMember(Name = "nDraw", EmitDefaultValue = true)]
         public string nDraw { get; set; }
 
         /// <summary>
@@ -140,11 +145,13 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.nAdicao == input.nAdicao ||
-                    this.nAdicao.Equals(input.nAdicao)
+                    (this.nAdicao != null &&
+                    this.nAdicao.Equals(input.nAdicao))
                 ) && 
                 (
                     this.nSeqAdic == input.nSeqAdic ||
-                    this.nSeqAdic.Equals(input.nSeqAdic)
+                    (this.nSeqAdic != null &&
+                    this.nSeqAdic.Equals(input.nSeqAdic))
                 ) && 
                 (
                     this.cFabricante == input.cFabricante ||
@@ -153,7 +160,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDescDI == input.vDescDI ||
-                    this.vDescDI.Equals(input.vDescDI)
+                    (this.vDescDI != null &&
+                    this.vDescDI.Equals(input.vDescDI))
                 ) && 
                 (
                     this.nDraw == input.nDraw ||
@@ -171,13 +179,22 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.nAdicao.GetHashCode();
-                hashCode = (hashCode * 59) + this.nSeqAdic.GetHashCode();
+                if (this.nAdicao != null)
+                {
+                    hashCode = (hashCode * 59) + this.nAdicao.GetHashCode();
+                }
+                if (this.nSeqAdic != null)
+                {
+                    hashCode = (hashCode * 59) + this.nSeqAdic.GetHashCode();
+                }
                 if (this.cFabricante != null)
                 {
                     hashCode = (hashCode * 59) + this.cFabricante.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDescDI.GetHashCode();
+                if (this.vDescDI != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDescDI.GetHashCode();
+                }
                 if (this.nDraw != null)
                 {
                     hashCode = (hashCode * 59) + this.nDraw.GetHashCode();

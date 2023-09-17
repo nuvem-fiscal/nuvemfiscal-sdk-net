@@ -35,7 +35,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="pTotTrib">pTotTrib.</param>
         /// <param name="indTotTrib">Indicador de informação de valor total de tributos. Possui valor fixo igual a zero (indTotTrib&#x3D;0).  Não informar nenhum valor estimado para os Tributos (Decreto 8.264/2014).  * 0 - Não.</param>
         /// <param name="pTotTribSN">Valor percentual aproximado do total dos tributos da alíquota do Simples Nacional (%%)..</param>
-        public TribTotal(TribTotalMonet vTotTrib = default(TribTotalMonet), TribTotalPercent pTotTrib = default(TribTotalPercent), int indTotTrib = default(int), decimal pTotTribSN = default(decimal))
+        public TribTotal(TribTotalMonet vTotTrib = default(TribTotalMonet), TribTotalPercent pTotTrib = default(TribTotalPercent), int? indTotTrib = default(int?), decimal? pTotTribSN = default(decimal?))
         {
             this.vTotTrib = vTotTrib;
             this.pTotTrib = pTotTrib;
@@ -59,15 +59,15 @@ namespace NuvemFiscal.Sdk.Model
         /// Indicador de informação de valor total de tributos. Possui valor fixo igual a zero (indTotTrib&#x3D;0).  Não informar nenhum valor estimado para os Tributos (Decreto 8.264/2014).  * 0 - Não
         /// </summary>
         /// <value>Indicador de informação de valor total de tributos. Possui valor fixo igual a zero (indTotTrib&#x3D;0).  Não informar nenhum valor estimado para os Tributos (Decreto 8.264/2014).  * 0 - Não</value>
-        [DataMember(Name = "indTotTrib", EmitDefaultValue = false)]
-        public int indTotTrib { get; set; }
+        [DataMember(Name = "indTotTrib", EmitDefaultValue = true)]
+        public int? indTotTrib { get; set; }
 
         /// <summary>
         /// Valor percentual aproximado do total dos tributos da alíquota do Simples Nacional (%%).
         /// </summary>
         /// <value>Valor percentual aproximado do total dos tributos da alíquota do Simples Nacional (%%).</value>
-        [DataMember(Name = "pTotTribSN", EmitDefaultValue = false)]
-        public decimal pTotTribSN { get; set; }
+        [DataMember(Name = "pTotTribSN", EmitDefaultValue = true)]
+        public decimal? pTotTribSN { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,11 +128,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indTotTrib == input.indTotTrib ||
-                    this.indTotTrib.Equals(input.indTotTrib)
+                    (this.indTotTrib != null &&
+                    this.indTotTrib.Equals(input.indTotTrib))
                 ) && 
                 (
                     this.pTotTribSN == input.pTotTribSN ||
-                    this.pTotTribSN.Equals(input.pTotTribSN)
+                    (this.pTotTribSN != null &&
+                    this.pTotTribSN.Equals(input.pTotTribSN))
                 );
         }
 
@@ -153,8 +155,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.pTotTrib.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indTotTrib.GetHashCode();
-                hashCode = (hashCode * 59) + this.pTotTribSN.GetHashCode();
+                if (this.indTotTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.indTotTrib.GetHashCode();
+                }
+                if (this.pTotTribSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.pTotTribSN.GetHashCode();
+                }
                 return hashCode;
             }
         }

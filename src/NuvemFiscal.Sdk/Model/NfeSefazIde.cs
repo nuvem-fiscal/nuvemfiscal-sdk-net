@@ -60,8 +60,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="dhCont">Informar a data e hora de entrada em contingência contingência no formato  (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00..</param>
         /// <param name="xJust">Informar a Justificativa da entrada..</param>
         /// <param name="nFref">nFref.</param>
-        public NfeSefazIde(int cUF = default(int), string cNF = default(string), string natOp = default(string), int mod = default(int), int serie = default(int), int nNF = default(int), DateTime dhEmi = default(DateTime), DateTime dhSaiEnt = default(DateTime), int tpNF = default(int), int idDest = default(int), string cMunFG = default(string), int tpImp = default(int), int tpEmis = default(int), int cDV = default(int), int tpAmb = default(int), int finNFe = default(int), int indFinal = default(int), int indPres = default(int), int indIntermed = default(int), int procEmi = default(int), string verProc = default(string), DateTime dhCont = default(DateTime), string xJust = default(string), List<NfeSefazNFref> nFref = default(List<NfeSefazNFref>))
+        public NfeSefazIde(int? cUF = default(int?), string cNF = default(string), string natOp = default(string), int? mod = default(int?), int? serie = default(int?), int? nNF = default(int?), DateTime? dhEmi = default(DateTime?), DateTime? dhSaiEnt = default(DateTime?), int? tpNF = default(int?), int? idDest = default(int?), string cMunFG = default(string), int? tpImp = default(int?), int? tpEmis = default(int?), int? cDV = default(int?), int? tpAmb = default(int?), int? finNFe = default(int?), int? indFinal = default(int?), int? indPres = default(int?), int? indIntermed = default(int?), int? procEmi = default(int?), string verProc = default(string), DateTime? dhCont = default(DateTime?), string xJust = default(string), List<NfeSefazNFref> nFref = default(List<NfeSefazNFref>))
         {
+            // to ensure "cUF" is required (not null)
+            if (cUF == null)
+            {
+                throw new ArgumentNullException("cUF is a required property for NfeSefazIde and cannot be null");
+            }
             this.cUF = cUF;
             // to ensure "natOp" is required (not null)
             if (natOp == null)
@@ -69,10 +74,35 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("natOp is a required property for NfeSefazIde and cannot be null");
             }
             this.natOp = natOp;
+            // to ensure "serie" is required (not null)
+            if (serie == null)
+            {
+                throw new ArgumentNullException("serie is a required property for NfeSefazIde and cannot be null");
+            }
             this.serie = serie;
+            // to ensure "nNF" is required (not null)
+            if (nNF == null)
+            {
+                throw new ArgumentNullException("nNF is a required property for NfeSefazIde and cannot be null");
+            }
             this.nNF = nNF;
+            // to ensure "dhEmi" is required (not null)
+            if (dhEmi == null)
+            {
+                throw new ArgumentNullException("dhEmi is a required property for NfeSefazIde and cannot be null");
+            }
             this.dhEmi = dhEmi;
+            // to ensure "tpNF" is required (not null)
+            if (tpNF == null)
+            {
+                throw new ArgumentNullException("tpNF is a required property for NfeSefazIde and cannot be null");
+            }
             this.tpNF = tpNF;
+            // to ensure "idDest" is required (not null)
+            if (idDest == null)
+            {
+                throw new ArgumentNullException("idDest is a required property for NfeSefazIde and cannot be null");
+            }
             this.idDest = idDest;
             // to ensure "cMunFG" is required (not null)
             if (cMunFG == null)
@@ -80,11 +110,41 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cMunFG is a required property for NfeSefazIde and cannot be null");
             }
             this.cMunFG = cMunFG;
+            // to ensure "tpImp" is required (not null)
+            if (tpImp == null)
+            {
+                throw new ArgumentNullException("tpImp is a required property for NfeSefazIde and cannot be null");
+            }
             this.tpImp = tpImp;
+            // to ensure "tpEmis" is required (not null)
+            if (tpEmis == null)
+            {
+                throw new ArgumentNullException("tpEmis is a required property for NfeSefazIde and cannot be null");
+            }
             this.tpEmis = tpEmis;
+            // to ensure "finNFe" is required (not null)
+            if (finNFe == null)
+            {
+                throw new ArgumentNullException("finNFe is a required property for NfeSefazIde and cannot be null");
+            }
             this.finNFe = finNFe;
+            // to ensure "indFinal" is required (not null)
+            if (indFinal == null)
+            {
+                throw new ArgumentNullException("indFinal is a required property for NfeSefazIde and cannot be null");
+            }
             this.indFinal = indFinal;
+            // to ensure "indPres" is required (not null)
+            if (indPres == null)
+            {
+                throw new ArgumentNullException("indPres is a required property for NfeSefazIde and cannot be null");
+            }
             this.indPres = indPres;
+            // to ensure "procEmi" is required (not null)
+            if (procEmi == null)
+            {
+                throw new ArgumentNullException("procEmi is a required property for NfeSefazIde and cannot be null");
+            }
             this.procEmi = procEmi;
             // to ensure "verProc" is required (not null)
             if (verProc == null)
@@ -108,13 +168,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Código da UF do emitente do Documento Fiscal. Utilizar a Tabela do IBGE.</value>
         [DataMember(Name = "cUF", IsRequired = true, EmitDefaultValue = true)]
-        public int cUF { get; set; }
+        public int? cUF { get; set; }
 
         /// <summary>
         /// Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Código numérico que compõe a Chave de Acesso. Número aleatório gerado pelo emitente para cada NF-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "cNF", EmitDefaultValue = false)]
+        [DataMember(Name = "cNF", EmitDefaultValue = true)]
         public string cNF { get; set; }
 
         /// <summary>
@@ -128,50 +188,50 @@ namespace NuvemFiscal.Sdk.Model
         /// Código do modelo do Documento Fiscal:  * 55 - NF-e  * 65 - NFC-e
         /// </summary>
         /// <value>Código do modelo do Documento Fiscal:  * 55 - NF-e  * 65 - NFC-e</value>
-        [DataMember(Name = "mod", EmitDefaultValue = false)]
-        public int mod { get; set; }
+        [DataMember(Name = "mod", EmitDefaultValue = true)]
+        public int? mod { get; set; }
 
         /// <summary>
         /// Série do Documento Fiscal:  * Série normal 0-889  * Avulsa Fisco 890-899  * SCAN 900-999
         /// </summary>
         /// <value>Série do Documento Fiscal:  * Série normal 0-889  * Avulsa Fisco 890-899  * SCAN 900-999</value>
         [DataMember(Name = "serie", IsRequired = true, EmitDefaultValue = true)]
-        public int serie { get; set; }
+        public int? serie { get; set; }
 
         /// <summary>
         /// Número do Documento Fiscal.
         /// </summary>
         /// <value>Número do Documento Fiscal.</value>
         [DataMember(Name = "nNF", IsRequired = true, EmitDefaultValue = true)]
-        public int nNF { get; set; }
+        public int? nNF { get; set; }
 
         /// <summary>
         /// Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00.
         /// </summary>
         /// <value>Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00.</value>
         [DataMember(Name = "dhEmi", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime dhEmi { get; set; }
+        public DateTime? dhEmi { get; set; }
 
         /// <summary>
         /// Data e Hora da saída ou de entrada da mercadoria / produto (AAAA-MM-DDTHH:mm:ssTZD).
         /// </summary>
         /// <value>Data e Hora da saída ou de entrada da mercadoria / produto (AAAA-MM-DDTHH:mm:ssTZD).</value>
-        [DataMember(Name = "dhSaiEnt", EmitDefaultValue = false)]
-        public DateTime dhSaiEnt { get; set; }
+        [DataMember(Name = "dhSaiEnt", EmitDefaultValue = true)]
+        public DateTime? dhSaiEnt { get; set; }
 
         /// <summary>
         /// Tipo do Documento Fiscal:  * 0 - Entrada  * 1 - Saída
         /// </summary>
         /// <value>Tipo do Documento Fiscal:  * 0 - Entrada  * 1 - Saída</value>
         [DataMember(Name = "tpNF", IsRequired = true, EmitDefaultValue = true)]
-        public int tpNF { get; set; }
+        public int? tpNF { get; set; }
 
         /// <summary>
         /// Identificador de Local de destino da operação:  * 1 - Interna  * 2 - Interestadual  * 3 - Exterior
         /// </summary>
         /// <value>Identificador de Local de destino da operação:  * 1 - Interna  * 2 - Interestadual  * 3 - Exterior</value>
         [DataMember(Name = "idDest", IsRequired = true, EmitDefaultValue = true)]
-        public int idDest { get; set; }
+        public int? idDest { get; set; }
 
         /// <summary>
         /// Código do Município de Ocorrência do Fato Gerador (utilizar a tabela do IBGE).
@@ -185,63 +245,63 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Formato de impressão do DANFE:  * 0 - Sem DANFE  * 1 - DANFe Retrato  * 2 - DANFe Paisagem  * 3 - DANFe Simplificado  * 4 - DANFe NFC-e  * 5 - DANFe NFC-e em mensagem eletrônica</value>
         [DataMember(Name = "tpImp", IsRequired = true, EmitDefaultValue = true)]
-        public int tpImp { get; set; }
+        public int? tpImp { get; set; }
 
         /// <summary>
         /// Forma de emissão da NF-e  * 1 - Normal  * 2 - Contingência FS  * 3 - Regime Especial NFF (NT 2021.002)  * 4 - Contingência DPEC  * 5 - Contingência FSDA  * 6 - Contingência SVC - AN  * 7 - Contingência SVC - RS  * 9 - Contingência off-line NFC-e
         /// </summary>
         /// <value>Forma de emissão da NF-e  * 1 - Normal  * 2 - Contingência FS  * 3 - Regime Especial NFF (NT 2021.002)  * 4 - Contingência DPEC  * 5 - Contingência FSDA  * 6 - Contingência SVC - AN  * 7 - Contingência SVC - RS  * 9 - Contingência off-line NFC-e</value>
         [DataMember(Name = "tpEmis", IsRequired = true, EmitDefaultValue = true)]
-        public int tpEmis { get; set; }
+        public int? tpEmis { get; set; }
 
         /// <summary>
         /// Digito Verificador da Chave de Acesso da NF-e.    *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
         /// <value>Digito Verificador da Chave de Acesso da NF-e.    *Geramos automaticamente quando nenhum valor é informado.*</value>
-        [DataMember(Name = "cDV", EmitDefaultValue = false)]
-        public int cDV { get; set; }
+        [DataMember(Name = "cDV", EmitDefaultValue = true)]
+        public int? cDV { get; set; }
 
         /// <summary>
         /// Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação
         /// </summary>
         /// <value>Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação</value>
-        [DataMember(Name = "tpAmb", EmitDefaultValue = false)]
-        public int tpAmb { get; set; }
+        [DataMember(Name = "tpAmb", EmitDefaultValue = true)]
+        public int? tpAmb { get; set; }
 
         /// <summary>
         /// Finalidade da emissão da NF-e:  * 1 - NFe normal  * 2 - NFe complementar  * 3 - NFe de ajuste  * 4 - Devolução/Retorno
         /// </summary>
         /// <value>Finalidade da emissão da NF-e:  * 1 - NFe normal  * 2 - NFe complementar  * 3 - NFe de ajuste  * 4 - Devolução/Retorno</value>
         [DataMember(Name = "finNFe", IsRequired = true, EmitDefaultValue = true)]
-        public int finNFe { get; set; }
+        public int? finNFe { get; set; }
 
         /// <summary>
         /// Indica operação com consumidor final:  * 0 - Não  * 1 - Consumidor Final
         /// </summary>
         /// <value>Indica operação com consumidor final:  * 0 - Não  * 1 - Consumidor Final</value>
         [DataMember(Name = "indFinal", IsRequired = true, EmitDefaultValue = true)]
-        public int indFinal { get; set; }
+        public int? indFinal { get; set; }
 
         /// <summary>
         /// Indicador de presença do comprador no estabelecimento comercial no momento da operação:  * 0 - Não se aplica (ex.: Nota Fiscal complementar ou de ajuste)  * 1 - Operação presencial  * 2 - Não presencial, internet  * 3 - Não presencial, teleatendimento  * 4 - NFC-e entrega em domicílio  * 5 - Operação presencial, fora do estabelecimento  * 9 - Não presencial, outros
         /// </summary>
         /// <value>Indicador de presença do comprador no estabelecimento comercial no momento da operação:  * 0 - Não se aplica (ex.: Nota Fiscal complementar ou de ajuste)  * 1 - Operação presencial  * 2 - Não presencial, internet  * 3 - Não presencial, teleatendimento  * 4 - NFC-e entrega em domicílio  * 5 - Operação presencial, fora do estabelecimento  * 9 - Não presencial, outros</value>
         [DataMember(Name = "indPres", IsRequired = true, EmitDefaultValue = true)]
-        public int indPres { get; set; }
+        public int? indPres { get; set; }
 
         /// <summary>
         /// Indicador de intermediador/marketplace  * 0 - Operação sem intermediador (em site ou plataforma própria)  * 1 - Operação em site ou plataforma de terceiros (intermediadores/marketplace)
         /// </summary>
         /// <value>Indicador de intermediador/marketplace  * 0 - Operação sem intermediador (em site ou plataforma própria)  * 1 - Operação em site ou plataforma de terceiros (intermediadores/marketplace)</value>
-        [DataMember(Name = "indIntermed", EmitDefaultValue = false)]
-        public int indIntermed { get; set; }
+        [DataMember(Name = "indIntermed", EmitDefaultValue = true)]
+        public int? indIntermed { get; set; }
 
         /// <summary>
         /// Processo de emissão utilizado com a seguinte codificação:  * 0 - emissão de NF-e com aplicativo do contribuinte  * 1 - emissão de NF-e avulsa pelo Fisco  * 2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco  * 3 - emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco
         /// </summary>
         /// <value>Processo de emissão utilizado com a seguinte codificação:  * 0 - emissão de NF-e com aplicativo do contribuinte  * 1 - emissão de NF-e avulsa pelo Fisco  * 2 - emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site  do Fisco  * 3 - emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco</value>
         [DataMember(Name = "procEmi", IsRequired = true, EmitDefaultValue = true)]
-        public int procEmi { get; set; }
+        public int? procEmi { get; set; }
 
         /// <summary>
         /// versão do aplicativo utilizado no processo de  emissão.
@@ -254,14 +314,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Informar a data e hora de entrada em contingência contingência no formato  (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00.
         /// </summary>
         /// <value>Informar a data e hora de entrada em contingência contingência no formato  (AAAA-MM-DDThh:mm:ssTZD) ex.: 2012-09-01T13:00:00-03:00.</value>
-        [DataMember(Name = "dhCont", EmitDefaultValue = false)]
-        public DateTime dhCont { get; set; }
+        [DataMember(Name = "dhCont", EmitDefaultValue = true)]
+        public DateTime? dhCont { get; set; }
 
         /// <summary>
         /// Informar a Justificativa da entrada.
         /// </summary>
         /// <value>Informar a Justificativa da entrada.</value>
-        [DataMember(Name = "xJust", EmitDefaultValue = false)]
+        [DataMember(Name = "xJust", EmitDefaultValue = true)]
         public string xJust { get; set; }
 
         /// <summary>
@@ -339,7 +399,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.cUF == input.cUF ||
-                    this.cUF.Equals(input.cUF)
+                    (this.cUF != null &&
+                    this.cUF.Equals(input.cUF))
                 ) && 
                 (
                     this.cNF == input.cNF ||
@@ -353,15 +414,18 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.mod == input.mod ||
-                    this.mod.Equals(input.mod)
+                    (this.mod != null &&
+                    this.mod.Equals(input.mod))
                 ) && 
                 (
                     this.serie == input.serie ||
-                    this.serie.Equals(input.serie)
+                    (this.serie != null &&
+                    this.serie.Equals(input.serie))
                 ) && 
                 (
                     this.nNF == input.nNF ||
-                    this.nNF.Equals(input.nNF)
+                    (this.nNF != null &&
+                    this.nNF.Equals(input.nNF))
                 ) && 
                 (
                     this.dhEmi == input.dhEmi ||
@@ -375,11 +439,13 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpNF == input.tpNF ||
-                    this.tpNF.Equals(input.tpNF)
+                    (this.tpNF != null &&
+                    this.tpNF.Equals(input.tpNF))
                 ) && 
                 (
                     this.idDest == input.idDest ||
-                    this.idDest.Equals(input.idDest)
+                    (this.idDest != null &&
+                    this.idDest.Equals(input.idDest))
                 ) && 
                 (
                     this.cMunFG == input.cMunFG ||
@@ -388,39 +454,48 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpImp == input.tpImp ||
-                    this.tpImp.Equals(input.tpImp)
+                    (this.tpImp != null &&
+                    this.tpImp.Equals(input.tpImp))
                 ) && 
                 (
                     this.tpEmis == input.tpEmis ||
-                    this.tpEmis.Equals(input.tpEmis)
+                    (this.tpEmis != null &&
+                    this.tpEmis.Equals(input.tpEmis))
                 ) && 
                 (
                     this.cDV == input.cDV ||
-                    this.cDV.Equals(input.cDV)
+                    (this.cDV != null &&
+                    this.cDV.Equals(input.cDV))
                 ) && 
                 (
                     this.tpAmb == input.tpAmb ||
-                    this.tpAmb.Equals(input.tpAmb)
+                    (this.tpAmb != null &&
+                    this.tpAmb.Equals(input.tpAmb))
                 ) && 
                 (
                     this.finNFe == input.finNFe ||
-                    this.finNFe.Equals(input.finNFe)
+                    (this.finNFe != null &&
+                    this.finNFe.Equals(input.finNFe))
                 ) && 
                 (
                     this.indFinal == input.indFinal ||
-                    this.indFinal.Equals(input.indFinal)
+                    (this.indFinal != null &&
+                    this.indFinal.Equals(input.indFinal))
                 ) && 
                 (
                     this.indPres == input.indPres ||
-                    this.indPres.Equals(input.indPres)
+                    (this.indPres != null &&
+                    this.indPres.Equals(input.indPres))
                 ) && 
                 (
                     this.indIntermed == input.indIntermed ||
-                    this.indIntermed.Equals(input.indIntermed)
+                    (this.indIntermed != null &&
+                    this.indIntermed.Equals(input.indIntermed))
                 ) && 
                 (
                     this.procEmi == input.procEmi ||
-                    this.procEmi.Equals(input.procEmi)
+                    (this.procEmi != null &&
+                    this.procEmi.Equals(input.procEmi))
                 ) && 
                 (
                     this.verProc == input.verProc ||
@@ -454,7 +529,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.cUF.GetHashCode();
+                if (this.cUF != null)
+                {
+                    hashCode = (hashCode * 59) + this.cUF.GetHashCode();
+                }
                 if (this.cNF != null)
                 {
                     hashCode = (hashCode * 59) + this.cNF.GetHashCode();
@@ -463,9 +541,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.natOp.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.mod.GetHashCode();
-                hashCode = (hashCode * 59) + this.serie.GetHashCode();
-                hashCode = (hashCode * 59) + this.nNF.GetHashCode();
+                if (this.mod != null)
+                {
+                    hashCode = (hashCode * 59) + this.mod.GetHashCode();
+                }
+                if (this.serie != null)
+                {
+                    hashCode = (hashCode * 59) + this.serie.GetHashCode();
+                }
+                if (this.nNF != null)
+                {
+                    hashCode = (hashCode * 59) + this.nNF.GetHashCode();
+                }
                 if (this.dhEmi != null)
                 {
                     hashCode = (hashCode * 59) + this.dhEmi.GetHashCode();
@@ -474,21 +561,54 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.dhSaiEnt.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpNF.GetHashCode();
-                hashCode = (hashCode * 59) + this.idDest.GetHashCode();
+                if (this.tpNF != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpNF.GetHashCode();
+                }
+                if (this.idDest != null)
+                {
+                    hashCode = (hashCode * 59) + this.idDest.GetHashCode();
+                }
                 if (this.cMunFG != null)
                 {
                     hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpImp.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpEmis.GetHashCode();
-                hashCode = (hashCode * 59) + this.cDV.GetHashCode();
-                hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
-                hashCode = (hashCode * 59) + this.finNFe.GetHashCode();
-                hashCode = (hashCode * 59) + this.indFinal.GetHashCode();
-                hashCode = (hashCode * 59) + this.indPres.GetHashCode();
-                hashCode = (hashCode * 59) + this.indIntermed.GetHashCode();
-                hashCode = (hashCode * 59) + this.procEmi.GetHashCode();
+                if (this.tpImp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpImp.GetHashCode();
+                }
+                if (this.tpEmis != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpEmis.GetHashCode();
+                }
+                if (this.cDV != null)
+                {
+                    hashCode = (hashCode * 59) + this.cDV.GetHashCode();
+                }
+                if (this.tpAmb != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpAmb.GetHashCode();
+                }
+                if (this.finNFe != null)
+                {
+                    hashCode = (hashCode * 59) + this.finNFe.GetHashCode();
+                }
+                if (this.indFinal != null)
+                {
+                    hashCode = (hashCode * 59) + this.indFinal.GetHashCode();
+                }
+                if (this.indPres != null)
+                {
+                    hashCode = (hashCode * 59) + this.indPres.GetHashCode();
+                }
+                if (this.indIntermed != null)
+                {
+                    hashCode = (hashCode * 59) + this.indIntermed.GetHashCode();
+                }
+                if (this.procEmi != null)
+                {
+                    hashCode = (hashCode * 59) + this.procEmi.GetHashCode();
+                }
                 if (this.verProc != null)
                 {
                     hashCode = (hashCode * 59) + this.verProc.GetHashCode();

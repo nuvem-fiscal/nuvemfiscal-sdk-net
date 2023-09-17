@@ -5,7 +5,7 @@ Tributos incidentes nos produtos ou serviços da NF-e.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**vTotTrib** | **decimal** | Valor estimado total de impostos federais, estaduais e municipais. | [optional] 
+**vTotTrib** | **decimal?** | Valor estimado total de impostos federais, estaduais e municipais. | [optional] 
 **ICMS** | [**NfeSefazICMS**](NfeSefazICMS.md) |  | [optional] 
 **IPI** | [**NfeSefazIpi**](NfeSefazIpi.md) |  | [optional] 
 **II** | [**NfeSefazII**](NfeSefazII.md) |  | [optional] 

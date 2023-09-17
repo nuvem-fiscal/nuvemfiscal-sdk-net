@@ -37,8 +37,13 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazSemData" /> class.
         /// </summary>
         /// <param name="tpPer">Tipo de data/período programado para entrega.  * 0 - Sem data definida (required).</param>
-        public CteSefazSemData(int tpPer = default(int))
+        public CteSefazSemData(int? tpPer = default(int?))
         {
+            // to ensure "tpPer" is required (not null)
+            if (tpPer == null)
+            {
+                throw new ArgumentNullException("tpPer is a required property for CteSefazSemData and cannot be null");
+            }
             this.tpPer = tpPer;
         }
 
@@ -47,7 +52,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de data/período programado para entrega.  * 0 - Sem data definida</value>
         [DataMember(Name = "tpPer", IsRequired = true, EmitDefaultValue = true)]
-        public int tpPer { get; set; }
+        public int? tpPer { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,7 +100,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.tpPer == input.tpPer ||
-                    this.tpPer.Equals(input.tpPer)
+                    (this.tpPer != null &&
+                    this.tpPer.Equals(input.tpPer))
                 );
         }
 
@@ -108,7 +114,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.tpPer.GetHashCode();
+                if (this.tpPer != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpPer.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="qUnid">Quantidade total na unidade padrão para tributação..</param>
         /// <param name="vUnid">Valor por Unidade Tributável. Informar o valor do imposto Pauta por unidade de medida..</param>
         /// <param name="vIPI">Valor do IPI. (required).</param>
-        public NfeSefazIPITrib(string cST = default(string), decimal vBC = default(decimal), decimal pIPI = default(decimal), decimal qUnid = default(decimal), decimal vUnid = default(decimal), decimal vIPI = default(decimal))
+        public NfeSefazIPITrib(string cST = default(string), decimal? vBC = default(decimal?), decimal? pIPI = default(decimal?), decimal? qUnid = default(decimal?), decimal? vUnid = default(decimal?), decimal? vIPI = default(decimal?))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -50,6 +50,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for NfeSefazIPITrib and cannot be null");
             }
             this.CST = cST;
+            // to ensure "vIPI" is required (not null)
+            if (vIPI == null)
+            {
+                throw new ArgumentNullException("vIPI is a required property for NfeSefazIPITrib and cannot be null");
+            }
             this.vIPI = vIPI;
             this.vBC = vBC;
             this.pIPI = pIPI;
@@ -68,36 +73,36 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do IPI.
         /// </summary>
         /// <value>Valor da BC do IPI.</value>
-        [DataMember(Name = "vBC", EmitDefaultValue = false)]
-        public decimal vBC { get; set; }
+        [DataMember(Name = "vBC", EmitDefaultValue = true)]
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do IPI.
         /// </summary>
         /// <value>Alíquota do IPI.</value>
-        [DataMember(Name = "pIPI", EmitDefaultValue = false)]
-        public decimal pIPI { get; set; }
+        [DataMember(Name = "pIPI", EmitDefaultValue = true)]
+        public decimal? pIPI { get; set; }
 
         /// <summary>
         /// Quantidade total na unidade padrão para tributação.
         /// </summary>
         /// <value>Quantidade total na unidade padrão para tributação.</value>
-        [DataMember(Name = "qUnid", EmitDefaultValue = false)]
-        public decimal qUnid { get; set; }
+        [DataMember(Name = "qUnid", EmitDefaultValue = true)]
+        public decimal? qUnid { get; set; }
 
         /// <summary>
         /// Valor por Unidade Tributável. Informar o valor do imposto Pauta por unidade de medida.
         /// </summary>
         /// <value>Valor por Unidade Tributável. Informar o valor do imposto Pauta por unidade de medida.</value>
-        [DataMember(Name = "vUnid", EmitDefaultValue = false)]
-        public decimal vUnid { get; set; }
+        [DataMember(Name = "vUnid", EmitDefaultValue = true)]
+        public decimal? vUnid { get; set; }
 
         /// <summary>
         /// Valor do IPI.
         /// </summary>
         /// <value>Valor do IPI.</value>
         [DataMember(Name = "vIPI", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vIPI { get; set; }
+        public decimal? vIPI { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -155,23 +160,28 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pIPI == input.pIPI ||
-                    this.pIPI.Equals(input.pIPI)
+                    (this.pIPI != null &&
+                    this.pIPI.Equals(input.pIPI))
                 ) && 
                 (
                     this.qUnid == input.qUnid ||
-                    this.qUnid.Equals(input.qUnid)
+                    (this.qUnid != null &&
+                    this.qUnid.Equals(input.qUnid))
                 ) && 
                 (
                     this.vUnid == input.vUnid ||
-                    this.vUnid.Equals(input.vUnid)
+                    (this.vUnid != null &&
+                    this.vUnid.Equals(input.vUnid))
                 ) && 
                 (
                     this.vIPI == input.vIPI ||
-                    this.vIPI.Equals(input.vIPI)
+                    (this.vIPI != null &&
+                    this.vIPI.Equals(input.vIPI))
                 );
         }
 
@@ -188,11 +198,26 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pIPI.GetHashCode();
-                hashCode = (hashCode * 59) + this.qUnid.GetHashCode();
-                hashCode = (hashCode * 59) + this.vUnid.GetHashCode();
-                hashCode = (hashCode * 59) + this.vIPI.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pIPI != null)
+                {
+                    hashCode = (hashCode * 59) + this.pIPI.GetHashCode();
+                }
+                if (this.qUnid != null)
+                {
+                    hashCode = (hashCode * 59) + this.qUnid.GetHashCode();
+                }
+                if (this.vUnid != null)
+                {
+                    hashCode = (hashCode * 59) + this.vUnid.GetHashCode();
+                }
+                if (this.vIPI != null)
+                {
+                    hashCode = (hashCode * 59) + this.vIPI.GetHashCode();
+                }
                 return hashCode;
             }
         }

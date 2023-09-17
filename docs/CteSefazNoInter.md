@@ -5,7 +5,7 @@ Entrega no intervalo de horário definido.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**tpHor** | **int** | Tipo de hora.  * 4 - No intervalo de tempo | 
+**tpHor** | **int?** | Tipo de hora.  * 4 - No intervalo de tempo | 
 **hIni** | **string** | Hora inicial.  Formato HH:MM:SS. | 
 **hFim** | **string** | Hora final.  Formato HH:MM:SS. | 
 

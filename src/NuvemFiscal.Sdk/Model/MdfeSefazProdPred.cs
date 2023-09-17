@@ -78,14 +78,14 @@ namespace NuvemFiscal.Sdk.Model
         /// GTIN (Global Trade Item Number) do produto, antigo código EAN ou código de barras.
         /// </summary>
         /// <value>GTIN (Global Trade Item Number) do produto, antigo código EAN ou código de barras.</value>
-        [DataMember(Name = "cEAN", EmitDefaultValue = false)]
+        [DataMember(Name = "cEAN", EmitDefaultValue = true)]
         public string cEAN { get; set; }
 
         /// <summary>
         /// Código NCM.
         /// </summary>
         /// <value>Código NCM.</value>
-        [DataMember(Name = "NCM", EmitDefaultValue = false)]
+        [DataMember(Name = "NCM", EmitDefaultValue = true)]
         public string NCM { get; set; }
 
         /// <summary>

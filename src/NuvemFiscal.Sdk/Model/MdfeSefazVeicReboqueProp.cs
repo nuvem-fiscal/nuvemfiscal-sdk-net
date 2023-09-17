@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="iE">Inscrição Estadual..</param>
         /// <param name="uF">UF..</param>
         /// <param name="tpProp">Tipo Proprietário ou possuidor.  Preencher com:  * 0 - TAC Agregado  * 1 - TAC Independente  * 2 - Outros (required).</param>
-        public MdfeSefazVeicReboqueProp(string cPF = default(string), string cNPJ = default(string), string rNTRC = default(string), string xNome = default(string), string iE = default(string), string uF = default(string), int tpProp = default(int))
+        public MdfeSefazVeicReboqueProp(string cPF = default(string), string cNPJ = default(string), string rNTRC = default(string), string xNome = default(string), string iE = default(string), string uF = default(string), int? tpProp = default(int?))
         {
             // to ensure "rNTRC" is required (not null)
             if (rNTRC == null)
@@ -57,6 +57,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xNome is a required property for MdfeSefazVeicReboqueProp and cannot be null");
             }
             this.xNome = xNome;
+            // to ensure "tpProp" is required (not null)
+            if (tpProp == null)
+            {
+                throw new ArgumentNullException("tpProp is a required property for MdfeSefazVeicReboqueProp and cannot be null");
+            }
             this.tpProp = tpProp;
             this.CPF = cPF;
             this.CNPJ = cNPJ;
@@ -68,14 +73,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número do CPF.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CPF.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Número do CNPJ.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
@@ -96,14 +101,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Inscrição Estadual.
         /// </summary>
         /// <value>Inscrição Estadual.</value>
-        [DataMember(Name = "IE", EmitDefaultValue = false)]
+        [DataMember(Name = "IE", EmitDefaultValue = true)]
         public string IE { get; set; }
 
         /// <summary>
         /// UF.
         /// </summary>
         /// <value>UF.</value>
-        [DataMember(Name = "UF", EmitDefaultValue = false)]
+        [DataMember(Name = "UF", EmitDefaultValue = true)]
         public string UF { get; set; }
 
         /// <summary>
@@ -111,7 +116,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo Proprietário ou possuidor.  Preencher com:  * 0 - TAC Agregado  * 1 - TAC Independente  * 2 - Outros</value>
         [DataMember(Name = "tpProp", IsRequired = true, EmitDefaultValue = true)]
-        public int tpProp { get; set; }
+        public int? tpProp { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -195,7 +200,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpProp == input.tpProp ||
-                    this.tpProp.Equals(input.tpProp)
+                    (this.tpProp != null &&
+                    this.tpProp.Equals(input.tpProp))
                 );
         }
 
@@ -232,7 +238,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.UF.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpProp.GetHashCode();
+                if (this.tpProp != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpProp.GetHashCode();
+                }
                 return hashCode;
             }
         }

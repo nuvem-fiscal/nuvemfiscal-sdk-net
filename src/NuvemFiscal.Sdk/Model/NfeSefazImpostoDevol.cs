@@ -38,8 +38,13 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="pDevol">Percentual de mercadoria devolvida. (required).</param>
         /// <param name="iPI">iPI (required).</param>
-        public NfeSefazImpostoDevol(decimal pDevol = default(decimal), NfeSefazImpostoDevolIPI iPI = default(NfeSefazImpostoDevolIPI))
+        public NfeSefazImpostoDevol(decimal? pDevol = default(decimal?), NfeSefazImpostoDevolIPI iPI = default(NfeSefazImpostoDevolIPI))
         {
+            // to ensure "pDevol" is required (not null)
+            if (pDevol == null)
+            {
+                throw new ArgumentNullException("pDevol is a required property for NfeSefazImpostoDevol and cannot be null");
+            }
             this.pDevol = pDevol;
             // to ensure "iPI" is required (not null)
             if (iPI == null)
@@ -54,7 +59,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Percentual de mercadoria devolvida.</value>
         [DataMember(Name = "pDevol", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pDevol { get; set; }
+        public decimal? pDevol { get; set; }
 
         /// <summary>
         /// Gets or Sets IPI
@@ -109,7 +114,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.pDevol == input.pDevol ||
-                    this.pDevol.Equals(input.pDevol)
+                    (this.pDevol != null &&
+                    this.pDevol.Equals(input.pDevol))
                 ) && 
                 (
                     this.IPI == input.IPI ||
@@ -127,7 +133,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.pDevol.GetHashCode();
+                if (this.pDevol != null)
+                {
+                    hashCode = (hashCode * 59) + this.pDevol.GetHashCode();
+                }
                 if (this.IPI != null)
                 {
                     hashCode = (hashCode * 59) + this.IPI.GetHashCode();

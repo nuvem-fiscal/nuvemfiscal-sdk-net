@@ -43,7 +43,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="placa">Placa do veículo. (required).</param>
         /// <param name="codAcessoPed">Código de acesso gerado automaticamente pelo sistema emissor da concessionária. (required).</param>
         /// <param name="codContrato">Código de contrato gerado automaticamente pelo sistema nacional no cadastro da concessionária. (required).</param>
-        public ExploracaoRodoviaria(string categVeic = default(string), string nEixos = default(string), int rodagem = default(int), string sentido = default(string), string placa = default(string), string codAcessoPed = default(string), string codContrato = default(string))
+        public ExploracaoRodoviaria(string categVeic = default(string), string nEixos = default(string), int? rodagem = default(int?), string sentido = default(string), string placa = default(string), string codAcessoPed = default(string), string codContrato = default(string))
         {
             // to ensure "categVeic" is required (not null)
             if (categVeic == null)
@@ -57,6 +57,11 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("nEixos is a required property for ExploracaoRodoviaria and cannot be null");
             }
             this.nEixos = nEixos;
+            // to ensure "rodagem" is required (not null)
+            if (rodagem == null)
+            {
+                throw new ArgumentNullException("rodagem is a required property for ExploracaoRodoviaria and cannot be null");
+            }
             this.rodagem = rodagem;
             // to ensure "sentido" is required (not null)
             if (sentido == null)
@@ -103,7 +108,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Tipo de rodagem.</value>
         [DataMember(Name = "rodagem", IsRequired = true, EmitDefaultValue = true)]
-        public int rodagem { get; set; }
+        public int? rodagem { get; set; }
 
         /// <summary>
         /// Placa do veículo.
@@ -195,7 +200,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.rodagem == input.rodagem ||
-                    this.rodagem.Equals(input.rodagem)
+                    (this.rodagem != null &&
+                    this.rodagem.Equals(input.rodagem))
                 ) && 
                 (
                     this.sentido == input.sentido ||
@@ -236,7 +242,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nEixos.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.rodagem.GetHashCode();
+                if (this.rodagem != null)
+                {
+                    hashCode = (hashCode * 59) + this.rodagem.GetHashCode();
+                }
                 if (this.sentido != null)
                 {
                     hashCode = (hashCode * 59) + this.sentido.GetHashCode();

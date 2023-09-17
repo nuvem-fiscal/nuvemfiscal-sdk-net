@@ -52,10 +52,25 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cPais">Código de Pais..</param>
         /// <param name="nProcesso">Número do Processo administrativo ou judicial de suspenção do processo..</param>
         /// <param name="indIncentivo">Indicador de Incentivo Fiscal. 1&#x3D;Sim  * 2 - Não (required).</param>
-        public NfeSefazISSQN(decimal vBC = default(decimal), decimal vAliq = default(decimal), decimal vISSQN = default(decimal), string cMunFG = default(string), string cListServ = default(string), decimal vDeducao = default(decimal), decimal vOutro = default(decimal), decimal vDescIncond = default(decimal), decimal vDescCond = default(decimal), decimal vISSRet = default(decimal), int indISS = default(int), string cServico = default(string), string cMun = default(string), string cPais = default(string), string nProcesso = default(string), int indIncentivo = default(int))
+        public NfeSefazISSQN(decimal? vBC = default(decimal?), decimal? vAliq = default(decimal?), decimal? vISSQN = default(decimal?), string cMunFG = default(string), string cListServ = default(string), decimal? vDeducao = default(decimal?), decimal? vOutro = default(decimal?), decimal? vDescIncond = default(decimal?), decimal? vDescCond = default(decimal?), decimal? vISSRet = default(decimal?), int? indISS = default(int?), string cServico = default(string), string cMun = default(string), string cPais = default(string), string nProcesso = default(string), int? indIncentivo = default(int?))
         {
+            // to ensure "vBC" is required (not null)
+            if (vBC == null)
+            {
+                throw new ArgumentNullException("vBC is a required property for NfeSefazISSQN and cannot be null");
+            }
             this.vBC = vBC;
+            // to ensure "vAliq" is required (not null)
+            if (vAliq == null)
+            {
+                throw new ArgumentNullException("vAliq is a required property for NfeSefazISSQN and cannot be null");
+            }
             this.vAliq = vAliq;
+            // to ensure "vISSQN" is required (not null)
+            if (vISSQN == null)
+            {
+                throw new ArgumentNullException("vISSQN is a required property for NfeSefazISSQN and cannot be null");
+            }
             this.vISSQN = vISSQN;
             // to ensure "cMunFG" is required (not null)
             if (cMunFG == null)
@@ -69,7 +84,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cListServ is a required property for NfeSefazISSQN and cannot be null");
             }
             this.cListServ = cListServ;
+            // to ensure "indISS" is required (not null)
+            if (indISS == null)
+            {
+                throw new ArgumentNullException("indISS is a required property for NfeSefazISSQN and cannot be null");
+            }
             this.indISS = indISS;
+            // to ensure "indIncentivo" is required (not null)
+            if (indIncentivo == null)
+            {
+                throw new ArgumentNullException("indIncentivo is a required property for NfeSefazISSQN and cannot be null");
+            }
             this.indIncentivo = indIncentivo;
             this.vDeducao = vDeducao;
             this.vOutro = vOutro;
@@ -87,21 +112,21 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor da BC do ISSQN.</value>
         [DataMember(Name = "vBC", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBC { get; set; }
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do ISSQN.
         /// </summary>
         /// <value>Alíquota do ISSQN.</value>
         [DataMember(Name = "vAliq", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vAliq { get; set; }
+        public decimal? vAliq { get; set; }
 
         /// <summary>
         /// Valor da do ISSQN.
         /// </summary>
         /// <value>Valor da do ISSQN.</value>
         [DataMember(Name = "vISSQN", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vISSQN { get; set; }
+        public decimal? vISSQN { get; set; }
 
         /// <summary>
         /// Informar o município de ocorrência do fato gerador do ISSQN. Utilizar a Tabela do IBGE (Anexo VII - Tabela de UF, Município e País). “Atenção, não vincular com os campos B12, C10 ou E10” v2.0.
@@ -121,70 +146,70 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor dedução para redução da base de cálculo.
         /// </summary>
         /// <value>Valor dedução para redução da base de cálculo.</value>
-        [DataMember(Name = "vDeducao", EmitDefaultValue = false)]
-        public decimal vDeducao { get; set; }
+        [DataMember(Name = "vDeducao", EmitDefaultValue = true)]
+        public decimal? vDeducao { get; set; }
 
         /// <summary>
         /// Valor outras retenções.
         /// </summary>
         /// <value>Valor outras retenções.</value>
-        [DataMember(Name = "vOutro", EmitDefaultValue = false)]
-        public decimal vOutro { get; set; }
+        [DataMember(Name = "vOutro", EmitDefaultValue = true)]
+        public decimal? vOutro { get; set; }
 
         /// <summary>
         /// Valor desconto incondicionado.
         /// </summary>
         /// <value>Valor desconto incondicionado.</value>
-        [DataMember(Name = "vDescIncond", EmitDefaultValue = false)]
-        public decimal vDescIncond { get; set; }
+        [DataMember(Name = "vDescIncond", EmitDefaultValue = true)]
+        public decimal? vDescIncond { get; set; }
 
         /// <summary>
         /// Valor desconto condicionado.
         /// </summary>
         /// <value>Valor desconto condicionado.</value>
-        [DataMember(Name = "vDescCond", EmitDefaultValue = false)]
-        public decimal vDescCond { get; set; }
+        [DataMember(Name = "vDescCond", EmitDefaultValue = true)]
+        public decimal? vDescCond { get; set; }
 
         /// <summary>
         /// Valor Retenção ISS.
         /// </summary>
         /// <value>Valor Retenção ISS.</value>
-        [DataMember(Name = "vISSRet", EmitDefaultValue = false)]
-        public decimal vISSRet { get; set; }
+        [DataMember(Name = "vISSRet", EmitDefaultValue = true)]
+        public decimal? vISSRet { get; set; }
 
         /// <summary>
         /// Exibilidade do ISS:1-Exigível  * 2 - Não incidente  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Exig.Susp. Judicial  * 7 - Exig.Susp. ADM
         /// </summary>
         /// <value>Exibilidade do ISS:1-Exigível  * 2 - Não incidente  * 3 - Isenção  * 4 - Exportação  * 5 - Imunidade  * 6 - Exig.Susp. Judicial  * 7 - Exig.Susp. ADM</value>
         [DataMember(Name = "indISS", IsRequired = true, EmitDefaultValue = true)]
-        public int indISS { get; set; }
+        public int? indISS { get; set; }
 
         /// <summary>
         /// Código do serviço prestado dentro do município.
         /// </summary>
         /// <value>Código do serviço prestado dentro do município.</value>
-        [DataMember(Name = "cServico", EmitDefaultValue = false)]
+        [DataMember(Name = "cServico", EmitDefaultValue = true)]
         public string cServico { get; set; }
 
         /// <summary>
         /// Código do Município de Incidência do Imposto.
         /// </summary>
         /// <value>Código do Município de Incidência do Imposto.</value>
-        [DataMember(Name = "cMun", EmitDefaultValue = false)]
+        [DataMember(Name = "cMun", EmitDefaultValue = true)]
         public string cMun { get; set; }
 
         /// <summary>
         /// Código de Pais.
         /// </summary>
         /// <value>Código de Pais.</value>
-        [DataMember(Name = "cPais", EmitDefaultValue = false)]
+        [DataMember(Name = "cPais", EmitDefaultValue = true)]
         public string cPais { get; set; }
 
         /// <summary>
         /// Número do Processo administrativo ou judicial de suspenção do processo.
         /// </summary>
         /// <value>Número do Processo administrativo ou judicial de suspenção do processo.</value>
-        [DataMember(Name = "nProcesso", EmitDefaultValue = false)]
+        [DataMember(Name = "nProcesso", EmitDefaultValue = true)]
         public string nProcesso { get; set; }
 
         /// <summary>
@@ -192,7 +217,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Indicador de Incentivo Fiscal. 1&#x3D;Sim  * 2 - Não</value>
         [DataMember(Name = "indIncentivo", IsRequired = true, EmitDefaultValue = true)]
-        public int indIncentivo { get; set; }
+        public int? indIncentivo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -255,15 +280,18 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.vAliq == input.vAliq ||
-                    this.vAliq.Equals(input.vAliq)
+                    (this.vAliq != null &&
+                    this.vAliq.Equals(input.vAliq))
                 ) && 
                 (
                     this.vISSQN == input.vISSQN ||
-                    this.vISSQN.Equals(input.vISSQN)
+                    (this.vISSQN != null &&
+                    this.vISSQN.Equals(input.vISSQN))
                 ) && 
                 (
                     this.cMunFG == input.cMunFG ||
@@ -277,27 +305,33 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vDeducao == input.vDeducao ||
-                    this.vDeducao.Equals(input.vDeducao)
+                    (this.vDeducao != null &&
+                    this.vDeducao.Equals(input.vDeducao))
                 ) && 
                 (
                     this.vOutro == input.vOutro ||
-                    this.vOutro.Equals(input.vOutro)
+                    (this.vOutro != null &&
+                    this.vOutro.Equals(input.vOutro))
                 ) && 
                 (
                     this.vDescIncond == input.vDescIncond ||
-                    this.vDescIncond.Equals(input.vDescIncond)
+                    (this.vDescIncond != null &&
+                    this.vDescIncond.Equals(input.vDescIncond))
                 ) && 
                 (
                     this.vDescCond == input.vDescCond ||
-                    this.vDescCond.Equals(input.vDescCond)
+                    (this.vDescCond != null &&
+                    this.vDescCond.Equals(input.vDescCond))
                 ) && 
                 (
                     this.vISSRet == input.vISSRet ||
-                    this.vISSRet.Equals(input.vISSRet)
+                    (this.vISSRet != null &&
+                    this.vISSRet.Equals(input.vISSRet))
                 ) && 
                 (
                     this.indISS == input.indISS ||
-                    this.indISS.Equals(input.indISS)
+                    (this.indISS != null &&
+                    this.indISS.Equals(input.indISS))
                 ) && 
                 (
                     this.cServico == input.cServico ||
@@ -321,7 +355,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.indIncentivo == input.indIncentivo ||
-                    this.indIncentivo.Equals(input.indIncentivo)
+                    (this.indIncentivo != null &&
+                    this.indIncentivo.Equals(input.indIncentivo))
                 );
         }
 
@@ -334,9 +369,18 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.vAliq.GetHashCode();
-                hashCode = (hashCode * 59) + this.vISSQN.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.vAliq != null)
+                {
+                    hashCode = (hashCode * 59) + this.vAliq.GetHashCode();
+                }
+                if (this.vISSQN != null)
+                {
+                    hashCode = (hashCode * 59) + this.vISSQN.GetHashCode();
+                }
                 if (this.cMunFG != null)
                 {
                     hashCode = (hashCode * 59) + this.cMunFG.GetHashCode();
@@ -345,12 +389,30 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cListServ.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vDeducao.GetHashCode();
-                hashCode = (hashCode * 59) + this.vOutro.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDescIncond.GetHashCode();
-                hashCode = (hashCode * 59) + this.vDescCond.GetHashCode();
-                hashCode = (hashCode * 59) + this.vISSRet.GetHashCode();
-                hashCode = (hashCode * 59) + this.indISS.GetHashCode();
+                if (this.vDeducao != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDeducao.GetHashCode();
+                }
+                if (this.vOutro != null)
+                {
+                    hashCode = (hashCode * 59) + this.vOutro.GetHashCode();
+                }
+                if (this.vDescIncond != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDescIncond.GetHashCode();
+                }
+                if (this.vDescCond != null)
+                {
+                    hashCode = (hashCode * 59) + this.vDescCond.GetHashCode();
+                }
+                if (this.vISSRet != null)
+                {
+                    hashCode = (hashCode * 59) + this.vISSRet.GetHashCode();
+                }
+                if (this.indISS != null)
+                {
+                    hashCode = (hashCode * 59) + this.indISS.GetHashCode();
+                }
                 if (this.cServico != null)
                 {
                     hashCode = (hashCode * 59) + this.cServico.GetHashCode();
@@ -367,7 +429,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.nProcesso.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.indIncentivo.GetHashCode();
+                if (this.indIncentivo != null)
+                {
+                    hashCode = (hashCode * 59) + this.indIncentivo.GetHashCode();
+                }
                 return hashCode;
             }
         }

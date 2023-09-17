@@ -49,8 +49,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vFCPST">Valor do FCP retido por substituição tributária..</param>
         /// <param name="pCredSN">Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0). (required).</param>
         /// <param name="vCredICMSSN">Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0). (required).</param>
-        public NfeSefazICMSSN201(int orig = default(int), string cSOSN = default(string), int modBCST = default(int), decimal pMVAST = default(decimal), decimal pRedBCST = default(decimal), decimal vBCST = default(decimal), decimal pICMSST = default(decimal), decimal vICMSST = default(decimal), decimal vBCFCPST = default(decimal), decimal pFCPST = default(decimal), decimal vFCPST = default(decimal), decimal pCredSN = default(decimal), decimal vCredICMSSN = default(decimal))
+        public NfeSefazICMSSN201(int? orig = default(int?), string cSOSN = default(string), int? modBCST = default(int?), decimal? pMVAST = default(decimal?), decimal? pRedBCST = default(decimal?), decimal? vBCST = default(decimal?), decimal? pICMSST = default(decimal?), decimal? vICMSST = default(decimal?), decimal? vBCFCPST = default(decimal?), decimal? pFCPST = default(decimal?), decimal? vFCPST = default(decimal?), decimal? pCredSN = default(decimal?), decimal? vCredICMSSN = default(decimal?))
         {
+            // to ensure "orig" is required (not null)
+            if (orig == null)
+            {
+                throw new ArgumentNullException("orig is a required property for NfeSefazICMSSN201 and cannot be null");
+            }
             this.orig = orig;
             // to ensure "cSOSN" is required (not null)
             if (cSOSN == null)
@@ -58,11 +63,41 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cSOSN is a required property for NfeSefazICMSSN201 and cannot be null");
             }
             this.CSOSN = cSOSN;
+            // to ensure "modBCST" is required (not null)
+            if (modBCST == null)
+            {
+                throw new ArgumentNullException("modBCST is a required property for NfeSefazICMSSN201 and cannot be null");
+            }
             this.modBCST = modBCST;
+            // to ensure "vBCST" is required (not null)
+            if (vBCST == null)
+            {
+                throw new ArgumentNullException("vBCST is a required property for NfeSefazICMSSN201 and cannot be null");
+            }
             this.vBCST = vBCST;
+            // to ensure "pICMSST" is required (not null)
+            if (pICMSST == null)
+            {
+                throw new ArgumentNullException("pICMSST is a required property for NfeSefazICMSSN201 and cannot be null");
+            }
             this.pICMSST = pICMSST;
+            // to ensure "vICMSST" is required (not null)
+            if (vICMSST == null)
+            {
+                throw new ArgumentNullException("vICMSST is a required property for NfeSefazICMSSN201 and cannot be null");
+            }
             this.vICMSST = vICMSST;
+            // to ensure "pCredSN" is required (not null)
+            if (pCredSN == null)
+            {
+                throw new ArgumentNullException("pCredSN is a required property for NfeSefazICMSSN201 and cannot be null");
+            }
             this.pCredSN = pCredSN;
+            // to ensure "vCredICMSSN" is required (not null)
+            if (vCredICMSSN == null)
+            {
+                throw new ArgumentNullException("vCredICMSSN is a required property for NfeSefazICMSSN201 and cannot be null");
+            }
             this.vCredICMSSN = vCredICMSSN;
             this.pMVAST = pMVAST;
             this.pRedBCST = pRedBCST;
@@ -76,7 +111,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Origem da mercadoria:  * 0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  * 1 - Estrangeira - Importação direta, exceto a indicada no código 6;  * 2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  * 3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40%% e inferior ou igual a 70%%;  * 4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  * 5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%%;  * 6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  * 7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural;  * 8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%%.</value>
         [DataMember(Name = "orig", IsRequired = true, EmitDefaultValue = true)]
-        public int orig { get; set; }
+        public int? orig { get; set; }
 
         /// <summary>
         /// * 201 - Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS por Substituição Tributária (v.2.0)
@@ -90,77 +125,77 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Modalidade de determinação da BC do ICMS ST:  * 0 - Preço tabelado ou máximo  sugerido  * 1 - Lista Negativa (valor)  * 2 - Lista Positiva (valor)  * 3 - Lista Neutra (valor)  * 4 - Margem Valor Agregado (%%)  * 5 - Pauta (valor). (v2.0)  * 6 - Valor da Operação</value>
         [DataMember(Name = "modBCST", IsRequired = true, EmitDefaultValue = true)]
-        public int modBCST { get; set; }
+        public int? modBCST { get; set; }
 
         /// <summary>
         /// Percentual da Margem de Valor Adicionado ICMS ST (v2.0).
         /// </summary>
         /// <value>Percentual da Margem de Valor Adicionado ICMS ST (v2.0).</value>
-        [DataMember(Name = "pMVAST", EmitDefaultValue = false)]
-        public decimal pMVAST { get; set; }
+        [DataMember(Name = "pMVAST", EmitDefaultValue = true)]
+        public decimal? pMVAST { get; set; }
 
         /// <summary>
         /// Percentual de redução da BC ICMS ST  (v2.0).
         /// </summary>
         /// <value>Percentual de redução da BC ICMS ST  (v2.0).</value>
-        [DataMember(Name = "pRedBCST", EmitDefaultValue = false)]
-        public decimal pRedBCST { get; set; }
+        [DataMember(Name = "pRedBCST", EmitDefaultValue = true)]
+        public decimal? pRedBCST { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS ST (v2.0).
         /// </summary>
         /// <value>Valor da BC do ICMS ST (v2.0).</value>
         [DataMember(Name = "vBCST", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vBCST { get; set; }
+        public decimal? vBCST { get; set; }
 
         /// <summary>
         /// Alíquota do ICMS ST (v2.0).
         /// </summary>
         /// <value>Alíquota do ICMS ST (v2.0).</value>
         [DataMember(Name = "pICMSST", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pICMSST { get; set; }
+        public decimal? pICMSST { get; set; }
 
         /// <summary>
         /// Valor do ICMS ST (v2.0).
         /// </summary>
         /// <value>Valor do ICMS ST (v2.0).</value>
         [DataMember(Name = "vICMSST", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vICMSST { get; set; }
+        public decimal? vICMSST { get; set; }
 
         /// <summary>
         /// Valor da Base de cálculo do FCP.
         /// </summary>
         /// <value>Valor da Base de cálculo do FCP.</value>
-        [DataMember(Name = "vBCFCPST", EmitDefaultValue = false)]
-        public decimal vBCFCPST { get; set; }
+        [DataMember(Name = "vBCFCPST", EmitDefaultValue = true)]
+        public decimal? vBCFCPST { get; set; }
 
         /// <summary>
         /// Percentual de FCP retido por substituição tributária.
         /// </summary>
         /// <value>Percentual de FCP retido por substituição tributária.</value>
-        [DataMember(Name = "pFCPST", EmitDefaultValue = false)]
-        public decimal pFCPST { get; set; }
+        [DataMember(Name = "pFCPST", EmitDefaultValue = true)]
+        public decimal? pFCPST { get; set; }
 
         /// <summary>
         /// Valor do FCP retido por substituição tributária.
         /// </summary>
         /// <value>Valor do FCP retido por substituição tributária.</value>
-        [DataMember(Name = "vFCPST", EmitDefaultValue = false)]
-        public decimal vFCPST { get; set; }
+        [DataMember(Name = "vFCPST", EmitDefaultValue = true)]
+        public decimal? vFCPST { get; set; }
 
         /// <summary>
         /// Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0).
         /// </summary>
         /// <value>Alíquota aplicável de cálculo do crédito (Simples Nacional). (v2.0).</value>
         [DataMember(Name = "pCredSN", IsRequired = true, EmitDefaultValue = true)]
-        public decimal pCredSN { get; set; }
+        public decimal? pCredSN { get; set; }
 
         /// <summary>
         /// Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0).
         /// </summary>
         /// <value>Valor crédito do ICMS que pode ser aproveitado nos termos do art. 23 da LC 123 (Simples Nacional) (v2.0).</value>
         [DataMember(Name = "vCredICMSSN", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vCredICMSSN { get; set; }
+        public decimal? vCredICMSSN { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -220,7 +255,8 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.orig == input.orig ||
-                    this.orig.Equals(input.orig)
+                    (this.orig != null &&
+                    this.orig.Equals(input.orig))
                 ) && 
                 (
                     this.CSOSN == input.CSOSN ||
@@ -229,47 +265,58 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.modBCST == input.modBCST ||
-                    this.modBCST.Equals(input.modBCST)
+                    (this.modBCST != null &&
+                    this.modBCST.Equals(input.modBCST))
                 ) && 
                 (
                     this.pMVAST == input.pMVAST ||
-                    this.pMVAST.Equals(input.pMVAST)
+                    (this.pMVAST != null &&
+                    this.pMVAST.Equals(input.pMVAST))
                 ) && 
                 (
                     this.pRedBCST == input.pRedBCST ||
-                    this.pRedBCST.Equals(input.pRedBCST)
+                    (this.pRedBCST != null &&
+                    this.pRedBCST.Equals(input.pRedBCST))
                 ) && 
                 (
                     this.vBCST == input.vBCST ||
-                    this.vBCST.Equals(input.vBCST)
+                    (this.vBCST != null &&
+                    this.vBCST.Equals(input.vBCST))
                 ) && 
                 (
                     this.pICMSST == input.pICMSST ||
-                    this.pICMSST.Equals(input.pICMSST)
+                    (this.pICMSST != null &&
+                    this.pICMSST.Equals(input.pICMSST))
                 ) && 
                 (
                     this.vICMSST == input.vICMSST ||
-                    this.vICMSST.Equals(input.vICMSST)
+                    (this.vICMSST != null &&
+                    this.vICMSST.Equals(input.vICMSST))
                 ) && 
                 (
                     this.vBCFCPST == input.vBCFCPST ||
-                    this.vBCFCPST.Equals(input.vBCFCPST)
+                    (this.vBCFCPST != null &&
+                    this.vBCFCPST.Equals(input.vBCFCPST))
                 ) && 
                 (
                     this.pFCPST == input.pFCPST ||
-                    this.pFCPST.Equals(input.pFCPST)
+                    (this.pFCPST != null &&
+                    this.pFCPST.Equals(input.pFCPST))
                 ) && 
                 (
                     this.vFCPST == input.vFCPST ||
-                    this.vFCPST.Equals(input.vFCPST)
+                    (this.vFCPST != null &&
+                    this.vFCPST.Equals(input.vFCPST))
                 ) && 
                 (
                     this.pCredSN == input.pCredSN ||
-                    this.pCredSN.Equals(input.pCredSN)
+                    (this.pCredSN != null &&
+                    this.pCredSN.Equals(input.pCredSN))
                 ) && 
                 (
                     this.vCredICMSSN == input.vCredICMSSN ||
-                    this.vCredICMSSN.Equals(input.vCredICMSSN)
+                    (this.vCredICMSSN != null &&
+                    this.vCredICMSSN.Equals(input.vCredICMSSN))
                 );
         }
 
@@ -282,22 +329,58 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                if (this.orig != null)
+                {
+                    hashCode = (hashCode * 59) + this.orig.GetHashCode();
+                }
                 if (this.CSOSN != null)
                 {
                     hashCode = (hashCode * 59) + this.CSOSN.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.modBCST.GetHashCode();
-                hashCode = (hashCode * 59) + this.pMVAST.GetHashCode();
-                hashCode = (hashCode * 59) + this.pRedBCST.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCST.GetHashCode();
-                hashCode = (hashCode * 59) + this.pICMSST.GetHashCode();
-                hashCode = (hashCode * 59) + this.vICMSST.GetHashCode();
-                hashCode = (hashCode * 59) + this.vBCFCPST.GetHashCode();
-                hashCode = (hashCode * 59) + this.pFCPST.GetHashCode();
-                hashCode = (hashCode * 59) + this.vFCPST.GetHashCode();
-                hashCode = (hashCode * 59) + this.pCredSN.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCredICMSSN.GetHashCode();
+                if (this.modBCST != null)
+                {
+                    hashCode = (hashCode * 59) + this.modBCST.GetHashCode();
+                }
+                if (this.pMVAST != null)
+                {
+                    hashCode = (hashCode * 59) + this.pMVAST.GetHashCode();
+                }
+                if (this.pRedBCST != null)
+                {
+                    hashCode = (hashCode * 59) + this.pRedBCST.GetHashCode();
+                }
+                if (this.vBCST != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCST.GetHashCode();
+                }
+                if (this.pICMSST != null)
+                {
+                    hashCode = (hashCode * 59) + this.pICMSST.GetHashCode();
+                }
+                if (this.vICMSST != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSST.GetHashCode();
+                }
+                if (this.vBCFCPST != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBCFCPST.GetHashCode();
+                }
+                if (this.pFCPST != null)
+                {
+                    hashCode = (hashCode * 59) + this.pFCPST.GetHashCode();
+                }
+                if (this.vFCPST != null)
+                {
+                    hashCode = (hashCode * 59) + this.vFCPST.GetHashCode();
+                }
+                if (this.pCredSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.pCredSN.GetHashCode();
+                }
+                if (this.vCredICMSSN != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCredICMSSN.GetHashCode();
+                }
                 return hashCode;
             }
         }

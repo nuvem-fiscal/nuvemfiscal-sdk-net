@@ -49,7 +49,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="infPrazo">infPrazo.</param>
         /// <param name="tpAntecip">Tipo de Permissão em relação a antecipação das parcelas.  * 0 - Não permite antecipar  * 1 - Permite antecipar as parcelas  * 2 - Permite antecipar as parcelas mediante confirmação.</param>
         /// <param name="infBanc">infBanc (required).</param>
-        public MdfeSefazInfPag(string xNome = default(string), string cPF = default(string), string cNPJ = default(string), string idEstrangeiro = default(string), List<MdfeSefazComp> comp = default(List<MdfeSefazComp>), decimal vContrato = default(decimal), int indAltoDesemp = default(int), int indPag = default(int), decimal vAdiant = default(decimal), int indAntecipaAdiant = default(int), List<MdfeSefazInfPrazo> infPrazo = default(List<MdfeSefazInfPrazo>), int tpAntecip = default(int), MdfeSefazInfBanc infBanc = default(MdfeSefazInfBanc))
+        public MdfeSefazInfPag(string xNome = default(string), string cPF = default(string), string cNPJ = default(string), string idEstrangeiro = default(string), List<MdfeSefazComp> comp = default(List<MdfeSefazComp>), decimal? vContrato = default(decimal?), int? indAltoDesemp = default(int?), int? indPag = default(int?), decimal? vAdiant = default(decimal?), int? indAntecipaAdiant = default(int?), List<MdfeSefazInfPrazo> infPrazo = default(List<MdfeSefazInfPrazo>), int? tpAntecip = default(int?), MdfeSefazInfBanc infBanc = default(MdfeSefazInfBanc))
         {
             // to ensure "comp" is required (not null)
             if (comp == null)
@@ -57,7 +57,17 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("comp is a required property for MdfeSefazInfPag and cannot be null");
             }
             this.Comp = comp;
+            // to ensure "vContrato" is required (not null)
+            if (vContrato == null)
+            {
+                throw new ArgumentNullException("vContrato is a required property for MdfeSefazInfPag and cannot be null");
+            }
             this.vContrato = vContrato;
+            // to ensure "indPag" is required (not null)
+            if (indPag == null)
+            {
+                throw new ArgumentNullException("indPag is a required property for MdfeSefazInfPag and cannot be null");
+            }
             this.indPag = indPag;
             // to ensure "infBanc" is required (not null)
             if (infBanc == null)
@@ -80,28 +90,28 @@ namespace NuvemFiscal.Sdk.Model
         /// Razão social ou Nome do respnsável pelo pagamento.
         /// </summary>
         /// <value>Razão social ou Nome do respnsável pelo pagamento.</value>
-        [DataMember(Name = "xNome", EmitDefaultValue = false)]
+        [DataMember(Name = "xNome", EmitDefaultValue = true)]
         public string xNome { get; set; }
 
         /// <summary>
         /// Número do CPF do responsável pelo pgto.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CPF do responsável pelo pgto.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CPF", EmitDefaultValue = false)]
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
         public string CPF { get; set; }
 
         /// <summary>
         /// Número do CNPJ do responsável pelo pgto.  Informar os zeros não significativos.
         /// </summary>
         /// <value>Número do CNPJ do responsável pelo pgto.  Informar os zeros não significativos.</value>
-        [DataMember(Name = "CNPJ", EmitDefaultValue = false)]
+        [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
 
         /// <summary>
         /// Identificador do responsável pelo pgto em caso de ser estrangeiro.
         /// </summary>
         /// <value>Identificador do responsável pelo pgto em caso de ser estrangeiro.</value>
-        [DataMember(Name = "idEstrangeiro", EmitDefaultValue = false)]
+        [DataMember(Name = "idEstrangeiro", EmitDefaultValue = true)]
         public string idEstrangeiro { get; set; }
 
         /// <summary>
@@ -115,35 +125,35 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Valor Total do Contrato.</value>
         [DataMember(Name = "vContrato", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vContrato { get; set; }
+        public decimal? vContrato { get; set; }
 
         /// <summary>
         /// Indicador de operação de transporte de alto desempenho.  Operação de transporte com utilização de veículos de frotas dedicadas ou fidelizadas.  Preencher com “1” para indicar operação de transporte de alto desempenho, demais casos não informar a tag.
         /// </summary>
         /// <value>Indicador de operação de transporte de alto desempenho.  Operação de transporte com utilização de veículos de frotas dedicadas ou fidelizadas.  Preencher com “1” para indicar operação de transporte de alto desempenho, demais casos não informar a tag.</value>
-        [DataMember(Name = "indAltoDesemp", EmitDefaultValue = false)]
-        public int indAltoDesemp { get; set; }
+        [DataMember(Name = "indAltoDesemp", EmitDefaultValue = true)]
+        public int? indAltoDesemp { get; set; }
 
         /// <summary>
         /// Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo
         /// </summary>
         /// <value>Indicador da Forma de Pagamento:0-Pagamento à Vista  * 1 - Pagamento à Prazo</value>
         [DataMember(Name = "indPag", IsRequired = true, EmitDefaultValue = true)]
-        public int indPag { get; set; }
+        public int? indPag { get; set; }
 
         /// <summary>
         /// Valor do Adiantamento (usar apenas em pagamento à Prazo.
         /// </summary>
         /// <value>Valor do Adiantamento (usar apenas em pagamento à Prazo.</value>
-        [DataMember(Name = "vAdiant", EmitDefaultValue = false)]
-        public decimal vAdiant { get; set; }
+        [DataMember(Name = "vAdiant", EmitDefaultValue = true)]
+        public decimal? vAdiant { get; set; }
 
         /// <summary>
         /// Indicador para declarar concordância em antecipar o adiantamento.  Informar a tag somente se for autorizado antecipar o adiantamento.
         /// </summary>
         /// <value>Indicador para declarar concordância em antecipar o adiantamento.  Informar a tag somente se for autorizado antecipar o adiantamento.</value>
-        [DataMember(Name = "indAntecipaAdiant", EmitDefaultValue = false)]
-        public int indAntecipaAdiant { get; set; }
+        [DataMember(Name = "indAntecipaAdiant", EmitDefaultValue = true)]
+        public int? indAntecipaAdiant { get; set; }
 
         /// <summary>
         /// Gets or Sets infPrazo
@@ -155,8 +165,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Tipo de Permissão em relação a antecipação das parcelas.  * 0 - Não permite antecipar  * 1 - Permite antecipar as parcelas  * 2 - Permite antecipar as parcelas mediante confirmação
         /// </summary>
         /// <value>Tipo de Permissão em relação a antecipação das parcelas.  * 0 - Não permite antecipar  * 1 - Permite antecipar as parcelas  * 2 - Permite antecipar as parcelas mediante confirmação</value>
-        [DataMember(Name = "tpAntecip", EmitDefaultValue = false)]
-        public int tpAntecip { get; set; }
+        [DataMember(Name = "tpAntecip", EmitDefaultValue = true)]
+        public int? tpAntecip { get; set; }
 
         /// <summary>
         /// Gets or Sets infBanc
@@ -248,23 +258,28 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.vContrato == input.vContrato ||
-                    this.vContrato.Equals(input.vContrato)
+                    (this.vContrato != null &&
+                    this.vContrato.Equals(input.vContrato))
                 ) && 
                 (
                     this.indAltoDesemp == input.indAltoDesemp ||
-                    this.indAltoDesemp.Equals(input.indAltoDesemp)
+                    (this.indAltoDesemp != null &&
+                    this.indAltoDesemp.Equals(input.indAltoDesemp))
                 ) && 
                 (
                     this.indPag == input.indPag ||
-                    this.indPag.Equals(input.indPag)
+                    (this.indPag != null &&
+                    this.indPag.Equals(input.indPag))
                 ) && 
                 (
                     this.vAdiant == input.vAdiant ||
-                    this.vAdiant.Equals(input.vAdiant)
+                    (this.vAdiant != null &&
+                    this.vAdiant.Equals(input.vAdiant))
                 ) && 
                 (
                     this.indAntecipaAdiant == input.indAntecipaAdiant ||
-                    this.indAntecipaAdiant.Equals(input.indAntecipaAdiant)
+                    (this.indAntecipaAdiant != null &&
+                    this.indAntecipaAdiant.Equals(input.indAntecipaAdiant))
                 ) && 
                 (
                     this.infPrazo == input.infPrazo ||
@@ -274,7 +289,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.tpAntecip == input.tpAntecip ||
-                    this.tpAntecip.Equals(input.tpAntecip)
+                    (this.tpAntecip != null &&
+                    this.tpAntecip.Equals(input.tpAntecip))
                 ) && 
                 (
                     this.infBanc == input.infBanc ||
@@ -312,16 +328,34 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.Comp.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.vContrato.GetHashCode();
-                hashCode = (hashCode * 59) + this.indAltoDesemp.GetHashCode();
-                hashCode = (hashCode * 59) + this.indPag.GetHashCode();
-                hashCode = (hashCode * 59) + this.vAdiant.GetHashCode();
-                hashCode = (hashCode * 59) + this.indAntecipaAdiant.GetHashCode();
+                if (this.vContrato != null)
+                {
+                    hashCode = (hashCode * 59) + this.vContrato.GetHashCode();
+                }
+                if (this.indAltoDesemp != null)
+                {
+                    hashCode = (hashCode * 59) + this.indAltoDesemp.GetHashCode();
+                }
+                if (this.indPag != null)
+                {
+                    hashCode = (hashCode * 59) + this.indPag.GetHashCode();
+                }
+                if (this.vAdiant != null)
+                {
+                    hashCode = (hashCode * 59) + this.vAdiant.GetHashCode();
+                }
+                if (this.indAntecipaAdiant != null)
+                {
+                    hashCode = (hashCode * 59) + this.indAntecipaAdiant.GetHashCode();
+                }
                 if (this.infPrazo != null)
                 {
                     hashCode = (hashCode * 59) + this.infPrazo.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.tpAntecip.GetHashCode();
+                if (this.tpAntecip != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpAntecip.GetHashCode();
+                }
                 if (this.infBanc != null)
                 {
                     hashCode = (hashCode * 59) + this.infBanc.GetHashCode();

@@ -5,8 +5,8 @@ Grupo de informações relativas a atividades de Locação, sublocação, arrend
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**categ** | **int** | Categoria do serviço. | 
-**objeto** | **int** | Tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso. | 
+**categ** | **int?** | Categoria do serviço. | 
+**objeto** | **int?** | Tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso. | 
 **extensao** | **string** | Extensão total da ferrovia, rodovia, cabos, dutos ou condutos. | 
 **nPostes** | **string** | Número total de postes. | 
 

@@ -42,8 +42,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vAliqProd">Alíquota do COFINS ST(em reais)..</param>
         /// <param name="vCOFINS">Valor do COFINS ST. (required).</param>
         /// <param name="indSomaCOFINSST">Indica se o valor da COFINS ST compõe o valor total da NFe..</param>
-        public NfeSefazCOFINSST(decimal vBC = default(decimal), decimal pCOFINS = default(decimal), decimal qBCProd = default(decimal), decimal vAliqProd = default(decimal), decimal vCOFINS = default(decimal), int indSomaCOFINSST = default(int))
+        public NfeSefazCOFINSST(decimal? vBC = default(decimal?), decimal? pCOFINS = default(decimal?), decimal? qBCProd = default(decimal?), decimal? vAliqProd = default(decimal?), decimal? vCOFINS = default(decimal?), int? indSomaCOFINSST = default(int?))
         {
+            // to ensure "vCOFINS" is required (not null)
+            if (vCOFINS == null)
+            {
+                throw new ArgumentNullException("vCOFINS is a required property for NfeSefazCOFINSST and cannot be null");
+            }
             this.vCOFINS = vCOFINS;
             this.vBC = vBC;
             this.pCOFINS = pCOFINS;
@@ -56,43 +61,43 @@ namespace NuvemFiscal.Sdk.Model
         /// Valor da BC do COFINS ST.
         /// </summary>
         /// <value>Valor da BC do COFINS ST.</value>
-        [DataMember(Name = "vBC", EmitDefaultValue = false)]
-        public decimal vBC { get; set; }
+        [DataMember(Name = "vBC", EmitDefaultValue = true)]
+        public decimal? vBC { get; set; }
 
         /// <summary>
         /// Alíquota do COFINS ST(em percentual).
         /// </summary>
         /// <value>Alíquota do COFINS ST(em percentual).</value>
-        [DataMember(Name = "pCOFINS", EmitDefaultValue = false)]
-        public decimal pCOFINS { get; set; }
+        [DataMember(Name = "pCOFINS", EmitDefaultValue = true)]
+        public decimal? pCOFINS { get; set; }
 
         /// <summary>
         /// Quantidade Vendida.
         /// </summary>
         /// <value>Quantidade Vendida.</value>
-        [DataMember(Name = "qBCProd", EmitDefaultValue = false)]
-        public decimal qBCProd { get; set; }
+        [DataMember(Name = "qBCProd", EmitDefaultValue = true)]
+        public decimal? qBCProd { get; set; }
 
         /// <summary>
         /// Alíquota do COFINS ST(em reais).
         /// </summary>
         /// <value>Alíquota do COFINS ST(em reais).</value>
-        [DataMember(Name = "vAliqProd", EmitDefaultValue = false)]
-        public decimal vAliqProd { get; set; }
+        [DataMember(Name = "vAliqProd", EmitDefaultValue = true)]
+        public decimal? vAliqProd { get; set; }
 
         /// <summary>
         /// Valor do COFINS ST.
         /// </summary>
         /// <value>Valor do COFINS ST.</value>
         [DataMember(Name = "vCOFINS", IsRequired = true, EmitDefaultValue = true)]
-        public decimal vCOFINS { get; set; }
+        public decimal? vCOFINS { get; set; }
 
         /// <summary>
         /// Indica se o valor da COFINS ST compõe o valor total da NFe.
         /// </summary>
         /// <value>Indica se o valor da COFINS ST compõe o valor total da NFe.</value>
-        [DataMember(Name = "indSomaCOFINSST", EmitDefaultValue = false)]
-        public int indSomaCOFINSST { get; set; }
+        [DataMember(Name = "indSomaCOFINSST", EmitDefaultValue = true)]
+        public int? indSomaCOFINSST { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,27 +150,33 @@ namespace NuvemFiscal.Sdk.Model
             return 
                 (
                     this.vBC == input.vBC ||
-                    this.vBC.Equals(input.vBC)
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
                 ) && 
                 (
                     this.pCOFINS == input.pCOFINS ||
-                    this.pCOFINS.Equals(input.pCOFINS)
+                    (this.pCOFINS != null &&
+                    this.pCOFINS.Equals(input.pCOFINS))
                 ) && 
                 (
                     this.qBCProd == input.qBCProd ||
-                    this.qBCProd.Equals(input.qBCProd)
+                    (this.qBCProd != null &&
+                    this.qBCProd.Equals(input.qBCProd))
                 ) && 
                 (
                     this.vAliqProd == input.vAliqProd ||
-                    this.vAliqProd.Equals(input.vAliqProd)
+                    (this.vAliqProd != null &&
+                    this.vAliqProd.Equals(input.vAliqProd))
                 ) && 
                 (
                     this.vCOFINS == input.vCOFINS ||
-                    this.vCOFINS.Equals(input.vCOFINS)
+                    (this.vCOFINS != null &&
+                    this.vCOFINS.Equals(input.vCOFINS))
                 ) && 
                 (
                     this.indSomaCOFINSST == input.indSomaCOFINSST ||
-                    this.indSomaCOFINSST.Equals(input.indSomaCOFINSST)
+                    (this.indSomaCOFINSST != null &&
+                    this.indSomaCOFINSST.Equals(input.indSomaCOFINSST))
                 );
         }
 
@@ -178,12 +189,30 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.vBC.GetHashCode();
-                hashCode = (hashCode * 59) + this.pCOFINS.GetHashCode();
-                hashCode = (hashCode * 59) + this.qBCProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.vAliqProd.GetHashCode();
-                hashCode = (hashCode * 59) + this.vCOFINS.GetHashCode();
-                hashCode = (hashCode * 59) + this.indSomaCOFINSST.GetHashCode();
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
+                if (this.pCOFINS != null)
+                {
+                    hashCode = (hashCode * 59) + this.pCOFINS.GetHashCode();
+                }
+                if (this.qBCProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.qBCProd.GetHashCode();
+                }
+                if (this.vAliqProd != null)
+                {
+                    hashCode = (hashCode * 59) + this.vAliqProd.GetHashCode();
+                }
+                if (this.vCOFINS != null)
+                {
+                    hashCode = (hashCode * 59) + this.vCOFINS.GetHashCode();
+                }
+                if (this.indSomaCOFINSST != null)
+                {
+                    hashCode = (hashCode * 59) + this.indSomaCOFINSST.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -45,14 +45,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Número de identificação da obra.  Cadastro Nacional de Obras (CNO) ou Cadastro Específico do INSS (CEI).
         /// </summary>
         /// <value>Número de identificação da obra.  Cadastro Nacional de Obras (CNO) ou Cadastro Específico do INSS (CEI).</value>
-        [DataMember(Name = "cObra", EmitDefaultValue = false)]
+        [DataMember(Name = "cObra", EmitDefaultValue = true)]
         public string cObra { get; set; }
 
         /// <summary>
         /// Inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU).
         /// </summary>
         /// <value>Inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU).</value>
-        [DataMember(Name = "inscImobFisc", EmitDefaultValue = false)]
+        [DataMember(Name = "inscImobFisc", EmitDefaultValue = true)]
         public string inscImobFisc { get; set; }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="fone">Informar o telefone da pessoa a ser contatada na empresa desenvolvedora do sistema. Preencher com o Código DDD + número do telefone. (required).</param>
         /// <param name="idCSRT">Identificador do CSRT utilizado para montar o hash do CSRT..</param>
         /// <param name="hashCSRT">O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe..</param>
-        public NfeSefazInfRespTec(string cNPJ = default(string), string xContato = default(string), string email = default(string), string fone = default(string), int idCSRT = default(int), string hashCSRT = default(string))
+        public NfeSefazInfRespTec(string cNPJ = default(string), string xContato = default(string), string email = default(string), string fone = default(string), int? idCSRT = default(int?), string hashCSRT = default(string))
         {
             // to ensure "cNPJ" is required (not null)
             if (cNPJ == null)
@@ -104,14 +104,14 @@ namespace NuvemFiscal.Sdk.Model
         /// Identificador do CSRT utilizado para montar o hash do CSRT.
         /// </summary>
         /// <value>Identificador do CSRT utilizado para montar o hash do CSRT.</value>
-        [DataMember(Name = "idCSRT", EmitDefaultValue = false)]
-        public int idCSRT { get; set; }
+        [DataMember(Name = "idCSRT", EmitDefaultValue = true)]
+        public int? idCSRT { get; set; }
 
         /// <summary>
         /// O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.
         /// </summary>
         /// <value>O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.</value>
-        [DataMember(Name = "hashCSRT", EmitDefaultValue = false)]
+        [DataMember(Name = "hashCSRT", EmitDefaultValue = true)]
         public string hashCSRT { get; set; }
 
         /// <summary>
@@ -185,7 +185,8 @@ namespace NuvemFiscal.Sdk.Model
                 ) && 
                 (
                     this.idCSRT == input.idCSRT ||
-                    this.idCSRT.Equals(input.idCSRT)
+                    (this.idCSRT != null &&
+                    this.idCSRT.Equals(input.idCSRT))
                 ) && 
                 (
                     this.hashCSRT == input.hashCSRT ||
@@ -219,7 +220,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.fone.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.idCSRT.GetHashCode();
+                if (this.idCSRT != null)
+                {
+                    hashCode = (hashCode * 59) + this.idCSRT.GetHashCode();
+                }
                 if (this.hashCSRT != null)
                 {
                     hashCode = (hashCode * 59) + this.hashCSRT.GetHashCode();

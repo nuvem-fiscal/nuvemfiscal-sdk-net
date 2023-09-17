@@ -92,21 +92,21 @@ namespace NuvemFiscal.Sdk.Model
         /// Número.
         /// </summary>
         /// <value>Número.</value>
-        [DataMember(Name = "nro", EmitDefaultValue = false)]
+        [DataMember(Name = "nro", EmitDefaultValue = true)]
         public string nro { get; set; }
 
         /// <summary>
         /// Complemento.
         /// </summary>
         /// <value>Complemento.</value>
-        [DataMember(Name = "xCpl", EmitDefaultValue = false)]
+        [DataMember(Name = "xCpl", EmitDefaultValue = true)]
         public string xCpl { get; set; }
 
         /// <summary>
         /// Bairro.
         /// </summary>
         /// <value>Bairro.</value>
-        [DataMember(Name = "xBairro", EmitDefaultValue = false)]
+        [DataMember(Name = "xBairro", EmitDefaultValue = true)]
         public string xBairro { get; set; }
 
         /// <summary>
