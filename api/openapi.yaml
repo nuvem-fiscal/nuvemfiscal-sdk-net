@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.17.0
+  version: 2.18.2
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -555,6 +555,35 @@ paths:
       summary: Baixar PDF do DACTE
       tags:
       - Cte
+  /cte/{id}/sincronizar:
+    post:
+      description: "Realiza a sincronização dos dados a partir da consulta da situaç\
+        ão atual da CT-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.\r\
+        \n\r\n**Cenários de uso**:\r\n* Sincronizar um CT-e que se encontra com o\
+        \ status `erro` na Nuvem Fiscal, mas está autorizado na SEFAZ (útil em casos\
+        \ de erros de transmissão com a SEFAZ, como instabilidades e timeouts).\r\n\
+        * Sincronizar um CT-e que se encontra com o status `autorizado`na Nuvem Fiscal,\
+        \ mas está cancelado na SEFAZ.\r\n* Sincronizar todos os eventos de Cancelamento\
+        \ e Carta de Correção de um CT-e que porventura não tenham sido feitos a partir\
+        \ da Nuvem Fiscal."
+      operationId: SincronizarCte
+      parameters:
+      - description: ID único do CT-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeSincronizacao'
+          description: Successful response
+      summary: Sincroniza dados no CT-e a partir da SEFAZ
+      tags:
+      - Cte
   /cte/{id}/xml:
     get:
       operationId: BaixarXmlCte
@@ -574,6 +603,48 @@ paths:
                 type: string
           description: Successful response
       summary: Baixar XML do CT-e processado
+      tags:
+      - Cte
+  /cte/{id}/xml/conhecimento:
+    get:
+      operationId: BaixarXmlCteConhecimento
+      parameters:
+      - description: ID único da CT-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do CT-e
+      tags:
+      - Cte
+  /cte/{id}/xml/protocolo:
+    get:
+      operationId: BaixarXmlCteProtocolo
+      parameters:
+      - description: ID único da CT-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do Protocolo da SEFAZ
       tags:
       - Cte
   /empresas:
@@ -1342,6 +1413,26 @@ paths:
       summary: Consultar lote de MDF-e
       tags:
       - Mdfe
+  /mdfe/nao-encerrados:
+    get:
+      operationId: ConsultarMdfeNaoEncerrados
+      parameters:
+      - description: "CPF/CNPJ do emitente.\r\nUtilize o valor sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MdfeNaoEncerrados'
+          description: Successful response
+      summary: Consulta MDF-e não encerrados
+      tags:
+      - Mdfe
   /mdfe/sefaz/status:
     get:
       description: "Consulta do status do serviço prestado pelo Portal da Secretaria\
@@ -1426,7 +1517,7 @@ paths:
             schema:
               $ref: '#/components/schemas/MdfePedidoCancelamento'
         description: Dados do cancelamento.
-        required: true
+        required: false
       responses:
         "200":
           content:
@@ -1643,6 +1734,36 @@ paths:
       summary: Baixar PDF do DAMDFE
       tags:
       - Mdfe
+  /mdfe/{id}/sincronizar:
+    post:
+      description: "Realiza a sincronização dos dados a partir da consulta da situaç\
+        ão atual da MDF-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.\r\
+        \n\r\n**Cenários de uso**:\r\n* Sincronizar um manifesto que se encontra com\
+        \ o status `erro` na Nuvem Fiscal, mas está autorizado na SEFAZ (útil em casos\
+        \ de erros de transmissão com a SEFAZ, como instabilidades e timeouts).\r\n\
+        * Sincronizar um manifesto que se encontra com o status `autorizado`na Nuvem\
+        \ Fiscal, mas está cancelado ou encerrado na SEFAZ.\r\n* Sincronizar todos\
+        \ os eventos de Cancelamento, Encerramento, Inclusão de condutor e Inclusã\
+        o de DF-e de um manifesto que porventura não tenham sido feitos a partir da\
+        \ Nuvem Fiscal."
+      operationId: SincronizarMdfe
+      parameters:
+      - description: ID único do MDF-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeSincronizacao'
+          description: Successful response
+      summary: Sincroniza dados no MDF-e a partir da SEFAZ
+      tags:
+      - Mdfe
   /mdfe/{id}/xml:
     get:
       operationId: BaixarXmlMdfe
@@ -1662,6 +1783,48 @@ paths:
                 type: string
           description: Successful response
       summary: Baixar XML do MDF-e processado
+      tags:
+      - Mdfe
+  /mdfe/{id}/xml/manifesto:
+    get:
+      operationId: BaixarXmlMdfeManifesto
+      parameters:
+      - description: ID único da MDF-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do MDF-e
+      tags:
+      - Mdfe
+  /mdfe/{id}/xml/protocolo:
+    get:
+      operationId: BaixarXmlMdfeProtocolo
+      parameters:
+      - description: ID único da MDF-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do Protocolo da SEFAZ
       tags:
       - Mdfe
   /nfce:
@@ -16534,6 +16697,92 @@ components:
           type: string
         tipo_evento:
           type: string
+      type: object
+    DfeSincronizacao:
+      example:
+        codigo_status: 0
+        chave: chave
+        motivo_status: motivo_status
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        status: pendente
+      properties:
+        status:
+          description: Situação atual da sincronização.
+          enum:
+          - pendente
+          - sincronizado
+          type: string
+        codigo_status:
+          description: Código da situação atual do DF-e.
+          type: integer
+        motivo_status:
+          description: Descrição literal da situação atual do DF-e.
+          type: string
+        data_recebimento:
+          description: Data e hora de processamento.
+          format: date-time
+          type: string
+        chave:
+          description: Chave de Acesso do DF-e consultado.
+          type: string
+      type: object
+    MdfeNaoEncerrados:
+      example:
+        infMDFe:
+        - nProt: nProt
+          chMDFe: chMDFe
+        - nProt: nProt
+          chMDFe: chMDFe
+        verAplic: verAplic
+        cUF: 1
+        xMotivo: xMotivo
+        tpAmb: 0
+        cStat: 6
+      properties:
+        tpAmb:
+          description: "Identificação do Ambiente:\r\n* 1 - Produção\r\n* 2 - Homologaç\
+            ão"
+          nullable: true
+          type: integer
+        verAplic:
+          description: Versão do Aplicativo que processou o MDF-e.
+          nullable: true
+          type: string
+        cStat:
+          description: Código do status da mensagem enviada.
+          nullable: true
+          type: integer
+        xMotivo:
+          description: Descrição literal do status do serviço solicitado.
+          nullable: true
+          type: string
+        cUF:
+          description: código da UF de atendimento.
+          nullable: true
+          type: integer
+        infMDFe:
+          items:
+            $ref: '#/components/schemas/MdfeNaoEncerrado'
+          type: array
+      required:
+      - cStat
+      type: object
+    MdfeNaoEncerrado:
+      example:
+        nProt: nProt
+        chMDFe: chMDFe
+      properties:
+        chMDFe:
+          description: Chaves de acesso do MDF-e não encerrado.
+          nullable: true
+          type: string
+        nProt:
+          description: Número do Protocolo de autorização do MDF-e não encerrado.
+          nullable: true
+          type: string
+      required:
+      - chMDFe
+      - nProt
       type: object
     MdfePedidoEmissaoLote:
       example:
@@ -38479,34 +38728,6 @@ components:
           items:
             $ref: '#/components/schemas/DfeEvento'
           type: array
-      type: object
-    DfeSincronizacao:
-      example:
-        codigo_status: 0
-        chave: chave
-        motivo_status: motivo_status
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-        status: pendente
-      properties:
-        status:
-          description: Situação atual da sincronização.
-          enum:
-          - pendente
-          - sincronizado
-          type: string
-        codigo_status:
-          description: Código da situação atual do DF-e.
-          type: integer
-        motivo_status:
-          description: Descrição literal da situação atual do DF-e.
-          type: string
-        data_recebimento:
-          description: Data e hora de processamento.
-          format: date-time
-          type: string
-        chave:
-          description: Chave de Acesso do DF-e consultado.
-          type: string
       type: object
     CnpjEmpresa:
       example:

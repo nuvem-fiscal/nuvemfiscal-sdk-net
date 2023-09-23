@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.17.0
-- Versão do SDK: 2.12.0
+- Versão da API: 2.18.2
+- Versão do SDK: 2.13.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -148,6 +148,8 @@ Classe | Método | Endpoint | Descrição
 *CteApi* | [**BaixarXmlCancelamentoCte**](docs/CteApi.md#baixarxmlcancelamentocte) | **GET** /cte/{id}/cancelamento/xml | Baixar XML do cancelamento
 *CteApi* | [**BaixarXmlCartaCorrecaoCte**](docs/CteApi.md#baixarxmlcartacorrecaocte) | **GET** /cte/{id}/carta-correcao/xml | Baixar XML da carta de correção
 *CteApi* | [**BaixarXmlCte**](docs/CteApi.md#baixarxmlcte) | **GET** /cte/{id}/xml | Baixar XML do CT-e processado
+*CteApi* | [**BaixarXmlCteConhecimento**](docs/CteApi.md#baixarxmlcteconhecimento) | **GET** /cte/{id}/xml/conhecimento | Baixar XML do CT-e
+*CteApi* | [**BaixarXmlCteProtocolo**](docs/CteApi.md#baixarxmlcteprotocolo) | **GET** /cte/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ
 *CteApi* | [**BaixarXmlEventoCte**](docs/CteApi.md#baixarxmleventocte) | **GET** /cte/eventos/{id}/xml | Baixar XML do evento
 *CteApi* | [**CancelarCte**](docs/CteApi.md#cancelarcte) | **POST** /cte/{id}/cancelamento | Cancelar um CT-e autorizado
 *CteApi* | [**ConsultarCancelamentoCte**](docs/CteApi.md#consultarcancelamentocte) | **GET** /cte/{id}/cancelamento | Consultar o cancelamento do CT-e
@@ -158,6 +160,7 @@ Classe | Método | Endpoint | Descrição
 *CteApi* | [**CriarCartaCorrecaoCte**](docs/CteApi.md#criarcartacorrecaocte) | **POST** /cte/{id}/carta-correcao | Solicitar correção do CT-e
 *CteApi* | [**EmitirCte**](docs/CteApi.md#emitircte) | **POST** /cte | Emitir CT-e
 *CteApi* | [**ListarCte**](docs/CteApi.md#listarcte) | **GET** /cte | Listar CT-e
+*CteApi* | [**SincronizarCte**](docs/CteApi.md#sincronizarcte) | **POST** /cte/{id}/sincronizar | Sincroniza dados no CT-e a partir da SEFAZ
 *EmpresaApi* | [**AlterarConfigCte**](docs/EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e
 *EmpresaApi* | [**AlterarConfigMdfe**](docs/EmpresaApi.md#alterarconfigmdfe) | **PUT** /empresas/{cpf_cnpj}/mdfe | Alterar configuração de MDF-e
 *EmpresaApi* | [**AlterarConfigNfce**](docs/EmpresaApi.md#alterarconfignfce) | **PUT** /empresas/{cpf_cnpj}/nfce | Alterar configuração de NFC-e
@@ -188,12 +191,15 @@ Classe | Método | Endpoint | Descrição
 *MdfeApi* | [**BaixarXmlEncerramentoMdfe**](docs/MdfeApi.md#baixarxmlencerramentomdfe) | **GET** /mdfe/{id}/encerramento/xml | Baixar XML do encerramento
 *MdfeApi* | [**BaixarXmlEventoMdfe**](docs/MdfeApi.md#baixarxmleventomdfe) | **GET** /mdfe/eventos/{id}/xml | Baixar XML do evento
 *MdfeApi* | [**BaixarXmlMdfe**](docs/MdfeApi.md#baixarxmlmdfe) | **GET** /mdfe/{id}/xml | Baixar XML do MDF-e processado
+*MdfeApi* | [**BaixarXmlMdfeManifesto**](docs/MdfeApi.md#baixarxmlmdfemanifesto) | **GET** /mdfe/{id}/xml/manifesto | Baixar XML do MDF-e
+*MdfeApi* | [**BaixarXmlMdfeProtocolo**](docs/MdfeApi.md#baixarxmlmdfeprotocolo) | **GET** /mdfe/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ
 *MdfeApi* | [**CancelarMdfe**](docs/MdfeApi.md#cancelarmdfe) | **POST** /mdfe/{id}/cancelamento | Cancelar um MDF-e autorizado
 *MdfeApi* | [**ConsultarCancelamentoMdfe**](docs/MdfeApi.md#consultarcancelamentomdfe) | **GET** /mdfe/{id}/cancelamento | Consultar o cancelamento do MDF-e
 *MdfeApi* | [**ConsultarEncerramentoMdfe**](docs/MdfeApi.md#consultarencerramentomdfe) | **GET** /mdfe/{id}/encerramento | Consultar encerramento do MDF-e
 *MdfeApi* | [**ConsultarEventoMdfe**](docs/MdfeApi.md#consultareventomdfe) | **GET** /mdfe/eventos/{id} | Consultar evento do MDF-e
 *MdfeApi* | [**ConsultarLoteMdfe**](docs/MdfeApi.md#consultarlotemdfe) | **GET** /mdfe/lotes/{id} | Consultar lote de MDF-e
 *MdfeApi* | [**ConsultarMdfe**](docs/MdfeApi.md#consultarmdfe) | **GET** /mdfe/{id} | Consultar manifesto
+*MdfeApi* | [**ConsultarMdfeNaoEncerrados**](docs/MdfeApi.md#consultarmdfenaoencerrados) | **GET** /mdfe/nao-encerrados | Consulta MDF-e não encerrados
 *MdfeApi* | [**ConsultarStatusSefazMdfe**](docs/MdfeApi.md#consultarstatussefazmdfe) | **GET** /mdfe/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
 *MdfeApi* | [**EmitirLoteMdfe**](docs/MdfeApi.md#emitirlotemdfe) | **POST** /mdfe/lotes | Emitir lote de MDF-e
 *MdfeApi* | [**EmitirMdfe**](docs/MdfeApi.md#emitirmdfe) | **POST** /mdfe | Emitir MDF-e
@@ -202,6 +208,7 @@ Classe | Método | Endpoint | Descrição
 *MdfeApi* | [**IncluirDfeMdfe**](docs/MdfeApi.md#incluirdfemdfe) | **POST** /mdfe/{id}/inclusao-dfe | Incluir um DF-e em um MDF-e autorizado
 *MdfeApi* | [**ListarLotesMdfe**](docs/MdfeApi.md#listarlotesmdfe) | **GET** /mdfe/lotes | Listar lotes de MDF-e
 *MdfeApi* | [**ListarMdfe**](docs/MdfeApi.md#listarmdfe) | **GET** /mdfe | Listar MDF-e
+*MdfeApi* | [**SincronizarMdfe**](docs/MdfeApi.md#sincronizarmdfe) | **POST** /mdfe/{id}/sincronizar | Sincroniza dados no MDF-e a partir da SEFAZ
 *NfceApi* | [**BaixarEscPosNfce**](docs/NfceApi.md#baixarescposnfce) | **GET** /nfce/{id}/escpos | Comandos ESC/POS para impressão do DANFCE
 *NfceApi* | [**BaixarPdfCancelamentoNfce**](docs/NfceApi.md#baixarpdfcancelamentonfce) | **GET** /nfce/{id}/cancelamento/pdf | Baixar PDF do cancelamento
 *NfceApi* | [**BaixarPdfEventoNfce**](docs/NfceApi.md#baixarpdfeventonfce) | **GET** /nfce/eventos/{id}/pdf | Baixar PDF do evento
@@ -452,6 +459,8 @@ Classe | Método | Endpoint | Descrição
  - [Model.MdfeEncerramento](docs/MdfeEncerramento.md)
  - [Model.MdfeInclusaoCondutor](docs/MdfeInclusaoCondutor.md)
  - [Model.MdfeInclusaoDfe](docs/MdfeInclusaoDfe.md)
+ - [Model.MdfeNaoEncerrado](docs/MdfeNaoEncerrado.md)
+ - [Model.MdfeNaoEncerrados](docs/MdfeNaoEncerrados.md)
  - [Model.MdfePedidoCancelamento](docs/MdfePedidoCancelamento.md)
  - [Model.MdfePedidoEmissao](docs/MdfePedidoEmissao.md)
  - [Model.MdfePedidoEmissaoLote](docs/MdfePedidoEmissaoLote.md)
