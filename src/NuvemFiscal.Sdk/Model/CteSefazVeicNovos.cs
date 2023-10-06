@@ -249,6 +249,48 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // chassi (string) maxLength
+            if (this.chassi != null && this.chassi.Length > 17)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chassi, length must be less than 17.", new [] { "chassi" });
+            }
+
+            // cCor (string) maxLength
+            if (this.cCor != null && this.cCor.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCor, length must be less than 4.", new [] { "cCor" });
+            }
+
+            // cCor (string) minLength
+            if (this.cCor != null && this.cCor.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCor, length must be greater than 1.", new [] { "cCor" });
+            }
+
+            // xCor (string) maxLength
+            if (this.xCor != null && this.xCor.Length > 40)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCor, length must be less than 40.", new [] { "xCor" });
+            }
+
+            // xCor (string) minLength
+            if (this.xCor != null && this.xCor.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCor, length must be greater than 1.", new [] { "xCor" });
+            }
+
+            // cMod (string) maxLength
+            if (this.cMod != null && this.cMod.Length > 6)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cMod, length must be less than 6.", new [] { "cMod" });
+            }
+
+            // cMod (string) minLength
+            if (this.cMod != null && this.cMod.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cMod, length must be greater than 1.", new [] { "cMod" });
+            }
+
             yield break;
         }
     }

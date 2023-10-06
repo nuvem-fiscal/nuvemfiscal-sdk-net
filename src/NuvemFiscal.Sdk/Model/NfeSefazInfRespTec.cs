@@ -239,6 +239,54 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CNPJ (string) maxLength
+            if (this.CNPJ != null && this.CNPJ.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+            }
+
+            // xContato (string) maxLength
+            if (this.xContato != null && this.xContato.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xContato, length must be less than 60.", new [] { "xContato" });
+            }
+
+            // xContato (string) minLength
+            if (this.xContato != null && this.xContato.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xContato, length must be greater than 2.", new [] { "xContato" });
+            }
+
+            // email (string) maxLength
+            if (this.email != null && this.email.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be less than 60.", new [] { "email" });
+            }
+
+            // email (string) minLength
+            if (this.email != null && this.email.Length < 6)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be greater than 6.", new [] { "email" });
+            }
+
+            // idCSRT (int?) maximum
+            if (this.idCSRT > (int?)99)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idCSRT, must be a value less than or equal to 99.", new [] { "idCSRT" });
+            }
+
+            // idCSRT (int?) minimum
+            if (this.idCSRT < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idCSRT, must be a value greater than or equal to 0.", new [] { "idCSRT" });
+            }
+
+            // hashCSRT (string) maxLength
+            if (this.hashCSRT != null && this.hashCSRT.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hashCSRT, length must be less than 20.", new [] { "hashCSRT" });
+            }
+
             yield break;
         }
     }

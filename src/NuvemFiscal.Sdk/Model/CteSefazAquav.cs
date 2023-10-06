@@ -301,6 +301,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xNavio (string) maxLength
+            if (this.xNavio != null && this.xNavio.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNavio, length must be less than 60.", new [] { "xNavio" });
+            }
+
+            // xNavio (string) minLength
+            if (this.xNavio != null && this.xNavio.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNavio, length must be greater than 1.", new [] { "xNavio" });
+            }
+
+            // irin (string) maxLength
+            if (this.irin != null && this.irin.Length > 10)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for irin, length must be less than 10.", new [] { "irin" });
+            }
+
+            // irin (string) minLength
+            if (this.irin != null && this.irin.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for irin, length must be greater than 1.", new [] { "irin" });
+            }
+
             yield break;
         }
     }

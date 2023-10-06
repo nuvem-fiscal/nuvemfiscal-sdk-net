@@ -346,6 +346,72 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CNPJ (string) maxLength
+            if (this.CNPJ != null && this.CNPJ.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+            }
+
+            // xOrgao (string) maxLength
+            if (this.xOrgao != null && this.xOrgao.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOrgao, length must be less than 60.", new [] { "xOrgao" });
+            }
+
+            // xOrgao (string) minLength
+            if (this.xOrgao != null && this.xOrgao.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOrgao, length must be greater than 1.", new [] { "xOrgao" });
+            }
+
+            // matr (string) maxLength
+            if (this.matr != null && this.matr.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for matr, length must be less than 60.", new [] { "matr" });
+            }
+
+            // matr (string) minLength
+            if (this.matr != null && this.matr.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for matr, length must be greater than 1.", new [] { "matr" });
+            }
+
+            // xAgente (string) maxLength
+            if (this.xAgente != null && this.xAgente.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xAgente, length must be less than 60.", new [] { "xAgente" });
+            }
+
+            // xAgente (string) minLength
+            if (this.xAgente != null && this.xAgente.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xAgente, length must be greater than 1.", new [] { "xAgente" });
+            }
+
+            // nDAR (string) maxLength
+            if (this.nDAR != null && this.nDAR.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDAR, length must be less than 60.", new [] { "nDAR" });
+            }
+
+            // nDAR (string) minLength
+            if (this.nDAR != null && this.nDAR.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDAR, length must be greater than 1.", new [] { "nDAR" });
+            }
+
+            // repEmi (string) maxLength
+            if (this.repEmi != null && this.repEmi.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for repEmi, length must be less than 60.", new [] { "repEmi" });
+            }
+
+            // repEmi (string) minLength
+            if (this.repEmi != null && this.repEmi.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for repEmi, length must be greater than 1.", new [] { "repEmi" });
+            }
+
             yield break;
         }
     }

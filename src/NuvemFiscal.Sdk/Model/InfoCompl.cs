@@ -157,6 +157,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // idDocTec (string) maxLength
+            if (this.idDocTec != null && this.idDocTec.Length > 40)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idDocTec, length must be less than 40.", new [] { "idDocTec" });
+            }
+
+            // idDocTec (string) minLength
+            if (this.idDocTec != null && this.idDocTec.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idDocTec, length must be greater than 1.", new [] { "idDocTec" });
+            }
+
+            // docRef (string) maxLength
+            if (this.docRef != null && this.docRef.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for docRef, length must be less than 255.", new [] { "docRef" });
+            }
+
+            // docRef (string) minLength
+            if (this.docRef != null && this.docRef.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for docRef, length must be greater than 1.", new [] { "docRef" });
+            }
+
+            // xInfComp (string) maxLength
+            if (this.xInfComp != null && this.xInfComp.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xInfComp, length must be less than 2000.", new [] { "xInfComp" });
+            }
+
+            // xInfComp (string) minLength
+            if (this.xInfComp != null && this.xInfComp.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xInfComp, length must be greater than 1.", new [] { "xInfComp" });
+            }
+
             yield break;
         }
     }

@@ -9,6 +9,8 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**BaixarPdfEventoNfce**](NfceApi.md#baixarpdfeventonfce) | **GET** /nfce/eventos/{id}/pdf | Baixar PDF do evento |
 | [**BaixarPdfInutilizacaoNfce**](NfceApi.md#baixarpdfinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/pdf | Baixar PDF da inutilização |
 | [**BaixarPdfNfce**](NfceApi.md#baixarpdfnfce) | **GET** /nfce/{id}/pdf | Baixar PDF do DANFCE |
+| [**BaixarPreviaPdfNfce**](NfceApi.md#baixarpreviapdfnfce) | **POST** /nfce/previa/pdf | Prévia do PDF do DANFCE |
+| [**BaixarPreviaXmlNfce**](NfceApi.md#baixarpreviaxmlnfce) | **POST** /nfce/previa/xml | Prévia do XML da NFC-e |
 | [**BaixarXmlCancelamentoNfce**](NfceApi.md#baixarxmlcancelamentonfce) | **GET** /nfce/{id}/cancelamento/xml | Baixar XML do cancelamento |
 | [**BaixarXmlEventoNfce**](NfceApi.md#baixarxmleventonfce) | **GET** /nfce/eventos/{id}/xml | Baixar XML do evento |
 | [**BaixarXmlInutilizacaoNfce**](NfceApi.md#baixarxmlinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/xml | Baixar XML da inutilização |
@@ -536,6 +538,218 @@ catch (ApiException e)
 ### Headers da requisição HTTP
 
  - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarpreviapdfnfce"></a>
+# **BaixarPreviaPdfNfce**
+> FileParameter BaixarPreviaPdfNfce (NfePedidoEmissao body, bool? logotipo = null, string mensagemRodape = null, bool? resumido = null, bool? qrcodeLateral = null)
+
+Prévia do PDF do DANFCE
+
+Através desse endpoint, é possível enviar os dados de uma NFC-e e gerar uma prévia do DANFCE.    Os dados de entrada são os mesmos do endpoint de emissão de NFC-e (`POST /nfce`).
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarPreviaPdfNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var body = new NfePedidoEmissao(); // NfePedidoEmissao | 
+            var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
+            var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
+            var resumido = false;  // bool? | Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite. (optional)  (default to false)
+            var qrcodeLateral = false;  // bool? | Imprime o QRCode na lateral do DANFE NFC-e. (optional)  (default to false)
+
+            try
+            {
+                // Prévia do PDF do DANFCE
+                FileParameter result = apiInstance.BaixarPreviaPdfNfce(body, logotipo, mensagemRodape, resumido, qrcodeLateral);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.BaixarPreviaPdfNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarPreviaPdfNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Prévia do PDF do DANFCE
+    ApiResponse<FileParameter> response = apiInstance.BaixarPreviaPdfNfceWithHttpInfo(body, logotipo, mensagemRodape, resumido, qrcodeLateral);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.BaixarPreviaPdfNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **body** | [**NfePedidoEmissao**](NfePedidoEmissao.md) |  |  |
+| **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
+| **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
+| **resumido** | **bool?** | Poderá ser impresso apenas o DANFE NFC-e resumido ou ecológico, sem o detalhamento dos itens da venda, desde que a Unidade Federada permita esta opção em sua legislação e o consumidor assim o solicite. | [optional] [default to false] |
+| **qrcodeLateral** | **bool?** | Imprime o QRCode na lateral do DANFE NFC-e. | [optional] [default to false] |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="baixarpreviaxmlnfce"></a>
+# **BaixarPreviaXmlNfce**
+> FileParameter BaixarPreviaXmlNfce (NfePedidoEmissao body)
+
+Prévia do XML da NFC-e
+
+Através desse endpoint, é possível enviar os dados de uma NFC-e e gerar uma prévia do XML, sem a assinatura digital.    Os dados de entrada são os mesmos do endpoint de emissão de NFC-e (`POST /nfce`).
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarPreviaXmlNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var body = new NfePedidoEmissao(); // NfePedidoEmissao | 
+
+            try
+            {
+                // Prévia do XML da NFC-e
+                FileParameter result = apiInstance.BaixarPreviaXmlNfce(body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.BaixarPreviaXmlNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarPreviaXmlNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Prévia do XML da NFC-e
+    ApiResponse<FileParameter> response = apiInstance.BaixarPreviaXmlNfceWithHttpInfo(body);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.BaixarPreviaXmlNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **body** | [**NfePedidoEmissao**](NfePedidoEmissao.md) |  |  |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
  - **Accept**: */*
 
 
@@ -1754,7 +1968,7 @@ catch (ApiException e)
 
 <a name="consultarstatussefaznfce"></a>
 # **ConsultarStatusSefazNfce**
-> DfeSefazStatus ConsultarStatusSefazNfce (string cpfCnpj)
+> DfeSefazStatus ConsultarStatusSefazNfce (string cpfCnpj, string autorizador = null)
 
 Consulta do Status do Serviço na SEFAZ Autorizadora
 
@@ -1789,11 +2003,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara.
+            var autorizador = "autorizador_example";  // string | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`, `SVRS`, `SVCAN`, `SVCRS`, `AN`;  * NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;  * MDF-e: `SVRS`;  * CT-e: `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional) 
 
             try
             {
                 // Consulta do Status do Serviço na SEFAZ Autorizadora
-                DfeSefazStatus result = apiInstance.ConsultarStatusSefazNfce(cpfCnpj);
+                DfeSefazStatus result = apiInstance.ConsultarStatusSefazNfce(cpfCnpj, autorizador);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1814,7 +2029,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Consulta do Status do Serviço na SEFAZ Autorizadora
-    ApiResponse<DfeSefazStatus> response = apiInstance.ConsultarStatusSefazNfceWithHttpInfo(cpfCnpj);
+    ApiResponse<DfeSefazStatus> response = apiInstance.ConsultarStatusSefazNfceWithHttpInfo(cpfCnpj, autorizador);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -1832,6 +2047,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. |  |
+| **autorizador** | **string** | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* | [optional]  |
 
 ### Tipo de retorno
 

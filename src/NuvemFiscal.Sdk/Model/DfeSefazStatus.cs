@@ -48,88 +48,100 @@ namespace NuvemFiscal.Sdk.Model
             BA = 2,
 
             /// <summary>
+            /// Enum CE for value: CE
+            /// </summary>
+            [EnumMember(Value = "CE")]
+            CE = 3,
+
+            /// <summary>
             /// Enum GO for value: GO
             /// </summary>
             [EnumMember(Value = "GO")]
-            GO = 3,
+            GO = 4,
 
             /// <summary>
             /// Enum MG for value: MG
             /// </summary>
             [EnumMember(Value = "MG")]
-            MG = 4,
+            MG = 5,
 
             /// <summary>
             /// Enum MS for value: MS
             /// </summary>
             [EnumMember(Value = "MS")]
-            MS = 5,
+            MS = 6,
 
             /// <summary>
             /// Enum MT for value: MT
             /// </summary>
             [EnumMember(Value = "MT")]
-            MT = 6,
+            MT = 7,
 
             /// <summary>
             /// Enum PE for value: PE
             /// </summary>
             [EnumMember(Value = "PE")]
-            PE = 7,
+            PE = 8,
 
             /// <summary>
             /// Enum PR for value: PR
             /// </summary>
             [EnumMember(Value = "PR")]
-            PR = 8,
+            PR = 9,
 
             /// <summary>
             /// Enum RS for value: RS
             /// </summary>
             [EnumMember(Value = "RS")]
-            RS = 9,
+            RS = 10,
 
             /// <summary>
             /// Enum SP for value: SP
             /// </summary>
             [EnumMember(Value = "SP")]
-            SP = 10,
+            SP = 11,
 
             /// <summary>
             /// Enum SVAN for value: SVAN
             /// </summary>
             [EnumMember(Value = "SVAN")]
-            SVAN = 11,
+            SVAN = 12,
 
             /// <summary>
             /// Enum SVRS for value: SVRS
             /// </summary>
             [EnumMember(Value = "SVRS")]
-            SVRS = 12,
+            SVRS = 13,
 
             /// <summary>
-            /// Enum SVCAN for value: SVC-AN
+            /// Enum SVCAN for value: SVCAN
             /// </summary>
-            [EnumMember(Value = "SVC-AN")]
-            SVCAN = 13,
+            [EnumMember(Value = "SVCAN")]
+            SVCAN = 14,
 
             /// <summary>
-            /// Enum SVCRS for value: SVC-RS
+            /// Enum SVCRS for value: SVCRS
             /// </summary>
-            [EnumMember(Value = "SVC-RS")]
-            SVCRS = 14,
+            [EnumMember(Value = "SVCRS")]
+            SVCRS = 15,
 
             /// <summary>
             /// Enum AN for value: AN
             /// </summary>
             [EnumMember(Value = "AN")]
-            AN = 15,
+            AN = 16,
 
             /// <summary>
             /// Enum SVSP for value: SVSP
             /// </summary>
             [EnumMember(Value = "SVSP")]
-            SVSP = 16
+            SVSP = 17,
+
+            /// <summary>
+            /// Enum SVCSP for value: SVCSP
+            /// </summary>
+            [EnumMember(Value = "SVCSP")]
+            SVCSP = 18
 
         }
 

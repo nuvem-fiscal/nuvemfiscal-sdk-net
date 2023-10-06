@@ -335,6 +335,36 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // tpMoeda (string) maxLength
+            if (this.tpMoeda != null && this.tpMoeda.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpMoeda, length must be less than 3.", new [] { "tpMoeda" });
+            }
+
+            // nDI (string) maxLength
+            if (this.nDI != null && this.nDI.Length > 12)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be less than 12.", new [] { "nDI" });
+            }
+
+            // nDI (string) minLength
+            if (this.nDI != null && this.nDI.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be greater than 1.", new [] { "nDI" });
+            }
+
+            // nRE (string) maxLength
+            if (this.nRE != null && this.nRE.Length > 12)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRE, length must be less than 12.", new [] { "nRE" });
+            }
+
+            // nRE (string) minLength
+            if (this.nRE != null && this.nRE.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRE, length must be greater than 1.", new [] { "nRE" });
+            }
+
             yield break;
         }
     }

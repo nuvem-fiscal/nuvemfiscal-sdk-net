@@ -148,6 +148,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // chave (string) maxLength
+            if (this.chave != null && this.chave.Length > 44)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chave, length must be less than 44.", new [] { "chave" });
+            }
+
             yield break;
         }
     }

@@ -177,6 +177,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nECF (int?) maximum
+            if (this.nECF > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nECF, must be a value less than or equal to 999.", new [] { "nECF" });
+            }
+
+            // nECF (int?) minimum
+            if (this.nECF < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nECF, must be a value greater than or equal to 0.", new [] { "nECF" });
+            }
+
+            // nCOO (int?) maximum
+            if (this.nCOO > (int?)999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nCOO, must be a value less than or equal to 999999.", new [] { "nCOO" });
+            }
+
+            // nCOO (int?) minimum
+            if (this.nCOO < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nCOO, must be a value greater than or equal to 0.", new [] { "nCOO" });
+            }
+
             yield break;
         }
     }

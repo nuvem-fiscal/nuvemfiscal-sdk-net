@@ -172,6 +172,24 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CL (string) maxLength
+            if (this.CL != null && this.CL.Length > 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CL, length must be less than 1.", new [] { "CL" });
+            }
+
+            // cTar (string) maxLength
+            if (this.cTar != null && this.cTar.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cTar, length must be less than 4.", new [] { "cTar" });
+            }
+
+            // cTar (string) minLength
+            if (this.cTar != null && this.cTar.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cTar, length must be greater than 1.", new [] { "cTar" });
+            }
+
             yield break;
         }
     }

@@ -250,6 +250,66 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nac (string) maxLength
+            if (this.nac != null && this.nac.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nac, length must be less than 4.", new [] { "nac" });
+            }
+
+            // nac (string) minLength
+            if (this.nac != null && this.nac.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nac, length must be greater than 1.", new [] { "nac" });
+            }
+
+            // matr (string) maxLength
+            if (this.matr != null && this.matr.Length > 6)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for matr, length must be less than 6.", new [] { "matr" });
+            }
+
+            // matr (string) minLength
+            if (this.matr != null && this.matr.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for matr, length must be greater than 1.", new [] { "matr" });
+            }
+
+            // nVoo (string) maxLength
+            if (this.nVoo != null && this.nVoo.Length > 9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nVoo, length must be less than 9.", new [] { "nVoo" });
+            }
+
+            // nVoo (string) minLength
+            if (this.nVoo != null && this.nVoo.Length < 5)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nVoo, length must be greater than 5.", new [] { "nVoo" });
+            }
+
+            // cAerEmb (string) maxLength
+            if (this.cAerEmb != null && this.cAerEmb.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAerEmb, length must be less than 4.", new [] { "cAerEmb" });
+            }
+
+            // cAerEmb (string) minLength
+            if (this.cAerEmb != null && this.cAerEmb.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAerEmb, length must be greater than 3.", new [] { "cAerEmb" });
+            }
+
+            // cAerDes (string) maxLength
+            if (this.cAerDes != null && this.cAerDes.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAerDes, length must be less than 4.", new [] { "cAerDes" });
+            }
+
+            // cAerDes (string) minLength
+            if (this.cAerDes != null && this.cAerDes.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAerDes, length must be greater than 3.", new [] { "cAerDes" });
+            }
+
             yield break;
         }
     }

@@ -185,6 +185,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nApol (string) maxLength
+            if (this.nApol != null && this.nApol.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nApol, length must be less than 20.", new [] { "nApol" });
+            }
+
+            // nApol (string) minLength
+            if (this.nApol != null && this.nApol.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nApol, length must be greater than 1.", new [] { "nApol" });
+            }
+
             yield break;
         }
     }

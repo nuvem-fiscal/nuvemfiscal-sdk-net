@@ -290,6 +290,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xNome (string) maxLength
+            if (this.xNome != null && this.xNome.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be less than 60.", new [] { "xNome" });
+            }
+
+            // xNome (string) minLength
+            if (this.xNome != null && this.xNome.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be greater than 2.", new [] { "xNome" });
+            }
+
+            // xFant (string) maxLength
+            if (this.xFant != null && this.xFant.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xFant, length must be less than 60.", new [] { "xFant" });
+            }
+
+            // xFant (string) minLength
+            if (this.xFant != null && this.xFant.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xFant, length must be greater than 2.", new [] { "xFant" });
+            }
+
+            // email (string) maxLength
+            if (this.email != null && this.email.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be less than 60.", new [] { "email" });
+            }
+
+            // email (string) minLength
+            if (this.email != null && this.email.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be greater than 1.", new [] { "email" });
+            }
+
             yield break;
         }
     }

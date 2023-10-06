@@ -220,6 +220,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nBico (int?) maximum
+            if (this.nBico > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBico, must be a value less than or equal to 999.", new [] { "nBico" });
+            }
+
+            // nBico (int?) minimum
+            if (this.nBico < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBico, must be a value greater than or equal to 0.", new [] { "nBico" });
+            }
+
+            // nBomba (int?) maximum
+            if (this.nBomba > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBomba, must be a value less than or equal to 999.", new [] { "nBomba" });
+            }
+
+            // nBomba (int?) minimum
+            if (this.nBomba < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBomba, must be a value greater than or equal to 0.", new [] { "nBomba" });
+            }
+
+            // nTanque (int?) maximum
+            if (this.nTanque > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nTanque, must be a value less than or equal to 999.", new [] { "nTanque" });
+            }
+
+            // nTanque (int?) minimum
+            if (this.nTanque < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nTanque, must be a value greater than or equal to 0.", new [] { "nTanque" });
+            }
+
             yield break;
         }
     }

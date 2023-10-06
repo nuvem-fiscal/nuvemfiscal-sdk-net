@@ -910,6 +910,114 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // cProd (string) maxLength
+            if (this.cProd != null && this.cProd.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProd, length must be less than 60.", new [] { "cProd" });
+            }
+
+            // cProd (string) minLength
+            if (this.cProd != null && this.cProd.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProd, length must be greater than 1.", new [] { "cProd" });
+            }
+
+            // cBarra (string) maxLength
+            if (this.cBarra != null && this.cBarra.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cBarra, length must be less than 30.", new [] { "cBarra" });
+            }
+
+            // cBarra (string) minLength
+            if (this.cBarra != null && this.cBarra.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cBarra, length must be greater than 3.", new [] { "cBarra" });
+            }
+
+            // xProd (string) maxLength
+            if (this.xProd != null && this.xProd.Length > 120)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xProd, length must be less than 120.", new [] { "xProd" });
+            }
+
+            // xProd (string) minLength
+            if (this.xProd != null && this.xProd.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xProd, length must be greater than 1.", new [] { "xProd" });
+            }
+
+            // CNPJFab (string) maxLength
+            if (this.CNPJFab != null && this.CNPJFab.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJFab, length must be less than 14.", new [] { "CNPJFab" });
+            }
+
+            // uCom (string) maxLength
+            if (this.uCom != null && this.uCom.Length > 6)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uCom, length must be less than 6.", new [] { "uCom" });
+            }
+
+            // uCom (string) minLength
+            if (this.uCom != null && this.uCom.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uCom, length must be greater than 1.", new [] { "uCom" });
+            }
+
+            // cBarraTrib (string) maxLength
+            if (this.cBarraTrib != null && this.cBarraTrib.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cBarraTrib, length must be less than 30.", new [] { "cBarraTrib" });
+            }
+
+            // cBarraTrib (string) minLength
+            if (this.cBarraTrib != null && this.cBarraTrib.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cBarraTrib, length must be greater than 3.", new [] { "cBarraTrib" });
+            }
+
+            // uTrib (string) maxLength
+            if (this.uTrib != null && this.uTrib.Length > 6)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uTrib, length must be less than 6.", new [] { "uTrib" });
+            }
+
+            // uTrib (string) minLength
+            if (this.uTrib != null && this.uTrib.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uTrib, length must be greater than 1.", new [] { "uTrib" });
+            }
+
+            // xPed (string) maxLength
+            if (this.xPed != null && this.xPed.Length > 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPed, length must be less than 15.", new [] { "xPed" });
+            }
+
+            // xPed (string) minLength
+            if (this.xPed != null && this.xPed.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPed, length must be greater than 1.", new [] { "xPed" });
+            }
+
+            // nItemPed (int?) maximum
+            if (this.nItemPed > (int?)999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nItemPed, must be a value less than or equal to 999999.", new [] { "nItemPed" });
+            }
+
+            // nItemPed (int?) minimum
+            if (this.nItemPed < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nItemPed, must be a value greater than or equal to 0.", new [] { "nItemPed" });
+            }
+
+            // nRECOPI (string) maxLength
+            if (this.nRECOPI != null && this.nRECOPI.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRECOPI, length must be less than 20.", new [] { "nRECOPI" });
+            }
+
             yield break;
         }
     }

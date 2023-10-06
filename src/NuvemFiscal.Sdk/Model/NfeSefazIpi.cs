@@ -222,6 +222,36 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CNPJProd (string) maxLength
+            if (this.CNPJProd != null && this.CNPJProd.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJProd, length must be less than 14.", new [] { "CNPJProd" });
+            }
+
+            // cSelo (string) maxLength
+            if (this.cSelo != null && this.cSelo.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cSelo, length must be less than 60.", new [] { "cSelo" });
+            }
+
+            // cSelo (string) minLength
+            if (this.cSelo != null && this.cSelo.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cSelo, length must be greater than 1.", new [] { "cSelo" });
+            }
+
+            // cEnq (string) maxLength
+            if (this.cEnq != null && this.cEnq.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEnq, length must be less than 3.", new [] { "cEnq" });
+            }
+
+            // cEnq (string) minLength
+            if (this.cEnq != null && this.cEnq.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEnq, length must be greater than 1.", new [] { "cEnq" });
+            }
+
             yield break;
         }
     }

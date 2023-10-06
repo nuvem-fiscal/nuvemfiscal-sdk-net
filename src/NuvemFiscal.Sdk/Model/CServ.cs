@@ -210,6 +210,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xDescServ (string) maxLength
+            if (this.xDescServ != null && this.xDescServ.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xDescServ, length must be less than 2000.", new [] { "xDescServ" });
+            }
+
+            // xDescServ (string) minLength
+            if (this.xDescServ != null && this.xDescServ.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xDescServ, length must be greater than 1.", new [] { "xDescServ" });
+            }
+
             yield break;
         }
     }

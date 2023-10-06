@@ -210,6 +210,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xMunDescarga (string) maxLength
+            if (this.xMunDescarga != null && this.xMunDescarga.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xMunDescarga, length must be less than 60.", new [] { "xMunDescarga" });
+            }
+
+            // xMunDescarga (string) minLength
+            if (this.xMunDescarga != null && this.xMunDescarga.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xMunDescarga, length must be greater than 2.", new [] { "xMunDescarga" });
+            }
+
             yield break;
         }
     }

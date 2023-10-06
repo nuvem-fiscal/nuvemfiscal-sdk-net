@@ -234,6 +234,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // qCTe (int?) maximum
+            if (this.qCTe > (int?)999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCTe, must be a value less than or equal to 999999.", new [] { "qCTe" });
+            }
+
+            // qCTe (int?) minimum
+            if (this.qCTe < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCTe, must be a value greater than or equal to 0.", new [] { "qCTe" });
+            }
+
+            // qNFe (int?) maximum
+            if (this.qNFe > (int?)999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qNFe, must be a value less than or equal to 999999.", new [] { "qNFe" });
+            }
+
+            // qNFe (int?) minimum
+            if (this.qNFe < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qNFe, must be a value greater than or equal to 0.", new [] { "qNFe" });
+            }
+
+            // qMDFe (int?) maximum
+            if (this.qMDFe > (int?)999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qMDFe, must be a value less than or equal to 999999.", new [] { "qMDFe" });
+            }
+
+            // qMDFe (int?) minimum
+            if (this.qMDFe < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qMDFe, must be a value greater than or equal to 0.", new [] { "qMDFe" });
+            }
+
             yield break;
         }
     }

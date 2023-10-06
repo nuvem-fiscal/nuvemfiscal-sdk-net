@@ -636,6 +636,78 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // natOp (string) maxLength
+            if (this.natOp != null && this.natOp.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for natOp, length must be less than 60.", new [] { "natOp" });
+            }
+
+            // natOp (string) minLength
+            if (this.natOp != null && this.natOp.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for natOp, length must be greater than 1.", new [] { "natOp" });
+            }
+
+            // serie (int?) maximum
+            if (this.serie > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value less than or equal to 999.", new [] { "serie" });
+            }
+
+            // serie (int?) minimum
+            if (this.serie < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value greater than or equal to 0.", new [] { "serie" });
+            }
+
+            // nNF (int?) maximum
+            if (this.nNF > (int?)999999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNF, must be a value less than or equal to 999999999.", new [] { "nNF" });
+            }
+
+            // nNF (int?) minimum
+            if (this.nNF < (int?)1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNF, must be a value greater than or equal to 1.", new [] { "nNF" });
+            }
+
+            // cDV (int?) maximum
+            if (this.cDV > (int?)9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cDV, must be a value less than or equal to 9.", new [] { "cDV" });
+            }
+
+            // cDV (int?) minimum
+            if (this.cDV < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cDV, must be a value greater than or equal to 0.", new [] { "cDV" });
+            }
+
+            // verProc (string) maxLength
+            if (this.verProc != null && this.verProc.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verProc, length must be less than 20.", new [] { "verProc" });
+            }
+
+            // verProc (string) minLength
+            if (this.verProc != null && this.verProc.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verProc, length must be greater than 1.", new [] { "verProc" });
+            }
+
+            // xJust (string) maxLength
+            if (this.xJust != null && this.xJust.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xJust, length must be less than 256.", new [] { "xJust" });
+            }
+
+            // xJust (string) minLength
+            if (this.xJust != null && this.xJust.Length < 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xJust, length must be greater than 15.", new [] { "xJust" });
+            }
+
             yield break;
         }
     }

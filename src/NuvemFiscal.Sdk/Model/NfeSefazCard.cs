@@ -186,6 +186,24 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CNPJ (string) maxLength
+            if (this.CNPJ != null && this.CNPJ.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+            }
+
+            // cAut (string) maxLength
+            if (this.cAut != null && this.cAut.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAut, length must be less than 20.", new [] { "cAut" });
+            }
+
+            // cAut (string) minLength
+            if (this.cAut != null && this.cAut.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAut, length must be greater than 1.", new [] { "cAut" });
+            }
+
             yield break;
         }
     }

@@ -196,6 +196,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // grupo_alterado (string) maxLength
+            if (this.grupo_alterado != null && this.grupo_alterado.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for grupo_alterado, length must be less than 20.", new [] { "grupo_alterado" });
+            }
+
+            // grupo_alterado (string) minLength
+            if (this.grupo_alterado != null && this.grupo_alterado.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for grupo_alterado, length must be greater than 1.", new [] { "grupo_alterado" });
+            }
+
+            // campo_alterado (string) maxLength
+            if (this.campo_alterado != null && this.campo_alterado.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for campo_alterado, length must be less than 20.", new [] { "campo_alterado" });
+            }
+
+            // campo_alterado (string) minLength
+            if (this.campo_alterado != null && this.campo_alterado.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for campo_alterado, length must be greater than 1.", new [] { "campo_alterado" });
+            }
+
+            // valor_alterado (string) maxLength
+            if (this.valor_alterado != null && this.valor_alterado.Length > 500)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for valor_alterado, length must be less than 500.", new [] { "valor_alterado" });
+            }
+
+            // valor_alterado (string) minLength
+            if (this.valor_alterado != null && this.valor_alterado.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for valor_alterado, length must be greater than 1.", new [] { "valor_alterado" });
+            }
+
             yield break;
         }
     }

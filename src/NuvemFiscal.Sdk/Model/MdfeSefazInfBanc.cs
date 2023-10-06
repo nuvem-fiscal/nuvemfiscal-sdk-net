@@ -176,6 +176,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // codBanco (string) maxLength
+            if (this.codBanco != null && this.codBanco.Length > 5)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codBanco, length must be less than 5.", new [] { "codBanco" });
+            }
+
+            // codBanco (string) minLength
+            if (this.codBanco != null && this.codBanco.Length < 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codBanco, length must be greater than 3.", new [] { "codBanco" });
+            }
+
+            // codAgencia (string) maxLength
+            if (this.codAgencia != null && this.codAgencia.Length > 10)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codAgencia, length must be less than 10.", new [] { "codAgencia" });
+            }
+
+            // codAgencia (string) minLength
+            if (this.codAgencia != null && this.codAgencia.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codAgencia, length must be greater than 1.", new [] { "codAgencia" });
+            }
+
+            // PIX (string) maxLength
+            if (this.PIX != null && this.PIX.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PIX, length must be less than 60.", new [] { "PIX" });
+            }
+
+            // PIX (string) minLength
+            if (this.PIX != null && this.PIX.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PIX, length must be greater than 2.", new [] { "PIX" });
+            }
+
             yield break;
         }
     }

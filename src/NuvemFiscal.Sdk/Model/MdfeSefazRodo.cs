@@ -203,6 +203,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // codAgPorto (string) maxLength
+            if (this.codAgPorto != null && this.codAgPorto.Length > 16)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codAgPorto, length must be less than 16.", new [] { "codAgPorto" });
+            }
+
+            // codAgPorto (string) minLength
+            if (this.codAgPorto != null && this.codAgPorto.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codAgPorto, length must be greater than 0.", new [] { "codAgPorto" });
+            }
+
             yield break;
         }
     }

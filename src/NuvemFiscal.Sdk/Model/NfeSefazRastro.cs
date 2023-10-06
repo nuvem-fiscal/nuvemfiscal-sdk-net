@@ -221,6 +221,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nLote (string) maxLength
+            if (this.nLote != null && this.nLote.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nLote, length must be less than 20.", new [] { "nLote" });
+            }
+
+            // nLote (string) minLength
+            if (this.nLote != null && this.nLote.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nLote, length must be greater than 1.", new [] { "nLote" });
+            }
+
+            // cAgreg (string) maxLength
+            if (this.cAgreg != null && this.cAgreg.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAgreg, length must be less than 20.", new [] { "cAgreg" });
+            }
+
+            // cAgreg (string) minLength
+            if (this.cAgreg != null && this.cAgreg.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAgreg, length must be greater than 1.", new [] { "cAgreg" });
+            }
+
             yield break;
         }
     }

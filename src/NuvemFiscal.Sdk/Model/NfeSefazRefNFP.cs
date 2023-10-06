@@ -287,6 +287,48 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CNPJ (string) maxLength
+            if (this.CNPJ != null && this.CNPJ.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+            }
+
+            // CPF (string) maxLength
+            if (this.CPF != null && this.CPF.Length > 11)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CPF, length must be less than 11.", new [] { "CPF" });
+            }
+
+            // IE (string) maxLength
+            if (this.IE != null && this.IE.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IE, length must be less than 14.", new [] { "IE" });
+            }
+
+            // serie (int?) maximum
+            if (this.serie > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value less than or equal to 999.", new [] { "serie" });
+            }
+
+            // serie (int?) minimum
+            if (this.serie < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value greater than or equal to 0.", new [] { "serie" });
+            }
+
+            // nNF (int?) maximum
+            if (this.nNF > (int?)999999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNF, must be a value less than or equal to 999999999.", new [] { "nNF" });
+            }
+
+            // nNF (int?) minimum
+            if (this.nNF < (int?)1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNF, must be a value greater than or equal to 1.", new [] { "nNF" });
+            }
+
             yield break;
         }
     }

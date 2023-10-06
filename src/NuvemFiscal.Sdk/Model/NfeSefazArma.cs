@@ -201,6 +201,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nSerie (string) maxLength
+            if (this.nSerie != null && this.nSerie.Length > 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nSerie, length must be less than 15.", new [] { "nSerie" });
+            }
+
+            // nSerie (string) minLength
+            if (this.nSerie != null && this.nSerie.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nSerie, length must be greater than 1.", new [] { "nSerie" });
+            }
+
+            // nCano (string) maxLength
+            if (this.nCano != null && this.nCano.Length > 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nCano, length must be less than 15.", new [] { "nCano" });
+            }
+
+            // nCano (string) minLength
+            if (this.nCano != null && this.nCano.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nCano, length must be greater than 1.", new [] { "nCano" });
+            }
+
+            // descr (string) maxLength
+            if (this.descr != null && this.descr.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for descr, length must be less than 256.", new [] { "descr" });
+            }
+
+            // descr (string) minLength
+            if (this.descr != null && this.descr.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for descr, length must be greater than 1.", new [] { "descr" });
+            }
+
             yield break;
         }
     }

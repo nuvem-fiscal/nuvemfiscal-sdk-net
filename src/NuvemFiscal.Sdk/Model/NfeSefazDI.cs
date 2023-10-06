@@ -380,6 +380,48 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nDI (string) maxLength
+            if (this.nDI != null && this.nDI.Length > 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be less than 15.", new [] { "nDI" });
+            }
+
+            // nDI (string) minLength
+            if (this.nDI != null && this.nDI.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be greater than 1.", new [] { "nDI" });
+            }
+
+            // xLocDesemb (string) maxLength
+            if (this.xLocDesemb != null && this.xLocDesemb.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLocDesemb, length must be less than 60.", new [] { "xLocDesemb" });
+            }
+
+            // xLocDesemb (string) minLength
+            if (this.xLocDesemb != null && this.xLocDesemb.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLocDesemb, length must be greater than 1.", new [] { "xLocDesemb" });
+            }
+
+            // CNPJ (string) maxLength
+            if (this.CNPJ != null && this.CNPJ.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+            }
+
+            // cExportador (string) maxLength
+            if (this.cExportador != null && this.cExportador.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cExportador, length must be less than 60.", new [] { "cExportador" });
+            }
+
+            // cExportador (string) minLength
+            if (this.cExportador != null && this.cExportador.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cExportador, length must be greater than 1.", new [] { "cExportador" });
+            }
+
             yield break;
         }
     }

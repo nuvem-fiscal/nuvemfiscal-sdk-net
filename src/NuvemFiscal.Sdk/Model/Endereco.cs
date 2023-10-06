@@ -212,6 +212,54 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xLgr (string) maxLength
+            if (this.xLgr != null && this.xLgr.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLgr, length must be less than 255.", new [] { "xLgr" });
+            }
+
+            // xLgr (string) minLength
+            if (this.xLgr != null && this.xLgr.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLgr, length must be greater than 1.", new [] { "xLgr" });
+            }
+
+            // nro (string) maxLength
+            if (this.nro != null && this.nro.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nro, length must be less than 60.", new [] { "nro" });
+            }
+
+            // nro (string) minLength
+            if (this.nro != null && this.nro.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nro, length must be greater than 1.", new [] { "nro" });
+            }
+
+            // xCpl (string) maxLength
+            if (this.xCpl != null && this.xCpl.Length > 156)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCpl, length must be less than 156.", new [] { "xCpl" });
+            }
+
+            // xCpl (string) minLength
+            if (this.xCpl != null && this.xCpl.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCpl, length must be greater than 1.", new [] { "xCpl" });
+            }
+
+            // xBairro (string) maxLength
+            if (this.xBairro != null && this.xBairro.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xBairro, length must be less than 60.", new [] { "xBairro" });
+            }
+
+            // xBairro (string) minLength
+            if (this.xBairro != null && this.xBairro.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xBairro, length must be greater than 1.", new [] { "xBairro" });
+            }
+
             yield break;
         }
     }

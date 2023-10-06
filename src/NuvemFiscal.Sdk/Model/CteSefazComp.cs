@@ -153,6 +153,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xNome (string) maxLength
+            if (this.xNome != null && this.xNome.Length > 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be less than 15.", new [] { "xNome" });
+            }
+
+            // xNome (string) minLength
+            if (this.xNome != null && this.xNome.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be greater than 1.", new [] { "xNome" });
+            }
+
             yield break;
         }
     }

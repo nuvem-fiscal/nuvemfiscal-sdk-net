@@ -119,6 +119,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // qrCodMDFe (string) maxLength
+            if (this.qrCodMDFe != null && this.qrCodMDFe.Length > 1000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qrCodMDFe, length must be less than 1000.", new [] { "qrCodMDFe" });
+            }
+
+            // qrCodMDFe (string) minLength
+            if (this.qrCodMDFe != null && this.qrCodMDFe.Length < 50)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qrCodMDFe, length must be greater than 50.", new [] { "qrCodMDFe" });
+            }
+
             yield break;
         }
     }

@@ -186,6 +186,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // chMDFe (string) maxLength
+            if (this.chMDFe != null && this.chMDFe.Length > 44)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chMDFe, length must be less than 44.", new [] { "chMDFe" });
+            }
+
             yield break;
         }
     }

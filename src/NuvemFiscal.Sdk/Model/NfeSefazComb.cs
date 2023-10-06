@@ -365,6 +365,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // cProdANP (int?) maximum
+            if (this.cProdANP > (int?)999999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProdANP, must be a value less than or equal to 999999999.", new [] { "cProdANP" });
+            }
+
+            // cProdANP (int?) minimum
+            if (this.cProdANP < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProdANP, must be a value greater than or equal to 0.", new [] { "cProdANP" });
+            }
+
+            // descANP (string) maxLength
+            if (this.descANP != null && this.descANP.Length > 95)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for descANP, length must be less than 95.", new [] { "descANP" });
+            }
+
+            // descANP (string) minLength
+            if (this.descANP != null && this.descANP.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for descANP, length must be greater than 2.", new [] { "descANP" });
+            }
+
             yield break;
         }
     }

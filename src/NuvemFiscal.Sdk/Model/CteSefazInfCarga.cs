@@ -210,6 +210,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // proPred (string) maxLength
+            if (this.proPred != null && this.proPred.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for proPred, length must be less than 60.", new [] { "proPred" });
+            }
+
+            // proPred (string) minLength
+            if (this.proPred != null && this.proPred.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for proPred, length must be greater than 1.", new [] { "proPred" });
+            }
+
+            // xOutCat (string) maxLength
+            if (this.xOutCat != null && this.xOutCat.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOutCat, length must be less than 30.", new [] { "xOutCat" });
+            }
+
+            // xOutCat (string) minLength
+            if (this.xOutCat != null && this.xOutCat.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOutCat, length must be greater than 1.", new [] { "xOutCat" });
+            }
+
             yield break;
         }
     }

@@ -153,6 +153,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // dia (int?) maximum
+            if (this.dia > (int?)31)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for dia, must be a value less than or equal to 31.", new [] { "dia" });
+            }
+
+            // dia (int?) minimum
+            if (this.dia < (int?)1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for dia, must be a value greater than or equal to 1.", new [] { "dia" });
+            }
+
             yield break;
         }
     }

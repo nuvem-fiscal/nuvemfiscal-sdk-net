@@ -171,6 +171,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // COTM (string) maxLength
+            if (this.COTM != null && this.COTM.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for COTM, length must be less than 20.", new [] { "COTM" });
+            }
+
+            // COTM (string) minLength
+            if (this.COTM != null && this.COTM.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for COTM, length must be greater than 1.", new [] { "COTM" });
+            }
+
             yield break;
         }
     }

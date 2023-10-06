@@ -444,6 +444,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // cServico (string) maxLength
+            if (this.cServico != null && this.cServico.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cServico, length must be less than 20.", new [] { "cServico" });
+            }
+
+            // cServico (string) minLength
+            if (this.cServico != null && this.cServico.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cServico, length must be greater than 1.", new [] { "cServico" });
+            }
+
+            // nProcesso (string) maxLength
+            if (this.nProcesso != null && this.nProcesso.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProcesso, length must be less than 30.", new [] { "nProcesso" });
+            }
+
+            // nProcesso (string) minLength
+            if (this.nProcesso != null && this.nProcesso.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProcesso, length must be greater than 1.", new [] { "nProcesso" });
+            }
+
             yield break;
         }
     }

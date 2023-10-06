@@ -504,6 +504,66 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nRoma (string) maxLength
+            if (this.nRoma != null && this.nRoma.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRoma, length must be less than 20.", new [] { "nRoma" });
+            }
+
+            // nRoma (string) minLength
+            if (this.nRoma != null && this.nRoma.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRoma, length must be greater than 1.", new [] { "nRoma" });
+            }
+
+            // nPed (string) maxLength
+            if (this.nPed != null && this.nPed.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPed, length must be less than 20.", new [] { "nPed" });
+            }
+
+            // nPed (string) minLength
+            if (this.nPed != null && this.nPed.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPed, length must be greater than 1.", new [] { "nPed" });
+            }
+
+            // serie (string) maxLength
+            if (this.serie != null && this.serie.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, length must be less than 3.", new [] { "serie" });
+            }
+
+            // serie (string) minLength
+            if (this.serie != null && this.serie.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, length must be greater than 1.", new [] { "serie" });
+            }
+
+            // nDoc (string) maxLength
+            if (this.nDoc != null && this.nDoc.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDoc, length must be less than 20.", new [] { "nDoc" });
+            }
+
+            // nDoc (string) minLength
+            if (this.nDoc != null && this.nDoc.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDoc, length must be greater than 1.", new [] { "nDoc" });
+            }
+
+            // PIN (string) maxLength
+            if (this.PIN != null && this.PIN.Length > 9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PIN, length must be less than 9.", new [] { "PIN" });
+            }
+
+            // PIN (string) minLength
+            if (this.PIN != null && this.PIN.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PIN, length must be greater than 2.", new [] { "PIN" });
+            }
+
             yield break;
         }
     }

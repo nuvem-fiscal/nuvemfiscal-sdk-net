@@ -215,6 +215,24 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // cInt (string) maxLength
+            if (this.cInt != null && this.cInt.Length > 10)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cInt, length must be less than 10.", new [] { "cInt" });
+            }
+
+            // cInt (string) minLength
+            if (this.cInt != null && this.cInt.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cInt, length must be greater than 1.", new [] { "cInt" });
+            }
+
+            // IE (string) maxLength
+            if (this.IE != null && this.IE.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IE, length must be less than 14.", new [] { "IE" });
+            }
+
             yield break;
         }
     }

@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.18.2
-- Versão do SDK: 2.13.0
+- Versão da API: 2.19.11
+- Versão do SDK: 2.14.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -214,6 +214,8 @@ Classe | Método | Endpoint | Descrição
 *NfceApi* | [**BaixarPdfEventoNfce**](docs/NfceApi.md#baixarpdfeventonfce) | **GET** /nfce/eventos/{id}/pdf | Baixar PDF do evento
 *NfceApi* | [**BaixarPdfInutilizacaoNfce**](docs/NfceApi.md#baixarpdfinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/pdf | Baixar PDF da inutilização
 *NfceApi* | [**BaixarPdfNfce**](docs/NfceApi.md#baixarpdfnfce) | **GET** /nfce/{id}/pdf | Baixar PDF do DANFCE
+*NfceApi* | [**BaixarPreviaPdfNfce**](docs/NfceApi.md#baixarpreviapdfnfce) | **POST** /nfce/previa/pdf | Prévia do PDF do DANFCE
+*NfceApi* | [**BaixarPreviaXmlNfce**](docs/NfceApi.md#baixarpreviaxmlnfce) | **POST** /nfce/previa/xml | Prévia do XML da NFC-e
 *NfceApi* | [**BaixarXmlCancelamentoNfce**](docs/NfceApi.md#baixarxmlcancelamentonfce) | **GET** /nfce/{id}/cancelamento/xml | Baixar XML do cancelamento
 *NfceApi* | [**BaixarXmlEventoNfce**](docs/NfceApi.md#baixarxmleventonfce) | **GET** /nfce/eventos/{id}/xml | Baixar XML do evento
 *NfceApi* | [**BaixarXmlInutilizacaoNfce**](docs/NfceApi.md#baixarxmlinutilizacaonfce) | **GET** /nfce/inutilizacoes/{id}/xml | Baixar XML da inutilização
@@ -239,6 +241,8 @@ Classe | Método | Endpoint | Descrição
 *NfeApi* | [**BaixarPdfEventoNfe**](docs/NfeApi.md#baixarpdfeventonfe) | **GET** /nfe/eventos/{id}/pdf | Baixar PDF do evento
 *NfeApi* | [**BaixarPdfInutilizacaoNfe**](docs/NfeApi.md#baixarpdfinutilizacaonfe) | **GET** /nfe/inutilizacoes/{id}/pdf | Baixar PDF da inutilização
 *NfeApi* | [**BaixarPdfNfe**](docs/NfeApi.md#baixarpdfnfe) | **GET** /nfe/{id}/pdf | Baixar PDF do DANFE
+*NfeApi* | [**BaixarPreviaPdfNfe**](docs/NfeApi.md#baixarpreviapdfnfe) | **POST** /nfe/previa/pdf | Prévia do PDF do DANFE
+*NfeApi* | [**BaixarPreviaXmlNfe**](docs/NfeApi.md#baixarpreviaxmlnfe) | **POST** /nfe/previa/xml | Prévia do XML da NF-e
 *NfeApi* | [**BaixarXmlCancelamentoNfe**](docs/NfeApi.md#baixarxmlcancelamentonfe) | **GET** /nfe/{id}/cancelamento/xml | Baixar XML do cancelamento
 *NfeApi* | [**BaixarXmlCartaCorrecaoNfe**](docs/NfeApi.md#baixarxmlcartacorrecaonfe) | **GET** /nfe/{id}/carta-correcao/xml | Baixar XML da carta de correção
 *NfeApi* | [**BaixarXmlEventoNfe**](docs/NfeApi.md#baixarxmleventonfe) | **GET** /nfe/eventos/{id}/xml | Baixar XML do evento

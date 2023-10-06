@@ -302,6 +302,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // outras_informacoes (string) maxLength
+            if (this.outras_informacoes != null && this.outras_informacoes.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for outras_informacoes, length must be less than 255.", new [] { "outras_informacoes" });
+            }
+
             yield break;
         }
     }

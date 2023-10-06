@@ -156,6 +156,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // cObra (string) maxLength
+            if (this.cObra != null && this.cObra.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cObra, length must be less than 30.", new [] { "cObra" });
+            }
+
+            // cObra (string) minLength
+            if (this.cObra != null && this.cObra.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cObra, length must be greater than 1.", new [] { "cObra" });
+            }
+
+            // inscImobFisc (string) maxLength
+            if (this.inscImobFisc != null && this.inscImobFisc.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for inscImobFisc, length must be less than 30.", new [] { "inscImobFisc" });
+            }
+
+            // inscImobFisc (string) minLength
+            if (this.inscImobFisc != null && this.inscImobFisc.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for inscImobFisc, length must be greater than 1.", new [] { "inscImobFisc" });
+            }
+
             yield break;
         }
     }

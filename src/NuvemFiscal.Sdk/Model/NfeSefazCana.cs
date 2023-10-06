@@ -340,6 +340,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // safra (string) maxLength
+            if (this.safra != null && this.safra.Length > 9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for safra, length must be less than 9.", new [] { "safra" });
+            }
+
+            // safra (string) minLength
+            if (this.safra != null && this.safra.Length < 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for safra, length must be greater than 4.", new [] { "safra" });
+            }
+
             yield break;
         }
     }

@@ -315,6 +315,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // verAplic (string) maxLength
+            if (this.verAplic != null && this.verAplic.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verAplic, length must be less than 20.", new [] { "verAplic" });
+            }
+
+            // verAplic (string) minLength
+            if (this.verAplic != null && this.verAplic.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verAplic, length must be greater than 1.", new [] { "verAplic" });
+            }
+
             yield break;
         }
     }

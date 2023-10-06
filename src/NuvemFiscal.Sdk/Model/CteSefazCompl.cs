@@ -288,6 +288,78 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xCaracAd (string) maxLength
+            if (this.xCaracAd != null && this.xCaracAd.Length > 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCaracAd, length must be less than 15.", new [] { "xCaracAd" });
+            }
+
+            // xCaracAd (string) minLength
+            if (this.xCaracAd != null && this.xCaracAd.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCaracAd, length must be greater than 1.", new [] { "xCaracAd" });
+            }
+
+            // xCaracSer (string) maxLength
+            if (this.xCaracSer != null && this.xCaracSer.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCaracSer, length must be less than 30.", new [] { "xCaracSer" });
+            }
+
+            // xCaracSer (string) minLength
+            if (this.xCaracSer != null && this.xCaracSer.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCaracSer, length must be greater than 1.", new [] { "xCaracSer" });
+            }
+
+            // xEmi (string) maxLength
+            if (this.xEmi != null && this.xEmi.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEmi, length must be less than 20.", new [] { "xEmi" });
+            }
+
+            // xEmi (string) minLength
+            if (this.xEmi != null && this.xEmi.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEmi, length must be greater than 1.", new [] { "xEmi" });
+            }
+
+            // origCalc (string) maxLength
+            if (this.origCalc != null && this.origCalc.Length > 40)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for origCalc, length must be less than 40.", new [] { "origCalc" });
+            }
+
+            // origCalc (string) minLength
+            if (this.origCalc != null && this.origCalc.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for origCalc, length must be greater than 2.", new [] { "origCalc" });
+            }
+
+            // destCalc (string) maxLength
+            if (this.destCalc != null && this.destCalc.Length > 40)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for destCalc, length must be less than 40.", new [] { "destCalc" });
+            }
+
+            // destCalc (string) minLength
+            if (this.destCalc != null && this.destCalc.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for destCalc, length must be greater than 2.", new [] { "destCalc" });
+            }
+
+            // xObs (string) maxLength
+            if (this.xObs != null && this.xObs.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xObs, length must be less than 2000.", new [] { "xObs" });
+            }
+
+            // xObs (string) minLength
+            if (this.xObs != null && this.xObs.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xObs, length must be greater than 1.", new [] { "xObs" });
+            }
+
             yield break;
         }
     }

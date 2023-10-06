@@ -137,6 +137,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // nDraw (string) maxLength
+            if (this.nDraw != null && this.nDraw.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDraw, length must be less than 20.", new [] { "nDraw" });
+            }
+
+            // nDraw (string) minLength
+            if (this.nDraw != null && this.nDraw.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDraw, length must be greater than 1.", new [] { "nDraw" });
+            }
+
             yield break;
         }
     }

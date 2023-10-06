@@ -327,6 +327,42 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // logradouro (string) maxLength
+            if (this.logradouro != null && this.logradouro.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for logradouro, length must be less than 255.", new [] { "logradouro" });
+            }
+
+            // numero (string) maxLength
+            if (this.numero != null && this.numero.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero, length must be less than 255.", new [] { "numero" });
+            }
+
+            // complemento (string) maxLength
+            if (this.complemento != null && this.complemento.Length > 500)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for complemento, length must be less than 500.", new [] { "complemento" });
+            }
+
+            // bairro (string) maxLength
+            if (this.bairro != null && this.bairro.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for bairro, length must be less than 255.", new [] { "bairro" });
+            }
+
+            // cidade (string) maxLength
+            if (this.cidade != null && this.cidade.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cidade, length must be less than 255.", new [] { "cidade" });
+            }
+
+            // pais (string) maxLength
+            if (this.pais != null && this.pais.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pais, length must be less than 255.", new [] { "pais" });
+            }
+
             yield break;
         }
     }

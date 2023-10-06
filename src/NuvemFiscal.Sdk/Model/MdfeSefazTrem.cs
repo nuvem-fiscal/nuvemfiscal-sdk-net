@@ -220,6 +220,54 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xPref (string) maxLength
+            if (this.xPref != null && this.xPref.Length > 10)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPref, length must be less than 10.", new [] { "xPref" });
+            }
+
+            // xPref (string) minLength
+            if (this.xPref != null && this.xPref.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPref, length must be greater than 1.", new [] { "xPref" });
+            }
+
+            // xOri (string) maxLength
+            if (this.xOri != null && this.xOri.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOri, length must be less than 3.", new [] { "xOri" });
+            }
+
+            // xOri (string) minLength
+            if (this.xOri != null && this.xOri.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOri, length must be greater than 1.", new [] { "xOri" });
+            }
+
+            // xDest (string) maxLength
+            if (this.xDest != null && this.xDest.Length > 3)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xDest, length must be less than 3.", new [] { "xDest" });
+            }
+
+            // xDest (string) minLength
+            if (this.xDest != null && this.xDest.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xDest, length must be greater than 1.", new [] { "xDest" });
+            }
+
+            // qVag (int?) maximum
+            if (this.qVag > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qVag, must be a value less than or equal to 999.", new [] { "qVag" });
+            }
+
+            // qVag (int?) minimum
+            if (this.qVag < (int?)1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qVag, must be a value greater than or equal to 1.", new [] { "qVag" });
+            }
+
             yield break;
         }
     }

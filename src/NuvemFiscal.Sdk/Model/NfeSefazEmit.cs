@@ -289,6 +289,66 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CNPJ (string) maxLength
+            if (this.CNPJ != null && this.CNPJ.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+            }
+
+            // CPF (string) maxLength
+            if (this.CPF != null && this.CPF.Length > 11)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CPF, length must be less than 11.", new [] { "CPF" });
+            }
+
+            // xNome (string) maxLength
+            if (this.xNome != null && this.xNome.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be less than 60.", new [] { "xNome" });
+            }
+
+            // xNome (string) minLength
+            if (this.xNome != null && this.xNome.Length < 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be greater than 2.", new [] { "xNome" });
+            }
+
+            // xFant (string) maxLength
+            if (this.xFant != null && this.xFant.Length > 60)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xFant, length must be less than 60.", new [] { "xFant" });
+            }
+
+            // xFant (string) minLength
+            if (this.xFant != null && this.xFant.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xFant, length must be greater than 1.", new [] { "xFant" });
+            }
+
+            // IE (string) maxLength
+            if (this.IE != null && this.IE.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IE, length must be less than 14.", new [] { "IE" });
+            }
+
+            // IEST (string) maxLength
+            if (this.IEST != null && this.IEST.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IEST, length must be less than 14.", new [] { "IEST" });
+            }
+
+            // IM (string) maxLength
+            if (this.IM != null && this.IM.Length > 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IM, length must be less than 15.", new [] { "IM" });
+            }
+
+            // IM (string) minLength
+            if (this.IM != null && this.IM.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IM, length must be greater than 1.", new [] { "IM" });
+            }
+
             yield break;
         }
     }

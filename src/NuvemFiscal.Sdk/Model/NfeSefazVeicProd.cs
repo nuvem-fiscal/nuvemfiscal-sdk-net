@@ -681,6 +681,228 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // chassi (string) maxLength
+            if (this.chassi != null && this.chassi.Length > 17)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chassi, length must be less than 17.", new [] { "chassi" });
+            }
+
+            // cCor (string) maxLength
+            if (this.cCor != null && this.cCor.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCor, length must be less than 4.", new [] { "cCor" });
+            }
+
+            // cCor (string) minLength
+            if (this.cCor != null && this.cCor.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCor, length must be greater than 1.", new [] { "cCor" });
+            }
+
+            // xCor (string) maxLength
+            if (this.xCor != null && this.xCor.Length > 40)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCor, length must be less than 40.", new [] { "xCor" });
+            }
+
+            // xCor (string) minLength
+            if (this.xCor != null && this.xCor.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCor, length must be greater than 1.", new [] { "xCor" });
+            }
+
+            // pot (string) maxLength
+            if (this.pot != null && this.pot.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pot, length must be less than 4.", new [] { "pot" });
+            }
+
+            // pot (string) minLength
+            if (this.pot != null && this.pot.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pot, length must be greater than 1.", new [] { "pot" });
+            }
+
+            // cilin (string) maxLength
+            if (this.cilin != null && this.cilin.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cilin, length must be less than 4.", new [] { "cilin" });
+            }
+
+            // cilin (string) minLength
+            if (this.cilin != null && this.cilin.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cilin, length must be greater than 1.", new [] { "cilin" });
+            }
+
+            // pesoL (string) maxLength
+            if (this.pesoL != null && this.pesoL.Length > 9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoL, length must be less than 9.", new [] { "pesoL" });
+            }
+
+            // pesoL (string) minLength
+            if (this.pesoL != null && this.pesoL.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoL, length must be greater than 1.", new [] { "pesoL" });
+            }
+
+            // pesoB (string) maxLength
+            if (this.pesoB != null && this.pesoB.Length > 9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoB, length must be less than 9.", new [] { "pesoB" });
+            }
+
+            // pesoB (string) minLength
+            if (this.pesoB != null && this.pesoB.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoB, length must be greater than 1.", new [] { "pesoB" });
+            }
+
+            // nSerie (string) maxLength
+            if (this.nSerie != null && this.nSerie.Length > 9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nSerie, length must be less than 9.", new [] { "nSerie" });
+            }
+
+            // nSerie (string) minLength
+            if (this.nSerie != null && this.nSerie.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nSerie, length must be greater than 1.", new [] { "nSerie" });
+            }
+
+            // tpComb (string) maxLength
+            if (this.tpComb != null && this.tpComb.Length > 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpComb, length must be less than 2.", new [] { "tpComb" });
+            }
+
+            // tpComb (string) minLength
+            if (this.tpComb != null && this.tpComb.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpComb, length must be greater than 1.", new [] { "tpComb" });
+            }
+
+            // nMotor (string) maxLength
+            if (this.nMotor != null && this.nMotor.Length > 21)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nMotor, length must be less than 21.", new [] { "nMotor" });
+            }
+
+            // nMotor (string) minLength
+            if (this.nMotor != null && this.nMotor.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nMotor, length must be greater than 1.", new [] { "nMotor" });
+            }
+
+            // CMT (string) maxLength
+            if (this.CMT != null && this.CMT.Length > 9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CMT, length must be less than 9.", new [] { "CMT" });
+            }
+
+            // CMT (string) minLength
+            if (this.CMT != null && this.CMT.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CMT, length must be greater than 1.", new [] { "CMT" });
+            }
+
+            // dist (string) maxLength
+            if (this.dist != null && this.dist.Length > 4)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for dist, length must be less than 4.", new [] { "dist" });
+            }
+
+            // dist (string) minLength
+            if (this.dist != null && this.dist.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for dist, length must be greater than 1.", new [] { "dist" });
+            }
+
+            // anoMod (int?) maximum
+            if (this.anoMod > (int?)9999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for anoMod, must be a value less than or equal to 9999.", new [] { "anoMod" });
+            }
+
+            // anoMod (int?) minimum
+            if (this.anoMod < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for anoMod, must be a value greater than or equal to 0.", new [] { "anoMod" });
+            }
+
+            // anoFab (int?) maximum
+            if (this.anoFab > (int?)9999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for anoFab, must be a value less than or equal to 9999.", new [] { "anoFab" });
+            }
+
+            // anoFab (int?) minimum
+            if (this.anoFab < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for anoFab, must be a value greater than or equal to 0.", new [] { "anoFab" });
+            }
+
+            // tpPint (string) maxLength
+            if (this.tpPint != null && this.tpPint.Length > 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpPint, length must be less than 1.", new [] { "tpPint" });
+            }
+
+            // tpVeic (int?) maximum
+            if (this.tpVeic > (int?)99)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpVeic, must be a value less than or equal to 99.", new [] { "tpVeic" });
+            }
+
+            // tpVeic (int?) minimum
+            if (this.tpVeic < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpVeic, must be a value greater than or equal to 0.", new [] { "tpVeic" });
+            }
+
+            // espVeic (int?) maximum
+            if (this.espVeic > (int?)9)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for espVeic, must be a value less than or equal to 9.", new [] { "espVeic" });
+            }
+
+            // espVeic (int?) minimum
+            if (this.espVeic < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for espVeic, must be a value greater than or equal to 0.", new [] { "espVeic" });
+            }
+
+            // VIN (string) maxLength
+            if (this.VIN != null && this.VIN.Length > 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for VIN, length must be less than 1.", new [] { "VIN" });
+            }
+
+            // cCorDENATRAN (string) maxLength
+            if (this.cCorDENATRAN != null && this.cCorDENATRAN.Length > 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCorDENATRAN, length must be less than 2.", new [] { "cCorDENATRAN" });
+            }
+
+            // cCorDENATRAN (string) minLength
+            if (this.cCorDENATRAN != null && this.cCorDENATRAN.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCorDENATRAN, length must be greater than 1.", new [] { "cCorDENATRAN" });
+            }
+
+            // lota (int?) maximum
+            if (this.lota > (int?)999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for lota, must be a value less than or equal to 999.", new [] { "lota" });
+            }
+
+            // lota (int?) minimum
+            if (this.lota < (int?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for lota, must be a value greater than or equal to 0.", new [] { "lota" });
+            }
+
             yield break;
         }
     }

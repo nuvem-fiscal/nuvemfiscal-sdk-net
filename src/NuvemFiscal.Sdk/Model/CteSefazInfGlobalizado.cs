@@ -129,6 +129,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // xObs (string) maxLength
+            if (this.xObs != null && this.xObs.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xObs, length must be less than 256.", new [] { "xObs" });
+            }
+
+            // xObs (string) minLength
+            if (this.xObs != null && this.xObs.Length < 15)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xObs, length must be greater than 15.", new [] { "xObs" });
+            }
+
             yield break;
         }
     }

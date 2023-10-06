@@ -138,6 +138,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // infAdFisco (string) maxLength
+            if (this.infAdFisco != null && this.infAdFisco.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for infAdFisco, length must be less than 2000.", new [] { "infAdFisco" });
+            }
+
+            // infAdFisco (string) minLength
+            if (this.infAdFisco != null && this.infAdFisco.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for infAdFisco, length must be greater than 1.", new [] { "infAdFisco" });
+            }
+
+            // infCpl (string) maxLength
+            if (this.infCpl != null && this.infCpl.Length > 5000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for infCpl, length must be less than 5000.", new [] { "infCpl" });
+            }
+
+            // infCpl (string) minLength
+            if (this.infCpl != null && this.infCpl.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for infCpl, length must be greater than 1.", new [] { "infCpl" });
+            }
+
             yield break;
         }
     }
