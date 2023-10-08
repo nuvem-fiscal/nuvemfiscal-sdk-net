@@ -333,7 +333,7 @@ catch (ApiException e)
 
 <a name="baixarpdfmdfe"></a>
 # **BaixarPdfMdfe**
-> FileParameter BaixarPdfMdfe (string id)
+> FileParameter BaixarPdfMdfe (string id, bool? logotipo = null)
 
 Baixar PDF do DAMDFE
 
@@ -366,11 +366,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MdfeApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único do MDF-e gerado pela Nuvem Fiscal.
+            var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
 
             try
             {
                 // Baixar PDF do DAMDFE
-                FileParameter result = apiInstance.BaixarPdfMdfe(id);
+                FileParameter result = apiInstance.BaixarPdfMdfe(id, logotipo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -391,7 +392,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Baixar PDF do DAMDFE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPdfMdfeWithHttpInfo(id);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfMdfeWithHttpInfo(id, logotipo);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -409,6 +410,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único do MDF-e gerado pela Nuvem Fiscal. |  |
+| **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
 
 ### Tipo de retorno
 

@@ -227,7 +227,7 @@ catch (ApiException e)
 
 <a name="baixarpdfcte"></a>
 # **BaixarPdfCte**
-> FileParameter BaixarPdfCte (string id)
+> FileParameter BaixarPdfCte (string id, bool? logotipo = null)
 
 Baixar PDF do DACTE
 
@@ -260,11 +260,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
+            var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
 
             try
             {
                 // Baixar PDF do DACTE
-                FileParameter result = apiInstance.BaixarPdfCte(id);
+                FileParameter result = apiInstance.BaixarPdfCte(id, logotipo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -285,7 +286,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Baixar PDF do DACTE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPdfCteWithHttpInfo(id);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfCteWithHttpInfo(id, logotipo);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -303,6 +304,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
+| **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
 
 ### Tipo de retorno
 

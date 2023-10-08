@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.19.11
+  version: 2.20.1
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -554,6 +554,13 @@ paths:
         required: true
         schema:
           type: string
+      - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
+          \ na empresa."
+        in: query
+        name: logotipo
+        schema:
+          default: false
+          type: boolean
       responses:
         "200":
           content:
@@ -1743,6 +1750,13 @@ paths:
         required: true
         schema:
           type: string
+      - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
+          \ na empresa."
+        in: query
+        name: logotipo
+        schema:
+          default: false
+          type: boolean
       responses:
         "200":
           content:
