@@ -43,8 +43,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="exigSusp">exigSusp.</param>
         /// <param name="tpImunidade">Identificação da Imunidade do ISSQN - somente para o caso de Imunidade:  * 0 - Imunidade (tipo não informado na nota de origem)  * 1 - Patrimônio, renda ou serviços, uns dos outros (CF88, Art 150, VI, a)  * 2 - Templos de qualquer culto (CF88, Art 150, VI, b)  * 3 - Patrimônio, renda ou serviços dos partidos políticos, inclusive suas fundações, das entidades sindicais dos trabalhadores, das instituições de educação e de assistência social, sem fins lucrativos, atendidos os requisitos da lei (CF88, Art 150, VI, c)  * 4 - Livros, jornais, periódicos e o papel destinado a sua impressão (CF88, Art 150, VI, d).</param>
         /// <param name="pAliq">Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.  Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.  Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente..</param>
+        /// <param name="vISSQN">Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calcular automaticamente.    Para emissões pelo Sistema Nacional NFS-e, essa propriedade é ignorada e o valor do ISSQN é determinado automaticamente pela SEFIN nacional..</param>
         /// <param name="tpRetISSQN">Tipo de retencao do ISSQN:  * 1 - Não Retido  * 2 - Retido pelo Tomador  * 3 - Retido pelo Intermediario.</param>
-        public TribMunicipal(int? tribISSQN = default(int?), string cLocIncid = default(string), string cPaisResult = default(string), BeneficioMunicipal bM = default(BeneficioMunicipal), ExigSuspensa exigSusp = default(ExigSuspensa), int? tpImunidade = default(int?), decimal? pAliq = default(decimal?), int? tpRetISSQN = default(int?))
+        public TribMunicipal(int? tribISSQN = default(int?), string cLocIncid = default(string), string cPaisResult = default(string), BeneficioMunicipal bM = default(BeneficioMunicipal), ExigSuspensa exigSusp = default(ExigSuspensa), int? tpImunidade = default(int?), decimal? pAliq = default(decimal?), decimal? vISSQN = default(decimal?), int? tpRetISSQN = default(int?))
         {
             // to ensure "tribISSQN" is required (not null)
             if (tribISSQN == null)
@@ -58,6 +59,7 @@ namespace NuvemFiscal.Sdk.Model
             this.exigSusp = exigSusp;
             this.tpImunidade = tpImunidade;
             this.pAliq = pAliq;
+            this.vISSQN = vISSQN;
             this.tpRetISSQN = tpRetISSQN;
         }
 
@@ -109,6 +111,13 @@ namespace NuvemFiscal.Sdk.Model
         public decimal? pAliq { get; set; }
 
         /// <summary>
+        /// Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calcular automaticamente.    Para emissões pelo Sistema Nacional NFS-e, essa propriedade é ignorada e o valor do ISSQN é determinado automaticamente pela SEFIN nacional.
+        /// </summary>
+        /// <value>Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calcular automaticamente.    Para emissões pelo Sistema Nacional NFS-e, essa propriedade é ignorada e o valor do ISSQN é determinado automaticamente pela SEFIN nacional.</value>
+        [DataMember(Name = "vISSQN", EmitDefaultValue = true)]
+        public decimal? vISSQN { get; set; }
+
+        /// <summary>
         /// Tipo de retencao do ISSQN:  * 1 - Não Retido  * 2 - Retido pelo Tomador  * 3 - Retido pelo Intermediario
         /// </summary>
         /// <value>Tipo de retencao do ISSQN:  * 1 - Não Retido  * 2 - Retido pelo Tomador  * 3 - Retido pelo Intermediario</value>
@@ -130,6 +139,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  exigSusp: ").Append(exigSusp).Append("\n");
             sb.Append("  tpImunidade: ").Append(tpImunidade).Append("\n");
             sb.Append("  pAliq: ").Append(pAliq).Append("\n");
+            sb.Append("  vISSQN: ").Append(vISSQN).Append("\n");
             sb.Append("  tpRetISSQN: ").Append(tpRetISSQN).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -202,6 +212,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.pAliq.Equals(input.pAliq))
                 ) && 
                 (
+                    this.vISSQN == input.vISSQN ||
+                    (this.vISSQN != null &&
+                    this.vISSQN.Equals(input.vISSQN))
+                ) && 
+                (
                     this.tpRetISSQN == input.tpRetISSQN ||
                     (this.tpRetISSQN != null &&
                     this.tpRetISSQN.Equals(input.tpRetISSQN))
@@ -244,6 +259,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.pAliq != null)
                 {
                     hashCode = (hashCode * 59) + this.pAliq.GetHashCode();
+                }
+                if (this.vISSQN != null)
+                {
+                    hashCode = (hashCode * 59) + this.vISSQN.GetHashCode();
                 }
                 if (this.tpRetISSQN != null)
                 {

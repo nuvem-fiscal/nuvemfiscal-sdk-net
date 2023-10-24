@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.20.1
+  version: 2.21.0
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -603,6 +603,11 @@ paths:
       - Cte
   /cte/{id}/xml:
     get:
+      description: "Utilize esse endpoint para obter o XML do conhecimento enviado\
+        \ para a SEFAZ, complementado com a informação do protocolo de autorizaçã\
+        o de uso (TAG raiz `cteProc`).\r\n\r\nO XML só estará disponível nesse endpoint\
+        \ caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos\
+        \ demais casos, utilize o endpoint `GET /cte/{id}/xml/conhecimento`."
       operationId: BaixarXmlCte
       parameters:
       - description: ID único do CT-e gerado pela Nuvem Fiscal.
@@ -624,6 +629,9 @@ paths:
       - Cte
   /cte/{id}/xml/conhecimento:
     get:
+      description: "Utilize esse endpoint para obter o XML do conhecimento enviado\
+        \ para a SEFAZ.\r\n\r\nO XML estará disponível nesse endpoint mesmo em casos\
+        \ que o conhecimento tenha sido rejeitado."
       operationId: BaixarXmlCteConhecimento
       parameters:
       - description: ID único da CT-e gerado pela Nuvem Fiscal.
@@ -1800,6 +1808,11 @@ paths:
       - Mdfe
   /mdfe/{id}/xml:
     get:
+      description: "Utilize esse endpoint para obter o XML do manifesto enviado para\
+        \ a SEFAZ, complementado com a informação do protocolo de autorização ou denegaç\
+        ão de uso (TAG raiz `mdfeProc`).\r\n\r\nO XML só estará disponível nesse endpoint\
+        \ caso o manifesto tenha sido autorizado ou denegado pela SEFAZ. Para obter\
+        \ o XML nos demais casos, utilize o endpoint `GET /mdfe/{id}/xml/manifesto`."
       operationId: BaixarXmlMdfe
       parameters:
       - description: ID único do MDF-e gerado pela Nuvem Fiscal.
@@ -1821,6 +1834,9 @@ paths:
       - Mdfe
   /mdfe/{id}/xml/manifesto:
     get:
+      description: "Utilize esse endpoint para obter o XML do manifesto enviado para\
+        \ a SEFAZ.\r\n\r\nO XML estará disponível nesse endpoint mesmo em casos que\
+        \ o manifesto tenha sido rejeitado."
       operationId: BaixarXmlMdfeManifesto
       parameters:
       - description: ID único da MDF-e gerado pela Nuvem Fiscal.
@@ -2595,6 +2611,11 @@ paths:
       - Nfce
   /nfce/{id}/xml:
     get:
+      description: "Utilize esse endpoint para obter o XML da nota enviado para a\
+        \ SEFAZ, complementado com a informação do protocolo de autorização ou denegaç\
+        ão de uso (TAG raiz `nfeProc`).\r\n\r\nO XML só estará disponível nesse endpoint\
+        \ caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML\
+        \ nos demais casos, utilize o endpoint `GET /nfce/{id}/xml/nota`."
       operationId: BaixarXmlNfce
       parameters:
       - description: ID único da NFC-e gerado pela Nuvem Fiscal.
@@ -2616,6 +2637,9 @@ paths:
       - Nfce
   /nfce/{id}/xml/nota:
     get:
+      description: "Utilize esse endpoint para obter o XML da nota enviado para a\
+        \ SEFAZ.\r\n\r\nO XML estará disponível nesse endpoint mesmo em casos que\
+        \ a nota tenha sido rejeitada."
       operationId: BaixarXmlNfceNota
       parameters:
       - description: ID único da NFC-e gerado pela Nuvem Fiscal.
@@ -3416,6 +3440,11 @@ paths:
       - Nfe
   /nfe/{id}/xml:
     get:
+      description: "Utilize esse endpoint para obter o XML da nota enviado para a\
+        \ SEFAZ, complementado com a informação do protocolo de autorização ou denegaç\
+        ão de uso (TAG raiz `nfeProc`).\r\n\r\nO XML só estará disponível nesse endpoint\
+        \ caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML\
+        \ nos demais casos, utilize o endpoint `GET /nfe/{id}/xml/nota`."
       operationId: BaixarXmlNfe
       parameters:
       - description: ID único da NF-e gerado pela Nuvem Fiscal.
@@ -3437,6 +3466,9 @@ paths:
       - Nfe
   /nfe/{id}/xml/nota:
     get:
+      description: "Utilize esse endpoint para obter o XML da nota enviado para a\
+        \ SEFAZ.\r\n\r\nO XML estará disponível nesse endpoint mesmo em casos que\
+        \ a nota tenha sido rejeitada."
       operationId: BaixarXmlNfeNota
       parameters:
       - description: ID único da NF-e gerado pela Nuvem Fiscal.
@@ -6011,27 +6043,27 @@ components:
               trib:
                 totTrib:
                   vTotTrib:
-                    vTotTribFed: 4.652396432933246
-                    vTotTribEst: 8.969578798196912
-                    vTotTribMun: 7.740351818741173
-                  pTotTribSN: 3.2588565619047607
+                    vTotTribFed: 8.969578798196912
+                    vTotTribEst: 7.740351818741173
+                    vTotTribMun: 3.0205796992916243
+                  pTotTribSN: 4.078845849666752
                   pTotTrib:
-                    pTotTribFed: 3.0205796992916243
-                    pTotTribEst: 3.0576100241049344
-                    pTotTribMun: 7.04836565559697
-                  indTotTrib: 5
+                    pTotTribFed: 3.0576100241049344
+                    pTotTribEst: 7.04836565559697
+                    pTotTribMun: 5.533258397034986
+                  indTotTrib: 3
                 tribFed:
-                  vRetIRRF: 6.519180951018382
-                  vRetCP: 7.058770351582356
+                  vRetIRRF: 0.10263654006109402
+                  vRetCP: 6.519180951018382
                   piscofins:
-                    vPis: 3.0937452626664474
+                    vPis: 7.143538047012306
                     CST: CST
-                    pAliqPis: 6.704019297950036
-                    pAliqCofins: 3.353193347011243
-                    vCofins: 7.143538047012306
-                    vBCPisCofins: 5.944895607614016
-                    tpRetPisCofins: 0
-                  vRetCSLL: 0.10263654006109402
+                    pAliqPis: 3.353193347011243
+                    pAliqCofins: 3.0937452626664474
+                    vCofins: 0.8851374739011653
+                    vBCPisCofins: 6.704019297950036
+                    tpRetPisCofins: 7
+                  vRetCSLL: 4.652396432933246
                 tribMun:
                   tribISSQN: 9
                   exigSusp:
@@ -6040,8 +6072,9 @@ components:
                   tpImunidade: 2
                   cPaisResult: cPaisResult
                   cLocIncid: cLocIncid
+                  vISSQN: 6.878052220127876
                   pAliq: 6.778324963048013
-                  tpRetISSQN: 6
+                  tpRetISSQN: 5
                   BM:
                     tpBM: 6
                     pRedBCBM: 6.965117697638846
@@ -6269,27 +6302,27 @@ components:
               trib:
                 totTrib:
                   vTotTrib:
-                    vTotTribFed: 4.652396432933246
-                    vTotTribEst: 8.969578798196912
-                    vTotTribMun: 7.740351818741173
-                  pTotTribSN: 3.2588565619047607
+                    vTotTribFed: 8.969578798196912
+                    vTotTribEst: 7.740351818741173
+                    vTotTribMun: 3.0205796992916243
+                  pTotTribSN: 4.078845849666752
                   pTotTrib:
-                    pTotTribFed: 3.0205796992916243
-                    pTotTribEst: 3.0576100241049344
-                    pTotTribMun: 7.04836565559697
-                  indTotTrib: 5
+                    pTotTribFed: 3.0576100241049344
+                    pTotTribEst: 7.04836565559697
+                    pTotTribMun: 5.533258397034986
+                  indTotTrib: 3
                 tribFed:
-                  vRetIRRF: 6.519180951018382
-                  vRetCP: 7.058770351582356
+                  vRetIRRF: 0.10263654006109402
+                  vRetCP: 6.519180951018382
                   piscofins:
-                    vPis: 3.0937452626664474
+                    vPis: 7.143538047012306
                     CST: CST
-                    pAliqPis: 6.704019297950036
-                    pAliqCofins: 3.353193347011243
-                    vCofins: 7.143538047012306
-                    vBCPisCofins: 5.944895607614016
-                    tpRetPisCofins: 0
-                  vRetCSLL: 0.10263654006109402
+                    pAliqPis: 3.353193347011243
+                    pAliqCofins: 3.0937452626664474
+                    vCofins: 0.8851374739011653
+                    vBCPisCofins: 6.704019297950036
+                    tpRetPisCofins: 7
+                  vRetCSLL: 4.652396432933246
                 tribMun:
                   tribISSQN: 9
                   exigSusp:
@@ -6298,8 +6331,9 @@ components:
                   tpImunidade: 2
                   cPaisResult: cPaisResult
                   cLocIncid: cLocIncid
+                  vISSQN: 6.878052220127876
                   pAliq: 6.778324963048013
-                  tpRetISSQN: 6
+                  tpRetISSQN: 5
                   BM:
                     tpBM: 6
                     pRedBCBM: 6.965117697638846
@@ -6561,27 +6595,27 @@ components:
             trib:
               totTrib:
                 vTotTrib:
-                  vTotTribFed: 4.652396432933246
-                  vTotTribEst: 8.969578798196912
-                  vTotTribMun: 7.740351818741173
-                pTotTribSN: 3.2588565619047607
+                  vTotTribFed: 8.969578798196912
+                  vTotTribEst: 7.740351818741173
+                  vTotTribMun: 3.0205796992916243
+                pTotTribSN: 4.078845849666752
                 pTotTrib:
-                  pTotTribFed: 3.0205796992916243
-                  pTotTribEst: 3.0576100241049344
-                  pTotTribMun: 7.04836565559697
-                indTotTrib: 5
+                  pTotTribFed: 3.0576100241049344
+                  pTotTribEst: 7.04836565559697
+                  pTotTribMun: 5.533258397034986
+                indTotTrib: 3
               tribFed:
-                vRetIRRF: 6.519180951018382
-                vRetCP: 7.058770351582356
+                vRetIRRF: 0.10263654006109402
+                vRetCP: 6.519180951018382
                 piscofins:
-                  vPis: 3.0937452626664474
+                  vPis: 7.143538047012306
                   CST: CST
-                  pAliqPis: 6.704019297950036
-                  pAliqCofins: 3.353193347011243
-                  vCofins: 7.143538047012306
-                  vBCPisCofins: 5.944895607614016
-                  tpRetPisCofins: 0
-                vRetCSLL: 0.10263654006109402
+                  pAliqPis: 3.353193347011243
+                  pAliqCofins: 3.0937452626664474
+                  vCofins: 0.8851374739011653
+                  vBCPisCofins: 6.704019297950036
+                  tpRetPisCofins: 7
+                vRetCSLL: 4.652396432933246
               tribMun:
                 tribISSQN: 9
                 exigSusp:
@@ -6590,8 +6624,9 @@ components:
                 tpImunidade: 2
                 cPaisResult: cPaisResult
                 cLocIncid: cLocIncid
+                vISSQN: 6.878052220127876
                 pAliq: 6.778324963048013
-                tpRetISSQN: 6
+                tpRetISSQN: 5
                 BM:
                   tpBM: 6
                   pRedBCBM: 6.965117697638846
@@ -6846,27 +6881,27 @@ components:
           trib:
             totTrib:
               vTotTrib:
-                vTotTribFed: 4.652396432933246
-                vTotTribEst: 8.969578798196912
-                vTotTribMun: 7.740351818741173
-              pTotTribSN: 3.2588565619047607
+                vTotTribFed: 8.969578798196912
+                vTotTribEst: 7.740351818741173
+                vTotTribMun: 3.0205796992916243
+              pTotTribSN: 4.078845849666752
               pTotTrib:
-                pTotTribFed: 3.0205796992916243
-                pTotTribEst: 3.0576100241049344
-                pTotTribMun: 7.04836565559697
-              indTotTrib: 5
+                pTotTribFed: 3.0576100241049344
+                pTotTribEst: 7.04836565559697
+                pTotTribMun: 5.533258397034986
+              indTotTrib: 3
             tribFed:
-              vRetIRRF: 6.519180951018382
-              vRetCP: 7.058770351582356
+              vRetIRRF: 0.10263654006109402
+              vRetCP: 6.519180951018382
               piscofins:
-                vPis: 3.0937452626664474
+                vPis: 7.143538047012306
                 CST: CST
-                pAliqPis: 6.704019297950036
-                pAliqCofins: 3.353193347011243
-                vCofins: 7.143538047012306
-                vBCPisCofins: 5.944895607614016
-                tpRetPisCofins: 0
-              vRetCSLL: 0.10263654006109402
+                pAliqPis: 3.353193347011243
+                pAliqCofins: 3.0937452626664474
+                vCofins: 0.8851374739011653
+                vBCPisCofins: 6.704019297950036
+                tpRetPisCofins: 7
+              vRetCSLL: 4.652396432933246
             tribMun:
               tribISSQN: 9
               exigSusp:
@@ -6875,8 +6910,9 @@ components:
               tpImunidade: 2
               cPaisResult: cPaisResult
               cLocIncid: cLocIncid
+              vISSQN: 6.878052220127876
               pAliq: 6.778324963048013
-              tpRetISSQN: 6
+              tpRetISSQN: 5
               BM:
                 tpBM: 6
                 pRedBCBM: 6.965117697638846
@@ -7886,27 +7922,27 @@ components:
         trib:
           totTrib:
             vTotTrib:
-              vTotTribFed: 4.652396432933246
-              vTotTribEst: 8.969578798196912
-              vTotTribMun: 7.740351818741173
-            pTotTribSN: 3.2588565619047607
+              vTotTribFed: 8.969578798196912
+              vTotTribEst: 7.740351818741173
+              vTotTribMun: 3.0205796992916243
+            pTotTribSN: 4.078845849666752
             pTotTrib:
-              pTotTribFed: 3.0205796992916243
-              pTotTribEst: 3.0576100241049344
-              pTotTribMun: 7.04836565559697
-            indTotTrib: 5
+              pTotTribFed: 3.0576100241049344
+              pTotTribEst: 7.04836565559697
+              pTotTribMun: 5.533258397034986
+            indTotTrib: 3
           tribFed:
-            vRetIRRF: 6.519180951018382
-            vRetCP: 7.058770351582356
+            vRetIRRF: 0.10263654006109402
+            vRetCP: 6.519180951018382
             piscofins:
-              vPis: 3.0937452626664474
+              vPis: 7.143538047012306
               CST: CST
-              pAliqPis: 6.704019297950036
-              pAliqCofins: 3.353193347011243
-              vCofins: 7.143538047012306
-              vBCPisCofins: 5.944895607614016
-              tpRetPisCofins: 0
-            vRetCSLL: 0.10263654006109402
+              pAliqPis: 3.353193347011243
+              pAliqCofins: 3.0937452626664474
+              vCofins: 0.8851374739011653
+              vBCPisCofins: 6.704019297950036
+              tpRetPisCofins: 7
+            vRetCSLL: 4.652396432933246
           tribMun:
             tribISSQN: 9
             exigSusp:
@@ -7915,8 +7951,9 @@ components:
             tpImunidade: 2
             cPaisResult: cPaisResult
             cLocIncid: cLocIncid
+            vISSQN: 6.878052220127876
             pAliq: 6.778324963048013
-            tpRetISSQN: 6
+            tpRetISSQN: 5
             BM:
               tpBM: 6
               pRedBCBM: 6.965117697638846
@@ -8503,27 +8540,27 @@ components:
       example:
         totTrib:
           vTotTrib:
-            vTotTribFed: 4.652396432933246
-            vTotTribEst: 8.969578798196912
-            vTotTribMun: 7.740351818741173
-          pTotTribSN: 3.2588565619047607
+            vTotTribFed: 8.969578798196912
+            vTotTribEst: 7.740351818741173
+            vTotTribMun: 3.0205796992916243
+          pTotTribSN: 4.078845849666752
           pTotTrib:
-            pTotTribFed: 3.0205796992916243
-            pTotTribEst: 3.0576100241049344
-            pTotTribMun: 7.04836565559697
-          indTotTrib: 5
+            pTotTribFed: 3.0576100241049344
+            pTotTribEst: 7.04836565559697
+            pTotTribMun: 5.533258397034986
+          indTotTrib: 3
         tribFed:
-          vRetIRRF: 6.519180951018382
-          vRetCP: 7.058770351582356
+          vRetIRRF: 0.10263654006109402
+          vRetCP: 6.519180951018382
           piscofins:
-            vPis: 3.0937452626664474
+            vPis: 7.143538047012306
             CST: CST
-            pAliqPis: 6.704019297950036
-            pAliqCofins: 3.353193347011243
-            vCofins: 7.143538047012306
-            vBCPisCofins: 5.944895607614016
-            tpRetPisCofins: 0
-          vRetCSLL: 0.10263654006109402
+            pAliqPis: 3.353193347011243
+            pAliqCofins: 3.0937452626664474
+            vCofins: 0.8851374739011653
+            vBCPisCofins: 6.704019297950036
+            tpRetPisCofins: 7
+          vRetCSLL: 4.652396432933246
         tribMun:
           tribISSQN: 9
           exigSusp:
@@ -8532,8 +8569,9 @@ components:
           tpImunidade: 2
           cPaisResult: cPaisResult
           cLocIncid: cLocIncid
+          vISSQN: 6.878052220127876
           pAliq: 6.778324963048013
-          tpRetISSQN: 6
+          tpRetISSQN: 5
           BM:
             tpBM: 6
             pRedBCBM: 6.965117697638846
@@ -8560,8 +8598,9 @@ components:
         tpImunidade: 2
         cPaisResult: cPaisResult
         cLocIncid: cLocIncid
+        vISSQN: 6.878052220127876
         pAliq: 6.778324963048013
-        tpRetISSQN: 6
+        tpRetISSQN: 5
         BM:
           tpBM: 6
           pRedBCBM: 6.965117697638846
@@ -8610,6 +8649,13 @@ components:
             \ e, portanto, será fornecida pelo sistema.\r\nSe o município de incidê\
             ncia não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada\
             \ e, por isso, deverá ser fornecida pelo emitente."
+          nullable: true
+          type: number
+        vISSQN:
+          description: "Valor do ISSQN (R$).\r\n\r\nCaso você não informe esse campo,\
+            \ vamos calcular automaticamente.\r\n\r\nPara emissões pelo Sistema Nacional\
+            \ NFS-e, essa propriedade é ignorada e o valor do ISSQN é determinado\
+            \ automaticamente pela SEFIN nacional."
           nullable: true
           type: number
         tpRetISSQN:
@@ -8676,17 +8722,17 @@ components:
       description: Grupo de informações de outros tributos relacionados ao serviço
         prestado.
       example:
-        vRetIRRF: 6.519180951018382
-        vRetCP: 7.058770351582356
+        vRetIRRF: 0.10263654006109402
+        vRetCP: 6.519180951018382
         piscofins:
-          vPis: 3.0937452626664474
+          vPis: 7.143538047012306
           CST: CST
-          pAliqPis: 6.704019297950036
-          pAliqCofins: 3.353193347011243
-          vCofins: 7.143538047012306
-          vBCPisCofins: 5.944895607614016
-          tpRetPisCofins: 0
-        vRetCSLL: 0.10263654006109402
+          pAliqPis: 3.353193347011243
+          pAliqCofins: 3.0937452626664474
+          vCofins: 0.8851374739011653
+          vBCPisCofins: 6.704019297950036
+          tpRetPisCofins: 7
+        vRetCSLL: 4.652396432933246
       properties:
         piscofins:
           $ref: '#/components/schemas/TribOutrosPisCofins'
@@ -8706,13 +8752,13 @@ components:
     TribOutrosPisCofins:
       description: Grupo de informações dos tributos PIS/COFINS.
       example:
-        vPis: 3.0937452626664474
+        vPis: 7.143538047012306
         CST: CST
-        pAliqPis: 6.704019297950036
-        pAliqCofins: 3.353193347011243
-        vCofins: 7.143538047012306
-        vBCPisCofins: 5.944895607614016
-        tpRetPisCofins: 0
+        pAliqPis: 3.353193347011243
+        pAliqCofins: 3.0937452626664474
+        vCofins: 0.8851374739011653
+        vBCPisCofins: 6.704019297950036
+        tpRetPisCofins: 7
       properties:
         CST:
           description: "Código de Situação Tributária do PIS/COFINS (CST):\r\n* 00\
@@ -8759,15 +8805,15 @@ components:
         ao serviço prestado.
       example:
         vTotTrib:
-          vTotTribFed: 4.652396432933246
-          vTotTribEst: 8.969578798196912
-          vTotTribMun: 7.740351818741173
-        pTotTribSN: 3.2588565619047607
+          vTotTribFed: 8.969578798196912
+          vTotTribEst: 7.740351818741173
+          vTotTribMun: 3.0205796992916243
+        pTotTribSN: 4.078845849666752
         pTotTrib:
-          pTotTribFed: 3.0205796992916243
-          pTotTribEst: 3.0576100241049344
-          pTotTribMun: 7.04836565559697
-        indTotTrib: 5
+          pTotTribFed: 3.0576100241049344
+          pTotTribEst: 7.04836565559697
+          pTotTribMun: 5.533258397034986
+        indTotTrib: 3
       properties:
         vTotTrib:
           $ref: '#/components/schemas/TribTotalMonet'
@@ -8789,9 +8835,9 @@ components:
       description: "Valor monetário total aproximado dos tributos, em conformidade\
         \ com o artigo 1o da Lei no 12.741/2012."
       example:
-        vTotTribFed: 4.652396432933246
-        vTotTribEst: 8.969578798196912
-        vTotTribMun: 7.740351818741173
+        vTotTribFed: 8.969578798196912
+        vTotTribEst: 7.740351818741173
+        vTotTribMun: 3.0205796992916243
       properties:
         vTotTribFed:
           description: Valor monetário total aproximado dos tributos federais (R$).
@@ -8814,9 +8860,9 @@ components:
       description: "Valor percentual total aproximado dos tributos, em conformidade\
         \ com o artigo 1o da Lei no 12.741/2012."
       example:
-        pTotTribFed: 3.0205796992916243
-        pTotTribEst: 3.0576100241049344
-        pTotTribMun: 7.04836565559697
+        pTotTribFed: 3.0576100241049344
+        pTotTribEst: 7.04836565559697
+        pTotTribMun: 5.533258397034986
       properties:
         pTotTribFed:
           description: Valor percentual total aproximado dos tributos federais (%%).
@@ -17271,6 +17317,7 @@ components:
           enum:
           - pendente
           - sincronizado
+          - erro
           type: string
         codigo_status:
           description: Código da situação atual do DF-e.

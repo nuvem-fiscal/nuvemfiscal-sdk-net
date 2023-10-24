@@ -739,6 +739,8 @@ catch (ApiException e)
 
 Baixar XML do MDF-e processado
 
+Utilize esse endpoint para obter o XML do manifesto enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz `mdfeProc`).    O XML só estará disponível nesse endpoint caso o manifesto tenha sido autorizado ou denegado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /mdfe/{id}/xml/manifesto`.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -838,6 +840,8 @@ catch (ApiException e)
 > FileParameter BaixarXmlMdfeManifesto (string id)
 
 Baixar XML do MDF-e
+
+Utilize esse endpoint para obter o XML do manifesto enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o manifesto tenha sido rejeitado.
 
 ### Exemplo
 ```csharp

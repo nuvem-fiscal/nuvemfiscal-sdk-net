@@ -633,6 +633,8 @@ catch (ApiException e)
 
 Baixar XML do CT-e processado
 
+Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz `cteProc`).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /cte/{id}/xml/conhecimento`.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -732,6 +734,8 @@ catch (ApiException e)
 > FileParameter BaixarXmlCteConhecimento (string id)
 
 Baixar XML do CT-e
+
+Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
 
 ### Exemplo
 ```csharp

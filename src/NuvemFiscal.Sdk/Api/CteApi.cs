@@ -136,6 +136,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Baixar XML do CT-e processado
         /// </summary>
+        /// <remarks>
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
@@ -145,7 +148,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do CT-e processado
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
@@ -154,6 +157,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Baixar XML do CT-e
         /// </summary>
+        /// <remarks>
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
@@ -163,7 +169,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do CT-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>
@@ -573,7 +579,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do CT-e processado
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
@@ -585,7 +591,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do CT-e processado
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
@@ -596,7 +602,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do CT-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>
@@ -608,7 +614,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML do CT-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>
@@ -1959,7 +1965,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e processado 
+        /// Baixar XML do CT-e processado Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
@@ -1971,7 +1977,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e processado 
+        /// Baixar XML do CT-e processado Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
@@ -2025,7 +2031,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e processado 
+        /// Baixar XML do CT-e processado Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
@@ -2038,7 +2044,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e processado 
+        /// Baixar XML do CT-e processado Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ, complementado com a informação do protocolo de autorização de uso (TAG raiz &#x60;cteProc&#x60;).    O XML só estará disponível nesse endpoint caso o conhecimento tenha sido autorizado pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /cte/{id}/xml/conhecimento&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único do CT-e gerado pela Nuvem Fiscal.</param>
@@ -2096,7 +2102,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e 
+        /// Baixar XML do CT-e Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>
@@ -2108,7 +2114,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e 
+        /// Baixar XML do CT-e Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>
@@ -2162,7 +2168,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e 
+        /// Baixar XML do CT-e Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>
@@ -2175,7 +2181,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML do CT-e 
+        /// Baixar XML do CT-e Utilize esse endpoint para obter o XML do conhecimento enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que o conhecimento tenha sido rejeitado.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da CT-e gerado pela Nuvem Fiscal.</param>

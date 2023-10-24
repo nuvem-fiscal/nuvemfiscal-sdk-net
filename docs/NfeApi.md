@@ -1157,6 +1157,8 @@ catch (ApiException e)
 
 Baixar XML da NF-e processada
 
+Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz `nfeProc`).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint `GET /nfe/{id}/xml/nota`.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -1256,6 +1258,8 @@ catch (ApiException e)
 > FileParameter BaixarXmlNfeNota (string id)
 
 Baixar XML da NF-e
+
+Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
 
 ### Exemplo
 ```csharp

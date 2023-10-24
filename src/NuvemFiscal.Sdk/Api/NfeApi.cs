@@ -242,6 +242,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Baixar XML da NF-e processada
         /// </summary>
+        /// <remarks>
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
@@ -251,7 +254,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML da NF-e processada
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -260,6 +263,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Baixar XML da NF-e
         /// </summary>
+        /// <remarks>
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
         /// <returns>FileParameter</returns>
@@ -269,7 +275,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML da NF-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -919,7 +925,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML da NF-e processada
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -931,7 +937,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML da NF-e processada
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -942,7 +948,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML da NF-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -954,7 +960,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Baixar XML da NF-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3185,7 +3191,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e processada 
+        /// Baixar XML da NF-e processada Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3197,7 +3203,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e processada 
+        /// Baixar XML da NF-e processada Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3251,7 +3257,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e processada 
+        /// Baixar XML da NF-e processada Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3264,7 +3270,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e processada 
+        /// Baixar XML da NF-e processada Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ, complementado com a informação do protocolo de autorização ou denegação de uso (TAG raiz &#x60;nfeProc&#x60;).    O XML só estará disponível nesse endpoint caso a nota tenha sido autorizada ou denegada pela SEFAZ. Para obter o XML nos demais casos, utilize o endpoint &#x60;GET /nfe/{id}/xml/nota&#x60;.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3322,7 +3328,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e 
+        /// Baixar XML da NF-e Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3334,7 +3340,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e 
+        /// Baixar XML da NF-e Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3388,7 +3394,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e 
+        /// Baixar XML da NF-e Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>
@@ -3401,7 +3407,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Baixar XML da NF-e 
+        /// Baixar XML da NF-e Utilize esse endpoint para obter o XML da nota enviado para a SEFAZ.    O XML estará disponível nesse endpoint mesmo em casos que a nota tenha sido rejeitada.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NF-e gerado pela Nuvem Fiscal.</param>

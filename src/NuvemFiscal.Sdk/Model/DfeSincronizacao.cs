@@ -45,7 +45,13 @@ namespace NuvemFiscal.Sdk.Model
             /// Enum Sincronizado for value: sincronizado
             /// </summary>
             [EnumMember(Value = "sincronizado")]
-            Sincronizado = 2
+            Sincronizado = 2,
+
+            /// <summary>
+            /// Enum Erro for value: erro
+            /// </summary>
+            [EnumMember(Value = "erro")]
+            Erro = 3
 
         }
 
