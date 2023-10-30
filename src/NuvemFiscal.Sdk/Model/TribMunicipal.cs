@@ -42,10 +42,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="bM">bM.</param>
         /// <param name="exigSusp">exigSusp.</param>
         /// <param name="tpImunidade">Identificação da Imunidade do ISSQN - somente para o caso de Imunidade:  * 0 - Imunidade (tipo não informado na nota de origem)  * 1 - Patrimônio, renda ou serviços, uns dos outros (CF88, Art 150, VI, a)  * 2 - Templos de qualquer culto (CF88, Art 150, VI, b)  * 3 - Patrimônio, renda ou serviços dos partidos políticos, inclusive suas fundações, das entidades sindicais dos trabalhadores, das instituições de educação e de assistência social, sem fins lucrativos, atendidos os requisitos da lei (CF88, Art 150, VI, c)  * 4 - Livros, jornais, periódicos e o papel destinado a sua impressão (CF88, Art 150, VI, d).</param>
-        /// <param name="pAliq">Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.  Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.  Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente..</param>
-        /// <param name="vISSQN">Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calcular automaticamente.    Para emissões pelo Sistema Nacional NFS-e, essa propriedade é ignorada e o valor do ISSQN é determinado automaticamente pela SEFIN nacional..</param>
+        /// <param name="vBC">Valor da Base de Cálculo do ISSQN (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional..</param>
+        /// <param name="pAliq">Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.    **Observações**:  * Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.  * Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente..</param>
+        /// <param name="vISSQN">Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional..</param>
         /// <param name="tpRetISSQN">Tipo de retencao do ISSQN:  * 1 - Não Retido  * 2 - Retido pelo Tomador  * 3 - Retido pelo Intermediario.</param>
-        public TribMunicipal(int? tribISSQN = default(int?), string cLocIncid = default(string), string cPaisResult = default(string), BeneficioMunicipal bM = default(BeneficioMunicipal), ExigSuspensa exigSusp = default(ExigSuspensa), int? tpImunidade = default(int?), decimal? pAliq = default(decimal?), decimal? vISSQN = default(decimal?), int? tpRetISSQN = default(int?))
+        /// <param name="vLiq">Valor Líquido (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional..</param>
+        public TribMunicipal(int? tribISSQN = default(int?), string cLocIncid = default(string), string cPaisResult = default(string), BeneficioMunicipal bM = default(BeneficioMunicipal), ExigSuspensa exigSusp = default(ExigSuspensa), int? tpImunidade = default(int?), decimal? vBC = default(decimal?), decimal? pAliq = default(decimal?), decimal? vISSQN = default(decimal?), int? tpRetISSQN = default(int?), decimal? vLiq = default(decimal?))
         {
             // to ensure "tribISSQN" is required (not null)
             if (tribISSQN == null)
@@ -58,9 +60,11 @@ namespace NuvemFiscal.Sdk.Model
             this.BM = bM;
             this.exigSusp = exigSusp;
             this.tpImunidade = tpImunidade;
+            this.vBC = vBC;
             this.pAliq = pAliq;
             this.vISSQN = vISSQN;
             this.tpRetISSQN = tpRetISSQN;
+            this.vLiq = vLiq;
         }
 
         /// <summary>
@@ -104,16 +108,23 @@ namespace NuvemFiscal.Sdk.Model
         public int? tpImunidade { get; set; }
 
         /// <summary>
-        /// Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.  Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.  Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente.
+        /// Valor da Base de Cálculo do ISSQN (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.
         /// </summary>
-        /// <value>Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.  Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.  Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente.</value>
+        /// <value>Valor da Base de Cálculo do ISSQN (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.</value>
+        [DataMember(Name = "vBC", EmitDefaultValue = true)]
+        public decimal? vBC { get; set; }
+
+        /// <summary>
+        /// Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.    **Observações**:  * Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.  * Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente.
+        /// </summary>
+        /// <value>Valor da alíquota (%%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.    **Observações**:  * Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.  * Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente.</value>
         [DataMember(Name = "pAliq", EmitDefaultValue = true)]
         public decimal? pAliq { get; set; }
 
         /// <summary>
-        /// Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calcular automaticamente.    Para emissões pelo Sistema Nacional NFS-e, essa propriedade é ignorada e o valor do ISSQN é determinado automaticamente pela SEFIN nacional.
+        /// Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.
         /// </summary>
-        /// <value>Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calcular automaticamente.    Para emissões pelo Sistema Nacional NFS-e, essa propriedade é ignorada e o valor do ISSQN é determinado automaticamente pela SEFIN nacional.</value>
+        /// <value>Valor do ISSQN (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.</value>
         [DataMember(Name = "vISSQN", EmitDefaultValue = true)]
         public decimal? vISSQN { get; set; }
 
@@ -123,6 +134,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Tipo de retencao do ISSQN:  * 1 - Não Retido  * 2 - Retido pelo Tomador  * 3 - Retido pelo Intermediario</value>
         [DataMember(Name = "tpRetISSQN", EmitDefaultValue = true)]
         public int? tpRetISSQN { get; set; }
+
+        /// <summary>
+        /// Valor Líquido (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.
+        /// </summary>
+        /// <value>Valor Líquido (R$).    Caso você não informe esse campo, vamos calculá-lo automaticamente.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado e o valor é determinado automaticamente pela SEFIN nacional.</value>
+        [DataMember(Name = "vLiq", EmitDefaultValue = true)]
+        public decimal? vLiq { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,9 +156,11 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  BM: ").Append(BM).Append("\n");
             sb.Append("  exigSusp: ").Append(exigSusp).Append("\n");
             sb.Append("  tpImunidade: ").Append(tpImunidade).Append("\n");
+            sb.Append("  vBC: ").Append(vBC).Append("\n");
             sb.Append("  pAliq: ").Append(pAliq).Append("\n");
             sb.Append("  vISSQN: ").Append(vISSQN).Append("\n");
             sb.Append("  tpRetISSQN: ").Append(tpRetISSQN).Append("\n");
+            sb.Append("  vLiq: ").Append(vLiq).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -207,6 +227,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.tpImunidade.Equals(input.tpImunidade))
                 ) && 
                 (
+                    this.vBC == input.vBC ||
+                    (this.vBC != null &&
+                    this.vBC.Equals(input.vBC))
+                ) && 
+                (
                     this.pAliq == input.pAliq ||
                     (this.pAliq != null &&
                     this.pAliq.Equals(input.pAliq))
@@ -220,6 +245,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.tpRetISSQN == input.tpRetISSQN ||
                     (this.tpRetISSQN != null &&
                     this.tpRetISSQN.Equals(input.tpRetISSQN))
+                ) && 
+                (
+                    this.vLiq == input.vLiq ||
+                    (this.vLiq != null &&
+                    this.vLiq.Equals(input.vLiq))
                 );
         }
 
@@ -256,6 +286,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.tpImunidade.GetHashCode();
                 }
+                if (this.vBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.vBC.GetHashCode();
+                }
                 if (this.pAliq != null)
                 {
                     hashCode = (hashCode * 59) + this.pAliq.GetHashCode();
@@ -267,6 +301,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.tpRetISSQN != null)
                 {
                     hashCode = (hashCode * 59) + this.tpRetISSQN.GetHashCode();
+                }
+                if (this.vLiq != null)
+                {
+                    hashCode = (hashCode * 59) + this.vLiq.GetHashCode();
                 }
                 return hashCode;
             }
