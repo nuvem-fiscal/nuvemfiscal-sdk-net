@@ -437,7 +437,7 @@ catch (ApiException e)
 
 <a name="baixarpdfnfe"></a>
 # **BaixarPdfNfe**
-> FileParameter BaixarPdfNfe (string id, bool? logotipo = null, string mensagemRodape = null, bool? canhoto = null)
+> FileParameter BaixarPdfNfe (string id, bool? logotipo = null, string? mensagemRodape = null, bool? canhoto = null)
 
 Baixar PDF do DANFE
 
@@ -471,7 +471,7 @@ namespace Example
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
             var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
-            var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
+            var mensagemRodape = "mensagemRodape_example";  // string? | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
             var canhoto = true;  // bool? | Imprime o documento com o bloco de canhoto. (optional)  (default to true)
 
             try
@@ -517,7 +517,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
 | **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
-| **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
+| **mensagemRodape** | **string?** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
 | **canhoto** | **bool?** | Imprime o documento com o bloco de canhoto. | [optional] [default to true] |
 
 ### Tipo de retorno
@@ -543,7 +543,7 @@ catch (ApiException e)
 
 <a name="baixarpreviapdfnfe"></a>
 # **BaixarPreviaPdfNfe**
-> FileParameter BaixarPreviaPdfNfe (NfePedidoEmissao body, bool? logotipo = null, string mensagemRodape = null, bool? canhoto = null)
+> FileParameter BaixarPreviaPdfNfe (NfePedidoEmissao body, bool? logotipo = null, string? mensagemRodape = null, bool? canhoto = null)
 
 Prévia do PDF do DANFE
 
@@ -579,7 +579,7 @@ namespace Example
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var body = new NfePedidoEmissao(); // NfePedidoEmissao | 
             var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
-            var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
+            var mensagemRodape = "mensagemRodape_example";  // string? | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
             var canhoto = true;  // bool? | Imprime o documento com o bloco de canhoto. (optional)  (default to true)
 
             try
@@ -625,7 +625,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **body** | [**NfePedidoEmissao**](NfePedidoEmissao.md) |  |  |
 | **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
-| **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
+| **mensagemRodape** | **string?** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
 | **canhoto** | **bool?** | Imprime o documento com o bloco de canhoto. | [optional] [default to true] |
 
 ### Tipo de retorno
@@ -1457,7 +1457,7 @@ catch (ApiException e)
 
 <a name="cancelarnfe"></a>
 # **CancelarNfe**
-> DfeCancelamento CancelarNfe (string id, NfePedidoCancelamento body = null)
+> DfeCancelamento CancelarNfe (string id, NfePedidoCancelamento? body = null)
 
 Cancelar uma NF-e autorizada
 
@@ -1490,7 +1490,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
-            var body = new NfePedidoCancelamento(); // NfePedidoCancelamento |  (optional) 
+            var body = new NfePedidoCancelamento?(); // NfePedidoCancelamento? |  (optional) 
 
             try
             {
@@ -1534,7 +1534,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
-| **body** | [**NfePedidoCancelamento**](NfePedidoCancelamento.md) |  | [optional]  |
+| **body** | [**NfePedidoCancelamento?**](NfePedidoCancelamento?.md) |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -2163,7 +2163,7 @@ catch (ApiException e)
 
 <a name="consultarstatussefaznfe"></a>
 # **ConsultarStatusSefazNfe**
-> DfeSefazStatus ConsultarStatusSefazNfe (string cpfCnpj, string autorizador = null)
+> DfeSefazStatus ConsultarStatusSefazNfe (string cpfCnpj, string? autorizador = null)
 
 Consulta do Status do Serviço na SEFAZ Autorizadora
 
@@ -2198,7 +2198,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara.
-            var autorizador = "autorizador_example";  // string | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`, `SVRS`, `SVCAN`, `SVCRS`, `AN`;  * NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;  * MDF-e: `SVRS`;  * CT-e: `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional) 
+            var autorizador = "autorizador_example";  // string? | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`, `SVRS`, `SVCAN`, `SVCRS`, `AN`;  * NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;  * MDF-e: `SVRS`;  * CT-e: `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional) 
 
             try
             {
@@ -2242,7 +2242,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **autorizador** | **string** | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* | [optional]  |
+| **autorizador** | **string?** | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* | [optional]  |
 
 ### Tipo de retorno
 
@@ -2779,7 +2779,7 @@ catch (ApiException e)
 
 <a name="listarlotesnfe"></a>
 # **ListarLotesNfe**
-> DfeLoteListagem ListarLotesNfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null)
+> DfeLoteListagem ListarLotesNfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string? referencia = null)
 
 Listar lotes de NF-e
 
@@ -2818,7 +2818,7 @@ namespace Example
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
             var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
-            var referencia = "referencia_example";  // string |  (optional) 
+            var referencia = "referencia_example";  // string? |  (optional) 
 
             try
             {
@@ -2866,7 +2866,7 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
 | **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
-| **referencia** | **string** |  | [optional]  |
+| **referencia** | **string?** |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -2891,7 +2891,7 @@ catch (ApiException e)
 
 <a name="listarnfe"></a>
 # **ListarNfe**
-> DfeListagem ListarNfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null, string serie = null)
+> DfeListagem ListarNfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string? referencia = null, string? chave = null, string? serie = null)
 
 Listar NF-e
 
@@ -2930,9 +2930,9 @@ namespace Example
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
             var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
-            var referencia = "referencia_example";  // string | Seu identificador único para o documento. (optional) 
-            var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
-            var serie = "serie_example";  // string | Série do DF-e. (optional) 
+            var referencia = "referencia_example";  // string? | Seu identificador único para o documento. (optional) 
+            var chave = "chave_example";  // string? | Chave de acesso do DF-e. (optional) 
+            var serie = "serie_example";  // string? | Série do DF-e. (optional) 
 
             try
             {
@@ -2980,9 +2980,9 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
 | **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
-| **referencia** | **string** | Seu identificador único para o documento. | [optional]  |
-| **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
-| **serie** | **string** | Série do DF-e. | [optional]  |
+| **referencia** | **string?** | Seu identificador único para o documento. | [optional]  |
+| **chave** | **string?** | Chave de acesso do DF-e. | [optional]  |
+| **serie** | **string?** | Série do DF-e. | [optional]  |
 
 ### Tipo de retorno
 

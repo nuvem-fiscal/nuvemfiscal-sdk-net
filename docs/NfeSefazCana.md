@@ -6,7 +6,7 @@ Informações de registro aquisições de cana.
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **safra** | **string** | Identificação da safra. | 
-**_ref** | **string** | Mês e Ano de Referência, formato: MM/AAAA. | 
+**VarRef** | **string** | Mês e Ano de Referência, formato: MM/AAAA. | 
 **forDia** | [**List&lt;NfeSefazForDia&gt;**](NfeSefazForDia.md) |  | 
 **qTotMes** | **decimal?** | Total do mês. | 
 **qTotAnt** | **decimal?** | Total Anterior. | 

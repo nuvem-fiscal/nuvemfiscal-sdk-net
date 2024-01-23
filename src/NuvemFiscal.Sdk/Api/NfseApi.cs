@@ -31,7 +31,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="logotipo">Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional, default to false)</param>
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <returns>FileParameter</returns>
-        FileParameter BaixarPdfNfse(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string));
+        FileParameter BaixarPdfNfse(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?));
 
         /// <summary>
         /// Baixar PDF do DANFSE
@@ -44,7 +44,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="logotipo">Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional, default to false)</param>
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <returns>ApiResponse of FileParameter</returns>
-        ApiResponse<FileParameter> BaixarPdfNfseWithHttpInfo(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string));
+        ApiResponse<FileParameter> BaixarPdfNfseWithHttpInfo(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?));
         /// <summary>
         /// Baixar XML do evento de cancelamento
         /// </summary>
@@ -106,7 +106,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>NfseCancelamento</returns>
-        NfseCancelamento CancelarNfse(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento));
+        NfseCancelamento CancelarNfse(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?));
 
         /// <summary>
         /// Cancelar uma NFS-e autorizada
@@ -118,7 +118,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
-        ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento));
+        ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?));
         /// <summary>
         /// Consultar o cancelamento da NFS-e
         /// </summary>
@@ -269,7 +269,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>RpsLoteListagem</returns>
-        RpsLoteListagem ListarLotesNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string));
+        RpsLoteListagem ListarLotesNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?));
 
         /// <summary>
         /// Listar lotes de NFS-e
@@ -285,7 +285,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>ApiResponse of RpsLoteListagem</returns>
-        ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string));
+        ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?));
         /// <summary>
         /// Listar NFS-e
         /// </summary>
@@ -302,7 +302,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>NfseListagem</returns>
-        NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
+        NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?));
 
         /// <summary>
         /// Listar NFS-e
@@ -320,7 +320,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of NfseListagem</returns>
-        ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
+        ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?));
         /// <summary>
         /// Sincroniza dados na NFS-e a partir da Prefeitura
         /// </summary>
@@ -331,7 +331,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>NfseSincronizacao</returns>
-        NfseSincronizacao SincronizarNfse(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao));
+        NfseSincronizacao SincronizarNfse(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?));
 
         /// <summary>
         /// Sincroniza dados na NFS-e a partir da Prefeitura
@@ -343,7 +343,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NfseSincronizacao</returns>
-        ApiResponse<NfseSincronizacao> SincronizarNfseWithHttpInfo(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao));
+        ApiResponse<NfseSincronizacao> SincronizarNfseWithHttpInfo(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?));
         #endregion Synchronous Operations
     }
 
@@ -365,7 +365,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
-        System.Threading.Tasks.Task<FileParameter> BaixarPdfNfseAsync(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FileParameter> BaixarPdfNfseAsync(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Baixar PDF do DANFSE
@@ -379,7 +379,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarPdfNfseWithHttpInfoAsync(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> BaixarPdfNfseWithHttpInfoAsync(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Baixar XML do evento de cancelamento
         /// </summary>
@@ -460,7 +460,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
-        System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Cancelar uma NFS-e autorizada
@@ -473,7 +473,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Consultar o cancelamento da NFS-e
         /// </summary>
@@ -654,7 +654,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RpsLoteListagem</returns>
-        System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar lotes de NFS-e
@@ -671,7 +671,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RpsLoteListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Listar NFS-e
         /// </summary>
@@ -689,7 +689,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseListagem</returns>
-        System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar NFS-e
@@ -708,7 +708,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Sincroniza dados na NFS-e a partir da Prefeitura
         /// </summary>
@@ -720,7 +720,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseSincronizacao</returns>
-        System.Threading.Tasks.Task<NfseSincronizacao> SincronizarNfseAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NfseSincronizacao> SincronizarNfseAsync(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Sincroniza dados na NFS-e a partir da Prefeitura
@@ -733,7 +733,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseSincronizacao)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NfseSincronizacao>> SincronizarNfseWithHttpInfoAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NfseSincronizacao>> SincronizarNfseWithHttpInfoAsync(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -955,7 +955,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="logotipo">Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional, default to false)</param>
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <returns>FileParameter</returns>
-        public FileParameter BaixarPdfNfse(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string))
+        public FileParameter BaixarPdfNfse(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> localVarResponse = BaixarPdfNfseWithHttpInfo(id, logotipo, mensagemRodape);
             return localVarResponse.Data;
@@ -969,7 +969,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="logotipo">Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional, default to false)</param>
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <returns>ApiResponse of FileParameter</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarPdfNfseWithHttpInfo(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> BaixarPdfNfseWithHttpInfo(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1034,7 +1034,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
-        public async System.Threading.Tasks.Task<FileParameter> BaixarPdfNfseAsync(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FileParameter> BaixarPdfNfseAsync(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<FileParameter> localVarResponse = await BaixarPdfNfseWithHttpInfoAsync(id, logotipo, mensagemRodape, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1049,7 +1049,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="mensagemRodape">Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60;    Default: &#x60;\&quot;\&quot;&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarPdfNfseWithHttpInfoAsync(string id, bool? logotipo = default(bool?), string mensagemRodape = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<FileParameter>> BaixarPdfNfseWithHttpInfoAsync(string id, bool? logotipo = default(bool?), string? mensagemRodape = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1526,7 +1526,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>NfseCancelamento</returns>
-        public NfseCancelamento CancelarNfse(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento))
+        public NfseCancelamento CancelarNfse(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> localVarResponse = CancelarNfseWithHttpInfo(id, body);
             return localVarResponse.Data;
@@ -1539,7 +1539,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NfseCancelamento</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento))
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1597,7 +1597,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseCancelamento</returns>
-        public async System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NfseCancelamento> CancelarNfseAsync(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento> localVarResponse = await CancelarNfseWithHttpInfoAsync(id, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1611,7 +1611,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, NfsePedidoCancelamento? body = default(NfsePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2650,7 +2650,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>RpsLoteListagem</returns>
-        public RpsLoteListagem ListarLotesNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string))
+        public RpsLoteListagem ListarLotesNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> localVarResponse = ListarLotesNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia);
             return localVarResponse.Data;
@@ -2667,7 +2667,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>ApiResponse of RpsLoteListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> ListarLotesNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -2748,7 +2748,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RpsLoteListagem</returns>
-        public async System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<RpsLoteListagem> ListarLotesNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem> localVarResponse = await ListarLotesNfseWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2766,7 +2766,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RpsLoteListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<RpsLoteListagem>> ListarLotesNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -2851,7 +2851,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>NfseListagem</returns>
-        public NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
+        public NfseListagem ListarNfse(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = ListarNfseWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
             return localVarResponse.Data;
@@ -2870,7 +2870,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of NfseListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> ListarNfseWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -2961,7 +2961,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseListagem</returns>
-        public async System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NfseListagem> ListarNfseAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem> localVarResponse = await ListarNfseWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2981,7 +2981,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseListagem>> ListarNfseWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -3068,7 +3068,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>NfseSincronizacao</returns>
-        public NfseSincronizacao SincronizarNfse(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao))
+        public NfseSincronizacao SincronizarNfse(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao> localVarResponse = SincronizarNfseWithHttpInfo(id, body);
             return localVarResponse.Data;
@@ -3081,7 +3081,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NfseSincronizacao</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao> SincronizarNfseWithHttpInfo(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao))
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao> SincronizarNfseWithHttpInfo(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3139,7 +3139,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NfseSincronizacao</returns>
-        public async System.Threading.Tasks.Task<NfseSincronizacao> SincronizarNfseAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NfseSincronizacao> SincronizarNfseAsync(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao> localVarResponse = await SincronizarNfseWithHttpInfoAsync(id, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -3153,7 +3153,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NfseSincronizacao)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao>> SincronizarNfseWithHttpInfoAsync(string id, NfsePedidoSincronizacao body = default(NfsePedidoSincronizacao), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseSincronizacao>> SincronizarNfseWithHttpInfoAsync(string id, NfsePedidoSincronizacao? body = default(NfsePedidoSincronizacao?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
