@@ -40,19 +40,20 @@ using NuvemFiscal.Sdk.Client;
 using NuvemFiscal.Sdk.Model;
 ```
 
-
 ### Instanciando a API 
 Cada ApiClass (mais especificamente o ApiClient dentro dela) irá criar uma instância de HttpClient, e irá usá-la 
 durante todo o ciclo de vida da ApiClass, e fará um dispose quando o método Dispose for chamado.
 
 Para melhor gerenciar as conexões, é uma boa prática reutilizar os objetos HttpClient e HttpClientHandler 
 (visite [here](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net) para mais informações). 
-Para usar sua própria instância de HttpClient, simplesmente passe-a ao construtor da ApiClass.
+Para usar sua própria instância de HttpClient, simplesmente passe-a ao construtor da ApiClass. 
+Também é importante **habilitar a descompactação automática para conteúdos gzip**, para ser possível receber XML e PDF (DANFE) via SDK:
 
 ```csharp
-HttpClientHandler yourHandler = new HttpClientHandler();
-HttpClient yourHttpClient = new HttpClient(yourHandler);
-var api = new CepApi(yourHttpClient, yourHandler);
+HttpClientHandler httpClientHandler = new HttpClientHandler();
+httpClientHandler.AutomaticDecompression = DecompressionMethods.All;
+HttpClient httpClient = new HttpClient(httpClientHandler);
+var api = new CepApi(httpClient, httpClientHandler);
 ```
 
 Caso queira usar o HttpClient e não tiver acesso ao handler (por exemplo, em um contexto DI no Asp.net Core onde esitver usando o IHttpClientFactory):
@@ -68,10 +69,12 @@ Você precisará gerenciar isso manualmente no setup do seu HttpClient, caso con
 Segue um exemplo de setup do DI em um projeto web:
 
 ```csharp
-services.AddHttpClient<CepApi>(httpClient =>
-   new CepApi(httpClient));
+services.AddHttpClient<CepApi>(httpClient => new CepApi(httpClient)
+  .ConfigurePrimaryHttpMessageHandler(config => new HttpClientHandler
+    {
+       AutomaticDecompression = DecompressionMethods.All
+    });
 ```
-
 
 ### Uso opcional de proxy
 
