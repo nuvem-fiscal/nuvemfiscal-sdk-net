@@ -40,6 +40,7 @@ using NuvemFiscal.Sdk.Client;
 using NuvemFiscal.Sdk.Model;
 ```
 
+
 ### Instanciando a API 
 Cada ApiClass (mais especificamente o ApiClient dentro dela) irá criar uma instância de HttpClient, e irá usá-la 
 durante todo o ciclo de vida da ApiClass, e fará um dispose quando o método Dispose for chamado.
@@ -75,6 +76,7 @@ services.AddHttpClient<CepApi>(httpClient => new CepApi(httpClient)
        AutomaticDecompression = DecompressionMethods.All
     });
 ```
+
 
 ### Uso opcional de proxy
 
