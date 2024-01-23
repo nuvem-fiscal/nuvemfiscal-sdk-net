@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Rps" /> class.
         /// </summary>
-        /// <param name="rps">rps.</param>
+        /// <param name="varRps">varRps.</param>
         /// <param name="competencia">competencia.</param>
         /// <param name="naturezaTributacao">Natureza da tributação  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial..</param>
         /// <param name="prestador">prestador.</param>
@@ -45,7 +45,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="construcaoCivil">construcaoCivil.</param>
         /// <param name="servicos">servicos (required).</param>
         /// <param name="outrasInformacoes">Informações adicionais ao documento..</param>
-        public Rps(RpsDados rps = default(RpsDados), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsDadosPrestador prestador = default(RpsDadosPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>), string outrasInformacoes = default(string))
+        public Rps(RpsDados varRps = default(RpsDados), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsDadosPrestador prestador = default(RpsDadosPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>), string outrasInformacoes = default(string))
         {
             // to ensure "servicos" is required (not null)
             if (servicos == null)
@@ -53,7 +53,7 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("servicos is a required property for Rps and cannot be null");
             }
             this.servicos = servicos;
-            this._rps = rps;
+            this.VarRps = varRps;
             this.competencia = competencia;
             this.natureza_tributacao = naturezaTributacao;
             this.prestador = prestador;
@@ -64,10 +64,10 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets _rps
+        /// Gets or Sets VarRps
         /// </summary>
         [DataMember(Name = "rps", EmitDefaultValue = false)]
-        public RpsDados _rps { get; set; }
+        public RpsDados VarRps { get; set; }
 
         /// <summary>
         /// Gets or Sets competencia
@@ -127,7 +127,7 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Rps {\n");
-            sb.Append("  _rps: ").Append(_rps).Append("\n");
+            sb.Append("  VarRps: ").Append(VarRps).Append("\n");
             sb.Append("  competencia: ").Append(competencia).Append("\n");
             sb.Append("  natureza_tributacao: ").Append(natureza_tributacao).Append("\n");
             sb.Append("  prestador: ").Append(prestador).Append("\n");
@@ -172,9 +172,9 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
-                    this._rps == input._rps ||
-                    (this._rps != null &&
-                    this._rps.Equals(input._rps))
+                    this.VarRps == input.VarRps ||
+                    (this.VarRps != null &&
+                    this.VarRps.Equals(input.VarRps))
                 ) && 
                 (
                     this.competencia == input.competencia ||
@@ -227,9 +227,9 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this._rps != null)
+                if (this.VarRps != null)
                 {
-                    hashCode = (hashCode * 59) + this._rps.GetHashCode();
+                    hashCode = (hashCode * 59) + this.VarRps.GetHashCode();
                 }
                 if (this.competencia != null)
                 {
@@ -269,7 +269,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

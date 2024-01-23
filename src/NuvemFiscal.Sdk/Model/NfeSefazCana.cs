@@ -37,7 +37,7 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazCana" /> class.
         /// </summary>
         /// <param name="safra">Identificação da safra. (required).</param>
-        /// <param name="_ref">Mês e Ano de Referência, formato: MM/AAAA. (required).</param>
+        /// <param name="varRef">Mês e Ano de Referência, formato: MM/AAAA. (required).</param>
         /// <param name="forDia">forDia (required).</param>
         /// <param name="qTotMes">Total do mês. (required).</param>
         /// <param name="qTotAnt">Total Anterior. (required).</param>
@@ -46,7 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vFor">Valor  dos fornecimentos. (required).</param>
         /// <param name="vTotDed">Valor Total das Deduções. (required).</param>
         /// <param name="vLiqFor">Valor Líquido dos fornecimentos. (required).</param>
-        public NfeSefazCana(string safra = default(string), string _ref = default(string), List<NfeSefazForDia> forDia = default(List<NfeSefazForDia>), decimal? qTotMes = default(decimal?), decimal? qTotAnt = default(decimal?), decimal? qTotGer = default(decimal?), List<NfeSefazDeduc> deduc = default(List<NfeSefazDeduc>), decimal? vFor = default(decimal?), decimal? vTotDed = default(decimal?), decimal? vLiqFor = default(decimal?))
+        public NfeSefazCana(string safra = default(string), string varRef = default(string), List<NfeSefazForDia> forDia = default(List<NfeSefazForDia>), decimal? qTotMes = default(decimal?), decimal? qTotAnt = default(decimal?), decimal? qTotGer = default(decimal?), List<NfeSefazDeduc> deduc = default(List<NfeSefazDeduc>), decimal? vFor = default(decimal?), decimal? vTotDed = default(decimal?), decimal? vLiqFor = default(decimal?))
         {
             // to ensure "safra" is required (not null)
             if (safra == null)
@@ -54,12 +54,12 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("safra is a required property for NfeSefazCana and cannot be null");
             }
             this.safra = safra;
-            // to ensure "_ref" is required (not null)
-            if (_ref == null)
+            // to ensure "varRef" is required (not null)
+            if (varRef == null)
             {
-                throw new ArgumentNullException("_ref is a required property for NfeSefazCana and cannot be null");
+                throw new ArgumentNullException("varRef is a required property for NfeSefazCana and cannot be null");
             }
-            this._ref = _ref;
+            this.VarRef = varRef;
             // to ensure "forDia" is required (not null)
             if (forDia == null)
             {
@@ -117,7 +117,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Mês e Ano de Referência, formato: MM/AAAA.</value>
         [DataMember(Name = "ref", IsRequired = true, EmitDefaultValue = true)]
-        public string _ref { get; set; }
+        public string VarRef { get; set; }
 
         /// <summary>
         /// Gets or Sets forDia
@@ -182,7 +182,7 @@ namespace NuvemFiscal.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class NfeSefazCana {\n");
             sb.Append("  safra: ").Append(safra).Append("\n");
-            sb.Append("  _ref: ").Append(_ref).Append("\n");
+            sb.Append("  VarRef: ").Append(VarRef).Append("\n");
             sb.Append("  forDia: ").Append(forDia).Append("\n");
             sb.Append("  qTotMes: ").Append(qTotMes).Append("\n");
             sb.Append("  qTotAnt: ").Append(qTotAnt).Append("\n");
@@ -232,9 +232,9 @@ namespace NuvemFiscal.Sdk.Model
                     this.safra.Equals(input.safra))
                 ) && 
                 (
-                    this._ref == input._ref ||
-                    (this._ref != null &&
-                    this._ref.Equals(input._ref))
+                    this.VarRef == input.VarRef ||
+                    (this.VarRef != null &&
+                    this.VarRef.Equals(input.VarRef))
                 ) && 
                 (
                     this.forDia == input.forDia ||
@@ -293,9 +293,9 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.safra.GetHashCode();
                 }
-                if (this._ref != null)
+                if (this.VarRef != null)
                 {
-                    hashCode = (hashCode * 59) + this._ref.GetHashCode();
+                    hashCode = (hashCode * 59) + this.VarRef.GetHashCode();
                 }
                 if (this.forDia != null)
                 {
@@ -338,7 +338,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // safra (string) maxLength
             if (this.safra != null && this.safra.Length > 9)
