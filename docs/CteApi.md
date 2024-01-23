@@ -1537,7 +1537,7 @@ catch (ApiException e)
 
 <a name="consultarstatussefazcte"></a>
 # **ConsultarStatusSefazCte**
-> DfeSefazStatus ConsultarStatusSefazCte (string cpfCnpj, string? autorizador = null)
+> DfeSefazStatus ConsultarStatusSefazCte (string cpfCnpj, string autorizador = null)
 
 Consulta do Status do Serviço na SEFAZ Autorizadora
 
@@ -1572,7 +1572,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara.
-            var autorizador = "autorizador_example";  // string? | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`, `SVRS`, `SVCAN`, `SVCRS`, `AN`;  * NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;  * MDF-e: `SVRS`;  * CT-e: `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional) 
+            var autorizador = "autorizador_example";  // string | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`, `SVRS`, `SVCAN`, `SVCRS`, `AN`;  * NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;  * MDF-e: `SVRS`;  * CT-e: `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional) 
 
             try
             {
@@ -1616,7 +1616,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **autorizador** | **string?** | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* | [optional]  |
+| **autorizador** | **string** | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* | [optional]  |
 
 ### Tipo de retorno
 
@@ -1845,7 +1845,7 @@ catch (ApiException e)
 
 <a name="listarcte"></a>
 # **ListarCte**
-> DfeListagem ListarCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string? referencia = null, string? chave = null, string? serie = null)
+> DfeListagem ListarCte (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, string referencia = null, string chave = null, string serie = null)
 
 Listar CT-e
 
@@ -1884,9 +1884,9 @@ namespace Example
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
             var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
-            var referencia = "referencia_example";  // string? | Seu identificador único para o documento. (optional) 
-            var chave = "chave_example";  // string? | Chave de acesso do DF-e. (optional) 
-            var serie = "serie_example";  // string? | Série do DF-e. (optional) 
+            var referencia = "referencia_example";  // string | Seu identificador único para o documento. (optional) 
+            var chave = "chave_example";  // string | Chave de acesso do DF-e. (optional) 
+            var serie = "serie_example";  // string | Série do DF-e. (optional) 
 
             try
             {
@@ -1934,9 +1934,9 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
 | **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
-| **referencia** | **string?** | Seu identificador único para o documento. | [optional]  |
-| **chave** | **string?** | Chave de acesso do DF-e. | [optional]  |
-| **serie** | **string?** | Série do DF-e. | [optional]  |
+| **referencia** | **string** | Seu identificador único para o documento. | [optional]  |
+| **chave** | **string** | Chave de acesso do DF-e. | [optional]  |
+| **serie** | **string** | Série do DF-e. | [optional]  |
 
 ### Tipo de retorno
 

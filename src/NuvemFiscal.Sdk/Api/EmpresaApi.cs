@@ -344,7 +344,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>EmpresaCertificado</returns>
-        EmpresaCertificado EnviarCertificadoEmpresa(string cpfCnpj, FileParameter? input = default(FileParameter?));
+        EmpresaCertificado EnviarCertificadoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter));
 
         /// <summary>
         /// Upload de certificado
@@ -356,7 +356,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
-        ApiResponse<EmpresaCertificado> EnviarCertificadoEmpresaWithHttpInfo(string cpfCnpj, FileParameter? input = default(FileParameter?));
+        ApiResponse<EmpresaCertificado> EnviarCertificadoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter));
         /// <summary>
         /// Enviar logotipo
         /// </summary>
@@ -367,7 +367,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns></returns>
-        void EnviarLogotipoEmpresa(string cpfCnpj, FileParameter? input = default(FileParameter?));
+        void EnviarLogotipoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter));
 
         /// <summary>
         /// Enviar logotipo
@@ -379,7 +379,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> EnviarLogotipoEmpresaWithHttpInfo(string cpfCnpj, FileParameter? input = default(FileParameter?));
+        ApiResponse<Object> EnviarLogotipoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter));
         /// <summary>
         /// Deletar certificado
         /// </summary>
@@ -446,7 +446,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>EmpresaListagem</returns>
-        EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?));
+        EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string));
 
         /// <summary>
         /// Listar empresas
@@ -460,7 +460,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>ApiResponse of EmpresaListagem</returns>
-        ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?));
+        ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string));
         #endregion Synchronous Operations
     }
 
@@ -863,7 +863,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
-        System.Threading.Tasks.Task<EmpresaCertificado> EnviarCertificadoEmpresaAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<EmpresaCertificado> EnviarCertificadoEmpresaAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Upload de certificado
@@ -876,7 +876,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EmpresaCertificado>> EnviarCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<EmpresaCertificado>> EnviarCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Enviar logotipo
         /// </summary>
@@ -888,7 +888,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task EnviarLogotipoEmpresaAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task EnviarLogotipoEmpresaAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Enviar logotipo
@@ -901,7 +901,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> EnviarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> EnviarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Deletar certificado
         /// </summary>
@@ -984,7 +984,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaListagem</returns>
-        System.Threading.Tasks.Task<EmpresaListagem> ListarEmpresasAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<EmpresaListagem> ListarEmpresasAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar empresas
@@ -999,7 +999,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EmpresaListagem>> ListarEmpresasWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<EmpresaListagem>> ListarEmpresasWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -3526,7 +3526,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>EmpresaCertificado</returns>
-        public EmpresaCertificado EnviarCertificadoEmpresa(string cpfCnpj, FileParameter? input = default(FileParameter?))
+        public EmpresaCertificado EnviarCertificadoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado> localVarResponse = EnviarCertificadoEmpresaWithHttpInfo(cpfCnpj, input);
             return localVarResponse.Data;
@@ -3539,7 +3539,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>ApiResponse of EmpresaCertificado</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado> EnviarCertificadoEmpresaWithHttpInfo(string cpfCnpj, FileParameter? input = default(FileParameter?))
+        public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado> EnviarCertificadoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -3600,7 +3600,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaCertificado</returns>
-        public async System.Threading.Tasks.Task<EmpresaCertificado> EnviarCertificadoEmpresaAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<EmpresaCertificado> EnviarCertificadoEmpresaAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado> localVarResponse = await EnviarCertificadoEmpresaWithHttpInfoAsync(cpfCnpj, input, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -3614,7 +3614,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaCertificado)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado>> EnviarCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaCertificado>> EnviarCertificadoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -3677,7 +3677,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns></returns>
-        public void EnviarLogotipoEmpresa(string cpfCnpj, FileParameter? input = default(FileParameter?))
+        public void EnviarLogotipoEmpresa(string cpfCnpj, FileParameter input = default(FileParameter))
         {
             EnviarLogotipoEmpresaWithHttpInfo(cpfCnpj, input);
         }
@@ -3689,7 +3689,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <param name="input"> (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<Object> EnviarLogotipoEmpresaWithHttpInfo(string cpfCnpj, FileParameter? input = default(FileParameter?))
+        public NuvemFiscal.Sdk.Client.ApiResponse<Object> EnviarLogotipoEmpresaWithHttpInfo(string cpfCnpj, FileParameter input = default(FileParameter))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -3749,7 +3749,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task EnviarLogotipoEmpresaAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task EnviarLogotipoEmpresaAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             await EnviarLogotipoEmpresaWithHttpInfoAsync(cpfCnpj, input, cancellationToken).ConfigureAwait(false);
         }
@@ -3762,7 +3762,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="input"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Object>> EnviarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter? input = default(FileParameter?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Object>> EnviarLogotipoEmpresaWithHttpInfoAsync(string cpfCnpj, FileParameter input = default(FileParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -4225,7 +4225,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>EmpresaListagem</returns>
-        public EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?))
+        public EmpresaListagem ListarEmpresas(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem> localVarResponse = ListarEmpresasWithHttpInfo(top, skip, inlinecount, cpfCnpj);
             return localVarResponse.Data;
@@ -4240,7 +4240,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <returns>ApiResponse of EmpresaListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?))
+        public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem> ListarEmpresasWithHttpInfo(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string))
         {
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
 
@@ -4309,7 +4309,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EmpresaListagem</returns>
-        public async System.Threading.Tasks.Task<EmpresaListagem> ListarEmpresasAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<EmpresaListagem> ListarEmpresasAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem> localVarResponse = await ListarEmpresasWithHttpInfoAsync(top, skip, inlinecount, cpfCnpj, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -4325,7 +4325,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem>> ListarEmpresasWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? cpfCnpj = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaListagem>> ListarEmpresasWithHttpInfoAsync(int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string cpfCnpj = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();

@@ -218,7 +218,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <returns>DfeCancelamento</returns>
-        DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?));
+        DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento));
 
         /// <summary>
         /// Cancelar um MDF-e autorizado
@@ -230,7 +230,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
-        ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?));
+        ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento));
         /// <summary>
         /// Consultar o cancelamento do MDF-e
         /// </summary>
@@ -355,7 +355,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <returns>DfeSefazStatus</returns>
-        DfeSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj, string? autorizador = default(string?));
+        DfeSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj, string autorizador = default(string));
 
         /// <summary>
         /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -367,7 +367,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <returns>ApiResponse of DfeSefazStatus</returns>
-        ApiResponse<DfeSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj, string? autorizador = default(string?));
+        ApiResponse<DfeSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj, string autorizador = default(string));
         /// <summary>
         /// Emitir lote de MDF-e
         /// </summary>
@@ -478,7 +478,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>DfeLoteListagem</returns>
-        DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?));
+        DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string));
 
         /// <summary>
         /// Listar lotes de MDF-e
@@ -494,7 +494,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>ApiResponse of DfeLoteListagem</returns>
-        ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?));
+        ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string));
         /// <summary>
         /// Listar MDF-e
         /// </summary>
@@ -511,7 +511,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
-        DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?));
+        DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
 
         /// <summary>
         /// Listar MDF-e
@@ -529,7 +529,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
-        ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?));
+        ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string));
         /// <summary>
         /// Sincroniza dados no MDF-e a partir da SEFAZ
         /// </summary>
@@ -803,7 +803,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
-        System.Threading.Tasks.Task<DfeCancelamento> CancelarMdfeAsync(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeCancelamento> CancelarMdfeAsync(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Cancelar um MDF-e autorizado
@@ -816,7 +816,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeCancelamento>> CancelarMdfeWithHttpInfoAsync(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeCancelamento>> CancelarMdfeWithHttpInfoAsync(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Consultar o cancelamento do MDF-e
         /// </summary>
@@ -966,7 +966,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeSefazStatus</returns>
-        System.Threading.Tasks.Task<DfeSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj, string? autorizador = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj, string autorizador = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Consulta do Status do Serviço na SEFAZ Autorizadora
@@ -979,7 +979,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeSefazStatus)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj, string? autorizador = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj, string autorizador = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Emitir lote de MDF-e
         /// </summary>
@@ -1116,7 +1116,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeLoteListagem</returns>
-        System.Threading.Tasks.Task<DfeLoteListagem> ListarLotesMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeLoteListagem> ListarLotesMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar lotes de MDF-e
@@ -1133,7 +1133,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeLoteListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeLoteListagem>> ListarLotesMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeLoteListagem>> ListarLotesMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Listar MDF-e
         /// </summary>
@@ -1151,7 +1151,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeListagem</returns>
-        System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar MDF-e
@@ -1170,7 +1170,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Sincroniza dados no MDF-e a partir da SEFAZ
         /// </summary>
@@ -2796,7 +2796,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <returns>DfeCancelamento</returns>
-        public DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?))
+        public DfeCancelamento CancelarMdfe(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento> localVarResponse = CancelarMdfeWithHttpInfo(id, body);
             return localVarResponse.Data;
@@ -2809,7 +2809,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único do MDF-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <returns>ApiResponse of DfeCancelamento</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento> CancelarMdfeWithHttpInfo(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2867,7 +2867,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeCancelamento</returns>
-        public async System.Threading.Tasks.Task<DfeCancelamento> CancelarMdfeAsync(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeCancelamento> CancelarMdfeAsync(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento> localVarResponse = await CancelarMdfeWithHttpInfoAsync(id, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2881,7 +2881,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="body">Dados do cancelamento. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCancelamento)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento>> CancelarMdfeWithHttpInfoAsync(string id, MdfePedidoCancelamento? body = default(MdfePedidoCancelamento?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeCancelamento>> CancelarMdfeWithHttpInfoAsync(string id, MdfePedidoCancelamento body = default(MdfePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -3763,7 +3763,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <returns>DfeSefazStatus</returns>
-        public DfeSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj, string? autorizador = default(string?))
+        public DfeSefazStatus ConsultarStatusSefazMdfe(string cpfCnpj, string autorizador = default(string))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus> localVarResponse = ConsultarStatusSefazMdfeWithHttpInfo(cpfCnpj, autorizador);
             return localVarResponse.Data;
@@ -3776,7 +3776,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF/CNPJ do emitente.  Utilize o valor sem máscara.</param>
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <returns>ApiResponse of DfeSefazStatus</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj, string? autorizador = default(string?))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus> ConsultarStatusSefazMdfeWithHttpInfo(string cpfCnpj, string autorizador = default(string))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -3836,7 +3836,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeSefazStatus</returns>
-        public async System.Threading.Tasks.Task<DfeSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj, string? autorizador = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeSefazStatus> ConsultarStatusSefazMdfeAsync(string cpfCnpj, string autorizador = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus> localVarResponse = await ConsultarStatusSefazMdfeWithHttpInfoAsync(cpfCnpj, autorizador, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -3850,7 +3850,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="autorizador">Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeSefazStatus)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj, string? autorizador = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeSefazStatus>> ConsultarStatusSefazMdfeWithHttpInfoAsync(string cpfCnpj, string autorizador = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -4653,7 +4653,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>DfeLoteListagem</returns>
-        public DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?))
+        public DfeLoteListagem ListarLotesMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> localVarResponse = ListarLotesMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia);
             return localVarResponse.Data;
@@ -4670,7 +4670,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="inlinecount">Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional, default to false)</param>
         /// <param name="referencia"> (optional)</param>
         /// <returns>ApiResponse of DfeLoteListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> ListarLotesMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -4751,7 +4751,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeLoteListagem</returns>
-        public async System.Threading.Tasks.Task<DfeLoteListagem> ListarLotesMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeLoteListagem> ListarLotesMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem> localVarResponse = await ListarLotesMdfeWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -4769,7 +4769,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="referencia"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeLoteListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem>> ListarLotesMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeLoteListagem>> ListarLotesMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -4854,7 +4854,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>DfeListagem</returns>
-        public DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?))
+        public DfeListagem ListarMdfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = ListarMdfeWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie);
             return localVarResponse.Data;
@@ -4873,7 +4873,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chave">Chave de acesso do DF-e. (optional)</param>
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <returns>ApiResponse of DfeListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> ListarMdfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -4964,7 +4964,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DfeListagem</returns>
-        public async System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DfeListagem> ListarMdfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem> localVarResponse = await ListarMdfeWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, referencia, chave, serie, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -4984,7 +4984,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="serie">Série do DF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string? referencia = default(string?), string? chave = default(string?), string? serie = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeListagem>> ListarMdfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), string referencia = default(string), string chave = default(string), string serie = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)

@@ -1649,7 +1649,7 @@ catch (ApiException e)
 
 <a name="enviarcertificadoempresa"></a>
 # **EnviarCertificadoEmpresa**
-> EmpresaCertificado EnviarCertificadoEmpresa (string cpfCnpj, FileParameter? input = null)
+> EmpresaCertificado EnviarCertificadoEmpresa (string cpfCnpj, FileParameter input = null)
 
 Upload de certificado
 
@@ -1684,7 +1684,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
-            var input = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter? |  (optional) 
+            var input = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter |  (optional) 
 
             try
             {
@@ -1728,7 +1728,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
-| **input** | **FileParameter?****FileParameter?** |  | [optional]  |
+| **input** | **FileParameter****FileParameter** |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -1753,7 +1753,7 @@ catch (ApiException e)
 
 <a name="enviarlogotipoempresa"></a>
 # **EnviarLogotipoEmpresa**
-> void EnviarLogotipoEmpresa (string cpfCnpj, FileParameter? input = null)
+> void EnviarLogotipoEmpresa (string cpfCnpj, FileParameter input = null)
 
 Enviar logotipo
 
@@ -1788,7 +1788,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
-            var input = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter? |  (optional) 
+            var input = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter |  (optional) 
 
             try
             {
@@ -1828,7 +1828,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
-| **input** | **FileParameter?****FileParameter?** |  | [optional]  |
+| **input** | **FileParameter****FileParameter** |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -2141,7 +2141,7 @@ void (empty response body)
 
 <a name="listarempresas"></a>
 # **ListarEmpresas**
-> EmpresaListagem ListarEmpresas (int? top = null, int? skip = null, bool? inlinecount = null, string? cpfCnpj = null)
+> EmpresaListagem ListarEmpresas (int? top = null, int? skip = null, bool? inlinecount = null, string cpfCnpj = null)
 
 Listar empresas
 
@@ -2178,7 +2178,7 @@ namespace Example
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
             var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
-            var cpfCnpj = "cpfCnpj_example";  // string? | Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional) 
+            var cpfCnpj = "cpfCnpj_example";  // string | Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. (optional) 
 
             try
             {
@@ -2224,7 +2224,7 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
 | **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
-| **cpfCnpj** | **string?** | Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. | [optional]  |
+| **cpfCnpj** | **string** | Filtrar pelo CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. | [optional]  |
 
 ### Tipo de retorno
 
