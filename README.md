@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.22.3
-- Versão do SDK: 2.22.0
+- Versão da API: 2.26.10
+- Versão do SDK: 2.23.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -276,8 +276,10 @@ Classe | Método | Endpoint | Descrição
 *NfseApi* | [**BaixarXmlDps**](docs/NfseApi.md#baixarxmldps) | **GET** /nfse/{id}/xml/dps | Baixar XML da DPS
 *NfseApi* | [**BaixarXmlNfse**](docs/NfseApi.md#baixarxmlnfse) | **GET** /nfse/{id}/xml | Baixar XML da NFS-e processada
 *NfseApi* | [**CancelarNfse**](docs/NfseApi.md#cancelarnfse) | **POST** /nfse/{id}/cancelamento | Cancelar uma NFS-e autorizada
+*NfseApi* | [**CidadesAtendidas**](docs/NfseApi.md#cidadesatendidas) | **GET** /nfse/cidades | Cidades atendidas
 *NfseApi* | [**ConsultarCancelamentoNfse**](docs/NfseApi.md#consultarcancelamentonfse) | **GET** /nfse/{id}/cancelamento | Consultar o cancelamento da NFS-e
 *NfseApi* | [**ConsultarLoteNfse**](docs/NfseApi.md#consultarlotenfse) | **GET** /nfse/lotes/{id} | Consultar lote de NFS-e
+*NfseApi* | [**ConsultarMetadados**](docs/NfseApi.md#consultarmetadados) | **GET** /nfse/cidades/{codigo_ibge} | Consultar metadados
 *NfseApi* | [**ConsultarNfse**](docs/NfseApi.md#consultarnfse) | **GET** /nfse/{id} | Consultar NFS-e
 *NfseApi* | [**EmitirLoteNfse**](docs/NfseApi.md#emitirlotenfse) | **POST** /nfse/lotes | Emitir lote de NFS-e
 *NfseApi* | [**EmitirLoteNfseDps**](docs/NfseApi.md#emitirlotenfsedps) | **POST** /nfse/dps/lotes | Emitir lote de NFS-e
@@ -647,6 +649,8 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfeSefazVol](docs/NfeSefazVol.md)
  - [Model.Nfse](docs/Nfse.md)
  - [Model.NfseCancelamento](docs/NfseCancelamento.md)
+ - [Model.NfseCidadeMetadados](docs/NfseCidadeMetadados.md)
+ - [Model.NfseCidadesAtendidas](docs/NfseCidadesAtendidas.md)
  - [Model.NfseDpsPedidoEmissao](docs/NfseDpsPedidoEmissao.md)
  - [Model.NfseListagem](docs/NfseListagem.md)
  - [Model.NfseLoteDpsPedidoEmissao](docs/NfseLoteDpsPedidoEmissao.md)

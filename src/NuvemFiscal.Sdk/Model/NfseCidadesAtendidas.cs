@@ -23,60 +23,35 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// NfseSincronizacao
+    /// NfseCidadesAtendidas
     /// </summary>
-    [DataContract(Name = "NfseSincronizacao")]
-    public partial class NfseSincronizacao : IEquatable<NfseSincronizacao>, IValidatableObject
+    [DataContract(Name = "NfseCidadesAtendidas")]
+    public partial class NfseCidadesAtendidas : IEquatable<NfseCidadesAtendidas>, IValidatableObject
     {
         /// <summary>
-        /// Situação atual da sincronização.
+        /// Initializes a new instance of the <see cref="NfseCidadesAtendidas" /> class.
         /// </summary>
-        /// <value>Situação atual da sincronização.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        /// <param name="count">Quantidade de cidades atendidas pela Nuvem Fiscal..</param>
+        /// <param name="data">Lista com os códigos IBGE das cidades atendidas pela Nuvem Fiscal..</param>
+        public NfseCidadesAtendidas(int count = default(int), List<string> data = default(List<string>))
         {
-            /// <summary>
-            /// Enum Pendente for value: pendente
-            /// </summary>
-            [EnumMember(Value = "pendente")]
-            Pendente = 1,
-
-            /// <summary>
-            /// Enum Sincronizado for value: sincronizado
-            /// </summary>
-            [EnumMember(Value = "sincronizado")]
-            Sincronizado = 2,
-
-            /// <summary>
-            /// Enum Erro for value: erro
-            /// </summary>
-            [EnumMember(Value = "erro")]
-            Erro = 3
-        }
-
-
-        /// <summary>
-        /// Situação atual da sincronização.
-        /// </summary>
-        /// <value>Situação atual da sincronização.</value>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public StatusEnum? status { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NfseSincronizacao" /> class.
-        /// </summary>
-        /// <param name="status">Situação atual da sincronização..</param>
-        /// <param name="mensagens">mensagens.</param>
-        public NfseSincronizacao(StatusEnum? status = default(StatusEnum?), List<NfseMensagemRetorno> mensagens = default(List<NfseMensagemRetorno>))
-        {
-            this.status = status;
-            this.mensagens = mensagens;
+            this.count = count;
+            this.data = data;
         }
 
         /// <summary>
-        /// Gets or Sets mensagens
+        /// Quantidade de cidades atendidas pela Nuvem Fiscal.
         /// </summary>
-        [DataMember(Name = "mensagens", EmitDefaultValue = false)]
-        public List<NfseMensagemRetorno> mensagens { get; set; }
+        /// <value>Quantidade de cidades atendidas pela Nuvem Fiscal.</value>
+        [DataMember(Name = "@count", EmitDefaultValue = false)]
+        public int count { get; set; }
+
+        /// <summary>
+        /// Lista com os códigos IBGE das cidades atendidas pela Nuvem Fiscal.
+        /// </summary>
+        /// <value>Lista com os códigos IBGE das cidades atendidas pela Nuvem Fiscal.</value>
+        [DataMember(Name = "data", EmitDefaultValue = false)]
+        public List<string> data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,9 +60,9 @@ namespace NuvemFiscal.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class NfseSincronizacao {\n");
-            sb.Append("  status: ").Append(status).Append("\n");
-            sb.Append("  mensagens: ").Append(mensagens).Append("\n");
+            sb.Append("class NfseCidadesAtendidas {\n");
+            sb.Append("  count: ").Append(count).Append("\n");
+            sb.Append("  data: ").Append(data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -108,15 +83,15 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as NfseSincronizacao);
+            return this.Equals(input as NfseCidadesAtendidas);
         }
 
         /// <summary>
-        /// Returns true if NfseSincronizacao instances are equal
+        /// Returns true if NfseCidadesAtendidas instances are equal
         /// </summary>
-        /// <param name="input">Instance of NfseSincronizacao to be compared</param>
+        /// <param name="input">Instance of NfseCidadesAtendidas to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(NfseSincronizacao input)
+        public bool Equals(NfseCidadesAtendidas input)
         {
             if (input == null)
             {
@@ -124,14 +99,14 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
-                    this.status == input.status ||
-                    this.status.Equals(input.status)
+                    this.count == input.count ||
+                    this.count.Equals(input.count)
                 ) && 
                 (
-                    this.mensagens == input.mensagens ||
-                    this.mensagens != null &&
-                    input.mensagens != null &&
-                    this.mensagens.SequenceEqual(input.mensagens)
+                    this.data == input.data ||
+                    this.data != null &&
+                    input.data != null &&
+                    this.data.SequenceEqual(input.data)
                 );
         }
 
@@ -144,10 +119,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.status.GetHashCode();
-                if (this.mensagens != null)
+                hashCode = (hashCode * 59) + this.count.GetHashCode();
+                if (this.data != null)
                 {
-                    hashCode = (hashCode * 59) + this.mensagens.GetHashCode();
+                    hashCode = (hashCode * 59) + this.data.GetHashCode();
                 }
                 return hashCode;
             }

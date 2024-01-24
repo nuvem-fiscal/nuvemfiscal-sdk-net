@@ -120,6 +120,25 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>ApiResponse of NfseCancelamento</returns>
         ApiResponse<NfseCancelamento> CancelarNfseWithHttpInfo(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento));
         /// <summary>
+        /// Cidades atendidas
+        /// </summary>
+        /// <remarks>
+        /// Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>NfseCidadesAtendidas</returns>
+        NfseCidadesAtendidas CidadesAtendidas();
+
+        /// <summary>
+        /// Cidades atendidas
+        /// </summary>
+        /// <remarks>
+        /// Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of NfseCidadesAtendidas</returns>
+        ApiResponse<NfseCidadesAtendidas> CidadesAtendidasWithHttpInfo();
+        /// <summary>
         /// Consultar o cancelamento da NFS-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
@@ -158,6 +177,27 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="id">ID único do lote gerado pela Nuvem Fiscal.</param>
         /// <returns>ApiResponse of RpsLote</returns>
         ApiResponse<RpsLote> ConsultarLoteNfseWithHttpInfo(string id);
+        /// <summary>
+        /// Consultar metadados
+        /// </summary>
+        /// <remarks>
+        /// Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <returns>NfseCidadeMetadados</returns>
+        NfseCidadeMetadados ConsultarMetadados(string codigoIbge);
+
+        /// <summary>
+        /// Consultar metadados
+        /// </summary>
+        /// <remarks>
+        /// Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <returns>ApiResponse of NfseCidadeMetadados</returns>
+        ApiResponse<NfseCidadeMetadados> ConsultarMetadadosWithHttpInfo(string codigoIbge);
         /// <summary>
         /// Consultar NFS-e
         /// </summary>
@@ -475,6 +515,27 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>Task of ApiResponse (NfseCancelamento)</returns>
         System.Threading.Tasks.Task<ApiResponse<NfseCancelamento>> CancelarNfseWithHttpInfoAsync(string id, NfsePedidoCancelamento body = default(NfsePedidoCancelamento), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Cidades atendidas
+        /// </summary>
+        /// <remarks>
+        /// Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NfseCidadesAtendidas</returns>
+        System.Threading.Tasks.Task<NfseCidadesAtendidas> CidadesAtendidasAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Cidades atendidas
+        /// </summary>
+        /// <remarks>
+        /// Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NfseCidadesAtendidas)</returns>
+        System.Threading.Tasks.Task<ApiResponse<NfseCidadesAtendidas>> CidadesAtendidasWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Consultar o cancelamento da NFS-e
         /// </summary>
         /// <remarks>
@@ -520,6 +581,29 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RpsLote)</returns>
         System.Threading.Tasks.Task<ApiResponse<RpsLote>> ConsultarLoteNfseWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Consultar metadados
+        /// </summary>
+        /// <remarks>
+        /// Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NfseCidadeMetadados</returns>
+        System.Threading.Tasks.Task<NfseCidadeMetadados> ConsultarMetadadosAsync(string codigoIbge, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Consultar metadados
+        /// </summary>
+        /// <remarks>
+        /// Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NfseCidadeMetadados)</returns>
+        System.Threading.Tasks.Task<ApiResponse<NfseCidadeMetadados>> ConsultarMetadadosWithHttpInfoAsync(string codigoIbge, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Consultar NFS-e
         /// </summary>
@@ -1665,6 +1749,129 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
+        /// Cidades atendidas Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>NfseCidadesAtendidas</returns>
+        public NfseCidadesAtendidas CidadesAtendidas()
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadesAtendidas> localVarResponse = CidadesAtendidasWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Cidades atendidas Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of NfseCidadesAtendidas</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadesAtendidas> CidadesAtendidasWithHttpInfo()
+        {
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<NfseCidadesAtendidas>("/nfse/cidades", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CidadesAtendidas", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Cidades atendidas Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NfseCidadesAtendidas</returns>
+        public async System.Threading.Tasks.Task<NfseCidadesAtendidas> CidadesAtendidasAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadesAtendidas> localVarResponse = await CidadesAtendidasWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Cidades atendidas Fornece uma relação completa de todos os municípios atendidos pela Nuvem Fiscal.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NfseCidadesAtendidas)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadesAtendidas>> CidadesAtendidasWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<NfseCidadesAtendidas>("/nfse/cidades", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CidadesAtendidas", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Consultar o cancelamento da NFS-e 
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1932,6 +2139,143 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConsultarLoteNfse", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Consultar metadados Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <returns>NfseCidadeMetadados</returns>
+        public NfseCidadeMetadados ConsultarMetadados(string codigoIbge)
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadeMetadados> localVarResponse = ConsultarMetadadosWithHttpInfo(codigoIbge);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Consultar metadados Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <returns>ApiResponse of NfseCidadeMetadados</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadeMetadados> ConsultarMetadadosWithHttpInfo(string codigoIbge)
+        {
+            // verify the required parameter 'codigoIbge' is set
+            if (codigoIbge == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'codigoIbge' when calling NfseApi->ConsultarMetadados");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("codigo_ibge", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(codigoIbge)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<NfseCidadeMetadados>("/nfse/cidades/{codigo_ibge}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConsultarMetadados", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Consultar metadados Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NfseCidadeMetadados</returns>
+        public async System.Threading.Tasks.Task<NfseCidadeMetadados> ConsultarMetadadosAsync(string codigoIbge, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadeMetadados> localVarResponse = await ConsultarMetadadosWithHttpInfoAsync(codigoIbge, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Consultar metadados Consulta a disponibilidade de emissão e alguns metadados de um município.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="codigoIbge">Código IBGE do município.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NfseCidadeMetadados)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<NfseCidadeMetadados>> ConsultarMetadadosWithHttpInfoAsync(string codigoIbge, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'codigoIbge' is set
+            if (codigoIbge == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'codigoIbge' when calling NfseApi->ConsultarMetadados");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("codigo_ibge", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(codigoIbge)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<NfseCidadeMetadados>("/nfse/cidades/{codigo_ibge}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConsultarMetadados", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

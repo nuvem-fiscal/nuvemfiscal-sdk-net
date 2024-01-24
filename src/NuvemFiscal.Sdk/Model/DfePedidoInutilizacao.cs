@@ -267,9 +267,9 @@ namespace NuvemFiscal.Sdk.Model
             }
 
             // numero_inicial (int) minimum
-            if (this.numero_inicial < (int)0)
+            if (this.numero_inicial < (int)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_inicial, must be a value greater than or equal to 0.", new [] { "numero_inicial" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_inicial, must be a value greater than or equal to 1.", new [] { "numero_inicial" });
             }
 
             // numero_final (int) maximum
@@ -279,9 +279,9 @@ namespace NuvemFiscal.Sdk.Model
             }
 
             // numero_final (int) minimum
-            if (this.numero_final < (int)0)
+            if (this.numero_final < (int)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_final, must be a value greater than or equal to 0.", new [] { "numero_final" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_final, must be a value greater than or equal to 1.", new [] { "numero_final" });
             }
 
             // justificativa (string) maxLength

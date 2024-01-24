@@ -42,7 +42,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="pICMS">Alíquota do ICMS. (required).</param>
         /// <param name="vICMS">Valor do ICMS. (required).</param>
         /// <param name="vCred">Valor do Crédito Outorgado/Presumido..</param>
-        public CteSefazICMS90(string cST = default(string), decimal? pRedBC = default(decimal?), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMS = default(decimal?), decimal? vCred = default(decimal?))
+        /// <param name="vICMSDeson">Valor do ICMS de desoneração..</param>
+        /// <param name="cBenef">Código de Benefício Fiscal na UF.  Código de Benefício Fiscal utilizado pela UF..</param>
+        public CteSefazICMS90(string cST = default(string), decimal? pRedBC = default(decimal?), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMS = default(decimal?), decimal? vCred = default(decimal?), decimal? vICMSDeson = default(decimal?), string cBenef = default(string))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -70,6 +72,8 @@ namespace NuvemFiscal.Sdk.Model
             this.vICMS = vICMS;
             this.pRedBC = pRedBC;
             this.vCred = vCred;
+            this.vICMSDeson = vICMSDeson;
+            this.cBenef = cBenef;
         }
 
         /// <summary>
@@ -115,6 +119,20 @@ namespace NuvemFiscal.Sdk.Model
         public decimal? vCred { get; set; }
 
         /// <summary>
+        /// Valor do ICMS de desoneração.
+        /// </summary>
+        /// <value>Valor do ICMS de desoneração.</value>
+        [DataMember(Name = "vICMSDeson", EmitDefaultValue = true)]
+        public decimal? vICMSDeson { get; set; }
+
+        /// <summary>
+        /// Código de Benefício Fiscal na UF.  Código de Benefício Fiscal utilizado pela UF.
+        /// </summary>
+        /// <value>Código de Benefício Fiscal na UF.  Código de Benefício Fiscal utilizado pela UF.</value>
+        [DataMember(Name = "cBenef", EmitDefaultValue = true)]
+        public string cBenef { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -128,6 +146,8 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  pICMS: ").Append(pICMS).Append("\n");
             sb.Append("  vICMS: ").Append(vICMS).Append("\n");
             sb.Append("  vCred: ").Append(vCred).Append("\n");
+            sb.Append("  vICMSDeson: ").Append(vICMSDeson).Append("\n");
+            sb.Append("  cBenef: ").Append(cBenef).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -192,6 +212,16 @@ namespace NuvemFiscal.Sdk.Model
                     this.vCred == input.vCred ||
                     (this.vCred != null &&
                     this.vCred.Equals(input.vCred))
+                ) && 
+                (
+                    this.vICMSDeson == input.vICMSDeson ||
+                    (this.vICMSDeson != null &&
+                    this.vICMSDeson.Equals(input.vICMSDeson))
+                ) && 
+                (
+                    this.cBenef == input.cBenef ||
+                    (this.cBenef != null &&
+                    this.cBenef.Equals(input.cBenef))
                 );
         }
 
@@ -228,6 +258,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.vCred.GetHashCode();
                 }
+                if (this.vICMSDeson != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSDeson.GetHashCode();
+                }
+                if (this.cBenef != null)
+                {
+                    hashCode = (hashCode * 59) + this.cBenef.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -239,6 +277,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // cBenef (string) maxLength
+            if (this.cBenef != null && this.cBenef.Length > 10)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cBenef, length must be less than 10.", new [] { "cBenef" });
+            }
+
             yield break;
         }
     }

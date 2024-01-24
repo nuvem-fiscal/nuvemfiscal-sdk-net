@@ -37,7 +37,9 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="CteSefazICMS45" /> class.
         /// </summary>
         /// <param name="cST">Classificação Tributária do Serviço.  Preencher com:  * 40 - ICMS isenção  * 41 - ICMS não tributada  * 51 - ICMS diferido (required).</param>
-        public CteSefazICMS45(string cST = default(string))
+        /// <param name="vICMSDeson">Valor do ICMS de desoneração..</param>
+        /// <param name="cBenef">Código de Benefício Fiscal na UF.  Código de Benefício Fiscal utilizado pela UF..</param>
+        public CteSefazICMS45(string cST = default(string), decimal? vICMSDeson = default(decimal?), string cBenef = default(string))
         {
             // to ensure "cST" is required (not null)
             if (cST == null)
@@ -45,6 +47,8 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("cST is a required property for CteSefazICMS45 and cannot be null");
             }
             this.CST = cST;
+            this.vICMSDeson = vICMSDeson;
+            this.cBenef = cBenef;
         }
 
         /// <summary>
@@ -55,6 +59,20 @@ namespace NuvemFiscal.Sdk.Model
         public string CST { get; set; }
 
         /// <summary>
+        /// Valor do ICMS de desoneração.
+        /// </summary>
+        /// <value>Valor do ICMS de desoneração.</value>
+        [DataMember(Name = "vICMSDeson", EmitDefaultValue = true)]
+        public decimal? vICMSDeson { get; set; }
+
+        /// <summary>
+        /// Código de Benefício Fiscal na UF.  Código de Benefício Fiscal utilizado pela UF.
+        /// </summary>
+        /// <value>Código de Benefício Fiscal na UF.  Código de Benefício Fiscal utilizado pela UF.</value>
+        [DataMember(Name = "cBenef", EmitDefaultValue = true)]
+        public string cBenef { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -63,6 +81,8 @@ namespace NuvemFiscal.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CteSefazICMS45 {\n");
             sb.Append("  CST: ").Append(CST).Append("\n");
+            sb.Append("  vICMSDeson: ").Append(vICMSDeson).Append("\n");
+            sb.Append("  cBenef: ").Append(cBenef).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,6 +122,16 @@ namespace NuvemFiscal.Sdk.Model
                     this.CST == input.CST ||
                     (this.CST != null &&
                     this.CST.Equals(input.CST))
+                ) && 
+                (
+                    this.vICMSDeson == input.vICMSDeson ||
+                    (this.vICMSDeson != null &&
+                    this.vICMSDeson.Equals(input.vICMSDeson))
+                ) && 
+                (
+                    this.cBenef == input.cBenef ||
+                    (this.cBenef != null &&
+                    this.cBenef.Equals(input.cBenef))
                 );
         }
 
@@ -118,6 +148,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CST.GetHashCode();
                 }
+                if (this.vICMSDeson != null)
+                {
+                    hashCode = (hashCode * 59) + this.vICMSDeson.GetHashCode();
+                }
+                if (this.cBenef != null)
+                {
+                    hashCode = (hashCode * 59) + this.cBenef.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -129,6 +167,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // cBenef (string) maxLength
+            if (this.cBenef != null && this.cBenef.Length > 10)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cBenef, length must be less than 10.", new [] { "cBenef" });
+            }
+
             yield break;
         }
     }

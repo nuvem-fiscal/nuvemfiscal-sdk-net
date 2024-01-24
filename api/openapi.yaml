@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.22.3
+  version: 2.26.10
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -323,12 +323,9 @@ paths:
         required: true
         schema:
           type: string
-      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis:\r\n\
-          * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`,\
-          \ `SVRS`, `SVCAN`, `SVCRS`, `AN`;\r\n* NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`,\
-          \ `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;\r\n* MDF-e: `SVRS`;\r\n* CT-e:\
-          \ `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.\r\n\r\n*Caso\
-          \ não seja informado, será utilizado o ambiente autorizador da UF do emitente.*"
+      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis: `MT`,\
+          \ `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.\r\n\r\n*Caso não seja\
+          \ informado, será utilizado o ambiente autorizador da UF do emitente.*"
         in: query
         name: autorizador
         schema:
@@ -400,7 +397,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CtePedidoCancelamento'
-        required: true
+        required: false
       responses:
         "200":
           content:
@@ -1474,12 +1471,9 @@ paths:
         required: true
         schema:
           type: string
-      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis:\r\n\
-          * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`,\
-          \ `SVRS`, `SVCAN`, `SVCRS`, `AN`;\r\n* NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`,\
-          \ `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;\r\n* MDF-e: `SVRS`;\r\n* CT-e:\
-          \ `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.\r\n\r\n*Caso\
-          \ não seja informado, será utilizado o ambiente autorizador da UF do emitente.*"
+      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis: `SVRS`.\r\
+          \n\r\n*Caso não seja informado, será utilizado o ambiente autorizador da\
+          \ UF do emitente.*"
         in: query
         name: autorizador
         schema:
@@ -2348,12 +2342,10 @@ paths:
         required: true
         schema:
           type: string
-      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis:\r\n\
-          * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`,\
-          \ `SVRS`, `SVCAN`, `SVCRS`, `AN`;\r\n* NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`,\
-          \ `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;\r\n* MDF-e: `SVRS`;\r\n* CT-e:\
-          \ `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.\r\n\r\n*Caso\
-          \ não seja informado, será utilizado o ambiente autorizador da UF do emitente.*"
+      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis: `AM`,\
+          \ `BA`, `CE`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`.\r\n\
+          \r\n*Caso não seja informado, será utilizado o ambiente autorizador da UF\
+          \ do emitente.*"
         in: query
         name: autorizador
         schema:
@@ -3143,12 +3135,10 @@ paths:
         required: true
         schema:
           type: string
-      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis:\r\n\
-          * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`,\
-          \ `SVRS`, `SVCAN`, `SVCRS`, `AN`;\r\n* NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`,\
-          \ `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;\r\n* MDF-e: `SVRS`;\r\n* CT-e:\
-          \ `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.\r\n\r\n*Caso\
-          \ não seja informado, será utilizado o ambiente autorizador da UF do emitente.*"
+      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis: `AM`,\
+          \ `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`, `SVRS`,\
+          \ `SVCAN`, `SVCRS`, `AN`.\r\n\r\n*Caso não seja informado, será utilizado\
+          \ o ambiente autorizador da UF do emitente.*"
         in: query
         name: autorizador
         schema:
@@ -3597,6 +3587,43 @@ paths:
       tags:
       - Nfse
       x-codegen-request-body-name: body
+  /nfse/cidades:
+    get:
+      description: Fornece uma relação completa de todos os municípios atendidos pela
+        Nuvem Fiscal.
+      operationId: CidadesAtendidas
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NfseCidadesAtendidas'
+          description: Successful response
+      summary: Cidades atendidas
+      tags:
+      - Nfse
+  /nfse/cidades/{codigo_ibge}:
+    get:
+      description: Consulta a disponibilidade de emissão e alguns metadados de um
+        município.
+      operationId: ConsultarMetadados
+      parameters:
+      - description: Código IBGE do município.
+        in: path
+        name: codigo_ibge
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NfseCidadeMetadados'
+          description: Successful response
+      summary: Consultar metadados
+      tags:
+      - Nfse
   /nfse/dps:
     post:
       operationId: EmitirNfseDps
@@ -4388,6 +4415,66 @@ components:
           type: string
       required:
       - ambiente
+      type: object
+    NfseCidadesAtendidas:
+      example:
+        '@count': 0
+        data:
+        - data
+        - data
+      properties:
+        '@count':
+          description: Quantidade de cidades atendidas pela Nuvem Fiscal.
+          type: integer
+        data:
+          description: Lista com os códigos IBGE das cidades atendidas pela Nuvem
+            Fiscal.
+          items:
+            type: string
+          type: array
+      type: object
+    NfseCidadeMetadados:
+      example:
+        uf: uf
+        municipio: municipio
+        ambientes:
+        - homologacao
+        - homologacao
+        credenciais:
+        - certificado
+        - certificado
+        provedor: provedor
+        codigo_ibge: codigo_ibge
+      properties:
+        codigo_ibge:
+          description: Código IBGE do município.
+          type: string
+        uf:
+          description: UF do município.
+          type: string
+        municipio:
+          description: Nome do município.
+          type: string
+        provedor:
+          description: Provedor do município.
+          type: string
+        ambientes:
+          description: Ambientes disponíveis no provedor.
+          items:
+            enum:
+            - homologacao
+            - producao
+            type: string
+          type: array
+        credenciais:
+          description: Credenciais requeridas para autenticação no provedor.
+          items:
+            enum:
+            - certificado
+            - login_senha
+            - token
+            type: string
+          type: array
       type: object
     RpsPedidoEmissaoLote:
       example:
@@ -5971,7 +6058,9 @@ components:
                 idDocTec: idDocTec
                 xInfComp: xInfComp
               atvEvento:
+                xNome: xNome
                 dtIni: 2000-01-23
+                idAtvEvt: idAtvEvt
                 end:
                   endExt:
                     cEndPost: cEndPost
@@ -6232,7 +6321,9 @@ components:
                 idDocTec: idDocTec
                 xInfComp: xInfComp
               atvEvento:
+                xNome: xNome
                 dtIni: 2000-01-23
+                idAtvEvt: idAtvEvt
                 end:
                   endExt:
                     cEndPost: cEndPost
@@ -6527,7 +6618,9 @@ components:
               idDocTec: idDocTec
               xInfComp: xInfComp
             atvEvento:
+              xNome: xNome
               dtIni: 2000-01-23
+              idAtvEvt: idAtvEvt
               end:
                 endExt:
                   cEndPost: cEndPost
@@ -6815,7 +6908,9 @@ components:
             idDocTec: idDocTec
             xInfComp: xInfComp
           atvEvento:
+            xNome: xNome
             dtIni: 2000-01-23
+            idAtvEvt: idAtvEvt
             end:
               endExt:
                 cEndPost: cEndPost
@@ -7409,7 +7504,9 @@ components:
           idDocTec: idDocTec
           xInfComp: xInfComp
         atvEvento:
+          xNome: xNome
           dtIni: 2000-01-23
+          idAtvEvt: idAtvEvt
           end:
             endExt:
               cEndPost: cEndPost
@@ -7786,7 +7883,9 @@ components:
     AtvEvento:
       description: Grupo de informações do DPS relativas à Evento.
       example:
+        xNome: xNome
         dtIni: 2000-01-23
+        idAtvEvt: idAtvEvt
         end:
           endExt:
             cEndPost: cEndPost
@@ -7801,8 +7900,15 @@ components:
         dtFim: 2000-01-23
         desc: desc
       properties:
+        xNome:
+          description: "Nome do evento Artístico, Cultural, Esportivo, etc."
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
         desc:
-          description: "Descrição do evento Artístico, Cultural, Esportivo, etc."
+          description: "`Deprecated`\r\n\r\n**Propriedade depreciada**.\r\n\r\n*Utilize\
+            \ `xNome`*."
           maxLength: 255
           minLength: 1
           nullable: true
@@ -7817,9 +7923,16 @@ components:
           format: date
           nullable: true
           type: string
-        id:
+        idAtvEvt:
           description: Identificação da Atividade de Evento (código identificador
             de evento determinado pela Administração Tributária Municipal).
+          maxLength: 30
+          minLength: 1
+          nullable: true
+          type: string
+        id:
+          description: "`Deprecated`\r\n\r\n**Propriedade depreciada**.\r\n\r\n*Utilize\
+            \ `idAtvEvt`*."
           maxLength: 30
           minLength: 1
           nullable: true
@@ -7827,7 +7940,6 @@ components:
         end:
           $ref: '#/components/schemas/EnderecoSimples'
       required:
-      - desc
       - dtFim
       - dtIni
       type: object
@@ -8623,8 +8735,8 @@ components:
       properties:
         tribISSQN:
           description: "Tributação do ISSQN sobre o serviço prestado:\r\n* 1 - Operaç\
-            ão tributável\r\n* 2 - Exportação de serviço\r\n* 3 - Não Incidência\r\
-            \n* 4 - Imunidade"
+            ão tributável\r\n* 2 - Imunidade\r\n* 3 - Exportação de serviço\r\n* 4\
+            \ - Não Incidência"
           nullable: true
           type: integer
         cLocIncid:
@@ -10055,6 +10167,13 @@ components:
       type: object
     NfseSincronizacao:
       example:
+        mensagens:
+        - codigo: codigo
+          correcao: correcao
+          descricao: descricao
+        - codigo: codigo
+          correcao: correcao
+          descricao: descricao
         status: pendente
       properties:
         status:
@@ -10062,7 +10181,12 @@ components:
           enum:
           - pendente
           - sincronizado
+          - erro
           type: string
+        mensagens:
+          items:
+            $ref: '#/components/schemas/NfseMensagemRetorno'
+          type: array
       type: object
     ContaCota:
       example:
@@ -10163,7 +10287,7 @@ components:
           - chCTe: chCTe
           infRespTec:
             fone: fone
-            idCSRT: 866
+            idCSRT: 432
             CNPJ: CNPJ
             hashCSRT: hashCSRT
             xContato: xContato
@@ -10241,28 +10365,28 @@ components:
                 IE: IE
             cobr:
               fat:
-                vOrig: 7.835035282970782
+                vOrig: 8.675064425986758
                 nFat: nFat
-                vDesc: 0.4768402382624515
-                vLiq: 3.1497903714250555
+                vDesc: 4.518309517874243
+                vLiq: 0.4833312865174044
               dup:
               - dVenc: 2000-01-23
                 nDup: nDup
-                vDup: 2.380090174313445
+                vDup: 0.35262192099236644
               - dVenc: 2000-01-23
                 nDup: nDup
-                vDup: 2.380090174313445
+                vDup: 0.35262192099236644
             infModal:
               versaoModal: versaoModal
               duto:
                 dFim: 2000-01-23
-                vTar: 3.7814124730767915
+                vTar: 0.4768402382624515
                 dIni: 2000-01-23
               ferrov:
                 fluxo: fluxo
                 trafMut:
-                  respFat: 3
-                  ferrEmi: 9
+                  respFat: 5
+                  ferrEmi: 8
                   chCTeFerroOrigem: chCTeFerroOrigem
                   ferroEnv:
                   - xNome: xNome
@@ -10291,13 +10415,13 @@ components:
                       CEP: CEP
                     CNPJ: CNPJ
                     IE: IE
-                  vFrete: 8.761432466225475
-                tpTraf: 1
+                  vFrete: 7.606863723092579
+                tpTraf: 5
               aquav:
                 nViag: nViag
                 tpNav: 7
-                vPrest: 0.4182561061793122
-                vAFRMM: 5.299143560275359
+                vPrest: 3.7814124730767915
+                vAFRMM: 3.111202833403195
                 balsa:
                 - xBalsa: xBalsa
                 - xBalsa: xBalsa
@@ -10305,16 +10429,16 @@ components:
                 detCont:
                 - infDoc:
                     infNF:
-                    - unidRat: 5.312489704336296
+                    - unidRat: 9.897492629215506
                       serie: serie
                       nDoc: nDoc
-                    - unidRat: 5.312489704336296
+                    - unidRat: 9.897492629215506
                       serie: serie
                       nDoc: nDoc
                     infNFe:
-                    - unidRat: 8.37823741034869
+                    - unidRat: 5.877124706116695
                       chave: chave
-                    - unidRat: 8.37823741034869
+                    - unidRat: 5.877124706116695
                       chave: chave
                   nCont: nCont
                   lacre:
@@ -10322,16 +10446,16 @@ components:
                   - nLacre: nLacre
                 - infDoc:
                     infNF:
-                    - unidRat: 5.312489704336296
+                    - unidRat: 9.897492629215506
                       serie: serie
                       nDoc: nDoc
-                    - unidRat: 5.312489704336296
+                    - unidRat: 9.897492629215506
                       serie: serie
                       nDoc: nDoc
                     infNFe:
-                    - unidRat: 8.37823741034869
+                    - unidRat: 5.877124706116695
                       chave: chave
-                    - unidRat: 8.37823741034869
+                    - unidRat: 5.877124706116695
                       chave: chave
                   nCont: nCont
                   lacre:
@@ -10351,7 +10475,7 @@ components:
               rodo:
                 RNTRC: RNTRC
                 occ:
-                - nOcc: 828965
+                - nOcc: 182687
                   dEmi: 2000-01-23
                   emiOcc:
                     fone: fone
@@ -10360,7 +10484,7 @@ components:
                     CNPJ: CNPJ
                     IE: IE
                   serie: serie
-                - nOcc: 828965
+                - nOcc: 182687
                   dEmi: 2000-01-23
                   emiOcc:
                     fone: fone
@@ -10377,64 +10501,64 @@ components:
                   xDime: xDime
                 tarifa:
                   CL: CL
-                  vTar: 4.573936264232251
+                  vTar: 9.183123594773994
                   cTar: cTar
-                nMinu: 662351842
+                nMinu: 350265775
                 peri:
                 - nONU: nONU
                   qTotEmb: qTotEmb
                   infTotAP:
-                    uniAP: 9
-                    qTotProd: 8.863729185622827
+                    uniAP: 0
+                    qTotProd: 8.761432466225475
                 - nONU: nONU
                   qTotEmb: qTotEmb
                   infTotAP:
-                    uniAP: 9
-                    qTotProd: 8.863729185622827
+                    uniAP: 0
+                    qTotProd: 8.761432466225475
                 nOCA: nOCA
                 dPrevAereo: 2000-01-23
             infCarga:
-              vCarga: 7.260521264802104
+              vCarga: 7.933506881737151
               xOutCat: xOutCat
               infQ:
               - tpMed: tpMed
                 cUnid: cUnid
-                qCarga: 9.132027271330688
+                qCarga: 5.507386964179881
               - tpMed: tpMed
                 cUnid: cUnid
-                qCarga: 9.132027271330688
-              vCargaAverb: 0.8774076871421566
+                qCarga: 5.507386964179881
+              vCargaAverb: 4.86315908102884
               proPred: proPred
             infServVinc:
               infCTeMultimodal:
               - chCTeMultimodal: chCTeMultimodal
               - chCTeMultimodal: chCTeMultimodal
             infCteSub:
-              indAlteraToma: 3
+              indAlteraToma: 7
               chCte: chCte
             infGlobalizado:
               xObs: xObs
             infDoc:
               infNF:
               - mod: mod
-                vBCST: 7.933506881737151
-                vProd: 4.86315908102884
+                vBCST: 4.459605034958679
+                vProd: 0.43431398824148815
                 nRoma: nRoma
-                nPeso: 8.251625748923757
-                vNF: 6.073898085781152
+                nPeso: 1.7325933120207193
+                vNF: 2.9409642974827896
                 infUnidTransp:
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10442,18 +10566,18 @@ components:
                   lacUnidTransp:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10465,44 +10589,44 @@ components:
                 nPed: nPed
                 dEmi: 2000-01-23
                 PIN: PIN
-                vBC: 9.702963800023566
-                vST: 5.507386964179881
+                vBC: 6.073898085781152
+                vST: 3.901545264248647
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                vICMS: 0.5199002018724985
+                vICMS: 8.251625748923757
                 serie: serie
                 nDoc: nDoc
                 nCFOP: nCFOP
               - mod: mod
-                vBCST: 7.933506881737151
-                vProd: 4.86315908102884
+                vBCST: 4.459605034958679
+                vProd: 0.43431398824148815
                 nRoma: nRoma
-                nPeso: 8.251625748923757
-                vNF: 6.073898085781152
+                nPeso: 1.7325933120207193
+                vNF: 2.9409642974827896
                 infUnidTransp:
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10510,18 +10634,18 @@ components:
                   lacUnidTransp:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10533,22 +10657,22 @@ components:
                 nPed: nPed
                 dEmi: 2000-01-23
                 PIN: PIN
-                vBC: 9.702963800023566
-                vST: 5.507386964179881
+                vBC: 6.073898085781152
+                vST: 3.901545264248647
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                vICMS: 0.5199002018724985
+                vICMS: 8.251625748923757
                 serie: serie
                 nDoc: nDoc
                 nCFOP: nCFOP
@@ -10556,32 +10680,32 @@ components:
               - dPrev: 2000-01-23
                 PIN: PIN
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
                 chave: chave
                 infUnidTransp:
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10589,18 +10713,18 @@ components:
                   lacUnidTransp:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10611,32 +10735,32 @@ components:
               - dPrev: 2000-01-23
                 PIN: PIN
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
                 chave: chave
                 infUnidTransp:
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10644,18 +10768,18 @@ components:
                   lacUnidTransp:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10666,16 +10790,16 @@ components:
               infOutros:
               - dPrev: 2000-01-23
                 dEmi: 2000-01-23
-                vDocFisc: 1.7325933120207193
+                vDocFisc: 9.254183946267839
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -10684,18 +10808,18 @@ components:
                 tpDoc: tpDoc
                 descOutros: descOutros
                 infUnidTransp:
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10703,18 +10827,18 @@ components:
                   lacUnidTransp:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10724,16 +10848,16 @@ components:
                   - nLacre: nLacre
               - dPrev: 2000-01-23
                 dEmi: 2000-01-23
-                vDocFisc: 1.7325933120207193
+                vDocFisc: 9.254183946267839
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -10742,18 +10866,18 @@ components:
                 tpDoc: tpDoc
                 descOutros: descOutros
                 infUnidTransp:
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10761,18 +10885,18 @@ components:
                   lacUnidTransp:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 2.9409642974827896
-                  tpUnidTransp: 0
+                - qtdRat: 8.863729185622827
+                  tpUnidTransp: 4
                   idUnidTransp: idUnidTransp
                   infUnidCarga:
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
                     - nLacre: nLacre
-                  - qtdRat: 3.901545264248647
-                    tpUnidCarga: 4
+                  - qtdRat: 6.623518433804886
+                    tpUnidCarga: 8
                     idUnidCarga: idUnidCarga
                     lacUnidCarga:
                     - nLacre: nLacre
@@ -10785,14 +10909,14 @@ components:
               xCor: xCor
               chassi: chassi
               cCor: cCor
-              vUnit: 9.897492629215506
-              vFrete: 5.877124706116695
+              vUnit: 2.380090174313445
+              vFrete: 3.804112695731078
             - cMod: cMod
               xCor: xCor
               chassi: chassi
               cCor: cCor
-              vUnit: 9.897492629215506
-              vFrete: 5.877124706116695
+              vUnit: 2.380090174313445
+              vFrete: 3.804112695731078
           ide:
             mod: 6
             indGlobalizado: 4
@@ -10868,15 +10992,17 @@ components:
             IE: IE
             email: email
           imp:
-            vTotTrib: 5.533258397034986
+            vTotTrib: 4.258773108174356
             ICMS:
               ICMS90:
-                pRedBC: 0.8851374739011653
+                pRedBC: 0.10263654006109402
                 CST: CST
-                vBC: 7.058770351582356
-                vICMS: 0.10263654006109402
-                vCred: 4.652396432933246
-                pICMS: 6.519180951018382
+                vBC: 4.652396432933246
+                vICMS: 7.740351818741173
+                vICMSDeson: 3.0576100241049344
+                cBenef: cBenef
+                vCred: 3.0205796992916243
+                pICMS: 8.969578798196912
               ICMS00:
                 CST: CST
                 vBC: 3.5571952270680973
@@ -10884,35 +11010,43 @@ components:
                 pICMS: 6.965117697638846
               ICMS45:
                 CST: CST
+                vICMSDeson: 3.353193347011243
+                cBenef: cBenef
               ICMS20:
                 pRedBC: 2.8841621266687802
                 CST: CST
                 vBC: 6.778324963048013
                 vICMS: 5.944895607614016
+                vICMSDeson: 6.704019297950036
+                cBenef: cBenef
                 pICMS: 6.878052220127876
               ICMS60:
                 CST: CST
-                vBCSTRet: 6.704019297950036
-                vCred: 7.143538047012306
-                vICMSSTRet: 3.353193347011243
-                pICMSSTRet: 3.0937452626664474
+                vICMSDeson: 6.519180951018382
+                cBenef: cBenef
+                vBCSTRet: 3.0937452626664474
+                vCred: 7.058770351582356
+                vICMSSTRet: 7.143538047012306
+                pICMSSTRet: 0.8851374739011653
               ICMSSN:
-                indSN: 7
+                indSN: 6
                 CST: CST
               ICMSOutraUF:
-                pICMSOutraUF: 3.0205796992916243
+                pICMSOutraUF: 3.2588565619047607
                 CST: CST
-                vICMSOutraUF: 3.0576100241049344
-                pRedBCOutraUF: 8.969578798196912
-                vBCOutraUF: 7.740351818741173
+                vICMSDeson: 0.2025324113236393
+                cBenef: cBenef
+                vICMSOutraUF: 4.078845849666752
+                pRedBCOutraUF: 7.04836565559697
+                vBCOutraUF: 5.533258397034986
             ICMSUFFim:
-              pFCPUFFim: 4.078845849666752
-              vICMSUFIni: 4.678947989005849
-              pICMSInter: 6.628464275087742
-              vBCUFFim: 3.2588565619047607
-              pICMSUFFim: 0.2025324113236393
-              vFCPUFFim: 4.258773108174356
-              vICMSUFFim: 1.041444916118296
+              pFCPUFFim: 4.678947989005849
+              vICMSUFIni: 0.5199002018724985
+              pICMSInter: 9.132027271330688
+              vBCUFFim: 1.041444916118296
+              pICMSUFFim: 7.260521264802104
+              vFCPUFFim: 0.8774076871421566
+              vICMSUFFim: 9.702963800023566
             infAdFisco: infAdFisco
           infSolicNFF:
             xSolic: xSolic
@@ -11078,7 +11212,7 @@ components:
         - chCTe: chCTe
         infRespTec:
           fone: fone
-          idCSRT: 866
+          idCSRT: 432
           CNPJ: CNPJ
           hashCSRT: hashCSRT
           xContato: xContato
@@ -11156,28 +11290,28 @@ components:
               IE: IE
           cobr:
             fat:
-              vOrig: 7.835035282970782
+              vOrig: 8.675064425986758
               nFat: nFat
-              vDesc: 0.4768402382624515
-              vLiq: 3.1497903714250555
+              vDesc: 4.518309517874243
+              vLiq: 0.4833312865174044
             dup:
             - dVenc: 2000-01-23
               nDup: nDup
-              vDup: 2.380090174313445
+              vDup: 0.35262192099236644
             - dVenc: 2000-01-23
               nDup: nDup
-              vDup: 2.380090174313445
+              vDup: 0.35262192099236644
           infModal:
             versaoModal: versaoModal
             duto:
               dFim: 2000-01-23
-              vTar: 3.7814124730767915
+              vTar: 0.4768402382624515
               dIni: 2000-01-23
             ferrov:
               fluxo: fluxo
               trafMut:
-                respFat: 3
-                ferrEmi: 9
+                respFat: 5
+                ferrEmi: 8
                 chCTeFerroOrigem: chCTeFerroOrigem
                 ferroEnv:
                 - xNome: xNome
@@ -11206,13 +11340,13 @@ components:
                     CEP: CEP
                   CNPJ: CNPJ
                   IE: IE
-                vFrete: 8.761432466225475
-              tpTraf: 1
+                vFrete: 7.606863723092579
+              tpTraf: 5
             aquav:
               nViag: nViag
               tpNav: 7
-              vPrest: 0.4182561061793122
-              vAFRMM: 5.299143560275359
+              vPrest: 3.7814124730767915
+              vAFRMM: 3.111202833403195
               balsa:
               - xBalsa: xBalsa
               - xBalsa: xBalsa
@@ -11220,16 +11354,16 @@ components:
               detCont:
               - infDoc:
                   infNF:
-                  - unidRat: 5.312489704336296
+                  - unidRat: 9.897492629215506
                     serie: serie
                     nDoc: nDoc
-                  - unidRat: 5.312489704336296
+                  - unidRat: 9.897492629215506
                     serie: serie
                     nDoc: nDoc
                   infNFe:
-                  - unidRat: 8.37823741034869
+                  - unidRat: 5.877124706116695
                     chave: chave
-                  - unidRat: 8.37823741034869
+                  - unidRat: 5.877124706116695
                     chave: chave
                 nCont: nCont
                 lacre:
@@ -11237,16 +11371,16 @@ components:
                 - nLacre: nLacre
               - infDoc:
                   infNF:
-                  - unidRat: 5.312489704336296
+                  - unidRat: 9.897492629215506
                     serie: serie
                     nDoc: nDoc
-                  - unidRat: 5.312489704336296
+                  - unidRat: 9.897492629215506
                     serie: serie
                     nDoc: nDoc
                   infNFe:
-                  - unidRat: 8.37823741034869
+                  - unidRat: 5.877124706116695
                     chave: chave
-                  - unidRat: 8.37823741034869
+                  - unidRat: 5.877124706116695
                     chave: chave
                 nCont: nCont
                 lacre:
@@ -11266,7 +11400,7 @@ components:
             rodo:
               RNTRC: RNTRC
               occ:
-              - nOcc: 828965
+              - nOcc: 182687
                 dEmi: 2000-01-23
                 emiOcc:
                   fone: fone
@@ -11275,7 +11409,7 @@ components:
                   CNPJ: CNPJ
                   IE: IE
                 serie: serie
-              - nOcc: 828965
+              - nOcc: 182687
                 dEmi: 2000-01-23
                 emiOcc:
                   fone: fone
@@ -11292,64 +11426,64 @@ components:
                 xDime: xDime
               tarifa:
                 CL: CL
-                vTar: 4.573936264232251
+                vTar: 9.183123594773994
                 cTar: cTar
-              nMinu: 662351842
+              nMinu: 350265775
               peri:
               - nONU: nONU
                 qTotEmb: qTotEmb
                 infTotAP:
-                  uniAP: 9
-                  qTotProd: 8.863729185622827
+                  uniAP: 0
+                  qTotProd: 8.761432466225475
               - nONU: nONU
                 qTotEmb: qTotEmb
                 infTotAP:
-                  uniAP: 9
-                  qTotProd: 8.863729185622827
+                  uniAP: 0
+                  qTotProd: 8.761432466225475
               nOCA: nOCA
               dPrevAereo: 2000-01-23
           infCarga:
-            vCarga: 7.260521264802104
+            vCarga: 7.933506881737151
             xOutCat: xOutCat
             infQ:
             - tpMed: tpMed
               cUnid: cUnid
-              qCarga: 9.132027271330688
+              qCarga: 5.507386964179881
             - tpMed: tpMed
               cUnid: cUnid
-              qCarga: 9.132027271330688
-            vCargaAverb: 0.8774076871421566
+              qCarga: 5.507386964179881
+            vCargaAverb: 4.86315908102884
             proPred: proPred
           infServVinc:
             infCTeMultimodal:
             - chCTeMultimodal: chCTeMultimodal
             - chCTeMultimodal: chCTeMultimodal
           infCteSub:
-            indAlteraToma: 3
+            indAlteraToma: 7
             chCte: chCte
           infGlobalizado:
             xObs: xObs
           infDoc:
             infNF:
             - mod: mod
-              vBCST: 7.933506881737151
-              vProd: 4.86315908102884
+              vBCST: 4.459605034958679
+              vProd: 0.43431398824148815
               nRoma: nRoma
-              nPeso: 8.251625748923757
-              vNF: 6.073898085781152
+              nPeso: 1.7325933120207193
+              vNF: 2.9409642974827896
               infUnidTransp:
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11357,18 +11491,18 @@ components:
                 lacUnidTransp:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11380,44 +11514,44 @@ components:
               nPed: nPed
               dEmi: 2000-01-23
               PIN: PIN
-              vBC: 9.702963800023566
-              vST: 5.507386964179881
+              vBC: 6.073898085781152
+              vST: 3.901545264248647
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              vICMS: 0.5199002018724985
+              vICMS: 8.251625748923757
               serie: serie
               nDoc: nDoc
               nCFOP: nCFOP
             - mod: mod
-              vBCST: 7.933506881737151
-              vProd: 4.86315908102884
+              vBCST: 4.459605034958679
+              vProd: 0.43431398824148815
               nRoma: nRoma
-              nPeso: 8.251625748923757
-              vNF: 6.073898085781152
+              nPeso: 1.7325933120207193
+              vNF: 2.9409642974827896
               infUnidTransp:
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11425,18 +11559,18 @@ components:
                 lacUnidTransp:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11448,22 +11582,22 @@ components:
               nPed: nPed
               dEmi: 2000-01-23
               PIN: PIN
-              vBC: 9.702963800023566
-              vST: 5.507386964179881
+              vBC: 6.073898085781152
+              vST: 3.901545264248647
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              vICMS: 0.5199002018724985
+              vICMS: 8.251625748923757
               serie: serie
               nDoc: nDoc
               nCFOP: nCFOP
@@ -11471,32 +11605,32 @@ components:
             - dPrev: 2000-01-23
               PIN: PIN
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
               chave: chave
               infUnidTransp:
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11504,18 +11638,18 @@ components:
                 lacUnidTransp:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11526,32 +11660,32 @@ components:
             - dPrev: 2000-01-23
               PIN: PIN
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
               chave: chave
               infUnidTransp:
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11559,18 +11693,18 @@ components:
                 lacUnidTransp:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11581,16 +11715,16 @@ components:
             infOutros:
             - dPrev: 2000-01-23
               dEmi: 2000-01-23
-              vDocFisc: 1.7325933120207193
+              vDocFisc: 9.254183946267839
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -11599,18 +11733,18 @@ components:
               tpDoc: tpDoc
               descOutros: descOutros
               infUnidTransp:
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11618,18 +11752,18 @@ components:
                 lacUnidTransp:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11639,16 +11773,16 @@ components:
                 - nLacre: nLacre
             - dPrev: 2000-01-23
               dEmi: 2000-01-23
-              vDocFisc: 1.7325933120207193
+              vDocFisc: 9.254183946267839
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -11657,18 +11791,18 @@ components:
               tpDoc: tpDoc
               descOutros: descOutros
               infUnidTransp:
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11676,18 +11810,18 @@ components:
                 lacUnidTransp:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 2.9409642974827896
-                tpUnidTransp: 0
+              - qtdRat: 8.863729185622827
+                tpUnidTransp: 4
                 idUnidTransp: idUnidTransp
                 infUnidCarga:
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
                   - nLacre: nLacre
-                - qtdRat: 3.901545264248647
-                  tpUnidCarga: 4
+                - qtdRat: 6.623518433804886
+                  tpUnidCarga: 8
                   idUnidCarga: idUnidCarga
                   lacUnidCarga:
                   - nLacre: nLacre
@@ -11700,14 +11834,14 @@ components:
             xCor: xCor
             chassi: chassi
             cCor: cCor
-            vUnit: 9.897492629215506
-            vFrete: 5.877124706116695
+            vUnit: 2.380090174313445
+            vFrete: 3.804112695731078
           - cMod: cMod
             xCor: xCor
             chassi: chassi
             cCor: cCor
-            vUnit: 9.897492629215506
-            vFrete: 5.877124706116695
+            vUnit: 2.380090174313445
+            vFrete: 3.804112695731078
         ide:
           mod: 6
           indGlobalizado: 4
@@ -11783,15 +11917,17 @@ components:
           IE: IE
           email: email
         imp:
-          vTotTrib: 5.533258397034986
+          vTotTrib: 4.258773108174356
           ICMS:
             ICMS90:
-              pRedBC: 0.8851374739011653
+              pRedBC: 0.10263654006109402
               CST: CST
-              vBC: 7.058770351582356
-              vICMS: 0.10263654006109402
-              vCred: 4.652396432933246
-              pICMS: 6.519180951018382
+              vBC: 4.652396432933246
+              vICMS: 7.740351818741173
+              vICMSDeson: 3.0576100241049344
+              cBenef: cBenef
+              vCred: 3.0205796992916243
+              pICMS: 8.969578798196912
             ICMS00:
               CST: CST
               vBC: 3.5571952270680973
@@ -11799,35 +11935,43 @@ components:
               pICMS: 6.965117697638846
             ICMS45:
               CST: CST
+              vICMSDeson: 3.353193347011243
+              cBenef: cBenef
             ICMS20:
               pRedBC: 2.8841621266687802
               CST: CST
               vBC: 6.778324963048013
               vICMS: 5.944895607614016
+              vICMSDeson: 6.704019297950036
+              cBenef: cBenef
               pICMS: 6.878052220127876
             ICMS60:
               CST: CST
-              vBCSTRet: 6.704019297950036
-              vCred: 7.143538047012306
-              vICMSSTRet: 3.353193347011243
-              pICMSSTRet: 3.0937452626664474
+              vICMSDeson: 6.519180951018382
+              cBenef: cBenef
+              vBCSTRet: 3.0937452626664474
+              vCred: 7.058770351582356
+              vICMSSTRet: 7.143538047012306
+              pICMSSTRet: 0.8851374739011653
             ICMSSN:
-              indSN: 7
+              indSN: 6
               CST: CST
             ICMSOutraUF:
-              pICMSOutraUF: 3.0205796992916243
+              pICMSOutraUF: 3.2588565619047607
               CST: CST
-              vICMSOutraUF: 3.0576100241049344
-              pRedBCOutraUF: 8.969578798196912
-              vBCOutraUF: 7.740351818741173
+              vICMSDeson: 0.2025324113236393
+              cBenef: cBenef
+              vICMSOutraUF: 4.078845849666752
+              pRedBCOutraUF: 7.04836565559697
+              vBCOutraUF: 5.533258397034986
           ICMSUFFim:
-            pFCPUFFim: 4.078845849666752
-            vICMSUFIni: 4.678947989005849
-            pICMSInter: 6.628464275087742
-            vBCUFFim: 3.2588565619047607
-            pICMSUFFim: 0.2025324113236393
-            vFCPUFFim: 4.258773108174356
-            vICMSUFFim: 1.041444916118296
+            pFCPUFFim: 4.678947989005849
+            vICMSUFIni: 0.5199002018724985
+            pICMSInter: 9.132027271330688
+            vBCUFFim: 1.041444916118296
+            pICMSUFFim: 7.260521264802104
+            vFCPUFFim: 0.8774076871421566
+            vICMSUFFim: 9.702963800023566
           infAdFisco: infAdFisco
         infSolicNFF:
           xSolic: xSolic
@@ -13235,15 +13379,17 @@ components:
     CteSefazInfCte_Imp:
       description: Informações relativas aos Impostos.
       example:
-        vTotTrib: 5.533258397034986
+        vTotTrib: 4.258773108174356
         ICMS:
           ICMS90:
-            pRedBC: 0.8851374739011653
+            pRedBC: 0.10263654006109402
             CST: CST
-            vBC: 7.058770351582356
-            vICMS: 0.10263654006109402
-            vCred: 4.652396432933246
-            pICMS: 6.519180951018382
+            vBC: 4.652396432933246
+            vICMS: 7.740351818741173
+            vICMSDeson: 3.0576100241049344
+            cBenef: cBenef
+            vCred: 3.0205796992916243
+            pICMS: 8.969578798196912
           ICMS00:
             CST: CST
             vBC: 3.5571952270680973
@@ -13251,35 +13397,43 @@ components:
             pICMS: 6.965117697638846
           ICMS45:
             CST: CST
+            vICMSDeson: 3.353193347011243
+            cBenef: cBenef
           ICMS20:
             pRedBC: 2.8841621266687802
             CST: CST
             vBC: 6.778324963048013
             vICMS: 5.944895607614016
+            vICMSDeson: 6.704019297950036
+            cBenef: cBenef
             pICMS: 6.878052220127876
           ICMS60:
             CST: CST
-            vBCSTRet: 6.704019297950036
-            vCred: 7.143538047012306
-            vICMSSTRet: 3.353193347011243
-            pICMSSTRet: 3.0937452626664474
+            vICMSDeson: 6.519180951018382
+            cBenef: cBenef
+            vBCSTRet: 3.0937452626664474
+            vCred: 7.058770351582356
+            vICMSSTRet: 7.143538047012306
+            pICMSSTRet: 0.8851374739011653
           ICMSSN:
-            indSN: 7
+            indSN: 6
             CST: CST
           ICMSOutraUF:
-            pICMSOutraUF: 3.0205796992916243
+            pICMSOutraUF: 3.2588565619047607
             CST: CST
-            vICMSOutraUF: 3.0576100241049344
-            pRedBCOutraUF: 8.969578798196912
-            vBCOutraUF: 7.740351818741173
+            vICMSDeson: 0.2025324113236393
+            cBenef: cBenef
+            vICMSOutraUF: 4.078845849666752
+            pRedBCOutraUF: 7.04836565559697
+            vBCOutraUF: 5.533258397034986
         ICMSUFFim:
-          pFCPUFFim: 4.078845849666752
-          vICMSUFIni: 4.678947989005849
-          pICMSInter: 6.628464275087742
-          vBCUFFim: 3.2588565619047607
-          pICMSUFFim: 0.2025324113236393
-          vFCPUFFim: 4.258773108174356
-          vICMSUFFim: 1.041444916118296
+          pFCPUFFim: 4.678947989005849
+          vICMSUFIni: 0.5199002018724985
+          pICMSInter: 9.132027271330688
+          vBCUFFim: 1.041444916118296
+          pICMSUFFim: 7.260521264802104
+          vFCPUFFim: 0.8774076871421566
+          vICMSUFFim: 9.702963800023566
         infAdFisco: infAdFisco
       properties:
         ICMS:
@@ -13304,12 +13458,14 @@ components:
       description: Informações relativas ao ICMS.
       example:
         ICMS90:
-          pRedBC: 0.8851374739011653
+          pRedBC: 0.10263654006109402
           CST: CST
-          vBC: 7.058770351582356
-          vICMS: 0.10263654006109402
-          vCred: 4.652396432933246
-          pICMS: 6.519180951018382
+          vBC: 4.652396432933246
+          vICMS: 7.740351818741173
+          vICMSDeson: 3.0576100241049344
+          cBenef: cBenef
+          vCred: 3.0205796992916243
+          pICMS: 8.969578798196912
         ICMS00:
           CST: CST
           vBC: 3.5571952270680973
@@ -13317,27 +13473,35 @@ components:
           pICMS: 6.965117697638846
         ICMS45:
           CST: CST
+          vICMSDeson: 3.353193347011243
+          cBenef: cBenef
         ICMS20:
           pRedBC: 2.8841621266687802
           CST: CST
           vBC: 6.778324963048013
           vICMS: 5.944895607614016
+          vICMSDeson: 6.704019297950036
+          cBenef: cBenef
           pICMS: 6.878052220127876
         ICMS60:
           CST: CST
-          vBCSTRet: 6.704019297950036
-          vCred: 7.143538047012306
-          vICMSSTRet: 3.353193347011243
-          pICMSSTRet: 3.0937452626664474
+          vICMSDeson: 6.519180951018382
+          cBenef: cBenef
+          vBCSTRet: 3.0937452626664474
+          vCred: 7.058770351582356
+          vICMSSTRet: 7.143538047012306
+          pICMSSTRet: 0.8851374739011653
         ICMSSN:
-          indSN: 7
+          indSN: 6
           CST: CST
         ICMSOutraUF:
-          pICMSOutraUF: 3.0205796992916243
+          pICMSOutraUF: 3.2588565619047607
           CST: CST
-          vICMSOutraUF: 3.0576100241049344
-          pRedBCOutraUF: 8.969578798196912
-          vBCOutraUF: 7.740351818741173
+          vICMSDeson: 0.2025324113236393
+          cBenef: cBenef
+          vICMSOutraUF: 4.078845849666752
+          pRedBCOutraUF: 7.04836565559697
+          vBCOutraUF: 5.533258397034986
       properties:
         ICMS00:
           $ref: '#/components/schemas/CteSefazICMS00'
@@ -13392,6 +13556,8 @@ components:
         CST: CST
         vBC: 6.778324963048013
         vICMS: 5.944895607614016
+        vICMSDeson: 6.704019297950036
+        cBenef: cBenef
         pICMS: 6.878052220127876
       properties:
         CST:
@@ -13415,6 +13581,16 @@ components:
           description: Valor do ICMS.
           nullable: true
           type: number
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF.\r\nCódigo de Benefício Fiscal\
+            \ utilizado pela UF."
+          maxLength: 10
+          nullable: true
+          type: string
       required:
       - CST
       - pICMS
@@ -13426,10 +13602,22 @@ components:
       description: "ICMS  Isento, não Tributado ou diferido."
       example:
         CST: CST
+        vICMSDeson: 3.353193347011243
+        cBenef: cBenef
       properties:
         CST:
           description: "Classificação Tributária do Serviço.\r\nPreencher com:\r\n\
             * 40 - ICMS isenção\r\n* 41 - ICMS não tributada\r\n* 51 - ICMS diferido"
+          nullable: true
+          type: string
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF.\r\nCódigo de Benefício Fiscal\
+            \ utilizado pela UF."
+          maxLength: 10
           nullable: true
           type: string
       required:
@@ -13440,10 +13628,12 @@ components:
         do recolhimento do ICMS atribuído ao tomador ou 3º por ST.
       example:
         CST: CST
-        vBCSTRet: 6.704019297950036
-        vCred: 7.143538047012306
-        vICMSSTRet: 3.353193347011243
-        pICMSSTRet: 3.0937452626664474
+        vICMSDeson: 6.519180951018382
+        cBenef: cBenef
+        vBCSTRet: 3.0937452626664474
+        vCred: 7.058770351582356
+        vICMSSTRet: 7.143538047012306
+        pICMSSTRet: 0.8851374739011653
       properties:
         CST:
           description: "Classificação Tributária do Serviço.\r\n* 60 - ICMS cobrado\
@@ -13474,6 +13664,16 @@ components:
             \ do ICMS ST retido."
           nullable: true
           type: number
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF.\r\nCódigo de Benefício Fiscal\
+            \ utilizado pela UF."
+          maxLength: 10
+          nullable: true
+          type: string
       required:
       - CST
       - pICMSSTRet
@@ -13483,12 +13683,14 @@ components:
     CteSefazICMS90:
       description: ICMS Outros.
       example:
-        pRedBC: 0.8851374739011653
+        pRedBC: 0.10263654006109402
         CST: CST
-        vBC: 7.058770351582356
-        vICMS: 0.10263654006109402
-        vCred: 4.652396432933246
-        pICMS: 6.519180951018382
+        vBC: 4.652396432933246
+        vICMS: 7.740351818741173
+        vICMSDeson: 3.0576100241049344
+        cBenef: cBenef
+        vCred: 3.0205796992916243
+        pICMS: 8.969578798196912
       properties:
         CST:
           description: "Classificação Tributária do Serviço.\r\n* 90 - ICMS outros"
@@ -13514,6 +13716,16 @@ components:
           description: Valor do Crédito Outorgado/Presumido.
           nullable: true
           type: number
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF.\r\nCódigo de Benefício Fiscal\
+            \ utilizado pela UF."
+          maxLength: 10
+          nullable: true
+          type: string
       required:
       - CST
       - pICMS
@@ -13524,11 +13736,13 @@ components:
       description: "ICMS devido à UF de origem da prestação, quando  diferente da\
         \ UF do emitente."
       example:
-        pICMSOutraUF: 3.0205796992916243
+        pICMSOutraUF: 3.2588565619047607
         CST: CST
-        vICMSOutraUF: 3.0576100241049344
-        pRedBCOutraUF: 8.969578798196912
-        vBCOutraUF: 7.740351818741173
+        vICMSDeson: 0.2025324113236393
+        cBenef: cBenef
+        vICMSOutraUF: 4.078845849666752
+        pRedBCOutraUF: 7.04836565559697
+        vBCOutraUF: 5.533258397034986
       properties:
         CST:
           description: "Classificação Tributária do Serviço.\r\n* 90 - ICMS Outra\
@@ -13551,6 +13765,16 @@ components:
           description: Valor do ICMS devido outra UF.
           nullable: true
           type: number
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF.\r\nCódigo de Benefício Fiscal\
+            \ utilizado pela UF."
+          maxLength: 10
+          nullable: true
+          type: string
       required:
       - CST
       - pICMSOutraUF
@@ -13560,7 +13784,7 @@ components:
     CteSefazICMSSN:
       description: Simples Nacional.
       example:
-        indSN: 7
+        indSN: 6
         CST: CST
       properties:
         CST:
@@ -13581,13 +13805,13 @@ components:
         o de transporte na operação interestadual.\r\nGrupo a ser informado nas prestaç\
         ões interestaduais para consumidor final, não contribuinte do ICMS."
       example:
-        pFCPUFFim: 4.078845849666752
-        vICMSUFIni: 4.678947989005849
-        pICMSInter: 6.628464275087742
-        vBCUFFim: 3.2588565619047607
-        pICMSUFFim: 0.2025324113236393
-        vFCPUFFim: 4.258773108174356
-        vICMSUFFim: 1.041444916118296
+        pFCPUFFim: 4.678947989005849
+        vICMSUFIni: 0.5199002018724985
+        pICMSInter: 9.132027271330688
+        vBCUFFim: 1.041444916118296
+        pICMSUFFim: 7.260521264802104
+        vFCPUFFim: 0.8774076871421566
+        vICMSUFFim: 9.702963800023566
       properties:
         vBCUFFim:
           description: Valor da BC do ICMS na UF de término da prestação do serviço
@@ -13710,28 +13934,28 @@ components:
             IE: IE
         cobr:
           fat:
-            vOrig: 7.835035282970782
+            vOrig: 8.675064425986758
             nFat: nFat
-            vDesc: 0.4768402382624515
-            vLiq: 3.1497903714250555
+            vDesc: 4.518309517874243
+            vLiq: 0.4833312865174044
           dup:
           - dVenc: 2000-01-23
             nDup: nDup
-            vDup: 2.380090174313445
+            vDup: 0.35262192099236644
           - dVenc: 2000-01-23
             nDup: nDup
-            vDup: 2.380090174313445
+            vDup: 0.35262192099236644
         infModal:
           versaoModal: versaoModal
           duto:
             dFim: 2000-01-23
-            vTar: 3.7814124730767915
+            vTar: 0.4768402382624515
             dIni: 2000-01-23
           ferrov:
             fluxo: fluxo
             trafMut:
-              respFat: 3
-              ferrEmi: 9
+              respFat: 5
+              ferrEmi: 8
               chCTeFerroOrigem: chCTeFerroOrigem
               ferroEnv:
               - xNome: xNome
@@ -13760,13 +13984,13 @@ components:
                   CEP: CEP
                 CNPJ: CNPJ
                 IE: IE
-              vFrete: 8.761432466225475
-            tpTraf: 1
+              vFrete: 7.606863723092579
+            tpTraf: 5
           aquav:
             nViag: nViag
             tpNav: 7
-            vPrest: 0.4182561061793122
-            vAFRMM: 5.299143560275359
+            vPrest: 3.7814124730767915
+            vAFRMM: 3.111202833403195
             balsa:
             - xBalsa: xBalsa
             - xBalsa: xBalsa
@@ -13774,16 +13998,16 @@ components:
             detCont:
             - infDoc:
                 infNF:
-                - unidRat: 5.312489704336296
+                - unidRat: 9.897492629215506
                   serie: serie
                   nDoc: nDoc
-                - unidRat: 5.312489704336296
+                - unidRat: 9.897492629215506
                   serie: serie
                   nDoc: nDoc
                 infNFe:
-                - unidRat: 8.37823741034869
+                - unidRat: 5.877124706116695
                   chave: chave
-                - unidRat: 8.37823741034869
+                - unidRat: 5.877124706116695
                   chave: chave
               nCont: nCont
               lacre:
@@ -13791,16 +14015,16 @@ components:
               - nLacre: nLacre
             - infDoc:
                 infNF:
-                - unidRat: 5.312489704336296
+                - unidRat: 9.897492629215506
                   serie: serie
                   nDoc: nDoc
-                - unidRat: 5.312489704336296
+                - unidRat: 9.897492629215506
                   serie: serie
                   nDoc: nDoc
                 infNFe:
-                - unidRat: 8.37823741034869
+                - unidRat: 5.877124706116695
                   chave: chave
-                - unidRat: 8.37823741034869
+                - unidRat: 5.877124706116695
                   chave: chave
               nCont: nCont
               lacre:
@@ -13820,7 +14044,7 @@ components:
           rodo:
             RNTRC: RNTRC
             occ:
-            - nOcc: 828965
+            - nOcc: 182687
               dEmi: 2000-01-23
               emiOcc:
                 fone: fone
@@ -13829,7 +14053,7 @@ components:
                 CNPJ: CNPJ
                 IE: IE
               serie: serie
-            - nOcc: 828965
+            - nOcc: 182687
               dEmi: 2000-01-23
               emiOcc:
                 fone: fone
@@ -13846,64 +14070,64 @@ components:
               xDime: xDime
             tarifa:
               CL: CL
-              vTar: 4.573936264232251
+              vTar: 9.183123594773994
               cTar: cTar
-            nMinu: 662351842
+            nMinu: 350265775
             peri:
             - nONU: nONU
               qTotEmb: qTotEmb
               infTotAP:
-                uniAP: 9
-                qTotProd: 8.863729185622827
+                uniAP: 0
+                qTotProd: 8.761432466225475
             - nONU: nONU
               qTotEmb: qTotEmb
               infTotAP:
-                uniAP: 9
-                qTotProd: 8.863729185622827
+                uniAP: 0
+                qTotProd: 8.761432466225475
             nOCA: nOCA
             dPrevAereo: 2000-01-23
         infCarga:
-          vCarga: 7.260521264802104
+          vCarga: 7.933506881737151
           xOutCat: xOutCat
           infQ:
           - tpMed: tpMed
             cUnid: cUnid
-            qCarga: 9.132027271330688
+            qCarga: 5.507386964179881
           - tpMed: tpMed
             cUnid: cUnid
-            qCarga: 9.132027271330688
-          vCargaAverb: 0.8774076871421566
+            qCarga: 5.507386964179881
+          vCargaAverb: 4.86315908102884
           proPred: proPred
         infServVinc:
           infCTeMultimodal:
           - chCTeMultimodal: chCTeMultimodal
           - chCTeMultimodal: chCTeMultimodal
         infCteSub:
-          indAlteraToma: 3
+          indAlteraToma: 7
           chCte: chCte
         infGlobalizado:
           xObs: xObs
         infDoc:
           infNF:
           - mod: mod
-            vBCST: 7.933506881737151
-            vProd: 4.86315908102884
+            vBCST: 4.459605034958679
+            vProd: 0.43431398824148815
             nRoma: nRoma
-            nPeso: 8.251625748923757
-            vNF: 6.073898085781152
+            nPeso: 1.7325933120207193
+            vNF: 2.9409642974827896
             infUnidTransp:
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -13911,18 +14135,18 @@ components:
               lacUnidTransp:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -13934,44 +14158,44 @@ components:
             nPed: nPed
             dEmi: 2000-01-23
             PIN: PIN
-            vBC: 9.702963800023566
-            vST: 5.507386964179881
+            vBC: 6.073898085781152
+            vST: 3.901545264248647
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            vICMS: 0.5199002018724985
+            vICMS: 8.251625748923757
             serie: serie
             nDoc: nDoc
             nCFOP: nCFOP
           - mod: mod
-            vBCST: 7.933506881737151
-            vProd: 4.86315908102884
+            vBCST: 4.459605034958679
+            vProd: 0.43431398824148815
             nRoma: nRoma
-            nPeso: 8.251625748923757
-            vNF: 6.073898085781152
+            nPeso: 1.7325933120207193
+            vNF: 2.9409642974827896
             infUnidTransp:
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -13979,18 +14203,18 @@ components:
               lacUnidTransp:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14002,22 +14226,22 @@ components:
             nPed: nPed
             dEmi: 2000-01-23
             PIN: PIN
-            vBC: 9.702963800023566
-            vST: 5.507386964179881
+            vBC: 6.073898085781152
+            vST: 3.901545264248647
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            vICMS: 0.5199002018724985
+            vICMS: 8.251625748923757
             serie: serie
             nDoc: nDoc
             nCFOP: nCFOP
@@ -14025,32 +14249,32 @@ components:
           - dPrev: 2000-01-23
             PIN: PIN
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
             chave: chave
             infUnidTransp:
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14058,18 +14282,18 @@ components:
               lacUnidTransp:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14080,32 +14304,32 @@ components:
           - dPrev: 2000-01-23
             PIN: PIN
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
             chave: chave
             infUnidTransp:
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14113,18 +14337,18 @@ components:
               lacUnidTransp:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14135,16 +14359,16 @@ components:
           infOutros:
           - dPrev: 2000-01-23
             dEmi: 2000-01-23
-            vDocFisc: 1.7325933120207193
+            vDocFisc: 9.254183946267839
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14153,18 +14377,18 @@ components:
             tpDoc: tpDoc
             descOutros: descOutros
             infUnidTransp:
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14172,18 +14396,18 @@ components:
               lacUnidTransp:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14193,16 +14417,16 @@ components:
               - nLacre: nLacre
           - dPrev: 2000-01-23
             dEmi: 2000-01-23
-            vDocFisc: 1.7325933120207193
+            vDocFisc: 9.254183946267839
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14211,18 +14435,18 @@ components:
             tpDoc: tpDoc
             descOutros: descOutros
             infUnidTransp:
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14230,18 +14454,18 @@ components:
               lacUnidTransp:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 2.9409642974827896
-              tpUnidTransp: 0
+            - qtdRat: 8.863729185622827
+              tpUnidTransp: 4
               idUnidTransp: idUnidTransp
               infUnidCarga:
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
                 - nLacre: nLacre
-              - qtdRat: 3.901545264248647
-                tpUnidCarga: 4
+              - qtdRat: 6.623518433804886
+                tpUnidCarga: 8
                 idUnidCarga: idUnidCarga
                 lacUnidCarga:
                 - nLacre: nLacre
@@ -14254,14 +14478,14 @@ components:
           xCor: xCor
           chassi: chassi
           cCor: cCor
-          vUnit: 9.897492629215506
-          vFrete: 5.877124706116695
+          vUnit: 2.380090174313445
+          vFrete: 3.804112695731078
         - cMod: cMod
           xCor: xCor
           chassi: chassi
           cCor: cCor
-          vUnit: 9.897492629215506
-          vFrete: 5.877124706116695
+          vUnit: 2.380090174313445
+          vFrete: 3.804112695731078
       properties:
         infCarga:
           $ref: '#/components/schemas/CteSefazInfCarga'
@@ -14290,16 +14514,16 @@ components:
     CteSefazInfCarga:
       description: Informações da Carga do CT-e.
       example:
-        vCarga: 7.260521264802104
+        vCarga: 7.933506881737151
         xOutCat: xOutCat
         infQ:
         - tpMed: tpMed
           cUnid: cUnid
-          qCarga: 9.132027271330688
+          qCarga: 5.507386964179881
         - tpMed: tpMed
           cUnid: cUnid
-          qCarga: 9.132027271330688
-        vCargaAverb: 0.8774076871421566
+          qCarga: 5.507386964179881
+        vCargaAverb: 4.86315908102884
         proPred: proPred
       properties:
         vCarga:
@@ -14347,7 +14571,7 @@ components:
       example:
         tpMed: tpMed
         cUnid: cUnid
-        qCarga: 9.132027271330688
+        qCarga: 5.507386964179881
       properties:
         cUnid:
           description: "Código da Unidade de Medida.\r\nPreencher com:\r\n* 00 - M3\r\
@@ -14380,24 +14604,24 @@ components:
       example:
         infNF:
         - mod: mod
-          vBCST: 7.933506881737151
-          vProd: 4.86315908102884
+          vBCST: 4.459605034958679
+          vProd: 0.43431398824148815
           nRoma: nRoma
-          nPeso: 8.251625748923757
-          vNF: 6.073898085781152
+          nPeso: 1.7325933120207193
+          vNF: 2.9409642974827896
           infUnidTransp:
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14405,18 +14629,18 @@ components:
             lacUnidTransp:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14428,44 +14652,44 @@ components:
           nPed: nPed
           dEmi: 2000-01-23
           PIN: PIN
-          vBC: 9.702963800023566
-          vST: 5.507386964179881
+          vBC: 6.073898085781152
+          vST: 3.901545264248647
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          vICMS: 0.5199002018724985
+          vICMS: 8.251625748923757
           serie: serie
           nDoc: nDoc
           nCFOP: nCFOP
         - mod: mod
-          vBCST: 7.933506881737151
-          vProd: 4.86315908102884
+          vBCST: 4.459605034958679
+          vProd: 0.43431398824148815
           nRoma: nRoma
-          nPeso: 8.251625748923757
-          vNF: 6.073898085781152
+          nPeso: 1.7325933120207193
+          vNF: 2.9409642974827896
           infUnidTransp:
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14473,18 +14697,18 @@ components:
             lacUnidTransp:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14496,22 +14720,22 @@ components:
           nPed: nPed
           dEmi: 2000-01-23
           PIN: PIN
-          vBC: 9.702963800023566
-          vST: 5.507386964179881
+          vBC: 6.073898085781152
+          vST: 3.901545264248647
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          vICMS: 0.5199002018724985
+          vICMS: 8.251625748923757
           serie: serie
           nDoc: nDoc
           nCFOP: nCFOP
@@ -14519,32 +14743,32 @@ components:
         - dPrev: 2000-01-23
           PIN: PIN
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
           chave: chave
           infUnidTransp:
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14552,18 +14776,18 @@ components:
             lacUnidTransp:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14574,32 +14798,32 @@ components:
         - dPrev: 2000-01-23
           PIN: PIN
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
           chave: chave
           infUnidTransp:
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14607,18 +14831,18 @@ components:
             lacUnidTransp:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14629,16 +14853,16 @@ components:
         infOutros:
         - dPrev: 2000-01-23
           dEmi: 2000-01-23
-          vDocFisc: 1.7325933120207193
+          vDocFisc: 9.254183946267839
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -14647,18 +14871,18 @@ components:
           tpDoc: tpDoc
           descOutros: descOutros
           infUnidTransp:
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14666,18 +14890,18 @@ components:
             lacUnidTransp:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14687,16 +14911,16 @@ components:
             - nLacre: nLacre
         - dPrev: 2000-01-23
           dEmi: 2000-01-23
-          vDocFisc: 1.7325933120207193
+          vDocFisc: 9.254183946267839
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -14705,18 +14929,18 @@ components:
           tpDoc: tpDoc
           descOutros: descOutros
           infUnidTransp:
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14724,18 +14948,18 @@ components:
             lacUnidTransp:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 2.9409642974827896
-            tpUnidTransp: 0
+          - qtdRat: 8.863729185622827
+            tpUnidTransp: 4
             idUnidTransp: idUnidTransp
             infUnidCarga:
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
               - nLacre: nLacre
-            - qtdRat: 3.901545264248647
-              tpUnidCarga: 4
+            - qtdRat: 6.623518433804886
+              tpUnidCarga: 8
               idUnidCarga: idUnidCarga
               lacUnidCarga:
               - nLacre: nLacre
@@ -14762,24 +14986,24 @@ components:
         \ documento originário for NF."
       example:
         mod: mod
-        vBCST: 7.933506881737151
-        vProd: 4.86315908102884
+        vBCST: 4.459605034958679
+        vProd: 0.43431398824148815
         nRoma: nRoma
-        nPeso: 8.251625748923757
-        vNF: 6.073898085781152
+        nPeso: 1.7325933120207193
+        vNF: 2.9409642974827896
         infUnidTransp:
-        - qtdRat: 2.9409642974827896
-          tpUnidTransp: 0
+        - qtdRat: 8.863729185622827
+          tpUnidTransp: 4
           idUnidTransp: idUnidTransp
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -14787,18 +15011,18 @@ components:
           lacUnidTransp:
           - nLacre: nLacre
           - nLacre: nLacre
-        - qtdRat: 2.9409642974827896
-          tpUnidTransp: 0
+        - qtdRat: 8.863729185622827
+          tpUnidTransp: 4
           idUnidTransp: idUnidTransp
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -14810,22 +15034,22 @@ components:
         nPed: nPed
         dEmi: 2000-01-23
         PIN: PIN
-        vBC: 9.702963800023566
-        vST: 5.507386964179881
+        vBC: 6.073898085781152
+        vST: 3.901545264248647
         infUnidCarga:
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
           - nLacre: nLacre
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
           - nLacre: nLacre
-        vICMS: 0.5199002018724985
+        vICMS: 8.251625748923757
         serie: serie
         nDoc: nDoc
         nCFOP: nCFOP
@@ -14936,8 +15160,8 @@ components:
         \ de contêiner de carga, vagão, contêiner de avião, palete de aeronave com\
         \ rede ou palete de aeronave com rede sobre um iglu."
       example:
-        qtdRat: 3.901545264248647
-        tpUnidCarga: 4
+        qtdRat: 6.623518433804886
+        tpUnidCarga: 8
         idUnidCarga: idUnidCarga
         lacUnidCarga:
         - nLacre: nLacre
@@ -14985,18 +15209,18 @@ components:
       description: "Informações das Unidades de Transporte (Carreta/Reboque/Vagão).\r\
         \nDeve ser preenchido com as informações das unidades de transporte utilizadas."
       example:
-        qtdRat: 2.9409642974827896
-        tpUnidTransp: 0
+        qtdRat: 8.863729185622827
+        tpUnidTransp: 4
         idUnidTransp: idUnidTransp
         infUnidCarga:
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
           - nLacre: nLacre
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
@@ -15055,32 +15279,32 @@ components:
         dPrev: 2000-01-23
         PIN: PIN
         infUnidCarga:
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
           - nLacre: nLacre
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
           - nLacre: nLacre
         chave: chave
         infUnidTransp:
-        - qtdRat: 2.9409642974827896
-          tpUnidTransp: 0
+        - qtdRat: 8.863729185622827
+          tpUnidTransp: 4
           idUnidTransp: idUnidTransp
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -15088,18 +15312,18 @@ components:
           lacUnidTransp:
           - nLacre: nLacre
           - nLacre: nLacre
-        - qtdRat: 2.9409642974827896
-          tpUnidTransp: 0
+        - qtdRat: 8.863729185622827
+          tpUnidTransp: 4
           idUnidTransp: idUnidTransp
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -15141,16 +15365,16 @@ components:
       example:
         dPrev: 2000-01-23
         dEmi: 2000-01-23
-        vDocFisc: 1.7325933120207193
+        vDocFisc: 9.254183946267839
         infUnidCarga:
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
           - nLacre: nLacre
-        - qtdRat: 3.901545264248647
-          tpUnidCarga: 4
+        - qtdRat: 6.623518433804886
+          tpUnidCarga: 8
           idUnidCarga: idUnidCarga
           lacUnidCarga:
           - nLacre: nLacre
@@ -15159,18 +15383,18 @@ components:
         tpDoc: tpDoc
         descOutros: descOutros
         infUnidTransp:
-        - qtdRat: 2.9409642974827896
-          tpUnidTransp: 0
+        - qtdRat: 8.863729185622827
+          tpUnidTransp: 4
           idUnidTransp: idUnidTransp
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -15178,18 +15402,18 @@ components:
           lacUnidTransp:
           - nLacre: nLacre
           - nLacre: nLacre
-        - qtdRat: 2.9409642974827896
-          tpUnidTransp: 0
+        - qtdRat: 8.863729185622827
+          tpUnidTransp: 4
           idUnidTransp: idUnidTransp
           infUnidCarga:
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
             - nLacre: nLacre
-          - qtdRat: 3.901545264248647
-            tpUnidCarga: 4
+          - qtdRat: 6.623518433804886
+            tpUnidCarga: 8
             idUnidCarga: idUnidCarga
             lacUnidCarga:
             - nLacre: nLacre
@@ -15483,13 +15707,13 @@ components:
         versaoModal: versaoModal
         duto:
           dFim: 2000-01-23
-          vTar: 3.7814124730767915
+          vTar: 0.4768402382624515
           dIni: 2000-01-23
         ferrov:
           fluxo: fluxo
           trafMut:
-            respFat: 3
-            ferrEmi: 9
+            respFat: 5
+            ferrEmi: 8
             chCTeFerroOrigem: chCTeFerroOrigem
             ferroEnv:
             - xNome: xNome
@@ -15518,13 +15742,13 @@ components:
                 CEP: CEP
               CNPJ: CNPJ
               IE: IE
-            vFrete: 8.761432466225475
-          tpTraf: 1
+            vFrete: 7.606863723092579
+          tpTraf: 5
         aquav:
           nViag: nViag
           tpNav: 7
-          vPrest: 0.4182561061793122
-          vAFRMM: 5.299143560275359
+          vPrest: 3.7814124730767915
+          vAFRMM: 3.111202833403195
           balsa:
           - xBalsa: xBalsa
           - xBalsa: xBalsa
@@ -15532,16 +15756,16 @@ components:
           detCont:
           - infDoc:
               infNF:
-              - unidRat: 5.312489704336296
+              - unidRat: 9.897492629215506
                 serie: serie
                 nDoc: nDoc
-              - unidRat: 5.312489704336296
+              - unidRat: 9.897492629215506
                 serie: serie
                 nDoc: nDoc
               infNFe:
-              - unidRat: 8.37823741034869
+              - unidRat: 5.877124706116695
                 chave: chave
-              - unidRat: 8.37823741034869
+              - unidRat: 5.877124706116695
                 chave: chave
             nCont: nCont
             lacre:
@@ -15549,16 +15773,16 @@ components:
             - nLacre: nLacre
           - infDoc:
               infNF:
-              - unidRat: 5.312489704336296
+              - unidRat: 9.897492629215506
                 serie: serie
                 nDoc: nDoc
-              - unidRat: 5.312489704336296
+              - unidRat: 9.897492629215506
                 serie: serie
                 nDoc: nDoc
               infNFe:
-              - unidRat: 8.37823741034869
+              - unidRat: 5.877124706116695
                 chave: chave
-              - unidRat: 8.37823741034869
+              - unidRat: 5.877124706116695
                 chave: chave
             nCont: nCont
             lacre:
@@ -15578,7 +15802,7 @@ components:
         rodo:
           RNTRC: RNTRC
           occ:
-          - nOcc: 828965
+          - nOcc: 182687
             dEmi: 2000-01-23
             emiOcc:
               fone: fone
@@ -15587,7 +15811,7 @@ components:
               CNPJ: CNPJ
               IE: IE
             serie: serie
-          - nOcc: 828965
+          - nOcc: 182687
             dEmi: 2000-01-23
             emiOcc:
               fone: fone
@@ -15604,20 +15828,20 @@ components:
             xDime: xDime
           tarifa:
             CL: CL
-            vTar: 4.573936264232251
+            vTar: 9.183123594773994
             cTar: cTar
-          nMinu: 662351842
+          nMinu: 350265775
           peri:
           - nONU: nONU
             qTotEmb: qTotEmb
             infTotAP:
-              uniAP: 9
-              qTotProd: 8.863729185622827
+              uniAP: 0
+              qTotProd: 8.761432466225475
           - nONU: nONU
             qTotEmb: qTotEmb
             infTotAP:
-              uniAP: 9
-              qTotProd: 8.863729185622827
+              uniAP: 0
+              qTotProd: 8.761432466225475
           nOCA: nOCA
           dPrevAereo: 2000-01-23
       properties:
@@ -15644,7 +15868,7 @@ components:
       example:
         RNTRC: RNTRC
         occ:
-        - nOcc: 828965
+        - nOcc: 182687
           dEmi: 2000-01-23
           emiOcc:
             fone: fone
@@ -15653,7 +15877,7 @@ components:
             CNPJ: CNPJ
             IE: IE
           serie: serie
-        - nOcc: 828965
+        - nOcc: 182687
           dEmi: 2000-01-23
           emiOcc:
             fone: fone
@@ -15680,7 +15904,7 @@ components:
     CteSefazOcc:
       description: Ordens de Coleta associados.
       example:
-        nOcc: 828965
+        nOcc: 182687
         dEmi: 2000-01-23
         emiOcc:
           fone: fone
@@ -15759,20 +15983,20 @@ components:
           xDime: xDime
         tarifa:
           CL: CL
-          vTar: 4.573936264232251
+          vTar: 9.183123594773994
           cTar: cTar
-        nMinu: 662351842
+        nMinu: 350265775
         peri:
         - nONU: nONU
           qTotEmb: qTotEmb
           infTotAP:
-            uniAP: 9
-            qTotProd: 8.863729185622827
+            uniAP: 0
+            qTotProd: 8.761432466225475
         - nONU: nONU
           qTotEmb: qTotEmb
           infTotAP:
-            uniAP: 9
-            qTotProd: 8.863729185622827
+            uniAP: 0
+            qTotProd: 8.761432466225475
         nOCA: nOCA
         dPrevAereo: 2000-01-23
       properties:
@@ -15856,7 +16080,7 @@ components:
       description: Informações de tarifa.
       example:
         CL: CL
-        vTar: 4.573936264232251
+        vTar: 9.183123594773994
         cTar: cTar
       properties:
         CL:
@@ -15888,8 +16112,8 @@ components:
         nONU: nONU
         qTotEmb: qTotEmb
         infTotAP:
-          uniAP: 9
-          qTotProd: 8.863729185622827
+          uniAP: 0
+          qTotProd: 8.761432466225475
       properties:
         nONU:
           description: "Número ONU/UN.\r\nVer a legislação de transporte de produtos\
@@ -15918,8 +16142,8 @@ components:
         \nPreencher conforme a legislação de transporte de produtos perigosos aplicada\
         \ ao modal."
       example:
-        uniAP: 9
-        qTotProd: 8.863729185622827
+        uniAP: 0
+        qTotProd: 8.761432466225475
       properties:
         qTotProd:
           description: "Quantidade total de artigos perigosos.\r\n15 posições, sendo\
@@ -15948,8 +16172,8 @@ components:
       example:
         fluxo: fluxo
         trafMut:
-          respFat: 3
-          ferrEmi: 9
+          respFat: 5
+          ferrEmi: 8
           chCTeFerroOrigem: chCTeFerroOrigem
           ferroEnv:
           - xNome: xNome
@@ -15978,8 +16202,8 @@ components:
               CEP: CEP
             CNPJ: CNPJ
             IE: IE
-          vFrete: 8.761432466225475
-        tpTraf: 1
+          vFrete: 7.606863723092579
+        tpTraf: 5
       properties:
         tpTraf:
           description: "Tipo de Tráfego.\r\nPreencher com:\r\n* 0 - Próprio\r\n* 1\
@@ -16002,8 +16226,8 @@ components:
     CteSefazTrafMut:
       description: Detalhamento de informações para o tráfego mútuo.
       example:
-        respFat: 3
-        ferrEmi: 9
+        respFat: 5
+        ferrEmi: 8
         chCTeFerroOrigem: chCTeFerroOrigem
         ferroEnv:
         - xNome: xNome
@@ -16032,7 +16256,7 @@ components:
             CEP: CEP
           CNPJ: CNPJ
           IE: IE
-        vFrete: 8.761432466225475
+        vFrete: 7.606863723092579
       properties:
         respFat:
           description: "Responsável pelo Faturamento.\r\nPreencher com:\r\n* 1 - Ferrovia\
@@ -16176,8 +16400,8 @@ components:
       example:
         nViag: nViag
         tpNav: 7
-        vPrest: 0.4182561061793122
-        vAFRMM: 5.299143560275359
+        vPrest: 3.7814124730767915
+        vAFRMM: 3.111202833403195
         balsa:
         - xBalsa: xBalsa
         - xBalsa: xBalsa
@@ -16185,16 +16409,16 @@ components:
         detCont:
         - infDoc:
             infNF:
-            - unidRat: 5.312489704336296
+            - unidRat: 9.897492629215506
               serie: serie
               nDoc: nDoc
-            - unidRat: 5.312489704336296
+            - unidRat: 9.897492629215506
               serie: serie
               nDoc: nDoc
             infNFe:
-            - unidRat: 8.37823741034869
+            - unidRat: 5.877124706116695
               chave: chave
-            - unidRat: 8.37823741034869
+            - unidRat: 5.877124706116695
               chave: chave
           nCont: nCont
           lacre:
@@ -16202,16 +16426,16 @@ components:
           - nLacre: nLacre
         - infDoc:
             infNF:
-            - unidRat: 5.312489704336296
+            - unidRat: 9.897492629215506
               serie: serie
               nDoc: nDoc
-            - unidRat: 5.312489704336296
+            - unidRat: 9.897492629215506
               serie: serie
               nDoc: nDoc
             infNFe:
-            - unidRat: 8.37823741034869
+            - unidRat: 5.877124706116695
               chave: chave
-            - unidRat: 8.37823741034869
+            - unidRat: 5.877124706116695
               chave: chave
           nCont: nCont
           lacre:
@@ -16288,16 +16512,16 @@ components:
       example:
         infDoc:
           infNF:
-          - unidRat: 5.312489704336296
+          - unidRat: 9.897492629215506
             serie: serie
             nDoc: nDoc
-          - unidRat: 5.312489704336296
+          - unidRat: 9.897492629215506
             serie: serie
             nDoc: nDoc
           infNFe:
-          - unidRat: 8.37823741034869
+          - unidRat: 5.877124706116695
             chave: chave
-          - unidRat: 8.37823741034869
+          - unidRat: 5.877124706116695
             chave: chave
         nCont: nCont
         lacre:
@@ -16337,16 +16561,16 @@ components:
       description: Informações dos documentos dos conteiners.
       example:
         infNF:
-        - unidRat: 5.312489704336296
+        - unidRat: 9.897492629215506
           serie: serie
           nDoc: nDoc
-        - unidRat: 5.312489704336296
+        - unidRat: 9.897492629215506
           serie: serie
           nDoc: nDoc
         infNFe:
-        - unidRat: 8.37823741034869
+        - unidRat: 5.877124706116695
           chave: chave
-        - unidRat: 8.37823741034869
+        - unidRat: 5.877124706116695
           chave: chave
       properties:
         infNF:
@@ -16361,7 +16585,7 @@ components:
     CteSefazDetCont_InfDoc_InfNF:
       description: Informações das NF.
       example:
-        unidRat: 5.312489704336296
+        unidRat: 9.897492629215506
         serie: serie
         nDoc: nDoc
       properties:
@@ -16388,7 +16612,7 @@ components:
     CteSefazDetCont_InfDoc_InfNFe:
       description: Informações das NFe.
       example:
-        unidRat: 8.37823741034869
+        unidRat: 5.877124706116695
         chave: chave
       properties:
         chave:
@@ -16406,7 +16630,7 @@ components:
     CteSefazDuto:
       example:
         dFim: 2000-01-23
-        vTar: 3.7814124730767915
+        vTar: 0.4768402382624515
         dIni: 2000-01-23
       properties:
         vTar:
@@ -16513,8 +16737,8 @@ components:
         xCor: xCor
         chassi: chassi
         cCor: cCor
-        vUnit: 9.897492629215506
-        vFrete: 5.877124706116695
+        vUnit: 2.380090174313445
+        vFrete: 3.804112695731078
       properties:
         chassi:
           description: Chassi do veículo.
@@ -16559,17 +16783,17 @@ components:
       description: Dados da cobrança do CT-e.
       example:
         fat:
-          vOrig: 7.835035282970782
+          vOrig: 8.675064425986758
           nFat: nFat
-          vDesc: 0.4768402382624515
-          vLiq: 3.1497903714250555
+          vDesc: 4.518309517874243
+          vLiq: 0.4833312865174044
         dup:
         - dVenc: 2000-01-23
           nDup: nDup
-          vDup: 2.380090174313445
+          vDup: 0.35262192099236644
         - dVenc: 2000-01-23
           nDup: nDup
-          vDup: 2.380090174313445
+          vDup: 0.35262192099236644
       properties:
         fat:
           $ref: '#/components/schemas/CteSefazFat'
@@ -16581,10 +16805,10 @@ components:
     CteSefazFat:
       description: Dados da fatura.
       example:
-        vOrig: 7.835035282970782
+        vOrig: 8.675064425986758
         nFat: nFat
-        vDesc: 0.4768402382624515
-        vLiq: 3.1497903714250555
+        vDesc: 4.518309517874243
+        vLiq: 0.4833312865174044
       properties:
         nFat:
           description: Número da fatura.
@@ -16610,7 +16834,7 @@ components:
       example:
         dVenc: 2000-01-23
         nDup: nDup
-        vDup: 2.380090174313445
+        vDup: 0.35262192099236644
       properties:
         nDup:
           description: Número da duplicata.
@@ -16631,7 +16855,7 @@ components:
     CteSefazInfCteSub:
       description: Informações do CT-e de substituição.
       example:
-        indAlteraToma: 3
+        indAlteraToma: 7
         chCte: chCte
       properties:
         chCte:
@@ -16720,7 +16944,7 @@ components:
       description: Informações do Responsável Técnico pela emissão do DF-e.
       example:
         fone: fone
-        idCSRT: 866
+        idCSRT: 432
         CNPJ: CNPJ
         hashCSRT: hashCSRT
         xContato: xContato
@@ -39698,7 +39922,7 @@ components:
     DfePedidoInutilizacao:
       example:
         ano: 0
-        numero_inicial: 146581297
+        numero_inicial: 146581298
         ambiente: homologacao
         numero_final: 596213391
         justificativa: justificativa
@@ -39725,12 +39949,12 @@ components:
         numero_inicial:
           description: Número da NF-e inicial.
           maximum: 999999999
-          minimum: 0
+          minimum: 1
           type: integer
         numero_final:
           description: Número da NF-e final.
           maximum: 999999999
-          minimum: 0
+          minimum: 1
           type: integer
         justificativa:
           description: Justificativa do pedido de inutilização.

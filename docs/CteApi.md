@@ -1033,7 +1033,7 @@ catch (ApiException e)
 
 <a name="cancelarcte"></a>
 # **CancelarCte**
-> DfeCancelamento CancelarCte (string id, CtePedidoCancelamento body)
+> DfeCancelamento CancelarCte (string id, CtePedidoCancelamento body = null)
 
 Cancelar um CT-e autorizado
 
@@ -1066,7 +1066,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único do CT-e gerado pela Nuvem Fiscal.
-            var body = new CtePedidoCancelamento(); // CtePedidoCancelamento | 
+            var body = new CtePedidoCancelamento(); // CtePedidoCancelamento |  (optional) 
 
             try
             {
@@ -1110,7 +1110,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **id** | **string** | ID único do CT-e gerado pela Nuvem Fiscal. |  |
-| **body** | [**CtePedidoCancelamento**](CtePedidoCancelamento.md) |  |  |
+| **body** | [**CtePedidoCancelamento**](CtePedidoCancelamento.md) |  | [optional]  |
 
 ### Tipo de retorno
 
@@ -1572,7 +1572,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CteApi(httpClient, config, httpClientHandler);
             var cpfCnpj = "cpfCnpj_example";  // string | CPF/CNPJ do emitente.  Utilize o valor sem máscara.
-            var autorizador = "autorizador_example";  // string | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: `AM`, `BA`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVAN`, `SVRS`, `SVCAN`, `SVCRS`, `AN`;  * NFC-e: `AM`, `BA`, `CE`, `GO`, `MG`, `MS`, `MT`, `PE`, `PR`, `RS`, `SP`, `SVRS`;  * MDF-e: `SVRS`;  * CT-e: `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional) 
+            var autorizador = "autorizador_example";  // string | Ambiente Autorizador.    Autorizadores disponíveis: `MT`, `MS`, `MG`, `PR`, `RS`, `SP`, `SVRS`, `SVSP`, `AN`.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* (optional) 
 
             try
             {
@@ -1616,7 +1616,7 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **cpfCnpj** | **string** | CPF/CNPJ do emitente.  Utilize o valor sem máscara. |  |
-| **autorizador** | **string** | Ambiente Autorizador.    Autorizadores disponíveis:  * NF-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVAN&#x60;, &#x60;SVRS&#x60;, &#x60;SVCAN&#x60;, &#x60;SVCRS&#x60;, &#x60;AN&#x60;;  * NFC-e: &#x60;AM&#x60;, &#x60;BA&#x60;, &#x60;CE&#x60;, &#x60;GO&#x60;, &#x60;MG&#x60;, &#x60;MS&#x60;, &#x60;MT&#x60;, &#x60;PE&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;;  * MDF-e: &#x60;SVRS&#x60;;  * CT-e: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* | [optional]  |
+| **autorizador** | **string** | Ambiente Autorizador.    Autorizadores disponíveis: &#x60;MT&#x60;, &#x60;MS&#x60;, &#x60;MG&#x60;, &#x60;PR&#x60;, &#x60;RS&#x60;, &#x60;SP&#x60;, &#x60;SVRS&#x60;, &#x60;SVSP&#x60;, &#x60;AN&#x60;.    *Caso não seja informado, será utilizado o ambiente autorizador da UF do emitente.* | [optional]  |
 
 ### Tipo de retorno
 
