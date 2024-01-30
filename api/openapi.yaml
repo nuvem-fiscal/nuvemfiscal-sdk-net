@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.26.10
+  version: 2.27.1
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -20,6 +20,8 @@ tags:
   name: Mdfe
 - description: Nota Fiscal de Consumidor Eletrônica.
   name: Nfce
+- description: Nota Fiscal Fatura de Serviço de Comunicação Eletrônica.
+  name: Nfcom
 - description: Nota Fiscal Eletrônica.
   name: Nfe
 - description: Nota Fiscal de Serviço Eletrônica.
@@ -1092,6 +1094,52 @@ paths:
                 $ref: '#/components/schemas/EmpresaConfigNfce'
           description: Successful response
       summary: Alterar configuração de NFC-e
+      tags:
+      - Empresa
+      x-codegen-request-body-name: body
+  /empresas/{cpf_cnpj}/nfcom:
+    get:
+      operationId: ConsultarConfigNfcom
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmpresaConfigNfcom'
+          description: Successful response
+      summary: Consultar configuração de NFCom
+      tags:
+      - Empresa
+    put:
+      operationId: AlterarConfigNfcom
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmpresaConfigNfcom'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmpresaConfigNfcom'
+          description: Successful response
+      summary: Alterar configuração de NFCom
       tags:
       - Empresa
       x-codegen-request-body-name: body
@@ -2672,6 +2720,285 @@ paths:
       summary: Baixar XML do Protocolo da SEFAZ
       tags:
       - Nfce
+  /nfcom:
+    get:
+      description: "Retorna a lista de NFCom de acordo com os critérios de busca utilizados.\
+        \ As NFCom são retornadas ordenadas pela data da criação, com as mais recentes\
+        \ aparecendo primeiro."
+      operationId: ListarNfcom
+      parameters:
+      - description: "Limite no número de objetos a serem retornados pela API, entre\
+          \ 1 e 100."
+        in: query
+        name: $top
+        schema:
+          default: 10
+          type: integer
+      - description: Quantidade de objetos que serão ignorados antes da lista começar
+          a ser retornada.
+        in: query
+        name: $skip
+        schema:
+          default: 0
+          type: integer
+      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
+          \ total de registros que o filtro retornaria, independente dos filtros de\
+          \ paginação."
+        in: query
+        name: $inlinecount
+        schema:
+          default: false
+          type: boolean
+      - description: "Filtrar pelo CPF ou CNPJ do emitente.\r\n\r\nUtilize o valor\
+          \ sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: Seu identificador único para o documento.
+        in: query
+        name: referencia
+        schema:
+          type: string
+      - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
+          \ producao"
+        in: query
+        name: ambiente
+        required: true
+        schema:
+          type: string
+      - description: Chave de acesso do DF-e.
+        in: query
+        name: chave
+        schema:
+          type: string
+      - description: Série do DF-e.
+        in: query
+        name: serie
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeListagem'
+          description: Successful response
+      summary: Listar NFCom
+      tags:
+      - Nfcom
+    post:
+      operationId: EmitirNfcom
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NfcomPedidoEmissao'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dfe'
+          description: Successful response
+      summary: Emitir NFCom
+      tags:
+      - Nfcom
+      x-codegen-request-body-name: body
+  /nfcom/sefaz/status:
+    get:
+      description: "Consulta do status do serviço prestado pelo Portal da Secretaria\
+        \ de Fazenda Estadual.\r\n\r\nA Nuvem Fiscal mantém a última consulta em cache\
+        \ por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da\
+        \ SEFAZ."
+      operationId: ConsultarStatusSefazNfcom
+      parameters:
+      - description: "CPF/CNPJ do emitente.\r\nUtilize o valor sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis: `SVRS`.\r\
+          \n\r\n*Caso não seja informado, será utilizado o ambiente autorizador da\
+          \ UF do emitente.*"
+        in: query
+        name: autorizador
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeSefazStatus'
+          description: Successful response
+      summary: Consulta do Status do Serviço na SEFAZ Autorizadora
+      tags:
+      - Nfcom
+  /nfcom/{id}:
+    get:
+      description: Consulta os detalhes de uma NFCom já existente. Forneça o ID único
+        obtido de uma requisição de emissão ou de listagem de NFCom e a Nuvem Fiscal
+        irá retornar as informações da NFCom correspondente.
+      operationId: ConsultarNfcom
+      parameters:
+      - description: ID único da NFCom gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dfe'
+          description: Successful response
+      summary: Consultar NFCom
+      tags:
+      - Nfcom
+  /nfcom/{id}/cancelamento:
+    get:
+      operationId: ConsultarCancelamentoNfcom
+      parameters:
+      - description: ID único da NFCom gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeCancelamento'
+          description: Successful response
+      summary: Consultar o cancelamento da NFCom
+      tags:
+      - Nfcom
+    post:
+      operationId: CancelarNfcom
+      parameters:
+      - description: ID único da NFCom gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NfcomPedidoCancelamento'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeCancelamento'
+          description: Successful response
+      summary: Cancelar uma NFCom autorizada
+      tags:
+      - Nfcom
+      x-codegen-request-body-name: body
+  /nfcom/{id}/cancelamento/xml:
+    get:
+      operationId: BaixarXmlCancelamentoNfcom
+      parameters:
+      - description: ID único da NFCom gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do cancelamento
+      tags:
+      - Nfcom
+  /nfcom/{id}/xml:
+    get:
+      description: "Utilize esse endpoint para obter o XML da nota enviada para a\
+        \ SEFAZ, complementado com a informação do protocolo de autorização de uso\
+        \ (TAG raiz `nfcomProc`).\r\n\r\nO XML só estará disponível nesse endpoint\
+        \ caso a nota tenha sido autorizada pela SEFAZ. Para obter o XML nos demais\
+        \ casos, utilize o endpoint `GET /nfcom/{id}/xml/nota`."
+      operationId: BaixarXmlNfcom
+      parameters:
+      - description: ID único da NFCom gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML da NFCom processada
+      tags:
+      - Nfcom
+  /nfcom/{id}/xml/nota:
+    get:
+      description: "Utilize esse endpoint para obter o XML da nota enviada para a\
+        \ SEFAZ.\r\n\r\nO XML estará disponível nesse endpoint mesmo em casos que\
+        \ a nota tenha sido rejeitada."
+      operationId: BaixarXmlNfcomNota
+      parameters:
+      - description: ID único da NFCom gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML da NFCom
+      tags:
+      - Nfcom
+  /nfcom/{id}/xml/protocolo:
+    get:
+      operationId: BaixarXmlNfcomProtocolo
+      parameters:
+      - description: ID único da NFCom gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do Protocolo da SEFAZ
+      tags:
+      - Nfcom
   /nfe:
     get:
       description: "Retorna a lista de notas de acordo com os critérios de busca utilizados.\
@@ -4406,6 +4733,25 @@ components:
             \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
             \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
             \ Nacional - Microempreendedor Individual (MEI)."
+          type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigNfcom:
+      example:
+        CRT: 0
+        ambiente: homologacao
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
           type: integer
         ambiente:
           description: Indica se a empresa irá emitir em produção ou homologação.
@@ -10188,37 +10534,6 @@ components:
             $ref: '#/components/schemas/NfseMensagemRetorno'
           type: array
       type: object
-    ContaCota:
-      example:
-        consumo: 6
-        nome: nome
-        limite: 1
-      properties:
-        nome:
-          type: string
-        consumo:
-          type: integer
-        limite:
-          type: integer
-      type: object
-    ContaCotaListagem:
-      example:
-        '@count': 0
-        data:
-        - consumo: 6
-          nome: nome
-          limite: 1
-        - consumo: 6
-          nome: nome
-          limite: 1
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/ContaCota'
-          type: array
-      type: object
     DfeSefazStatus:
       example:
         data_hora_retorno: 2000-01-23T04:56:07.000+00:00
@@ -10277,6 +10592,3174 @@ components:
           format: date-time
           nullable: true
           type: string
+      type: object
+    NfcomPedidoEmissao:
+      example:
+        ambiente: homologacao
+        infNFCom:
+          gCofat:
+            chNFComLocal: chNFComLocal
+          infAdic:
+            infCpl:
+            - infCpl
+            - infCpl
+            infAdFisco: infAdFisco
+          gRespTec:
+            fone: fone
+            idCSRT: 979
+            CNPJ: CNPJ
+            hashCSRT: hashCSRT
+            xContato: xContato
+            email: email
+          gSub:
+            chNFCom: chNFCom
+            motSub: motSub
+            gNF:
+              mod: 5
+              hash115: hash115
+              nNF: 996578120
+              serie: serie
+              CNPJ: CNPJ
+              CompetEmis: CompetEmis
+          ide:
+            mod: 1
+            nNF: 563737665
+            cMunFG: cMunFG
+            dhCont: 2000-01-23T04:56:07.000+00:00
+            tpFat: 2
+            tpAmb: 6
+            dhEmi: 2000-01-23T04:56:07.000+00:00
+            indPrePago: 4
+            tpEmis: 7
+            cDV: 2
+            indNotaEntrada: 1
+            cUF: 0
+            serie: 595
+            nSiteAutoriz: 8
+            finNFCom: 3
+            indCessaoMeiosRede: 7
+            cNF: cNF
+            xJust: xJust
+            verProc: verProc
+          dest:
+            xNome: xNome
+            idOutros: idOutros
+            IM: IM
+            CPF: CPF
+            CNPJ: CNPJ
+            enderDest:
+              xCpl: xCpl
+              fone: fone
+              UF: UF
+              xPais: xPais
+              cPais: cPais
+              xLgr: xLgr
+              xMun: xMun
+              nro: nro
+              cMun: cMun
+              xBairro: xBairro
+              email: email
+              CEP: CEP
+            IE: IE
+            indIEDest: 1
+          gFatCentral:
+            cUF: 6
+            CNPJ: CNPJ
+          assinante:
+            dContratoFim: 2000-01-23
+            iCodAssinante: iCodAssinante
+            tpAssinante: 6
+            tpServUtil: 7
+            NroTermAdic: NroTermAdic
+            NroTermPrinc: NroTermPrinc
+            nContrato: nContrato
+            dContratoIni: 2000-01-23
+            cUFPrinc: 1
+            cUFAdic: 4
+          gFidelidade:
+            qtdSaldoPts: qtdSaldoPts
+            dRefSaldoPts: 2000-01-23
+            qtdPtsResg: qtdPtsResg
+            dRefResgPts: 2000-01-23
+          det:
+          - nItem: 9368
+            prod:
+              uMed: 6
+              qFaturada: 8.762042012749001
+              cProd: cProd
+              cClass: cClass
+              vItem: 9.018348186070783
+              indDevolucao: 1
+              vProd: 6.965117697638846
+              xProd: xProd
+              CNPJLD: CNPJLD
+              vDesc: 6.438423552598547
+              vOutro: 3.5571952270680973
+              CFOP: CFOP
+              dExpiracao: 2000-01-23
+            gRessarc:
+              dRef: 2000-01-23
+              nProcesso: nProcesso
+              nProtReclama: nProtReclama
+              tpRessarc: 7
+              xObs: xObs
+            chNFComAnt: chNFComAnt
+            imposto:
+              ICMS00:
+                pFCP: 5.944895607614016
+                CST: CST
+                vBC: 2.8841621266687802
+                vICMS: 6.878052220127876
+                vFCP: 6.704019297950036
+                pICMS: 6.778324963048013
+              indSemCST: 0
+              ICMS90:
+                pFCP: 5.533258397034986
+                CST: CST
+                vBC: 7.740351818741173
+                vICMS: 3.0576100241049344
+                vICMSDeson: 7.04836565559697
+                cBenef: cBenef
+                vFCP: 3.2588565619047607
+                pICMS: 3.0205796992916243
+              FUST:
+                vBC: 8.251625748923757
+                vFUST: 3.901545264248647
+                pFUST: 4.459605034958679
+              retTrib:
+                vIRRF: 9.254183946267839
+                vBCIRRF: 8.863729185622827
+                vRetPIS: 8.28965939814297
+                vRetCSLL: 4.573936264232251
+                vRetCofins: 6.623518433804886
+              ICMSUFDest:
+              - vICMSUFDest: 7.260521264802104
+                vICMSUFEmi: 9.132027271330688
+                vFCPUFDest: 4.678947989005849
+                cUFDest: 0
+                pFCPUFDest: 4.258773108174356
+                vBCUFDest: 6.628464275087742
+                pICMSUFDest: 1.041444916118296
+                cBenefUFDest: cBenefUFDest
+              - vICMSUFDest: 7.260521264802104
+                vICMSUFEmi: 9.132027271330688
+                vFCPUFDest: 4.678947989005849
+                cUFDest: 0
+                pFCPUFDest: 4.258773108174356
+                vBCUFDest: 6.628464275087742
+                pICMSUFDest: 1.041444916118296
+                cBenefUFDest: cBenefUFDest
+              FUNTTEL:
+                pFUNTTEL: 2.9409642974827896
+                vBC: 0.43431398824148815
+                vFUNTTEL: 1.7325933120207193
+              ICMS20:
+                pFCP: 6.519180951018382
+                pRedBC: 3.353193347011243
+                CST: CST
+                vBC: 3.0937452626664474
+                vICMS: 0.8851374739011653
+                vICMSDeson: 7.058770351582356
+                cBenef: cBenef
+                vFCP: 0.10263654006109402
+                pICMS: 7.143538047012306
+              ICMS40:
+                CST: CST
+                vICMSDeson: 4.652396432933246
+                cBenef: cBenef
+              ICMS51:
+                CST: CST
+                vICMSDeson: 8.969578798196912
+                cBenef: cBenef
+              COFINS:
+                vCOFINS: 6.073898085781152
+                CST: CST
+                vBC: 5.507386964179881
+                pCOFINS: 4.86315908102884
+              PIS:
+                vPIS: 7.933506881737151
+                CST: CST
+                vBC: 9.702963800023566
+                pPIS: 0.5199002018724985
+              ICMSSN:
+                indSN: 4
+                CST: CST
+            gProcRef:
+              qFaturada: 3.502657762086401
+              vCOFINS: 3.111202833403195
+              vItem: 1.8268702177058116
+              indDevolucao: 5
+              vProd: 9.183123594773994
+              vFCP: 9.897492629215506
+              gProc:
+              - tpProc: 5
+                nProcesso: nProcesso
+              - tpProc: 5
+                nProcesso: nProcesso
+              vPIS: 3.7814124730767915
+              vBC: 5.312489704336296
+              vICMS: 7.606863723092579
+              vDesc: 8.761432466225475
+              vOutro: 0.4182561061793122
+              pICMS: 8.37823741034869
+            nItemAnt: nItemAnt
+            infAdProd: infAdProd
+          - nItem: 9368
+            prod:
+              uMed: 6
+              qFaturada: 8.762042012749001
+              cProd: cProd
+              cClass: cClass
+              vItem: 9.018348186070783
+              indDevolucao: 1
+              vProd: 6.965117697638846
+              xProd: xProd
+              CNPJLD: CNPJLD
+              vDesc: 6.438423552598547
+              vOutro: 3.5571952270680973
+              CFOP: CFOP
+              dExpiracao: 2000-01-23
+            gRessarc:
+              dRef: 2000-01-23
+              nProcesso: nProcesso
+              nProtReclama: nProtReclama
+              tpRessarc: 7
+              xObs: xObs
+            chNFComAnt: chNFComAnt
+            imposto:
+              ICMS00:
+                pFCP: 5.944895607614016
+                CST: CST
+                vBC: 2.8841621266687802
+                vICMS: 6.878052220127876
+                vFCP: 6.704019297950036
+                pICMS: 6.778324963048013
+              indSemCST: 0
+              ICMS90:
+                pFCP: 5.533258397034986
+                CST: CST
+                vBC: 7.740351818741173
+                vICMS: 3.0576100241049344
+                vICMSDeson: 7.04836565559697
+                cBenef: cBenef
+                vFCP: 3.2588565619047607
+                pICMS: 3.0205796992916243
+              FUST:
+                vBC: 8.251625748923757
+                vFUST: 3.901545264248647
+                pFUST: 4.459605034958679
+              retTrib:
+                vIRRF: 9.254183946267839
+                vBCIRRF: 8.863729185622827
+                vRetPIS: 8.28965939814297
+                vRetCSLL: 4.573936264232251
+                vRetCofins: 6.623518433804886
+              ICMSUFDest:
+              - vICMSUFDest: 7.260521264802104
+                vICMSUFEmi: 9.132027271330688
+                vFCPUFDest: 4.678947989005849
+                cUFDest: 0
+                pFCPUFDest: 4.258773108174356
+                vBCUFDest: 6.628464275087742
+                pICMSUFDest: 1.041444916118296
+                cBenefUFDest: cBenefUFDest
+              - vICMSUFDest: 7.260521264802104
+                vICMSUFEmi: 9.132027271330688
+                vFCPUFDest: 4.678947989005849
+                cUFDest: 0
+                pFCPUFDest: 4.258773108174356
+                vBCUFDest: 6.628464275087742
+                pICMSUFDest: 1.041444916118296
+                cBenefUFDest: cBenefUFDest
+              FUNTTEL:
+                pFUNTTEL: 2.9409642974827896
+                vBC: 0.43431398824148815
+                vFUNTTEL: 1.7325933120207193
+              ICMS20:
+                pFCP: 6.519180951018382
+                pRedBC: 3.353193347011243
+                CST: CST
+                vBC: 3.0937452626664474
+                vICMS: 0.8851374739011653
+                vICMSDeson: 7.058770351582356
+                cBenef: cBenef
+                vFCP: 0.10263654006109402
+                pICMS: 7.143538047012306
+              ICMS40:
+                CST: CST
+                vICMSDeson: 4.652396432933246
+                cBenef: cBenef
+              ICMS51:
+                CST: CST
+                vICMSDeson: 8.969578798196912
+                cBenef: cBenef
+              COFINS:
+                vCOFINS: 6.073898085781152
+                CST: CST
+                vBC: 5.507386964179881
+                pCOFINS: 4.86315908102884
+              PIS:
+                vPIS: 7.933506881737151
+                CST: CST
+                vBC: 9.702963800023566
+                pPIS: 0.5199002018724985
+              ICMSSN:
+                indSN: 4
+                CST: CST
+            gProcRef:
+              qFaturada: 3.502657762086401
+              vCOFINS: 3.111202833403195
+              vItem: 1.8268702177058116
+              indDevolucao: 5
+              vProd: 9.183123594773994
+              vFCP: 9.897492629215506
+              gProc:
+              - tpProc: 5
+                nProcesso: nProcesso
+              - tpProc: 5
+                nProcesso: nProcesso
+              vPIS: 3.7814124730767915
+              vBC: 5.312489704336296
+              vICMS: 7.606863723092579
+              vDesc: 8.761432466225475
+              vOutro: 0.4182561061793122
+              pICMS: 8.37823741034869
+            nItemAnt: nItemAnt
+            infAdProd: infAdProd
+          total:
+            vPIS: 0.4833312865174044
+            vCOFINS: 4.518309517874243
+            vRetTribTot:
+              vIRRF: 0.58919091925136
+              vRetPIS: 4.332304821875894
+              vRetCSLL: 9.386524999783381
+              vRetCofins: 2.7977867356748476
+            ICMSTot:
+              vBC: 3.1497903714250555
+              vICMS: 2.380090174313445
+              vICMSDeson: 3.804112695731078
+              vFCP: 8.675064425986758
+            vDesc: 2.535258963197524
+            vProd: 0.4768402382624515
+            vFUST: 7.203794749804894
+            vOutro: 6.173804034172511
+            vFUNTTEL: 0.35262192099236644
+            vNF: 4.8789878742268815
+          Id: Id
+          autXML:
+          - CPF: CPF
+            CNPJ: CNPJ
+          - CPF: CPF
+            CNPJ: CNPJ
+          emit:
+            xNome: xNome
+            CRT: 1
+            IEUFDest: IEUFDest
+            xFant: xFant
+            CNPJ: CNPJ
+            enderEmit:
+              xCpl: xCpl
+              fone: fone
+              UF: UF
+              xLgr: xLgr
+              xMun: xMun
+              nro: nro
+              cMun: cMun
+              xBairro: xBairro
+              email: email
+              CEP: CEP
+            IE: IE
+          gFat:
+            dPerUsoFim: 2000-01-23
+            dVencFat: 2000-01-23
+            codDebAuto: codDebAuto
+            enderCorresp:
+              xCpl: xCpl
+              fone: fone
+              UF: UF
+              xLgr: xLgr
+              xMun: xMun
+              nro: nro
+              cMun: cMun
+              xBairro: xBairro
+              email: email
+              CEP: CEP
+            codAgencia: codAgencia
+            dPerUsoIni: 2000-01-23
+            gPIX:
+              urlQRCodePIX: urlQRCodePIX
+            CompetFat: CompetFat
+            codBarras: codBarras
+            codBanco: codBanco
+          versao: versao
+        referencia: referencia
+      properties:
+        infNFCom:
+          $ref: '#/components/schemas/NfcomSefazInfNFCom'
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        referencia:
+          description: "Seu identificador único para este documento. Opcional, ajuda\
+            \ a evitar o envio duplicado de um mesmo documento."
+          nullable: true
+          type: string
+      required:
+      - ambiente
+      - infNFCom
+      type: object
+    NfcomSefazInfNFCom:
+      description: Informações da NFCom.
+      example:
+        gCofat:
+          chNFComLocal: chNFComLocal
+        infAdic:
+          infCpl:
+          - infCpl
+          - infCpl
+          infAdFisco: infAdFisco
+        gRespTec:
+          fone: fone
+          idCSRT: 979
+          CNPJ: CNPJ
+          hashCSRT: hashCSRT
+          xContato: xContato
+          email: email
+        gSub:
+          chNFCom: chNFCom
+          motSub: motSub
+          gNF:
+            mod: 5
+            hash115: hash115
+            nNF: 996578120
+            serie: serie
+            CNPJ: CNPJ
+            CompetEmis: CompetEmis
+        ide:
+          mod: 1
+          nNF: 563737665
+          cMunFG: cMunFG
+          dhCont: 2000-01-23T04:56:07.000+00:00
+          tpFat: 2
+          tpAmb: 6
+          dhEmi: 2000-01-23T04:56:07.000+00:00
+          indPrePago: 4
+          tpEmis: 7
+          cDV: 2
+          indNotaEntrada: 1
+          cUF: 0
+          serie: 595
+          nSiteAutoriz: 8
+          finNFCom: 3
+          indCessaoMeiosRede: 7
+          cNF: cNF
+          xJust: xJust
+          verProc: verProc
+        dest:
+          xNome: xNome
+          idOutros: idOutros
+          IM: IM
+          CPF: CPF
+          CNPJ: CNPJ
+          enderDest:
+            xCpl: xCpl
+            fone: fone
+            UF: UF
+            xPais: xPais
+            cPais: cPais
+            xLgr: xLgr
+            xMun: xMun
+            nro: nro
+            cMun: cMun
+            xBairro: xBairro
+            email: email
+            CEP: CEP
+          IE: IE
+          indIEDest: 1
+        gFatCentral:
+          cUF: 6
+          CNPJ: CNPJ
+        assinante:
+          dContratoFim: 2000-01-23
+          iCodAssinante: iCodAssinante
+          tpAssinante: 6
+          tpServUtil: 7
+          NroTermAdic: NroTermAdic
+          NroTermPrinc: NroTermPrinc
+          nContrato: nContrato
+          dContratoIni: 2000-01-23
+          cUFPrinc: 1
+          cUFAdic: 4
+        gFidelidade:
+          qtdSaldoPts: qtdSaldoPts
+          dRefSaldoPts: 2000-01-23
+          qtdPtsResg: qtdPtsResg
+          dRefResgPts: 2000-01-23
+        det:
+        - nItem: 9368
+          prod:
+            uMed: 6
+            qFaturada: 8.762042012749001
+            cProd: cProd
+            cClass: cClass
+            vItem: 9.018348186070783
+            indDevolucao: 1
+            vProd: 6.965117697638846
+            xProd: xProd
+            CNPJLD: CNPJLD
+            vDesc: 6.438423552598547
+            vOutro: 3.5571952270680973
+            CFOP: CFOP
+            dExpiracao: 2000-01-23
+          gRessarc:
+            dRef: 2000-01-23
+            nProcesso: nProcesso
+            nProtReclama: nProtReclama
+            tpRessarc: 7
+            xObs: xObs
+          chNFComAnt: chNFComAnt
+          imposto:
+            ICMS00:
+              pFCP: 5.944895607614016
+              CST: CST
+              vBC: 2.8841621266687802
+              vICMS: 6.878052220127876
+              vFCP: 6.704019297950036
+              pICMS: 6.778324963048013
+            indSemCST: 0
+            ICMS90:
+              pFCP: 5.533258397034986
+              CST: CST
+              vBC: 7.740351818741173
+              vICMS: 3.0576100241049344
+              vICMSDeson: 7.04836565559697
+              cBenef: cBenef
+              vFCP: 3.2588565619047607
+              pICMS: 3.0205796992916243
+            FUST:
+              vBC: 8.251625748923757
+              vFUST: 3.901545264248647
+              pFUST: 4.459605034958679
+            retTrib:
+              vIRRF: 9.254183946267839
+              vBCIRRF: 8.863729185622827
+              vRetPIS: 8.28965939814297
+              vRetCSLL: 4.573936264232251
+              vRetCofins: 6.623518433804886
+            ICMSUFDest:
+            - vICMSUFDest: 7.260521264802104
+              vICMSUFEmi: 9.132027271330688
+              vFCPUFDest: 4.678947989005849
+              cUFDest: 0
+              pFCPUFDest: 4.258773108174356
+              vBCUFDest: 6.628464275087742
+              pICMSUFDest: 1.041444916118296
+              cBenefUFDest: cBenefUFDest
+            - vICMSUFDest: 7.260521264802104
+              vICMSUFEmi: 9.132027271330688
+              vFCPUFDest: 4.678947989005849
+              cUFDest: 0
+              pFCPUFDest: 4.258773108174356
+              vBCUFDest: 6.628464275087742
+              pICMSUFDest: 1.041444916118296
+              cBenefUFDest: cBenefUFDest
+            FUNTTEL:
+              pFUNTTEL: 2.9409642974827896
+              vBC: 0.43431398824148815
+              vFUNTTEL: 1.7325933120207193
+            ICMS20:
+              pFCP: 6.519180951018382
+              pRedBC: 3.353193347011243
+              CST: CST
+              vBC: 3.0937452626664474
+              vICMS: 0.8851374739011653
+              vICMSDeson: 7.058770351582356
+              cBenef: cBenef
+              vFCP: 0.10263654006109402
+              pICMS: 7.143538047012306
+            ICMS40:
+              CST: CST
+              vICMSDeson: 4.652396432933246
+              cBenef: cBenef
+            ICMS51:
+              CST: CST
+              vICMSDeson: 8.969578798196912
+              cBenef: cBenef
+            COFINS:
+              vCOFINS: 6.073898085781152
+              CST: CST
+              vBC: 5.507386964179881
+              pCOFINS: 4.86315908102884
+            PIS:
+              vPIS: 7.933506881737151
+              CST: CST
+              vBC: 9.702963800023566
+              pPIS: 0.5199002018724985
+            ICMSSN:
+              indSN: 4
+              CST: CST
+          gProcRef:
+            qFaturada: 3.502657762086401
+            vCOFINS: 3.111202833403195
+            vItem: 1.8268702177058116
+            indDevolucao: 5
+            vProd: 9.183123594773994
+            vFCP: 9.897492629215506
+            gProc:
+            - tpProc: 5
+              nProcesso: nProcesso
+            - tpProc: 5
+              nProcesso: nProcesso
+            vPIS: 3.7814124730767915
+            vBC: 5.312489704336296
+            vICMS: 7.606863723092579
+            vDesc: 8.761432466225475
+            vOutro: 0.4182561061793122
+            pICMS: 8.37823741034869
+          nItemAnt: nItemAnt
+          infAdProd: infAdProd
+        - nItem: 9368
+          prod:
+            uMed: 6
+            qFaturada: 8.762042012749001
+            cProd: cProd
+            cClass: cClass
+            vItem: 9.018348186070783
+            indDevolucao: 1
+            vProd: 6.965117697638846
+            xProd: xProd
+            CNPJLD: CNPJLD
+            vDesc: 6.438423552598547
+            vOutro: 3.5571952270680973
+            CFOP: CFOP
+            dExpiracao: 2000-01-23
+          gRessarc:
+            dRef: 2000-01-23
+            nProcesso: nProcesso
+            nProtReclama: nProtReclama
+            tpRessarc: 7
+            xObs: xObs
+          chNFComAnt: chNFComAnt
+          imposto:
+            ICMS00:
+              pFCP: 5.944895607614016
+              CST: CST
+              vBC: 2.8841621266687802
+              vICMS: 6.878052220127876
+              vFCP: 6.704019297950036
+              pICMS: 6.778324963048013
+            indSemCST: 0
+            ICMS90:
+              pFCP: 5.533258397034986
+              CST: CST
+              vBC: 7.740351818741173
+              vICMS: 3.0576100241049344
+              vICMSDeson: 7.04836565559697
+              cBenef: cBenef
+              vFCP: 3.2588565619047607
+              pICMS: 3.0205796992916243
+            FUST:
+              vBC: 8.251625748923757
+              vFUST: 3.901545264248647
+              pFUST: 4.459605034958679
+            retTrib:
+              vIRRF: 9.254183946267839
+              vBCIRRF: 8.863729185622827
+              vRetPIS: 8.28965939814297
+              vRetCSLL: 4.573936264232251
+              vRetCofins: 6.623518433804886
+            ICMSUFDest:
+            - vICMSUFDest: 7.260521264802104
+              vICMSUFEmi: 9.132027271330688
+              vFCPUFDest: 4.678947989005849
+              cUFDest: 0
+              pFCPUFDest: 4.258773108174356
+              vBCUFDest: 6.628464275087742
+              pICMSUFDest: 1.041444916118296
+              cBenefUFDest: cBenefUFDest
+            - vICMSUFDest: 7.260521264802104
+              vICMSUFEmi: 9.132027271330688
+              vFCPUFDest: 4.678947989005849
+              cUFDest: 0
+              pFCPUFDest: 4.258773108174356
+              vBCUFDest: 6.628464275087742
+              pICMSUFDest: 1.041444916118296
+              cBenefUFDest: cBenefUFDest
+            FUNTTEL:
+              pFUNTTEL: 2.9409642974827896
+              vBC: 0.43431398824148815
+              vFUNTTEL: 1.7325933120207193
+            ICMS20:
+              pFCP: 6.519180951018382
+              pRedBC: 3.353193347011243
+              CST: CST
+              vBC: 3.0937452626664474
+              vICMS: 0.8851374739011653
+              vICMSDeson: 7.058770351582356
+              cBenef: cBenef
+              vFCP: 0.10263654006109402
+              pICMS: 7.143538047012306
+            ICMS40:
+              CST: CST
+              vICMSDeson: 4.652396432933246
+              cBenef: cBenef
+            ICMS51:
+              CST: CST
+              vICMSDeson: 8.969578798196912
+              cBenef: cBenef
+            COFINS:
+              vCOFINS: 6.073898085781152
+              CST: CST
+              vBC: 5.507386964179881
+              pCOFINS: 4.86315908102884
+            PIS:
+              vPIS: 7.933506881737151
+              CST: CST
+              vBC: 9.702963800023566
+              pPIS: 0.5199002018724985
+            ICMSSN:
+              indSN: 4
+              CST: CST
+          gProcRef:
+            qFaturada: 3.502657762086401
+            vCOFINS: 3.111202833403195
+            vItem: 1.8268702177058116
+            indDevolucao: 5
+            vProd: 9.183123594773994
+            vFCP: 9.897492629215506
+            gProc:
+            - tpProc: 5
+              nProcesso: nProcesso
+            - tpProc: 5
+              nProcesso: nProcesso
+            vPIS: 3.7814124730767915
+            vBC: 5.312489704336296
+            vICMS: 7.606863723092579
+            vDesc: 8.761432466225475
+            vOutro: 0.4182561061793122
+            pICMS: 8.37823741034869
+          nItemAnt: nItemAnt
+          infAdProd: infAdProd
+        total:
+          vPIS: 0.4833312865174044
+          vCOFINS: 4.518309517874243
+          vRetTribTot:
+            vIRRF: 0.58919091925136
+            vRetPIS: 4.332304821875894
+            vRetCSLL: 9.386524999783381
+            vRetCofins: 2.7977867356748476
+          ICMSTot:
+            vBC: 3.1497903714250555
+            vICMS: 2.380090174313445
+            vICMSDeson: 3.804112695731078
+            vFCP: 8.675064425986758
+          vDesc: 2.535258963197524
+          vProd: 0.4768402382624515
+          vFUST: 7.203794749804894
+          vOutro: 6.173804034172511
+          vFUNTTEL: 0.35262192099236644
+          vNF: 4.8789878742268815
+        Id: Id
+        autXML:
+        - CPF: CPF
+          CNPJ: CNPJ
+        - CPF: CPF
+          CNPJ: CNPJ
+        emit:
+          xNome: xNome
+          CRT: 1
+          IEUFDest: IEUFDest
+          xFant: xFant
+          CNPJ: CNPJ
+          enderEmit:
+            xCpl: xCpl
+            fone: fone
+            UF: UF
+            xLgr: xLgr
+            xMun: xMun
+            nro: nro
+            cMun: cMun
+            xBairro: xBairro
+            email: email
+            CEP: CEP
+          IE: IE
+        gFat:
+          dPerUsoFim: 2000-01-23
+          dVencFat: 2000-01-23
+          codDebAuto: codDebAuto
+          enderCorresp:
+            xCpl: xCpl
+            fone: fone
+            UF: UF
+            xLgr: xLgr
+            xMun: xMun
+            nro: nro
+            cMun: cMun
+            xBairro: xBairro
+            email: email
+            CEP: CEP
+          codAgencia: codAgencia
+          dPerUsoIni: 2000-01-23
+          gPIX:
+            urlQRCodePIX: urlQRCodePIX
+          CompetFat: CompetFat
+          codBarras: codBarras
+          codBanco: codBanco
+        versao: versao
+      properties:
+        versao:
+          description: Versão do leiaute.
+          nullable: true
+          type: string
+        Id:
+          description: "Identificador da tag a ser assinada.\r\nInformar a chave de\
+            \ acesso da NFCom e precedida do literal \"NFCom\".\r\n\r\n*Geramos automaticamente\
+            \ quando nenhum valor é informado.*"
+          nullable: true
+          type: string
+        ide:
+          $ref: '#/components/schemas/NfcomSefazIde'
+        emit:
+          $ref: '#/components/schemas/NfcomSefazEmit'
+        dest:
+          $ref: '#/components/schemas/NfcomSefazDest'
+        assinante:
+          $ref: '#/components/schemas/NfcomSefazAssinante'
+        gSub:
+          $ref: '#/components/schemas/NfcomSefazGSub'
+        gCofat:
+          $ref: '#/components/schemas/NfcomSefazGCofat'
+        det:
+          items:
+            $ref: '#/components/schemas/NfcomSefazDet'
+          type: array
+        total:
+          $ref: '#/components/schemas/NfcomSefazTotal'
+        gFidelidade:
+          $ref: '#/components/schemas/NfcomSefazGFidelidade'
+        gFat:
+          $ref: '#/components/schemas/NfcomSefazGFat'
+        gFatCentral:
+          $ref: '#/components/schemas/NfcomSefazGFatCentral'
+        autXML:
+          items:
+            $ref: '#/components/schemas/NfcomSefazAutXML'
+          type: array
+        infAdic:
+          $ref: '#/components/schemas/NfcomSefazInfAdic'
+        gRespTec:
+          $ref: '#/components/schemas/NfcomSefazRespTec'
+      required:
+      - assinante
+      - dest
+      - det
+      - emit
+      - ide
+      - total
+      - versao
+      type: object
+    NfcomSefazIde:
+      description: Identificação da NFCom.
+      example:
+        mod: 1
+        nNF: 563737665
+        cMunFG: cMunFG
+        dhCont: 2000-01-23T04:56:07.000+00:00
+        tpFat: 2
+        tpAmb: 6
+        dhEmi: 2000-01-23T04:56:07.000+00:00
+        indPrePago: 4
+        tpEmis: 7
+        cDV: 2
+        indNotaEntrada: 1
+        cUF: 0
+        serie: 595
+        nSiteAutoriz: 8
+        finNFCom: 3
+        indCessaoMeiosRede: 7
+        cNF: cNF
+        xJust: xJust
+        verProc: verProc
+      properties:
+        cUF:
+          description: "Código da UF de emissão e autorização da NFCom.\r\nCódigo\
+            \ da UF de emissão e autorização do Documento Fiscal. Utilizar a\r\nTabela\
+            \ do IBGE de código de unidades da federação."
+          nullable: true
+          type: integer
+        tpAmb:
+          description: "Tipo do Ambiente:\r\n* 1 - Produção\r\n* 2 - Homologação"
+          nullable: true
+          type: integer
+        mod:
+          description: "Modelo da NFCom.\r\nUtilizar o código 62 para identificaçã\
+            o da NFCom."
+          nullable: true
+          type: integer
+        serie:
+          description: "Série do documento fiscal.\r\nInformar a série do documento\
+            \ fiscal (informar zero para série única)."
+          maximum: 999
+          minimum: 0
+          nullable: true
+          type: integer
+        nNF:
+          description: "Número do documento fiscal.\r\nNúmero que identifica o documento\
+            \ fiscal 1 a 999999999."
+          maximum: 999999999
+          minimum: 1
+          nullable: true
+          type: integer
+        cNF:
+          description: "Código numérico que compõe a Chave de Acesso.\r\nCódigo aleató\
+            rio gerado pelo emitente, com o objetivo de evitar acessos indevidos ao\
+            \ documento.\r\n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
+          nullable: true
+          type: string
+        cDV:
+          description: "Digito verificador da chave de acesso.\r\nInformar o dígito\
+            \  de controle da chave de acesso documento fiscal, que deve ser calculado\
+            \ com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.\r\
+            \n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
+          maximum: 9
+          minimum: 0
+          nullable: true
+          type: integer
+        dhEmi:
+          description: "Data e hora de emissão do documento fiscal.\r\nFormato AAAA-MM-DDTHH:MM:DD\
+            \ TZD."
+          format: date-time
+          nullable: true
+          type: string
+        tpEmis:
+          description: "Forma de emissão do Documento Fiscal.\r\n* 1 - Normal\r\n\
+            * 2 - Contingência"
+          nullable: true
+          type: integer
+        nSiteAutoriz:
+          description: "Identificação do número do Site do Autorizador de recepçã\
+            o da NFCom.\r\nSe o autorizador da NFCom possuir apenas um site deverá\
+            \ ser informado com Zero (0), em caso de Autorizador trabalhar com mú\
+            ltiplos sites indicar o número do site para qual foi endereçada a NFCOM\
+            \ (1 a 9).\r\nObservação: o ambiente autorizador que trabalhar com mais\
+            \ de um Site deverá divulgar para cada endereço de site qual número correspondente\
+            \ de nSiteAutoriz o contribuinte pode usar."
+          maximum: 9
+          minimum: 0
+          nullable: true
+          type: integer
+        cMunFG:
+          description: Código do município de ocorrência do fato gerador.
+          nullable: true
+          type: string
+        finNFCom:
+          description: "Finalidade de emissão da NFCom.\r\n* 0 - NFCom Normal\r\n\
+            * 3 - NFCom de Substituição\r\n* 4 - NFCom de Ajuste"
+          nullable: true
+          type: integer
+        tpFat:
+          description: "Tipo de Faturamento da NFCom.\r\n* 0 - Faturamento Normal\r\
+            \n* 1 - Faturamento centralizado\r\n* 2 - Cofaturamento"
+          nullable: true
+          type: integer
+        verProc:
+          description: "Versão do processo de emissão.\r\nInformar a versão do aplicativo\
+            \ emissor de NFCom."
+          maxLength: 20
+          minLength: 1
+          nullable: true
+          type: string
+        indPrePago:
+          description: "Indicador de serviço pré-pago.\r\n* 1 - Serviço pré-pago (informar\
+            \ a tag somente se a nota for referente a um serviço exclusivamente pré\
+            -pago)"
+          nullable: true
+          type: integer
+        indCessaoMeiosRede:
+          description: "Indicador de Sessão de Meios de Rede.\r\nUma vez informado\
+            \ (valor = 1), essa tag dispensa geração do grupo Fatura.\r\nApenas para\
+            \ notas dos tipos Normal e Substituição com tipo de faturamento normal."
+          nullable: true
+          type: integer
+        indNotaEntrada:
+          description: "Indicador de nota de entrada.\r\n* 1 - Informar quando for\
+            \ nota de ajuste e possuir itens com CFOP de entrada"
+          nullable: true
+          type: integer
+        dhCont:
+          description: "Data e Hora da entrada em contingência.\r\nInformar a data\
+            \ e hora no formato AAAA-MM-DDTHH:MM:SS."
+          format: date-time
+          nullable: true
+          type: string
+        xJust:
+          description: Justificativa da entrada em contingência.
+          maxLength: 256
+          minLength: 15
+          nullable: true
+          type: string
+      required:
+      - cMunFG
+      - cUF
+      - dhEmi
+      - finNFCom
+      - nNF
+      - nSiteAutoriz
+      - serie
+      - tpEmis
+      - tpFat
+      - verProc
+      type: object
+    NfcomSefazEmit:
+      description: Identificação do Emitente do documento fiscal.
+      example:
+        xNome: xNome
+        CRT: 1
+        IEUFDest: IEUFDest
+        xFant: xFant
+        CNPJ: CNPJ
+        enderEmit:
+          xCpl: xCpl
+          fone: fone
+          UF: UF
+          xLgr: xLgr
+          xMun: xMun
+          nro: nro
+          cMun: cMun
+          xBairro: xBairro
+          email: email
+          CEP: CEP
+        IE: IE
+      properties:
+        CNPJ:
+          description: "CNPJ do emitente.\r\nInformar zeros não significativos."
+          nullable: true
+          type: string
+        IE:
+          description: "Inscrição Estadual do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        IEUFDest:
+          description: Inscrição Estadual Virtual do emitente na UF de Destino da
+            partilha (IE Virtual).
+          nullable: true
+          type: string
+        CRT:
+          description: "Código do Regime Tributário. Informar:\r\n* 1 - Simples Nacional;\r\
+            \n* 2 - Simples Nacional, excesso sublimite de receita bruta;\r\n* 3 -\
+            \ Regime Normal.\r\n\r\n*Caso não seja informado, será utilizado o do\
+            \ cadastro da empresa.*"
+          nullable: true
+          type: integer
+        xNome:
+          description: "Razão social ou Nome do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        xFant:
+          description: "Nome fantasia do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        enderEmit:
+          $ref: '#/components/schemas/NfcomSefazEndeEmi'
+      required:
+      - CNPJ
+      type: object
+    NfcomSefazEndeEmi:
+      description: "Endereço do emitente.\r\n\r\n*Caso não seja informado, será utilizado\
+        \ o do cadastro da empresa.*"
+      example:
+        xCpl: xCpl
+        fone: fone
+        UF: UF
+        xLgr: xLgr
+        xMun: xMun
+        nro: nro
+        cMun: cMun
+        xBairro: xBairro
+        email: email
+        CEP: CEP
+      properties:
+        xLgr:
+          description: "Logradouro.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        nro:
+          description: "Número.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xCpl:
+          description: "Complemento.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xBairro:
+          description: "Bairro.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        cMun:
+          description: "Código do município (utilizar a tabela do IBGE).\r\n\r\n*Caso\
+            \ não seja informado, será utilizado o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        xMun:
+          description: "Nome do município.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        CEP:
+          description: "CEP.\r\nInformar zeros não significativos.\r\n\r\n*Caso nã\
+            o seja informado, será utilizado o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        UF:
+          description: "Sigla da UF.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        fone:
+          description: "Telefone.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        email:
+          description: Endereço de E-mail.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+    NfcomSefazDest:
+      description: Identificação do destinatário / assinante.
+      example:
+        xNome: xNome
+        idOutros: idOutros
+        IM: IM
+        CPF: CPF
+        CNPJ: CNPJ
+        enderDest:
+          xCpl: xCpl
+          fone: fone
+          UF: UF
+          xPais: xPais
+          cPais: cPais
+          xLgr: xLgr
+          xMun: xMun
+          nro: nro
+          cMun: cMun
+          xBairro: xBairro
+          email: email
+          CEP: CEP
+        IE: IE
+        indIEDest: 1
+      properties:
+        xNome:
+          description: Razão social ou Nome do destinatário.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        CNPJ:
+          description: "Número do CNPJ.\r\nInformar os zeros não significativos."
+          nullable: true
+          type: string
+        CPF:
+          description: "Número do CPF.\r\nInformar os zeros não significativos."
+          nullable: true
+          type: string
+        idOutros:
+          description: "Identificação do destinatário outros.\r\nIdentificação do\
+            \ destinatário não obrigado a inscrição do CPF tais como estrangeiro,\
+            \ indígena e quilombola\r\nEm caso de não contar CPF do assinante, informar\
+            \ o RG."
+          maxLength: 20
+          minLength: 2
+          nullable: true
+          type: string
+        indIEDest:
+          description: "Indicador da IE do Destinatário.\r\n* 1 - Contribuinte ICMS\
+            \ (informar a IE do destinatário)\r\n* 2 - Contribuinte isento de Inscriç\
+            ão no cadastro de Contribuintes do ICMS\r\n* 9 - Não Contribuinte, que\
+            \ pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes\
+            \ do ICMS\r\nNota: No caso de Contribuinte Isento de Inscrição (indIEDest=2)\
+            \ informar a tag IE do destinatário com o literal ISENTO."
+          nullable: true
+          type: integer
+        IE:
+          description: Inscrição Estadual do destinatário.
+          nullable: true
+          type: string
+        IM:
+          description: Inscrição Municipal.
+          maxLength: 15
+          minLength: 1
+          nullable: true
+          type: string
+        enderDest:
+          $ref: '#/components/schemas/NfcomSefazEndeDest'
+      required:
+      - enderDest
+      - indIEDest
+      - xNome
+      type: object
+    NfcomSefazEndeDest:
+      description: Endereço do destinatário / assinante.
+      example:
+        xCpl: xCpl
+        fone: fone
+        UF: UF
+        xPais: xPais
+        cPais: cPais
+        xLgr: xLgr
+        xMun: xMun
+        nro: nro
+        cMun: cMun
+        xBairro: xBairro
+        email: email
+        CEP: CEP
+      properties:
+        xLgr:
+          description: Logradouro.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        nro:
+          description: Número.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xCpl:
+          description: Complemento.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xBairro:
+          description: Bairro.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        cMun:
+          description: Código do município (utilizar a tabela do IBGE).
+          nullable: true
+          type: string
+        xMun:
+          description: Nome do município.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        CEP:
+          description: "CEP.\r\nInformar zeros não significativos."
+          nullable: true
+          type: string
+        UF:
+          description: Sigla da UF.
+          nullable: true
+          type: string
+        cPais:
+          description: "Código do país.\r\nUtilizar a tabela do BACEN."
+          nullable: true
+          type: string
+        xPais:
+          description: Nome do país.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        fone:
+          description: Telefone.
+          nullable: true
+          type: string
+        email:
+          description: Endereço de E-mail.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - CEP
+      - UF
+      - cMun
+      - nro
+      - xBairro
+      - xLgr
+      - xMun
+      type: object
+    NfcomSefazAssinante:
+      description: Dados do assinante.
+      example:
+        dContratoFim: 2000-01-23
+        iCodAssinante: iCodAssinante
+        tpAssinante: 6
+        tpServUtil: 7
+        NroTermAdic: NroTermAdic
+        NroTermPrinc: NroTermPrinc
+        nContrato: nContrato
+        dContratoIni: 2000-01-23
+        cUFPrinc: 1
+        cUFAdic: 4
+      properties:
+        iCodAssinante:
+          description: Código único de Identificação do assinante.
+          maxLength: 30
+          minLength: 1
+          nullable: true
+          type: string
+        tpAssinante:
+          description: "Tipo de assinante.\r\n* 1 - Comercial\r\n* 2 - Industrial\r\
+            \n* 3 - Residencial/Pessoa Física\r\n* 4 - Produtor Rural\r\n* 5 - Órgã\
+            o da administração pública estadual direta e suas fundações e autarquias,\
+            \ quando mantidas pelo poder público estadual e regidas por normas de\
+            \ direito público, nos termos do Convênio ICMS 107/95\r\n* 6 - Prestador\
+            \ de serviço de telecomunicação responsável pelo recolhimento do imposto\
+            \ incidente sobre a cessão dos meios de rede do prestador do serviço ao\
+            \ usuário final, nos termos do Convênio ICMS 17/13\r\n* 7 - Missões Diplomá\
+            ticas, Repartições Consulares e Organismos Internacionais, nos termos\
+            \ do Convênio ICMS 158/94\r\n* 8 - Igrejas e Templos de qualquer natureza\r\
+            \n* 99 - Outros não especificados anteriormente"
+          nullable: true
+          type: integer
+        tpServUtil:
+          description: "Tipo de serviço utilizado.\r\n* 1 - Telefonia\r\n* 2 - Comunicaç\
+            ão de dados\r\n* 3 - TV por Assinatura\r\n* 4 - Provimento de acesso à\
+            \ Internet\r\n* 5 - Multimídia\r\n* 6 - Outros\r\n* 7 - Varios"
+          nullable: true
+          type: integer
+        nContrato:
+          description: Número do Contrato do assinante.
+          maxLength: 20
+          minLength: 1
+          nullable: true
+          type: string
+        dContratoIni:
+          description: "Data de início do contrato.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        dContratoFim:
+          description: "Data de término do contrato.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        NroTermPrinc:
+          description: "Número do Terminal Principal do serviço contratado.\r\nEm\
+            \ se tratando de plano de prestação de serviço telefônico corporativo,\
+            \ familiar ou similares, informar o número do terminal telefônico principal\
+            \ do plano."
+          nullable: true
+          type: string
+        cUFPrinc:
+          description: "Código da UF de habilitação do terminal.\r\nUtilizar a\r\n\
+            Tabela do IBGE de código de unidades da federação."
+          nullable: true
+          type: integer
+        NroTermAdic:
+          description: Número dos Terminais adicionais do serviço contratado.
+          nullable: true
+          type: string
+        cUFAdic:
+          description: Código da UF de habilitação do terminal.
+          nullable: true
+          type: integer
+      required:
+      - iCodAssinante
+      - tpAssinante
+      - tpServUtil
+      type: object
+    NfcomSefazGSub:
+      description: Grupo de informações da substituição.
+      example:
+        chNFCom: chNFCom
+        motSub: motSub
+        gNF:
+          mod: 5
+          hash115: hash115
+          nNF: 996578120
+          serie: serie
+          CNPJ: CNPJ
+          CompetEmis: CompetEmis
+      properties:
+        chNFCom:
+          description: Chave de acesso da NFCom original.
+          maxLength: 44
+          nullable: true
+          type: string
+        gNF:
+          $ref: '#/components/schemas/NfcomSefazGNF'
+        motSub:
+          description: "Motivo da substituição.\r\n* 01 - Erro de Preço\r\n* 02 -\
+            \ Erro Cadastral\r\n* 03 - Decisão Judicial\r\n* 04 - Erro de Tributaç\
+            ão\r\n* 05 - Descontinuidade do Serviço"
+          maxLength: 2
+          minLength: 2
+          nullable: true
+          type: string
+      required:
+      - motSub
+      type: object
+    NfcomSefazGNF:
+      description: Informação da NF modelo 21/22 referenciada.
+      example:
+        mod: 5
+        hash115: hash115
+        nNF: 996578120
+        serie: serie
+        CNPJ: CNPJ
+        CompetEmis: CompetEmis
+      properties:
+        CNPJ:
+          description: "CNPJ do Emitente.\r\nInformar o CNPJ do emitente do Documento\
+            \ Fiscal."
+          nullable: true
+          type: string
+        mod:
+          description: "Modelo do documento.\r\n21 ou 22."
+          nullable: true
+          type: integer
+        serie:
+          description: Serie do documento fiscal.
+          maxLength: 3
+          minLength: 3
+          nullable: true
+          type: string
+        nNF:
+          description: Número do documento fiscal.
+          maximum: 999999999
+          minimum: 1
+          nullable: true
+          type: integer
+        CompetEmis:
+          description: Ano e mês da emissão da NF (AAAAMM).
+          maxLength: 6
+          minLength: 6
+          nullable: true
+          type: string
+        hash115:
+          description: "Hash do registro no arquivo do convênio 115.\r\nCampo poderá\
+            \ ser exigido a critério da UF - campo 36 do arquivo MESTRE DE DOCUMENTO\
+            \ FISCAL (Anexo Único, item 5 do Conv. 115/03)."
+          maxLength: 32
+          minLength: 32
+          nullable: true
+          type: string
+      required:
+      - CNPJ
+      - CompetEmis
+      - mod
+      - nNF
+      - serie
+      type: object
+    NfcomSefazGCofat:
+      description: Grupo de Informações do Cofaturamento.
+      example:
+        chNFComLocal: chNFComLocal
+      properties:
+        chNFComLocal:
+          description: Chave de acesso da NFCom emitida pela Operadora Local.
+          maxLength: 44
+          nullable: true
+          type: string
+      required:
+      - chNFComLocal
+      type: object
+    NfcomSefazDet:
+      description: Detalhamento de Produtos e Serviços.
+      example:
+        nItem: 9368
+        prod:
+          uMed: 6
+          qFaturada: 8.762042012749001
+          cProd: cProd
+          cClass: cClass
+          vItem: 9.018348186070783
+          indDevolucao: 1
+          vProd: 6.965117697638846
+          xProd: xProd
+          CNPJLD: CNPJLD
+          vDesc: 6.438423552598547
+          vOutro: 3.5571952270680973
+          CFOP: CFOP
+          dExpiracao: 2000-01-23
+        gRessarc:
+          dRef: 2000-01-23
+          nProcesso: nProcesso
+          nProtReclama: nProtReclama
+          tpRessarc: 7
+          xObs: xObs
+        chNFComAnt: chNFComAnt
+        imposto:
+          ICMS00:
+            pFCP: 5.944895607614016
+            CST: CST
+            vBC: 2.8841621266687802
+            vICMS: 6.878052220127876
+            vFCP: 6.704019297950036
+            pICMS: 6.778324963048013
+          indSemCST: 0
+          ICMS90:
+            pFCP: 5.533258397034986
+            CST: CST
+            vBC: 7.740351818741173
+            vICMS: 3.0576100241049344
+            vICMSDeson: 7.04836565559697
+            cBenef: cBenef
+            vFCP: 3.2588565619047607
+            pICMS: 3.0205796992916243
+          FUST:
+            vBC: 8.251625748923757
+            vFUST: 3.901545264248647
+            pFUST: 4.459605034958679
+          retTrib:
+            vIRRF: 9.254183946267839
+            vBCIRRF: 8.863729185622827
+            vRetPIS: 8.28965939814297
+            vRetCSLL: 4.573936264232251
+            vRetCofins: 6.623518433804886
+          ICMSUFDest:
+          - vICMSUFDest: 7.260521264802104
+            vICMSUFEmi: 9.132027271330688
+            vFCPUFDest: 4.678947989005849
+            cUFDest: 0
+            pFCPUFDest: 4.258773108174356
+            vBCUFDest: 6.628464275087742
+            pICMSUFDest: 1.041444916118296
+            cBenefUFDest: cBenefUFDest
+          - vICMSUFDest: 7.260521264802104
+            vICMSUFEmi: 9.132027271330688
+            vFCPUFDest: 4.678947989005849
+            cUFDest: 0
+            pFCPUFDest: 4.258773108174356
+            vBCUFDest: 6.628464275087742
+            pICMSUFDest: 1.041444916118296
+            cBenefUFDest: cBenefUFDest
+          FUNTTEL:
+            pFUNTTEL: 2.9409642974827896
+            vBC: 0.43431398824148815
+            vFUNTTEL: 1.7325933120207193
+          ICMS20:
+            pFCP: 6.519180951018382
+            pRedBC: 3.353193347011243
+            CST: CST
+            vBC: 3.0937452626664474
+            vICMS: 0.8851374739011653
+            vICMSDeson: 7.058770351582356
+            cBenef: cBenef
+            vFCP: 0.10263654006109402
+            pICMS: 7.143538047012306
+          ICMS40:
+            CST: CST
+            vICMSDeson: 4.652396432933246
+            cBenef: cBenef
+          ICMS51:
+            CST: CST
+            vICMSDeson: 8.969578798196912
+            cBenef: cBenef
+          COFINS:
+            vCOFINS: 6.073898085781152
+            CST: CST
+            vBC: 5.507386964179881
+            pCOFINS: 4.86315908102884
+          PIS:
+            vPIS: 7.933506881737151
+            CST: CST
+            vBC: 9.702963800023566
+            pPIS: 0.5199002018724985
+          ICMSSN:
+            indSN: 4
+            CST: CST
+        gProcRef:
+          qFaturada: 3.502657762086401
+          vCOFINS: 3.111202833403195
+          vItem: 1.8268702177058116
+          indDevolucao: 5
+          vProd: 9.183123594773994
+          vFCP: 9.897492629215506
+          gProc:
+          - tpProc: 5
+            nProcesso: nProcesso
+          - tpProc: 5
+            nProcesso: nProcesso
+          vPIS: 3.7814124730767915
+          vBC: 5.312489704336296
+          vICMS: 7.606863723092579
+          vDesc: 8.761432466225475
+          vOutro: 0.4182561061793122
+          pICMS: 8.37823741034869
+        nItemAnt: nItemAnt
+        infAdProd: infAdProd
+      properties:
+        nItem:
+          description: Número do item da NFCom.
+          maximum: 9999
+          minimum: 1
+          nullable: true
+          type: integer
+        chNFComAnt:
+          description: "Chave de Acesso da NFCom anterior.\r\nInformar chave de acesso\
+            \ de referencia anterior\r\nTAG OPCIONAL, DEVE SER INFORMADA APENAS NOS\
+            \ CASOS PREVISTOS DE NOTA ANTERIOR REFERENCIADA."
+          maxLength: 44
+          nullable: true
+          type: string
+        nItemAnt:
+          description: "Número do item da NFCom anterior.\r\nInformar nro do item\
+            \ da chave de acesso de referencia anterior\r\nTAG OPCIONAL, DEVE SER\
+            \ INFORMADA APENAS NOS CASOS PREVISTOS DE NOTA ANTERIOR REFERENCIADA."
+          nullable: true
+          type: string
+        prod:
+          $ref: '#/components/schemas/NfcomSefazProd'
+        imposto:
+          $ref: '#/components/schemas/NfcomSefazImposto'
+        gProcRef:
+          $ref: '#/components/schemas/NfcomSefazGProcRef'
+        gRessarc:
+          $ref: '#/components/schemas/NfcomSefazGRessarc'
+        infAdProd:
+          description: "Informações adicionais do produto (norma referenciada, informaç\
+            ões complementares, etc)."
+          maxLength: 500
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - imposto
+      - nItem
+      - prod
+      type: object
+    NfcomSefazProd:
+      description: Dados do Produto ou Serviço.
+      example:
+        uMed: 6
+        qFaturada: 8.762042012749001
+        cProd: cProd
+        cClass: cClass
+        vItem: 9.018348186070783
+        indDevolucao: 1
+        vProd: 6.965117697638846
+        xProd: xProd
+        CNPJLD: CNPJLD
+        vDesc: 6.438423552598547
+        vOutro: 3.5571952270680973
+        CFOP: CFOP
+        dExpiracao: 2000-01-23
+      properties:
+        cProd:
+          description: Código do produto ou serviço.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xProd:
+          description: Descrição do produto ou serviço.
+          maxLength: 120
+          minLength: 1
+          nullable: true
+          type: string
+        cClass:
+          description: "Código de classificação.\r\nTabela de Classificação de Item\
+            \ da NFCom (validar por RV)."
+          maxLength: 7
+          minLength: 7
+          nullable: true
+          type: string
+        CFOP:
+          description: "CFOP.\r\nUtilizar Tabela de CFOP."
+          nullable: true
+          type: string
+        CNPJLD:
+          description: "CNPJ da operadora LD.\r\nInformar o CNPJ da operadora LD que\
+            \ irá lançar o item de cofaturamento em nota do tipo faturamento 2."
+          nullable: true
+          type: string
+        uMed:
+          description: "Unidade Básica de Medida.\r\n* 1 - Minuto\r\n* 2 - MB\r\n\
+            * 3 - GB\r\n* 4 - UN"
+          nullable: true
+          type: integer
+        qFaturada:
+          description: "Quantidade Faturada.\r\nInformar a quantidade de comercializaç\
+            ão do produto ."
+          nullable: true
+          type: number
+        vItem:
+          description: Valor unitário do item.
+          nullable: true
+          type: number
+        vDesc:
+          description: Valor do Desconto.
+          nullable: true
+          type: number
+        vOutro:
+          description: Outras despesas acessórias.
+          nullable: true
+          type: number
+        vProd:
+          description: Valor total do item.
+          nullable: true
+          type: number
+        dExpiracao:
+          description: "Data de expiração de crédito.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        indDevolucao:
+          description: "Indicador de devolução do valor do item.\r\n* 1 - Devoluçã\
+            o do valor do item"
+          nullable: true
+          type: integer
+      required:
+      - cClass
+      - cProd
+      - qFaturada
+      - uMed
+      - vItem
+      - vProd
+      - xProd
+      type: object
+    NfcomSefazImposto:
+      description: Tributos incidentes no Produto ou Serviço.
+      example:
+        ICMS00:
+          pFCP: 5.944895607614016
+          CST: CST
+          vBC: 2.8841621266687802
+          vICMS: 6.878052220127876
+          vFCP: 6.704019297950036
+          pICMS: 6.778324963048013
+        indSemCST: 0
+        ICMS90:
+          pFCP: 5.533258397034986
+          CST: CST
+          vBC: 7.740351818741173
+          vICMS: 3.0576100241049344
+          vICMSDeson: 7.04836565559697
+          cBenef: cBenef
+          vFCP: 3.2588565619047607
+          pICMS: 3.0205796992916243
+        FUST:
+          vBC: 8.251625748923757
+          vFUST: 3.901545264248647
+          pFUST: 4.459605034958679
+        retTrib:
+          vIRRF: 9.254183946267839
+          vBCIRRF: 8.863729185622827
+          vRetPIS: 8.28965939814297
+          vRetCSLL: 4.573936264232251
+          vRetCofins: 6.623518433804886
+        ICMSUFDest:
+        - vICMSUFDest: 7.260521264802104
+          vICMSUFEmi: 9.132027271330688
+          vFCPUFDest: 4.678947989005849
+          cUFDest: 0
+          pFCPUFDest: 4.258773108174356
+          vBCUFDest: 6.628464275087742
+          pICMSUFDest: 1.041444916118296
+          cBenefUFDest: cBenefUFDest
+        - vICMSUFDest: 7.260521264802104
+          vICMSUFEmi: 9.132027271330688
+          vFCPUFDest: 4.678947989005849
+          cUFDest: 0
+          pFCPUFDest: 4.258773108174356
+          vBCUFDest: 6.628464275087742
+          pICMSUFDest: 1.041444916118296
+          cBenefUFDest: cBenefUFDest
+        FUNTTEL:
+          pFUNTTEL: 2.9409642974827896
+          vBC: 0.43431398824148815
+          vFUNTTEL: 1.7325933120207193
+        ICMS20:
+          pFCP: 6.519180951018382
+          pRedBC: 3.353193347011243
+          CST: CST
+          vBC: 3.0937452626664474
+          vICMS: 0.8851374739011653
+          vICMSDeson: 7.058770351582356
+          cBenef: cBenef
+          vFCP: 0.10263654006109402
+          pICMS: 7.143538047012306
+        ICMS40:
+          CST: CST
+          vICMSDeson: 4.652396432933246
+          cBenef: cBenef
+        ICMS51:
+          CST: CST
+          vICMSDeson: 8.969578798196912
+          cBenef: cBenef
+        COFINS:
+          vCOFINS: 6.073898085781152
+          CST: CST
+          vBC: 5.507386964179881
+          pCOFINS: 4.86315908102884
+        PIS:
+          vPIS: 7.933506881737151
+          CST: CST
+          vBC: 9.702963800023566
+          pPIS: 0.5199002018724985
+        ICMSSN:
+          indSN: 4
+          CST: CST
+      properties:
+        ICMS00:
+          $ref: '#/components/schemas/NfcomSefazICMS00'
+        ICMS20:
+          $ref: '#/components/schemas/NfcomSefazICMS20'
+        ICMS40:
+          $ref: '#/components/schemas/NfcomSefazICMS40'
+        ICMS51:
+          $ref: '#/components/schemas/NfcomSefazICMS51'
+        ICMS90:
+          $ref: '#/components/schemas/NfcomSefazICMS90'
+        ICMSSN:
+          $ref: '#/components/schemas/NfcomSefazICMSSN'
+        ICMSUFDest:
+          items:
+            $ref: '#/components/schemas/NfcomSefazICMSUFDest'
+          type: array
+        indSemCST:
+          description: "Sem Situação Tributária para o ICMS.\r\nInformar para itens\
+            \ que não tenham nenhuma relação com o ICMS.\r\nQuando informado o item\
+            \ NÃO PODE ter CFOP informado\r\nSe informado esse grupo o schema não\
+            \ permite informar nenhum dos grupos de ICMSXX."
+          nullable: true
+          type: integer
+        PIS:
+          $ref: '#/components/schemas/NfcomSefazPIS'
+        COFINS:
+          $ref: '#/components/schemas/NfcomSefazCOFINS'
+        FUST:
+          $ref: '#/components/schemas/NfcomSefazFUST'
+        FUNTTEL:
+          $ref: '#/components/schemas/NfcomSefazFUNTTEL'
+        retTrib:
+          $ref: '#/components/schemas/NfcomSefazRetTrib'
+      type: object
+    NfcomSefazICMS00:
+      description: "Prestação sujeito à tributação normal do ICMS.\r\nTributada integralmente."
+      example:
+        pFCP: 5.944895607614016
+        CST: CST
+        vBC: 2.8841621266687802
+        vICMS: 6.878052220127876
+        vFCP: 6.704019297950036
+        pICMS: 6.778324963048013
+      properties:
+        CST:
+          description: "classificação Tributária do Serviço.\r\n* 00 - tributação\
+            \ normal ICMS"
+          nullable: true
+          type: string
+        vBC:
+          description: Valor da BC do ICMS.
+          nullable: true
+          type: number
+        pICMS:
+          description: Alíquota do ICMS.
+          nullable: true
+          type: number
+        vICMS:
+          description: Valor do ICMS.
+          nullable: true
+          type: number
+        pFCP:
+          description: Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+          nullable: true
+          type: number
+        vFCP:
+          description: Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+          nullable: true
+          type: number
+      required:
+      - CST
+      - pICMS
+      - vBC
+      - vICMS
+      type: object
+    NfcomSefazICMS20:
+      description: Prestação sujeito à tributação com redução de BC do ICMS.
+      example:
+        pFCP: 6.519180951018382
+        pRedBC: 3.353193347011243
+        CST: CST
+        vBC: 3.0937452626664474
+        vICMS: 0.8851374739011653
+        vICMSDeson: 7.058770351582356
+        cBenef: cBenef
+        vFCP: 0.10263654006109402
+        pICMS: 7.143538047012306
+      properties:
+        CST:
+          description: "Classificação Tributária do serviço.\r\n* 20 - tributação\
+            \ com BC reduzida do ICMS"
+          nullable: true
+          type: string
+        pRedBC:
+          description: Percentual de redução da BC.
+          nullable: true
+          type: number
+        vBC:
+          description: Valor da BC do ICMS.
+          nullable: true
+          type: number
+        pICMS:
+          description: Alíquota do ICMS.
+          nullable: true
+          type: number
+        vICMS:
+          description: Valor do ICMS.
+          nullable: true
+          type: number
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF aplicado ao item.\r\nCódigo\
+            \ de Benefício Fiscal utilizado pela UF, aplicado ao\r\nitem."
+          maxLength: 10
+          nullable: true
+          type: string
+        pFCP:
+          description: Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+          nullable: true
+          type: number
+        vFCP:
+          description: Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+          nullable: true
+          type: number
+      required:
+      - CST
+      - pICMS
+      - pRedBC
+      - vBC
+      - vICMS
+      type: object
+    NfcomSefazICMS40:
+      description: "Tributação Isenta, Não tributada."
+      example:
+        CST: CST
+        vICMSDeson: 4.652396432933246
+        cBenef: cBenef
+      properties:
+        CST:
+          description: "Classificação Tributária do serviço.\r\n* 40 - Isenta\r\n\
+            * 41 - Não tributada"
+          nullable: true
+          type: string
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF aplicado ao item.\r\nCódigo\
+            \ de Benefício Fiscal utilizado pela UF, aplicado ao\r\nitem."
+          maxLength: 10
+          nullable: true
+          type: string
+      required:
+      - CST
+      type: object
+    NfcomSefazICMS51:
+      description: "Tributação com Diferimento.\r\nA exigência do preenchimento das\
+        \ informações do ICMS diferido fica a critério de cada UF."
+      example:
+        CST: CST
+        vICMSDeson: 8.969578798196912
+        cBenef: cBenef
+      properties:
+        CST:
+          description: "Classificação Tributária do serviço.\r\nTributação pelo ICMS\
+            \ 51 - Diferimento."
+          nullable: true
+          type: string
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF aplicado ao item.\r\nCódigo\
+            \ de Benefício Fiscal utilizado pela UF, aplicado ao\r\nitem."
+          maxLength: 10
+          nullable: true
+          type: string
+      required:
+      - CST
+      type: object
+    NfcomSefazICMS90:
+      description: ICMS Outros.
+      example:
+        pFCP: 5.533258397034986
+        CST: CST
+        vBC: 7.740351818741173
+        vICMS: 3.0576100241049344
+        vICMSDeson: 7.04836565559697
+        cBenef: cBenef
+        vFCP: 3.2588565619047607
+        pICMS: 3.0205796992916243
+      properties:
+        CST:
+          description: "Classificação Tributária do Serviço.\r\n* 90 - ICMS outros"
+          nullable: true
+          type: string
+        vBC:
+          description: Valor da BC do ICMS.
+          nullable: true
+          type: number
+        pICMS:
+          description: Alíquota do ICMS.
+          nullable: true
+          type: number
+        vICMS:
+          description: Valor do ICMS.
+          nullable: true
+          type: number
+        vICMSDeson:
+          description: Valor do ICMS de desoneração.
+          nullable: true
+          type: number
+        cBenef:
+          description: "Código de Benefício Fiscal na UF aplicado ao item.\r\nCódigo\
+            \ de Benefício Fiscal utilizado pela UF, aplicado ao\r\nitem."
+          maxLength: 10
+          nullable: true
+          type: string
+        pFCP:
+          description: Percentual de ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+          nullable: true
+          type: number
+        vFCP:
+          description: Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP).
+          nullable: true
+          type: number
+      required:
+      - CST
+      type: object
+    NfcomSefazICMSSN:
+      description: Simples Nacional.
+      example:
+        indSN: 4
+        CST: CST
+      properties:
+        CST:
+          description: "Classificação Tributária do Serviço.\r\n* 90 - Outros SN"
+          nullable: true
+          type: string
+        indSN:
+          description: "Indica se o contribuinte é Simples Nacional\t\t\t1=Sim."
+          nullable: true
+          type: integer
+      required:
+      - CST
+      - indSN
+      type: object
+    NfcomSefazICMSUFDest:
+      description: Informações do ICMS de partilha com a UF destinatária.
+      example:
+        vICMSUFDest: 7.260521264802104
+        vICMSUFEmi: 9.132027271330688
+        vFCPUFDest: 4.678947989005849
+        cUFDest: 0
+        pFCPUFDest: 4.258773108174356
+        vBCUFDest: 6.628464275087742
+        pICMSUFDest: 1.041444916118296
+        cBenefUFDest: cBenefUFDest
+      properties:
+        cUFDest:
+          nullable: true
+          type: integer
+        vBCUFDest:
+          description: Valor da BC do ICMS na UF de destino.
+          nullable: true
+          type: number
+        pFCPUFDest:
+          description: "Percentual do ICMS relativo ao Fundo de Combate à pobreza\
+            \ (FCP) na UF de destino.\r\nAlíquota adotada nas operações internas na\
+            \ UF do destinatário."
+          nullable: true
+          type: number
+        pICMSUFDest:
+          description: "Alíquota interna da UF de destino.\r\nAlíquota adotada nas\
+            \ operações internas na UF do destinatário."
+          nullable: true
+          type: number
+        vFCPUFDest:
+          description: Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP)
+            da UF de destino.
+          nullable: true
+          type: number
+        vICMSUFDest:
+          description: Valor do ICMS de partilha para a UF de destino.
+          nullable: true
+          type: number
+        vICMSUFEmi:
+          description: Valor do ICMS de partilha para a UF de emissão.
+          nullable: true
+          type: number
+        cBenefUFDest:
+          description: "Código de Benefício Fiscal na UF destino aplicado ao item.\r\
+            \nCódigo de Benefício Fiscal utilizado pela UF, aplicado ao\r\nitem."
+          maxLength: 10
+          nullable: true
+          type: string
+      required:
+      - pFCPUFDest
+      - pICMSUFDest
+      - vBCUFDest
+      - vFCPUFDest
+      - vICMSUFDest
+      - vICMSUFEmi
+      type: object
+    NfcomSefazPIS:
+      description: Dados do PIS.
+      example:
+        vPIS: 7.933506881737151
+        CST: CST
+        vBC: 9.702963800023566
+        pPIS: 0.5199002018724985
+      properties:
+        CST:
+          description: "classificação Tributária do PIS.\r\n* 01 - Tributável com\
+            \ alíquota básica\r\n* 02 - Tributável com alíquota diferenciada\r\n*\
+            \ 06 - Tributável com alíquota zero\r\n* 07 - Operação isenta de contribuiç\
+            ão\r\n* 08 - Operação sem incidência da contribuição\r\n* 09 - Operaçã\
+            o com suspensão da contribuição\r\n* 49 - Outras operações de saída"
+          nullable: true
+          type: string
+        vBC:
+          description: Valor da BC do PIS.
+          nullable: true
+          type: number
+        pPIS:
+          description: Alíquota do PIS (em percentual).
+          nullable: true
+          type: number
+        vPIS:
+          description: Valor do PIS.
+          nullable: true
+          type: number
+      required:
+      - CST
+      - pPIS
+      - vBC
+      - vPIS
+      type: object
+    NfcomSefazCOFINS:
+      description: Dados do COFINS.
+      example:
+        vCOFINS: 6.073898085781152
+        CST: CST
+        vBC: 5.507386964179881
+        pCOFINS: 4.86315908102884
+      properties:
+        CST:
+          description: "classificação Tributária do COFINS.\r\n* 01 - Tributável com\
+            \ alíquota básica\r\n* 02 - Tributável com alíquota diferenciada\r\n*\
+            \ 06 - Tributável com alíquota zero\r\n* 07 - Operação isenta de contribuiç\
+            ão\r\n* 08 - Operação sem incidência da contribuição\r\n* 09 - Operaçã\
+            o com suspensão da contribuição\r\n* 49 - Outras operações de saída"
+          nullable: true
+          type: string
+        vBC:
+          description: Valor da BC do COFINS.
+          nullable: true
+          type: number
+        pCOFINS:
+          description: Alíquota do COFINS (em percentual).
+          nullable: true
+          type: number
+        vCOFINS:
+          description: Valor do COFINS.
+          nullable: true
+          type: number
+      required:
+      - CST
+      - pCOFINS
+      - vBC
+      - vCOFINS
+      type: object
+    NfcomSefazFUST:
+      description: Dados do FUST.
+      example:
+        vBC: 8.251625748923757
+        vFUST: 3.901545264248647
+        pFUST: 4.459605034958679
+      properties:
+        vBC:
+          description: Valor da BC do FUST.
+          nullable: true
+          type: number
+        pFUST:
+          description: Alíquota do FUST (em percentual).
+          nullable: true
+          type: number
+        vFUST:
+          description: Valor do FUST.
+          nullable: true
+          type: number
+      required:
+      - pFUST
+      - vBC
+      - vFUST
+      type: object
+    NfcomSefazFUNTTEL:
+      description: Dados do FUNTTEL.
+      example:
+        pFUNTTEL: 2.9409642974827896
+        vBC: 0.43431398824148815
+        vFUNTTEL: 1.7325933120207193
+      properties:
+        vBC:
+          description: Valor da BC do FUNTTEL.
+          nullable: true
+          type: number
+        pFUNTTEL:
+          description: Alíquota do FUNTTEL (em percentual).
+          nullable: true
+          type: number
+        vFUNTTEL:
+          description: Valor do FUNTEL.
+          nullable: true
+          type: number
+      required:
+      - pFUNTTEL
+      - vBC
+      - vFUNTTEL
+      type: object
+    NfcomSefazRetTrib:
+      description: Grupo de informações de retenção de tributos federais.
+      example:
+        vIRRF: 9.254183946267839
+        vBCIRRF: 8.863729185622827
+        vRetPIS: 8.28965939814297
+        vRetCSLL: 4.573936264232251
+        vRetCofins: 6.623518433804886
+      properties:
+        vRetPIS:
+          description: Valor do PIS retido.
+          nullable: true
+          type: number
+        vRetCofins:
+          description: Valor do COFNS retido.
+          nullable: true
+          type: number
+        vRetCSLL:
+          description: Valor da CSLL retida.
+          nullable: true
+          type: number
+        vBCIRRF:
+          description: Base de cálculo do IRRF.
+          nullable: true
+          type: number
+        vIRRF:
+          description: Valor do IRRF retido.
+          nullable: true
+          type: number
+      required:
+      - vBCIRRF
+      - vIRRF
+      - vRetCSLL
+      - vRetCofins
+      - vRetPIS
+      type: object
+    NfcomSefazGProcRef:
+      description: "Grupo Processo referenciado.\r\nEste grupo somente deverá ser\
+        \ preenchido quando houver processo judicial ou administrativo que altere\
+        \ valores."
+      example:
+        qFaturada: 3.502657762086401
+        vCOFINS: 3.111202833403195
+        vItem: 1.8268702177058116
+        indDevolucao: 5
+        vProd: 9.183123594773994
+        vFCP: 9.897492629215506
+        gProc:
+        - tpProc: 5
+          nProcesso: nProcesso
+        - tpProc: 5
+          nProcesso: nProcesso
+        vPIS: 3.7814124730767915
+        vBC: 5.312489704336296
+        vICMS: 7.606863723092579
+        vDesc: 8.761432466225475
+        vOutro: 0.4182561061793122
+        pICMS: 8.37823741034869
+      properties:
+        vItem:
+          description: "Valor unitário do item.\r\nInformar o valor sem a influência\
+            \ da decisão judicial/administrativa."
+          nullable: true
+          type: number
+        qFaturada:
+          description: "Quantidade Faturada.\r\nInformar a quantidade de comercializaç\
+            ão do produto ."
+          nullable: true
+          type: number
+        vProd:
+          description: Valor total do item.
+          nullable: true
+          type: number
+        vDesc:
+          description: Valor do Desconto.
+          nullable: true
+          type: number
+        vOutro:
+          description: Outras despesas acessórias.
+          nullable: true
+          type: number
+        indDevolucao:
+          description: "Indicador de devolução do valor do item.\r\n* 1 - Devoluçã\
+            o do valor do item"
+          nullable: true
+          type: integer
+        vBC:
+          description: Valor da BC do ICMS.
+          nullable: true
+          type: number
+        pICMS:
+          description: Alíquota do ICMS.
+          nullable: true
+          type: number
+        vICMS:
+          description: Valor do ICMS.
+          nullable: true
+          type: number
+        vPIS:
+          description: Valor do PIS.
+          nullable: true
+          type: number
+        vCOFINS:
+          description: Valor do COFINS.
+          nullable: true
+          type: number
+        vFCP:
+          description: Valor do Fundo de Combate à Pobreza (FCP).
+          nullable: true
+          type: number
+        gProc:
+          items:
+            $ref: '#/components/schemas/NfcomSefazGProc'
+          type: array
+      required:
+      - gProc
+      - qFaturada
+      - vItem
+      - vProd
+      type: object
+    NfcomSefazGProc:
+      description: Grupo identificador do Processo.
+      example:
+        tpProc: 5
+        nProcesso: nProcesso
+      properties:
+        tpProc:
+          description: "Tipo de Processo.\r\n* 0 - SEFAZ\r\n* 1 - Justiça Federal\r\
+            \n* 2 - Justiça Estadual"
+          nullable: true
+          type: integer
+        nProcesso:
+          description: Número do Processo.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - nProcesso
+      - tpProc
+      type: object
+    NfcomSefazGRessarc:
+      description: Grupo de Informações detalhadas de item de cClass de Ressarcimento.
+      example:
+        dRef: 2000-01-23
+        nProcesso: nProcesso
+        nProtReclama: nProtReclama
+        tpRessarc: 7
+        xObs: xObs
+      properties:
+        tpRessarc:
+          description: "Tipo de Ressarcimento.\r\n* 1 - Cobrança Indevida\r\n* 2 -\
+            \ Interrupção\r\n* 99 - Outros"
+          nullable: true
+          type: integer
+        dRef:
+          description: "Data de referencia.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        nProcesso:
+          description: Número do Processo.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        nProtReclama:
+          description: Número do protocolo de reclamação.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xObs:
+          description: Observações sobre o processo de ressarcimento.
+          maxLength: 100
+          minLength: 15
+          nullable: true
+          type: string
+      required:
+      - dRef
+      - tpRessarc
+      type: object
+    NfcomSefazTotal:
+      description: Dados dos totais da NFCom.
+      example:
+        vPIS: 0.4833312865174044
+        vCOFINS: 4.518309517874243
+        vRetTribTot:
+          vIRRF: 0.58919091925136
+          vRetPIS: 4.332304821875894
+          vRetCSLL: 9.386524999783381
+          vRetCofins: 2.7977867356748476
+        ICMSTot:
+          vBC: 3.1497903714250555
+          vICMS: 2.380090174313445
+          vICMSDeson: 3.804112695731078
+          vFCP: 8.675064425986758
+        vDesc: 2.535258963197524
+        vProd: 0.4768402382624515
+        vFUST: 7.203794749804894
+        vOutro: 6.173804034172511
+        vFUNTTEL: 0.35262192099236644
+        vNF: 4.8789878742268815
+      properties:
+        vProd:
+          description: Valor Total dos produtos e serviços.
+          nullable: true
+          type: number
+        ICMSTot:
+          $ref: '#/components/schemas/NfcomSefazICMSTot'
+        vCOFINS:
+          description: Valor do COFINS.
+          nullable: true
+          type: number
+        vPIS:
+          description: Valor do PIS.
+          nullable: true
+          type: number
+        vFUNTTEL:
+          description: Valor do FUNTTEL.
+          nullable: true
+          type: number
+        vFUST:
+          description: Valor do FUST.
+          nullable: true
+          type: number
+        vRetTribTot:
+          $ref: '#/components/schemas/NfcomSefazVRetTribTot'
+        vDesc:
+          description: Valor Total do Desconto.
+          nullable: true
+          type: number
+        vOutro:
+          description: Outras Despesas acessórias.
+          nullable: true
+          type: number
+        vNF:
+          description: Valor Total da NFCom.
+          nullable: true
+          type: number
+      required:
+      - ICMSTot
+      - vCOFINS
+      - vDesc
+      - vFUNTTEL
+      - vFUST
+      - vNF
+      - vOutro
+      - vPIS
+      - vProd
+      - vRetTribTot
+      type: object
+    NfcomSefazICMSTot:
+      description: Totais referentes ao ICMS.
+      example:
+        vBC: 3.1497903714250555
+        vICMS: 2.380090174313445
+        vICMSDeson: 3.804112695731078
+        vFCP: 8.675064425986758
+      properties:
+        vBC:
+          description: BC do ICMS.
+          nullable: true
+          type: number
+        vICMS:
+          description: Valor Total do ICMS.
+          nullable: true
+          type: number
+        vICMSDeson:
+          description: Valor Total do ICMS desonerado.
+          nullable: true
+          type: number
+        vFCP:
+          description: Valor Total do FCP (Fundo de Combate à Pobreza).
+          nullable: true
+          type: number
+      required:
+      - vBC
+      - vFCP
+      - vICMS
+      - vICMSDeson
+      type: object
+    NfcomSefazVRetTribTot:
+      description: Total da retenção de tributos federais.
+      example:
+        vIRRF: 0.58919091925136
+        vRetPIS: 4.332304821875894
+        vRetCSLL: 9.386524999783381
+        vRetCofins: 2.7977867356748476
+      properties:
+        vRetPIS:
+          description: Valor do PIS retido.
+          nullable: true
+          type: number
+        vRetCofins:
+          description: Valor do COFNS retido.
+          nullable: true
+          type: number
+        vRetCSLL:
+          description: Valor da CSLL retida.
+          nullable: true
+          type: number
+        vIRRF:
+          description: Valor do IRRF retido.
+          nullable: true
+          type: number
+      required:
+      - vIRRF
+      - vRetCSLL
+      - vRetCofins
+      - vRetPIS
+      type: object
+    NfcomSefazGFidelidade:
+      description: Grupo de informações do programa de fidelidade do assinante.
+      example:
+        qtdSaldoPts: qtdSaldoPts
+        dRefSaldoPts: 2000-01-23
+        qtdPtsResg: qtdPtsResg
+        dRefResgPts: 2000-01-23
+      properties:
+        qtdSaldoPts:
+          description: Saldo de pontos do cliente na  data de referência.
+          maxLength: 20
+          minLength: 1
+          nullable: true
+          type: string
+        dRefSaldoPts:
+          description: "Data de aferição do saldo de pontos.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        qtdPtsResg:
+          description: Qtd de pontos resgatados na  data de referência.
+          maxLength: 20
+          minLength: 1
+          nullable: true
+          type: string
+        dRefResgPts:
+          description: "Data de resgate dos pontos.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+      required:
+      - dRefResgPts
+      - dRefSaldoPts
+      - qtdPtsResg
+      - qtdSaldoPts
+      type: object
+    NfcomSefazGFat:
+      description: Grupo de informações de controle da Fatura.
+      example:
+        dPerUsoFim: 2000-01-23
+        dVencFat: 2000-01-23
+        codDebAuto: codDebAuto
+        enderCorresp:
+          xCpl: xCpl
+          fone: fone
+          UF: UF
+          xLgr: xLgr
+          xMun: xMun
+          nro: nro
+          cMun: cMun
+          xBairro: xBairro
+          email: email
+          CEP: CEP
+        codAgencia: codAgencia
+        dPerUsoIni: 2000-01-23
+        gPIX:
+          urlQRCodePIX: urlQRCodePIX
+        CompetFat: CompetFat
+        codBarras: codBarras
+        codBanco: codBanco
+      properties:
+        CompetFat:
+          description: Ano e mês referência do faturamento (AAAAMM).
+          maxLength: 6
+          minLength: 6
+          nullable: true
+          type: string
+        dVencFat:
+          description: "Data de vencimento da fatura.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        dPerUsoIni:
+          description: "Período de uso inicial.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        dPerUsoFim:
+          description: "Período de uso final.\r\nFormato AAAA-MM-DD."
+          format: date
+          nullable: true
+          type: string
+        codBarras:
+          description: Linha digitável do código de barras.
+          maxLength: 48
+          minLength: 1
+          nullable: true
+          type: string
+        codDebAuto:
+          description: Código de autorização débito em conta.
+          maxLength: 20
+          minLength: 1
+          nullable: true
+          type: string
+        codBanco:
+          description: Número do banco para débito em conta.
+          maxLength: 5
+          minLength: 3
+          nullable: true
+          type: string
+        codAgencia:
+          description: Número da agência bancária para débito em conta.
+          maxLength: 10
+          minLength: 1
+          nullable: true
+          type: string
+        enderCorresp:
+          $ref: '#/components/schemas/NfcomSefazEndeEmi'
+        gPIX:
+          $ref: '#/components/schemas/NfcomSefazGPIX'
+      required:
+      - CompetFat
+      - codBarras
+      - dVencFat
+      type: object
+    NfcomSefazGPIX:
+      description: Grupo de informações do PIX.
+      example:
+        urlQRCodePIX: urlQRCodePIX
+      properties:
+        urlQRCodePIX:
+          description: URL do QRCode do PIX que será apresentado na fatura.
+          maxLength: 2000
+          minLength: 2
+          nullable: true
+          type: string
+      required:
+      - urlQRCodePIX
+      type: object
+    NfcomSefazGFatCentral:
+      description: Grupo de informações do Faturamento Centralizado.
+      example:
+        cUF: 6
+        CNPJ: CNPJ
+      properties:
+        CNPJ:
+          description: "CNPJ do Emitente centralizador.\r\nInformar o CNPJ do emitente\
+            \ do Documento Fiscal."
+          nullable: true
+          type: string
+        cUF:
+          description: "Código da UF do emitente centralizador.\r\nCódigo da UF do\
+            \ emitente do Documento Fiscal. Utilizar a\r\nTabela do IBGE de código\
+            \ de unidades da federação."
+          nullable: true
+          type: integer
+      required:
+      - CNPJ
+      - cUF
+      type: object
+    NfcomSefazAutXML:
+      description: "Autorizados para download do XML do DF-e.\r\nInformar CNPJ ou\
+        \ CPF. Preencher os zeros não significativos."
+      example:
+        CPF: CPF
+        CNPJ: CNPJ
+      properties:
+        CNPJ:
+          description: "CNPJ do autorizado.\r\nInformar zeros não significativos."
+          nullable: true
+          type: string
+        CPF:
+          description: "CPF do autorizado.\r\nInformar zeros não significativos."
+          nullable: true
+          type: string
+      type: object
+    NfcomSefazInfAdic:
+      description: Informações Adicionais.
+      example:
+        infCpl:
+        - infCpl
+        - infCpl
+        infAdFisco: infAdFisco
+      properties:
+        infAdFisco:
+          description: "Informações adicionais de interesse do Fisco.\r\nNorma referenciada,\
+            \ informações complementares, etc."
+          maxLength: 2000
+          minLength: 1
+          nullable: true
+          type: string
+        infCpl:
+          description: Informações complementares de interesse do Contribuinte.
+          items:
+            type: string
+          type: array
+      type: object
+    NfcomSefazRespTec:
+      description: Informações do Responsável Técnico pela emissão do DF-e.
+      example:
+        fone: fone
+        idCSRT: 979
+        CNPJ: CNPJ
+        hashCSRT: hashCSRT
+        xContato: xContato
+        email: email
+      properties:
+        CNPJ:
+          description: "CNPJ da pessoa jurídica responsável técnica pelo sistema utilizado\
+            \ na emissão do documento fiscal eletrônico.\r\nInformar o CNPJ da pessoa\
+            \ jurídica desenvolvedora do sistema utilizado na emissão do documento\
+            \ fiscal eletrônico."
+          nullable: true
+          type: string
+        xContato:
+          description: "Nome da pessoa a ser contatada.\r\nInformar o nome da pessoa\
+            \ a ser contatada na empresa desenvolvedora do sistema utilizado na emissã\
+            o do documento fiscal eletrônico. No caso de pessoa física, informar o\
+            \ respectivo nome."
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        email:
+          description: Email da pessoa jurídica a ser contatada.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        fone:
+          description: "Telefone da pessoa jurídica a ser contatada.\r\nPreencher\
+            \ com o Código DDD + número do telefone."
+          nullable: true
+          type: string
+        idCSRT:
+          description: "Identificador do código de segurança do responsável técnico.\r\
+            \nIdentificador do CSRT utilizado para geração do hash."
+          maximum: 999
+          minimum: 0
+          nullable: true
+          type: integer
+        hashCSRT:
+          description: "Hash do token do código de segurança do responsável técnico.\r\
+            \nO hashCSRT é o resultado das funções SHA-1 e base64 do token CSRT fornecido\
+            \ pelo fisco + chave de acesso do DF-e. (Implementação em futura NT)\r\
+            \nObservação: 28 caracteres são representados no schema como 20 bytes\
+            \ do tipo base64Binary."
+          maxLength: 20
+          nullable: true
+          type: string
+      required:
+      - CNPJ
+      - email
+      - fone
+      - xContato
+      type: object
+    Dfe:
+      example:
+        valor_total: 5.637376656633329
+        autorizacao:
+          ambiente: homologacao
+          mensagem: mensagem
+          codigo_status: 7
+          chave_acesso: chave_acesso
+          tipo_evento: tipo_evento
+          codigo_mensagem: 9
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          autor:
+            cpf_cnpj: cpf_cnpj
+          numero_protocolo: numero_protocolo
+          digest_value: digest_value
+          numero_sequencial: 2
+          id: id
+          motivo_status: motivo_status
+          status: pendente
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        numero: 5
+        ambiente: homologacao
+        serie: 1
+        chave: chave
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        modelo: 6
+        referencia: referencia
+        data_emissao: 2000-01-23T04:56:07.000+00:00
+        status: pendente
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este documento.
+          type: string
+        ambiente:
+          enum:
+          - homologacao
+          - producao
+          type: string
+        created_at:
+          description: Data/hora em que o documento foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        status:
+          description: "* `pendente`: o pedido de emissão do documento foi recebido\
+            \ pela Nuvem Fiscal e está na fila de processamento.\r\n* `autorizado`,\
+            \ `rejeitado` ou `denegado`: o documento foi transmitido para a SEFAZ,\
+            \ que retornou um desses status.\r\n* `cancelado`: um evento de cancelamento\
+            \ foi homologado pela SEFAZ e associado ao documento.\r\n* `encerrado`:\
+            \ um evento de encerramento foi homologado pela SEFAZ e associado a um\
+            \ MDF-e.\r\n* `erro`: status próprio da Nuvem Fiscal que significa, na\
+            \ maioria das vezes, que houve algum erro que impediu a transmissão do\
+            \ documento para a SEFAZ (erros de validação, erros interno do servidor,\
+            \ timeouts, etc)."
+          enum:
+          - pendente
+          - autorizado
+          - rejeitado
+          - denegado
+          - encerrado
+          - cancelado
+          - erro
+          type: string
+        referencia:
+          description: "Seu identificador único para este documento. Opcional, ajuda\
+            \ a evitar o envio duplicado de um mesmo documento."
+          nullable: true
+          type: string
+        data_emissao:
+          format: date-time
+          type: string
+        modelo:
+          type: integer
+        serie:
+          type: integer
+        numero:
+          type: integer
+        valor_total:
+          type: number
+        chave:
+          description: Chave de acesso do DF-e.
+          type: string
+        autorizacao:
+          $ref: '#/components/schemas/DfeAutorizacao'
+      type: object
+    DfeAutorizacao:
+      example:
+        ambiente: homologacao
+        mensagem: mensagem
+        codigo_status: 7
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        codigo_mensagem: 9
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        autor:
+          cpf_cnpj: cpf_cnpj
+        numero_protocolo: numero_protocolo
+        digest_value: digest_value
+        numero_sequencial: 2
+        id: id
+        motivo_status: motivo_status
+        status: pendente
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        digest_value:
+          description: Digest Value do DF-e processado. Utilizado para conferir a
+            integridade do DF-e original.
+          type: string
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este evento.
+          type: string
+        ambiente:
+          description: Identificação do ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        status:
+          description: Status do Evento.
+          enum:
+          - pendente
+          - registrado
+          - rejeitado
+          - erro
+          type: string
+        autor:
+          $ref: '#/components/schemas/DfeAutorEvento'
+        chave_acesso:
+          description: Chave de Acesso do documento vinculado ao evento.
+          type: string
+        data_evento:
+          description: Data e hora do Evento.
+          format: date-time
+          type: string
+        numero_sequencial:
+          description: Sequencial do evento para o mesmo tipo de evento.
+          type: integer
+        data_recebimento:
+          description: Data e hora do recebimento do Evento pela SEFAZ.
+          format: date-time
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de registro do Evento.
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do registro do Evento.
+          type: string
+        numero_protocolo:
+          description: Número do Protocolo de registro do Evento.
+          type: string
+        codigo_mensagem:
+          description: Código da Mensagem.
+          type: integer
+        mensagem:
+          description: Mensagem da SEFAZ para o emissor.
+          type: string
+        tipo_evento:
+          type: string
+      type: object
+    DfeAutorEvento:
+      example:
+        cpf_cnpj: cpf_cnpj
+      properties:
+        cpf_cnpj:
+          description: CPF/CNPJ do Autor.
+          type: string
+      type: object
+    DfeListagem:
+      example:
+        '@count': 0
+        data:
+        - valor_total: 5.637376656633329
+          autorizacao:
+            ambiente: homologacao
+            mensagem: mensagem
+            codigo_status: 7
+            chave_acesso: chave_acesso
+            tipo_evento: tipo_evento
+            codigo_mensagem: 9
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            autor:
+              cpf_cnpj: cpf_cnpj
+            numero_protocolo: numero_protocolo
+            digest_value: digest_value
+            numero_sequencial: 2
+            id: id
+            motivo_status: motivo_status
+            status: pendente
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          numero: 5
+          ambiente: homologacao
+          serie: 1
+          chave: chave
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          modelo: 6
+          referencia: referencia
+          data_emissao: 2000-01-23T04:56:07.000+00:00
+          status: pendente
+        - valor_total: 5.637376656633329
+          autorizacao:
+            ambiente: homologacao
+            mensagem: mensagem
+            codigo_status: 7
+            chave_acesso: chave_acesso
+            tipo_evento: tipo_evento
+            codigo_mensagem: 9
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            autor:
+              cpf_cnpj: cpf_cnpj
+            numero_protocolo: numero_protocolo
+            digest_value: digest_value
+            numero_sequencial: 2
+            id: id
+            motivo_status: motivo_status
+            status: pendente
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          numero: 5
+          ambiente: homologacao
+          serie: 1
+          chave: chave
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          modelo: 6
+          referencia: referencia
+          data_emissao: 2000-01-23T04:56:07.000+00:00
+          status: pendente
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/Dfe'
+          type: array
+      type: object
+    NfcomPedidoCancelamento:
+      example:
+        justificativa: justificativa
+      properties:
+        justificativa:
+          description: "Justificativa para o cancelamento. Preencheremos automaticamente,\
+            \ caso esteja em branco."
+          type: string
+      type: object
+    DfeCancelamento:
+      example:
+        ambiente: homologacao
+        mensagem: mensagem
+        codigo_status: 6
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        codigo_mensagem: 1
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        autor:
+          cpf_cnpj: cpf_cnpj
+        numero_protocolo: numero_protocolo
+        justificativa: justificativa
+        numero_sequencial: 0
+        id: id
+        motivo_status: motivo_status
+        status: pendente
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        justificativa:
+          description: Justificativa do cancelamento.
+          type: string
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este evento.
+          type: string
+        ambiente:
+          description: Identificação do ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        status:
+          description: Status do Evento.
+          enum:
+          - pendente
+          - registrado
+          - rejeitado
+          - erro
+          type: string
+        autor:
+          $ref: '#/components/schemas/DfeAutorEvento'
+        chave_acesso:
+          description: Chave de Acesso do documento vinculado ao evento.
+          type: string
+        data_evento:
+          description: Data e hora do Evento.
+          format: date-time
+          type: string
+        numero_sequencial:
+          description: Sequencial do evento para o mesmo tipo de evento.
+          type: integer
+        data_recebimento:
+          description: Data e hora do recebimento do Evento pela SEFAZ.
+          format: date-time
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de registro do Evento.
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do registro do Evento.
+          type: string
+        numero_protocolo:
+          description: Número do Protocolo de registro do Evento.
+          type: string
+        codigo_mensagem:
+          description: Código da Mensagem.
+          type: integer
+        mensagem:
+          description: Mensagem da SEFAZ para o emissor.
+          type: string
+        tipo_evento:
+          type: string
+      type: object
+    ContaCota:
+      example:
+        consumo: 6
+        nome: nome
+        limite: 1
+      properties:
+        nome:
+          type: string
+        consumo:
+          type: integer
+        limite:
+          type: integer
+      type: object
+    ContaCotaListagem:
+      example:
+        '@count': 0
+        data:
+        - consumo: 6
+          nome: nome
+          limite: 1
+        - consumo: 6
+          nome: nome
+          limite: 1
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/ContaCota'
+          type: array
       type: object
     CtePedidoEmissao:
       example:
@@ -17027,244 +20510,6 @@ components:
           nullable: true
           type: string
       type: object
-    Dfe:
-      example:
-        valor_total: 5.637376656633329
-        autorizacao:
-          ambiente: homologacao
-          mensagem: mensagem
-          codigo_status: 7
-          chave_acesso: chave_acesso
-          tipo_evento: tipo_evento
-          codigo_mensagem: 9
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          autor:
-            cpf_cnpj: cpf_cnpj
-          numero_protocolo: numero_protocolo
-          digest_value: digest_value
-          numero_sequencial: 2
-          id: id
-          motivo_status: motivo_status
-          status: pendente
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        numero: 5
-        ambiente: homologacao
-        serie: 1
-        chave: chave
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        modelo: 6
-        referencia: referencia
-        data_emissao: 2000-01-23T04:56:07.000+00:00
-        status: pendente
-      properties:
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este documento.
-          type: string
-        ambiente:
-          enum:
-          - homologacao
-          - producao
-          type: string
-        created_at:
-          description: Data/hora em que o documento foi criado na Nuvem Fiscal. Representado
-            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
-            8601`</a>.
-          format: date-time
-          type: string
-        status:
-          description: "* `pendente`: o pedido de emissão do documento foi recebido\
-            \ pela Nuvem Fiscal e está na fila de processamento.\r\n* `autorizado`,\
-            \ `rejeitado` ou `denegado`: o documento foi transmitido para a SEFAZ,\
-            \ que retornou um desses status.\r\n* `cancelado`: um evento de cancelamento\
-            \ foi homologado pela SEFAZ e associado ao documento.\r\n* `encerrado`:\
-            \ um evento de encerramento foi homologado pela SEFAZ e associado a um\
-            \ MDF-e.\r\n* `erro`: status próprio da Nuvem Fiscal que significa, na\
-            \ maioria das vezes, que houve algum erro que impediu a transmissão do\
-            \ documento para a SEFAZ (erros de validação, erros interno do servidor,\
-            \ timeouts, etc)."
-          enum:
-          - pendente
-          - autorizado
-          - rejeitado
-          - denegado
-          - encerrado
-          - cancelado
-          - erro
-          type: string
-        referencia:
-          description: "Seu identificador único para este documento. Opcional, ajuda\
-            \ a evitar o envio duplicado de um mesmo documento."
-          nullable: true
-          type: string
-        data_emissao:
-          format: date-time
-          type: string
-        modelo:
-          type: integer
-        serie:
-          type: integer
-        numero:
-          type: integer
-        valor_total:
-          type: number
-        chave:
-          description: Chave de acesso do DF-e.
-          type: string
-        autorizacao:
-          $ref: '#/components/schemas/DfeAutorizacao'
-      type: object
-    DfeAutorizacao:
-      example:
-        ambiente: homologacao
-        mensagem: mensagem
-        codigo_status: 7
-        chave_acesso: chave_acesso
-        tipo_evento: tipo_evento
-        codigo_mensagem: 9
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-        autor:
-          cpf_cnpj: cpf_cnpj
-        numero_protocolo: numero_protocolo
-        digest_value: digest_value
-        numero_sequencial: 2
-        id: id
-        motivo_status: motivo_status
-        status: pendente
-        data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        digest_value:
-          description: Digest Value do DF-e processado. Utilizado para conferir a
-            integridade do DF-e original.
-          type: string
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este evento.
-          type: string
-        ambiente:
-          description: Identificação do ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        status:
-          description: Status do Evento.
-          enum:
-          - pendente
-          - registrado
-          - rejeitado
-          - erro
-          type: string
-        autor:
-          $ref: '#/components/schemas/DfeAutorEvento'
-        chave_acesso:
-          description: Chave de Acesso do documento vinculado ao evento.
-          type: string
-        data_evento:
-          description: Data e hora do Evento.
-          format: date-time
-          type: string
-        numero_sequencial:
-          description: Sequencial do evento para o mesmo tipo de evento.
-          type: integer
-        data_recebimento:
-          description: Data e hora do recebimento do Evento pela SEFAZ.
-          format: date-time
-          nullable: true
-          type: string
-        codigo_status:
-          description: Código do status de registro do Evento.
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do registro do Evento.
-          type: string
-        numero_protocolo:
-          description: Número do Protocolo de registro do Evento.
-          type: string
-        codigo_mensagem:
-          description: Código da Mensagem.
-          type: integer
-        mensagem:
-          description: Mensagem da SEFAZ para o emissor.
-          type: string
-        tipo_evento:
-          type: string
-      type: object
-    DfeAutorEvento:
-      example:
-        cpf_cnpj: cpf_cnpj
-      properties:
-        cpf_cnpj:
-          description: CPF/CNPJ do Autor.
-          type: string
-      type: object
-    DfeListagem:
-      example:
-        '@count': 0
-        data:
-        - valor_total: 5.637376656633329
-          autorizacao:
-            ambiente: homologacao
-            mensagem: mensagem
-            codigo_status: 7
-            chave_acesso: chave_acesso
-            tipo_evento: tipo_evento
-            codigo_mensagem: 9
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            autor:
-              cpf_cnpj: cpf_cnpj
-            numero_protocolo: numero_protocolo
-            digest_value: digest_value
-            numero_sequencial: 2
-            id: id
-            motivo_status: motivo_status
-            status: pendente
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          numero: 5
-          ambiente: homologacao
-          serie: 1
-          chave: chave
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          modelo: 6
-          referencia: referencia
-          data_emissao: 2000-01-23T04:56:07.000+00:00
-          status: pendente
-        - valor_total: 5.637376656633329
-          autorizacao:
-            ambiente: homologacao
-            mensagem: mensagem
-            codigo_status: 7
-            chave_acesso: chave_acesso
-            tipo_evento: tipo_evento
-            codigo_mensagem: 9
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            autor:
-              cpf_cnpj: cpf_cnpj
-            numero_protocolo: numero_protocolo
-            digest_value: digest_value
-            numero_sequencial: 2
-            id: id
-            motivo_status: motivo_status
-            status: pendente
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          numero: 5
-          ambiente: homologacao
-          serie: 1
-          chave: chave
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          modelo: 6
-          referencia: referencia
-          data_emissao: 2000-01-23T04:56:07.000+00:00
-          status: pendente
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/Dfe'
-          type: array
-      type: object
     CtePedidoCancelamento:
       example:
         justificativa: justificativa
@@ -17272,80 +20517,6 @@ components:
         justificativa:
           description: "Justificativa para o cancelamento. Preencheremos automaticamente,\
             \ caso esteja em branco."
-          type: string
-      type: object
-    DfeCancelamento:
-      example:
-        ambiente: homologacao
-        mensagem: mensagem
-        codigo_status: 6
-        chave_acesso: chave_acesso
-        tipo_evento: tipo_evento
-        codigo_mensagem: 1
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-        autor:
-          cpf_cnpj: cpf_cnpj
-        numero_protocolo: numero_protocolo
-        justificativa: justificativa
-        numero_sequencial: 0
-        id: id
-        motivo_status: motivo_status
-        status: pendente
-        data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        justificativa:
-          description: Justificativa do cancelamento.
-          type: string
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este evento.
-          type: string
-        ambiente:
-          description: Identificação do ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        status:
-          description: Status do Evento.
-          enum:
-          - pendente
-          - registrado
-          - rejeitado
-          - erro
-          type: string
-        autor:
-          $ref: '#/components/schemas/DfeAutorEvento'
-        chave_acesso:
-          description: Chave de Acesso do documento vinculado ao evento.
-          type: string
-        data_evento:
-          description: Data e hora do Evento.
-          format: date-time
-          type: string
-        numero_sequencial:
-          description: Sequencial do evento para o mesmo tipo de evento.
-          type: integer
-        data_recebimento:
-          description: Data e hora do recebimento do Evento pela SEFAZ.
-          format: date-time
-          nullable: true
-          type: string
-        codigo_status:
-          description: Código do status de registro do Evento.
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do registro do Evento.
-          type: string
-        numero_protocolo:
-          description: Número do Protocolo de registro do Evento.
-          type: string
-        codigo_mensagem:
-          description: Código da Mensagem.
-          type: integer
-        mensagem:
-          description: Mensagem da SEFAZ para o emissor.
-          type: string
-        tipo_evento:
           type: string
       type: object
     CtePedidoCartaCorrecao:
@@ -40900,6 +44071,7 @@ x-tagGroups:
 - name: Documentos Fiscais
   tags:
   - Nfse
+  - Nfcom
   - Cte
   - Mdfe
   - Nfe

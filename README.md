@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.26.10
-- Versão do SDK: 2.23.0
+- Versão da API: 2.27.1
+- Versão do SDK: 2.24.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -169,6 +169,7 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**AlterarConfigCte**](docs/EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e
 *EmpresaApi* | [**AlterarConfigMdfe**](docs/EmpresaApi.md#alterarconfigmdfe) | **PUT** /empresas/{cpf_cnpj}/mdfe | Alterar configuração de MDF-e
 *EmpresaApi* | [**AlterarConfigNfce**](docs/EmpresaApi.md#alterarconfignfce) | **PUT** /empresas/{cpf_cnpj}/nfce | Alterar configuração de NFC-e
+*EmpresaApi* | [**AlterarConfigNfcom**](docs/EmpresaApi.md#alterarconfignfcom) | **PUT** /empresas/{cpf_cnpj}/nfcom | Alterar configuração de NFCom
 *EmpresaApi* | [**AlterarConfigNfe**](docs/EmpresaApi.md#alterarconfignfe) | **PUT** /empresas/{cpf_cnpj}/nfe | Alterar configuração de NF-e
 *EmpresaApi* | [**AlterarConfigNfse**](docs/EmpresaApi.md#alterarconfignfse) | **PUT** /empresas/{cpf_cnpj}/nfse | Alterar configuração de NFS-e
 *EmpresaApi* | [**AtualizarEmpresa**](docs/EmpresaApi.md#atualizarempresa) | **PUT** /empresas/{cpf_cnpj} | Alterar empresa
@@ -178,6 +179,7 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**ConsultarConfigCte**](docs/EmpresaApi.md#consultarconfigcte) | **GET** /empresas/{cpf_cnpj}/cte | Consultar configuração de CT-e
 *EmpresaApi* | [**ConsultarConfigMdfe**](docs/EmpresaApi.md#consultarconfigmdfe) | **GET** /empresas/{cpf_cnpj}/mdfe | Consultar configuração de MDF-e
 *EmpresaApi* | [**ConsultarConfigNfce**](docs/EmpresaApi.md#consultarconfignfce) | **GET** /empresas/{cpf_cnpj}/nfce | Consultar configuração de NFC-e
+*EmpresaApi* | [**ConsultarConfigNfcom**](docs/EmpresaApi.md#consultarconfignfcom) | **GET** /empresas/{cpf_cnpj}/nfcom | Consultar configuração de NFCom
 *EmpresaApi* | [**ConsultarConfigNfe**](docs/EmpresaApi.md#consultarconfignfe) | **GET** /empresas/{cpf_cnpj}/nfe | Consultar configuração de NF-e
 *EmpresaApi* | [**ConsultarConfigNfse**](docs/EmpresaApi.md#consultarconfignfse) | **GET** /empresas/{cpf_cnpj}/nfse | Consultar configuração de NFS-e
 *EmpresaApi* | [**ConsultarEmpresa**](docs/EmpresaApi.md#consultarempresa) | **GET** /empresas/{cpf_cnpj} | Consultar empresa
@@ -241,6 +243,16 @@ Classe | Método | Endpoint | Descrição
 *NfceApi* | [**ListarLotesNfce**](docs/NfceApi.md#listarlotesnfce) | **GET** /nfce/lotes | Listar lotes de NFC-e
 *NfceApi* | [**ListarNfce**](docs/NfceApi.md#listarnfce) | **GET** /nfce | Listar NFC-e
 *NfceApi* | [**SincronizarNfce**](docs/NfceApi.md#sincronizarnfce) | **POST** /nfce/{id}/sincronizar | Sincroniza dados na NFC-e a partir da SEFAZ
+*NfcomApi* | [**BaixarXmlCancelamentoNfcom**](docs/NfcomApi.md#baixarxmlcancelamentonfcom) | **GET** /nfcom/{id}/cancelamento/xml | Baixar XML do cancelamento
+*NfcomApi* | [**BaixarXmlNfcom**](docs/NfcomApi.md#baixarxmlnfcom) | **GET** /nfcom/{id}/xml | Baixar XML da NFCom processada
+*NfcomApi* | [**BaixarXmlNfcomNota**](docs/NfcomApi.md#baixarxmlnfcomnota) | **GET** /nfcom/{id}/xml/nota | Baixar XML da NFCom
+*NfcomApi* | [**BaixarXmlNfcomProtocolo**](docs/NfcomApi.md#baixarxmlnfcomprotocolo) | **GET** /nfcom/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ
+*NfcomApi* | [**CancelarNfcom**](docs/NfcomApi.md#cancelarnfcom) | **POST** /nfcom/{id}/cancelamento | Cancelar uma NFCom autorizada
+*NfcomApi* | [**ConsultarCancelamentoNfcom**](docs/NfcomApi.md#consultarcancelamentonfcom) | **GET** /nfcom/{id}/cancelamento | Consultar o cancelamento da NFCom
+*NfcomApi* | [**ConsultarNfcom**](docs/NfcomApi.md#consultarnfcom) | **GET** /nfcom/{id} | Consultar NFCom
+*NfcomApi* | [**ConsultarStatusSefazNfcom**](docs/NfcomApi.md#consultarstatussefaznfcom) | **GET** /nfcom/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
+*NfcomApi* | [**EmitirNfcom**](docs/NfcomApi.md#emitirnfcom) | **POST** /nfcom | Emitir NFCom
+*NfcomApi* | [**ListarNfcom**](docs/NfcomApi.md#listarnfcom) | **GET** /nfcom | Listar NFCom
 *NfeApi* | [**BaixarPdfCancelamentoNfe**](docs/NfeApi.md#baixarpdfcancelamentonfe) | **GET** /nfe/{id}/cancelamento/pdf | Baixar PDF do cancelamento
 *NfeApi* | [**BaixarPdfCartaCorrecaoNfe**](docs/NfeApi.md#baixarpdfcartacorrecaonfe) | **GET** /nfe/{id}/carta-correcao/pdf | Baixar PDF da carta de correção
 *NfeApi* | [**BaixarPdfEventoNfe**](docs/NfeApi.md#baixarpdfeventonfe) | **GET** /nfe/eventos/{id}/pdf | Baixar PDF do evento
@@ -438,6 +450,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.EmpresaConfigMdfe](docs/EmpresaConfigMdfe.md)
  - [Model.EmpresaConfigNfce](docs/EmpresaConfigNfce.md)
  - [Model.EmpresaConfigNfceSefaz](docs/EmpresaConfigNfceSefaz.md)
+ - [Model.EmpresaConfigNfcom](docs/EmpresaConfigNfcom.md)
  - [Model.EmpresaConfigNfe](docs/EmpresaConfigNfe.md)
  - [Model.EmpresaConfigNfse](docs/EmpresaConfigNfse.md)
  - [Model.EmpresaConfigNfseRegTrib](docs/EmpresaConfigNfseRegTrib.md)
@@ -539,6 +552,46 @@ Classe | Método | Endpoint | Descrição
  - [Model.MdfeSefazVeicReboque](docs/MdfeSefazVeicReboque.md)
  - [Model.MdfeSefazVeicReboqueProp](docs/MdfeSefazVeicReboqueProp.md)
  - [Model.MdfeSefazVeicTracao](docs/MdfeSefazVeicTracao.md)
+ - [Model.NfcomPedidoCancelamento](docs/NfcomPedidoCancelamento.md)
+ - [Model.NfcomPedidoEmissao](docs/NfcomPedidoEmissao.md)
+ - [Model.NfcomSefazAssinante](docs/NfcomSefazAssinante.md)
+ - [Model.NfcomSefazAutXML](docs/NfcomSefazAutXML.md)
+ - [Model.NfcomSefazCOFINS](docs/NfcomSefazCOFINS.md)
+ - [Model.NfcomSefazDest](docs/NfcomSefazDest.md)
+ - [Model.NfcomSefazDet](docs/NfcomSefazDet.md)
+ - [Model.NfcomSefazEmit](docs/NfcomSefazEmit.md)
+ - [Model.NfcomSefazEndeDest](docs/NfcomSefazEndeDest.md)
+ - [Model.NfcomSefazEndeEmi](docs/NfcomSefazEndeEmi.md)
+ - [Model.NfcomSefazFUNTTEL](docs/NfcomSefazFUNTTEL.md)
+ - [Model.NfcomSefazFUST](docs/NfcomSefazFUST.md)
+ - [Model.NfcomSefazGCofat](docs/NfcomSefazGCofat.md)
+ - [Model.NfcomSefazGFat](docs/NfcomSefazGFat.md)
+ - [Model.NfcomSefazGFatCentral](docs/NfcomSefazGFatCentral.md)
+ - [Model.NfcomSefazGFidelidade](docs/NfcomSefazGFidelidade.md)
+ - [Model.NfcomSefazGNF](docs/NfcomSefazGNF.md)
+ - [Model.NfcomSefazGPIX](docs/NfcomSefazGPIX.md)
+ - [Model.NfcomSefazGProc](docs/NfcomSefazGProc.md)
+ - [Model.NfcomSefazGProcRef](docs/NfcomSefazGProcRef.md)
+ - [Model.NfcomSefazGRessarc](docs/NfcomSefazGRessarc.md)
+ - [Model.NfcomSefazGSub](docs/NfcomSefazGSub.md)
+ - [Model.NfcomSefazICMS00](docs/NfcomSefazICMS00.md)
+ - [Model.NfcomSefazICMS20](docs/NfcomSefazICMS20.md)
+ - [Model.NfcomSefazICMS40](docs/NfcomSefazICMS40.md)
+ - [Model.NfcomSefazICMS51](docs/NfcomSefazICMS51.md)
+ - [Model.NfcomSefazICMS90](docs/NfcomSefazICMS90.md)
+ - [Model.NfcomSefazICMSSN](docs/NfcomSefazICMSSN.md)
+ - [Model.NfcomSefazICMSTot](docs/NfcomSefazICMSTot.md)
+ - [Model.NfcomSefazICMSUFDest](docs/NfcomSefazICMSUFDest.md)
+ - [Model.NfcomSefazIde](docs/NfcomSefazIde.md)
+ - [Model.NfcomSefazImposto](docs/NfcomSefazImposto.md)
+ - [Model.NfcomSefazInfAdic](docs/NfcomSefazInfAdic.md)
+ - [Model.NfcomSefazInfNFCom](docs/NfcomSefazInfNFCom.md)
+ - [Model.NfcomSefazPIS](docs/NfcomSefazPIS.md)
+ - [Model.NfcomSefazProd](docs/NfcomSefazProd.md)
+ - [Model.NfcomSefazRespTec](docs/NfcomSefazRespTec.md)
+ - [Model.NfcomSefazRetTrib](docs/NfcomSefazRetTrib.md)
+ - [Model.NfcomSefazTotal](docs/NfcomSefazTotal.md)
+ - [Model.NfcomSefazVRetTribTot](docs/NfcomSefazVRetTribTot.md)
  - [Model.NfePedidoCancelamento](docs/NfePedidoCancelamento.md)
  - [Model.NfePedidoCartaCorrecao](docs/NfePedidoCartaCorrecao.md)
  - [Model.NfePedidoEmissao](docs/NfePedidoEmissao.md)
