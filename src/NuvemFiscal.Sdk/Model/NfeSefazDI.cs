@@ -36,19 +36,20 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazDI" /> class.
         /// </summary>
-        /// <param name="nDI">Numero do Documento de Importação DI/DSI/DA/DRI-E (DI/DSI/DA/DRI-E) (NT2011/004). (required).</param>
+        /// <param name="nDI">Número do Documento de Importação (DI, DSI, DIRE, DUImp) (NT2011/004). (required).</param>
         /// <param name="dDI">Data de registro da DI/DSI/DA (AAAA-MM-DD). (required).</param>
         /// <param name="xLocDesemb">Local do desembaraço aduaneiro. (required).</param>
         /// <param name="uFDesemb">UF onde ocorreu o desembaraço aduaneiro. (required).</param>
         /// <param name="dDesemb">Data do desembaraço aduaneiro (AAAA-MM-DD). (required).</param>
-        /// <param name="tpViaTransp">Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque (required).</param>
+        /// <param name="tpViaTransp">Via de transporte internacional informada na DI ou na Declaração Única de Importação (DUImp):  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque (required).</param>
         /// <param name="vAFRMM">Valor Adicional ao frete para renovação de marinha mercante..</param>
         /// <param name="tpIntermedio">Forma de Importação quanto a intermediação  * 1 - por conta propria  * 2 - por conta e ordem  * 3 - encomenda (required).</param>
         /// <param name="cNPJ">CNPJ do adquirente ou do encomendante..</param>
+        /// <param name="cPF">CPF do adquirente ou do encomendante..</param>
         /// <param name="uFTerceiro">Sigla da UF do adquirente ou do encomendante..</param>
         /// <param name="cExportador">Código do exportador (usado nos sistemas internos de informação do emitente da NF-e). (required).</param>
         /// <param name="adi">adi (required).</param>
-        public NfeSefazDI(string nDI = default(string), DateTime? dDI = default(DateTime?), string xLocDesemb = default(string), string uFDesemb = default(string), DateTime? dDesemb = default(DateTime?), int? tpViaTransp = default(int?), decimal? vAFRMM = default(decimal?), int? tpIntermedio = default(int?), string cNPJ = default(string), string uFTerceiro = default(string), string cExportador = default(string), List<NfeSefazAdi> adi = default(List<NfeSefazAdi>))
+        public NfeSefazDI(string nDI = default(string), DateTime? dDI = default(DateTime?), string xLocDesemb = default(string), string uFDesemb = default(string), DateTime? dDesemb = default(DateTime?), int? tpViaTransp = default(int?), decimal? vAFRMM = default(decimal?), int? tpIntermedio = default(int?), string cNPJ = default(string), string cPF = default(string), string uFTerceiro = default(string), string cExportador = default(string), List<NfeSefazAdi> adi = default(List<NfeSefazAdi>))
         {
             // to ensure "nDI" is required (not null)
             if (nDI == null)
@@ -106,13 +107,14 @@ namespace NuvemFiscal.Sdk.Model
             this.adi = adi;
             this.vAFRMM = vAFRMM;
             this.CNPJ = cNPJ;
+            this.CPF = cPF;
             this.UFTerceiro = uFTerceiro;
         }
 
         /// <summary>
-        /// Numero do Documento de Importação DI/DSI/DA/DRI-E (DI/DSI/DA/DRI-E) (NT2011/004).
+        /// Número do Documento de Importação (DI, DSI, DIRE, DUImp) (NT2011/004).
         /// </summary>
-        /// <value>Numero do Documento de Importação DI/DSI/DA/DRI-E (DI/DSI/DA/DRI-E) (NT2011/004).</value>
+        /// <value>Número do Documento de Importação (DI, DSI, DIRE, DUImp) (NT2011/004).</value>
         [DataMember(Name = "nDI", IsRequired = true, EmitDefaultValue = true)]
         public string nDI { get; set; }
 
@@ -147,9 +149,9 @@ namespace NuvemFiscal.Sdk.Model
         public DateTime? dDesemb { get; set; }
 
         /// <summary>
-        /// Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque
+        /// Via de transporte internacional informada na DI ou na Declaração Única de Importação (DUImp):  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque
         /// </summary>
-        /// <value>Via de transporte internacional informada na DI  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque</value>
+        /// <value>Via de transporte internacional informada na DI ou na Declaração Única de Importação (DUImp):  * 1 - Maritima  * 2 - Fluvial  * 3 - Lacustre  * 4 - Aerea  * 5 - Postal  * 6 - Ferroviaria  * 7 - Rodoviaria  * 8 - Conduto  * 9 - Meios Proprios  * 10 - Entrada/Saida Ficta  * 11 - Courier  * 12 - Em maos  * 13 - Por reboque</value>
         [DataMember(Name = "tpViaTransp", IsRequired = true, EmitDefaultValue = true)]
         public int? tpViaTransp { get; set; }
 
@@ -173,6 +175,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>CNPJ do adquirente ou do encomendante.</value>
         [DataMember(Name = "CNPJ", EmitDefaultValue = true)]
         public string CNPJ { get; set; }
+
+        /// <summary>
+        /// CPF do adquirente ou do encomendante.
+        /// </summary>
+        /// <value>CPF do adquirente ou do encomendante.</value>
+        [DataMember(Name = "CPF", EmitDefaultValue = true)]
+        public string CPF { get; set; }
 
         /// <summary>
         /// Sigla da UF do adquirente ou do encomendante.
@@ -211,6 +220,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  vAFRMM: ").Append(vAFRMM).Append("\n");
             sb.Append("  tpIntermedio: ").Append(tpIntermedio).Append("\n");
             sb.Append("  CNPJ: ").Append(CNPJ).Append("\n");
+            sb.Append("  CPF: ").Append(CPF).Append("\n");
             sb.Append("  UFTerceiro: ").Append(UFTerceiro).Append("\n");
             sb.Append("  cExportador: ").Append(cExportador).Append("\n");
             sb.Append("  adi: ").Append(adi).Append("\n");
@@ -295,6 +305,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.CNPJ.Equals(input.CNPJ))
                 ) && 
                 (
+                    this.CPF == input.CPF ||
+                    (this.CPF != null &&
+                    this.CPF.Equals(input.CPF))
+                ) && 
+                (
                     this.UFTerceiro == input.UFTerceiro ||
                     (this.UFTerceiro != null &&
                     this.UFTerceiro.Equals(input.UFTerceiro))
@@ -357,6 +372,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.CNPJ.GetHashCode();
                 }
+                if (this.CPF != null)
+                {
+                    hashCode = (hashCode * 59) + this.CPF.GetHashCode();
+                }
                 if (this.UFTerceiro != null)
                 {
                     hashCode = (hashCode * 59) + this.UFTerceiro.GetHashCode();
@@ -408,6 +427,12 @@ namespace NuvemFiscal.Sdk.Model
             if (this.CNPJ != null && this.CNPJ.Length > 14)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+            }
+
+            // CPF (string) maxLength
+            if (this.CPF != null && this.CPF.Length > 11)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CPF, length must be less than 11.", new [] { "CPF" });
             }
 
             // cExportador (string) maxLength

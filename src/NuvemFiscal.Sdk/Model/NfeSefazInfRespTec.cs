@@ -282,9 +282,9 @@ namespace NuvemFiscal.Sdk.Model
             }
 
             // hashCSRT (string) maxLength
-            if (this.hashCSRT != null && this.hashCSRT.Length > 20)
+            if (this.hashCSRT != null && this.hashCSRT.Length > 28)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hashCSRT, length must be less than 20.", new [] { "hashCSRT" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hashCSRT, length must be less than 28.", new [] { "hashCSRT" });
             }
 
             yield break;

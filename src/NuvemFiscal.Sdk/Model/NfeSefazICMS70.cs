@@ -57,9 +57,10 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="vFCPST">Valor do FCP retido por substituição tributária..</param>
         /// <param name="vICMSDeson">Valor do ICMS de desoneração..</param>
         /// <param name="motDesICMS">Motivo da desoneração do ICMS:3-Uso na agropecuária  * 9 - Outros  * 12 - Fomento agropecuário.</param>
+        /// <param name="indDeduzDeson">Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):  * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e  * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e.</param>
         /// <param name="vICMSSTDeson">Valor do ICMS-ST desonerado..</param>
         /// <param name="motDesICMSST">Motivo da desoneração do ICMS-ST: 3-Uso na agropecuária  * 9 - Outros  * 12 - Fomento agropecuário.</param>
-        public NfeSefazICMS70(int? orig = default(int?), string cST = default(string), int? modBC = default(int?), decimal? pRedBC = default(decimal?), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMS = default(decimal?), decimal? vBCFCP = default(decimal?), decimal? pFCP = default(decimal?), decimal? vFCP = default(decimal?), int? modBCST = default(int?), decimal? pMVAST = default(decimal?), decimal? pRedBCST = default(decimal?), decimal? vBCST = default(decimal?), decimal? pICMSST = default(decimal?), decimal? vICMSST = default(decimal?), decimal? vBCFCPST = default(decimal?), decimal? pFCPST = default(decimal?), decimal? vFCPST = default(decimal?), decimal? vICMSDeson = default(decimal?), int? motDesICMS = default(int?), decimal? vICMSSTDeson = default(decimal?), int? motDesICMSST = default(int?))
+        public NfeSefazICMS70(int? orig = default(int?), string cST = default(string), int? modBC = default(int?), decimal? pRedBC = default(decimal?), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMS = default(decimal?), decimal? vBCFCP = default(decimal?), decimal? pFCP = default(decimal?), decimal? vFCP = default(decimal?), int? modBCST = default(int?), decimal? pMVAST = default(decimal?), decimal? pRedBCST = default(decimal?), decimal? vBCST = default(decimal?), decimal? pICMSST = default(decimal?), decimal? vICMSST = default(decimal?), decimal? vBCFCPST = default(decimal?), decimal? pFCPST = default(decimal?), decimal? vFCPST = default(decimal?), decimal? vICMSDeson = default(decimal?), int? motDesICMS = default(int?), int? indDeduzDeson = default(int?), decimal? vICMSSTDeson = default(decimal?), int? motDesICMSST = default(int?))
         {
             // to ensure "orig" is required (not null)
             if (orig == null)
@@ -137,6 +138,7 @@ namespace NuvemFiscal.Sdk.Model
             this.vFCPST = vFCPST;
             this.vICMSDeson = vICMSDeson;
             this.motDesICMS = motDesICMS;
+            this.indDeduzDeson = indDeduzDeson;
             this.vICMSSTDeson = vICMSSTDeson;
             this.motDesICMSST = motDesICMSST;
         }
@@ -289,6 +291,13 @@ namespace NuvemFiscal.Sdk.Model
         public int? motDesICMS { get; set; }
 
         /// <summary>
+        /// Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):  * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e  * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e
+        /// </summary>
+        /// <value>Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):  * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e  * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e</value>
+        [DataMember(Name = "indDeduzDeson", EmitDefaultValue = true)]
+        public int? indDeduzDeson { get; set; }
+
+        /// <summary>
         /// Valor do ICMS-ST desonerado.
         /// </summary>
         /// <value>Valor do ICMS-ST desonerado.</value>
@@ -331,6 +340,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  vFCPST: ").Append(vFCPST).Append("\n");
             sb.Append("  vICMSDeson: ").Append(vICMSDeson).Append("\n");
             sb.Append("  motDesICMS: ").Append(motDesICMS).Append("\n");
+            sb.Append("  indDeduzDeson: ").Append(indDeduzDeson).Append("\n");
             sb.Append("  vICMSSTDeson: ").Append(vICMSSTDeson).Append("\n");
             sb.Append("  motDesICMSST: ").Append(motDesICMSST).Append("\n");
             sb.Append("}\n");
@@ -474,6 +484,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.motDesICMS.Equals(input.motDesICMS))
                 ) && 
                 (
+                    this.indDeduzDeson == input.indDeduzDeson ||
+                    (this.indDeduzDeson != null &&
+                    this.indDeduzDeson.Equals(input.indDeduzDeson))
+                ) && 
+                (
                     this.vICMSSTDeson == input.vICMSSTDeson ||
                     (this.vICMSSTDeson != null &&
                     this.vICMSSTDeson.Equals(input.vICMSSTDeson))
@@ -577,6 +592,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.motDesICMS != null)
                 {
                     hashCode = (hashCode * 59) + this.motDesICMS.GetHashCode();
+                }
+                if (this.indDeduzDeson != null)
+                {
+                    hashCode = (hashCode * 59) + this.indDeduzDeson.GetHashCode();
                 }
                 if (this.vICMSSTDeson != null)
                 {

@@ -26,6 +26,7 @@ Nome | Tipo | Descrição | Comentários
 **vFCPST** | **decimal?** | Valor do FCP retido por substituição tributária. | [optional] 
 **vICMSDeson** | **decimal?** | Valor do ICMS de desoneração. | [optional] 
 **motDesICMS** | **int?** | Motivo da desoneração do ICMS:3-Uso na agropecuária  * 9 - Outros  * 12 - Fomento agropecuário | [optional] 
+**indDeduzDeson** | **int?** | Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):  * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e  * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e | [optional] 
 **vICMSSTDeson** | **decimal?** | Valor do ICMS-ST desonerado. | [optional] 
 **motDesICMSST** | **int?** | Motivo da desoneração do ICMS-ST: 3-Uso na agropecuária  * 9 - Outros  * 12 - Fomento agropecuário | [optional] 
 

@@ -40,8 +40,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="tPag">Forma de Pagamento:. (required).</param>
         /// <param name="xPag">Descrição do Meio de Pagamento..</param>
         /// <param name="vPag">Valor do Pagamento. Esta tag poderá ser omitida quando a tag tPag&#x3D;90 (Sem Pagamento), caso contrário deverá ser preenchida. (required).</param>
+        /// <param name="dPag">Data do Pagamento..</param>
+        /// <param name="cNPJPag">CNPJ transacional do pagamento - Preencher informando o CNPJ do estabelecimento onde o pagamento foi processado/transacionado/recebido quando a emissão do documento fiscal ocorrer em estabelecimento distinto..</param>
+        /// <param name="uFPag">UF do CNPJ do estabelecimento onde o pagamento foi processado/transacionado/recebido..</param>
         /// <param name="card">card.</param>
-        public NfeSefazDetPag(int? indPag = default(int?), string tPag = default(string), string xPag = default(string), decimal? vPag = default(decimal?), NfeSefazCard card = default(NfeSefazCard))
+        public NfeSefazDetPag(int? indPag = default(int?), string tPag = default(string), string xPag = default(string), decimal? vPag = default(decimal?), DateTime? dPag = default(DateTime?), string cNPJPag = default(string), string uFPag = default(string), NfeSefazCard card = default(NfeSefazCard))
         {
             // to ensure "tPag" is required (not null)
             if (tPag == null)
@@ -57,6 +60,9 @@ namespace NuvemFiscal.Sdk.Model
             this.vPag = vPag;
             this.indPag = indPag;
             this.xPag = xPag;
+            this.dPag = dPag;
+            this.CNPJPag = cNPJPag;
+            this.UFPag = uFPag;
             this.card = card;
         }
 
@@ -89,6 +95,28 @@ namespace NuvemFiscal.Sdk.Model
         public decimal? vPag { get; set; }
 
         /// <summary>
+        /// Data do Pagamento.
+        /// </summary>
+        /// <value>Data do Pagamento.</value>
+        [DataMember(Name = "dPag", EmitDefaultValue = true)]
+        [JsonConverter(typeof(OpenAPIDateConverter))]
+        public DateTime? dPag { get; set; }
+
+        /// <summary>
+        /// CNPJ transacional do pagamento - Preencher informando o CNPJ do estabelecimento onde o pagamento foi processado/transacionado/recebido quando a emissão do documento fiscal ocorrer em estabelecimento distinto.
+        /// </summary>
+        /// <value>CNPJ transacional do pagamento - Preencher informando o CNPJ do estabelecimento onde o pagamento foi processado/transacionado/recebido quando a emissão do documento fiscal ocorrer em estabelecimento distinto.</value>
+        [DataMember(Name = "CNPJPag", EmitDefaultValue = true)]
+        public string CNPJPag { get; set; }
+
+        /// <summary>
+        /// UF do CNPJ do estabelecimento onde o pagamento foi processado/transacionado/recebido.
+        /// </summary>
+        /// <value>UF do CNPJ do estabelecimento onde o pagamento foi processado/transacionado/recebido.</value>
+        [DataMember(Name = "UFPag", EmitDefaultValue = true)]
+        public string UFPag { get; set; }
+
+        /// <summary>
         /// Gets or Sets card
         /// </summary>
         [DataMember(Name = "card", EmitDefaultValue = false)]
@@ -106,6 +134,9 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  tPag: ").Append(tPag).Append("\n");
             sb.Append("  xPag: ").Append(xPag).Append("\n");
             sb.Append("  vPag: ").Append(vPag).Append("\n");
+            sb.Append("  dPag: ").Append(dPag).Append("\n");
+            sb.Append("  CNPJPag: ").Append(CNPJPag).Append("\n");
+            sb.Append("  UFPag: ").Append(UFPag).Append("\n");
             sb.Append("  card: ").Append(card).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -163,6 +194,21 @@ namespace NuvemFiscal.Sdk.Model
                     this.vPag.Equals(input.vPag))
                 ) && 
                 (
+                    this.dPag == input.dPag ||
+                    (this.dPag != null &&
+                    this.dPag.Equals(input.dPag))
+                ) && 
+                (
+                    this.CNPJPag == input.CNPJPag ||
+                    (this.CNPJPag != null &&
+                    this.CNPJPag.Equals(input.CNPJPag))
+                ) && 
+                (
+                    this.UFPag == input.UFPag ||
+                    (this.UFPag != null &&
+                    this.UFPag.Equals(input.UFPag))
+                ) && 
+                (
                     this.card == input.card ||
                     (this.card != null &&
                     this.card.Equals(input.card))
@@ -194,6 +240,18 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.vPag.GetHashCode();
                 }
+                if (this.dPag != null)
+                {
+                    hashCode = (hashCode * 59) + this.dPag.GetHashCode();
+                }
+                if (this.CNPJPag != null)
+                {
+                    hashCode = (hashCode * 59) + this.CNPJPag.GetHashCode();
+                }
+                if (this.UFPag != null)
+                {
+                    hashCode = (hashCode * 59) + this.UFPag.GetHashCode();
+                }
                 if (this.card != null)
                 {
                     hashCode = (hashCode * 59) + this.card.GetHashCode();
@@ -219,6 +277,12 @@ namespace NuvemFiscal.Sdk.Model
             if (this.xPag != null && this.xPag.Length < 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPag, length must be greater than 2.", new [] { "xPag" });
+            }
+
+            // CNPJPag (string) maxLength
+            if (this.CNPJPag != null && this.CNPJPag.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJPag, length must be less than 14.", new [] { "CNPJPag" });
             }
 
             yield break;

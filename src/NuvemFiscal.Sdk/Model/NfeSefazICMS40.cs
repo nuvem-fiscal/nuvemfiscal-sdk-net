@@ -40,7 +40,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cST">Tributação pelo ICMS  * 40 - Isenta  * 41 - Não tributada  * 50 - Suspensão  * 51 - Diferimento (required).</param>
         /// <param name="vICMSDeson">O valor do ICMS será informado apenas nas operações com veículos beneficiados com a desoneração condicional do ICMS..</param>
         /// <param name="motDesICMS">Este campo será preenchido quando o campo anterior estiver preenchido.  Informar o motivo da desoneração:  * 1 - Táxi  * 3 - Produtor Agropecuário  * 4 - Frotista/Locadora  * 5 - Diplomático/Consular  * 6 - Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 - CONTRAN e suas alterações)  * 7 - SUFRAMA  * 8 - Venda a órgão Público  * 9 - Outros  * 10 - Deficiente Condutor  * 11 - Deficiente não condutor  * 16 - Olimpíadas Rio 2016  * 90 - Solicitado pelo Fisco.</param>
-        public NfeSefazICMS40(int? orig = default(int?), string cST = default(string), decimal? vICMSDeson = default(decimal?), int? motDesICMS = default(int?))
+        /// <param name="indDeduzDeson">Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):  * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e  * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e.</param>
+        public NfeSefazICMS40(int? orig = default(int?), string cST = default(string), decimal? vICMSDeson = default(decimal?), int? motDesICMS = default(int?), int? indDeduzDeson = default(int?))
         {
             // to ensure "orig" is required (not null)
             if (orig == null)
@@ -56,6 +57,7 @@ namespace NuvemFiscal.Sdk.Model
             this.CST = cST;
             this.vICMSDeson = vICMSDeson;
             this.motDesICMS = motDesICMS;
+            this.indDeduzDeson = indDeduzDeson;
         }
 
         /// <summary>
@@ -87,6 +89,13 @@ namespace NuvemFiscal.Sdk.Model
         public int? motDesICMS { get; set; }
 
         /// <summary>
+        /// Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):  * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e  * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e
+        /// </summary>
+        /// <value>Indica se o valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd):  * 0 - Valor do ICMS desonerado (vICMSDeson) não deduz do valor do item (vProd) / total da NF-e  * 1 - Valor do ICMS desonerado (vICMSDeson) deduz do valor do item (vProd) / total da NF-e</value>
+        [DataMember(Name = "indDeduzDeson", EmitDefaultValue = true)]
+        public int? indDeduzDeson { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -98,6 +107,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  CST: ").Append(CST).Append("\n");
             sb.Append("  vICMSDeson: ").Append(vICMSDeson).Append("\n");
             sb.Append("  motDesICMS: ").Append(motDesICMS).Append("\n");
+            sb.Append("  indDeduzDeson: ").Append(indDeduzDeson).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -152,6 +162,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.motDesICMS == input.motDesICMS ||
                     (this.motDesICMS != null &&
                     this.motDesICMS.Equals(input.motDesICMS))
+                ) && 
+                (
+                    this.indDeduzDeson == input.indDeduzDeson ||
+                    (this.indDeduzDeson != null &&
+                    this.indDeduzDeson.Equals(input.indDeduzDeson))
                 );
         }
 
@@ -179,6 +194,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.motDesICMS != null)
                 {
                     hashCode = (hashCode * 59) + this.motDesICMS.GetHashCode();
+                }
+                if (this.indDeduzDeson != null)
+                {
+                    hashCode = (hashCode * 59) + this.indDeduzDeson.GetHashCode();
                 }
                 return hashCode;
             }

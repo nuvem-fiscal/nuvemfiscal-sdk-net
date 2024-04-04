@@ -37,8 +37,8 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazProcRef" /> class.
         /// </summary>
         /// <param name="nProc">Indentificador do processo ou ato  concessório. (required).</param>
-        /// <param name="indProc">Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 9 - Outros (required).</param>
-        /// <param name="tpAto">Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica.</param>
+        /// <param name="indProc">Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 4 - CONFAZ  * 9 - Outros (required).</param>
+        /// <param name="tpAto">Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica  * 14 - Ajuste SINIEF  * 15 - Convênio ICMS.</param>
         public NfeSefazProcRef(string nProc = default(string), int? indProc = default(int?), string tpAto = default(string))
         {
             // to ensure "nProc" is required (not null)
@@ -64,16 +64,16 @@ namespace NuvemFiscal.Sdk.Model
         public string nProc { get; set; }
 
         /// <summary>
-        /// Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 9 - Outros
+        /// Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 4 - CONFAZ  * 9 - Outros
         /// </summary>
-        /// <value>Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 9 - Outros</value>
+        /// <value>Origem do processo, informar com:  * 0 - SEFAZ  * 1 - Justiça Federal  * 2 - Justiça Estadual  * 3 - Secex/RFB  * 4 - CONFAZ  * 9 - Outros</value>
         [DataMember(Name = "indProc", IsRequired = true, EmitDefaultValue = true)]
         public int? indProc { get; set; }
 
         /// <summary>
-        /// Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica
+        /// Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica  * 14 - Ajuste SINIEF  * 15 - Convênio ICMS
         /// </summary>
-        /// <value>Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica</value>
+        /// <value>Tipo do ato concessório  Para origem do Processo na SEFAZ (indProc&#x3D;0), informar o  tipo de ato concessório:  * 08 - Termo de Acordo  * 10 - Regime Especial  * 12 - Autorização específica  * 14 - Ajuste SINIEF  * 15 - Convênio ICMS</value>
         [DataMember(Name = "tpAto", EmitDefaultValue = true)]
         public string tpAto { get; set; }
 

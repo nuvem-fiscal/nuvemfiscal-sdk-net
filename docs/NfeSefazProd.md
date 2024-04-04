@@ -15,6 +15,7 @@ Nome | Tipo | Descrição | Comentários
 **indEscala** | **string** |  | [optional] 
 **CNPJFab** | **string** | CNPJ do Fabricante da Mercadoria, obrigatório para produto em escala NÃO relevante. | [optional] 
 **cBenef** | **string** |  | [optional] 
+**gCred** | [**List&lt;NfeSefazGCred&gt;**](NfeSefazGCred.md) |  | [optional] 
 **EXTIPI** | **string** | Código EX TIPI (3 posições). | [optional] 
 **CFOP** | **string** | Cfop. | 
 **uCom** | **string** | Unidade comercial. | 

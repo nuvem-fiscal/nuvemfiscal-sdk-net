@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Tributção pelo ICMS  * 51 - Diferimento  A exigência do preenchimento das informações do ICMS diferido fica à critério de cada UF.
+    /// Tributção pelo ICMS 51 - Diferimento. A exigência do preenchimento das informações do ICMS diferido fica à critério de cada UF.
     /// </summary>
     [DataContract(Name = "NfeSefazICMS51")]
     public partial class NfeSefazICMS51 : IEquatable<NfeSefazICMS51>, IValidatableObject
@@ -40,6 +40,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cST">Tributção pelo ICMS  * 20 - Com redução de base de cálculo (required).</param>
         /// <param name="modBC">Modalidade de determinação da BC do ICMS:  * 0 - Margem Valor Agregado (%%)  * 1 - Pauta (valor)  * 2 - Preço Tabelado Máximo (valor)  * 3 - Valor da Operação.</param>
         /// <param name="pRedBC">Percentual de redução da BC..</param>
+        /// <param name="cBenefRBC">Código de Benefício Fiscal na UF aplicado ao item quando houver RBC..</param>
         /// <param name="vBC">Valor da BC do ICMS..</param>
         /// <param name="pICMS">Alíquota do imposto..</param>
         /// <param name="vICMSOp">Valor do ICMS da Operação..</param>
@@ -52,7 +53,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="pFCPDif">Percentual do diferimento do ICMS relativo ao Fundo de Combate à Pobreza (FCP)..</param>
         /// <param name="vFCPDif">Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) diferido..</param>
         /// <param name="vFCPEfet">Valor efetivo do ICMS relativo ao Fundo de Combate à Pobreza (FCP)..</param>
-        public NfeSefazICMS51(int? orig = default(int?), string cST = default(string), int? modBC = default(int?), decimal? pRedBC = default(decimal?), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMSOp = default(decimal?), decimal? pDif = default(decimal?), decimal? vICMSDif = default(decimal?), decimal? vICMS = default(decimal?), decimal? vBCFCP = default(decimal?), decimal? pFCP = default(decimal?), decimal? vFCP = default(decimal?), decimal? pFCPDif = default(decimal?), decimal? vFCPDif = default(decimal?), decimal? vFCPEfet = default(decimal?))
+        public NfeSefazICMS51(int? orig = default(int?), string cST = default(string), int? modBC = default(int?), decimal? pRedBC = default(decimal?), string cBenefRBC = default(string), decimal? vBC = default(decimal?), decimal? pICMS = default(decimal?), decimal? vICMSOp = default(decimal?), decimal? pDif = default(decimal?), decimal? vICMSDif = default(decimal?), decimal? vICMS = default(decimal?), decimal? vBCFCP = default(decimal?), decimal? pFCP = default(decimal?), decimal? vFCP = default(decimal?), decimal? pFCPDif = default(decimal?), decimal? vFCPDif = default(decimal?), decimal? vFCPEfet = default(decimal?))
         {
             // to ensure "orig" is required (not null)
             if (orig == null)
@@ -68,6 +69,7 @@ namespace NuvemFiscal.Sdk.Model
             this.CST = cST;
             this.modBC = modBC;
             this.pRedBC = pRedBC;
+            this.cBenefRBC = cBenefRBC;
             this.vBC = vBC;
             this.pICMS = pICMS;
             this.vICMSOp = vICMSOp;
@@ -109,6 +111,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Percentual de redução da BC.</value>
         [DataMember(Name = "pRedBC", EmitDefaultValue = true)]
         public decimal? pRedBC { get; set; }
+
+        /// <summary>
+        /// Código de Benefício Fiscal na UF aplicado ao item quando houver RBC.
+        /// </summary>
+        /// <value>Código de Benefício Fiscal na UF aplicado ao item quando houver RBC.</value>
+        [DataMember(Name = "cBenefRBC", EmitDefaultValue = true)]
+        public string cBenefRBC { get; set; }
 
         /// <summary>
         /// Valor da BC do ICMS.
@@ -206,6 +215,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  CST: ").Append(CST).Append("\n");
             sb.Append("  modBC: ").Append(modBC).Append("\n");
             sb.Append("  pRedBC: ").Append(pRedBC).Append("\n");
+            sb.Append("  cBenefRBC: ").Append(cBenefRBC).Append("\n");
             sb.Append("  vBC: ").Append(vBC).Append("\n");
             sb.Append("  pICMS: ").Append(pICMS).Append("\n");
             sb.Append("  vICMSOp: ").Append(vICMSOp).Append("\n");
@@ -272,6 +282,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.pRedBC == input.pRedBC ||
                     (this.pRedBC != null &&
                     this.pRedBC.Equals(input.pRedBC))
+                ) && 
+                (
+                    this.cBenefRBC == input.cBenefRBC ||
+                    (this.cBenefRBC != null &&
+                    this.cBenefRBC.Equals(input.cBenefRBC))
                 ) && 
                 (
                     this.vBC == input.vBC ||
@@ -359,6 +374,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.pRedBC != null)
                 {
                     hashCode = (hashCode * 59) + this.pRedBC.GetHashCode();
+                }
+                if (this.cBenefRBC != null)
+                {
+                    hashCode = (hashCode * 59) + this.cBenefRBC.GetHashCode();
                 }
                 if (this.vBC != null)
                 {

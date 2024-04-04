@@ -1,5 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazICMS51
-Tributção pelo ICMS  * 51 - Diferimento  A exigência do preenchimento das informações do ICMS diferido fica à critério de cada UF.
+Tributção pelo ICMS 51 - Diferimento. A exigência do preenchimento das informações do ICMS diferido fica à critério de cada UF.
 
 ## Propriedades
 
@@ -9,6 +9,7 @@ Nome | Tipo | Descrição | Comentários
 **CST** | **string** | Tributção pelo ICMS  * 20 - Com redução de base de cálculo | 
 **modBC** | **int?** | Modalidade de determinação da BC do ICMS:  * 0 - Margem Valor Agregado (%%)  * 1 - Pauta (valor)  * 2 - Preço Tabelado Máximo (valor)  * 3 - Valor da Operação | [optional] 
 **pRedBC** | **decimal?** | Percentual de redução da BC. | [optional] 
+**cBenefRBC** | **string** | Código de Benefício Fiscal na UF aplicado ao item quando houver RBC. | [optional] 
 **vBC** | **decimal?** | Valor da BC do ICMS. | [optional] 
 **pICMS** | **decimal?** | Alíquota do imposto. | [optional] 
 **vICMSOp** | **decimal?** | Valor do ICMS da Operação. | [optional] 

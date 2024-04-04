@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cTribNac">Código de tributação nacional do ISSQN:  Regra de formação - 6 dígitos numéricos sendo: 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. (required).</param>
         /// <param name="cTribMun">Código de tributação municipal do ISSQN..</param>
         /// <param name="cNAE">Código CNAE (Classificação Nacional de Atividades Econômicas)..</param>
-        /// <param name="xDescServ">Descrição completa do serviço prestado. (required).</param>
+        /// <param name="xDescServ">Descrição completa do serviço prestado.    Os caracteres acentuados poderão ser alterados para caracteres sem acentuação. (required).</param>
         /// <param name="cNBS">Código NBS (Nomenclatura Brasileira de Serviços, Intangíveis e outras Operações que produzam Variações no Patrimônio) correspondente ao serviço prestado..</param>
         public CServ(string cTribNac = default(string), string cTribMun = default(string), string cNAE = default(string), string xDescServ = default(string), string cNBS = default(string))
         {
@@ -82,9 +82,9 @@ namespace NuvemFiscal.Sdk.Model
         public string CNAE { get; set; }
 
         /// <summary>
-        /// Descrição completa do serviço prestado.
+        /// Descrição completa do serviço prestado.    Os caracteres acentuados poderão ser alterados para caracteres sem acentuação.
         /// </summary>
-        /// <value>Descrição completa do serviço prestado.</value>
+        /// <value>Descrição completa do serviço prestado.    Os caracteres acentuados poderão ser alterados para caracteres sem acentuação.</value>
         [DataMember(Name = "xDescServ", IsRequired = true, EmitDefaultValue = true)]
         public string xDescServ { get; set; }
 

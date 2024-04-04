@@ -37,9 +37,9 @@ namespace NuvemFiscal.Sdk.Model
         /// Initializes a new instance of the <see cref="NfeSefazAdi" /> class.
         /// </summary>
         /// <param name="nAdicao">Número da Adição..</param>
-        /// <param name="nSeqAdic">Número seqüencial do item dentro da Adição. (required).</param>
+        /// <param name="nSeqAdic">Número seqüencial do item. (required).</param>
         /// <param name="cFabricante">Código do fabricante estrangeiro (usado nos sistemas internos de informação do emitente da NF-e). (required).</param>
-        /// <param name="vDescDI">Valor do desconto do item da DI - adição..</param>
+        /// <param name="vDescDI">Valor do desconto do item..</param>
         /// <param name="nDraw">Número do ato concessório de Drawback..</param>
         public NfeSefazAdi(int? nAdicao = default(int?), int? nSeqAdic = default(int?), string cFabricante = default(string), decimal? vDescDI = default(decimal?), string nDraw = default(string))
         {
@@ -68,9 +68,9 @@ namespace NuvemFiscal.Sdk.Model
         public int? nAdicao { get; set; }
 
         /// <summary>
-        /// Número seqüencial do item dentro da Adição.
+        /// Número seqüencial do item.
         /// </summary>
-        /// <value>Número seqüencial do item dentro da Adição.</value>
+        /// <value>Número seqüencial do item.</value>
         [DataMember(Name = "nSeqAdic", IsRequired = true, EmitDefaultValue = true)]
         public int? nSeqAdic { get; set; }
 
@@ -82,9 +82,9 @@ namespace NuvemFiscal.Sdk.Model
         public string cFabricante { get; set; }
 
         /// <summary>
-        /// Valor do desconto do item da DI - adição.
+        /// Valor do desconto do item.
         /// </summary>
-        /// <value>Valor do desconto do item da DI - adição.</value>
+        /// <value>Valor do desconto do item.</value>
         [DataMember(Name = "vDescDI", EmitDefaultValue = true)]
         public decimal? vDescDI { get; set; }
 

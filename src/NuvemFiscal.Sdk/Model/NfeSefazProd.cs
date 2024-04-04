@@ -46,6 +46,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="indEscala">indEscala.</param>
         /// <param name="cNPJFab">CNPJ do Fabricante da Mercadoria, obrigatório para produto em escala NÃO relevante..</param>
         /// <param name="cBenef">cBenef.</param>
+        /// <param name="gCred">gCred.</param>
         /// <param name="eXTIPI">Código EX TIPI (3 posições)..</param>
         /// <param name="cFOP">Cfop. (required).</param>
         /// <param name="uCom">Unidade comercial. (required).</param>
@@ -75,7 +76,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="arma">arma.</param>
         /// <param name="comb">comb.</param>
         /// <param name="nRECOPI">Número do RECOPI..</param>
-        public NfeSefazProd(string cProd = default(string), string cEAN = default(string), string cBarra = default(string), string xProd = default(string), string nCM = default(string), List<string> nVE = default(List<string>), string cEST = default(string), string indEscala = default(string), string cNPJFab = default(string), string cBenef = default(string), string eXTIPI = default(string), string cFOP = default(string), string uCom = default(string), decimal? qCom = default(decimal?), decimal? vUnCom = default(decimal?), decimal? vProd = default(decimal?), string cEANTrib = default(string), string cBarraTrib = default(string), string uTrib = default(string), decimal? qTrib = default(decimal?), decimal? vUnTrib = default(decimal?), decimal? vFrete = default(decimal?), decimal? vSeg = default(decimal?), decimal? vDesc = default(decimal?), decimal? vOutro = default(decimal?), int? indTot = default(int?), List<NfeSefazDI> dI = default(List<NfeSefazDI>), List<NfeSefazDetExport> detExport = default(List<NfeSefazDetExport>), string xPed = default(string), int? nItemPed = default(int?), string nFCI = default(string), List<NfeSefazRastro> rastro = default(List<NfeSefazRastro>), NfeSefazInfProdNFF infProdNFF = default(NfeSefazInfProdNFF), NfeSefazInfProdEmb infProdEmb = default(NfeSefazInfProdEmb), NfeSefazVeicProd veicProd = default(NfeSefazVeicProd), NfeSefazMed med = default(NfeSefazMed), List<NfeSefazArma> arma = default(List<NfeSefazArma>), NfeSefazComb comb = default(NfeSefazComb), string nRECOPI = default(string))
+        public NfeSefazProd(string cProd = default(string), string cEAN = default(string), string cBarra = default(string), string xProd = default(string), string nCM = default(string), List<string> nVE = default(List<string>), string cEST = default(string), string indEscala = default(string), string cNPJFab = default(string), string cBenef = default(string), List<NfeSefazGCred> gCred = default(List<NfeSefazGCred>), string eXTIPI = default(string), string cFOP = default(string), string uCom = default(string), decimal? qCom = default(decimal?), decimal? vUnCom = default(decimal?), decimal? vProd = default(decimal?), string cEANTrib = default(string), string cBarraTrib = default(string), string uTrib = default(string), decimal? qTrib = default(decimal?), decimal? vUnTrib = default(decimal?), decimal? vFrete = default(decimal?), decimal? vSeg = default(decimal?), decimal? vDesc = default(decimal?), decimal? vOutro = default(decimal?), int? indTot = default(int?), List<NfeSefazDI> dI = default(List<NfeSefazDI>), List<NfeSefazDetExport> detExport = default(List<NfeSefazDetExport>), string xPed = default(string), int? nItemPed = default(int?), string nFCI = default(string), List<NfeSefazRastro> rastro = default(List<NfeSefazRastro>), NfeSefazInfProdNFF infProdNFF = default(NfeSefazInfProdNFF), NfeSefazInfProdEmb infProdEmb = default(NfeSefazInfProdEmb), NfeSefazVeicProd veicProd = default(NfeSefazVeicProd), NfeSefazMed med = default(NfeSefazMed), List<NfeSefazArma> arma = default(List<NfeSefazArma>), NfeSefazComb comb = default(NfeSefazComb), string nRECOPI = default(string))
         {
             // to ensure "cProd" is required (not null)
             if (cProd == null)
@@ -167,6 +168,7 @@ namespace NuvemFiscal.Sdk.Model
             this.indEscala = indEscala;
             this.CNPJFab = cNPJFab;
             this.cBenef = cBenef;
+            this.gCred = gCred;
             this.EXTIPI = eXTIPI;
             this.cBarraTrib = cBarraTrib;
             this.vFrete = vFrete;
@@ -255,6 +257,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         [DataMember(Name = "cBenef", EmitDefaultValue = true)]
         public string cBenef { get; set; }
+
+        /// <summary>
+        /// Gets or Sets gCred
+        /// </summary>
+        [DataMember(Name = "gCred", EmitDefaultValue = false)]
+        public List<NfeSefazGCred> gCred { get; set; }
 
         /// <summary>
         /// Código EX TIPI (3 posições).
@@ -468,6 +476,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  indEscala: ").Append(indEscala).Append("\n");
             sb.Append("  CNPJFab: ").Append(CNPJFab).Append("\n");
             sb.Append("  cBenef: ").Append(cBenef).Append("\n");
+            sb.Append("  gCred: ").Append(gCred).Append("\n");
             sb.Append("  EXTIPI: ").Append(EXTIPI).Append("\n");
             sb.Append("  CFOP: ").Append(CFOP).Append("\n");
             sb.Append("  uCom: ").Append(uCom).Append("\n");
@@ -582,6 +591,12 @@ namespace NuvemFiscal.Sdk.Model
                     this.cBenef == input.cBenef ||
                     (this.cBenef != null &&
                     this.cBenef.Equals(input.cBenef))
+                ) && 
+                (
+                    this.gCred == input.gCred ||
+                    this.gCred != null &&
+                    input.gCred != null &&
+                    this.gCred.SequenceEqual(input.gCred)
                 ) && 
                 (
                     this.EXTIPI == input.EXTIPI ||
@@ -782,6 +797,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.cBenef != null)
                 {
                     hashCode = (hashCode * 59) + this.cBenef.GetHashCode();
+                }
+                if (this.gCred != null)
+                {
+                    hashCode = (hashCode * 59) + this.gCred.GetHashCode();
                 }
                 if (this.EXTIPI != null)
                 {

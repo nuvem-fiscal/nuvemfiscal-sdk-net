@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Grupo de Cartões.
+    /// Grupo de Cartões, PIX, Boletos e outros Pagamentos Eletrônicos.
     /// </summary>
     [DataContract(Name = "NfeSefazCard")]
     public partial class NfeSefazCard : IEquatable<NfeSefazCard>, IValidatableObject
@@ -36,11 +36,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfeSefazCard" /> class.
         /// </summary>
-        /// <param name="tpIntegra">Tipo de Integração do processo de pagamento com o sistema de automação da empresa/  * 1 - Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico  * 2 - Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS (required).</param>
+        /// <param name="tpIntegra">Tipo de Integração do processo de pagamento com o sistema de automação da empresa:  * 1 - Pagamento integrado com o sistema de automação da empresa (Ex.: equipamento TEF, Comércio Eletrônico, POS Integrado)  * 2 - Pagamento não integrado com o sistema de automação da empresa (Ex.: equipamento POS Simples) (required).</param>
         /// <param name="cNPJ">CNPJ da instituição de pagamento..</param>
         /// <param name="tBand">Bandeira da operadora de cartão..</param>
-        /// <param name="cAut">Número de autorização da operação cartão de crédito/débito..</param>
-        public NfeSefazCard(int? tpIntegra = default(int?), string cNPJ = default(string), string tBand = default(string), string cAut = default(string))
+        /// <param name="cAut">Número de autorização da operação com cartões, PIX, boletos e outros pagamentos eletrônicos..</param>
+        /// <param name="cNPJReceb">CNPJ do beneficiário do pagamento..</param>
+        /// <param name="idTermPag">Identificador do terminal de pagamento..</param>
+        public NfeSefazCard(int? tpIntegra = default(int?), string cNPJ = default(string), string tBand = default(string), string cAut = default(string), string cNPJReceb = default(string), string idTermPag = default(string))
         {
             // to ensure "tpIntegra" is required (not null)
             if (tpIntegra == null)
@@ -51,12 +53,14 @@ namespace NuvemFiscal.Sdk.Model
             this.CNPJ = cNPJ;
             this.tBand = tBand;
             this.cAut = cAut;
+            this.CNPJReceb = cNPJReceb;
+            this.idTermPag = idTermPag;
         }
 
         /// <summary>
-        /// Tipo de Integração do processo de pagamento com o sistema de automação da empresa/  * 1 - Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico  * 2 - Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS
+        /// Tipo de Integração do processo de pagamento com o sistema de automação da empresa:  * 1 - Pagamento integrado com o sistema de automação da empresa (Ex.: equipamento TEF, Comércio Eletrônico, POS Integrado)  * 2 - Pagamento não integrado com o sistema de automação da empresa (Ex.: equipamento POS Simples)
         /// </summary>
-        /// <value>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/  * 1 - Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico  * 2 - Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS</value>
+        /// <value>Tipo de Integração do processo de pagamento com o sistema de automação da empresa:  * 1 - Pagamento integrado com o sistema de automação da empresa (Ex.: equipamento TEF, Comércio Eletrônico, POS Integrado)  * 2 - Pagamento não integrado com o sistema de automação da empresa (Ex.: equipamento POS Simples)</value>
         [DataMember(Name = "tpIntegra", IsRequired = true, EmitDefaultValue = true)]
         public int? tpIntegra { get; set; }
 
@@ -75,11 +79,25 @@ namespace NuvemFiscal.Sdk.Model
         public string tBand { get; set; }
 
         /// <summary>
-        /// Número de autorização da operação cartão de crédito/débito.
+        /// Número de autorização da operação com cartões, PIX, boletos e outros pagamentos eletrônicos.
         /// </summary>
-        /// <value>Número de autorização da operação cartão de crédito/débito.</value>
+        /// <value>Número de autorização da operação com cartões, PIX, boletos e outros pagamentos eletrônicos.</value>
         [DataMember(Name = "cAut", EmitDefaultValue = true)]
         public string cAut { get; set; }
+
+        /// <summary>
+        /// CNPJ do beneficiário do pagamento.
+        /// </summary>
+        /// <value>CNPJ do beneficiário do pagamento.</value>
+        [DataMember(Name = "CNPJReceb", EmitDefaultValue = true)]
+        public string CNPJReceb { get; set; }
+
+        /// <summary>
+        /// Identificador do terminal de pagamento.
+        /// </summary>
+        /// <value>Identificador do terminal de pagamento.</value>
+        [DataMember(Name = "idTermPag", EmitDefaultValue = true)]
+        public string idTermPag { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,6 +111,8 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  CNPJ: ").Append(CNPJ).Append("\n");
             sb.Append("  tBand: ").Append(tBand).Append("\n");
             sb.Append("  cAut: ").Append(cAut).Append("\n");
+            sb.Append("  CNPJReceb: ").Append(CNPJReceb).Append("\n");
+            sb.Append("  idTermPag: ").Append(idTermPag).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -147,6 +167,16 @@ namespace NuvemFiscal.Sdk.Model
                     this.cAut == input.cAut ||
                     (this.cAut != null &&
                     this.cAut.Equals(input.cAut))
+                ) && 
+                (
+                    this.CNPJReceb == input.CNPJReceb ||
+                    (this.CNPJReceb != null &&
+                    this.CNPJReceb.Equals(input.CNPJReceb))
+                ) && 
+                (
+                    this.idTermPag == input.idTermPag ||
+                    (this.idTermPag != null &&
+                    this.idTermPag.Equals(input.idTermPag))
                 );
         }
 
@@ -175,6 +205,14 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cAut.GetHashCode();
                 }
+                if (this.CNPJReceb != null)
+                {
+                    hashCode = (hashCode * 59) + this.CNPJReceb.GetHashCode();
+                }
+                if (this.idTermPag != null)
+                {
+                    hashCode = (hashCode * 59) + this.idTermPag.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -193,15 +231,33 @@ namespace NuvemFiscal.Sdk.Model
             }
 
             // cAut (string) maxLength
-            if (this.cAut != null && this.cAut.Length > 20)
+            if (this.cAut != null && this.cAut.Length > 128)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAut, length must be less than 20.", new [] { "cAut" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAut, length must be less than 128.", new [] { "cAut" });
             }
 
             // cAut (string) minLength
             if (this.cAut != null && this.cAut.Length < 1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAut, length must be greater than 1.", new [] { "cAut" });
+            }
+
+            // CNPJReceb (string) maxLength
+            if (this.CNPJReceb != null && this.CNPJReceb.Length > 14)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJReceb, length must be less than 14.", new [] { "CNPJReceb" });
+            }
+
+            // idTermPag (string) maxLength
+            if (this.idTermPag != null && this.idTermPag.Length > 40)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idTermPag, length must be less than 40.", new [] { "idTermPag" });
+            }
+
+            // idTermPag (string) minLength
+            if (this.idTermPag != null && this.idTermPag.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idTermPag, length must be greater than 1.", new [] { "idTermPag" });
             }
 
             yield break;
