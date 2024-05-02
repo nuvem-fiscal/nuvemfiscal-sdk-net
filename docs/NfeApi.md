@@ -437,7 +437,7 @@ catch (ApiException e)
 
 <a name="baixarpdfnfe"></a>
 # **BaixarPdfNfe**
-> FileParameter BaixarPdfNfe (string id, bool? logotipo = null, string mensagemRodape = null, bool? canhoto = null)
+> FileParameter BaixarPdfNfe (string id, bool? logotipo = null, bool? nomeFantasia = null, string formato = null, string mensagemRodape = null, bool? canhoto = null)
 
 Baixar PDF do DANFE
 
@@ -471,13 +471,15 @@ namespace Example
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | ID único da NF-e gerado pela Nuvem Fiscal.
             var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
+            var nomeFantasia = false;  // bool? | Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota. (optional)  (default to false)
+            var formato = "\"padrao\"";  // string | Formato de impressão do DANFE.    Valores disponíveis:  - `padrao`: será utilizado o formato definido no XML da NF-e (tag \"tpImp\");  - `retrato`: tamanho A4 em modo retrato;  - `paisagem`: tamanho A4 em modo paisagem;  - `simplificado`: formato simplificado utilizado nas operações realizadas fora do estabelecimento (Anexo II do MOC, item 3.11);  - `etiqueta`: formato simplificado utilizado nas operações em comércio eletrônico (Anexo II do MOC, item 3.12 e NT 2020.004). (optional)  (default to "padrao")
             var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
             var canhoto = true;  // bool? | Imprime o documento com o bloco de canhoto. (optional)  (default to true)
 
             try
             {
                 // Baixar PDF do DANFE
-                FileParameter result = apiInstance.BaixarPdfNfe(id, logotipo, mensagemRodape, canhoto);
+                FileParameter result = apiInstance.BaixarPdfNfe(id, logotipo, nomeFantasia, formato, mensagemRodape, canhoto);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -498,7 +500,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Baixar PDF do DANFE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfeWithHttpInfo(id, logotipo, mensagemRodape, canhoto);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfeWithHttpInfo(id, logotipo, nomeFantasia, formato, mensagemRodape, canhoto);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -517,6 +519,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | ID único da NF-e gerado pela Nuvem Fiscal. |  |
 | **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
+| **nomeFantasia** | **bool?** | Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota. | [optional] [default to false] |
+| **formato** | **string** | Formato de impressão do DANFE.    Valores disponíveis:  - &#x60;padrao&#x60;: será utilizado o formato definido no XML da NF-e (tag \&quot;tpImp\&quot;);  - &#x60;retrato&#x60;: tamanho A4 em modo retrato;  - &#x60;paisagem&#x60;: tamanho A4 em modo paisagem;  - &#x60;simplificado&#x60;: formato simplificado utilizado nas operações realizadas fora do estabelecimento (Anexo II do MOC, item 3.11);  - &#x60;etiqueta&#x60;: formato simplificado utilizado nas operações em comércio eletrônico (Anexo II do MOC, item 3.12 e NT 2020.004). | [optional] [default to &quot;padrao&quot;] |
 | **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
 | **canhoto** | **bool?** | Imprime o documento com o bloco de canhoto. | [optional] [default to true] |
 
@@ -543,11 +547,11 @@ catch (ApiException e)
 
 <a name="baixarpreviapdfnfe"></a>
 # **BaixarPreviaPdfNfe**
-> FileParameter BaixarPreviaPdfNfe (NfePedidoEmissao body, bool? logotipo = null, string mensagemRodape = null, bool? canhoto = null)
+> FileParameter BaixarPreviaPdfNfe (NfePedidoEmissao body, bool? logotipo = null, bool? nomeFantasia = null, string formato = null, string mensagemRodape = null, bool? canhoto = null)
 
 Prévia do PDF do DANFE
 
-Através desse endpoint, é possível enviar os dados de uma NF-e e gerar uma prévia do DANFE.    Os dados de entrada são os mesmos do endpoint de emissão de NF-e (`POST /nfe`).
+Através desse endpoint, é possível enviar os dados de uma NF-e e gerar uma prévia do DANFE.    Os dados de entrada são os mesmos do endpoint de emissão de NF-e (`POST /nfe`).    **Atenção**: O DANFE gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
 
 ### Exemplo
 ```csharp
@@ -579,13 +583,15 @@ namespace Example
             var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
             var body = new NfePedidoEmissao(); // NfePedidoEmissao | 
             var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
+            var nomeFantasia = false;  // bool? | Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota. (optional)  (default to false)
+            var formato = "\"padrao\"";  // string | Formato de impressão do DANFE.    Valores disponíveis:  - `padrao`: será utilizado o formato definido no XML da NF-e (tag \"tpImp\");  - `retrato`: tamanho A4 em modo retrato;  - `paisagem`: tamanho A4 em modo paisagem;  - `simplificado`: formato simplificado utilizado nas operações realizadas fora do estabelecimento (Anexo II do MOC, item 3.11);  - `etiqueta`: formato simplificado utilizado nas operações em comércio eletrônico (Anexo II do MOC, item 3.12 e NT 2020.004). (optional)  (default to "padrao")
             var mensagemRodape = "mensagemRodape_example";  // string | Imprime mensagem no rodapé do documento.    O caractere `|` (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * `\"esquerda\"`  * `\"esquerda|centro\"`  * `\"esquerda|centro|direita\"`  * `\"|centro\"`, `\"|centro|\"`  * `\"|centro|direita\"`  * `\"||direita\"`  * `\"esquerda||direita\"` (optional) 
             var canhoto = true;  // bool? | Imprime o documento com o bloco de canhoto. (optional)  (default to true)
 
             try
             {
                 // Prévia do PDF do DANFE
-                FileParameter result = apiInstance.BaixarPreviaPdfNfe(body, logotipo, mensagemRodape, canhoto);
+                FileParameter result = apiInstance.BaixarPreviaPdfNfe(body, logotipo, nomeFantasia, formato, mensagemRodape, canhoto);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -606,7 +612,7 @@ Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, 
 try
 {
     // Prévia do PDF do DANFE
-    ApiResponse<FileParameter> response = apiInstance.BaixarPreviaPdfNfeWithHttpInfo(body, logotipo, mensagemRodape, canhoto);
+    ApiResponse<FileParameter> response = apiInstance.BaixarPreviaPdfNfeWithHttpInfo(body, logotipo, nomeFantasia, formato, mensagemRodape, canhoto);
     Debug.Write("Código de status: " + response.StatusCode);
     Debug.Write("Headers da resposta: " + response.Headers);
     Debug.Write("Conteúdo da resposta: " + response.Data);
@@ -625,6 +631,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **body** | [**NfePedidoEmissao**](NfePedidoEmissao.md) |  |  |
 | **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
+| **nomeFantasia** | **bool?** | Exibe o nome fantasia do emitente, desde que esteja presente no XML da nota. | [optional] [default to false] |
+| **formato** | **string** | Formato de impressão do DANFE.    Valores disponíveis:  - &#x60;padrao&#x60;: será utilizado o formato definido no XML da NF-e (tag \&quot;tpImp\&quot;);  - &#x60;retrato&#x60;: tamanho A4 em modo retrato;  - &#x60;paisagem&#x60;: tamanho A4 em modo paisagem;  - &#x60;simplificado&#x60;: formato simplificado utilizado nas operações realizadas fora do estabelecimento (Anexo II do MOC, item 3.11);  - &#x60;etiqueta&#x60;: formato simplificado utilizado nas operações em comércio eletrônico (Anexo II do MOC, item 3.12 e NT 2020.004). | [optional] [default to &quot;padrao&quot;] |
 | **mensagemRodape** | **string** | Imprime mensagem no rodapé do documento.    O caractere &#x60;|&#x60; (pipe) poderá ser utilizado para definir a quantidade e o alinhamento das mensagens.    **Exemplos de Uso:**  * &#x60;\&quot;esquerda\&quot;&#x60;  * &#x60;\&quot;esquerda|centro\&quot;&#x60;  * &#x60;\&quot;esquerda|centro|direita\&quot;&#x60;  * &#x60;\&quot;|centro\&quot;&#x60;, &#x60;\&quot;|centro|\&quot;&#x60;  * &#x60;\&quot;|centro|direita\&quot;&#x60;  * &#x60;\&quot;||direita\&quot;&#x60;  * &#x60;\&quot;esquerda||direita\&quot;&#x60; | [optional]  |
 | **canhoto** | **bool?** | Imprime o documento com o bloco de canhoto. | [optional] [default to true] |
 
@@ -655,7 +663,7 @@ catch (ApiException e)
 
 Prévia do XML da NF-e
 
-Através desse endpoint, é possível enviar os dados de uma NF-e e gerar uma prévia do XML, sem a assinatura digital.    Os dados de entrada são os mesmos do endpoint de emissão de NF-e (`POST /nfe`).
+Através desse endpoint, é possível enviar os dados de uma NF-e e gerar uma prévia do XML, sem a assinatura digital.    Os dados de entrada são os mesmos do endpoint de emissão de NF-e (`POST /nfe`).    **Atenção**: O XML gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
 
 ### Exemplo
 ```csharp
