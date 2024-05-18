@@ -229,6 +229,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vValePed (decimal?) minimum
+            if (this.vValePed < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vValePed, must be a value greater than or equal to 0.", new [] { "vValePed" });
+            }
+
             yield break;
         }
     }

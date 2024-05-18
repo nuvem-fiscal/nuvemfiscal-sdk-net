@@ -184,6 +184,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xMotivoIsencao, length must be greater than 1.", new [] { "xMotivoIsencao" });
             }
 
+            // vPMC (decimal?) minimum
+            if (this.vPMC < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vPMC, must be a value greater than or equal to 0.", new [] { "vPMC" });
+            }
+
             yield break;
         }
     }

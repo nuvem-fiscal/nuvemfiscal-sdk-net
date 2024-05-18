@@ -189,6 +189,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEmb, length must be greater than 1.", new [] { "xEmb" });
             }
 
+            // qVolEmb (decimal?) minimum
+            if (this.qVolEmb < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qVolEmb, must be a value greater than or equal to 0.", new [] { "qVolEmb" });
+            }
+
             // uEmb (string) maxLength
             if (this.uEmb != null && this.uEmb.Length > 8)
             {

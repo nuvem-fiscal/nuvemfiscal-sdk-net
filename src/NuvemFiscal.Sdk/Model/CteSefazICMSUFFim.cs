@@ -273,6 +273,48 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vBCUFFim (decimal?) minimum
+            if (this.vBCUFFim < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCUFFim, must be a value greater than or equal to 0.", new [] { "vBCUFFim" });
+            }
+
+            // pFCPUFFim (decimal?) minimum
+            if (this.pFCPUFFim < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pFCPUFFim, must be a value greater than or equal to 0.", new [] { "pFCPUFFim" });
+            }
+
+            // pICMSUFFim (decimal?) minimum
+            if (this.pICMSUFFim < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pICMSUFFim, must be a value greater than or equal to 0.", new [] { "pICMSUFFim" });
+            }
+
+            // pICMSInter (decimal?) minimum
+            if (this.pICMSInter < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pICMSInter, must be a value greater than or equal to 0.", new [] { "pICMSInter" });
+            }
+
+            // vFCPUFFim (decimal?) minimum
+            if (this.vFCPUFFim < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFCPUFFim, must be a value greater than or equal to 0.", new [] { "vFCPUFFim" });
+            }
+
+            // vICMSUFFim (decimal?) minimum
+            if (this.vICMSUFFim < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSUFFim, must be a value greater than or equal to 0.", new [] { "vICMSUFFim" });
+            }
+
+            // vICMSUFIni (decimal?) minimum
+            if (this.vICMSUFIni < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSUFIni, must be a value greater than or equal to 0.", new [] { "vICMSUFIni" });
+            }
+
             yield break;
         }
     }

@@ -170,6 +170,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDup, length must be greater than 1.", new [] { "nDup" });
             }
 
+            // vDup (decimal?) minimum
+            if (this.vDup < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDup, must be a value greater than or equal to 0.", new [] { "vDup" });
+            }
+
             yield break;
         }
     }

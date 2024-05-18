@@ -256,6 +256,18 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nTanque, must be a value greater than or equal to 0.", new [] { "nTanque" });
             }
 
+            // vEncIni (decimal?) minimum
+            if (this.vEncIni < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vEncIni, must be a value greater than or equal to 0.", new [] { "vEncIni" });
+            }
+
+            // vEncFin (decimal?) minimum
+            if (this.vEncFin < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vEncFin, must be a value greater than or equal to 0.", new [] { "vEncFin" });
+            }
+
             yield break;
         }
     }

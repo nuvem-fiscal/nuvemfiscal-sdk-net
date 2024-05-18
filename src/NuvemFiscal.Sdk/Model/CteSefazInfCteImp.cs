@@ -184,6 +184,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vTotTrib (decimal?) minimum
+            if (this.vTotTrib < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vTotTrib, must be a value greater than or equal to 0.", new [] { "vTotTrib" });
+            }
+
             // infAdFisco (string) maxLength
             if (this.infAdFisco != null && this.infAdFisco.Length > 2000)
             {

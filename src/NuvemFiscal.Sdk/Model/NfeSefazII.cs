@@ -201,6 +201,30 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vBC (decimal?) minimum
+            if (this.vBC < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+            }
+
+            // vDespAdu (decimal?) minimum
+            if (this.vDespAdu < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDespAdu, must be a value greater than or equal to 0.", new [] { "vDespAdu" });
+            }
+
+            // vII (decimal?) minimum
+            if (this.vII < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vII, must be a value greater than or equal to 0.", new [] { "vII" });
+            }
+
+            // vIOF (decimal?) minimum
+            if (this.vIOF < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vIOF, must be a value greater than or equal to 0.", new [] { "vIOF" });
+            }
+
             yield break;
         }
     }

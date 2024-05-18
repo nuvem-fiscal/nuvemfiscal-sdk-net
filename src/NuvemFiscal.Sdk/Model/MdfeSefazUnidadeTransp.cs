@@ -222,6 +222,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idUnidTransp, length must be greater than 1.", new [] { "idUnidTransp" });
             }
 
+            // qtdRat (decimal?) minimum
+            if (this.qtdRat < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdRat, must be a value greater than or equal to 0.", new [] { "qtdRat" });
+            }
+
             yield break;
         }
     }

@@ -263,6 +263,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // pesoBC (decimal?) minimum
+            if (this.pesoBC < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoBC, must be a value greater than or equal to 0.", new [] { "pesoBC" });
+            }
+
+            // pesoR (decimal?) minimum
+            if (this.pesoR < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoR, must be a value greater than or equal to 0.", new [] { "pesoR" });
+            }
+
             // tpVag (string) maxLength
             if (this.tpVag != null && this.tpVag.Length > 3)
             {

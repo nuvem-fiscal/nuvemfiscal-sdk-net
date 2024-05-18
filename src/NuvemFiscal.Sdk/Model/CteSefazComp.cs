@@ -165,6 +165,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be greater than 1.", new [] { "xNome" });
             }
 
+            // vComp (decimal?) minimum
+            if (this.vComp < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vComp, must be a value greater than or equal to 0.", new [] { "vComp" });
+            }
+
             yield break;
         }
     }

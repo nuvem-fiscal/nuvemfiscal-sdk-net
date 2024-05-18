@@ -122,10 +122,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="modelo">modelo.</param>
         /// <param name="serie">serie.</param>
         /// <param name="numero">numero.</param>
+        /// <param name="tipoEmissao">tipoEmissao.</param>
         /// <param name="valorTotal">valorTotal.</param>
         /// <param name="chave">Chave de acesso do DF-e..</param>
         /// <param name="autorizacao">autorizacao.</param>
-        public Dfe(string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string referencia = default(string), DateTime dataEmissao = default(DateTime), int modelo = default(int), int serie = default(int), int numero = default(int), decimal valorTotal = default(decimal), string chave = default(string), DfeAutorizacao autorizacao = default(DfeAutorizacao))
+        public Dfe(string id = default(string), AmbienteEnum? ambiente = default(AmbienteEnum?), DateTime createdAt = default(DateTime), StatusEnum? status = default(StatusEnum?), string referencia = default(string), DateTime dataEmissao = default(DateTime), int modelo = default(int), int serie = default(int), int numero = default(int), int tipoEmissao = default(int), decimal valorTotal = default(decimal), string chave = default(string), DfeAutorizacao autorizacao = default(DfeAutorizacao))
         {
             this.id = id;
             this.ambiente = ambiente;
@@ -136,6 +137,7 @@ namespace NuvemFiscal.Sdk.Model
             this.modelo = modelo;
             this.serie = serie;
             this.numero = numero;
+            this.tipo_emissao = tipoEmissao;
             this.valor_total = valorTotal;
             this.chave = chave;
             this.autorizacao = autorizacao;
@@ -187,6 +189,12 @@ namespace NuvemFiscal.Sdk.Model
         public int numero { get; set; }
 
         /// <summary>
+        /// Gets or Sets tipo_emissao
+        /// </summary>
+        [DataMember(Name = "tipo_emissao", EmitDefaultValue = false)]
+        public int tipo_emissao { get; set; }
+
+        /// <summary>
         /// Gets or Sets valor_total
         /// </summary>
         [DataMember(Name = "valor_total", EmitDefaultValue = false)]
@@ -222,6 +230,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  modelo: ").Append(modelo).Append("\n");
             sb.Append("  serie: ").Append(serie).Append("\n");
             sb.Append("  numero: ").Append(numero).Append("\n");
+            sb.Append("  tipo_emissao: ").Append(tipo_emissao).Append("\n");
             sb.Append("  valor_total: ").Append(valor_total).Append("\n");
             sb.Append("  chave: ").Append(chave).Append("\n");
             sb.Append("  autorizacao: ").Append(autorizacao).Append("\n");
@@ -301,6 +310,10 @@ namespace NuvemFiscal.Sdk.Model
                     this.numero.Equals(input.numero)
                 ) && 
                 (
+                    this.tipo_emissao == input.tipo_emissao ||
+                    this.tipo_emissao.Equals(input.tipo_emissao)
+                ) && 
+                (
                     this.valor_total == input.valor_total ||
                     this.valor_total.Equals(input.valor_total)
                 ) && 
@@ -346,6 +359,7 @@ namespace NuvemFiscal.Sdk.Model
                 hashCode = (hashCode * 59) + this.modelo.GetHashCode();
                 hashCode = (hashCode * 59) + this.serie.GetHashCode();
                 hashCode = (hashCode * 59) + this.numero.GetHashCode();
+                hashCode = (hashCode * 59) + this.tipo_emissao.GetHashCode();
                 hashCode = (hashCode * 59) + this.valor_total.GetHashCode();
                 if (this.chave != null)
                 {

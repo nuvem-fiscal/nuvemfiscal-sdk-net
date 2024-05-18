@@ -420,6 +420,84 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vBCSTRet (decimal?) minimum
+            if (this.vBCSTRet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCSTRet, must be a value greater than or equal to 0.", new [] { "vBCSTRet" });
+            }
+
+            // pST (decimal?) minimum
+            if (this.pST < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pST, must be a value greater than or equal to 0.", new [] { "pST" });
+            }
+
+            // vICMSSubstituto (decimal?) minimum
+            if (this.vICMSSubstituto < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSSubstituto, must be a value greater than or equal to 0.", new [] { "vICMSSubstituto" });
+            }
+
+            // vICMSSTRet (decimal?) minimum
+            if (this.vICMSSTRet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSSTRet, must be a value greater than or equal to 0.", new [] { "vICMSSTRet" });
+            }
+
+            // vBCFCPSTRet (decimal?) minimum
+            if (this.vBCFCPSTRet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCFCPSTRet, must be a value greater than or equal to 0.", new [] { "vBCFCPSTRet" });
+            }
+
+            // pFCPSTRet (decimal?) minimum
+            if (this.pFCPSTRet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pFCPSTRet, must be a value greater than or equal to 0.", new [] { "pFCPSTRet" });
+            }
+
+            // vFCPSTRet (decimal?) minimum
+            if (this.vFCPSTRet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFCPSTRet, must be a value greater than or equal to 0.", new [] { "vFCPSTRet" });
+            }
+
+            // vBCSTDest (decimal?) minimum
+            if (this.vBCSTDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCSTDest, must be a value greater than or equal to 0.", new [] { "vBCSTDest" });
+            }
+
+            // vICMSSTDest (decimal?) minimum
+            if (this.vICMSSTDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSSTDest, must be a value greater than or equal to 0.", new [] { "vICMSSTDest" });
+            }
+
+            // pRedBCEfet (decimal?) minimum
+            if (this.pRedBCEfet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pRedBCEfet, must be a value greater than or equal to 0.", new [] { "pRedBCEfet" });
+            }
+
+            // vBCEfet (decimal?) minimum
+            if (this.vBCEfet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCEfet, must be a value greater than or equal to 0.", new [] { "vBCEfet" });
+            }
+
+            // pICMSEfet (decimal?) minimum
+            if (this.pICMSEfet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pICMSEfet, must be a value greater than or equal to 0.", new [] { "pICMSEfet" });
+            }
+
+            // vICMSEfet (decimal?) minimum
+            if (this.vICMSEfet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSEfet, must be a value greater than or equal to 0.", new [] { "vICMSEfet" });
+            }
+
             yield break;
         }
     }

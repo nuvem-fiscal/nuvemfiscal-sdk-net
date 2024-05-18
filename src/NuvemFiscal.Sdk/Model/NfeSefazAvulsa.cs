@@ -400,6 +400,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDAR, length must be greater than 1.", new [] { "nDAR" });
             }
 
+            // vDAR (decimal?) minimum
+            if (this.vDAR < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDAR, must be a value greater than or equal to 0.", new [] { "vDAR" });
+            }
+
             // repEmi (string) maxLength
             if (this.repEmi != null && this.repEmi.Length > 60)
             {

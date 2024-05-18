@@ -423,6 +423,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLocDesemb, length must be greater than 1.", new [] { "xLocDesemb" });
             }
 
+            // vAFRMM (decimal?) minimum
+            if (this.vAFRMM < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vAFRMM, must be a value greater than or equal to 0.", new [] { "vAFRMM" });
+            }
+
             // CNPJ (string) maxLength
             if (this.CNPJ != null && this.CNPJ.Length > 14)
             {

@@ -215,6 +215,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vFrete (decimal?) minimum
+            if (this.vFrete < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFrete, must be a value greater than or equal to 0.", new [] { "vFrete" });
+            }
+
             // chCTeFerroOrigem (string) maxLength
             if (this.chCTeFerroOrigem != null && this.chCTeFerroOrigem.Length > 44)
             {

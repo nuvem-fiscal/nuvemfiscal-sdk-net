@@ -165,6 +165,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for dia, must be a value greater than or equal to 1.", new [] { "dia" });
             }
 
+            // qtde (decimal?) minimum
+            if (this.qtde < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtde, must be a value greater than or equal to 0.", new [] { "qtde" });
+            }
+
             yield break;
         }
     }

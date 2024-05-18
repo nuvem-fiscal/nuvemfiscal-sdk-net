@@ -269,6 +269,18 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nVol, length must be greater than 1.", new [] { "nVol" });
             }
 
+            // pesoL (decimal?) minimum
+            if (this.pesoL < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoL, must be a value greater than or equal to 0.", new [] { "pesoL" });
+            }
+
+            // pesoB (decimal?) minimum
+            if (this.pesoB < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoB, must be a value greater than or equal to 0.", new [] { "pesoB" });
+            }
+
             yield break;
         }
     }

@@ -191,6 +191,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vRedBCBM (decimal?) minimum
+            if (this.vRedBCBM < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRedBCBM, must be a value greater than or equal to 0.", new [] { "vRedBCBM" });
+            }
+
+            // pRedBCBM (decimal?) minimum
+            if (this.pRedBCBM < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pRedBCBM, must be a value greater than or equal to 0.", new [] { "pRedBCBM" });
+            }
+
             yield break;
         }
     }

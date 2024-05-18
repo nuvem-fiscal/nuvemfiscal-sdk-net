@@ -258,6 +258,36 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // pRedBCOutraUF (decimal?) minimum
+            if (this.pRedBCOutraUF < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pRedBCOutraUF, must be a value greater than or equal to 0.", new [] { "pRedBCOutraUF" });
+            }
+
+            // vBCOutraUF (decimal?) minimum
+            if (this.vBCOutraUF < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCOutraUF, must be a value greater than or equal to 0.", new [] { "vBCOutraUF" });
+            }
+
+            // pICMSOutraUF (decimal?) minimum
+            if (this.pICMSOutraUF < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pICMSOutraUF, must be a value greater than or equal to 0.", new [] { "pICMSOutraUF" });
+            }
+
+            // vICMSOutraUF (decimal?) minimum
+            if (this.vICMSOutraUF < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSOutraUF, must be a value greater than or equal to 0.", new [] { "vICMSOutraUF" });
+            }
+
+            // vICMSDeson (decimal?) minimum
+            if (this.vICMSDeson < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSDeson, must be a value greater than or equal to 0.", new [] { "vICMSDeson" });
+            }
+
             // cBenef (string) maxLength
             if (this.cBenef != null && this.cBenef.Length > 10)
             {

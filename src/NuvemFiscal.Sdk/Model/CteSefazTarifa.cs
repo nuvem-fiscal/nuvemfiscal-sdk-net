@@ -190,6 +190,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cTar, length must be greater than 1.", new [] { "cTar" });
             }
 
+            // vTar (decimal?) minimum
+            if (this.vTar < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vTar, must be a value greater than or equal to 0.", new [] { "vTar" });
+            }
+
             yield break;
         }
     }

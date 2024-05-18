@@ -165,6 +165,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NroContrato, length must be greater than 2.", new [] { "NroContrato" });
             }
 
+            // vContratoGlobal (decimal?) minimum
+            if (this.vContratoGlobal < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vContratoGlobal, must be a value greater than or equal to 0.", new [] { "vContratoGlobal" });
+            }
+
             yield break;
         }
     }

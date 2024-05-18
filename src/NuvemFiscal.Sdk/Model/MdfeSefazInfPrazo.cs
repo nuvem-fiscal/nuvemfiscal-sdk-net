@@ -190,6 +190,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nParcela, must be a value greater than or equal to 0.", new [] { "nParcela" });
             }
 
+            // vParcela (decimal?) minimum
+            if (this.vParcela < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vParcela, must be a value greater than or equal to 0.", new [] { "vParcela" });
+            }
+
             yield break;
         }
     }

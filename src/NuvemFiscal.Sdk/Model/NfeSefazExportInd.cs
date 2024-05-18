@@ -183,6 +183,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chNFe, length must be less than 44.", new [] { "chNFe" });
             }
 
+            // qExport (decimal?) minimum
+            if (this.qExport < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qExport, must be a value greater than or equal to 0.", new [] { "qExport" });
+            }
+
             yield break;
         }
     }

@@ -399,6 +399,18 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xDescOutDed, length must be greater than 1.", new [] { "xDescOutDed" });
             }
 
+            // vDedutivelRedutivel (decimal?) minimum
+            if (this.vDedutivelRedutivel < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDedutivelRedutivel, must be a value greater than or equal to 0.", new [] { "vDedutivelRedutivel" });
+            }
+
+            // vDeducaoReducao (decimal?) minimum
+            if (this.vDeducaoReducao < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDeducaoReducao, must be a value greater than or equal to 0.", new [] { "vDeducaoReducao" });
+            }
+
             yield break;
         }
     }

@@ -395,6 +395,18 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idEstrangeiro, length must be greater than 2.", new [] { "idEstrangeiro" });
             }
 
+            // vContrato (decimal?) minimum
+            if (this.vContrato < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vContrato, must be a value greater than or equal to 0.", new [] { "vContrato" });
+            }
+
+            // vAdiant (decimal?) minimum
+            if (this.vAdiant < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vAdiant, must be a value greater than or equal to 0.", new [] { "vAdiant" });
+            }
+
             yield break;
         }
     }

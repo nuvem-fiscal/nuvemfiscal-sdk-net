@@ -291,6 +291,18 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cMod, length must be greater than 1.", new [] { "cMod" });
             }
 
+            // vUnit (decimal?) minimum
+            if (this.vUnit < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vUnit, must be a value greater than or equal to 0.", new [] { "vUnit" });
+            }
+
+            // vFrete (decimal?) minimum
+            if (this.vFrete < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFrete, must be a value greater than or equal to 0.", new [] { "vFrete" });
+            }
+
             yield break;
         }
     }

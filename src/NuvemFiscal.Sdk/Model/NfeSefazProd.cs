@@ -983,6 +983,24 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uCom, length must be greater than 1.", new [] { "uCom" });
             }
 
+            // qCom (decimal?) minimum
+            if (this.qCom < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCom, must be a value greater than or equal to 0.", new [] { "qCom" });
+            }
+
+            // vUnCom (decimal?) minimum
+            if (this.vUnCom < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vUnCom, must be a value greater than or equal to 0.", new [] { "vUnCom" });
+            }
+
+            // vProd (decimal?) minimum
+            if (this.vProd < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vProd, must be a value greater than or equal to 0.", new [] { "vProd" });
+            }
+
             // cBarraTrib (string) maxLength
             if (this.cBarraTrib != null && this.cBarraTrib.Length > 30)
             {
@@ -1005,6 +1023,42 @@ namespace NuvemFiscal.Sdk.Model
             if (this.uTrib != null && this.uTrib.Length < 1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uTrib, length must be greater than 1.", new [] { "uTrib" });
+            }
+
+            // qTrib (decimal?) minimum
+            if (this.qTrib < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTrib, must be a value greater than or equal to 0.", new [] { "qTrib" });
+            }
+
+            // vUnTrib (decimal?) minimum
+            if (this.vUnTrib < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vUnTrib, must be a value greater than or equal to 0.", new [] { "vUnTrib" });
+            }
+
+            // vFrete (decimal?) minimum
+            if (this.vFrete < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFrete, must be a value greater than or equal to 0.", new [] { "vFrete" });
+            }
+
+            // vSeg (decimal?) minimum
+            if (this.vSeg < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vSeg, must be a value greater than or equal to 0.", new [] { "vSeg" });
+            }
+
+            // vDesc (decimal?) minimum
+            if (this.vDesc < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
+            }
+
+            // vOutro (decimal?) minimum
+            if (this.vOutro < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
             }
 
             // xPed (string) maxLength

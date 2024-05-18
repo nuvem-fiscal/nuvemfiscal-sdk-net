@@ -172,6 +172,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vTPrest (decimal?) minimum
+            if (this.vTPrest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vTPrest, must be a value greater than or equal to 0.", new [] { "vTPrest" });
+            }
+
+            // vRec (decimal?) minimum
+            if (this.vRec < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRec, must be a value greater than or equal to 0.", new [] { "vRec" });
+            }
+
             yield break;
         }
     }

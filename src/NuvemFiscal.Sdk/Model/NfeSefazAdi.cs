@@ -246,6 +246,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cFabricante, length must be greater than 1.", new [] { "cFabricante" });
             }
 
+            // vDescDI (decimal?) minimum
+            if (this.vDescDI < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDescDI, must be a value greater than or equal to 0.", new [] { "vDescDI" });
+            }
+
             // nDraw (string) maxLength
             if (this.nDraw != null && this.nDraw.Length > 20)
             {

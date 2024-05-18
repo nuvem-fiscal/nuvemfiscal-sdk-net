@@ -306,6 +306,60 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vBCUFDest (decimal?) minimum
+            if (this.vBCUFDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCUFDest, must be a value greater than or equal to 0.", new [] { "vBCUFDest" });
+            }
+
+            // vBCFCPUFDest (decimal?) minimum
+            if (this.vBCFCPUFDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCFCPUFDest, must be a value greater than or equal to 0.", new [] { "vBCFCPUFDest" });
+            }
+
+            // pFCPUFDest (decimal?) minimum
+            if (this.pFCPUFDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pFCPUFDest, must be a value greater than or equal to 0.", new [] { "pFCPUFDest" });
+            }
+
+            // pICMSUFDest (decimal?) minimum
+            if (this.pICMSUFDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pICMSUFDest, must be a value greater than or equal to 0.", new [] { "pICMSUFDest" });
+            }
+
+            // pICMSInter (decimal?) minimum
+            if (this.pICMSInter < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pICMSInter, must be a value greater than or equal to 0.", new [] { "pICMSInter" });
+            }
+
+            // pICMSInterPart (decimal?) minimum
+            if (this.pICMSInterPart < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pICMSInterPart, must be a value greater than or equal to 0.", new [] { "pICMSInterPart" });
+            }
+
+            // vFCPUFDest (decimal?) minimum
+            if (this.vFCPUFDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFCPUFDest, must be a value greater than or equal to 0.", new [] { "vFCPUFDest" });
+            }
+
+            // vICMSUFDest (decimal?) minimum
+            if (this.vICMSUFDest < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSUFDest, must be a value greater than or equal to 0.", new [] { "vICMSUFDest" });
+            }
+
+            // vICMSUFRemet (decimal?) minimum
+            if (this.vICMSUFRemet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSUFRemet, must be a value greater than or equal to 0.", new [] { "vICMSUFRemet" });
+            }
+
             yield break;
         }
     }

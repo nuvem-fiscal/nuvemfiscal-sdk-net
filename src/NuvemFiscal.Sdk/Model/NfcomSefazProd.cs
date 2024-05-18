@@ -424,6 +424,24 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cClass, length must be greater than 7.", new [] { "cClass" });
             }
 
+            // qFaturada (decimal?) minimum
+            if (this.qFaturada < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qFaturada, must be a value greater than or equal to 0.", new [] { "qFaturada" });
+            }
+
+            // vDesc (decimal?) minimum
+            if (this.vDesc < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
+            }
+
+            // vOutro (decimal?) minimum
+            if (this.vOutro < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
+            }
+
             yield break;
         }
     }

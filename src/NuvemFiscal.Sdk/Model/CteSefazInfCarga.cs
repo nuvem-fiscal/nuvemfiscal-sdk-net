@@ -210,6 +210,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vCarga (decimal?) minimum
+            if (this.vCarga < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCarga, must be a value greater than or equal to 0.", new [] { "vCarga" });
+            }
+
             // proPred (string) maxLength
             if (this.proPred != null && this.proPred.Length > 60)
             {
@@ -232,6 +238,12 @@ namespace NuvemFiscal.Sdk.Model
             if (this.xOutCat != null && this.xOutCat.Length < 1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOutCat, length must be greater than 1.", new [] { "xOutCat" });
+            }
+
+            // vCargaAverb (decimal?) minimum
+            if (this.vCargaAverb < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCargaAverb, must be a value greater than or equal to 0.", new [] { "vCargaAverb" });
             }
 
             yield break;

@@ -177,6 +177,24 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vBC (decimal?) minimum
+            if (this.vBC < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+            }
+
+            // pFUNTTEL (decimal?) minimum
+            if (this.pFUNTTEL < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pFUNTTEL, must be a value greater than or equal to 0.", new [] { "pFUNTTEL" });
+            }
+
+            // vFUNTTEL (decimal?) minimum
+            if (this.vFUNTTEL < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFUNTTEL, must be a value greater than or equal to 0.", new [] { "vFUNTTEL" });
+            }
+
             yield break;
         }
     }

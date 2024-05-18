@@ -552,6 +552,48 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDoc, length must be greater than 1.", new [] { "nDoc" });
             }
 
+            // vBC (decimal?) minimum
+            if (this.vBC < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+            }
+
+            // vICMS (decimal?) minimum
+            if (this.vICMS < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMS, must be a value greater than or equal to 0.", new [] { "vICMS" });
+            }
+
+            // vBCST (decimal?) minimum
+            if (this.vBCST < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCST, must be a value greater than or equal to 0.", new [] { "vBCST" });
+            }
+
+            // vST (decimal?) minimum
+            if (this.vST < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vST, must be a value greater than or equal to 0.", new [] { "vST" });
+            }
+
+            // vProd (decimal?) minimum
+            if (this.vProd < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vProd, must be a value greater than or equal to 0.", new [] { "vProd" });
+            }
+
+            // vNF (decimal?) minimum
+            if (this.vNF < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vNF, must be a value greater than or equal to 0.", new [] { "vNF" });
+            }
+
+            // nPeso (decimal?) minimum
+            if (this.nPeso < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPeso, must be a value greater than or equal to 0.", new [] { "nPeso" });
+            }
+
             // PIN (string) maxLength
             if (this.PIN != null && this.PIN.Length > 9)
             {

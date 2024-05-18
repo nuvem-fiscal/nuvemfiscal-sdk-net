@@ -288,6 +288,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDoc, length must be greater than 1.", new [] { "nDoc" });
             }
 
+            // vDocFisc (decimal?) minimum
+            if (this.vDocFisc < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDocFisc, must be a value greater than or equal to 0.", new [] { "vDocFisc" });
+            }
+
             yield break;
         }
     }

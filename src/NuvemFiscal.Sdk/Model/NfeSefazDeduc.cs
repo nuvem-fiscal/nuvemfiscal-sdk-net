@@ -165,6 +165,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xDed, length must be greater than 1.", new [] { "xDed" });
             }
 
+            // vDed (decimal?) minimum
+            if (this.vDed < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDed, must be a value greater than or equal to 0.", new [] { "vDed" });
+            }
+
             yield break;
         }
     }

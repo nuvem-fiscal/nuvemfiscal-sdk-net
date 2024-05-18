@@ -196,6 +196,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDoc, length must be greater than 1.", new [] { "nDoc" });
             }
 
+            // unidRat (decimal?) minimum
+            if (this.unidRat < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for unidRat, must be a value greater than or equal to 0.", new [] { "unidRat" });
+            }
+
             yield break;
         }
     }

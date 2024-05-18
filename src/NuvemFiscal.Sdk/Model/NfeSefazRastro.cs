@@ -233,6 +233,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nLote, length must be greater than 1.", new [] { "nLote" });
             }
 
+            // qLote (decimal?) minimum
+            if (this.qLote < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qLote, must be a value greater than or equal to 0.", new [] { "qLote" });
+            }
+
             // cAgreg (string) maxLength
             if (this.cAgreg != null && this.cAgreg.Length > 20)
             {

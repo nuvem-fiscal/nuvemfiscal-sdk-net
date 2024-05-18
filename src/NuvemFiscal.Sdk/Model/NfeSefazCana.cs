@@ -352,6 +352,42 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for safra, length must be greater than 4.", new [] { "safra" });
             }
 
+            // qTotMes (decimal?) minimum
+            if (this.qTotMes < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotMes, must be a value greater than or equal to 0.", new [] { "qTotMes" });
+            }
+
+            // qTotAnt (decimal?) minimum
+            if (this.qTotAnt < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotAnt, must be a value greater than or equal to 0.", new [] { "qTotAnt" });
+            }
+
+            // qTotGer (decimal?) minimum
+            if (this.qTotGer < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotGer, must be a value greater than or equal to 0.", new [] { "qTotGer" });
+            }
+
+            // vFor (decimal?) minimum
+            if (this.vFor < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFor, must be a value greater than or equal to 0.", new [] { "vFor" });
+            }
+
+            // vTotDed (decimal?) minimum
+            if (this.vTotDed < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vTotDed, must be a value greater than or equal to 0.", new [] { "vTotDed" });
+            }
+
+            // vLiqFor (decimal?) minimum
+            if (this.vLiqFor < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vLiqFor, must be a value greater than or equal to 0.", new [] { "vLiqFor" });
+            }
+
             yield break;
         }
     }

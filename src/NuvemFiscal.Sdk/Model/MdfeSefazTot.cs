@@ -270,6 +270,18 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qMDFe, must be a value greater than or equal to 0.", new [] { "qMDFe" });
             }
 
+            // vCarga (decimal?) minimum
+            if (this.vCarga < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCarga, must be a value greater than or equal to 0.", new [] { "vCarga" });
+            }
+
+            // qCarga (decimal?) minimum
+            if (this.qCarga < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCarga, must be a value greater than or equal to 0.", new [] { "qCarga" });
+            }
+
             yield break;
         }
     }

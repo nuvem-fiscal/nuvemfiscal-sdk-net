@@ -189,6 +189,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpMed, length must be greater than 1.", new [] { "tpMed" });
             }
 
+            // qCarga (decimal?) minimum
+            if (this.qCarga < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCarga, must be a value greater than or equal to 0.", new [] { "qCarga" });
+            }
+
             yield break;
         }
     }

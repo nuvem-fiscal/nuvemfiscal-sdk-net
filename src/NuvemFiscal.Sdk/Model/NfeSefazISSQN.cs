@@ -444,6 +444,54 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vBC (decimal?) minimum
+            if (this.vBC < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+            }
+
+            // vAliq (decimal?) minimum
+            if (this.vAliq < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vAliq, must be a value greater than or equal to 0.", new [] { "vAliq" });
+            }
+
+            // vISSQN (decimal?) minimum
+            if (this.vISSQN < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vISSQN, must be a value greater than or equal to 0.", new [] { "vISSQN" });
+            }
+
+            // vDeducao (decimal?) minimum
+            if (this.vDeducao < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDeducao, must be a value greater than or equal to 0.", new [] { "vDeducao" });
+            }
+
+            // vOutro (decimal?) minimum
+            if (this.vOutro < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
+            }
+
+            // vDescIncond (decimal?) minimum
+            if (this.vDescIncond < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDescIncond, must be a value greater than or equal to 0.", new [] { "vDescIncond" });
+            }
+
+            // vDescCond (decimal?) minimum
+            if (this.vDescCond < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDescCond, must be a value greater than or equal to 0.", new [] { "vDescCond" });
+            }
+
+            // vISSRet (decimal?) minimum
+            if (this.vISSRet < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vISSRet, must be a value greater than or equal to 0.", new [] { "vISSRet" });
+            }
+
             // cServico (string) maxLength
             if (this.cServico != null && this.cServico.Length > 20)
             {

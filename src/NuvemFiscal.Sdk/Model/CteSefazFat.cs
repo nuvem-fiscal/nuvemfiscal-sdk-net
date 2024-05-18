@@ -188,6 +188,24 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nFat, length must be greater than 1.", new [] { "nFat" });
             }
 
+            // vOrig (decimal?) minimum
+            if (this.vOrig < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOrig, must be a value greater than or equal to 0.", new [] { "vOrig" });
+            }
+
+            // vDesc (decimal?) minimum
+            if (this.vDesc < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
+            }
+
+            // vLiq (decimal?) minimum
+            if (this.vLiq < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vLiq, must be a value greater than or equal to 0.", new [] { "vLiq" });
+            }
+
             yield break;
         }
     }

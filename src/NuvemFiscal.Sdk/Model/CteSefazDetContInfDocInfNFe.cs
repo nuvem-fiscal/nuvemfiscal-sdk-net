@@ -154,6 +154,12 @@ namespace NuvemFiscal.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chave, length must be less than 44.", new [] { "chave" });
             }
 
+            // unidRat (decimal?) minimum
+            if (this.unidRat < (decimal?)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for unidRat, must be a value greater than or equal to 0.", new [] { "unidRat" });
+            }
+
             yield break;
         }
     }
