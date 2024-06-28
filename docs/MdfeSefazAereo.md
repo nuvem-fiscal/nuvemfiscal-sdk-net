@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazAereo
+Informações do modal Aéreo.
 
 ## Propriedades
 

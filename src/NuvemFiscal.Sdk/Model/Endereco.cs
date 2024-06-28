@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Dados de endereço.
+    /// Dados de endereço do prestador.
     /// </summary>
     [DataContract(Name = "Endereco")]
     public partial class Endereco : IEquatable<Endereco>, IValidatableObject

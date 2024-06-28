@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazRodo
+Informações do modal Rodoviário.
 
 ## Propriedades
 

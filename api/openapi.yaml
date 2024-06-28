@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.32.0
+  version: 2.40.0
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -14,6 +14,12 @@ tags:
 - name: Conta
 - description: Conhecimento de Transporte Eletrônico.
   name: Cte
+- description: "O processo de distribuição de DFe envolve a disponibilização dos\r\
+    \ndocumentos fiscais eletrônicos para os envolvidos na transação (emitentes,\r\
+    \ndestinatários e terceiros autorizados). Ele permite que os destinatários\r\n\
+    recebam as NF-e emitidas contra o seu CNPJ diretamente do Ambiente\r\nNacional,\
+    \ facilitando o controle e a gestão dos documentos recebidos."
+  name: Distribuição NF-e
 - description: Cadastre e administre todas as empresas vinculadas à sua conta.
   name: Empresa
 - description: Manifesto Eletrônico de Documentos Fiscais.
@@ -671,6 +677,342 @@ paths:
       summary: Baixar XML do Protocolo da SEFAZ
       tags:
       - Cte
+  /distribuicao/nfe:
+    get:
+      description: "Retorna a lista de distribuições de NF-e de acordo com os crité\
+        rios de busca utilizados. As distribuições são retornadas ordenadas pela data\
+        \ da criação, com as mais recentes aparecendo primeiro."
+      operationId: ListarDistribuicaoNfe
+      parameters:
+      - description: "Limite no número de objetos a serem retornados pela API, entre\
+          \ 1 e 100."
+        in: query
+        name: $top
+        schema:
+          default: 10
+          type: integer
+      - description: Quantidade de objetos que serão ignorados antes da lista começar
+          a ser retornada.
+        in: query
+        name: $skip
+        schema:
+          default: 0
+          type: integer
+      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
+          \ total de registros que o filtro retornaria, independente dos filtros de\
+          \ paginação."
+        in: query
+        name: $inlinecount
+        schema:
+          default: false
+          type: boolean
+      - description: "Filtrar pelo CPF ou CNPJ da pessoa ou empresa interessada.\r\
+          \n\r\nUtilize o valor sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
+          \ producao"
+        in: query
+        name: ambiente
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfeListagem'
+          description: Successful response
+      summary: Listar distribuições
+      tags:
+      - Distribuição NF-e
+    post:
+      description: "Gera um pedido de distribuição de Documentos Fiscais Eletrônicos\
+        \ (DF-e)\r\npara um determinado CNPJ. Este endpoint permite que o destinatá\
+        rio\r\nobtenha os documentos fiscais emitidos contra o seu CNPJ utilizando\r\
+        \ntrês formas de consulta: *dist-nsu*, *cons-nsu* e *cons-chave*.\r\n\r\n\
+        **Comportamento Assíncrono**\r\n\r\nNo retorno, existe a propriedade `status`\
+        \ no JSON que poderá assumir um\r\ndos seguintes valores: *processando*, *concluido*\
+        \ ou *erro*. Caso o status\r\nseja retornado com o valor *processando*, significa\
+        \ que a solicitação está\r\nsendo realizada de forma assíncrona pela API.\
+        \ Nesse caso, o usuário deverá\r\nadotar um fluxo que consiste em requisitar\
+        \ periodicamente o endpoint de\r\nconsulta de pedido de distribuição até que\
+        \ a API retorne o pedido com um\r\nstatus indicando o fim do processamento\
+        \ (concluido ou erro)."
+      operationId: GerarDistribuicaoNfe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistribuicaoNfePedido'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfe'
+          description: Successful response
+      summary: Distribuir documentos
+      tags:
+      - Distribuição NF-e
+      x-codegen-request-body-name: body
+  /distribuicao/nfe/documentos:
+    get:
+      description: "Retorna a lista de documentos fiscais eletrônicos de interesse\
+        \ da pessoa ou empresa de acordo com os critérios de busca utilizados. Os\
+        \ documentos são retornadas ordenados pela data da criação, com os mais recentes\
+        \ aparecendo primeiro."
+      operationId: ListarDocumentoDistribuicaoNfe
+      parameters:
+      - description: "Limite no número de objetos a serem retornados pela API, entre\
+          \ 1 e 100."
+        in: query
+        name: $top
+        schema:
+          default: 10
+          type: integer
+      - description: Quantidade de objetos que serão ignorados antes da lista começar
+          a ser retornada.
+        in: query
+        name: $skip
+        schema:
+          default: 0
+          type: integer
+      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
+          \ total de registros que o filtro retornaria, independente dos filtros de\
+          \ paginação."
+        in: query
+        name: $inlinecount
+        schema:
+          default: false
+          type: boolean
+      - description: "Filtrar pelo CPF ou CNPJ da pessoa ou empresa interessada.\r\
+          \n\r\nUtilize o valor sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
+          \ producao"
+        in: query
+        name: ambiente
+        required: true
+        schema:
+          type: string
+      - description: "Filtrar pelo tipo do documento de interesse da pessoa ou empresa.\r\
+          \n\r\nValores aceitos: `nota`, `evento`"
+        in: query
+        name: tipo_documento
+        schema:
+          type: string
+      - description: "Filtrar por documentos que foram distribuídos em sua forma resumida\
+          \ ou completa.\r\n\r\nValores aceitos: `resumida`, `completa`"
+        in: query
+        name: forma_distribuicao
+        schema:
+          type: string
+      - description: Filtrar pela chave de acesso da NF-e.
+        in: query
+        name: chave_acesso
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfeDocumentoListagem'
+          description: Successful response
+      summary: Listar documentos
+      tags:
+      - Distribuição NF-e
+  /distribuicao/nfe/documentos/{id}:
+    get:
+      description: Utilize esse endpoint para obter as informações resumidas ou documento
+        fiscal de interesse da pessoa ou empresa interessada.
+      operationId: ConsultarDocumentoDistribuicaoNfe
+      parameters:
+      - description: ID único do documento gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfeDocumento'
+          description: Successful response
+      summary: Consultar documento
+      tags:
+      - Distribuição NF-e
+  /distribuicao/nfe/documentos/{id}/xml:
+    get:
+      description: Utilize esse endpoint para obter o XML das informações resumidas
+        ou documento fiscal de interesse da pessoa ou empresa interessada.
+      operationId: BaixarXmlDocumentoDistribuicaoNfe
+      parameters:
+      - description: ID único do documento gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do documento
+      tags:
+      - Distribuição NF-e
+  /distribuicao/nfe/manifestacoes:
+    get:
+      description: "Retorna a lista de manifestações de NF-e de acordo com os crité\
+        rios de busca utilizados. As manifestações são retornadas ordenadas pela data\
+        \ da criação, com as mais recentes aparecendo primeiro."
+      operationId: ListarManifestacaoNfe
+      parameters:
+      - description: "Limite no número de objetos a serem retornados pela API, entre\
+          \ 1 e 100."
+        in: query
+        name: $top
+        schema:
+          default: 10
+          type: integer
+      - description: Quantidade de objetos que serão ignorados antes da lista começar
+          a ser retornada.
+        in: query
+        name: $skip
+        schema:
+          default: 0
+          type: integer
+      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
+          \ total de registros que o filtro retornaria, independente dos filtros de\
+          \ paginação."
+        in: query
+        name: $inlinecount
+        schema:
+          default: false
+          type: boolean
+      - description: "Filtrar pelo CPF ou CNPJ do autor do evento.\r\n\r\nUtilize\
+          \ o valor sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
+          \ producao"
+        in: query
+        name: ambiente
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestacaoNfeListagem'
+          description: Successful response
+      summary: Listar Manifestações
+      tags:
+      - Distribuição NF-e
+    post:
+      description: "O processo de manifestação do destinatário permite que os destinatá\
+        rios\r\nde Notas Fiscais Eletrônicas (NF-e) registrem formalmente sua posiç\
+        ão em\r\nrelação às operações descritas nesses documentos fiscais. Ele envolve\r\
+        \neventos que indicam se a operação foi confirmada, desconhecida ou\r\nnã\
+        o realizada.\r\n\r\nOs seguintes tipos de manifestação são suportados pela\
+        \ NF-e:\r\n* **Confirmação da Operação (210200)**: Manifestação do destinatá\
+        rio confirmando que a operação descrita na NF-e ocorreu exatamente como informado\
+        \ na NF-e. Esse evento libera a possibilidade de download da NF-e pelo destinatá\
+        rio e impede que a empresa emitente cancele a NF-e após a confirmação.\r\n\
+        * **Ciência da Operação (210210)**: Declara que o destinatário tem ciência\
+        \ da existência da NF-e, mas ainda não possui elementos suficientes para manifestar-se\
+        \ conclusivamente. Este é um evento opcional que pode ser usado pelo destinatá\
+        rio para indicar que está ciente da NF-e enquanto coleta mais informações.\
+        \ Esse evento libera a possibilidade de download da NF-e pelo destinatário.\r\
+        \n* **Desconhecimento da Operação (210220)**: Manifestação do destinatário\
+        \ declarando que a operação descrita da NF-e não foi por ele solicitada.\r\
+        \n* **Operação não Realizada (210240)**: Manifestação do destinatário reconhecendo\
+        \ sua participação na operação descrita na NF-e, mas declarando que a operaç\
+        ão não ocorreu ou não se efetivou como informado nesta NF-e."
+      operationId: ManifestarNfe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistribuicaoNfePedidoManifestacao'
+        description: Contém os dados do pedido para manifestação do destinatário.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfeEvento'
+          description: Successful response
+      summary: Manifestar nota
+      tags:
+      - Distribuição NF-e
+      x-codegen-request-body-name: body
+  /distribuicao/nfe/manifestacoes/{id}:
+    get:
+      description: Consulta os detalhes de uma manifestação de NF-e já existente.
+        Forneça o ID único obtido de uma requisição de manifestação ou de listagem
+        de manifestações e a Nuvem Fiscal irá retornar as informações da manifestação
+        correspondente.
+      operationId: ConsultarManifestacaoNfe
+      parameters:
+      - description: ID único da manifestação gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfeEvento'
+          description: Successful response
+      summary: Consultar manifestação
+      tags:
+      - Distribuição NF-e
+  /distribuicao/nfe/{id}:
+    get:
+      operationId: ConsultarDistribuicaoNfe
+      parameters:
+      - description: ID único da distribuição de NF-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfe'
+          description: Successful response
+      summary: Consultar distribuição
+      tags:
+      - Distribuição NF-e
   /empresas:
     get:
       description: "Retorna a lista das empresas associadas à sua conta. As empresas\
@@ -939,6 +1281,52 @@ paths:
                 $ref: '#/components/schemas/EmpresaConfigCte'
           description: Successful response
       summary: Alterar configuração de CT-e
+      tags:
+      - Empresa
+      x-codegen-request-body-name: body
+  /empresas/{cpf_cnpj}/distnfe:
+    get:
+      operationId: ConsultarConfigDistribuicaoNfe
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmpresaConfigDistribuicaoNfe'
+          description: Successful response
+      summary: Consultar configuração de Distribuição de NF-e
+      tags:
+      - Empresa
+    put:
+      operationId: AlterarConfigDistribuicaoNfe
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmpresaConfigDistribuicaoNfe'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmpresaConfigDistribuicaoNfe'
+          description: Successful response
+      summary: Alterar configuração de Distribuição de NF-e
       tags:
       - Empresa
       x-codegen-request-body-name: body
@@ -3176,6 +3564,47 @@ paths:
       tags:
       - Nfe
       x-codegen-request-body-name: body
+  /nfe/cadastro-contribuinte:
+    get:
+      description: Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS
+        da unidade federada.
+      operationId: ConsultarContribuinteNfe
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: "Sigla da UF consultada.\r\n\r\n Utilize `SU` para SUFRAMA.\r\
+          \n\r\n*Caso não seja informada, será utilizada a UF da empresa.*"
+        in: query
+        name: uf
+        schema:
+          type: string
+      - description: "Argumento de pesquisa.\r\n\r\nValores válidos:\r\n* `CNPJ`\r\
+          \n* `CPF`\r\n* `IE`"
+        in: query
+        name: argumento
+        required: true
+        schema:
+          type: string
+      - description: "Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual)."
+        in: query
+        name: documento
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeContribuinteInfCons'
+          description: Successful response
+      summary: Consultar contribuinte
+      tags:
+      - Nfe
   /nfe/eventos:
     get:
       description: "Retorna a lista de eventos vinculados a um documento fiscal de\
@@ -4435,6 +4864,789 @@ paths:
       - Nfse
 components:
   schemas:
+    DistribuicaoNfeListagem:
+      example:
+        '@count': 0
+        data:
+        - max_nsu: 2
+          ambiente: homologacao
+          dist_nsu: 6
+          codigo_status: 5
+          created_at: 2000-01-23T04:56:07.000+00:00
+          tipo_consulta: dist-nsu
+          ultimo_nsu: 5
+          documentos:
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          data_hora_resposta: 2000-01-23T04:56:07.000+00:00
+          uf_autor: uf_autor
+          id: id
+          cons_nsu: 1
+          cons_chave: cons_chave
+          motivo_status: motivo_status
+          status: processando
+        - max_nsu: 2
+          ambiente: homologacao
+          dist_nsu: 6
+          codigo_status: 5
+          created_at: 2000-01-23T04:56:07.000+00:00
+          tipo_consulta: dist-nsu
+          ultimo_nsu: 5
+          documentos:
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          data_hora_resposta: 2000-01-23T04:56:07.000+00:00
+          uf_autor: uf_autor
+          id: id
+          cons_nsu: 1
+          cons_chave: cons_chave
+          motivo_status: motivo_status
+          status: processando
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfe'
+          type: array
+      type: object
+    DistribuicaoNfe:
+      example:
+        max_nsu: 2
+        ambiente: homologacao
+        dist_nsu: 6
+        codigo_status: 5
+        created_at: 2000-01-23T04:56:07.000+00:00
+        tipo_consulta: dist-nsu
+        ultimo_nsu: 5
+        documentos:
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        data_hora_resposta: 2000-01-23T04:56:07.000+00:00
+        uf_autor: uf_autor
+        id: id
+        cons_nsu: 1
+        cons_chave: cons_chave
+        motivo_status: motivo_status
+        status: processando
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para o pedido de distribuição.
+          type: string
+        created_at:
+          description: Data/hora em que o pedido foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        status:
+          description: Indica o status da distribuição.
+          enum:
+          - processando
+          - concluido
+          - erro
+          type: string
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        uf_autor:
+          description: Sigla da UF do autor.
+          nullable: true
+          type: string
+        tipo_consulta:
+          enum:
+          - dist-nsu
+          - cons-nsu
+          - cons-chave
+          type: string
+        dist_nsu:
+          description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
+            \n\r\n*Obrigatório quando `tipo_consulta` for `distNSU`.*"
+          nullable: true
+          type: integer
+        cons_nsu:
+          description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
+            rio quando `tipo_consulta` for `consNSU`.*"
+          nullable: true
+          type: integer
+        cons_chave:
+          description: "Consulta de NF-e por chave de acesso informada.\r\n\r\n*Obrigató\
+            rio quando `tipo_consulta` for `consChNFe`.*"
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de processamento da requisição.
+          nullable: true
+          type: integer
+        motivo_status:
+          description: Descrição do status de processamento da requisição.
+          nullable: true
+          type: string
+        data_hora_resposta:
+          description: Data e Hora de processamento da requisição.
+          format: date-time
+          nullable: true
+          type: string
+        ultimo_nsu:
+          description: "Último NSU pesquisado no Ambiente Nacional. Se for o caso,\
+            \ o solicitante pode continuar a consulta a partir deste NSU para obter\
+            \ novos resultados."
+          nullable: true
+          type: integer
+        max_nsu:
+          description: Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado.
+          nullable: true
+          type: integer
+        documentos:
+          description: Conjunto de informações resumidas e documentos fiscais eletrônicos
+            de interesse da pessoa ou empresa.
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfeDocumento'
+          maxItems: 50
+          type: array
+      required:
+      - ambiente
+      - codigo_status
+      - data_hora_resposta
+      - id
+      - max_nsu
+      - status
+      - tipo_consulta
+      - ultimo_nsu
+      type: object
+    DistribuicaoNfeDocumento:
+      example:
+        schema: schema
+        created_at: 2000-01-23T04:56:07.000+00:00
+        valor_nfe: 2.027123023002322
+        chave_acesso: chave_acesso
+        emitente_nome_razao_social: emitente_nome_razao_social
+        tipo_evento: tipo_evento
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        nsu: 7
+        tipo_documento: nota
+        numero_protocolo: numero_protocolo
+        numero_sequencial: 9
+        digest_value: digest_value
+        emitente_cpf_cnpj: emitente_cpf_cnpj
+        emitente_inscricao_estadual: emitente_inscricao_estadual
+        resumo: true
+        id: id
+        tipo_nfe: 3
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para identificar o documento.
+          type: string
+        created_at:
+          description: Data/hora em que o documento foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        nsu:
+          description: NSU do documento fiscal.
+          nullable: true
+          type: integer
+        schema:
+          description: "Identificação do Schema XML que será utilizado para validar\
+            \ o XML existente no conteúdo da tag docZip. Vai identificar o tipo do\
+            \ documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd,\
+            \ resEvento_1.00.xsd, procEventoNFe_v1.00.xsd."
+          type: string
+        tipo_documento:
+          description: Tipo do documento de interesse da pessoa ou empresa.
+          enum:
+          - nota
+          - evento
+          nullable: true
+          type: string
+        chave_acesso:
+          description: Chave de Acesso da NF-e.
+          nullable: true
+          type: string
+        resumo:
+          description: Indica se o documento distribuído está em sua forma resumida.
+          nullable: true
+          type: boolean
+        tipo_evento:
+          description: Tipo do evento.
+          nullable: true
+          type: string
+        numero_sequencial:
+          description: Número sequencial do evento para o mesmo tipo de evento.
+          nullable: true
+          type: integer
+        data_evento:
+          description: Data e hora do evento.
+          format: date-time
+          nullable: true
+          type: string
+        data_recebimento:
+          description: Data e hora de autorização do evento.
+          format: date-time
+          nullable: true
+          type: string
+        numero_protocolo:
+          description: Número do protocolo de autorização.
+          nullable: true
+          type: string
+        tipo_nfe:
+          description: Tipo da NF-e (0 - entrada; 1 - saída).
+          nullable: true
+          type: integer
+        valor_nfe:
+          description: Valor total da NF-e.
+          nullable: true
+          type: number
+        digest_value:
+          description: Digest Value da NF-e processada. Utilizado para conferir a
+            integridade da NF-e original.
+          nullable: true
+          type: string
+        emitente_cpf_cnpj:
+          description: CPF/CNPJ do emitente.
+          nullable: true
+          type: string
+        emitente_nome_razao_social:
+          description: Nome ou Razão Social do emitente.
+          nullable: true
+          type: string
+        emitente_inscricao_estadual:
+          description: Inscrição Estadual do emitente.
+          nullable: true
+          type: string
+      required:
+      - id
+      - schema
+      type: object
+    DistribuicaoNfePedido:
+      example:
+        ambiente: homologacao
+        dist_nsu: 0
+        uf_autor: uf_autor
+        cons_nsu: 6
+        cons_chave: cons_chave
+        cpf_cnpj: cpf_cnpj
+        tipo_consulta: dist-nsu
+      properties:
+        cpf_cnpj:
+          description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
+          type: string
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        uf_autor:
+          description: Sigla da UF do autor.
+          nullable: true
+          type: string
+        tipo_consulta:
+          description: "Tipo de consulta.\n\r\nValores possíveis:\n* `dist-nsu` -\
+            \ Consulta pelo último NSU recebido.\n* `cons-nsu` - Consulta por um NSU\
+            \ específico.\n* `cons-chave` - Consulta pela chave de acesso da NF-e."
+          enum:
+          - dist-nsu
+          - cons-nsu
+          - cons-chave
+          type: string
+        dist_nsu:
+          description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
+            \n\r\n*Obrigatório quando \"tipo_consulta\" for \"dist-nsu\".*"
+          nullable: true
+          type: integer
+        cons_nsu:
+          description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
+            rio quando \"tipo_consulta\" for \"cons-nsu\".*"
+          nullable: true
+          type: integer
+        cons_chave:
+          description: "Consulta de NF-e por chave de acesso informada.\r\n\r\n*Obrigató\
+            rio quando \"tipo_consulta\" for \"cons-chave\".*"
+          nullable: true
+          type: string
+      required:
+      - ambiente
+      - cpf_cnpj
+      - tipo_consulta
+      type: object
+    DistribuicaoNfeDocumentoListagem:
+      example:
+        '@count': 0
+        data:
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfeDocumento'
+          type: array
+      type: object
+    ManifestacaoNfeListagem:
+      example:
+        '@count': 0
+        data:
+        - cpf_cnpj_autor: cpf_cnpj_autor
+          ambiente: homologacao
+          codigo_status: 1
+          created_at: 2000-01-23T04:56:07.000+00:00
+          chave_acesso: chave_acesso
+          tipo_evento: tipo_evento
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 6
+          justificativa: justificativa
+          id: id
+          data_registro: 2000-01-23T04:56:07.000+00:00
+          motivo_status: motivo_status
+          status: pendente
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - cpf_cnpj_autor: cpf_cnpj_autor
+          ambiente: homologacao
+          codigo_status: 1
+          created_at: 2000-01-23T04:56:07.000+00:00
+          chave_acesso: chave_acesso
+          tipo_evento: tipo_evento
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 6
+          justificativa: justificativa
+          id: id
+          data_registro: 2000-01-23T04:56:07.000+00:00
+          motivo_status: motivo_status
+          status: pendente
+          data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfeEvento'
+          type: array
+      type: object
+    DistribuicaoNfeEvento:
+      example:
+        cpf_cnpj_autor: cpf_cnpj_autor
+        ambiente: homologacao
+        codigo_status: 1
+        created_at: 2000-01-23T04:56:07.000+00:00
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        numero_protocolo: numero_protocolo
+        numero_sequencial: 6
+        justificativa: justificativa
+        id: id
+        data_registro: 2000-01-23T04:56:07.000+00:00
+        motivo_status: motivo_status
+        status: pendente
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este evento.
+          type: string
+        created_at:
+          description: Data/hora em que o evento foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        ambiente:
+          description: Identificação do ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        status:
+          description: Status do Evento.
+          enum:
+          - pendente
+          - registrado
+          - rejeitado
+          - erro
+          type: string
+        cpf_cnpj_autor:
+          description: CPF/CNPJ do autor do evento.
+          type: string
+        chave_acesso:
+          description: Chave de Acesso do documento vinculado ao evento.
+          type: string
+        tipo_evento:
+          description: Tipo do evento vinculado.
+          type: string
+        data_evento:
+          description: Data e hora do Evento.
+          format: date-time
+          type: string
+        numero_sequencial:
+          description: Sequencial do evento para o mesmo tipo de evento.
+          nullable: true
+          type: integer
+        justificativa:
+          description: Justificativa para o desconhecimento ou não-realização da operação.
+          nullable: true
+          type: string
+        data_registro:
+          description: Data e hora do registro do evento pela SEFAZ.
+          format: date-time
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de registro do evento.
+          nullable: true
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do registro do evento.
+          nullable: true
+          type: string
+        numero_protocolo:
+          description: Número do Protocolo de registro do evento.
+          nullable: true
+          type: string
+      type: object
+    DistribuicaoNfePedidoManifestacao:
+      example:
+        ambiente: homologacao
+        justificativa: justificativa
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        cpf_cnpj: cpf_cnpj
+      properties:
+        cpf_cnpj:
+          description: "CPF ou CNPJ do autor do evento.\r\n\r\n*Utilize o valor sem\
+            \ máscara*."
+          type: string
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        chave_acesso:
+          description: Chave de Acesso da NF-e.
+          type: string
+        tipo_evento:
+          description: "Tipo do evento de manifestação do destinatário.\r\n\r\nValores\
+            \ disponíveis:\r\n* `210200` - Confirmação da operação;\r\n* `210210`\
+            \ - Ciência da operação;\r\n* `210220` - Desconhecimento da operação;\r\
+            \n* `210240` - Operação não realizada."
+          type: string
+        justificativa:
+          description: "Justificativa para o desconhecimento ou não-realização da\
+            \ operação.\r\n\r\n**Nota**: Campo obrigatório para o evento `210240`\
+            \ (operação não realizada)."
+          maxLength: 255
+          minLength: 15
+          nullable: true
+          type: string
+      required:
+      - ambiente
+      - chave_acesso
+      - cpf_cnpj
+      - tipo_evento
+      type: object
     Empresa:
       example:
         fone: fone
@@ -4673,7 +5885,8 @@ components:
         CRT:
           description: "Código de Regime Tributário.\r\nEste campo será preenchido\
             \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor individual (MEI)."
           type: integer
         ambiente:
           description: Indica se a empresa irá emitir em produção ou homologação.
@@ -4695,7 +5908,8 @@ components:
         CRT:
           description: "Código de Regime Tributário.\r\nEste campo será preenchido\
             \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor individual (MEI)."
           type: integer
         sefaz:
           $ref: '#/components/schemas/EmpresaConfigNfceSefaz'
@@ -4890,6 +6104,19 @@ components:
             \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
             \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
           type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigDistribuicaoNfe:
+      example:
+        ambiente: homologacao
+      properties:
         ambiente:
           description: Indica se a empresa irá emitir em produção ou homologação.
           enum:
@@ -9511,7 +10738,7 @@ components:
       - xNome
       type: object
     Endereco:
-      description: Dados de endereço.
+      description: Dados de endereço do prestador.
       example:
         endExt:
           cPais: cPais
@@ -12826,6 +14053,13 @@ components:
         infNFCom:
           gCofat:
             chNFComLocal: chNFComLocal
+            gNF:
+              mod: 9
+              hash115: hash115
+              nNF: 668356240
+              serie: serie
+              CNPJ: CNPJ
+              CompetEmis: CompetEmis
           infAdic:
             infCpl:
             - infCpl
@@ -12836,7 +14070,7 @@ components:
             infAdFisco: infAdFisco
           gRespTec:
             fone: fone
-            idCSRT: 979
+            idCSRT: 380
             CNPJ: CNPJ
             hashCSRT: hashCSRT
             xContato: xContato
@@ -12893,7 +14127,7 @@ components:
             IE: IE
             indIEDest: 1
           gFatCentral:
-            cUF: 6
+            cUF: 1
             CNPJ: CNPJ
           assinante:
             dContratoFim: 2000-01-23
@@ -12912,665 +14146,670 @@ components:
             qtdPtsResg: qtdPtsResg
             dRefResgPts: 2000-01-23
           det:
-          - nItem: 9368
+          - nItem: 8761
+            indNFComAntPapelFatCentral: 9
             prod:
               uMed: 6
-              qFaturada: 0.8762042012749002
+              qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 9.018348186070783
-              indDevolucao: 1
-              vProd: 6.965117697638846
+              vItem: 6.965117697638846
+              indDevolucao: 6
+              vProd: 6.778324963048013
               xProd: xProd
               CNPJLD: CNPJLD
-              vDesc: 0.6438423552598547
-              vOutro: 0.35571952270680973
+              vDesc: 0.1284659006116532
+              vOutro: 0.288416212666878
               CFOP: CFOP
               dExpiracao: 2000-01-23
             gRessarc:
               dRef: 2000-01-23
               nProcesso: nProcesso
               nProtReclama: nProtReclama
-              tpRessarc: 7
+              tpRessarc: 2
               xObs: xObs
             chNFComAnt: chNFComAnt
             imposto:
               ICMS00:
-                pFCP: 0.5944895607614016
+                pFCP: 0.30937452626664474
                 CST: CST
-                vBC: 0.288416212666878
-                vICMS: 0.6878052220127876
-                vFCP: 0.6704019297950036
-                pICMS: 0.6778324963048014
-              indSemCST: 0
+                vBC: 0.5944895607614016
+                vICMS: 0.3353193347011243
+                vFCP: 0.7143538047012307
+                pICMS: 0.6704019297950036
+              indSemCST: 7
               ICMS90:
-                pFCP: 0.5533258397034986
+                pFCP: 0.02025324113236393
                 CST: CST
-                vBC: 0.7740351818741174
-                vICMS: 0.3057610024104934
-                vICMSDeson: 0.704836565559697
+                vBC: 0.704836565559697
+                vICMS: 0.32588565619047605
+                vICMSDeson: 0.40788458496667523
                 cBenef: cBenef
-                vFCP: 0.32588565619047605
-                pICMS: 0.30205796992916245
+                vFCP: 0.6628464275087742
+                pICMS: 0.5533258397034986
               FUST:
-                vBC: 0.8251625748923757
-                vFUST: 0.3901545264248647
-                pFUST: 0.4459605034958679
+                vBC: 0.043431398824148815
+                vFUST: 0.17325933120207193
+                pFUST: 0.294096429748279
               retTrib:
-                vIRRF: 0.9254183946267839
-                vBCIRRF: 0.8863729185622827
-                vRetPIS: 0.8289659398142969
-                vRetCSLL: 0.4573936264232251
-                vRetCofins: 0.6623518433804886
+                vIRRF: 0.9183123594773993
+                vBCIRRF: 0.3502657762086401
+                vRetPIS: 0.8863729185622827
+                vRetCSLL: 0.18268702177058116
+                vRetCofins: 0.9254183946267839
               ICMSUFDest:
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
               FUNTTEL:
-                pFUNTTEL: 0.294096429748279
-                vBC: 0.043431398824148815
-                vFUNTTEL: 0.17325933120207193
+                pFUNTTEL: 0.6623518433804886
+                vBC: 0.8289659398142969
+                vFUNTTEL: 0.4573936264232251
               ICMS20:
-                pFCP: 0.6519180951018382
-                pRedBC: 0.3353193347011243
+                pFCP: 0.8969578798196912
+                pRedBC: 0.08851374739011653
                 CST: CST
-                vBC: 0.30937452626664474
-                vICMS: 0.08851374739011653
-                vICMSDeson: 0.7058770351582356
+                vBC: 0.7058770351582356
+                vICMS: 0.010263654006109402
+                vICMSDeson: 0.46523964329332457
                 cBenef: cBenef
-                vFCP: 0.010263654006109402
-                pICMS: 0.7143538047012307
+                vFCP: 0.7740351818741174
+                pICMS: 0.6519180951018382
               ICMS40:
                 CST: CST
-                vICMSDeson: 0.46523964329332457
+                vICMSDeson: 0.30205796992916245
                 cBenef: cBenef
               ICMS51:
                 CST: CST
-                vICMSDeson: 0.8969578798196912
+                vICMSDeson: 0.3057610024104934
                 cBenef: cBenef
               COFINS:
-                vCOFINS: 0.6073898085781152
+                vCOFINS: 0.3901545264248647
+                CST: CST
+                vBC: 0.8251625748923757
+                pCOFINS: 0.4459605034958679
+              PIS:
+                vPIS: 0.6073898085781152
                 CST: CST
                 vBC: 0.5507386964179881
-                pCOFINS: 0.48631590810288405
-              PIS:
-                vPIS: 0.7933506881737151
-                CST: CST
-                vBC: 0.9702963800023566
-                pPIS: 0.05199002018724985
+                pPIS: 0.48631590810288405
               ICMSSN:
                 indSN: 4
                 CST: CST
             gProcRef:
-              qFaturada: 0.3502657762086401
-              vCOFINS: 0.3111202833403195
-              vItem: 1.8268702177058116
-              indDevolucao: 5
-              vProd: 9.183123594773994
-              vFCP: 0.9897492629215506
+              qFaturada: 0.04182561061793122
+              vCOFINS: 0.7835035282970783
+              vItem: 8.761432466225475
+              indDevolucao: 7
+              vProd: 5.299143560275359
+              vFCP: 0.04768402382624515
               gProc:
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              vPIS: 0.3781412473076792
-              vBC: 0.5312489704336296
-              vICMS: 0.760686372309258
-              vDesc: 0.8761432466225476
-              vOutro: 0.04182561061793122
-              pICMS: 0.8378237410348691
+              vPIS: 0.5877124706116695
+              vBC: 0.3781412473076792
+              vICMS: 0.9897492629215506
+              vDesc: 0.5312489704336296
+              vOutro: 0.8378237410348691
+              pICMS: 0.3111202833403195
             nItemAnt: nItemAnt
             infAdProd: infAdProd
-          - nItem: 9368
+          - nItem: 8761
+            indNFComAntPapelFatCentral: 9
             prod:
               uMed: 6
-              qFaturada: 0.8762042012749002
+              qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 9.018348186070783
-              indDevolucao: 1
-              vProd: 6.965117697638846
+              vItem: 6.965117697638846
+              indDevolucao: 6
+              vProd: 6.778324963048013
               xProd: xProd
               CNPJLD: CNPJLD
-              vDesc: 0.6438423552598547
-              vOutro: 0.35571952270680973
+              vDesc: 0.1284659006116532
+              vOutro: 0.288416212666878
               CFOP: CFOP
               dExpiracao: 2000-01-23
             gRessarc:
               dRef: 2000-01-23
               nProcesso: nProcesso
               nProtReclama: nProtReclama
-              tpRessarc: 7
+              tpRessarc: 2
               xObs: xObs
             chNFComAnt: chNFComAnt
             imposto:
               ICMS00:
-                pFCP: 0.5944895607614016
+                pFCP: 0.30937452626664474
                 CST: CST
-                vBC: 0.288416212666878
-                vICMS: 0.6878052220127876
-                vFCP: 0.6704019297950036
-                pICMS: 0.6778324963048014
-              indSemCST: 0
+                vBC: 0.5944895607614016
+                vICMS: 0.3353193347011243
+                vFCP: 0.7143538047012307
+                pICMS: 0.6704019297950036
+              indSemCST: 7
               ICMS90:
-                pFCP: 0.5533258397034986
+                pFCP: 0.02025324113236393
                 CST: CST
-                vBC: 0.7740351818741174
-                vICMS: 0.3057610024104934
-                vICMSDeson: 0.704836565559697
+                vBC: 0.704836565559697
+                vICMS: 0.32588565619047605
+                vICMSDeson: 0.40788458496667523
                 cBenef: cBenef
-                vFCP: 0.32588565619047605
-                pICMS: 0.30205796992916245
+                vFCP: 0.6628464275087742
+                pICMS: 0.5533258397034986
               FUST:
-                vBC: 0.8251625748923757
-                vFUST: 0.3901545264248647
-                pFUST: 0.4459605034958679
+                vBC: 0.043431398824148815
+                vFUST: 0.17325933120207193
+                pFUST: 0.294096429748279
               retTrib:
-                vIRRF: 0.9254183946267839
-                vBCIRRF: 0.8863729185622827
-                vRetPIS: 0.8289659398142969
-                vRetCSLL: 0.4573936264232251
-                vRetCofins: 0.6623518433804886
+                vIRRF: 0.9183123594773993
+                vBCIRRF: 0.3502657762086401
+                vRetPIS: 0.8863729185622827
+                vRetCSLL: 0.18268702177058116
+                vRetCofins: 0.9254183946267839
               ICMSUFDest:
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
               FUNTTEL:
-                pFUNTTEL: 0.294096429748279
-                vBC: 0.043431398824148815
-                vFUNTTEL: 0.17325933120207193
+                pFUNTTEL: 0.6623518433804886
+                vBC: 0.8289659398142969
+                vFUNTTEL: 0.4573936264232251
               ICMS20:
-                pFCP: 0.6519180951018382
-                pRedBC: 0.3353193347011243
+                pFCP: 0.8969578798196912
+                pRedBC: 0.08851374739011653
                 CST: CST
-                vBC: 0.30937452626664474
-                vICMS: 0.08851374739011653
-                vICMSDeson: 0.7058770351582356
+                vBC: 0.7058770351582356
+                vICMS: 0.010263654006109402
+                vICMSDeson: 0.46523964329332457
                 cBenef: cBenef
-                vFCP: 0.010263654006109402
-                pICMS: 0.7143538047012307
+                vFCP: 0.7740351818741174
+                pICMS: 0.6519180951018382
               ICMS40:
                 CST: CST
-                vICMSDeson: 0.46523964329332457
+                vICMSDeson: 0.30205796992916245
                 cBenef: cBenef
               ICMS51:
                 CST: CST
-                vICMSDeson: 0.8969578798196912
+                vICMSDeson: 0.3057610024104934
                 cBenef: cBenef
               COFINS:
-                vCOFINS: 0.6073898085781152
+                vCOFINS: 0.3901545264248647
+                CST: CST
+                vBC: 0.8251625748923757
+                pCOFINS: 0.4459605034958679
+              PIS:
+                vPIS: 0.6073898085781152
                 CST: CST
                 vBC: 0.5507386964179881
-                pCOFINS: 0.48631590810288405
-              PIS:
-                vPIS: 0.7933506881737151
-                CST: CST
-                vBC: 0.9702963800023566
-                pPIS: 0.05199002018724985
+                pPIS: 0.48631590810288405
               ICMSSN:
                 indSN: 4
                 CST: CST
             gProcRef:
-              qFaturada: 0.3502657762086401
-              vCOFINS: 0.3111202833403195
-              vItem: 1.8268702177058116
-              indDevolucao: 5
-              vProd: 9.183123594773994
-              vFCP: 0.9897492629215506
+              qFaturada: 0.04182561061793122
+              vCOFINS: 0.7835035282970783
+              vItem: 8.761432466225475
+              indDevolucao: 7
+              vProd: 5.299143560275359
+              vFCP: 0.04768402382624515
               gProc:
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              vPIS: 0.3781412473076792
-              vBC: 0.5312489704336296
-              vICMS: 0.760686372309258
-              vDesc: 0.8761432466225476
-              vOutro: 0.04182561061793122
-              pICMS: 0.8378237410348691
+              vPIS: 0.5877124706116695
+              vBC: 0.3781412473076792
+              vICMS: 0.9897492629215506
+              vDesc: 0.5312489704336296
+              vOutro: 0.8378237410348691
+              pICMS: 0.3111202833403195
             nItemAnt: nItemAnt
             infAdProd: infAdProd
-          - nItem: 9368
+          - nItem: 8761
+            indNFComAntPapelFatCentral: 9
             prod:
               uMed: 6
-              qFaturada: 0.8762042012749002
+              qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 9.018348186070783
-              indDevolucao: 1
-              vProd: 6.965117697638846
+              vItem: 6.965117697638846
+              indDevolucao: 6
+              vProd: 6.778324963048013
               xProd: xProd
               CNPJLD: CNPJLD
-              vDesc: 0.6438423552598547
-              vOutro: 0.35571952270680973
+              vDesc: 0.1284659006116532
+              vOutro: 0.288416212666878
               CFOP: CFOP
               dExpiracao: 2000-01-23
             gRessarc:
               dRef: 2000-01-23
               nProcesso: nProcesso
               nProtReclama: nProtReclama
-              tpRessarc: 7
+              tpRessarc: 2
               xObs: xObs
             chNFComAnt: chNFComAnt
             imposto:
               ICMS00:
-                pFCP: 0.5944895607614016
+                pFCP: 0.30937452626664474
                 CST: CST
-                vBC: 0.288416212666878
-                vICMS: 0.6878052220127876
-                vFCP: 0.6704019297950036
-                pICMS: 0.6778324963048014
-              indSemCST: 0
+                vBC: 0.5944895607614016
+                vICMS: 0.3353193347011243
+                vFCP: 0.7143538047012307
+                pICMS: 0.6704019297950036
+              indSemCST: 7
               ICMS90:
-                pFCP: 0.5533258397034986
+                pFCP: 0.02025324113236393
                 CST: CST
-                vBC: 0.7740351818741174
-                vICMS: 0.3057610024104934
-                vICMSDeson: 0.704836565559697
+                vBC: 0.704836565559697
+                vICMS: 0.32588565619047605
+                vICMSDeson: 0.40788458496667523
                 cBenef: cBenef
-                vFCP: 0.32588565619047605
-                pICMS: 0.30205796992916245
+                vFCP: 0.6628464275087742
+                pICMS: 0.5533258397034986
               FUST:
-                vBC: 0.8251625748923757
-                vFUST: 0.3901545264248647
-                pFUST: 0.4459605034958679
+                vBC: 0.043431398824148815
+                vFUST: 0.17325933120207193
+                pFUST: 0.294096429748279
               retTrib:
-                vIRRF: 0.9254183946267839
-                vBCIRRF: 0.8863729185622827
-                vRetPIS: 0.8289659398142969
-                vRetCSLL: 0.4573936264232251
-                vRetCofins: 0.6623518433804886
+                vIRRF: 0.9183123594773993
+                vBCIRRF: 0.3502657762086401
+                vRetPIS: 0.8863729185622827
+                vRetCSLL: 0.18268702177058116
+                vRetCofins: 0.9254183946267839
               ICMSUFDest:
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
               FUNTTEL:
-                pFUNTTEL: 0.294096429748279
-                vBC: 0.043431398824148815
-                vFUNTTEL: 0.17325933120207193
+                pFUNTTEL: 0.6623518433804886
+                vBC: 0.8289659398142969
+                vFUNTTEL: 0.4573936264232251
               ICMS20:
-                pFCP: 0.6519180951018382
-                pRedBC: 0.3353193347011243
+                pFCP: 0.8969578798196912
+                pRedBC: 0.08851374739011653
                 CST: CST
-                vBC: 0.30937452626664474
-                vICMS: 0.08851374739011653
-                vICMSDeson: 0.7058770351582356
+                vBC: 0.7058770351582356
+                vICMS: 0.010263654006109402
+                vICMSDeson: 0.46523964329332457
                 cBenef: cBenef
-                vFCP: 0.010263654006109402
-                pICMS: 0.7143538047012307
+                vFCP: 0.7740351818741174
+                pICMS: 0.6519180951018382
               ICMS40:
                 CST: CST
-                vICMSDeson: 0.46523964329332457
+                vICMSDeson: 0.30205796992916245
                 cBenef: cBenef
               ICMS51:
                 CST: CST
-                vICMSDeson: 0.8969578798196912
+                vICMSDeson: 0.3057610024104934
                 cBenef: cBenef
               COFINS:
-                vCOFINS: 0.6073898085781152
+                vCOFINS: 0.3901545264248647
+                CST: CST
+                vBC: 0.8251625748923757
+                pCOFINS: 0.4459605034958679
+              PIS:
+                vPIS: 0.6073898085781152
                 CST: CST
                 vBC: 0.5507386964179881
-                pCOFINS: 0.48631590810288405
-              PIS:
-                vPIS: 0.7933506881737151
-                CST: CST
-                vBC: 0.9702963800023566
-                pPIS: 0.05199002018724985
+                pPIS: 0.48631590810288405
               ICMSSN:
                 indSN: 4
                 CST: CST
             gProcRef:
-              qFaturada: 0.3502657762086401
-              vCOFINS: 0.3111202833403195
-              vItem: 1.8268702177058116
-              indDevolucao: 5
-              vProd: 9.183123594773994
-              vFCP: 0.9897492629215506
+              qFaturada: 0.04182561061793122
+              vCOFINS: 0.7835035282970783
+              vItem: 8.761432466225475
+              indDevolucao: 7
+              vProd: 5.299143560275359
+              vFCP: 0.04768402382624515
               gProc:
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              vPIS: 0.3781412473076792
-              vBC: 0.5312489704336296
-              vICMS: 0.760686372309258
-              vDesc: 0.8761432466225476
-              vOutro: 0.04182561061793122
-              pICMS: 0.8378237410348691
+              vPIS: 0.5877124706116695
+              vBC: 0.3781412473076792
+              vICMS: 0.9897492629215506
+              vDesc: 0.5312489704336296
+              vOutro: 0.8378237410348691
+              pICMS: 0.3111202833403195
             nItemAnt: nItemAnt
             infAdProd: infAdProd
-          - nItem: 9368
+          - nItem: 8761
+            indNFComAntPapelFatCentral: 9
             prod:
               uMed: 6
-              qFaturada: 0.8762042012749002
+              qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 9.018348186070783
-              indDevolucao: 1
-              vProd: 6.965117697638846
+              vItem: 6.965117697638846
+              indDevolucao: 6
+              vProd: 6.778324963048013
               xProd: xProd
               CNPJLD: CNPJLD
-              vDesc: 0.6438423552598547
-              vOutro: 0.35571952270680973
+              vDesc: 0.1284659006116532
+              vOutro: 0.288416212666878
               CFOP: CFOP
               dExpiracao: 2000-01-23
             gRessarc:
               dRef: 2000-01-23
               nProcesso: nProcesso
               nProtReclama: nProtReclama
-              tpRessarc: 7
+              tpRessarc: 2
               xObs: xObs
             chNFComAnt: chNFComAnt
             imposto:
               ICMS00:
-                pFCP: 0.5944895607614016
+                pFCP: 0.30937452626664474
                 CST: CST
-                vBC: 0.288416212666878
-                vICMS: 0.6878052220127876
-                vFCP: 0.6704019297950036
-                pICMS: 0.6778324963048014
-              indSemCST: 0
+                vBC: 0.5944895607614016
+                vICMS: 0.3353193347011243
+                vFCP: 0.7143538047012307
+                pICMS: 0.6704019297950036
+              indSemCST: 7
               ICMS90:
-                pFCP: 0.5533258397034986
+                pFCP: 0.02025324113236393
                 CST: CST
-                vBC: 0.7740351818741174
-                vICMS: 0.3057610024104934
-                vICMSDeson: 0.704836565559697
+                vBC: 0.704836565559697
+                vICMS: 0.32588565619047605
+                vICMSDeson: 0.40788458496667523
                 cBenef: cBenef
-                vFCP: 0.32588565619047605
-                pICMS: 0.30205796992916245
+                vFCP: 0.6628464275087742
+                pICMS: 0.5533258397034986
               FUST:
-                vBC: 0.8251625748923757
-                vFUST: 0.3901545264248647
-                pFUST: 0.4459605034958679
+                vBC: 0.043431398824148815
+                vFUST: 0.17325933120207193
+                pFUST: 0.294096429748279
               retTrib:
-                vIRRF: 0.9254183946267839
-                vBCIRRF: 0.8863729185622827
-                vRetPIS: 0.8289659398142969
-                vRetCSLL: 0.4573936264232251
-                vRetCofins: 0.6623518433804886
+                vIRRF: 0.9183123594773993
+                vBCIRRF: 0.3502657762086401
+                vRetPIS: 0.8863729185622827
+                vRetCSLL: 0.18268702177058116
+                vRetCofins: 0.9254183946267839
               ICMSUFDest:
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
               FUNTTEL:
-                pFUNTTEL: 0.294096429748279
-                vBC: 0.043431398824148815
-                vFUNTTEL: 0.17325933120207193
+                pFUNTTEL: 0.6623518433804886
+                vBC: 0.8289659398142969
+                vFUNTTEL: 0.4573936264232251
               ICMS20:
-                pFCP: 0.6519180951018382
-                pRedBC: 0.3353193347011243
+                pFCP: 0.8969578798196912
+                pRedBC: 0.08851374739011653
                 CST: CST
-                vBC: 0.30937452626664474
-                vICMS: 0.08851374739011653
-                vICMSDeson: 0.7058770351582356
+                vBC: 0.7058770351582356
+                vICMS: 0.010263654006109402
+                vICMSDeson: 0.46523964329332457
                 cBenef: cBenef
-                vFCP: 0.010263654006109402
-                pICMS: 0.7143538047012307
+                vFCP: 0.7740351818741174
+                pICMS: 0.6519180951018382
               ICMS40:
                 CST: CST
-                vICMSDeson: 0.46523964329332457
+                vICMSDeson: 0.30205796992916245
                 cBenef: cBenef
               ICMS51:
                 CST: CST
-                vICMSDeson: 0.8969578798196912
+                vICMSDeson: 0.3057610024104934
                 cBenef: cBenef
               COFINS:
-                vCOFINS: 0.6073898085781152
+                vCOFINS: 0.3901545264248647
+                CST: CST
+                vBC: 0.8251625748923757
+                pCOFINS: 0.4459605034958679
+              PIS:
+                vPIS: 0.6073898085781152
                 CST: CST
                 vBC: 0.5507386964179881
-                pCOFINS: 0.48631590810288405
-              PIS:
-                vPIS: 0.7933506881737151
-                CST: CST
-                vBC: 0.9702963800023566
-                pPIS: 0.05199002018724985
+                pPIS: 0.48631590810288405
               ICMSSN:
                 indSN: 4
                 CST: CST
             gProcRef:
-              qFaturada: 0.3502657762086401
-              vCOFINS: 0.3111202833403195
-              vItem: 1.8268702177058116
-              indDevolucao: 5
-              vProd: 9.183123594773994
-              vFCP: 0.9897492629215506
+              qFaturada: 0.04182561061793122
+              vCOFINS: 0.7835035282970783
+              vItem: 8.761432466225475
+              indDevolucao: 7
+              vProd: 5.299143560275359
+              vFCP: 0.04768402382624515
               gProc:
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              vPIS: 0.3781412473076792
-              vBC: 0.5312489704336296
-              vICMS: 0.760686372309258
-              vDesc: 0.8761432466225476
-              vOutro: 0.04182561061793122
-              pICMS: 0.8378237410348691
+              vPIS: 0.5877124706116695
+              vBC: 0.3781412473076792
+              vICMS: 0.9897492629215506
+              vDesc: 0.5312489704336296
+              vOutro: 0.8378237410348691
+              pICMS: 0.3111202833403195
             nItemAnt: nItemAnt
             infAdProd: infAdProd
-          - nItem: 9368
+          - nItem: 8761
+            indNFComAntPapelFatCentral: 9
             prod:
               uMed: 6
-              qFaturada: 0.8762042012749002
+              qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 9.018348186070783
-              indDevolucao: 1
-              vProd: 6.965117697638846
+              vItem: 6.965117697638846
+              indDevolucao: 6
+              vProd: 6.778324963048013
               xProd: xProd
               CNPJLD: CNPJLD
-              vDesc: 0.6438423552598547
-              vOutro: 0.35571952270680973
+              vDesc: 0.1284659006116532
+              vOutro: 0.288416212666878
               CFOP: CFOP
               dExpiracao: 2000-01-23
             gRessarc:
               dRef: 2000-01-23
               nProcesso: nProcesso
               nProtReclama: nProtReclama
-              tpRessarc: 7
+              tpRessarc: 2
               xObs: xObs
             chNFComAnt: chNFComAnt
             imposto:
               ICMS00:
-                pFCP: 0.5944895607614016
+                pFCP: 0.30937452626664474
                 CST: CST
-                vBC: 0.288416212666878
-                vICMS: 0.6878052220127876
-                vFCP: 0.6704019297950036
-                pICMS: 0.6778324963048014
-              indSemCST: 0
+                vBC: 0.5944895607614016
+                vICMS: 0.3353193347011243
+                vFCP: 0.7143538047012307
+                pICMS: 0.6704019297950036
+              indSemCST: 7
               ICMS90:
-                pFCP: 0.5533258397034986
+                pFCP: 0.02025324113236393
                 CST: CST
-                vBC: 0.7740351818741174
-                vICMS: 0.3057610024104934
-                vICMSDeson: 0.704836565559697
+                vBC: 0.704836565559697
+                vICMS: 0.32588565619047605
+                vICMSDeson: 0.40788458496667523
                 cBenef: cBenef
-                vFCP: 0.32588565619047605
-                pICMS: 0.30205796992916245
+                vFCP: 0.6628464275087742
+                pICMS: 0.5533258397034986
               FUST:
-                vBC: 0.8251625748923757
-                vFUST: 0.3901545264248647
-                pFUST: 0.4459605034958679
+                vBC: 0.043431398824148815
+                vFUST: 0.17325933120207193
+                pFUST: 0.294096429748279
               retTrib:
-                vIRRF: 0.9254183946267839
-                vBCIRRF: 0.8863729185622827
-                vRetPIS: 0.8289659398142969
-                vRetCSLL: 0.4573936264232251
-                vRetCofins: 0.6623518433804886
+                vIRRF: 0.9183123594773993
+                vBCIRRF: 0.3502657762086401
+                vRetPIS: 0.8863729185622827
+                vRetCSLL: 0.18268702177058116
+                vRetCofins: 0.9254183946267839
               ICMSUFDest:
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
-              - vICMSUFDest: 0.7260521264802103
-                vICMSUFEmi: 0.9132027271330689
-                vFCPUFDest: 0.46789479890058483
-                cUFDest: 0
-                pFCPUFDest: 0.42587731081743563
-                vBCUFDest: 0.6628464275087742
-                pICMSUFDest: 0.10414449161182959
+              - vICMSUFDest: 0.9702963800023566
+                vICMSUFEmi: 0.05199002018724985
+                vFCPUFDest: 0.08774076871421566
+                cUFDest: 1
+                pFCPUFDest: 0.7260521264802103
+                vBCUFDest: 0.46789479890058483
+                pICMSUFDest: 0.9132027271330689
                 cBenefUFDest: cBenefUFDest
               FUNTTEL:
-                pFUNTTEL: 0.294096429748279
-                vBC: 0.043431398824148815
-                vFUNTTEL: 0.17325933120207193
+                pFUNTTEL: 0.6623518433804886
+                vBC: 0.8289659398142969
+                vFUNTTEL: 0.4573936264232251
               ICMS20:
-                pFCP: 0.6519180951018382
-                pRedBC: 0.3353193347011243
+                pFCP: 0.8969578798196912
+                pRedBC: 0.08851374739011653
                 CST: CST
-                vBC: 0.30937452626664474
-                vICMS: 0.08851374739011653
-                vICMSDeson: 0.7058770351582356
+                vBC: 0.7058770351582356
+                vICMS: 0.010263654006109402
+                vICMSDeson: 0.46523964329332457
                 cBenef: cBenef
-                vFCP: 0.010263654006109402
-                pICMS: 0.7143538047012307
+                vFCP: 0.7740351818741174
+                pICMS: 0.6519180951018382
               ICMS40:
                 CST: CST
-                vICMSDeson: 0.46523964329332457
+                vICMSDeson: 0.30205796992916245
                 cBenef: cBenef
               ICMS51:
                 CST: CST
-                vICMSDeson: 0.8969578798196912
+                vICMSDeson: 0.3057610024104934
                 cBenef: cBenef
               COFINS:
-                vCOFINS: 0.6073898085781152
+                vCOFINS: 0.3901545264248647
+                CST: CST
+                vBC: 0.8251625748923757
+                pCOFINS: 0.4459605034958679
+              PIS:
+                vPIS: 0.6073898085781152
                 CST: CST
                 vBC: 0.5507386964179881
-                pCOFINS: 0.48631590810288405
-              PIS:
-                vPIS: 0.7933506881737151
-                CST: CST
-                vBC: 0.9702963800023566
-                pPIS: 0.05199002018724985
+                pPIS: 0.48631590810288405
               ICMSSN:
                 indSN: 4
                 CST: CST
             gProcRef:
-              qFaturada: 0.3502657762086401
-              vCOFINS: 0.3111202833403195
-              vItem: 1.8268702177058116
-              indDevolucao: 5
-              vProd: 9.183123594773994
-              vFCP: 0.9897492629215506
+              qFaturada: 0.04182561061793122
+              vCOFINS: 0.7835035282970783
+              vItem: 8.761432466225475
+              indDevolucao: 7
+              vProd: 5.299143560275359
+              vFCP: 0.04768402382624515
               gProc:
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              - tpProc: 5
+              - tpProc: 3
                 nProcesso: nProcesso
-              vPIS: 0.3781412473076792
-              vBC: 0.5312489704336296
-              vICMS: 0.760686372309258
-              vDesc: 0.8761432466225476
-              vOutro: 0.04182561061793122
-              pICMS: 0.8378237410348691
+              vPIS: 0.5877124706116695
+              vBC: 0.3781412473076792
+              vICMS: 0.9897492629215506
+              vDesc: 0.5312489704336296
+              vOutro: 0.8378237410348691
+              pICMS: 0.3111202833403195
             nItemAnt: nItemAnt
             infAdProd: infAdProd
           total:
-            vPIS: 0.04833312865174044
-            vCOFINS: 0.4518309517874244
+            vPIS: 0.4332304821875894
+            vCOFINS: 0.7203794749804894
             vRetTribTot:
-              vIRRF: 0.058919091925136
-              vRetPIS: 0.4332304821875894
-              vRetCSLL: 0.9386524999783381
-              vRetCofins: 0.27977867356748476
+              vIRRF: 0.4878987874226881
+              vRetPIS: 0.058919091925136
+              vRetCSLL: 0.6173804034172511
+              vRetCofins: 0.2535258963197524
             ICMSTot:
-              vBC: 0.3149790371425055
-              vICMS: 0.2380090174313445
-              vICMSDeson: 0.3804112695731078
-              vFCP: 0.8675064425986758
-            vDesc: 0.2535258963197524
-            vProd: 0.04768402382624515
-            vFUST: 0.7203794749804894
-            vOutro: 0.6173804034172511
-            vFUNTTEL: 0.035262192099236644
-            vNF: 0.4878987874226881
+              vBC: 0.8675064425986758
+              vICMS: 0.4518309517874244
+              vICMSDeson: 0.04833312865174044
+              vFCP: 0.035262192099236644
+            vDesc: 0.6966044574347761
+            vProd: 0.3804112695731078
+            vFUST: 0.9386524999783381
+            vOutro: 0.9806951670467936
+            vFUNTTEL: 0.27977867356748476
+            vNF: 0.13949519358941398
           Id: Id
           autXML:
           - CPF: CPF
@@ -13648,6 +14887,13 @@ components:
       example:
         gCofat:
           chNFComLocal: chNFComLocal
+          gNF:
+            mod: 9
+            hash115: hash115
+            nNF: 668356240
+            serie: serie
+            CNPJ: CNPJ
+            CompetEmis: CompetEmis
         infAdic:
           infCpl:
           - infCpl
@@ -13658,7 +14904,7 @@ components:
           infAdFisco: infAdFisco
         gRespTec:
           fone: fone
-          idCSRT: 979
+          idCSRT: 380
           CNPJ: CNPJ
           hashCSRT: hashCSRT
           xContato: xContato
@@ -13715,7 +14961,7 @@ components:
           IE: IE
           indIEDest: 1
         gFatCentral:
-          cUF: 6
+          cUF: 1
           CNPJ: CNPJ
         assinante:
           dContratoFim: 2000-01-23
@@ -13734,665 +14980,670 @@ components:
           qtdPtsResg: qtdPtsResg
           dRefResgPts: 2000-01-23
         det:
-        - nItem: 9368
+        - nItem: 8761
+          indNFComAntPapelFatCentral: 9
           prod:
             uMed: 6
-            qFaturada: 0.8762042012749002
+            qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 9.018348186070783
-            indDevolucao: 1
-            vProd: 6.965117697638846
+            vItem: 6.965117697638846
+            indDevolucao: 6
+            vProd: 6.778324963048013
             xProd: xProd
             CNPJLD: CNPJLD
-            vDesc: 0.6438423552598547
-            vOutro: 0.35571952270680973
+            vDesc: 0.1284659006116532
+            vOutro: 0.288416212666878
             CFOP: CFOP
             dExpiracao: 2000-01-23
           gRessarc:
             dRef: 2000-01-23
             nProcesso: nProcesso
             nProtReclama: nProtReclama
-            tpRessarc: 7
+            tpRessarc: 2
             xObs: xObs
           chNFComAnt: chNFComAnt
           imposto:
             ICMS00:
-              pFCP: 0.5944895607614016
+              pFCP: 0.30937452626664474
               CST: CST
-              vBC: 0.288416212666878
-              vICMS: 0.6878052220127876
-              vFCP: 0.6704019297950036
-              pICMS: 0.6778324963048014
-            indSemCST: 0
+              vBC: 0.5944895607614016
+              vICMS: 0.3353193347011243
+              vFCP: 0.7143538047012307
+              pICMS: 0.6704019297950036
+            indSemCST: 7
             ICMS90:
-              pFCP: 0.5533258397034986
+              pFCP: 0.02025324113236393
               CST: CST
-              vBC: 0.7740351818741174
-              vICMS: 0.3057610024104934
-              vICMSDeson: 0.704836565559697
+              vBC: 0.704836565559697
+              vICMS: 0.32588565619047605
+              vICMSDeson: 0.40788458496667523
               cBenef: cBenef
-              vFCP: 0.32588565619047605
-              pICMS: 0.30205796992916245
+              vFCP: 0.6628464275087742
+              pICMS: 0.5533258397034986
             FUST:
-              vBC: 0.8251625748923757
-              vFUST: 0.3901545264248647
-              pFUST: 0.4459605034958679
+              vBC: 0.043431398824148815
+              vFUST: 0.17325933120207193
+              pFUST: 0.294096429748279
             retTrib:
-              vIRRF: 0.9254183946267839
-              vBCIRRF: 0.8863729185622827
-              vRetPIS: 0.8289659398142969
-              vRetCSLL: 0.4573936264232251
-              vRetCofins: 0.6623518433804886
+              vIRRF: 0.9183123594773993
+              vBCIRRF: 0.3502657762086401
+              vRetPIS: 0.8863729185622827
+              vRetCSLL: 0.18268702177058116
+              vRetCofins: 0.9254183946267839
             ICMSUFDest:
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
             FUNTTEL:
-              pFUNTTEL: 0.294096429748279
-              vBC: 0.043431398824148815
-              vFUNTTEL: 0.17325933120207193
+              pFUNTTEL: 0.6623518433804886
+              vBC: 0.8289659398142969
+              vFUNTTEL: 0.4573936264232251
             ICMS20:
-              pFCP: 0.6519180951018382
-              pRedBC: 0.3353193347011243
+              pFCP: 0.8969578798196912
+              pRedBC: 0.08851374739011653
               CST: CST
-              vBC: 0.30937452626664474
-              vICMS: 0.08851374739011653
-              vICMSDeson: 0.7058770351582356
+              vBC: 0.7058770351582356
+              vICMS: 0.010263654006109402
+              vICMSDeson: 0.46523964329332457
               cBenef: cBenef
-              vFCP: 0.010263654006109402
-              pICMS: 0.7143538047012307
+              vFCP: 0.7740351818741174
+              pICMS: 0.6519180951018382
             ICMS40:
               CST: CST
-              vICMSDeson: 0.46523964329332457
+              vICMSDeson: 0.30205796992916245
               cBenef: cBenef
             ICMS51:
               CST: CST
-              vICMSDeson: 0.8969578798196912
+              vICMSDeson: 0.3057610024104934
               cBenef: cBenef
             COFINS:
-              vCOFINS: 0.6073898085781152
+              vCOFINS: 0.3901545264248647
+              CST: CST
+              vBC: 0.8251625748923757
+              pCOFINS: 0.4459605034958679
+            PIS:
+              vPIS: 0.6073898085781152
               CST: CST
               vBC: 0.5507386964179881
-              pCOFINS: 0.48631590810288405
-            PIS:
-              vPIS: 0.7933506881737151
-              CST: CST
-              vBC: 0.9702963800023566
-              pPIS: 0.05199002018724985
+              pPIS: 0.48631590810288405
             ICMSSN:
               indSN: 4
               CST: CST
           gProcRef:
-            qFaturada: 0.3502657762086401
-            vCOFINS: 0.3111202833403195
-            vItem: 1.8268702177058116
-            indDevolucao: 5
-            vProd: 9.183123594773994
-            vFCP: 0.9897492629215506
+            qFaturada: 0.04182561061793122
+            vCOFINS: 0.7835035282970783
+            vItem: 8.761432466225475
+            indDevolucao: 7
+            vProd: 5.299143560275359
+            vFCP: 0.04768402382624515
             gProc:
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            vPIS: 0.3781412473076792
-            vBC: 0.5312489704336296
-            vICMS: 0.760686372309258
-            vDesc: 0.8761432466225476
-            vOutro: 0.04182561061793122
-            pICMS: 0.8378237410348691
+            vPIS: 0.5877124706116695
+            vBC: 0.3781412473076792
+            vICMS: 0.9897492629215506
+            vDesc: 0.5312489704336296
+            vOutro: 0.8378237410348691
+            pICMS: 0.3111202833403195
           nItemAnt: nItemAnt
           infAdProd: infAdProd
-        - nItem: 9368
+        - nItem: 8761
+          indNFComAntPapelFatCentral: 9
           prod:
             uMed: 6
-            qFaturada: 0.8762042012749002
+            qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 9.018348186070783
-            indDevolucao: 1
-            vProd: 6.965117697638846
+            vItem: 6.965117697638846
+            indDevolucao: 6
+            vProd: 6.778324963048013
             xProd: xProd
             CNPJLD: CNPJLD
-            vDesc: 0.6438423552598547
-            vOutro: 0.35571952270680973
+            vDesc: 0.1284659006116532
+            vOutro: 0.288416212666878
             CFOP: CFOP
             dExpiracao: 2000-01-23
           gRessarc:
             dRef: 2000-01-23
             nProcesso: nProcesso
             nProtReclama: nProtReclama
-            tpRessarc: 7
+            tpRessarc: 2
             xObs: xObs
           chNFComAnt: chNFComAnt
           imposto:
             ICMS00:
-              pFCP: 0.5944895607614016
+              pFCP: 0.30937452626664474
               CST: CST
-              vBC: 0.288416212666878
-              vICMS: 0.6878052220127876
-              vFCP: 0.6704019297950036
-              pICMS: 0.6778324963048014
-            indSemCST: 0
+              vBC: 0.5944895607614016
+              vICMS: 0.3353193347011243
+              vFCP: 0.7143538047012307
+              pICMS: 0.6704019297950036
+            indSemCST: 7
             ICMS90:
-              pFCP: 0.5533258397034986
+              pFCP: 0.02025324113236393
               CST: CST
-              vBC: 0.7740351818741174
-              vICMS: 0.3057610024104934
-              vICMSDeson: 0.704836565559697
+              vBC: 0.704836565559697
+              vICMS: 0.32588565619047605
+              vICMSDeson: 0.40788458496667523
               cBenef: cBenef
-              vFCP: 0.32588565619047605
-              pICMS: 0.30205796992916245
+              vFCP: 0.6628464275087742
+              pICMS: 0.5533258397034986
             FUST:
-              vBC: 0.8251625748923757
-              vFUST: 0.3901545264248647
-              pFUST: 0.4459605034958679
+              vBC: 0.043431398824148815
+              vFUST: 0.17325933120207193
+              pFUST: 0.294096429748279
             retTrib:
-              vIRRF: 0.9254183946267839
-              vBCIRRF: 0.8863729185622827
-              vRetPIS: 0.8289659398142969
-              vRetCSLL: 0.4573936264232251
-              vRetCofins: 0.6623518433804886
+              vIRRF: 0.9183123594773993
+              vBCIRRF: 0.3502657762086401
+              vRetPIS: 0.8863729185622827
+              vRetCSLL: 0.18268702177058116
+              vRetCofins: 0.9254183946267839
             ICMSUFDest:
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
             FUNTTEL:
-              pFUNTTEL: 0.294096429748279
-              vBC: 0.043431398824148815
-              vFUNTTEL: 0.17325933120207193
+              pFUNTTEL: 0.6623518433804886
+              vBC: 0.8289659398142969
+              vFUNTTEL: 0.4573936264232251
             ICMS20:
-              pFCP: 0.6519180951018382
-              pRedBC: 0.3353193347011243
+              pFCP: 0.8969578798196912
+              pRedBC: 0.08851374739011653
               CST: CST
-              vBC: 0.30937452626664474
-              vICMS: 0.08851374739011653
-              vICMSDeson: 0.7058770351582356
+              vBC: 0.7058770351582356
+              vICMS: 0.010263654006109402
+              vICMSDeson: 0.46523964329332457
               cBenef: cBenef
-              vFCP: 0.010263654006109402
-              pICMS: 0.7143538047012307
+              vFCP: 0.7740351818741174
+              pICMS: 0.6519180951018382
             ICMS40:
               CST: CST
-              vICMSDeson: 0.46523964329332457
+              vICMSDeson: 0.30205796992916245
               cBenef: cBenef
             ICMS51:
               CST: CST
-              vICMSDeson: 0.8969578798196912
+              vICMSDeson: 0.3057610024104934
               cBenef: cBenef
             COFINS:
-              vCOFINS: 0.6073898085781152
+              vCOFINS: 0.3901545264248647
+              CST: CST
+              vBC: 0.8251625748923757
+              pCOFINS: 0.4459605034958679
+            PIS:
+              vPIS: 0.6073898085781152
               CST: CST
               vBC: 0.5507386964179881
-              pCOFINS: 0.48631590810288405
-            PIS:
-              vPIS: 0.7933506881737151
-              CST: CST
-              vBC: 0.9702963800023566
-              pPIS: 0.05199002018724985
+              pPIS: 0.48631590810288405
             ICMSSN:
               indSN: 4
               CST: CST
           gProcRef:
-            qFaturada: 0.3502657762086401
-            vCOFINS: 0.3111202833403195
-            vItem: 1.8268702177058116
-            indDevolucao: 5
-            vProd: 9.183123594773994
-            vFCP: 0.9897492629215506
+            qFaturada: 0.04182561061793122
+            vCOFINS: 0.7835035282970783
+            vItem: 8.761432466225475
+            indDevolucao: 7
+            vProd: 5.299143560275359
+            vFCP: 0.04768402382624515
             gProc:
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            vPIS: 0.3781412473076792
-            vBC: 0.5312489704336296
-            vICMS: 0.760686372309258
-            vDesc: 0.8761432466225476
-            vOutro: 0.04182561061793122
-            pICMS: 0.8378237410348691
+            vPIS: 0.5877124706116695
+            vBC: 0.3781412473076792
+            vICMS: 0.9897492629215506
+            vDesc: 0.5312489704336296
+            vOutro: 0.8378237410348691
+            pICMS: 0.3111202833403195
           nItemAnt: nItemAnt
           infAdProd: infAdProd
-        - nItem: 9368
+        - nItem: 8761
+          indNFComAntPapelFatCentral: 9
           prod:
             uMed: 6
-            qFaturada: 0.8762042012749002
+            qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 9.018348186070783
-            indDevolucao: 1
-            vProd: 6.965117697638846
+            vItem: 6.965117697638846
+            indDevolucao: 6
+            vProd: 6.778324963048013
             xProd: xProd
             CNPJLD: CNPJLD
-            vDesc: 0.6438423552598547
-            vOutro: 0.35571952270680973
+            vDesc: 0.1284659006116532
+            vOutro: 0.288416212666878
             CFOP: CFOP
             dExpiracao: 2000-01-23
           gRessarc:
             dRef: 2000-01-23
             nProcesso: nProcesso
             nProtReclama: nProtReclama
-            tpRessarc: 7
+            tpRessarc: 2
             xObs: xObs
           chNFComAnt: chNFComAnt
           imposto:
             ICMS00:
-              pFCP: 0.5944895607614016
+              pFCP: 0.30937452626664474
               CST: CST
-              vBC: 0.288416212666878
-              vICMS: 0.6878052220127876
-              vFCP: 0.6704019297950036
-              pICMS: 0.6778324963048014
-            indSemCST: 0
+              vBC: 0.5944895607614016
+              vICMS: 0.3353193347011243
+              vFCP: 0.7143538047012307
+              pICMS: 0.6704019297950036
+            indSemCST: 7
             ICMS90:
-              pFCP: 0.5533258397034986
+              pFCP: 0.02025324113236393
               CST: CST
-              vBC: 0.7740351818741174
-              vICMS: 0.3057610024104934
-              vICMSDeson: 0.704836565559697
+              vBC: 0.704836565559697
+              vICMS: 0.32588565619047605
+              vICMSDeson: 0.40788458496667523
               cBenef: cBenef
-              vFCP: 0.32588565619047605
-              pICMS: 0.30205796992916245
+              vFCP: 0.6628464275087742
+              pICMS: 0.5533258397034986
             FUST:
-              vBC: 0.8251625748923757
-              vFUST: 0.3901545264248647
-              pFUST: 0.4459605034958679
+              vBC: 0.043431398824148815
+              vFUST: 0.17325933120207193
+              pFUST: 0.294096429748279
             retTrib:
-              vIRRF: 0.9254183946267839
-              vBCIRRF: 0.8863729185622827
-              vRetPIS: 0.8289659398142969
-              vRetCSLL: 0.4573936264232251
-              vRetCofins: 0.6623518433804886
+              vIRRF: 0.9183123594773993
+              vBCIRRF: 0.3502657762086401
+              vRetPIS: 0.8863729185622827
+              vRetCSLL: 0.18268702177058116
+              vRetCofins: 0.9254183946267839
             ICMSUFDest:
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
             FUNTTEL:
-              pFUNTTEL: 0.294096429748279
-              vBC: 0.043431398824148815
-              vFUNTTEL: 0.17325933120207193
+              pFUNTTEL: 0.6623518433804886
+              vBC: 0.8289659398142969
+              vFUNTTEL: 0.4573936264232251
             ICMS20:
-              pFCP: 0.6519180951018382
-              pRedBC: 0.3353193347011243
+              pFCP: 0.8969578798196912
+              pRedBC: 0.08851374739011653
               CST: CST
-              vBC: 0.30937452626664474
-              vICMS: 0.08851374739011653
-              vICMSDeson: 0.7058770351582356
+              vBC: 0.7058770351582356
+              vICMS: 0.010263654006109402
+              vICMSDeson: 0.46523964329332457
               cBenef: cBenef
-              vFCP: 0.010263654006109402
-              pICMS: 0.7143538047012307
+              vFCP: 0.7740351818741174
+              pICMS: 0.6519180951018382
             ICMS40:
               CST: CST
-              vICMSDeson: 0.46523964329332457
+              vICMSDeson: 0.30205796992916245
               cBenef: cBenef
             ICMS51:
               CST: CST
-              vICMSDeson: 0.8969578798196912
+              vICMSDeson: 0.3057610024104934
               cBenef: cBenef
             COFINS:
-              vCOFINS: 0.6073898085781152
+              vCOFINS: 0.3901545264248647
+              CST: CST
+              vBC: 0.8251625748923757
+              pCOFINS: 0.4459605034958679
+            PIS:
+              vPIS: 0.6073898085781152
               CST: CST
               vBC: 0.5507386964179881
-              pCOFINS: 0.48631590810288405
-            PIS:
-              vPIS: 0.7933506881737151
-              CST: CST
-              vBC: 0.9702963800023566
-              pPIS: 0.05199002018724985
+              pPIS: 0.48631590810288405
             ICMSSN:
               indSN: 4
               CST: CST
           gProcRef:
-            qFaturada: 0.3502657762086401
-            vCOFINS: 0.3111202833403195
-            vItem: 1.8268702177058116
-            indDevolucao: 5
-            vProd: 9.183123594773994
-            vFCP: 0.9897492629215506
+            qFaturada: 0.04182561061793122
+            vCOFINS: 0.7835035282970783
+            vItem: 8.761432466225475
+            indDevolucao: 7
+            vProd: 5.299143560275359
+            vFCP: 0.04768402382624515
             gProc:
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            vPIS: 0.3781412473076792
-            vBC: 0.5312489704336296
-            vICMS: 0.760686372309258
-            vDesc: 0.8761432466225476
-            vOutro: 0.04182561061793122
-            pICMS: 0.8378237410348691
+            vPIS: 0.5877124706116695
+            vBC: 0.3781412473076792
+            vICMS: 0.9897492629215506
+            vDesc: 0.5312489704336296
+            vOutro: 0.8378237410348691
+            pICMS: 0.3111202833403195
           nItemAnt: nItemAnt
           infAdProd: infAdProd
-        - nItem: 9368
+        - nItem: 8761
+          indNFComAntPapelFatCentral: 9
           prod:
             uMed: 6
-            qFaturada: 0.8762042012749002
+            qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 9.018348186070783
-            indDevolucao: 1
-            vProd: 6.965117697638846
+            vItem: 6.965117697638846
+            indDevolucao: 6
+            vProd: 6.778324963048013
             xProd: xProd
             CNPJLD: CNPJLD
-            vDesc: 0.6438423552598547
-            vOutro: 0.35571952270680973
+            vDesc: 0.1284659006116532
+            vOutro: 0.288416212666878
             CFOP: CFOP
             dExpiracao: 2000-01-23
           gRessarc:
             dRef: 2000-01-23
             nProcesso: nProcesso
             nProtReclama: nProtReclama
-            tpRessarc: 7
+            tpRessarc: 2
             xObs: xObs
           chNFComAnt: chNFComAnt
           imposto:
             ICMS00:
-              pFCP: 0.5944895607614016
+              pFCP: 0.30937452626664474
               CST: CST
-              vBC: 0.288416212666878
-              vICMS: 0.6878052220127876
-              vFCP: 0.6704019297950036
-              pICMS: 0.6778324963048014
-            indSemCST: 0
+              vBC: 0.5944895607614016
+              vICMS: 0.3353193347011243
+              vFCP: 0.7143538047012307
+              pICMS: 0.6704019297950036
+            indSemCST: 7
             ICMS90:
-              pFCP: 0.5533258397034986
+              pFCP: 0.02025324113236393
               CST: CST
-              vBC: 0.7740351818741174
-              vICMS: 0.3057610024104934
-              vICMSDeson: 0.704836565559697
+              vBC: 0.704836565559697
+              vICMS: 0.32588565619047605
+              vICMSDeson: 0.40788458496667523
               cBenef: cBenef
-              vFCP: 0.32588565619047605
-              pICMS: 0.30205796992916245
+              vFCP: 0.6628464275087742
+              pICMS: 0.5533258397034986
             FUST:
-              vBC: 0.8251625748923757
-              vFUST: 0.3901545264248647
-              pFUST: 0.4459605034958679
+              vBC: 0.043431398824148815
+              vFUST: 0.17325933120207193
+              pFUST: 0.294096429748279
             retTrib:
-              vIRRF: 0.9254183946267839
-              vBCIRRF: 0.8863729185622827
-              vRetPIS: 0.8289659398142969
-              vRetCSLL: 0.4573936264232251
-              vRetCofins: 0.6623518433804886
+              vIRRF: 0.9183123594773993
+              vBCIRRF: 0.3502657762086401
+              vRetPIS: 0.8863729185622827
+              vRetCSLL: 0.18268702177058116
+              vRetCofins: 0.9254183946267839
             ICMSUFDest:
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
             FUNTTEL:
-              pFUNTTEL: 0.294096429748279
-              vBC: 0.043431398824148815
-              vFUNTTEL: 0.17325933120207193
+              pFUNTTEL: 0.6623518433804886
+              vBC: 0.8289659398142969
+              vFUNTTEL: 0.4573936264232251
             ICMS20:
-              pFCP: 0.6519180951018382
-              pRedBC: 0.3353193347011243
+              pFCP: 0.8969578798196912
+              pRedBC: 0.08851374739011653
               CST: CST
-              vBC: 0.30937452626664474
-              vICMS: 0.08851374739011653
-              vICMSDeson: 0.7058770351582356
+              vBC: 0.7058770351582356
+              vICMS: 0.010263654006109402
+              vICMSDeson: 0.46523964329332457
               cBenef: cBenef
-              vFCP: 0.010263654006109402
-              pICMS: 0.7143538047012307
+              vFCP: 0.7740351818741174
+              pICMS: 0.6519180951018382
             ICMS40:
               CST: CST
-              vICMSDeson: 0.46523964329332457
+              vICMSDeson: 0.30205796992916245
               cBenef: cBenef
             ICMS51:
               CST: CST
-              vICMSDeson: 0.8969578798196912
+              vICMSDeson: 0.3057610024104934
               cBenef: cBenef
             COFINS:
-              vCOFINS: 0.6073898085781152
+              vCOFINS: 0.3901545264248647
+              CST: CST
+              vBC: 0.8251625748923757
+              pCOFINS: 0.4459605034958679
+            PIS:
+              vPIS: 0.6073898085781152
               CST: CST
               vBC: 0.5507386964179881
-              pCOFINS: 0.48631590810288405
-            PIS:
-              vPIS: 0.7933506881737151
-              CST: CST
-              vBC: 0.9702963800023566
-              pPIS: 0.05199002018724985
+              pPIS: 0.48631590810288405
             ICMSSN:
               indSN: 4
               CST: CST
           gProcRef:
-            qFaturada: 0.3502657762086401
-            vCOFINS: 0.3111202833403195
-            vItem: 1.8268702177058116
-            indDevolucao: 5
-            vProd: 9.183123594773994
-            vFCP: 0.9897492629215506
+            qFaturada: 0.04182561061793122
+            vCOFINS: 0.7835035282970783
+            vItem: 8.761432466225475
+            indDevolucao: 7
+            vProd: 5.299143560275359
+            vFCP: 0.04768402382624515
             gProc:
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            vPIS: 0.3781412473076792
-            vBC: 0.5312489704336296
-            vICMS: 0.760686372309258
-            vDesc: 0.8761432466225476
-            vOutro: 0.04182561061793122
-            pICMS: 0.8378237410348691
+            vPIS: 0.5877124706116695
+            vBC: 0.3781412473076792
+            vICMS: 0.9897492629215506
+            vDesc: 0.5312489704336296
+            vOutro: 0.8378237410348691
+            pICMS: 0.3111202833403195
           nItemAnt: nItemAnt
           infAdProd: infAdProd
-        - nItem: 9368
+        - nItem: 8761
+          indNFComAntPapelFatCentral: 9
           prod:
             uMed: 6
-            qFaturada: 0.8762042012749002
+            qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 9.018348186070783
-            indDevolucao: 1
-            vProd: 6.965117697638846
+            vItem: 6.965117697638846
+            indDevolucao: 6
+            vProd: 6.778324963048013
             xProd: xProd
             CNPJLD: CNPJLD
-            vDesc: 0.6438423552598547
-            vOutro: 0.35571952270680973
+            vDesc: 0.1284659006116532
+            vOutro: 0.288416212666878
             CFOP: CFOP
             dExpiracao: 2000-01-23
           gRessarc:
             dRef: 2000-01-23
             nProcesso: nProcesso
             nProtReclama: nProtReclama
-            tpRessarc: 7
+            tpRessarc: 2
             xObs: xObs
           chNFComAnt: chNFComAnt
           imposto:
             ICMS00:
-              pFCP: 0.5944895607614016
+              pFCP: 0.30937452626664474
               CST: CST
-              vBC: 0.288416212666878
-              vICMS: 0.6878052220127876
-              vFCP: 0.6704019297950036
-              pICMS: 0.6778324963048014
-            indSemCST: 0
+              vBC: 0.5944895607614016
+              vICMS: 0.3353193347011243
+              vFCP: 0.7143538047012307
+              pICMS: 0.6704019297950036
+            indSemCST: 7
             ICMS90:
-              pFCP: 0.5533258397034986
+              pFCP: 0.02025324113236393
               CST: CST
-              vBC: 0.7740351818741174
-              vICMS: 0.3057610024104934
-              vICMSDeson: 0.704836565559697
+              vBC: 0.704836565559697
+              vICMS: 0.32588565619047605
+              vICMSDeson: 0.40788458496667523
               cBenef: cBenef
-              vFCP: 0.32588565619047605
-              pICMS: 0.30205796992916245
+              vFCP: 0.6628464275087742
+              pICMS: 0.5533258397034986
             FUST:
-              vBC: 0.8251625748923757
-              vFUST: 0.3901545264248647
-              pFUST: 0.4459605034958679
+              vBC: 0.043431398824148815
+              vFUST: 0.17325933120207193
+              pFUST: 0.294096429748279
             retTrib:
-              vIRRF: 0.9254183946267839
-              vBCIRRF: 0.8863729185622827
-              vRetPIS: 0.8289659398142969
-              vRetCSLL: 0.4573936264232251
-              vRetCofins: 0.6623518433804886
+              vIRRF: 0.9183123594773993
+              vBCIRRF: 0.3502657762086401
+              vRetPIS: 0.8863729185622827
+              vRetCSLL: 0.18268702177058116
+              vRetCofins: 0.9254183946267839
             ICMSUFDest:
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
-            - vICMSUFDest: 0.7260521264802103
-              vICMSUFEmi: 0.9132027271330689
-              vFCPUFDest: 0.46789479890058483
-              cUFDest: 0
-              pFCPUFDest: 0.42587731081743563
-              vBCUFDest: 0.6628464275087742
-              pICMSUFDest: 0.10414449161182959
+            - vICMSUFDest: 0.9702963800023566
+              vICMSUFEmi: 0.05199002018724985
+              vFCPUFDest: 0.08774076871421566
+              cUFDest: 1
+              pFCPUFDest: 0.7260521264802103
+              vBCUFDest: 0.46789479890058483
+              pICMSUFDest: 0.9132027271330689
               cBenefUFDest: cBenefUFDest
             FUNTTEL:
-              pFUNTTEL: 0.294096429748279
-              vBC: 0.043431398824148815
-              vFUNTTEL: 0.17325933120207193
+              pFUNTTEL: 0.6623518433804886
+              vBC: 0.8289659398142969
+              vFUNTTEL: 0.4573936264232251
             ICMS20:
-              pFCP: 0.6519180951018382
-              pRedBC: 0.3353193347011243
+              pFCP: 0.8969578798196912
+              pRedBC: 0.08851374739011653
               CST: CST
-              vBC: 0.30937452626664474
-              vICMS: 0.08851374739011653
-              vICMSDeson: 0.7058770351582356
+              vBC: 0.7058770351582356
+              vICMS: 0.010263654006109402
+              vICMSDeson: 0.46523964329332457
               cBenef: cBenef
-              vFCP: 0.010263654006109402
-              pICMS: 0.7143538047012307
+              vFCP: 0.7740351818741174
+              pICMS: 0.6519180951018382
             ICMS40:
               CST: CST
-              vICMSDeson: 0.46523964329332457
+              vICMSDeson: 0.30205796992916245
               cBenef: cBenef
             ICMS51:
               CST: CST
-              vICMSDeson: 0.8969578798196912
+              vICMSDeson: 0.3057610024104934
               cBenef: cBenef
             COFINS:
-              vCOFINS: 0.6073898085781152
+              vCOFINS: 0.3901545264248647
+              CST: CST
+              vBC: 0.8251625748923757
+              pCOFINS: 0.4459605034958679
+            PIS:
+              vPIS: 0.6073898085781152
               CST: CST
               vBC: 0.5507386964179881
-              pCOFINS: 0.48631590810288405
-            PIS:
-              vPIS: 0.7933506881737151
-              CST: CST
-              vBC: 0.9702963800023566
-              pPIS: 0.05199002018724985
+              pPIS: 0.48631590810288405
             ICMSSN:
               indSN: 4
               CST: CST
           gProcRef:
-            qFaturada: 0.3502657762086401
-            vCOFINS: 0.3111202833403195
-            vItem: 1.8268702177058116
-            indDevolucao: 5
-            vProd: 9.183123594773994
-            vFCP: 0.9897492629215506
+            qFaturada: 0.04182561061793122
+            vCOFINS: 0.7835035282970783
+            vItem: 8.761432466225475
+            indDevolucao: 7
+            vProd: 5.299143560275359
+            vFCP: 0.04768402382624515
             gProc:
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            - tpProc: 5
+            - tpProc: 3
               nProcesso: nProcesso
-            vPIS: 0.3781412473076792
-            vBC: 0.5312489704336296
-            vICMS: 0.760686372309258
-            vDesc: 0.8761432466225476
-            vOutro: 0.04182561061793122
-            pICMS: 0.8378237410348691
+            vPIS: 0.5877124706116695
+            vBC: 0.3781412473076792
+            vICMS: 0.9897492629215506
+            vDesc: 0.5312489704336296
+            vOutro: 0.8378237410348691
+            pICMS: 0.3111202833403195
           nItemAnt: nItemAnt
           infAdProd: infAdProd
         total:
-          vPIS: 0.04833312865174044
-          vCOFINS: 0.4518309517874244
+          vPIS: 0.4332304821875894
+          vCOFINS: 0.7203794749804894
           vRetTribTot:
-            vIRRF: 0.058919091925136
-            vRetPIS: 0.4332304821875894
-            vRetCSLL: 0.9386524999783381
-            vRetCofins: 0.27977867356748476
+            vIRRF: 0.4878987874226881
+            vRetPIS: 0.058919091925136
+            vRetCSLL: 0.6173804034172511
+            vRetCofins: 0.2535258963197524
           ICMSTot:
-            vBC: 0.3149790371425055
-            vICMS: 0.2380090174313445
-            vICMSDeson: 0.3804112695731078
-            vFCP: 0.8675064425986758
-          vDesc: 0.2535258963197524
-          vProd: 0.04768402382624515
-          vFUST: 0.7203794749804894
-          vOutro: 0.6173804034172511
-          vFUNTTEL: 0.035262192099236644
-          vNF: 0.4878987874226881
+            vBC: 0.8675064425986758
+            vICMS: 0.4518309517874244
+            vICMSDeson: 0.04833312865174044
+            vFCP: 0.035262192099236644
+          vDesc: 0.6966044574347761
+          vProd: 0.3804112695731078
+          vFUST: 0.9386524999783381
+          vOutro: 0.9806951670467936
+          vFUNTTEL: 0.27977867356748476
+          vNF: 0.13949519358941398
         Id: Id
         autXML:
         - CPF: CPF
@@ -15104,8 +16355,8 @@ components:
           description: "Hash do registro no arquivo do convênio 115.\r\nCampo poderá\
             \ ser exigido a critério da UF - campo 36 do arquivo MESTRE DE DOCUMENTO\
             \ FISCAL (Anexo Único, item 5 do Conv. 115/03)."
-          maxLength: 32
-          minLength: 32
+          maxLength: 44
+          minLength: 44
           nullable: true
           type: string
       required:
@@ -15119,144 +16370,204 @@ components:
       description: Grupo de Informações do Cofaturamento.
       example:
         chNFComLocal: chNFComLocal
+        gNF:
+          mod: 9
+          hash115: hash115
+          nNF: 668356240
+          serie: serie
+          CNPJ: CNPJ
+          CompetEmis: CompetEmis
       properties:
         chNFComLocal:
           description: Chave de acesso da NFCom emitida pela Operadora Local.
           maxLength: 44
           nullable: true
           type: string
+        gNF:
+          $ref: '#/components/schemas/NfcomSefazGCofat_GNF'
+      type: object
+    NfcomSefazGCofat_GNF:
+      description: Informação da NF modelo 21/22 referenciada.
+      example:
+        mod: 9
+        hash115: hash115
+        nNF: 668356240
+        serie: serie
+        CNPJ: CNPJ
+        CompetEmis: CompetEmis
+      properties:
+        CNPJ:
+          description: "CNPJ do Emitente.\r\nInformar o CNPJ do emitente do Documento\
+            \ Fiscal."
+          nullable: true
+          type: string
+        mod:
+          description: "Modelo do documento.\r\n21 ou 22."
+          nullable: true
+          type: integer
+        serie:
+          description: Serie do documento fiscal.
+          maxLength: 3
+          minLength: 3
+          nullable: true
+          type: string
+        nNF:
+          description: Número do documento fiscal.
+          maximum: 999999999
+          minimum: 1
+          nullable: true
+          type: integer
+        CompetEmis:
+          description: Ano e mês da emissão da NF (AAAAMM).
+          maxLength: 6
+          minLength: 6
+          nullable: true
+          type: string
+        hash115:
+          description: "Hash do registro no arquivo do convênio 115.\r\nCampo poderá\
+            \ ser exigido a critério da UF - campo 36 do arquivo MESTRE DE DOCUMENTO\
+            \ FISCAL (Anexo Único, item 5 do Conv. 115/03)."
+          maxLength: 44
+          minLength: 44
+          nullable: true
+          type: string
       required:
-      - chNFComLocal
+      - CNPJ
+      - CompetEmis
+      - mod
+      - nNF
+      - serie
       type: object
     NfcomSefazDet:
       description: Detalhamento de Produtos e Serviços.
       example:
-        nItem: 9368
+        nItem: 8761
+        indNFComAntPapelFatCentral: 9
         prod:
           uMed: 6
-          qFaturada: 0.8762042012749002
+          qFaturada: 0.35571952270680973
           cProd: cProd
           cClass: cClass
-          vItem: 9.018348186070783
-          indDevolucao: 1
-          vProd: 6.965117697638846
+          vItem: 6.965117697638846
+          indDevolucao: 6
+          vProd: 6.778324963048013
           xProd: xProd
           CNPJLD: CNPJLD
-          vDesc: 0.6438423552598547
-          vOutro: 0.35571952270680973
+          vDesc: 0.1284659006116532
+          vOutro: 0.288416212666878
           CFOP: CFOP
           dExpiracao: 2000-01-23
         gRessarc:
           dRef: 2000-01-23
           nProcesso: nProcesso
           nProtReclama: nProtReclama
-          tpRessarc: 7
+          tpRessarc: 2
           xObs: xObs
         chNFComAnt: chNFComAnt
         imposto:
           ICMS00:
-            pFCP: 0.5944895607614016
+            pFCP: 0.30937452626664474
             CST: CST
-            vBC: 0.288416212666878
-            vICMS: 0.6878052220127876
-            vFCP: 0.6704019297950036
-            pICMS: 0.6778324963048014
-          indSemCST: 0
+            vBC: 0.5944895607614016
+            vICMS: 0.3353193347011243
+            vFCP: 0.7143538047012307
+            pICMS: 0.6704019297950036
+          indSemCST: 7
           ICMS90:
-            pFCP: 0.5533258397034986
+            pFCP: 0.02025324113236393
             CST: CST
-            vBC: 0.7740351818741174
-            vICMS: 0.3057610024104934
-            vICMSDeson: 0.704836565559697
+            vBC: 0.704836565559697
+            vICMS: 0.32588565619047605
+            vICMSDeson: 0.40788458496667523
             cBenef: cBenef
-            vFCP: 0.32588565619047605
-            pICMS: 0.30205796992916245
+            vFCP: 0.6628464275087742
+            pICMS: 0.5533258397034986
           FUST:
-            vBC: 0.8251625748923757
-            vFUST: 0.3901545264248647
-            pFUST: 0.4459605034958679
+            vBC: 0.043431398824148815
+            vFUST: 0.17325933120207193
+            pFUST: 0.294096429748279
           retTrib:
-            vIRRF: 0.9254183946267839
-            vBCIRRF: 0.8863729185622827
-            vRetPIS: 0.8289659398142969
-            vRetCSLL: 0.4573936264232251
-            vRetCofins: 0.6623518433804886
+            vIRRF: 0.9183123594773993
+            vBCIRRF: 0.3502657762086401
+            vRetPIS: 0.8863729185622827
+            vRetCSLL: 0.18268702177058116
+            vRetCofins: 0.9254183946267839
           ICMSUFDest:
-          - vICMSUFDest: 0.7260521264802103
-            vICMSUFEmi: 0.9132027271330689
-            vFCPUFDest: 0.46789479890058483
-            cUFDest: 0
-            pFCPUFDest: 0.42587731081743563
-            vBCUFDest: 0.6628464275087742
-            pICMSUFDest: 0.10414449161182959
+          - vICMSUFDest: 0.9702963800023566
+            vICMSUFEmi: 0.05199002018724985
+            vFCPUFDest: 0.08774076871421566
+            cUFDest: 1
+            pFCPUFDest: 0.7260521264802103
+            vBCUFDest: 0.46789479890058483
+            pICMSUFDest: 0.9132027271330689
             cBenefUFDest: cBenefUFDest
-          - vICMSUFDest: 0.7260521264802103
-            vICMSUFEmi: 0.9132027271330689
-            vFCPUFDest: 0.46789479890058483
-            cUFDest: 0
-            pFCPUFDest: 0.42587731081743563
-            vBCUFDest: 0.6628464275087742
-            pICMSUFDest: 0.10414449161182959
+          - vICMSUFDest: 0.9702963800023566
+            vICMSUFEmi: 0.05199002018724985
+            vFCPUFDest: 0.08774076871421566
+            cUFDest: 1
+            pFCPUFDest: 0.7260521264802103
+            vBCUFDest: 0.46789479890058483
+            pICMSUFDest: 0.9132027271330689
             cBenefUFDest: cBenefUFDest
           FUNTTEL:
-            pFUNTTEL: 0.294096429748279
-            vBC: 0.043431398824148815
-            vFUNTTEL: 0.17325933120207193
+            pFUNTTEL: 0.6623518433804886
+            vBC: 0.8289659398142969
+            vFUNTTEL: 0.4573936264232251
           ICMS20:
-            pFCP: 0.6519180951018382
-            pRedBC: 0.3353193347011243
+            pFCP: 0.8969578798196912
+            pRedBC: 0.08851374739011653
             CST: CST
-            vBC: 0.30937452626664474
-            vICMS: 0.08851374739011653
-            vICMSDeson: 0.7058770351582356
+            vBC: 0.7058770351582356
+            vICMS: 0.010263654006109402
+            vICMSDeson: 0.46523964329332457
             cBenef: cBenef
-            vFCP: 0.010263654006109402
-            pICMS: 0.7143538047012307
+            vFCP: 0.7740351818741174
+            pICMS: 0.6519180951018382
           ICMS40:
             CST: CST
-            vICMSDeson: 0.46523964329332457
+            vICMSDeson: 0.30205796992916245
             cBenef: cBenef
           ICMS51:
             CST: CST
-            vICMSDeson: 0.8969578798196912
+            vICMSDeson: 0.3057610024104934
             cBenef: cBenef
           COFINS:
-            vCOFINS: 0.6073898085781152
+            vCOFINS: 0.3901545264248647
+            CST: CST
+            vBC: 0.8251625748923757
+            pCOFINS: 0.4459605034958679
+          PIS:
+            vPIS: 0.6073898085781152
             CST: CST
             vBC: 0.5507386964179881
-            pCOFINS: 0.48631590810288405
-          PIS:
-            vPIS: 0.7933506881737151
-            CST: CST
-            vBC: 0.9702963800023566
-            pPIS: 0.05199002018724985
+            pPIS: 0.48631590810288405
           ICMSSN:
             indSN: 4
             CST: CST
         gProcRef:
-          qFaturada: 0.3502657762086401
-          vCOFINS: 0.3111202833403195
-          vItem: 1.8268702177058116
-          indDevolucao: 5
-          vProd: 9.183123594773994
-          vFCP: 0.9897492629215506
+          qFaturada: 0.04182561061793122
+          vCOFINS: 0.7835035282970783
+          vItem: 8.761432466225475
+          indDevolucao: 7
+          vProd: 5.299143560275359
+          vFCP: 0.04768402382624515
           gProc:
-          - tpProc: 5
+          - tpProc: 3
             nProcesso: nProcesso
-          - tpProc: 5
+          - tpProc: 3
             nProcesso: nProcesso
-          - tpProc: 5
+          - tpProc: 3
             nProcesso: nProcesso
-          - tpProc: 5
+          - tpProc: 3
             nProcesso: nProcesso
-          - tpProc: 5
+          - tpProc: 3
             nProcesso: nProcesso
-          vPIS: 0.3781412473076792
-          vBC: 0.5312489704336296
-          vICMS: 0.760686372309258
-          vDesc: 0.8761432466225476
-          vOutro: 0.04182561061793122
-          pICMS: 0.8378237410348691
+          vPIS: 0.5877124706116695
+          vBC: 0.3781412473076792
+          vICMS: 0.9897492629215506
+          vDesc: 0.5312489704336296
+          vOutro: 0.8378237410348691
+          pICMS: 0.3111202833403195
         nItemAnt: nItemAnt
         infAdProd: infAdProd
       properties:
@@ -15279,6 +16590,12 @@ components:
             \ INFORMADA APENAS NOS CASOS PREVISTOS DE NOTA ANTERIOR REFERENCIADA."
           nullable: true
           type: string
+        indNFComAntPapelFatCentral:
+          description: "Indicador de Nota anterior em papel no faturamento centralizado.\r\
+            \nInforma que a NFCom Anterior de Faturamento centralizado não é eletrô\
+            nica."
+          nullable: true
+          type: integer
         prod:
           $ref: '#/components/schemas/NfcomSefazProd'
         imposto:
@@ -15303,16 +16620,16 @@ components:
       description: Dados do Produto ou Serviço.
       example:
         uMed: 6
-        qFaturada: 0.8762042012749002
+        qFaturada: 0.35571952270680973
         cProd: cProd
         cClass: cClass
-        vItem: 9.018348186070783
-        indDevolucao: 1
-        vProd: 6.965117697638846
+        vItem: 6.965117697638846
+        indDevolucao: 6
+        vProd: 6.778324963048013
         xProd: xProd
         CNPJLD: CNPJLD
-        vDesc: 0.6438423552598547
-        vOutro: 0.35571952270680973
+        vDesc: 0.1284659006116532
+        vOutro: 0.288416212666878
         CFOP: CFOP
         dExpiracao: 2000-01-23
       properties:
@@ -15396,81 +16713,81 @@ components:
       description: Tributos incidentes no Produto ou Serviço.
       example:
         ICMS00:
-          pFCP: 0.5944895607614016
+          pFCP: 0.30937452626664474
           CST: CST
-          vBC: 0.288416212666878
-          vICMS: 0.6878052220127876
-          vFCP: 0.6704019297950036
-          pICMS: 0.6778324963048014
-        indSemCST: 0
+          vBC: 0.5944895607614016
+          vICMS: 0.3353193347011243
+          vFCP: 0.7143538047012307
+          pICMS: 0.6704019297950036
+        indSemCST: 7
         ICMS90:
-          pFCP: 0.5533258397034986
+          pFCP: 0.02025324113236393
           CST: CST
-          vBC: 0.7740351818741174
-          vICMS: 0.3057610024104934
-          vICMSDeson: 0.704836565559697
+          vBC: 0.704836565559697
+          vICMS: 0.32588565619047605
+          vICMSDeson: 0.40788458496667523
           cBenef: cBenef
-          vFCP: 0.32588565619047605
-          pICMS: 0.30205796992916245
+          vFCP: 0.6628464275087742
+          pICMS: 0.5533258397034986
         FUST:
-          vBC: 0.8251625748923757
-          vFUST: 0.3901545264248647
-          pFUST: 0.4459605034958679
+          vBC: 0.043431398824148815
+          vFUST: 0.17325933120207193
+          pFUST: 0.294096429748279
         retTrib:
-          vIRRF: 0.9254183946267839
-          vBCIRRF: 0.8863729185622827
-          vRetPIS: 0.8289659398142969
-          vRetCSLL: 0.4573936264232251
-          vRetCofins: 0.6623518433804886
+          vIRRF: 0.9183123594773993
+          vBCIRRF: 0.3502657762086401
+          vRetPIS: 0.8863729185622827
+          vRetCSLL: 0.18268702177058116
+          vRetCofins: 0.9254183946267839
         ICMSUFDest:
-        - vICMSUFDest: 0.7260521264802103
-          vICMSUFEmi: 0.9132027271330689
-          vFCPUFDest: 0.46789479890058483
-          cUFDest: 0
-          pFCPUFDest: 0.42587731081743563
-          vBCUFDest: 0.6628464275087742
-          pICMSUFDest: 0.10414449161182959
+        - vICMSUFDest: 0.9702963800023566
+          vICMSUFEmi: 0.05199002018724985
+          vFCPUFDest: 0.08774076871421566
+          cUFDest: 1
+          pFCPUFDest: 0.7260521264802103
+          vBCUFDest: 0.46789479890058483
+          pICMSUFDest: 0.9132027271330689
           cBenefUFDest: cBenefUFDest
-        - vICMSUFDest: 0.7260521264802103
-          vICMSUFEmi: 0.9132027271330689
-          vFCPUFDest: 0.46789479890058483
-          cUFDest: 0
-          pFCPUFDest: 0.42587731081743563
-          vBCUFDest: 0.6628464275087742
-          pICMSUFDest: 0.10414449161182959
+        - vICMSUFDest: 0.9702963800023566
+          vICMSUFEmi: 0.05199002018724985
+          vFCPUFDest: 0.08774076871421566
+          cUFDest: 1
+          pFCPUFDest: 0.7260521264802103
+          vBCUFDest: 0.46789479890058483
+          pICMSUFDest: 0.9132027271330689
           cBenefUFDest: cBenefUFDest
         FUNTTEL:
-          pFUNTTEL: 0.294096429748279
-          vBC: 0.043431398824148815
-          vFUNTTEL: 0.17325933120207193
+          pFUNTTEL: 0.6623518433804886
+          vBC: 0.8289659398142969
+          vFUNTTEL: 0.4573936264232251
         ICMS20:
-          pFCP: 0.6519180951018382
-          pRedBC: 0.3353193347011243
+          pFCP: 0.8969578798196912
+          pRedBC: 0.08851374739011653
           CST: CST
-          vBC: 0.30937452626664474
-          vICMS: 0.08851374739011653
-          vICMSDeson: 0.7058770351582356
+          vBC: 0.7058770351582356
+          vICMS: 0.010263654006109402
+          vICMSDeson: 0.46523964329332457
           cBenef: cBenef
-          vFCP: 0.010263654006109402
-          pICMS: 0.7143538047012307
+          vFCP: 0.7740351818741174
+          pICMS: 0.6519180951018382
         ICMS40:
           CST: CST
-          vICMSDeson: 0.46523964329332457
+          vICMSDeson: 0.30205796992916245
           cBenef: cBenef
         ICMS51:
           CST: CST
-          vICMSDeson: 0.8969578798196912
+          vICMSDeson: 0.3057610024104934
           cBenef: cBenef
         COFINS:
-          vCOFINS: 0.6073898085781152
+          vCOFINS: 0.3901545264248647
+          CST: CST
+          vBC: 0.8251625748923757
+          pCOFINS: 0.4459605034958679
+        PIS:
+          vPIS: 0.6073898085781152
           CST: CST
           vBC: 0.5507386964179881
-          pCOFINS: 0.48631590810288405
-        PIS:
-          vPIS: 0.7933506881737151
-          CST: CST
-          vBC: 0.9702963800023566
-          pPIS: 0.05199002018724985
+          pPIS: 0.48631590810288405
         ICMSSN:
           indSN: 4
           CST: CST
@@ -15512,12 +16829,12 @@ components:
     NfcomSefazICMS00:
       description: "Prestação sujeito à tributação normal do ICMS.\r\nTributada integralmente."
       example:
-        pFCP: 0.5944895607614016
+        pFCP: 0.30937452626664474
         CST: CST
-        vBC: 0.288416212666878
-        vICMS: 0.6878052220127876
-        vFCP: 0.6704019297950036
-        pICMS: 0.6778324963048014
+        vBC: 0.5944895607614016
+        vICMS: 0.3353193347011243
+        vFCP: 0.7143538047012307
+        pICMS: 0.6704019297950036
       properties:
         CST:
           description: "classificação Tributária do Serviço.\r\n* 00 - tributação\
@@ -15558,15 +16875,15 @@ components:
     NfcomSefazICMS20:
       description: Prestação sujeito à tributação com redução de BC do ICMS.
       example:
-        pFCP: 0.6519180951018382
-        pRedBC: 0.3353193347011243
+        pFCP: 0.8969578798196912
+        pRedBC: 0.08851374739011653
         CST: CST
-        vBC: 0.30937452626664474
-        vICMS: 0.08851374739011653
-        vICMSDeson: 0.7058770351582356
+        vBC: 0.7058770351582356
+        vICMS: 0.010263654006109402
+        vICMSDeson: 0.46523964329332457
         cBenef: cBenef
-        vFCP: 0.010263654006109402
-        pICMS: 0.7143538047012307
+        vFCP: 0.7740351818741174
+        pICMS: 0.6519180951018382
       properties:
         CST:
           description: "Classificação Tributária do serviço.\r\n* 20 - tributação\
@@ -15625,7 +16942,7 @@ components:
       description: "Tributação Isenta, Não tributada."
       example:
         CST: CST
-        vICMSDeson: 0.46523964329332457
+        vICMSDeson: 0.30205796992916245
         cBenef: cBenef
       properties:
         CST:
@@ -15652,7 +16969,7 @@ components:
         \ informações do ICMS diferido fica a critério de cada UF."
       example:
         CST: CST
-        vICMSDeson: 0.8969578798196912
+        vICMSDeson: 0.3057610024104934
         cBenef: cBenef
       properties:
         CST:
@@ -15677,14 +16994,14 @@ components:
     NfcomSefazICMS90:
       description: ICMS Outros.
       example:
-        pFCP: 0.5533258397034986
+        pFCP: 0.02025324113236393
         CST: CST
-        vBC: 0.7740351818741174
-        vICMS: 0.3057610024104934
-        vICMSDeson: 0.704836565559697
+        vBC: 0.704836565559697
+        vICMS: 0.32588565619047605
+        vICMSDeson: 0.40788458496667523
         cBenef: cBenef
-        vFCP: 0.32588565619047605
-        pICMS: 0.30205796992916245
+        vFCP: 0.6628464275087742
+        pICMS: 0.5533258397034986
       properties:
         CST:
           description: "Classificação Tributária do Serviço.\r\n* 90 - ICMS outros"
@@ -15750,13 +17067,13 @@ components:
     NfcomSefazICMSUFDest:
       description: Informações do ICMS de partilha com a UF destinatária.
       example:
-        vICMSUFDest: 0.7260521264802103
-        vICMSUFEmi: 0.9132027271330689
-        vFCPUFDest: 0.46789479890058483
-        cUFDest: 0
-        pFCPUFDest: 0.42587731081743563
-        vBCUFDest: 0.6628464275087742
-        pICMSUFDest: 0.10414449161182959
+        vICMSUFDest: 0.9702963800023566
+        vICMSUFEmi: 0.05199002018724985
+        vFCPUFDest: 0.08774076871421566
+        cUFDest: 1
+        pFCPUFDest: 0.7260521264802103
+        vBCUFDest: 0.46789479890058483
+        pICMSUFDest: 0.9132027271330689
         cBenefUFDest: cBenefUFDest
       properties:
         cUFDest:
@@ -15813,10 +17130,10 @@ components:
     NfcomSefazPIS:
       description: Dados do PIS.
       example:
-        vPIS: 0.7933506881737151
+        vPIS: 0.6073898085781152
         CST: CST
-        vBC: 0.9702963800023566
-        pPIS: 0.05199002018724985
+        vBC: 0.5507386964179881
+        pPIS: 0.48631590810288405
       properties:
         CST:
           description: "classificação Tributária do PIS.\r\n* 01 - Tributável com\
@@ -15850,10 +17167,10 @@ components:
     NfcomSefazCOFINS:
       description: Dados do COFINS.
       example:
-        vCOFINS: 0.6073898085781152
+        vCOFINS: 0.3901545264248647
         CST: CST
-        vBC: 0.5507386964179881
-        pCOFINS: 0.48631590810288405
+        vBC: 0.8251625748923757
+        pCOFINS: 0.4459605034958679
       properties:
         CST:
           description: "classificação Tributária do COFINS.\r\n* 01 - Tributável com\
@@ -15887,9 +17204,9 @@ components:
     NfcomSefazFUST:
       description: Dados do FUST.
       example:
-        vBC: 0.8251625748923757
-        vFUST: 0.3901545264248647
-        pFUST: 0.4459605034958679
+        vBC: 0.043431398824148815
+        vFUST: 0.17325933120207193
+        pFUST: 0.294096429748279
       properties:
         vBC:
           description: Valor da BC do FUST.
@@ -15914,9 +17231,9 @@ components:
     NfcomSefazFUNTTEL:
       description: Dados do FUNTTEL.
       example:
-        pFUNTTEL: 0.294096429748279
-        vBC: 0.043431398824148815
-        vFUNTTEL: 0.17325933120207193
+        pFUNTTEL: 0.6623518433804886
+        vBC: 0.8289659398142969
+        vFUNTTEL: 0.4573936264232251
       properties:
         vBC:
           description: Valor da BC do FUNTTEL.
@@ -15941,11 +17258,11 @@ components:
     NfcomSefazRetTrib:
       description: Grupo de informações de retenção de tributos federais.
       example:
-        vIRRF: 0.9254183946267839
-        vBCIRRF: 0.8863729185622827
-        vRetPIS: 0.8289659398142969
-        vRetCSLL: 0.4573936264232251
-        vRetCofins: 0.6623518433804886
+        vIRRF: 0.9183123594773993
+        vBCIRRF: 0.3502657762086401
+        vRetPIS: 0.8863729185622827
+        vRetCSLL: 0.18268702177058116
+        vRetCofins: 0.9254183946267839
       properties:
         vRetPIS:
           description: Valor do PIS retido.
@@ -15984,29 +17301,29 @@ components:
         \ preenchido quando houver processo judicial ou administrativo que altere\
         \ valores."
       example:
-        qFaturada: 0.3502657762086401
-        vCOFINS: 0.3111202833403195
-        vItem: 1.8268702177058116
-        indDevolucao: 5
-        vProd: 9.183123594773994
-        vFCP: 0.9897492629215506
+        qFaturada: 0.04182561061793122
+        vCOFINS: 0.7835035282970783
+        vItem: 8.761432466225475
+        indDevolucao: 7
+        vProd: 5.299143560275359
+        vFCP: 0.04768402382624515
         gProc:
-        - tpProc: 5
+        - tpProc: 3
           nProcesso: nProcesso
-        - tpProc: 5
+        - tpProc: 3
           nProcesso: nProcesso
-        - tpProc: 5
+        - tpProc: 3
           nProcesso: nProcesso
-        - tpProc: 5
+        - tpProc: 3
           nProcesso: nProcesso
-        - tpProc: 5
+        - tpProc: 3
           nProcesso: nProcesso
-        vPIS: 0.3781412473076792
-        vBC: 0.5312489704336296
-        vICMS: 0.760686372309258
-        vDesc: 0.8761432466225476
-        vOutro: 0.04182561061793122
-        pICMS: 0.8378237410348691
+        vPIS: 0.5877124706116695
+        vBC: 0.3781412473076792
+        vICMS: 0.9897492629215506
+        vDesc: 0.5312489704336296
+        vOutro: 0.8378237410348691
+        pICMS: 0.3111202833403195
       properties:
         vItem:
           description: "Valor unitário do item.\r\nInformar o valor sem a influência\
@@ -16083,7 +17400,7 @@ components:
     NfcomSefazGProc:
       description: Grupo identificador do Processo.
       example:
-        tpProc: 5
+        tpProc: 3
         nProcesso: nProcesso
       properties:
         tpProc:
@@ -16107,7 +17424,7 @@ components:
         dRef: 2000-01-23
         nProcesso: nProcesso
         nProtReclama: nProtReclama
-        tpRessarc: 7
+        tpRessarc: 2
         xObs: xObs
       properties:
         tpRessarc:
@@ -16145,24 +17462,24 @@ components:
     NfcomSefazTotal:
       description: Dados dos totais da NFCom.
       example:
-        vPIS: 0.04833312865174044
-        vCOFINS: 0.4518309517874244
+        vPIS: 0.4332304821875894
+        vCOFINS: 0.7203794749804894
         vRetTribTot:
-          vIRRF: 0.058919091925136
-          vRetPIS: 0.4332304821875894
-          vRetCSLL: 0.9386524999783381
-          vRetCofins: 0.27977867356748476
+          vIRRF: 0.4878987874226881
+          vRetPIS: 0.058919091925136
+          vRetCSLL: 0.6173804034172511
+          vRetCofins: 0.2535258963197524
         ICMSTot:
-          vBC: 0.3149790371425055
-          vICMS: 0.2380090174313445
-          vICMSDeson: 0.3804112695731078
-          vFCP: 0.8675064425986758
-        vDesc: 0.2535258963197524
-        vProd: 0.04768402382624515
-        vFUST: 0.7203794749804894
-        vOutro: 0.6173804034172511
-        vFUNTTEL: 0.035262192099236644
-        vNF: 0.4878987874226881
+          vBC: 0.8675064425986758
+          vICMS: 0.4518309517874244
+          vICMSDeson: 0.04833312865174044
+          vFCP: 0.035262192099236644
+        vDesc: 0.6966044574347761
+        vProd: 0.3804112695731078
+        vFUST: 0.9386524999783381
+        vOutro: 0.9806951670467936
+        vFUNTTEL: 0.27977867356748476
+        vNF: 0.13949519358941398
       properties:
         vProd:
           description: Valor Total dos produtos e serviços.
@@ -16223,10 +17540,10 @@ components:
     NfcomSefazICMSTot:
       description: Totais referentes ao ICMS.
       example:
-        vBC: 0.3149790371425055
-        vICMS: 0.2380090174313445
-        vICMSDeson: 0.3804112695731078
-        vFCP: 0.8675064425986758
+        vBC: 0.8675064425986758
+        vICMS: 0.4518309517874244
+        vICMSDeson: 0.04833312865174044
+        vFCP: 0.035262192099236644
       properties:
         vBC:
           description: BC do ICMS.
@@ -16257,10 +17574,10 @@ components:
     NfcomSefazVRetTribTot:
       description: Total da retenção de tributos federais.
       example:
-        vIRRF: 0.058919091925136
-        vRetPIS: 0.4332304821875894
-        vRetCSLL: 0.9386524999783381
-        vRetCofins: 0.27977867356748476
+        vIRRF: 0.4878987874226881
+        vRetPIS: 0.058919091925136
+        vRetCSLL: 0.6173804034172511
+        vRetCofins: 0.2535258963197524
       properties:
         vRetPIS:
           description: Valor do PIS retido.
@@ -16420,7 +17737,7 @@ components:
     NfcomSefazGFatCentral:
       description: Grupo de informações do Faturamento Centralizado.
       example:
-        cUF: 6
+        cUF: 1
         CNPJ: CNPJ
       properties:
         CNPJ:
@@ -16483,7 +17800,7 @@ components:
       description: Informações do Responsável Técnico pela emissão do DF-e.
       example:
         fone: fone
-        idCSRT: 979
+        idCSRT: 380
         CNPJ: CNPJ
         hashCSRT: hashCSRT
         xContato: xContato
@@ -22719,6 +24036,7 @@ components:
       - versaoModal
       type: object
     CteSefazRodo:
+      description: Informações do modal Rodoviário.
       example:
         RNTRC: RNTRC
         occ:
@@ -22857,6 +24175,7 @@ components:
       - UF
       type: object
     CteSefazAereo:
+      description: Informações do modal Aéreo.
       example:
         natCarga:
           cInfManu:
@@ -23053,6 +24372,7 @@ components:
       - uniAP
       type: object
     CteSefazFerrov:
+      description: Informações do modal Ferroviário.
       example:
         fluxo: fluxo
         trafMut:
@@ -23282,6 +24602,7 @@ components:
       - xMun
       type: object
     CteSefazAquav:
+      description: Informações do modal Aquaviário.
       example:
         nViag: nViag
         tpNav: 7
@@ -23523,6 +24844,7 @@ components:
       - chave
       type: object
     CteSefazDuto:
+      description: Informações do modal Dutoviário.
       example:
         dFim: 2000-01-23
         vTar: 0.04768402382624515
@@ -23549,6 +24871,7 @@ components:
       - dIni
       type: object
     CteSefazMultimodal:
+      description: Informações do Multimodal.
       example:
         seg:
           nApol: nApol
@@ -38765,6 +40088,7 @@ components:
       - versaoModal
       type: object
     MdfeSefazAereo:
+      description: Informações do modal Aéreo.
       example:
         nac: nac
         matr: matr
@@ -38823,6 +40147,7 @@ components:
       - nac
       type: object
     MdfeSefazRodo:
+      description: Informações do modal Rodoviário.
       example:
         infANTT:
           RNTRC: RNTRC
@@ -39828,6 +41153,7 @@ components:
       - nLacre
       type: object
     MdfeSefazAquav:
+      description: Informações do modal Aquaviário.
       example:
         cPrtEmb: cPrtEmb
         cPrtDest: cPrtDest
@@ -40080,6 +41406,7 @@ components:
       - tpUnidTranspVazia
       type: object
     MdfeSefazFerrov:
+      description: Informações do modal Ferroviário.
       example:
         trem:
           xDest: xDest
@@ -46881,6 +48208,335 @@ components:
           type: string
         tipo_evento:
           type: string
+      type: object
+    DfeContribuinteInfCons:
+      description: Dados do Resultado do Dados do Pedido de Consulta de cadastro de
+        contribuintes.
+      example:
+        uf: uf
+        codigo_status: 80
+        cpf: cpf
+        informacoes_cadastrais:
+        - cnae: cnae
+          endereco:
+            fone: fone
+            nome_municipio: nome_municipio
+            uf: uf
+            complemento: complemento
+            numero: numero
+            logradouro: logradouro
+            bairro: bairro
+            codigo_pais: codigo_pais
+            codigo_municipio: codigo_municipio
+            cep: cep
+            pais: pais
+          situacao_cadastral: 1
+          indicador_cte: 5
+          data_situacao_cadastral: 2000-01-23
+          cnpj: cnpj
+          nome_razao_social: nome_razao_social
+          indicador_nfe: 5
+          ie_atual: ie_atual
+          uf: uf
+          data_inicio_atividade: 2000-01-23
+          data_fim_atividade: 2000-01-23
+          cpf: cpf
+          ie_unica: ie_unica
+          ie: ie
+          nome_fantasia: nome_fantasia
+          regime_apuracao_icms: regime_apuracao_icms
+        - cnae: cnae
+          endereco:
+            fone: fone
+            nome_municipio: nome_municipio
+            uf: uf
+            complemento: complemento
+            numero: numero
+            logradouro: logradouro
+            bairro: bairro
+            codigo_pais: codigo_pais
+            codigo_municipio: codigo_municipio
+            cep: cep
+            pais: pais
+          situacao_cadastral: 1
+          indicador_cte: 5
+          data_situacao_cadastral: 2000-01-23
+          cnpj: cnpj
+          nome_razao_social: nome_razao_social
+          indicador_nfe: 5
+          ie_atual: ie_atual
+          uf: uf
+          data_inicio_atividade: 2000-01-23
+          data_fim_atividade: 2000-01-23
+          cpf: cpf
+          ie_unica: ie_unica
+          ie: ie
+          nome_fantasia: nome_fantasia
+          regime_apuracao_icms: regime_apuracao_icms
+        data_consulta: 2000-01-23T04:56:07.000+00:00
+        cnpj: cnpj
+        uf_atendimento: 6
+        ie: ie
+        motivo_status: motivo_status
+      properties:
+        codigo_status:
+          description: Código do status da mensagem enviada.
+          maximum: 999
+          minimum: 0
+          nullable: true
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do serviço solicitado.
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        uf:
+          description: "sigla da UF consultada, utilizar SU para SUFRAMA."
+          nullable: true
+          type: string
+        ie:
+          description: Inscrição Estadual do contribuinte.
+          nullable: true
+          type: string
+        cnpj:
+          description: CNPJ do contribuinte.
+          nullable: true
+          type: string
+        cpf:
+          description: CPF do contribuinte.
+          nullable: true
+          type: string
+        data_consulta:
+          description: Data da Consulta.
+          format: date-time
+          nullable: true
+          type: string
+        uf_atendimento:
+          description: código da UF de atendimento.
+          nullable: true
+          type: integer
+        informacoes_cadastrais:
+          items:
+            $ref: '#/components/schemas/DfeContribuinteInfCad'
+          type: array
+      required:
+      - codigo_status
+      - data_consulta
+      - motivo_status
+      - uf
+      - uf_atendimento
+      type: object
+    DfeContribuinteInfCad:
+      description: Informações cadastrais do contribuinte consultado.
+      example:
+        cnae: cnae
+        endereco:
+          fone: fone
+          nome_municipio: nome_municipio
+          uf: uf
+          complemento: complemento
+          numero: numero
+          logradouro: logradouro
+          bairro: bairro
+          codigo_pais: codigo_pais
+          codigo_municipio: codigo_municipio
+          cep: cep
+          pais: pais
+        situacao_cadastral: 1
+        indicador_cte: 5
+        data_situacao_cadastral: 2000-01-23
+        cnpj: cnpj
+        nome_razao_social: nome_razao_social
+        indicador_nfe: 5
+        ie_atual: ie_atual
+        uf: uf
+        data_inicio_atividade: 2000-01-23
+        data_fim_atividade: 2000-01-23
+        cpf: cpf
+        ie_unica: ie_unica
+        ie: ie
+        nome_fantasia: nome_fantasia
+        regime_apuracao_icms: regime_apuracao_icms
+      properties:
+        ie:
+          description: Número da Inscrição Estadual do contribuinte.
+          nullable: true
+          type: string
+        cnpj:
+          description: Número do CNPJ  do contribuinte.
+          nullable: true
+          type: string
+        cpf:
+          description: Número do CPF do contribuinte.
+          nullable: true
+          type: string
+        uf:
+          description: "Sigla da UF de localização do contribuinte. Em algumas situaç\
+            ões, a UF de localização pode ser diferente da UF consultada. Ex. IE de\
+            \ Substituto Tributário."
+          nullable: true
+          type: string
+        situacao_cadastral:
+          description: "Situação cadastral do contribuinte:\r\n* 0 - não habilitado\r\
+            \n* 1 - habilitado"
+          nullable: true
+          type: integer
+        indicador_nfe:
+          description: "Indicador de contribuinte credenciado a emitir NF-e.\r\n*\
+            \ 0 - Não credenciado para emissão da NF-e\r\n* 1 - Credenciado\r\n* 2\
+            \ - Credenciado com obrigatoriedade para todas operações\r\n* 3 - Credenciado\
+            \ com obrigatoriedade parcial\r\n* 4 - a SEFAZ não fornece a informaçã\
+            o\r\nEste indicador significa apenas que o contribuinte é credenciado\
+            \ para emitir NF-e na SEFAZ consultada."
+          nullable: true
+          type: integer
+        indicador_cte:
+          description: "Indicador de contribuinte credenciado a emitir CT-e.\r\n*\
+            \ 0 - Não credenciado para emissão da CT-e\r\n* 1 - Credenciado\r\n* 2\
+            \ - Credenciado com obrigatoriedade para todas operações\r\n* 3 - Credenciado\
+            \ com obrigatoriedade parcial\r\n* 4 - a SEFAZ não fornece a informaçã\
+            o\r\nEste indicador significa apenas que o contribuinte é credenciado\
+            \ para emitir CT-e na SEFAZ consultada."
+          nullable: true
+          type: integer
+        nome_razao_social:
+          description: Razão Social ou nome do contribuinte.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        nome_fantasia:
+          description: Razão Social ou nome do contribuinte.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        regime_apuracao_icms:
+          description: Regime de Apuração do ICMS.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        cnae:
+          description: CNAE Fiscal do contribuinte.
+          nullable: true
+          type: string
+        data_inicio_atividade:
+          description: Data de início de atividades do contribuinte.
+          format: date
+          nullable: true
+          type: string
+        data_situacao_cadastral:
+          description: Data da última modificação da situação cadastral do contribuinte.
+          format: date
+          nullable: true
+          type: string
+        data_fim_atividade:
+          description: Data de ocorrência da baixa do contribuinte.
+          format: date
+          nullable: true
+          type: string
+        ie_unica:
+          description: Inscrição Estadual Única.
+          nullable: true
+          type: string
+        ie_atual:
+          description: Inscrição Estadual atual.
+          nullable: true
+          type: string
+        endereco:
+          $ref: '#/components/schemas/DfeContribuinteEndereco'
+      required:
+      - ie
+      - indicador_cte
+      - indicador_nfe
+      - nome_razao_social
+      - situacao_cadastral
+      - uf
+      type: object
+    DfeContribuinteEndereco:
+      description: Dados do endereço.
+      example:
+        fone: fone
+        nome_municipio: nome_municipio
+        uf: uf
+        complemento: complemento
+        numero: numero
+        logradouro: logradouro
+        bairro: bairro
+        codigo_pais: codigo_pais
+        codigo_municipio: codigo_municipio
+        cep: cep
+        pais: pais
+      properties:
+        logradouro:
+          description: Logradouro.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        numero:
+          description: Número.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        complemento:
+          description: Complemento.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        bairro:
+          description: Bairro.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        codigo_municipio:
+          description: "Código do município (utilizar a tabela do IBGE), informar\
+            \ 9999999 para operações com o exterior."
+          nullable: true
+          type: string
+        nome_municipio:
+          description: "Nome do município, informar EXTERIOR para operações com o\
+            \ exterior."
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        uf:
+          description: "Sigla da UF, informar EX para operações com o exterior."
+          nullable: true
+          type: string
+        cep:
+          description: CEP.
+          nullable: true
+          type: string
+        codigo_pais:
+          description: Código de Pais.
+          nullable: true
+          type: string
+        pais:
+          description: Nome do país.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        fone:
+          description: "Telefone, preencher com Código DDD + número do telefone ,\
+            \ nas operações com exterior é permtido informar o código do país + có\
+            digo da localidade + número do telefone."
+          nullable: true
+          type: string
+      required:
+      - bairro
+      - codigo_municipio
+      - logradouro
+      - nome_municipio
+      - numero
+      - uf
       type: object
     NfePedidoEmissaoLote:
       example:
@@ -79173,8 +80829,9 @@ components:
         CRT:
           description: "Código de Regime Tributário.\r\nEste campo será obrigatoriamente\
             \ preenchido com:\r\n* 1 - Simples Nacional\r\n* 2 - Simples Nacional\
-            \ - excesso de sublimite de receita bruta\r\n* 3 - Regime Normal\r\n\r\
-            \n*Caso não seja informado, será utilizado o do cadastro da empresa.*"
+            \ - excesso de sublimite de receita bruta\r\n* 3 - Regime Normal\r\n*\
+            \ 4 - Simples Nacional - Microempreendedor individual - MEI\r\n\r\n*Caso\
+            \ não seja informado, será utilizado o do cadastro da empresa.*"
           nullable: true
           type: integer
       type: object
@@ -79506,8 +81163,8 @@ components:
       - xMun
       type: object
     NfeSefazLocal:
-      description: Identificação do Local de Entrega (informar apenas quando for diferente
-        do endereço do destinatário).
+      description: Identificação do local de retirada/entrega (informar apenas quando
+        for diferente do endereço do remetente/destinatário)
       example:
         cPais: cPais
         xLgr: xLgr
@@ -83298,7 +84955,7 @@ components:
           nullable: true
           type: integer
         CST:
-          description: "Tributção pelo ICMS\r\n* 20 - Com redução de base de cálculo"
+          description: Tributação pelo ICMS 51 - Tributação com Diferimento.
           nullable: true
           type: string
         modBC:
@@ -84610,8 +86267,8 @@ components:
       - orig
       type: object
     NfeSefazICMSSN900:
-      description: "Tributação do ICMS pelo SIMPLES NACIONAL, CRT=1 - Simples Nacional\
-        \ e CSOSN=900 (v2.0)."
+      description: "Tributação do ICMS pelo SIMPLES NACIONAL, CRT=1 - Simples Nacional,\
+        \ CRT=4 - MEI e CSOSN=900 (v2.0)."
       example:
         vBCST: 0.0391063602337155
         vBCFCPST: 0.2969165085851522
@@ -86288,7 +87945,7 @@ components:
       - vServ
       type: object
     NfeSefazVeiculo:
-      description: Dados do reboque/Dolly (v2.0).
+      description: Dados do veículo.
       example:
         UF: UF
         RNTC: RNTC
@@ -88184,6 +89841,9 @@ x-tagGroups:
   - Mdfe
   - Nfe
   - Nfce
+- name: Distribuição DF-e
+  tags:
+  - Distribuição NF-e
 - name: Auxiliares
   tags:
   - Cnpj

@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.MdfeSefazFerrov
+Informações do modal Ferroviário.
 
 ## Propriedades
 

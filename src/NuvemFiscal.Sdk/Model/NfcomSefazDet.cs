@@ -39,12 +39,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="nItem">Número do item da NFCom. (required).</param>
         /// <param name="chNFComAnt">Chave de Acesso da NFCom anterior.  Informar chave de acesso de referencia anterior  TAG OPCIONAL, DEVE SER INFORMADA APENAS NOS CASOS PREVISTOS DE NOTA ANTERIOR REFERENCIADA..</param>
         /// <param name="nItemAnt">Número do item da NFCom anterior.  Informar nro do item da chave de acesso de referencia anterior  TAG OPCIONAL, DEVE SER INFORMADA APENAS NOS CASOS PREVISTOS DE NOTA ANTERIOR REFERENCIADA..</param>
+        /// <param name="indNFComAntPapelFatCentral">Indicador de Nota anterior em papel no faturamento centralizado.  Informa que a NFCom Anterior de Faturamento centralizado não é eletrônica..</param>
         /// <param name="prod">prod (required).</param>
         /// <param name="imposto">imposto (required).</param>
         /// <param name="gProcRef">gProcRef.</param>
         /// <param name="gRessarc">gRessarc.</param>
         /// <param name="infAdProd">Informações adicionais do produto (norma referenciada, informações complementares, etc)..</param>
-        public NfcomSefazDet(int? nItem = default(int?), string chNFComAnt = default(string), string nItemAnt = default(string), NfcomSefazProd prod = default(NfcomSefazProd), NfcomSefazImposto imposto = default(NfcomSefazImposto), NfcomSefazGProcRef gProcRef = default(NfcomSefazGProcRef), NfcomSefazGRessarc gRessarc = default(NfcomSefazGRessarc), string infAdProd = default(string))
+        public NfcomSefazDet(int? nItem = default(int?), string chNFComAnt = default(string), string nItemAnt = default(string), int? indNFComAntPapelFatCentral = default(int?), NfcomSefazProd prod = default(NfcomSefazProd), NfcomSefazImposto imposto = default(NfcomSefazImposto), NfcomSefazGProcRef gProcRef = default(NfcomSefazGProcRef), NfcomSefazGRessarc gRessarc = default(NfcomSefazGRessarc), string infAdProd = default(string))
         {
             // to ensure "nItem" is required (not null)
             if (nItem == null)
@@ -66,6 +67,7 @@ namespace NuvemFiscal.Sdk.Model
             this.imposto = imposto;
             this.chNFComAnt = chNFComAnt;
             this.nItemAnt = nItemAnt;
+            this.indNFComAntPapelFatCentral = indNFComAntPapelFatCentral;
             this.gProcRef = gProcRef;
             this.gRessarc = gRessarc;
             this.infAdProd = infAdProd;
@@ -91,6 +93,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Número do item da NFCom anterior.  Informar nro do item da chave de acesso de referencia anterior  TAG OPCIONAL, DEVE SER INFORMADA APENAS NOS CASOS PREVISTOS DE NOTA ANTERIOR REFERENCIADA.</value>
         [DataMember(Name = "nItemAnt", EmitDefaultValue = true)]
         public string nItemAnt { get; set; }
+
+        /// <summary>
+        /// Indicador de Nota anterior em papel no faturamento centralizado.  Informa que a NFCom Anterior de Faturamento centralizado não é eletrônica.
+        /// </summary>
+        /// <value>Indicador de Nota anterior em papel no faturamento centralizado.  Informa que a NFCom Anterior de Faturamento centralizado não é eletrônica.</value>
+        [DataMember(Name = "indNFComAntPapelFatCentral", EmitDefaultValue = true)]
+        public int? indNFComAntPapelFatCentral { get; set; }
 
         /// <summary>
         /// Gets or Sets prod
@@ -134,6 +143,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  nItem: ").Append(nItem).Append("\n");
             sb.Append("  chNFComAnt: ").Append(chNFComAnt).Append("\n");
             sb.Append("  nItemAnt: ").Append(nItemAnt).Append("\n");
+            sb.Append("  indNFComAntPapelFatCentral: ").Append(indNFComAntPapelFatCentral).Append("\n");
             sb.Append("  prod: ").Append(prod).Append("\n");
             sb.Append("  imposto: ").Append(imposto).Append("\n");
             sb.Append("  gProcRef: ").Append(gProcRef).Append("\n");
@@ -190,6 +200,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.nItemAnt.Equals(input.nItemAnt))
                 ) && 
                 (
+                    this.indNFComAntPapelFatCentral == input.indNFComAntPapelFatCentral ||
+                    (this.indNFComAntPapelFatCentral != null &&
+                    this.indNFComAntPapelFatCentral.Equals(input.indNFComAntPapelFatCentral))
+                ) && 
+                (
                     this.prod == input.prod ||
                     (this.prod != null &&
                     this.prod.Equals(input.prod))
@@ -236,6 +251,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.nItemAnt != null)
                 {
                     hashCode = (hashCode * 59) + this.nItemAnt.GetHashCode();
+                }
+                if (this.indNFComAntPapelFatCentral != null)
+                {
+                    hashCode = (hashCode * 59) + this.indNFComAntPapelFatCentral.GetHashCode();
                 }
                 if (this.prod != null)
                 {

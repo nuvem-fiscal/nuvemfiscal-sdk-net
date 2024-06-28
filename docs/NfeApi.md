@@ -21,6 +21,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**CancelarNfe**](NfeApi.md#cancelarnfe) | **POST** /nfe/{id}/cancelamento | Cancelar uma NF-e autorizada |
 | [**ConsultarCancelamentoNfe**](NfeApi.md#consultarcancelamentonfe) | **GET** /nfe/{id}/cancelamento | Consultar o cancelamento da NF-e |
 | [**ConsultarCartaCorrecaoNfe**](NfeApi.md#consultarcartacorrecaonfe) | **GET** /nfe/{id}/carta-correcao | Consultar a solicitação de correção da NF-e |
+| [**ConsultarContribuinteNfe**](NfeApi.md#consultarcontribuintenfe) | **GET** /nfe/cadastro-contribuinte | Consultar contribuinte |
 | [**ConsultarEventoNfe**](NfeApi.md#consultareventonfe) | **GET** /nfe/eventos/{id} | Consultar evento |
 | [**ConsultarInutilizacaoNfe**](NfeApi.md#consultarinutilizacaonfe) | **GET** /nfe/inutilizacoes/{id} | Consultar a inutilização de sequência de numeração |
 | [**ConsultarLoteNfe**](NfeApi.md#consultarlotenfe) | **GET** /nfe/lotes/{id} | Consultar lote de NF-e |
@@ -1747,6 +1748,114 @@ catch (ApiException e)
 ### Tipo de retorno
 
 [**DfeCartaCorrecao**](DfeCartaCorrecao.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="consultarcontribuintenfe"></a>
+# **ConsultarContribuinteNfe**
+> DfeContribuinteInfCons ConsultarContribuinteNfe (string cpfCnpj, string argumento, string documento, string uf = null)
+
+Consultar contribuinte
+
+Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ConsultarContribuinteNfeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfeApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.
+            var argumento = "argumento_example";  // string | Argumento de pesquisa.    Valores válidos:  * `CNPJ`  * `CPF`  * `IE`
+            var documento = "documento_example";  // string | Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).
+            var uf = "uf_example";  // string | Sigla da UF consultada.     Utilize `SU` para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional) 
+
+            try
+            {
+                // Consultar contribuinte
+                DfeContribuinteInfCons result = apiInstance.ConsultarContribuinteNfe(cpfCnpj, argumento, documento, uf);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfeApi.ConsultarContribuinteNfe: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ConsultarContribuinteNfeWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Consultar contribuinte
+    ApiResponse<DfeContribuinteInfCons> response = apiInstance.ConsultarContribuinteNfeWithHttpInfo(cpfCnpj, argumento, documento, uf);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfeApi.ConsultarContribuinteNfeWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*. |  |
+| **argumento** | **string** | Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60; |  |
+| **documento** | **string** | Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual). |  |
+| **uf** | **string** | Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* | [optional]  |
+
+### Tipo de retorno
+
+[**DfeContribuinteInfCons**](DfeContribuinteInfCons.md)
 
 ### Autorização
 

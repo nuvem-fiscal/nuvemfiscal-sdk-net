@@ -281,15 +281,15 @@ namespace NuvemFiscal.Sdk.Model
             }
 
             // hash115 (string) maxLength
-            if (this.hash115 != null && this.hash115.Length > 32)
+            if (this.hash115 != null && this.hash115.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hash115, length must be less than 32.", new [] { "hash115" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hash115, length must be less than 44.", new [] { "hash115" });
             }
 
             // hash115 (string) minLength
-            if (this.hash115 != null && this.hash115.Length < 32)
+            if (this.hash115 != null && this.hash115.Length < 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hash115, length must be greater than 32.", new [] { "hash115" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hash115, length must be greater than 44.", new [] { "hash115" });
             }
 
             yield break;

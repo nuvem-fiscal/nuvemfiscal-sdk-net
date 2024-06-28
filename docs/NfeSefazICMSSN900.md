@@ -1,5 +1,5 @@
 # NuvemFiscal.Sdk.Model.NfeSefazICMSSN900
-Tributação do ICMS pelo SIMPLES NACIONAL, CRT=1 - Simples Nacional e CSOSN=900 (v2.0).
+Tributação do ICMS pelo SIMPLES NACIONAL, CRT=1 - Simples Nacional, CRT=4 - MEI e CSOSN=900 (v2.0).
 
 ## Propriedades
 

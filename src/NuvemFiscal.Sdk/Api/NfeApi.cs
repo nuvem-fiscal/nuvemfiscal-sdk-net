@@ -364,6 +364,33 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>ApiResponse of DfeCartaCorrecao</returns>
         ApiResponse<DfeCartaCorrecao> ConsultarCartaCorrecaoNfeWithHttpInfo(string id);
         /// <summary>
+        /// Consultar contribuinte
+        /// </summary>
+        /// <remarks>
+        /// Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <returns>DfeContribuinteInfCons</returns>
+        DfeContribuinteInfCons ConsultarContribuinteNfe(string cpfCnpj, string argumento, string documento, string uf = default(string));
+
+        /// <summary>
+        /// Consultar contribuinte
+        /// </summary>
+        /// <remarks>
+        /// Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <returns>ApiResponse of DfeContribuinteInfCons</returns>
+        ApiResponse<DfeContribuinteInfCons> ConsultarContribuinteNfeWithHttpInfo(string cpfCnpj, string argumento, string documento, string uf = default(string));
+        /// <summary>
         /// Consultar evento
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1077,6 +1104,35 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DfeCartaCorrecao)</returns>
         System.Threading.Tasks.Task<ApiResponse<DfeCartaCorrecao>> ConsultarCartaCorrecaoNfeWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Consultar contribuinte
+        /// </summary>
+        /// <remarks>
+        /// Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DfeContribuinteInfCons</returns>
+        System.Threading.Tasks.Task<DfeContribuinteInfCons> ConsultarContribuinteNfeAsync(string cpfCnpj, string argumento, string documento, string uf = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Consultar contribuinte
+        /// </summary>
+        /// <remarks>
+        /// Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DfeContribuinteInfCons)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DfeContribuinteInfCons>> ConsultarContribuinteNfeWithHttpInfoAsync(string cpfCnpj, string argumento, string documento, string uf = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Consultar evento
         /// </summary>
@@ -4078,6 +4134,183 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConsultarCartaCorrecaoNfe", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Consultar contribuinte Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <returns>DfeContribuinteInfCons</returns>
+        public DfeContribuinteInfCons ConsultarContribuinteNfe(string cpfCnpj, string argumento, string documento, string uf = default(string))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeContribuinteInfCons> localVarResponse = ConsultarContribuinteNfeWithHttpInfo(cpfCnpj, argumento, documento, uf);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Consultar contribuinte Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <returns>ApiResponse of DfeContribuinteInfCons</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<DfeContribuinteInfCons> ConsultarContribuinteNfeWithHttpInfo(string cpfCnpj, string argumento, string documento, string uf = default(string))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling NfeApi->ConsultarContribuinteNfe");
+
+            // verify the required parameter 'argumento' is set
+            if (argumento == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'argumento' when calling NfeApi->ConsultarContribuinteNfe");
+
+            // verify the required parameter 'documento' is set
+            if (documento == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'documento' when calling NfeApi->ConsultarContribuinteNfe");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            if (uf != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "uf", uf));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "argumento", argumento));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "documento", documento));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<DfeContribuinteInfCons>("/nfe/cadastro-contribuinte", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConsultarContribuinteNfe", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Consultar contribuinte Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DfeContribuinteInfCons</returns>
+        public async System.Threading.Tasks.Task<DfeContribuinteInfCons> ConsultarContribuinteNfeAsync(string cpfCnpj, string argumento, string documento, string uf = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<DfeContribuinteInfCons> localVarResponse = await ConsultarContribuinteNfeWithHttpInfoAsync(cpfCnpj, argumento, documento, uf, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Consultar contribuinte Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS da unidade federada.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.    *Utilize o valor sem máscara*.</param>
+        /// <param name="argumento">Argumento de pesquisa.    Valores válidos:  * &#x60;CNPJ&#x60;  * &#x60;CPF&#x60;  * &#x60;IE&#x60;</param>
+        /// <param name="documento">Documento a ser consultado (CNPJ, CPF ou Inscrição Estadual).</param>
+        /// <param name="uf">Sigla da UF consultada.     Utilize &#x60;SU&#x60; para SUFRAMA.    *Caso não seja informada, será utilizada a UF da empresa.* (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DfeContribuinteInfCons)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DfeContribuinteInfCons>> ConsultarContribuinteNfeWithHttpInfoAsync(string cpfCnpj, string argumento, string documento, string uf = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling NfeApi->ConsultarContribuinteNfe");
+
+            // verify the required parameter 'argumento' is set
+            if (argumento == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'argumento' when calling NfeApi->ConsultarContribuinteNfe");
+
+            // verify the required parameter 'documento' is set
+            if (documento == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'documento' when calling NfeApi->ConsultarContribuinteNfe");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "cpf_cnpj", cpfCnpj));
+            if (uf != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "uf", uf));
+            }
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "argumento", argumento));
+            localVarRequestOptions.QueryParameters.Add(NuvemFiscal.Sdk.Client.ClientUtils.ParameterToMultiMap("", "documento", documento));
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<DfeContribuinteInfCons>("/nfe/cadastro-contribuinte", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConsultarContribuinteNfe", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

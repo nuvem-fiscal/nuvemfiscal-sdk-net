@@ -1,5 +1,5 @@
 # NuvemFiscal.Sdk.Model.Endereco
-Dados de endereço.
+Dados de endereço do prestador.
 
 ## Propriedades
 

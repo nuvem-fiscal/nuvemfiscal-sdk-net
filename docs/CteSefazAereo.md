@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazAereo
+Informações do modal Aéreo.
 
 ## Propriedades
 

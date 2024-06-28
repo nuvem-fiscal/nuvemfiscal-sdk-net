@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazDuto
+Informações do modal Dutoviário.
 
 ## Propriedades
 

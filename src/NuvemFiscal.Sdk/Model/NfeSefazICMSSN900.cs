@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Tributação do ICMS pelo SIMPLES NACIONAL, CRT&#x3D;1 - Simples Nacional e CSOSN&#x3D;900 (v2.0).
+    /// Tributação do ICMS pelo SIMPLES NACIONAL, CRT&#x3D;1 - Simples Nacional, CRT&#x3D;4 - MEI e CSOSN&#x3D;900 (v2.0).
     /// </summary>
     [DataContract(Name = "NfeSefazICMSSN900")]
     public partial class NfeSefazICMSSN900 : IEquatable<NfeSefazICMSSN900>, IValidatableObject

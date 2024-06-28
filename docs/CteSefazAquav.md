@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazAquav
+Informações do modal Aquaviário.
 
 ## Propriedades
 

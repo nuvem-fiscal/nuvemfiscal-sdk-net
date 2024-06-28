@@ -1,4 +1,5 @@
 # NuvemFiscal.Sdk.Model.CteSefazMultimodal
+Informações do Multimodal.
 
 ## Propriedades
 

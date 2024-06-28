@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Dados do reboque/Dolly (v2.0).
+    /// Dados do veículo.
     /// </summary>
     [DataContract(Name = "NfeSefazVeiculo")]
     public partial class NfeSefazVeiculo : IEquatable<NfeSefazVeiculo>, IValidatableObject

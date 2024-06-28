@@ -31,28 +31,26 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NfcomSefazGCofat" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected NfcomSefazGCofat() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NfcomSefazGCofat" /> class.
-        /// </summary>
-        /// <param name="chNFComLocal">Chave de acesso da NFCom emitida pela Operadora Local. (required).</param>
-        public NfcomSefazGCofat(string chNFComLocal = default(string))
+        /// <param name="chNFComLocal">Chave de acesso da NFCom emitida pela Operadora Local..</param>
+        /// <param name="gNF">gNF.</param>
+        public NfcomSefazGCofat(string chNFComLocal = default(string), NfcomSefazGCofatGNF gNF = default(NfcomSefazGCofatGNF))
         {
-            // to ensure "chNFComLocal" is required (not null)
-            if (chNFComLocal == null)
-            {
-                throw new ArgumentNullException("chNFComLocal is a required property for NfcomSefazGCofat and cannot be null");
-            }
             this.chNFComLocal = chNFComLocal;
+            this.gNF = gNF;
         }
 
         /// <summary>
         /// Chave de acesso da NFCom emitida pela Operadora Local.
         /// </summary>
         /// <value>Chave de acesso da NFCom emitida pela Operadora Local.</value>
-        [DataMember(Name = "chNFComLocal", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "chNFComLocal", EmitDefaultValue = true)]
         public string chNFComLocal { get; set; }
+
+        /// <summary>
+        /// Gets or Sets gNF
+        /// </summary>
+        [DataMember(Name = "gNF", EmitDefaultValue = false)]
+        public NfcomSefazGCofatGNF gNF { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,6 +61,7 @@ namespace NuvemFiscal.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class NfcomSefazGCofat {\n");
             sb.Append("  chNFComLocal: ").Append(chNFComLocal).Append("\n");
+            sb.Append("  gNF: ").Append(gNF).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,6 +101,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.chNFComLocal == input.chNFComLocal ||
                     (this.chNFComLocal != null &&
                     this.chNFComLocal.Equals(input.chNFComLocal))
+                ) && 
+                (
+                    this.gNF == input.gNF ||
+                    (this.gNF != null &&
+                    this.gNF.Equals(input.gNF))
                 );
         }
 
@@ -117,6 +121,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.chNFComLocal != null)
                 {
                     hashCode = (hashCode * 59) + this.chNFComLocal.GetHashCode();
+                }
+                if (this.gNF != null)
+                {
+                    hashCode = (hashCode * 59) + this.gNF.GetHashCode();
                 }
                 return hashCode;
             }

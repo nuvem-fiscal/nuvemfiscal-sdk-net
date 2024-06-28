@@ -63,7 +63,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigNfe" /> class.
         /// </summary>
-        /// <param name="cRT">Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal..</param>
+        /// <param name="cRT">Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal;  * 4 - Simples Nacional - Microempreendedor individual (MEI)..</param>
         /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
         public EmpresaConfigNfe(int cRT = default(int), AmbienteEnum ambiente = default(AmbienteEnum))
         {
@@ -72,9 +72,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal.
+        /// Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal;  * 4 - Simples Nacional - Microempreendedor individual (MEI).
         /// </summary>
-        /// <value>Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal.</value>
+        /// <value>Código de Regime Tributário.  Este campo será preenchido com:  * 1 – Simples Nacional;  * 2 – Simples Nacional – excesso de sublimite de receita bruta;  * 3 – Regime Normal;  * 4 - Simples Nacional - Microempreendedor individual (MEI).</value>
         [DataMember(Name = "CRT", EmitDefaultValue = false)]
         public int CRT { get; set; }
 
