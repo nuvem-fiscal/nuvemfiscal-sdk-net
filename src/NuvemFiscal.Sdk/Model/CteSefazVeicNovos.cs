@@ -247,60 +247,60 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // chassi (string) maxLength
             if (this.chassi != null && this.chassi.Length > 17)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chassi, length must be less than 17.", new [] { "chassi" });
+                yield return new ValidationResult("Invalid value for chassi, length must be less than 17.", new [] { "chassi" });
             }
 
             // cCor (string) maxLength
             if (this.cCor != null && this.cCor.Length > 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCor, length must be less than 4.", new [] { "cCor" });
+                yield return new ValidationResult("Invalid value for cCor, length must be less than 4.", new [] { "cCor" });
             }
 
             // cCor (string) minLength
             if (this.cCor != null && this.cCor.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cCor, length must be greater than 1.", new [] { "cCor" });
+                yield return new ValidationResult("Invalid value for cCor, length must be greater than 1.", new [] { "cCor" });
             }
 
             // xCor (string) maxLength
             if (this.xCor != null && this.xCor.Length > 40)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCor, length must be less than 40.", new [] { "xCor" });
+                yield return new ValidationResult("Invalid value for xCor, length must be less than 40.", new [] { "xCor" });
             }
 
             // xCor (string) minLength
             if (this.xCor != null && this.xCor.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCor, length must be greater than 1.", new [] { "xCor" });
+                yield return new ValidationResult("Invalid value for xCor, length must be greater than 1.", new [] { "xCor" });
             }
 
             // cMod (string) maxLength
             if (this.cMod != null && this.cMod.Length > 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cMod, length must be less than 6.", new [] { "cMod" });
+                yield return new ValidationResult("Invalid value for cMod, length must be less than 6.", new [] { "cMod" });
             }
 
             // cMod (string) minLength
             if (this.cMod != null && this.cMod.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cMod, length must be greater than 1.", new [] { "cMod" });
+                yield return new ValidationResult("Invalid value for cMod, length must be greater than 1.", new [] { "cMod" });
             }
 
             // vUnit (decimal?) minimum
             if (this.vUnit < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vUnit, must be a value greater than or equal to 0.", new [] { "vUnit" });
+                yield return new ValidationResult("Invalid value for vUnit, must be a value greater than or equal to 0.", new [] { "vUnit" });
             }
 
             // vFrete (decimal?) minimum
             if (this.vFrete < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFrete, must be a value greater than or equal to 0.", new [] { "vFrete" });
+                yield return new ValidationResult("Invalid value for vFrete, must be a value greater than or equal to 0.", new [] { "vFrete" });
             }
 
             yield break;

@@ -12,6 +12,8 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
 Consultar endereço através do CEP
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#cep-consultas\">cep-consultas</a>  - Consumo: 1 unidade requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;

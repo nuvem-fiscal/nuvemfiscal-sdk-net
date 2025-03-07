@@ -257,30 +257,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vagao (string) maxLength
             if (this.vagao != null && this.vagao.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vagao, length must be less than 20.", new [] { "vagao" });
+                yield return new ValidationResult("Invalid value for vagao, length must be less than 20.", new [] { "vagao" });
             }
 
             // vagao (string) minLength
             if (this.vagao != null && this.vagao.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vagao, length must be greater than 1.", new [] { "vagao" });
+                yield return new ValidationResult("Invalid value for vagao, length must be greater than 1.", new [] { "vagao" });
             }
 
             // balsa (string) maxLength
             if (this.balsa != null && this.balsa.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for balsa, length must be less than 20.", new [] { "balsa" });
+                yield return new ValidationResult("Invalid value for balsa, length must be less than 20.", new [] { "balsa" });
             }
 
             // balsa (string) minLength
             if (this.balsa != null && this.balsa.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for balsa, length must be greater than 1.", new [] { "balsa" });
+                yield return new ValidationResult("Invalid value for balsa, length must be greater than 1.", new [] { "balsa" });
             }
 
             yield break;

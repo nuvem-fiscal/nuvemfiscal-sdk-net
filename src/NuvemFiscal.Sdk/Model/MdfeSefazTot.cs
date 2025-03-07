@@ -232,54 +232,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // qCTe (int?) maximum
             if (this.qCTe > (int?)999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCTe, must be a value less than or equal to 999999.", new [] { "qCTe" });
+                yield return new ValidationResult("Invalid value for qCTe, must be a value less than or equal to 999999.", new [] { "qCTe" });
             }
 
             // qCTe (int?) minimum
             if (this.qCTe < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCTe, must be a value greater than or equal to 0.", new [] { "qCTe" });
+                yield return new ValidationResult("Invalid value for qCTe, must be a value greater than or equal to 0.", new [] { "qCTe" });
             }
 
             // qNFe (int?) maximum
             if (this.qNFe > (int?)999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qNFe, must be a value less than or equal to 999999.", new [] { "qNFe" });
+                yield return new ValidationResult("Invalid value for qNFe, must be a value less than or equal to 999999.", new [] { "qNFe" });
             }
 
             // qNFe (int?) minimum
             if (this.qNFe < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qNFe, must be a value greater than or equal to 0.", new [] { "qNFe" });
+                yield return new ValidationResult("Invalid value for qNFe, must be a value greater than or equal to 0.", new [] { "qNFe" });
             }
 
             // qMDFe (int?) maximum
             if (this.qMDFe > (int?)999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qMDFe, must be a value less than or equal to 999999.", new [] { "qMDFe" });
+                yield return new ValidationResult("Invalid value for qMDFe, must be a value less than or equal to 999999.", new [] { "qMDFe" });
             }
 
             // qMDFe (int?) minimum
             if (this.qMDFe < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qMDFe, must be a value greater than or equal to 0.", new [] { "qMDFe" });
+                yield return new ValidationResult("Invalid value for qMDFe, must be a value greater than or equal to 0.", new [] { "qMDFe" });
             }
 
             // vCarga (decimal?) minimum
             if (this.vCarga < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCarga, must be a value greater than or equal to 0.", new [] { "vCarga" });
+                yield return new ValidationResult("Invalid value for vCarga, must be a value greater than or equal to 0.", new [] { "vCarga" });
             }
 
             // qCarga (decimal?) minimum
             if (this.qCarga < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qCarga, must be a value greater than or equal to 0.", new [] { "qCarga" });
+                yield return new ValidationResult("Invalid value for qCarga, must be a value greater than or equal to 0.", new [] { "qCarga" });
             }
 
             yield break;

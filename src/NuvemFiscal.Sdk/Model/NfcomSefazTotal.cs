@@ -341,54 +341,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vProd (decimal?) minimum
             if (this.vProd < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vProd, must be a value greater than or equal to 0.", new [] { "vProd" });
+                yield return new ValidationResult("Invalid value for vProd, must be a value greater than or equal to 0.", new [] { "vProd" });
             }
 
             // vCOFINS (decimal?) minimum
             if (this.vCOFINS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCOFINS, must be a value greater than or equal to 0.", new [] { "vCOFINS" });
+                yield return new ValidationResult("Invalid value for vCOFINS, must be a value greater than or equal to 0.", new [] { "vCOFINS" });
             }
 
             // vPIS (decimal?) minimum
             if (this.vPIS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vPIS, must be a value greater than or equal to 0.", new [] { "vPIS" });
+                yield return new ValidationResult("Invalid value for vPIS, must be a value greater than or equal to 0.", new [] { "vPIS" });
             }
 
             // vFUNTTEL (decimal?) minimum
             if (this.vFUNTTEL < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFUNTTEL, must be a value greater than or equal to 0.", new [] { "vFUNTTEL" });
+                yield return new ValidationResult("Invalid value for vFUNTTEL, must be a value greater than or equal to 0.", new [] { "vFUNTTEL" });
             }
 
             // vFUST (decimal?) minimum
             if (this.vFUST < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFUST, must be a value greater than or equal to 0.", new [] { "vFUST" });
+                yield return new ValidationResult("Invalid value for vFUST, must be a value greater than or equal to 0.", new [] { "vFUST" });
             }
 
             // vDesc (decimal?) minimum
             if (this.vDesc < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
+                yield return new ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
             }
 
             // vOutro (decimal?) minimum
             if (this.vOutro < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
+                yield return new ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
             }
 
             // vNF (decimal?) minimum
             if (this.vNF < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vNF, must be a value greater than or equal to 0.", new [] { "vNF" });
+                yield return new ValidationResult("Invalid value for vNF, must be a value greater than or equal to 0.", new [] { "vNF" });
             }
 
             yield break;

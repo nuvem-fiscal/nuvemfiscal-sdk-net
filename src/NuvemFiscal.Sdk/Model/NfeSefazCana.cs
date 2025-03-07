@@ -338,54 +338,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // safra (string) maxLength
             if (this.safra != null && this.safra.Length > 9)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for safra, length must be less than 9.", new [] { "safra" });
+                yield return new ValidationResult("Invalid value for safra, length must be less than 9.", new [] { "safra" });
             }
 
             // safra (string) minLength
             if (this.safra != null && this.safra.Length < 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for safra, length must be greater than 4.", new [] { "safra" });
+                yield return new ValidationResult("Invalid value for safra, length must be greater than 4.", new [] { "safra" });
             }
 
             // qTotMes (decimal?) minimum
             if (this.qTotMes < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotMes, must be a value greater than or equal to 0.", new [] { "qTotMes" });
+                yield return new ValidationResult("Invalid value for qTotMes, must be a value greater than or equal to 0.", new [] { "qTotMes" });
             }
 
             // qTotAnt (decimal?) minimum
             if (this.qTotAnt < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotAnt, must be a value greater than or equal to 0.", new [] { "qTotAnt" });
+                yield return new ValidationResult("Invalid value for qTotAnt, must be a value greater than or equal to 0.", new [] { "qTotAnt" });
             }
 
             // qTotGer (decimal?) minimum
             if (this.qTotGer < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotGer, must be a value greater than or equal to 0.", new [] { "qTotGer" });
+                yield return new ValidationResult("Invalid value for qTotGer, must be a value greater than or equal to 0.", new [] { "qTotGer" });
             }
 
             // vFor (decimal?) minimum
             if (this.vFor < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFor, must be a value greater than or equal to 0.", new [] { "vFor" });
+                yield return new ValidationResult("Invalid value for vFor, must be a value greater than or equal to 0.", new [] { "vFor" });
             }
 
             // vTotDed (decimal?) minimum
             if (this.vTotDed < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vTotDed, must be a value greater than or equal to 0.", new [] { "vTotDed" });
+                yield return new ValidationResult("Invalid value for vTotDed, must be a value greater than or equal to 0.", new [] { "vTotDed" });
             }
 
             // vLiqFor (decimal?) minimum
             if (this.vLiqFor < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vLiqFor, must be a value greater than or equal to 0.", new [] { "vLiqFor" });
+                yield return new ValidationResult("Invalid value for vLiqFor, must be a value greater than or equal to 0.", new [] { "vLiqFor" });
             }
 
             yield break;

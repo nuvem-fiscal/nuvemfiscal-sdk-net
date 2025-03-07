@@ -146,18 +146,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // chave (string) maxLength
             if (this.chave != null && this.chave.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chave, length must be less than 44.", new [] { "chave" });
+                yield return new ValidationResult("Invalid value for chave, length must be less than 44.", new [] { "chave" });
             }
 
             // unidRat (decimal?) minimum
             if (this.unidRat < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for unidRat, must be a value greater than or equal to 0.", new [] { "unidRat" });
+                yield return new ValidationResult("Invalid value for unidRat, must be a value greater than or equal to 0.", new [] { "unidRat" });
             }
 
             yield break;

@@ -323,54 +323,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // qBCMono (decimal?) minimum
             if (this.qBCMono < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qBCMono, must be a value greater than or equal to 0.", new [] { "qBCMono" });
+                yield return new ValidationResult("Invalid value for qBCMono, must be a value greater than or equal to 0.", new [] { "qBCMono" });
             }
 
             // adRemICMS (decimal?) minimum
             if (this.adRemICMS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for adRemICMS, must be a value greater than or equal to 0.", new [] { "adRemICMS" });
+                yield return new ValidationResult("Invalid value for adRemICMS, must be a value greater than or equal to 0.", new [] { "adRemICMS" });
             }
 
             // vICMSMono (decimal?) minimum
             if (this.vICMSMono < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSMono, must be a value greater than or equal to 0.", new [] { "vICMSMono" });
+                yield return new ValidationResult("Invalid value for vICMSMono, must be a value greater than or equal to 0.", new [] { "vICMSMono" });
             }
 
             // qBCMonoReten (decimal?) minimum
             if (this.qBCMonoReten < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qBCMonoReten, must be a value greater than or equal to 0.", new [] { "qBCMonoReten" });
+                yield return new ValidationResult("Invalid value for qBCMonoReten, must be a value greater than or equal to 0.", new [] { "qBCMonoReten" });
             }
 
             // adRemICMSReten (decimal?) minimum
             if (this.adRemICMSReten < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for adRemICMSReten, must be a value greater than or equal to 0.", new [] { "adRemICMSReten" });
+                yield return new ValidationResult("Invalid value for adRemICMSReten, must be a value greater than or equal to 0.", new [] { "adRemICMSReten" });
             }
 
             // vICMSMonoReten (decimal?) minimum
             if (this.vICMSMonoReten < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSMonoReten, must be a value greater than or equal to 0.", new [] { "vICMSMonoReten" });
+                yield return new ValidationResult("Invalid value for vICMSMonoReten, must be a value greater than or equal to 0.", new [] { "vICMSMonoReten" });
             }
 
             // pRedAdRem (decimal?) maximum
             if (this.pRedAdRem > (decimal?)1E+2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pRedAdRem, must be a value less than or equal to 1E+2.", new [] { "pRedAdRem" });
+                yield return new ValidationResult("Invalid value for pRedAdRem, must be a value less than or equal to 1E+2.", new [] { "pRedAdRem" });
             }
 
             // pRedAdRem (decimal?) minimum
             if (this.pRedAdRem < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pRedAdRem, must be a value greater than or equal to 0.", new [] { "pRedAdRem" });
+                yield return new ValidationResult("Invalid value for pRedAdRem, must be a value greater than or equal to 0.", new [] { "pRedAdRem" });
             }
 
             yield break;

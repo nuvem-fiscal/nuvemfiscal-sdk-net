@@ -299,30 +299,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // codigo_status (int?) maximum
             if (this.codigo_status > (int?)999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codigo_status, must be a value less than or equal to 999.", new [] { "codigo_status" });
+                yield return new ValidationResult("Invalid value for codigo_status, must be a value less than or equal to 999.", new [] { "codigo_status" });
             }
 
             // codigo_status (int?) minimum
             if (this.codigo_status < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codigo_status, must be a value greater than or equal to 0.", new [] { "codigo_status" });
+                yield return new ValidationResult("Invalid value for codigo_status, must be a value greater than or equal to 0.", new [] { "codigo_status" });
             }
 
             // motivo_status (string) maxLength
             if (this.motivo_status != null && this.motivo_status.Length > 255)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for motivo_status, length must be less than 255.", new [] { "motivo_status" });
+                yield return new ValidationResult("Invalid value for motivo_status, length must be less than 255.", new [] { "motivo_status" });
             }
 
             // motivo_status (string) minLength
             if (this.motivo_status != null && this.motivo_status.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for motivo_status, length must be greater than 1.", new [] { "motivo_status" });
+                yield return new ValidationResult("Invalid value for motivo_status, length must be greater than 1.", new [] { "motivo_status" });
             }
 
             yield break;

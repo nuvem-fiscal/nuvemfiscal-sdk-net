@@ -303,60 +303,60 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // qBCMono (decimal?) minimum
             if (this.qBCMono < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qBCMono, must be a value greater than or equal to 0.", new [] { "qBCMono" });
+                yield return new ValidationResult("Invalid value for qBCMono, must be a value greater than or equal to 0.", new [] { "qBCMono" });
             }
 
             // adRemICMS (decimal?) minimum
             if (this.adRemICMS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for adRemICMS, must be a value greater than or equal to 0.", new [] { "adRemICMS" });
+                yield return new ValidationResult("Invalid value for adRemICMS, must be a value greater than or equal to 0.", new [] { "adRemICMS" });
             }
 
             // vICMSMonoOp (decimal?) minimum
             if (this.vICMSMonoOp < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSMonoOp, must be a value greater than or equal to 0.", new [] { "vICMSMonoOp" });
+                yield return new ValidationResult("Invalid value for vICMSMonoOp, must be a value greater than or equal to 0.", new [] { "vICMSMonoOp" });
             }
 
             // pDif (decimal?) maximum
             if (this.pDif > (decimal?)1E+2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pDif, must be a value less than or equal to 1E+2.", new [] { "pDif" });
+                yield return new ValidationResult("Invalid value for pDif, must be a value less than or equal to 1E+2.", new [] { "pDif" });
             }
 
             // pDif (decimal?) minimum
             if (this.pDif < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pDif, must be a value greater than or equal to 0.", new [] { "pDif" });
+                yield return new ValidationResult("Invalid value for pDif, must be a value greater than or equal to 0.", new [] { "pDif" });
             }
 
             // vICMSMonoDif (decimal?) minimum
             if (this.vICMSMonoDif < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSMonoDif, must be a value greater than or equal to 0.", new [] { "vICMSMonoDif" });
+                yield return new ValidationResult("Invalid value for vICMSMonoDif, must be a value greater than or equal to 0.", new [] { "vICMSMonoDif" });
             }
 
             // vICMSMono (decimal?) minimum
             if (this.vICMSMono < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSMono, must be a value greater than or equal to 0.", new [] { "vICMSMono" });
+                yield return new ValidationResult("Invalid value for vICMSMono, must be a value greater than or equal to 0.", new [] { "vICMSMono" });
             }
 
             // qBCMonoDif (decimal?) minimum
             if (this.qBCMonoDif < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qBCMonoDif, must be a value greater than or equal to 0.", new [] { "qBCMonoDif" });
+                yield return new ValidationResult("Invalid value for qBCMonoDif, must be a value greater than or equal to 0.", new [] { "qBCMonoDif" });
             }
 
             // adRemICMSDif (decimal?) minimum
             if (this.adRemICMSDif < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for adRemICMSDif, must be a value greater than or equal to 0.", new [] { "adRemICMSDif" });
+                yield return new ValidationResult("Invalid value for adRemICMSDif, must be a value greater than or equal to 0.", new [] { "adRemICMSDif" });
             }
 
             yield break;

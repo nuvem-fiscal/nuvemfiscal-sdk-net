@@ -134,30 +134,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xCampo (string) maxLength
             if (this.xCampo != null && this.xCampo.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCampo, length must be less than 20.", new [] { "xCampo" });
+                yield return new ValidationResult("Invalid value for xCampo, length must be less than 20.", new [] { "xCampo" });
             }
 
             // xCampo (string) minLength
             if (this.xCampo != null && this.xCampo.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCampo, length must be greater than 1.", new [] { "xCampo" });
+                yield return new ValidationResult("Invalid value for xCampo, length must be greater than 1.", new [] { "xCampo" });
             }
 
             // xTexto (string) maxLength
             if (this.xTexto != null && this.xTexto.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xTexto, length must be less than 60.", new [] { "xTexto" });
+                yield return new ValidationResult("Invalid value for xTexto, length must be less than 60.", new [] { "xTexto" });
             }
 
             // xTexto (string) minLength
             if (this.xTexto != null && this.xTexto.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xTexto, length must be greater than 1.", new [] { "xTexto" });
+                yield return new ValidationResult("Invalid value for xTexto, length must be greater than 1.", new [] { "xTexto" });
             }
 
             yield break;

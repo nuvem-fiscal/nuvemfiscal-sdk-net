@@ -288,24 +288,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // complemento (string) maxLength
             if (this.complemento != null && this.complemento.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for complemento, length must be less than 500.", new [] { "complemento" });
+                yield return new ValidationResult("Invalid value for complemento, length must be less than 500.", new [] { "complemento" });
             }
 
             // cidade (string) maxLength
             if (this.cidade != null && this.cidade.Length > 255)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cidade, length must be less than 255.", new [] { "cidade" });
+                yield return new ValidationResult("Invalid value for cidade, length must be less than 255.", new [] { "cidade" });
             }
 
             // pais (string) maxLength
             if (this.pais != null && this.pais.Length > 255)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pais, length must be less than 255.", new [] { "pais" });
+                yield return new ValidationResult("Invalid value for pais, length must be less than 255.", new [] { "pais" });
             }
 
             yield break;

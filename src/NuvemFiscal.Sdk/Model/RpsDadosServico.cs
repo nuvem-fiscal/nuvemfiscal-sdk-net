@@ -382,12 +382,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // quantidade (decimal) minimum
             if (this.quantidade < (decimal)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for quantidade, must be a value greater than or equal to 0.", new [] { "quantidade" });
+                yield return new ValidationResult("Invalid value for quantidade, must be a value greater than or equal to 0.", new [] { "quantidade" });
             }
 
             yield break;

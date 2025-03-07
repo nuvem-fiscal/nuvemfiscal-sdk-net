@@ -293,66 +293,66 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // cInt (string) maxLength
             if (this.cInt != null && this.cInt.Length > 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cInt, length must be less than 10.", new [] { "cInt" });
+                yield return new ValidationResult("Invalid value for cInt, length must be less than 10.", new [] { "cInt" });
             }
 
             // cInt (string) minLength
             if (this.cInt != null && this.cInt.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cInt, length must be greater than 1.", new [] { "cInt" });
+                yield return new ValidationResult("Invalid value for cInt, length must be greater than 1.", new [] { "cInt" });
             }
 
             // RENAVAM (string) maxLength
             if (this.RENAVAM != null && this.RENAVAM.Length > 11)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RENAVAM, length must be less than 11.", new [] { "RENAVAM" });
+                yield return new ValidationResult("Invalid value for RENAVAM, length must be less than 11.", new [] { "RENAVAM" });
             }
 
             // RENAVAM (string) minLength
             if (this.RENAVAM != null && this.RENAVAM.Length < 9)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RENAVAM, length must be greater than 9.", new [] { "RENAVAM" });
+                yield return new ValidationResult("Invalid value for RENAVAM, length must be greater than 9.", new [] { "RENAVAM" });
             }
 
             // tara (int?) maximum
             if (this.tara > (int?)999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tara, must be a value less than or equal to 999999.", new [] { "tara" });
+                yield return new ValidationResult("Invalid value for tara, must be a value less than or equal to 999999.", new [] { "tara" });
             }
 
             // tara (int?) minimum
             if (this.tara < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tara, must be a value greater than or equal to 0.", new [] { "tara" });
+                yield return new ValidationResult("Invalid value for tara, must be a value greater than or equal to 0.", new [] { "tara" });
             }
 
             // capKG (int?) maximum
             if (this.capKG > (int?)999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for capKG, must be a value less than or equal to 999999.", new [] { "capKG" });
+                yield return new ValidationResult("Invalid value for capKG, must be a value less than or equal to 999999.", new [] { "capKG" });
             }
 
             // capKG (int?) minimum
             if (this.capKG < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for capKG, must be a value greater than or equal to 0.", new [] { "capKG" });
+                yield return new ValidationResult("Invalid value for capKG, must be a value greater than or equal to 0.", new [] { "capKG" });
             }
 
             // capM3 (int?) maximum
             if (this.capM3 > (int?)999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for capM3, must be a value less than or equal to 999.", new [] { "capM3" });
+                yield return new ValidationResult("Invalid value for capM3, must be a value less than or equal to 999.", new [] { "capM3" });
             }
 
             // capM3 (int?) minimum
             if (this.capM3 < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for capM3, must be a value greater than or equal to 0.", new [] { "capM3" });
+                yield return new ValidationResult("Invalid value for capM3, must be a value greater than or equal to 0.", new [] { "capM3" });
             }
 
             yield break;

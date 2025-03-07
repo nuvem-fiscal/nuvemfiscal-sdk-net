@@ -173,24 +173,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vRetCP (decimal?) minimum
             if (this.vRetCP < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRetCP, must be a value greater than or equal to 0.", new [] { "vRetCP" });
+                yield return new ValidationResult("Invalid value for vRetCP, must be a value greater than or equal to 0.", new [] { "vRetCP" });
             }
 
             // vRetIRRF (decimal?) minimum
             if (this.vRetIRRF < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRetIRRF, must be a value greater than or equal to 0.", new [] { "vRetIRRF" });
+                yield return new ValidationResult("Invalid value for vRetIRRF, must be a value greater than or equal to 0.", new [] { "vRetIRRF" });
             }
 
             // vRetCSLL (decimal?) minimum
             if (this.vRetCSLL < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRetCSLL, must be a value greater than or equal to 0.", new [] { "vRetCSLL" });
+                yield return new ValidationResult("Invalid value for vRetCSLL, must be a value greater than or equal to 0.", new [] { "vRetCSLL" });
             }
 
             yield break;

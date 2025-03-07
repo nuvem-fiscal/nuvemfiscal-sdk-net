@@ -1,0 +1,14 @@
+# NuvemFiscal.Sdk.Model.EmailResumo
+
+## Propriedades
+
+Nome | Tipo | Descrição | Comentários
+------------ | ------------- | ------------- | -------------
+**id** | **string** | ID único gerado pela Nuvem Fiscal para este email.    Utilize-o no endpoint de &lt;a href&#x3D;\&quot;#tag/Email/operation/ConsultarEmail\&quot;&gt;consulta de email&lt;/a&gt;  para obter informações detalhadas sobre o envio do email e  rastrear todos os eventos relacionados, como envio, entrega, falhas e outros  eventos relevantes. | 
+**status** | **string** |  | [optional] 
+**sent_at** | **DateTime?** |  | [optional] 
+**recipients** | **List&lt;string&gt;** |  | [optional] 
+**subject** | **string** |  | [optional] 
+
+[[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
+

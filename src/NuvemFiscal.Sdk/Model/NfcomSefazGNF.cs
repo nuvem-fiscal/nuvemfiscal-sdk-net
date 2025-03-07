@@ -242,54 +242,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // serie (string) maxLength
             if (this.serie != null && this.serie.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, length must be less than 3.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, length must be less than 3.", new [] { "serie" });
             }
 
             // serie (string) minLength
             if (this.serie != null && this.serie.Length < 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, length must be greater than 3.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, length must be greater than 3.", new [] { "serie" });
             }
 
             // nNF (int?) maximum
             if (this.nNF > (int?)999999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNF, must be a value less than or equal to 999999999.", new [] { "nNF" });
+                yield return new ValidationResult("Invalid value for nNF, must be a value less than or equal to 999999999.", new [] { "nNF" });
             }
 
             // nNF (int?) minimum
             if (this.nNF < (int?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNF, must be a value greater than or equal to 1.", new [] { "nNF" });
+                yield return new ValidationResult("Invalid value for nNF, must be a value greater than or equal to 1.", new [] { "nNF" });
             }
 
             // CompetEmis (string) maxLength
             if (this.CompetEmis != null && this.CompetEmis.Length > 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CompetEmis, length must be less than 6.", new [] { "CompetEmis" });
+                yield return new ValidationResult("Invalid value for CompetEmis, length must be less than 6.", new [] { "CompetEmis" });
             }
 
             // CompetEmis (string) minLength
             if (this.CompetEmis != null && this.CompetEmis.Length < 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CompetEmis, length must be greater than 6.", new [] { "CompetEmis" });
+                yield return new ValidationResult("Invalid value for CompetEmis, length must be greater than 6.", new [] { "CompetEmis" });
             }
 
             // hash115 (string) maxLength
             if (this.hash115 != null && this.hash115.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hash115, length must be less than 44.", new [] { "hash115" });
+                yield return new ValidationResult("Invalid value for hash115, length must be less than 44.", new [] { "hash115" });
             }
 
             // hash115 (string) minLength
             if (this.hash115 != null && this.hash115.Length < 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hash115, length must be greater than 44.", new [] { "hash115" });
+                yield return new ValidationResult("Invalid value for hash115, length must be greater than 44.", new [] { "hash115" });
             }
 
             yield break;

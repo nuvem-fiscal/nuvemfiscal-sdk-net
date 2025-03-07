@@ -5,6 +5,7 @@ Grupo de informações do DPS relativas ao Tomador de Serviços.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
+**orgaoPublico** | **bool?** | Indica se o tomador do serviço é um orgão público.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado. | [optional] [default to false]
 **CNPJ** | **string** | Número do CNPJ. | [optional] 
 **CPF** | **string** | Número do CPF. | [optional] 
 **NIF** | **string** | Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior. | [optional] 

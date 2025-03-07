@@ -458,42 +458,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nome_razao_social (string) maxLength
             if (this.nome_razao_social != null && this.nome_razao_social.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nome_razao_social, length must be less than 60.", new [] { "nome_razao_social" });
+                yield return new ValidationResult("Invalid value for nome_razao_social, length must be less than 60.", new [] { "nome_razao_social" });
             }
 
             // nome_razao_social (string) minLength
             if (this.nome_razao_social != null && this.nome_razao_social.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nome_razao_social, length must be greater than 1.", new [] { "nome_razao_social" });
+                yield return new ValidationResult("Invalid value for nome_razao_social, length must be greater than 1.", new [] { "nome_razao_social" });
             }
 
             // nome_fantasia (string) maxLength
             if (this.nome_fantasia != null && this.nome_fantasia.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nome_fantasia, length must be less than 60.", new [] { "nome_fantasia" });
+                yield return new ValidationResult("Invalid value for nome_fantasia, length must be less than 60.", new [] { "nome_fantasia" });
             }
 
             // nome_fantasia (string) minLength
             if (this.nome_fantasia != null && this.nome_fantasia.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nome_fantasia, length must be greater than 1.", new [] { "nome_fantasia" });
+                yield return new ValidationResult("Invalid value for nome_fantasia, length must be greater than 1.", new [] { "nome_fantasia" });
             }
 
             // regime_apuracao_icms (string) maxLength
             if (this.regime_apuracao_icms != null && this.regime_apuracao_icms.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for regime_apuracao_icms, length must be less than 60.", new [] { "regime_apuracao_icms" });
+                yield return new ValidationResult("Invalid value for regime_apuracao_icms, length must be less than 60.", new [] { "regime_apuracao_icms" });
             }
 
             // regime_apuracao_icms (string) minLength
             if (this.regime_apuracao_icms != null && this.regime_apuracao_icms.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for regime_apuracao_icms, length must be greater than 1.", new [] { "regime_apuracao_icms" });
+                yield return new ValidationResult("Invalid value for regime_apuracao_icms, length must be greater than 1.", new [] { "regime_apuracao_icms" });
             }
 
             yield break;

@@ -13,6 +13,8 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
 Consultar dados do CNPJ
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#cnpj-consultas\">cnpj-consultas</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -113,7 +115,7 @@ catch (ApiException e)
 
 Listar estabelecimentos ativos a partir da base de CNPJ
 
-Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \"Ativa\".
+Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \"Ativa\".    **Informações adicionais**:  - Cota: <a href=\"/docs/limites#cnpj-listagem\">cnpj-listagem</a>  - Consumo: 1 unidade por estabelecimento listado ou requisição.
 
 ### Exemplo
 ```csharp

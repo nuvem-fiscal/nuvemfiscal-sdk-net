@@ -309,66 +309,66 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CompetFat (string) maxLength
             if (this.CompetFat != null && this.CompetFat.Length > 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CompetFat, length must be less than 6.", new [] { "CompetFat" });
+                yield return new ValidationResult("Invalid value for CompetFat, length must be less than 6.", new [] { "CompetFat" });
             }
 
             // CompetFat (string) minLength
             if (this.CompetFat != null && this.CompetFat.Length < 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CompetFat, length must be greater than 6.", new [] { "CompetFat" });
+                yield return new ValidationResult("Invalid value for CompetFat, length must be greater than 6.", new [] { "CompetFat" });
             }
 
             // codBarras (string) maxLength
             if (this.codBarras != null && this.codBarras.Length > 48)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codBarras, length must be less than 48.", new [] { "codBarras" });
+                yield return new ValidationResult("Invalid value for codBarras, length must be less than 48.", new [] { "codBarras" });
             }
 
             // codBarras (string) minLength
             if (this.codBarras != null && this.codBarras.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codBarras, length must be greater than 1.", new [] { "codBarras" });
+                yield return new ValidationResult("Invalid value for codBarras, length must be greater than 1.", new [] { "codBarras" });
             }
 
             // codDebAuto (string) maxLength
             if (this.codDebAuto != null && this.codDebAuto.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codDebAuto, length must be less than 20.", new [] { "codDebAuto" });
+                yield return new ValidationResult("Invalid value for codDebAuto, length must be less than 20.", new [] { "codDebAuto" });
             }
 
             // codDebAuto (string) minLength
             if (this.codDebAuto != null && this.codDebAuto.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codDebAuto, length must be greater than 1.", new [] { "codDebAuto" });
+                yield return new ValidationResult("Invalid value for codDebAuto, length must be greater than 1.", new [] { "codDebAuto" });
             }
 
             // codBanco (string) maxLength
             if (this.codBanco != null && this.codBanco.Length > 5)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codBanco, length must be less than 5.", new [] { "codBanco" });
+                yield return new ValidationResult("Invalid value for codBanco, length must be less than 5.", new [] { "codBanco" });
             }
 
             // codBanco (string) minLength
             if (this.codBanco != null && this.codBanco.Length < 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codBanco, length must be greater than 3.", new [] { "codBanco" });
+                yield return new ValidationResult("Invalid value for codBanco, length must be greater than 3.", new [] { "codBanco" });
             }
 
             // codAgencia (string) maxLength
             if (this.codAgencia != null && this.codAgencia.Length > 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codAgencia, length must be less than 10.", new [] { "codAgencia" });
+                yield return new ValidationResult("Invalid value for codAgencia, length must be less than 10.", new [] { "codAgencia" });
             }
 
             // codAgencia (string) minLength
             if (this.codAgencia != null && this.codAgencia.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for codAgencia, length must be greater than 1.", new [] { "codAgencia" });
+                yield return new ValidationResult("Invalid value for codAgencia, length must be greater than 1.", new [] { "codAgencia" });
             }
 
             yield break;

@@ -36,6 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="InfoTomador" /> class.
         /// </summary>
+        /// <param name="orgaoPublico">Indica se o tomador do serviço é um orgão público.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado. (default to false).</param>
         /// <param name="cNPJ">Número do CNPJ..</param>
         /// <param name="cPF">Número do CPF..</param>
         /// <param name="nIF">Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior..</param>
@@ -46,7 +47,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="end">end.</param>
         /// <param name="fone">Número do telefone do prestador:  Preencher com o Código DDD + número do telefone.  Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone)..</param>
         /// <param name="email">* E-mail.</param>
-        public InfoTomador(string cNPJ = default(string), string cPF = default(string), string nIF = default(string), int? cNaoNIF = default(int?), string cAEPF = default(string), string iM = default(string), string xNome = default(string), Endereco end = default(Endereco), string fone = default(string), string email = default(string))
+        public InfoTomador(bool? orgaoPublico = false, string cNPJ = default(string), string cPF = default(string), string nIF = default(string), int? cNaoNIF = default(int?), string cAEPF = default(string), string iM = default(string), string xNome = default(string), Endereco end = default(Endereco), string fone = default(string), string email = default(string))
         {
             // to ensure "xNome" is required (not null)
             if (xNome == null)
@@ -54,6 +55,8 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("xNome is a required property for InfoTomador and cannot be null");
             }
             this.xNome = xNome;
+            // use default value if no "orgaoPublico" provided
+            this.orgaoPublico = orgaoPublico ?? false;
             this.CNPJ = cNPJ;
             this.CPF = cPF;
             this.NIF = nIF;
@@ -64,6 +67,13 @@ namespace NuvemFiscal.Sdk.Model
             this.fone = fone;
             this.email = email;
         }
+
+        /// <summary>
+        /// Indica se o tomador do serviço é um orgão público.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+        /// </summary>
+        /// <value>Indica se o tomador do serviço é um orgão público.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.</value>
+        [DataMember(Name = "orgaoPublico", EmitDefaultValue = true)]
+        public bool? orgaoPublico { get; set; }
 
         /// <summary>
         /// Número do CNPJ.
@@ -142,6 +152,7 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class InfoTomador {\n");
+            sb.Append("  orgaoPublico: ").Append(orgaoPublico).Append("\n");
             sb.Append("  CNPJ: ").Append(CNPJ).Append("\n");
             sb.Append("  CPF: ").Append(CPF).Append("\n");
             sb.Append("  NIF: ").Append(NIF).Append("\n");
@@ -187,6 +198,11 @@ namespace NuvemFiscal.Sdk.Model
                 return false;
             }
             return 
+                (
+                    this.orgaoPublico == input.orgaoPublico ||
+                    (this.orgaoPublico != null &&
+                    this.orgaoPublico.Equals(input.orgaoPublico))
+                ) && 
                 (
                     this.CNPJ == input.CNPJ ||
                     (this.CNPJ != null &&
@@ -248,6 +264,10 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.orgaoPublico != null)
+                {
+                    hashCode = (hashCode * 59) + this.orgaoPublico.GetHashCode();
+                }
                 if (this.CNPJ != null)
                 {
                     hashCode = (hashCode * 59) + this.CNPJ.GetHashCode();
@@ -297,72 +317,72 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CNPJ (string) maxLength
             if (this.CNPJ != null && this.CNPJ.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+                yield return new ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
             }
 
             // CPF (string) maxLength
             if (this.CPF != null && this.CPF.Length > 11)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CPF, length must be less than 11.", new [] { "CPF" });
+                yield return new ValidationResult("Invalid value for CPF, length must be less than 11.", new [] { "CPF" });
             }
 
             // NIF (string) maxLength
             if (this.NIF != null && this.NIF.Length > 40)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NIF, length must be less than 40.", new [] { "NIF" });
+                yield return new ValidationResult("Invalid value for NIF, length must be less than 40.", new [] { "NIF" });
             }
 
             // NIF (string) minLength
             if (this.NIF != null && this.NIF.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NIF, length must be greater than 1.", new [] { "NIF" });
+                yield return new ValidationResult("Invalid value for NIF, length must be greater than 1.", new [] { "NIF" });
             }
 
             // CAEPF (string) maxLength
             if (this.CAEPF != null && this.CAEPF.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CAEPF, length must be less than 14.", new [] { "CAEPF" });
+                yield return new ValidationResult("Invalid value for CAEPF, length must be less than 14.", new [] { "CAEPF" });
             }
 
             // IM (string) maxLength
             if (this.IM != null && this.IM.Length > 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IM, length must be less than 15.", new [] { "IM" });
+                yield return new ValidationResult("Invalid value for IM, length must be less than 15.", new [] { "IM" });
             }
 
             // IM (string) minLength
             if (this.IM != null && this.IM.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IM, length must be greater than 1.", new [] { "IM" });
+                yield return new ValidationResult("Invalid value for IM, length must be greater than 1.", new [] { "IM" });
             }
 
             // xNome (string) maxLength
             if (this.xNome != null && this.xNome.Length > 300)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be less than 300.", new [] { "xNome" });
+                yield return new ValidationResult("Invalid value for xNome, length must be less than 300.", new [] { "xNome" });
             }
 
             // xNome (string) minLength
             if (this.xNome != null && this.xNome.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be greater than 1.", new [] { "xNome" });
+                yield return new ValidationResult("Invalid value for xNome, length must be greater than 1.", new [] { "xNome" });
             }
 
             // email (string) maxLength
             if (this.email != null && this.email.Length > 80)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be less than 80.", new [] { "email" });
+                yield return new ValidationResult("Invalid value for email, length must be less than 80.", new [] { "email" });
             }
 
             // email (string) minLength
             if (this.email != null && this.email.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be greater than 1.", new [] { "email" });
+                yield return new ValidationResult("Invalid value for email, length must be greater than 1.", new [] { "email" });
             }
 
             yield break;

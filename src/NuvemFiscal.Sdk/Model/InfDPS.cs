@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="tpAmb">Identificação do Ambiente:  * 1 - Produção  * 2 - Homologação.</param>
         /// <param name="dhEmi">Data e hora da emissão do DPS. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD. (required).</param>
         /// <param name="verAplic">Versão do aplicativo que gerou o DPS..</param>
-        /// <param name="dCompet">Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD). (required).</param>
+        /// <param name="dCompet">Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD). (AAAA-MM-DDThh:mm:ssTZD).      *Geramos automaticamente quando nenhum valor é informado.*.</param>
         /// <param name="subst">subst.</param>
         /// <param name="prest">prest (required).</param>
         /// <param name="toma">toma.</param>
@@ -54,12 +54,6 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("dhEmi is a required property for InfDPS and cannot be null");
             }
             this.dhEmi = dhEmi;
-            // to ensure "dCompet" is required (not null)
-            if (dCompet == null)
-            {
-                throw new ArgumentNullException("dCompet is a required property for InfDPS and cannot be null");
-            }
-            this.dCompet = dCompet;
             // to ensure "prest" is required (not null)
             if (prest == null)
             {
@@ -80,6 +74,7 @@ namespace NuvemFiscal.Sdk.Model
             this.valores = valores;
             this.tpAmb = tpAmb;
             this.verAplic = verAplic;
+            this.dCompet = dCompet;
             this.subst = subst;
             this.toma = toma;
             this.interm = interm;
@@ -107,10 +102,10 @@ namespace NuvemFiscal.Sdk.Model
         public string verAplic { get; set; }
 
         /// <summary>
-        /// Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD).
+        /// Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD). (AAAA-MM-DDThh:mm:ssTZD).      *Geramos automaticamente quando nenhum valor é informado.*
         /// </summary>
-        /// <value>Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD).</value>
-        [DataMember(Name = "dCompet", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Data em que se iniciou a prestação do serviço: Dia, mês e ano (AAAAMMDD). (AAAA-MM-DDThh:mm:ssTZD).      *Geramos automaticamente quando nenhum valor é informado.*</value>
+        [DataMember(Name = "dCompet", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime? dCompet { get; set; }
 
@@ -313,18 +308,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // verAplic (string) maxLength
             if (this.verAplic != null && this.verAplic.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verAplic, length must be less than 20.", new [] { "verAplic" });
+                yield return new ValidationResult("Invalid value for verAplic, length must be less than 20.", new [] { "verAplic" });
             }
 
             // verAplic (string) minLength
             if (this.verAplic != null && this.verAplic.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verAplic, length must be greater than 1.", new [] { "verAplic" });
+                yield return new ValidationResult("Invalid value for verAplic, length must be greater than 1.", new [] { "verAplic" });
             }
 
             yield break;

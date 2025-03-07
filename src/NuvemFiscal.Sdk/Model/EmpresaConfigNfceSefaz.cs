@@ -142,12 +142,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // csc (string) maxLength
             if (this.csc != null && this.csc.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for csc, length must be less than 50.", new [] { "csc" });
+                yield return new ValidationResult("Invalid value for csc, length must be less than 50.", new [] { "csc" });
             }
 
             yield break;

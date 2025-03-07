@@ -164,24 +164,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // chNFCom (string) maxLength
             if (this.chNFCom != null && this.chNFCom.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chNFCom, length must be less than 44.", new [] { "chNFCom" });
+                yield return new ValidationResult("Invalid value for chNFCom, length must be less than 44.", new [] { "chNFCom" });
             }
 
             // motSub (string) maxLength
             if (this.motSub != null && this.motSub.Length > 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for motSub, length must be less than 2.", new [] { "motSub" });
+                yield return new ValidationResult("Invalid value for motSub, length must be less than 2.", new [] { "motSub" });
             }
 
             // motSub (string) minLength
             if (this.motSub != null && this.motSub.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for motSub, length must be greater than 2.", new [] { "motSub" });
+                yield return new ValidationResult("Invalid value for motSub, length must be greater than 2.", new [] { "motSub" });
             }
 
             yield break;

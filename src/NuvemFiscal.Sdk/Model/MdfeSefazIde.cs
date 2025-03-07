@@ -562,54 +562,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // serie (int?) maximum
             if (this.serie > (int?)999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value less than or equal to 999.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, must be a value less than or equal to 999.", new [] { "serie" });
             }
 
             // serie (int?) minimum
             if (this.serie < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value greater than or equal to 0.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, must be a value greater than or equal to 0.", new [] { "serie" });
             }
 
             // nMDF (int?) maximum
             if (this.nMDF > (int?)999999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nMDF, must be a value less than or equal to 999999999.", new [] { "nMDF" });
+                yield return new ValidationResult("Invalid value for nMDF, must be a value less than or equal to 999999999.", new [] { "nMDF" });
             }
 
             // nMDF (int?) minimum
             if (this.nMDF < (int?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nMDF, must be a value greater than or equal to 1.", new [] { "nMDF" });
+                yield return new ValidationResult("Invalid value for nMDF, must be a value greater than or equal to 1.", new [] { "nMDF" });
             }
 
             // cDV (int?) maximum
             if (this.cDV > (int?)9)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cDV, must be a value less than or equal to 9.", new [] { "cDV" });
+                yield return new ValidationResult("Invalid value for cDV, must be a value less than or equal to 9.", new [] { "cDV" });
             }
 
             // cDV (int?) minimum
             if (this.cDV < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cDV, must be a value greater than or equal to 0.", new [] { "cDV" });
+                yield return new ValidationResult("Invalid value for cDV, must be a value greater than or equal to 0.", new [] { "cDV" });
             }
 
             // verProc (string) maxLength
             if (this.verProc != null && this.verProc.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verProc, length must be less than 20.", new [] { "verProc" });
+                yield return new ValidationResult("Invalid value for verProc, length must be less than 20.", new [] { "verProc" });
             }
 
             // verProc (string) minLength
             if (this.verProc != null && this.verProc.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for verProc, length must be greater than 1.", new [] { "verProc" });
+                yield return new ValidationResult("Invalid value for verProc, length must be greater than 1.", new [] { "verProc" });
             }
 
             yield break;

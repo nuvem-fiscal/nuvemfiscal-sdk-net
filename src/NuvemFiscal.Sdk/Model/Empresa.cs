@@ -312,30 +312,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // inscricao_estadual (string) maxLength
             if (this.inscricao_estadual != null && this.inscricao_estadual.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for inscricao_estadual, length must be less than 50.", new [] { "inscricao_estadual" });
+                yield return new ValidationResult("Invalid value for inscricao_estadual, length must be less than 50.", new [] { "inscricao_estadual" });
             }
 
             // inscricao_municipal (string) maxLength
             if (this.inscricao_municipal != null && this.inscricao_municipal.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for inscricao_municipal, length must be less than 50.", new [] { "inscricao_municipal" });
+                yield return new ValidationResult("Invalid value for inscricao_municipal, length must be less than 50.", new [] { "inscricao_municipal" });
             }
 
             // nome_razao_social (string) maxLength
             if (this.nome_razao_social != null && this.nome_razao_social.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nome_razao_social, length must be less than 500.", new [] { "nome_razao_social" });
+                yield return new ValidationResult("Invalid value for nome_razao_social, length must be less than 500.", new [] { "nome_razao_social" });
             }
 
             // nome_fantasia (string) maxLength
             if (this.nome_fantasia != null && this.nome_fantasia.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nome_fantasia, length must be less than 500.", new [] { "nome_fantasia" });
+                yield return new ValidationResult("Invalid value for nome_fantasia, length must be less than 500.", new [] { "nome_fantasia" });
             }
 
             yield break;

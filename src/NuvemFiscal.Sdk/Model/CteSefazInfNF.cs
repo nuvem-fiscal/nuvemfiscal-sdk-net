@@ -502,108 +502,108 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nRoma (string) maxLength
             if (this.nRoma != null && this.nRoma.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRoma, length must be less than 20.", new [] { "nRoma" });
+                yield return new ValidationResult("Invalid value for nRoma, length must be less than 20.", new [] { "nRoma" });
             }
 
             // nRoma (string) minLength
             if (this.nRoma != null && this.nRoma.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRoma, length must be greater than 1.", new [] { "nRoma" });
+                yield return new ValidationResult("Invalid value for nRoma, length must be greater than 1.", new [] { "nRoma" });
             }
 
             // nPed (string) maxLength
             if (this.nPed != null && this.nPed.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPed, length must be less than 20.", new [] { "nPed" });
+                yield return new ValidationResult("Invalid value for nPed, length must be less than 20.", new [] { "nPed" });
             }
 
             // nPed (string) minLength
             if (this.nPed != null && this.nPed.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPed, length must be greater than 1.", new [] { "nPed" });
+                yield return new ValidationResult("Invalid value for nPed, length must be greater than 1.", new [] { "nPed" });
             }
 
             // serie (string) maxLength
             if (this.serie != null && this.serie.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, length must be less than 3.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, length must be less than 3.", new [] { "serie" });
             }
 
             // serie (string) minLength
             if (this.serie != null && this.serie.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, length must be greater than 1.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, length must be greater than 1.", new [] { "serie" });
             }
 
             // nDoc (string) maxLength
             if (this.nDoc != null && this.nDoc.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDoc, length must be less than 20.", new [] { "nDoc" });
+                yield return new ValidationResult("Invalid value for nDoc, length must be less than 20.", new [] { "nDoc" });
             }
 
             // nDoc (string) minLength
             if (this.nDoc != null && this.nDoc.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDoc, length must be greater than 1.", new [] { "nDoc" });
+                yield return new ValidationResult("Invalid value for nDoc, length must be greater than 1.", new [] { "nDoc" });
             }
 
             // vBC (decimal?) minimum
             if (this.vBC < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+                yield return new ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
             }
 
             // vICMS (decimal?) minimum
             if (this.vICMS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMS, must be a value greater than or equal to 0.", new [] { "vICMS" });
+                yield return new ValidationResult("Invalid value for vICMS, must be a value greater than or equal to 0.", new [] { "vICMS" });
             }
 
             // vBCST (decimal?) minimum
             if (this.vBCST < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCST, must be a value greater than or equal to 0.", new [] { "vBCST" });
+                yield return new ValidationResult("Invalid value for vBCST, must be a value greater than or equal to 0.", new [] { "vBCST" });
             }
 
             // vST (decimal?) minimum
             if (this.vST < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vST, must be a value greater than or equal to 0.", new [] { "vST" });
+                yield return new ValidationResult("Invalid value for vST, must be a value greater than or equal to 0.", new [] { "vST" });
             }
 
             // vProd (decimal?) minimum
             if (this.vProd < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vProd, must be a value greater than or equal to 0.", new [] { "vProd" });
+                yield return new ValidationResult("Invalid value for vProd, must be a value greater than or equal to 0.", new [] { "vProd" });
             }
 
             // vNF (decimal?) minimum
             if (this.vNF < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vNF, must be a value greater than or equal to 0.", new [] { "vNF" });
+                yield return new ValidationResult("Invalid value for vNF, must be a value greater than or equal to 0.", new [] { "vNF" });
             }
 
             // nPeso (decimal?) minimum
             if (this.nPeso < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPeso, must be a value greater than or equal to 0.", new [] { "nPeso" });
+                yield return new ValidationResult("Invalid value for nPeso, must be a value greater than or equal to 0.", new [] { "nPeso" });
             }
 
             // PIN (string) maxLength
             if (this.PIN != null && this.PIN.Length > 9)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PIN, length must be less than 9.", new [] { "PIN" });
+                yield return new ValidationResult("Invalid value for PIN, length must be less than 9.", new [] { "PIN" });
             }
 
             // PIN (string) minLength
             if (this.PIN != null && this.PIN.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PIN, length must be greater than 2.", new [] { "PIN" });
+                yield return new ValidationResult("Invalid value for PIN, length must be greater than 2.", new [] { "PIN" });
             }
 
             yield break;

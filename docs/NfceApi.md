@@ -26,6 +26,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**ConsultarStatusSefazNfce**](NfceApi.md#consultarstatussefaznfce) | **GET** /nfce/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora |
 | [**EmitirLoteNfce**](NfceApi.md#emitirlotenfce) | **POST** /nfce/lotes | Emitir lote de NFC-e |
 | [**EmitirNfce**](NfceApi.md#emitirnfce) | **POST** /nfce | Emitir NFC-e |
+| [**EnviarEmailNfce**](NfceApi.md#enviaremailnfce) | **POST** /nfce/{id}/email | Enviar e-mail |
 | [**InutilizarNumeracaoNfce**](NfceApi.md#inutilizarnumeracaonfce) | **POST** /nfce/inutilizacoes | Inutilizar uma sequência de numeração de NFC-e |
 | [**ListarEventosNfce**](NfceApi.md#listareventosnfce) | **GET** /nfce/eventos | Listar eventos |
 | [**ListarLotesNfce**](NfceApi.md#listarlotesnfce) | **GET** /nfce/lotes | Listar lotes de NFC-e |
@@ -560,7 +561,7 @@ catch (ApiException e)
 
 Prévia do PDF do DANFCE
 
-Através desse endpoint, é possível enviar os dados de uma NFC-e e gerar uma prévia do DANFCE.    Os dados de entrada são os mesmos do endpoint de emissão de NFC-e (`POST /nfce`).    **Atenção**: O DANFE gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
+Através desse endpoint, é possível enviar os dados de uma NFC-e e gerar uma prévia do DANFCE.    Os dados de entrada são os mesmos do endpoint de emissão de NFC-e (`POST /nfce`).    **Atenção**: O DANFE gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.    **Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp
@@ -676,7 +677,7 @@ catch (ApiException e)
 
 Prévia do XML da NFC-e
 
-Através desse endpoint, é possível enviar os dados de uma NFC-e e gerar uma prévia do XML, sem a assinatura digital.    Os dados de entrada são os mesmos do endpoint de emissão de NFC-e (`POST /nfce`).    **Atenção**: O XML gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.
+Através desse endpoint, é possível enviar os dados de uma NFC-e e gerar uma prévia do XML, sem a assinatura digital.    Os dados de entrada são os mesmos do endpoint de emissão de NFC-e (`POST /nfce`).    **Atenção**: O XML gerado por este endpoint é apenas para fins de visualização e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo de emissão padrão descrito na documentação.    **Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp
@@ -1381,6 +1382,8 @@ catch (ApiException e)
 > DfeCancelamento CancelarNfce (string id, NfePedidoCancelamento body = null)
 
 Cancelar uma NFC-e autorizada
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp
@@ -2092,6 +2095,8 @@ catch (ApiException e)
 
 Emitir lote de NFC-e
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por NFC-e.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -2192,6 +2197,8 @@ catch (ApiException e)
 
 Emitir NFC-e
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -2286,11 +2293,117 @@ catch (ApiException e)
 
 [[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
+<a name="enviaremailnfce"></a>
+# **EnviarEmailNfce**
+> EmailStatusResponse EnviarEmailNfce (string id, DfePedidoEnvioEmail body = null)
+
+Enviar e-mail
+
+Envia o XML e PDF da nota via email.    **Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class EnviarEmailNfceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFC-e gerado pela Nuvem Fiscal.
+            var body = new DfePedidoEnvioEmail(); // DfePedidoEnvioEmail |  (optional) 
+
+            try
+            {
+                // Enviar e-mail
+                EmailStatusResponse result = apiInstance.EnviarEmailNfce(id, body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfceApi.EnviarEmailNfce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante EnviarEmailNfceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Enviar e-mail
+    ApiResponse<EmailStatusResponse> response = apiInstance.EnviarEmailNfceWithHttpInfo(id, body);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfceApi.EnviarEmailNfceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFC-e gerado pela Nuvem Fiscal. |  |
+| **body** | [**DfePedidoEnvioEmail**](DfePedidoEnvioEmail.md) |  | [optional]  |
+
+### Tipo de retorno
+
+[**EmailStatusResponse**](EmailStatusResponse.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
 <a name="inutilizarnumeracaonfce"></a>
 # **InutilizarNumeracaoNfce**
 > DfeInutilizacao InutilizarNumeracaoNfce (DfePedidoInutilizacao body)
 
 Inutilizar uma sequência de numeração de NFC-e
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp
@@ -2728,7 +2841,7 @@ catch (ApiException e)
 
 Sincroniza dados na NFC-e a partir da SEFAZ
 
-Realiza a sincronização dos dados a partir da consulta da situação atual da NFC-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizada na SEFAZ (útil em casos de erros de transmissão com a SEFAZ, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status `autorizado`na Nuvem Fiscal, mas está cancelada na SEFAZ.  * Sincronizar todos os eventos de Cancelamento, Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos a partir da Nuvem Fiscal.
+Realiza a sincronização dos dados a partir da consulta da situação atual da NFC-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizada na SEFAZ (útil em casos de erros de transmissão com a SEFAZ, como instabilidades e timeouts).  * Sincronizar uma nota que se encontra com o status `autorizado`na Nuvem Fiscal, mas está cancelada na SEFAZ.  * Sincronizar todos os eventos de Cancelamento, Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos a partir da Nuvem Fiscal.    **Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por evento sincronizado ou requisição.
 
 ### Exemplo
 ```csharp

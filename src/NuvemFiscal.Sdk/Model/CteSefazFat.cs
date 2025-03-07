@@ -174,36 +174,36 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nFat (string) maxLength
             if (this.nFat != null && this.nFat.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nFat, length must be less than 60.", new [] { "nFat" });
+                yield return new ValidationResult("Invalid value for nFat, length must be less than 60.", new [] { "nFat" });
             }
 
             // nFat (string) minLength
             if (this.nFat != null && this.nFat.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nFat, length must be greater than 1.", new [] { "nFat" });
+                yield return new ValidationResult("Invalid value for nFat, length must be greater than 1.", new [] { "nFat" });
             }
 
             // vOrig (decimal?) minimum
             if (this.vOrig < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOrig, must be a value greater than or equal to 0.", new [] { "vOrig" });
+                yield return new ValidationResult("Invalid value for vOrig, must be a value greater than or equal to 0.", new [] { "vOrig" });
             }
 
             // vDesc (decimal?) minimum
             if (this.vDesc < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
+                yield return new ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
             }
 
             // vLiq (decimal?) minimum
             if (this.vLiq < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vLiq, must be a value greater than or equal to 0.", new [] { "vLiq" });
+                yield return new ValidationResult("Invalid value for vLiq, must be a value greater than or equal to 0.", new [] { "vLiq" });
             }
 
             yield break;

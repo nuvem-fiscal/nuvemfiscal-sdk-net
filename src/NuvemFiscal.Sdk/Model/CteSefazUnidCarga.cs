@@ -189,24 +189,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // idUnidCarga (string) maxLength
             if (this.idUnidCarga != null && this.idUnidCarga.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idUnidCarga, length must be less than 20.", new [] { "idUnidCarga" });
+                yield return new ValidationResult("Invalid value for idUnidCarga, length must be less than 20.", new [] { "idUnidCarga" });
             }
 
             // idUnidCarga (string) minLength
             if (this.idUnidCarga != null && this.idUnidCarga.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idUnidCarga, length must be greater than 1.", new [] { "idUnidCarga" });
+                yield return new ValidationResult("Invalid value for idUnidCarga, length must be greater than 1.", new [] { "idUnidCarga" });
             }
 
             // qtdRat (decimal?) minimum
             if (this.qtdRat < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdRat, must be a value greater than or equal to 0.", new [] { "qtdRat" });
+                yield return new ValidationResult("Invalid value for qtdRat, must be a value greater than or equal to 0.", new [] { "qtdRat" });
             }
 
             yield break;

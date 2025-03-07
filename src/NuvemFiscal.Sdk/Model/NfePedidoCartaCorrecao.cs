@@ -117,8 +117,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // correcao (string) maxLength
+            if (this.correcao != null && this.correcao.Length > 1000)
+            {
+                yield return new ValidationResult("Invalid value for correcao, length must be less than 1000.", new [] { "correcao" });
+            }
+
             yield break;
         }
     }

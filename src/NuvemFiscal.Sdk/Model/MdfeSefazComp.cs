@@ -170,24 +170,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vComp (decimal?) minimum
             if (this.vComp < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vComp, must be a value greater than or equal to 0.", new [] { "vComp" });
+                yield return new ValidationResult("Invalid value for vComp, must be a value greater than or equal to 0.", new [] { "vComp" });
             }
 
             // xComp (string) maxLength
             if (this.xComp != null && this.xComp.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xComp, length must be less than 60.", new [] { "xComp" });
+                yield return new ValidationResult("Invalid value for xComp, length must be less than 60.", new [] { "xComp" });
             }
 
             // xComp (string) minLength
             if (this.xComp != null && this.xComp.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xComp, length must be greater than 2.", new [] { "xComp" });
+                yield return new ValidationResult("Invalid value for xComp, length must be greater than 2.", new [] { "xComp" });
             }
 
             yield break;

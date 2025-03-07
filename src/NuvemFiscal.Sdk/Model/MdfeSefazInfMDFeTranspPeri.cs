@@ -227,66 +227,66 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xNomeAE (string) maxLength
             if (this.xNomeAE != null && this.xNomeAE.Length > 150)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNomeAE, length must be less than 150.", new [] { "xNomeAE" });
+                yield return new ValidationResult("Invalid value for xNomeAE, length must be less than 150.", new [] { "xNomeAE" });
             }
 
             // xNomeAE (string) minLength
             if (this.xNomeAE != null && this.xNomeAE.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNomeAE, length must be greater than 1.", new [] { "xNomeAE" });
+                yield return new ValidationResult("Invalid value for xNomeAE, length must be greater than 1.", new [] { "xNomeAE" });
             }
 
             // xClaRisco (string) maxLength
             if (this.xClaRisco != null && this.xClaRisco.Length > 40)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xClaRisco, length must be less than 40.", new [] { "xClaRisco" });
+                yield return new ValidationResult("Invalid value for xClaRisco, length must be less than 40.", new [] { "xClaRisco" });
             }
 
             // xClaRisco (string) minLength
             if (this.xClaRisco != null && this.xClaRisco.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xClaRisco, length must be greater than 1.", new [] { "xClaRisco" });
+                yield return new ValidationResult("Invalid value for xClaRisco, length must be greater than 1.", new [] { "xClaRisco" });
             }
 
             // grEmb (string) maxLength
             if (this.grEmb != null && this.grEmb.Length > 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for grEmb, length must be less than 6.", new [] { "grEmb" });
+                yield return new ValidationResult("Invalid value for grEmb, length must be less than 6.", new [] { "grEmb" });
             }
 
             // grEmb (string) minLength
             if (this.grEmb != null && this.grEmb.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for grEmb, length must be greater than 1.", new [] { "grEmb" });
+                yield return new ValidationResult("Invalid value for grEmb, length must be greater than 1.", new [] { "grEmb" });
             }
 
             // qTotProd (string) maxLength
             if (this.qTotProd != null && this.qTotProd.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotProd, length must be less than 20.", new [] { "qTotProd" });
+                yield return new ValidationResult("Invalid value for qTotProd, length must be less than 20.", new [] { "qTotProd" });
             }
 
             // qTotProd (string) minLength
             if (this.qTotProd != null && this.qTotProd.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTotProd, length must be greater than 1.", new [] { "qTotProd" });
+                yield return new ValidationResult("Invalid value for qTotProd, length must be greater than 1.", new [] { "qTotProd" });
             }
 
             // qVolTipo (string) maxLength
             if (this.qVolTipo != null && this.qVolTipo.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qVolTipo, length must be less than 60.", new [] { "qVolTipo" });
+                yield return new ValidationResult("Invalid value for qVolTipo, length must be less than 60.", new [] { "qVolTipo" });
             }
 
             // qVolTipo (string) minLength
             if (this.qVolTipo != null && this.qVolTipo.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qVolTipo, length must be greater than 1.", new [] { "qVolTipo" });
+                yield return new ValidationResult("Invalid value for qVolTipo, length must be greater than 1.", new [] { "qVolTipo" });
             }
 
             yield break;

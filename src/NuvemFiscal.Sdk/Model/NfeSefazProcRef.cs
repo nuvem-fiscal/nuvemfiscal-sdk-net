@@ -170,18 +170,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nProc (string) maxLength
             if (this.nProc != null && this.nProc.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProc, length must be less than 60.", new [] { "nProc" });
+                yield return new ValidationResult("Invalid value for nProc, length must be less than 60.", new [] { "nProc" });
             }
 
             // nProc (string) minLength
             if (this.nProc != null && this.nProc.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProc, length must be greater than 1.", new [] { "nProc" });
+                yield return new ValidationResult("Invalid value for nProc, length must be greater than 1.", new [] { "nProc" });
             }
 
             yield break;

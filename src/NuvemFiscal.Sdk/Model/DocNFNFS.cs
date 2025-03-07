@@ -175,30 +175,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nNFS (int?) maximum
             if (this.nNFS > (int?)9999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNFS, must be a value less than or equal to 9999999.", new [] { "nNFS" });
+                yield return new ValidationResult("Invalid value for nNFS, must be a value less than or equal to 9999999.", new [] { "nNFS" });
             }
 
             // nNFS (int?) minimum
             if (this.nNFS < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nNFS, must be a value greater than or equal to 0.", new [] { "nNFS" });
+                yield return new ValidationResult("Invalid value for nNFS, must be a value greater than or equal to 0.", new [] { "nNFS" });
             }
 
             // serieNFS (string) maxLength
             if (this.serieNFS != null && this.serieNFS.Length > 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serieNFS, length must be less than 15.", new [] { "serieNFS" });
+                yield return new ValidationResult("Invalid value for serieNFS, length must be less than 15.", new [] { "serieNFS" });
             }
 
             // serieNFS (string) minLength
             if (this.serieNFS != null && this.serieNFS.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serieNFS, length must be greater than 1.", new [] { "serieNFS" });
+                yield return new ValidationResult("Invalid value for serieNFS, length must be greater than 1.", new [] { "serieNFS" });
             }
 
             yield break;

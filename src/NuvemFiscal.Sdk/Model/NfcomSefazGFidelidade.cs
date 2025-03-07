@@ -201,30 +201,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // qtdSaldoPts (string) maxLength
             if (this.qtdSaldoPts != null && this.qtdSaldoPts.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdSaldoPts, length must be less than 20.", new [] { "qtdSaldoPts" });
+                yield return new ValidationResult("Invalid value for qtdSaldoPts, length must be less than 20.", new [] { "qtdSaldoPts" });
             }
 
             // qtdSaldoPts (string) minLength
             if (this.qtdSaldoPts != null && this.qtdSaldoPts.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdSaldoPts, length must be greater than 1.", new [] { "qtdSaldoPts" });
+                yield return new ValidationResult("Invalid value for qtdSaldoPts, length must be greater than 1.", new [] { "qtdSaldoPts" });
             }
 
             // qtdPtsResg (string) maxLength
             if (this.qtdPtsResg != null && this.qtdPtsResg.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdPtsResg, length must be less than 20.", new [] { "qtdPtsResg" });
+                yield return new ValidationResult("Invalid value for qtdPtsResg, length must be less than 20.", new [] { "qtdPtsResg" });
             }
 
             // qtdPtsResg (string) minLength
             if (this.qtdPtsResg != null && this.qtdPtsResg.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdPtsResg, length must be greater than 1.", new [] { "qtdPtsResg" });
+                yield return new ValidationResult("Invalid value for qtdPtsResg, length must be greater than 1.", new [] { "qtdPtsResg" });
             }
 
             yield break;

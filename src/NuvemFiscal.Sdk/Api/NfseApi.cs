@@ -102,6 +102,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Cancelar uma NFS-e autorizada
         /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
         /// <param name="body"> (optional)</param>
@@ -112,7 +115,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cancelar uma NFS-e autorizada
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -222,6 +225,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Emitir lote de NFS-e
         /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>RpsLote</returns>
@@ -232,7 +238,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -242,6 +248,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Emitir lote de NFS-e
         /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>RpsLote</returns>
@@ -251,7 +260,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -260,6 +269,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Emitir NFS-e
         /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Nfse</returns>
@@ -270,7 +282,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -280,6 +292,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Emitir NFS-e
         /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Nfse</returns>
@@ -289,7 +304,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -365,7 +380,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Sincroniza dados na NFS-e a partir da Prefeitura
         /// </summary>
         /// <remarks>
-        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -377,7 +392,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Sincroniza dados na NFS-e a partir da Prefeitura
         /// </summary>
         /// <remarks>
-        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -493,7 +508,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cancelar uma NFS-e autorizada
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -506,7 +521,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Cancelar uma NFS-e autorizada
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -631,7 +646,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -644,7 +659,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -656,7 +671,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -668,7 +683,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir lote de NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -679,7 +694,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -692,7 +707,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -704,7 +719,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -716,7 +731,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Emitir NFS-e
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -797,7 +812,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Sincroniza dados na NFS-e a partir da Prefeitura
         /// </summary>
         /// <remarks>
-        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -810,7 +825,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Sincroniza dados na NFS-e a partir da Prefeitura
         /// </summary>
         /// <remarks>
-        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -1604,7 +1619,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Cancelar uma NFS-e autorizada 
+        /// Cancelar uma NFS-e autorizada **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -1617,7 +1632,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Cancelar uma NFS-e autorizada 
+        /// Cancelar uma NFS-e autorizada **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -1674,7 +1689,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Cancelar uma NFS-e autorizada 
+        /// Cancelar uma NFS-e autorizada **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -1688,7 +1703,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Cancelar uma NFS-e autorizada 
+        /// Cancelar uma NFS-e autorizada **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -2420,7 +2435,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2433,7 +2448,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2489,7 +2504,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2503,7 +2518,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2563,7 +2578,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2575,7 +2590,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2630,7 +2645,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2643,7 +2658,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir lote de NFS-e 
+        /// Emitir lote de NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por NFS-e.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2702,7 +2717,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2715,7 +2730,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2771,7 +2786,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2785,7 +2800,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2845,7 +2860,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2857,7 +2872,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2912,7 +2927,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -2925,7 +2940,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Emitir NFS-e 
+        /// Emitir NFS-e **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -3406,7 +3421,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -3419,7 +3434,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -3476,7 +3491,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>
@@ -3490,7 +3505,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.
+        /// Sincroniza dados na NFS-e a partir da Prefeitura Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status &#x60;processando&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status &#x60;erro&#x60; na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status &#x60;autorizada&#x60;na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por evento sincronizado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">ID único da NFS-e gerado pela Nuvem Fiscal.</param>

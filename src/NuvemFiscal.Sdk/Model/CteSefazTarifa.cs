@@ -170,30 +170,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CL (string) maxLength
             if (this.CL != null && this.CL.Length > 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CL, length must be less than 1.", new [] { "CL" });
+                yield return new ValidationResult("Invalid value for CL, length must be less than 1.", new [] { "CL" });
             }
 
             // cTar (string) maxLength
             if (this.cTar != null && this.cTar.Length > 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cTar, length must be less than 4.", new [] { "cTar" });
+                yield return new ValidationResult("Invalid value for cTar, length must be less than 4.", new [] { "cTar" });
             }
 
             // cTar (string) minLength
             if (this.cTar != null && this.cTar.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cTar, length must be greater than 1.", new [] { "cTar" });
+                yield return new ValidationResult("Invalid value for cTar, length must be greater than 1.", new [] { "cTar" });
             }
 
             // vTar (decimal?) minimum
             if (this.vTar < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vTar, must be a value greater than or equal to 0.", new [] { "vTar" });
+                yield return new ValidationResult("Invalid value for vTar, must be a value greater than or equal to 0.", new [] { "vTar" });
             }
 
             yield break;

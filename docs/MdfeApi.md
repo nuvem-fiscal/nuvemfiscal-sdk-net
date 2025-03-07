@@ -1043,6 +1043,8 @@ catch (ApiException e)
 
 Cancelar um MDF-e autorizado
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -1853,6 +1855,8 @@ catch (ApiException e)
 
 Emitir lote de MDF-e
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por MDF-e.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -1953,6 +1957,8 @@ catch (ApiException e)
 
 Emitir MDF-e
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -2052,6 +2058,8 @@ catch (ApiException e)
 > MdfeEncerramento EncerrarMdfe (string id, MdfePedidoEncerramento body)
 
 Encerrar um MDF-e autorizado
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp
@@ -2155,6 +2163,8 @@ catch (ApiException e)
 
 Incluir um condutor em um MDF-e autorizado
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -2256,6 +2266,8 @@ catch (ApiException e)
 > MdfeInclusaoDfe IncluirDfeMdfe (string id, MdfePedidoInclusaoDfe body)
 
 Incluir um DF-e em um MDF-e autorizado
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp
@@ -2587,7 +2599,7 @@ catch (ApiException e)
 
 Sincroniza dados no MDF-e a partir da SEFAZ
 
-Realiza a sincronização dos dados a partir da consulta da situação atual da MDF-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.    **Cenários de uso**:  * Sincronizar um manifesto que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizado na SEFAZ (útil em casos de erros de transmissão com a SEFAZ, como instabilidades e timeouts).  * Sincronizar um manifesto que se encontra com o status `autorizado`na Nuvem Fiscal, mas está cancelado ou encerrado na SEFAZ.  * Sincronizar todos os eventos de Cancelamento, Encerramento, Inclusão de condutor e Inclusão de DF-e de um manifesto que porventura não tenham sido feitos a partir da Nuvem Fiscal.
+Realiza a sincronização dos dados a partir da consulta da situação atual da MDF-e na Base de Dados do Portal da Secretaria de Fazenda Estadual.    **Cenários de uso**:  * Sincronizar um manifesto que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizado na SEFAZ (útil em casos de erros de transmissão com a SEFAZ, como instabilidades e timeouts).  * Sincronizar um manifesto que se encontra com o status `autorizado`na Nuvem Fiscal, mas está cancelado ou encerrado na SEFAZ.  * Sincronizar todos os eventos de Cancelamento, Encerramento, Inclusão de condutor e Inclusão de DF-e de um manifesto que porventura não tenham sido feitos a partir da Nuvem Fiscal.    **Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por evento sincronizado ou requisição.
 
 ### Exemplo
 ```csharp

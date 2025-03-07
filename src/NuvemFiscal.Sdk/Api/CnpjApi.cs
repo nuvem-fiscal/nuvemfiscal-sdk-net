@@ -26,6 +26,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Consultar dados do CNPJ
         /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
         /// <returns>CnpjEmpresa</returns>
@@ -35,7 +38,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar dados do CNPJ
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
@@ -45,7 +48,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -61,7 +64,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -85,7 +88,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar dados do CNPJ
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
@@ -97,7 +100,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar dados do CNPJ
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
@@ -108,7 +111,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -125,7 +128,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Listar estabelecimentos ativos a partir da base de CNPJ
         /// </summary>
         /// <remarks>
-        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -351,7 +354,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar dados do CNPJ 
+        /// Consultar dados do CNPJ **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
@@ -363,7 +366,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar dados do CNPJ 
+        /// Consultar dados do CNPJ **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
@@ -417,7 +420,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar dados do CNPJ 
+        /// Consultar dados do CNPJ **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
@@ -430,7 +433,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar dados do CNPJ 
+        /// Consultar dados do CNPJ **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-consultas\&quot;&gt;cnpj-consultas&lt;/a&gt;  - Consumo: 1 unidade por requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnpj">CNPJ sem máscara.</param>
@@ -488,7 +491,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -505,7 +508,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -586,7 +589,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>
@@ -604,7 +607,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.
+        /// Listar estabelecimentos ativos a partir da base de CNPJ Retorna uma lista de estabelecimentos de acordo com os critérios de busca utilizados.  Somente serão retornados estabelecimentos com situação cadastral \&quot;Ativa\&quot;.    **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cnpj-listagem\&quot;&gt;cnpj-listagem&lt;/a&gt;  - Consumo: 1 unidade por estabelecimento listado ou requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cnaePrincipal">Filtro pelo código CNAE da atividade principal do estabelecimento.  Utilize o valor sem máscara.</param>

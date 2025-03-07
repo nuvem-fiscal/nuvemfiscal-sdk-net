@@ -442,78 +442,78 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vBC (decimal?) minimum
             if (this.vBC < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+                yield return new ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
             }
 
             // vAliq (decimal?) minimum
             if (this.vAliq < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vAliq, must be a value greater than or equal to 0.", new [] { "vAliq" });
+                yield return new ValidationResult("Invalid value for vAliq, must be a value greater than or equal to 0.", new [] { "vAliq" });
             }
 
             // vISSQN (decimal?) minimum
             if (this.vISSQN < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vISSQN, must be a value greater than or equal to 0.", new [] { "vISSQN" });
+                yield return new ValidationResult("Invalid value for vISSQN, must be a value greater than or equal to 0.", new [] { "vISSQN" });
             }
 
             // vDeducao (decimal?) minimum
             if (this.vDeducao < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDeducao, must be a value greater than or equal to 0.", new [] { "vDeducao" });
+                yield return new ValidationResult("Invalid value for vDeducao, must be a value greater than or equal to 0.", new [] { "vDeducao" });
             }
 
             // vOutro (decimal?) minimum
             if (this.vOutro < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
+                yield return new ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
             }
 
             // vDescIncond (decimal?) minimum
             if (this.vDescIncond < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDescIncond, must be a value greater than or equal to 0.", new [] { "vDescIncond" });
+                yield return new ValidationResult("Invalid value for vDescIncond, must be a value greater than or equal to 0.", new [] { "vDescIncond" });
             }
 
             // vDescCond (decimal?) minimum
             if (this.vDescCond < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDescCond, must be a value greater than or equal to 0.", new [] { "vDescCond" });
+                yield return new ValidationResult("Invalid value for vDescCond, must be a value greater than or equal to 0.", new [] { "vDescCond" });
             }
 
             // vISSRet (decimal?) minimum
             if (this.vISSRet < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vISSRet, must be a value greater than or equal to 0.", new [] { "vISSRet" });
+                yield return new ValidationResult("Invalid value for vISSRet, must be a value greater than or equal to 0.", new [] { "vISSRet" });
             }
 
             // cServico (string) maxLength
             if (this.cServico != null && this.cServico.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cServico, length must be less than 20.", new [] { "cServico" });
+                yield return new ValidationResult("Invalid value for cServico, length must be less than 20.", new [] { "cServico" });
             }
 
             // cServico (string) minLength
             if (this.cServico != null && this.cServico.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cServico, length must be greater than 1.", new [] { "cServico" });
+                yield return new ValidationResult("Invalid value for cServico, length must be greater than 1.", new [] { "cServico" });
             }
 
             // nProcesso (string) maxLength
             if (this.nProcesso != null && this.nProcesso.Length > 30)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProcesso, length must be less than 30.", new [] { "nProcesso" });
+                yield return new ValidationResult("Invalid value for nProcesso, length must be less than 30.", new [] { "nProcesso" });
             }
 
             // nProcesso (string) minLength
             if (this.nProcesso != null && this.nProcesso.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProcesso, length must be greater than 1.", new [] { "nProcesso" });
+                yield return new ValidationResult("Invalid value for nProcesso, length must be greater than 1.", new [] { "nProcesso" });
             }
 
             yield break;

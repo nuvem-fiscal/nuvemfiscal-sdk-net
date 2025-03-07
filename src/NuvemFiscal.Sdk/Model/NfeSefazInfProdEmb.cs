@@ -175,36 +175,36 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xEmb (string) maxLength
             if (this.xEmb != null && this.xEmb.Length > 8)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEmb, length must be less than 8.", new [] { "xEmb" });
+                yield return new ValidationResult("Invalid value for xEmb, length must be less than 8.", new [] { "xEmb" });
             }
 
             // xEmb (string) minLength
             if (this.xEmb != null && this.xEmb.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEmb, length must be greater than 1.", new [] { "xEmb" });
+                yield return new ValidationResult("Invalid value for xEmb, length must be greater than 1.", new [] { "xEmb" });
             }
 
             // qVolEmb (decimal?) minimum
             if (this.qVolEmb < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qVolEmb, must be a value greater than or equal to 0.", new [] { "qVolEmb" });
+                yield return new ValidationResult("Invalid value for qVolEmb, must be a value greater than or equal to 0.", new [] { "qVolEmb" });
             }
 
             // uEmb (string) maxLength
             if (this.uEmb != null && this.uEmb.Length > 8)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uEmb, length must be less than 8.", new [] { "uEmb" });
+                yield return new ValidationResult("Invalid value for uEmb, length must be less than 8.", new [] { "uEmb" });
             }
 
             // uEmb (string) minLength
             if (this.uEmb != null && this.uEmb.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for uEmb, length must be greater than 1.", new [] { "uEmb" });
+                yield return new ValidationResult("Invalid value for uEmb, length must be greater than 1.", new [] { "uEmb" });
             }
 
             yield break;

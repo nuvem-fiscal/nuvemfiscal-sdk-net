@@ -170,24 +170,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // chSubstda (string) maxLength
             if (this.chSubstda != null && this.chSubstda.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chSubstda, length must be less than 50.", new [] { "chSubstda" });
+                yield return new ValidationResult("Invalid value for chSubstda, length must be less than 50.", new [] { "chSubstda" });
             }
 
             // xMotivo (string) maxLength
             if (this.xMotivo != null && this.xMotivo.Length > 255)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xMotivo, length must be less than 255.", new [] { "xMotivo" });
+                yield return new ValidationResult("Invalid value for xMotivo, length must be less than 255.", new [] { "xMotivo" });
             }
 
             // xMotivo (string) minLength
             if (this.xMotivo != null && this.xMotivo.Length < 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xMotivo, length must be greater than 15.", new [] { "xMotivo" });
+                yield return new ValidationResult("Invalid value for xMotivo, length must be greater than 15.", new [] { "xMotivo" });
             }
 
             yield break;

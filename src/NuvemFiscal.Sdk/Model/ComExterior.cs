@@ -333,42 +333,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // tpMoeda (string) maxLength
             if (this.tpMoeda != null && this.tpMoeda.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for tpMoeda, length must be less than 3.", new [] { "tpMoeda" });
+                yield return new ValidationResult("Invalid value for tpMoeda, length must be less than 3.", new [] { "tpMoeda" });
             }
 
             // vServMoeda (decimal?) minimum
             if (this.vServMoeda < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vServMoeda, must be a value greater than or equal to 0.", new [] { "vServMoeda" });
+                yield return new ValidationResult("Invalid value for vServMoeda, must be a value greater than or equal to 0.", new [] { "vServMoeda" });
             }
 
             // nDI (string) maxLength
             if (this.nDI != null && this.nDI.Length > 12)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be less than 12.", new [] { "nDI" });
+                yield return new ValidationResult("Invalid value for nDI, length must be less than 12.", new [] { "nDI" });
             }
 
             // nDI (string) minLength
             if (this.nDI != null && this.nDI.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be greater than 1.", new [] { "nDI" });
+                yield return new ValidationResult("Invalid value for nDI, length must be greater than 1.", new [] { "nDI" });
             }
 
             // nRE (string) maxLength
             if (this.nRE != null && this.nRE.Length > 12)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRE, length must be less than 12.", new [] { "nRE" });
+                yield return new ValidationResult("Invalid value for nRE, length must be less than 12.", new [] { "nRE" });
             }
 
             // nRE (string) minLength
             if (this.nRE != null && this.nRE.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nRE, length must be greater than 1.", new [] { "nRE" });
+                yield return new ValidationResult("Invalid value for nRE, length must be greater than 1.", new [] { "nRE" });
             }
 
             yield break;

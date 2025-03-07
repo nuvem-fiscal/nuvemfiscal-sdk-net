@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.40.0
+  version: 2.46.0
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -20,6 +20,7 @@ tags:
     recebam as NF-e emitidas contra o seu CNPJ diretamente do Ambiente\r\nNacional,\
     \ facilitando o controle e a gestão dos documentos recebidos."
   name: Distribuição NF-e
+- name: Email
 - description: Cadastre e administre todas as empresas vinculadas à sua conta.
   name: Empresa
 - description: Manifesto Eletrônico de Documentos Fiscais.
@@ -35,6 +36,8 @@ tags:
 paths:
   /cep/{Cep}:
     get:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#cep-consultas\"\
+        >cep-consultas</a>\r\n- Consumo: 1 unidade requisição."
       operationId: ConsultarCep
       parameters:
       - description: CEP sem máscara.
@@ -57,7 +60,9 @@ paths:
     get:
       description: "Retorna uma lista de estabelecimentos de acordo com os critérios\
         \ de busca utilizados.\r\nSomente serão retornados estabelecimentos com situaç\
-        ão cadastral \"Ativa\"."
+        ão cadastral \"Ativa\".\r\n\r\n**Informações adicionais**:\r\n- Cota: <a href=\"\
+        /docs/limites#cnpj-listagem\">cnpj-listagem</a>\r\n- Consumo: 1 unidade por\
+        \ estabelecimento listado ou requisição."
       operationId: ListarCnpj
       parameters:
       - description: "Limite no número de objetos a serem retornados pela API, entre\
@@ -115,6 +120,8 @@ paths:
       - Cnpj
   /cnpj/{Cnpj}:
     get:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#cnpj-consultas\"\
+        >cnpj-consultas</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: ConsultarCnpj
       parameters:
       - description: CNPJ sem máscara.
@@ -235,6 +242,8 @@ paths:
       tags:
       - Cte
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EmitirCte
       requestBody:
         content:
@@ -392,6 +401,8 @@ paths:
       tags:
       - Cte
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: CancelarCte
       parameters:
       - description: ID único do CT-e gerado pela Nuvem Fiscal.
@@ -481,7 +492,9 @@ paths:
       - Cte
     post:
       description: "É possível enviar até 20 correções diferentes, sendo que será\
-        \ válido sempre a última correção enviada."
+        \ válido sempre a última correção enviada.\r\n\r\n**Informações adicionais**:\r\
+        \n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo:\
+        \ 1 unidade por requisição."
       operationId: CriarCartaCorrecaoCte
       parameters:
       - description: ID único do CT-e gerado pela Nuvem Fiscal.
@@ -587,7 +600,9 @@ paths:
         * Sincronizar um CT-e que se encontra com o status `autorizado`na Nuvem Fiscal,\
         \ mas está cancelado na SEFAZ.\r\n* Sincronizar todos os eventos de Cancelamento\
         \ e Carta de Correção de um CT-e que porventura não tenham sido feitos a partir\
-        \ da Nuvem Fiscal."
+        \ da Nuvem Fiscal.\r\n\r\n**Informações adicionais**:\r\n- Cota: <a href=\"\
+        /docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo: 1 unidade por evento\
+        \ sincronizado ou requisição."
       operationId: SincronizarCte
       parameters:
       - description: ID único do CT-e gerado pela Nuvem Fiscal.
@@ -731,18 +746,25 @@ paths:
       tags:
       - Distribuição NF-e
     post:
-      description: "Gera um pedido de distribuição de Documentos Fiscais Eletrônicos\
-        \ (DF-e)\r\npara um determinado CNPJ. Este endpoint permite que o destinatá\
-        rio\r\nobtenha os documentos fiscais emitidos contra o seu CNPJ utilizando\r\
-        \ntrês formas de consulta: *dist-nsu*, *cons-nsu* e *cons-chave*.\r\n\r\n\
-        **Comportamento Assíncrono**\r\n\r\nNo retorno, existe a propriedade `status`\
-        \ no JSON que poderá assumir um\r\ndos seguintes valores: *processando*, *concluido*\
-        \ ou *erro*. Caso o status\r\nseja retornado com o valor *processando*, significa\
-        \ que a solicitação está\r\nsendo realizada de forma assíncrona pela API.\
-        \ Nesse caso, o usuário deverá\r\nadotar um fluxo que consiste em requisitar\
-        \ periodicamente o endpoint de\r\nconsulta de pedido de distribuição até que\
-        \ a API retorne o pedido com um\r\nstatus indicando o fim do processamento\
-        \ (concluido ou erro)."
+      description: "Este endpoint permite que o destinatário obtenha Documentos Fiscais\r\
+        \nEletrônicos (DF-e) emitidos contra o seu CNPJ ou CPF ou que seja de\r\n\
+        seu interesse. A distribuição pode ser feita de três formas:\r\n*dist-nsu*,\
+        \ *cons-nsu* e *cons-chave*.\r\n\r\n**Formas de Consulta**:\r\n- *dist-nsu*:\
+        \ Consulta pelo último NSU recebido.\r\n- *cons-nsu*: Consulta por um NSU\
+        \ específico.\r\n- *cons-chave*: Consulta pela chave de acesso da NF-e.\r\n\
+        \r\n**Retorno da Solicitação**\r\n\r\nA resposta da solicitação inclui a propriedade\
+        \ *status* no JSON, que\r\npode ter os seguintes valores:\r\n- *processando*:\
+        \ A solicitação está em andamento.\r\n- *concluido*: A solicitação foi processada\
+        \ com sucesso.\r\n- *erro*: Ocorreu um erro no processamento da solicitaçã\
+        o.\r\n\r\nSe o status retornado for *processando*, significa que a solicitaç\
+        ão está\r\nsendo realizada de forma assíncrona pela API. Nesse caso, o usuá\
+        rio deverá\r\nadotar um fluxo que consiste em requisitar periodicamente o\
+        \ endpoint\r\n<a href=\"#tag/Distribuicao-NF-e/operation/ConsultarDistribuicaoNfe\"\
+        >consultar distribuição</a> até que\r\na API retorne o pedido com um status\
+        \ indicando o fim do\r\nprocessamento (concluido ou erro).\r\n\r\n**Informaç\
+        ões adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\
+        \n- Consumo: 1 unidade por documento distribuído (retornado) ou requisiçã\
+        o."
       operationId: GerarDistribuicaoNfe
       requestBody:
         content:
@@ -805,6 +827,11 @@ paths:
         required: true
         schema:
           type: string
+      - description: Filtrar por documentos a partir do NSU informado.
+        in: query
+        name: dist_nsu
+        schema:
+          type: integer
       - description: "Filtrar pelo tipo do documento de interesse da pessoa ou empresa.\r\
           \n\r\nValores aceitos: `nota`, `evento`"
         in: query
@@ -852,6 +879,29 @@ paths:
                 $ref: '#/components/schemas/DistribuicaoNfeDocumento'
           description: Successful response
       summary: Consultar documento
+      tags:
+      - Distribuição NF-e
+  /distribuicao/nfe/documentos/{id}/pdf:
+    get:
+      description: "Utilize esse endpoint para obter o PDF do documento.\r\n\r\nSchemas\
+        \ suportados:\r\n* procNFe_v4.00.xsd"
+      operationId: BaixarPdfDocumentoDistribuicaoNfe
+      parameters:
+      - description: ID único do documento gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar PDF do documento
       tags:
       - Distribuição NF-e
   /distribuicao/nfe/documentos/{id}/xml:
@@ -949,7 +999,9 @@ paths:
         \ declarando que a operação descrita da NF-e não foi por ele solicitada.\r\
         \n* **Operação não Realizada (210240)**: Manifestação do destinatário reconhecendo\
         \ sua participação na operação descrita na NF-e, mas declarando que a operaç\
-        ão não ocorreu ou não se efetivou como informado nesta NF-e."
+        ão não ocorreu ou não se efetivou como informado nesta NF-e.\r\n\r\n**Informaç\
+        ões adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\
+        \n- Consumo: 1 unidade por requisição."
       operationId: ManifestarNfe
       requestBody:
         content:
@@ -993,6 +1045,88 @@ paths:
       summary: Consultar manifestação
       tags:
       - Distribuição NF-e
+  /distribuicao/nfe/notas-sem-manifestacao:
+    get:
+      description: "No processo de distribuição de DF-e, as notas fiscais eletrônicas\
+        \ (NF-e)\r\nsão inicialmente disponibilizadas de forma resumida. Para obter\
+        \ o XML\r\ncompleto, o destinatário deve manifestar a ciência da operação\
+        \ e,\r\nposteriormente, uma manifestação conclusiva dentro de um prazo legal.\r\
+        \n\r\nPara facilitar essa gestão e o cumprimento dos prazos legais de manifestaç\
+        ão,\r\na API da Nuvem Fiscal permite listar as notas que ainda não\r\npossuem\
+        \ manifestação, ajudando os usuários a identificar rapidamente as\r\nnotas\
+        \ que necessitam de ação.\r\n\r\nO usuário pode optar por listar apenas as\
+        \ notas que não possuem manifestação\r\nconclusiva ou que não possuem qualquer\
+        \ tipo de manifestação. Essa flexibilidade\r\npermite um controle mais preciso\
+        \ e adequado às necessidades operacionais\r\nde cada empresa.\r\n\r\nOs documentos\
+        \ são retornados ordenados decrescentemente pela data de\r\ndistribuição,\
+        \ permitindo uma visualização clara e organizada das notas\r\nmais recentes.\r\
+        \n\r\n**Cenários de uso:**\r\n* Identificar rapidamente as notas que ainda\
+        \ precisam de manifestação para obter o XML completo.\r\n* Listar todas as\
+        \ notas fiscais eletrônicas que foram registradas com ciência da operação,\
+        \ mas ainda não possuem uma manifestação conclusiva (confirmação da operaç\
+        ão, desconhecimento da operação ou operação não realizada).\r\n* Listar todas\
+        \ as notas fiscais eletrônicas que não possuem nenhum tipo de manifestaçã\
+        o registrada (nem ciência da operação, nem manifestação conclusiva)."
+      operationId: ListarNfeSemManifestacao
+      parameters:
+      - description: "Limite no número de objetos a serem retornados pela API, entre\
+          \ 1 e 100."
+        in: query
+        name: $top
+        schema:
+          default: 10
+          type: integer
+      - description: Quantidade de objetos que serão ignorados antes da lista começar
+          a ser retornada.
+        in: query
+        name: $skip
+        schema:
+          default: 0
+          type: integer
+      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
+          \ total de registros que o filtro retornaria, independente dos filtros de\
+          \ paginação."
+        in: query
+        name: $inlinecount
+        schema:
+          default: false
+          type: boolean
+      - description: "Filtrar pelo CPF ou CNPJ da pessoa ou empresa interessada.\r\
+          \n\r\nUtilize o valor sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
+          \ producao"
+        in: query
+        name: ambiente
+        required: true
+        schema:
+          type: string
+      - description: "Indica se serão consideradas apenas as manifestações conclusivas.\r\
+          \n\r\nValores:\r\n* `false`: serão retornadas notas que não possuírem qualquer\
+          \ tipo de\r\n  manifestação.\r\n\r\n* `true`: apenas as notas que não possuí\
+          rem manifestação conclusiva\r\n  serão retornadas. Ou seja, notas que tenham\
+          \ sido manifestadas apenas\r\n  com Ciência da Operação (210210) continuarã\
+          o sendo retornadas por\r\n  esse endpoint até que recebam uma manifestaç\
+          ão conclusiva."
+        in: query
+        name: conclusiva
+        schema:
+          default: false
+          type: boolean
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistribuicaoNfeNotaListagem'
+          description: Successful response
+      summary: Listar notas sem manifestação
+      tags:
+      - Distribuição NF-e
   /distribuicao/nfe/{id}:
     get:
       operationId: ConsultarDistribuicaoNfe
@@ -1013,6 +1147,94 @@ paths:
       summary: Consultar distribuição
       tags:
       - Distribuição NF-e
+  /emails:
+    get:
+      description: "Retorna a lista dos emails associadas à sua conta. Os e-emails\
+        \ são\r\nretornados ordenados pela data da criação, com os mais recentes\r\
+        \naparecendo primeiro."
+      operationId: ListarEmails
+      parameters:
+      - description: "Limite no número de objetos a serem retornados pela API, entre\
+          \ 1 e 100."
+        in: query
+        name: $top
+        schema:
+          default: 10
+          type: integer
+      - description: Quantidade de objetos que serão ignorados antes da lista começar
+          a ser retornada.
+        in: query
+        name: $skip
+        schema:
+          default: 0
+          type: integer
+      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
+          \ total de registros que o filtro retornaria, independente dos filtros de\
+          \ paginação."
+        in: query
+        name: $inlinecount
+        schema:
+          default: false
+          type: boolean
+      - description: "Filtra pelo CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor\
+          \ sem máscara*."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: Filtra apenas emails com problemas de entrega.
+        in: query
+        name: undelivered
+        schema:
+          type: boolean
+      - description: Filtra pelo endereço de e-mail do destinatário para qual o email
+          foi enviado.
+        in: query
+        name: email
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailListagem'
+          description: Successful response
+      summary: Listar e-mails
+      tags:
+      - Email
+  /emails/{id}:
+    get:
+      description: "Obtém informações detalhadas sobre o envio de um email. Este endpoint\r\
+        \npermite rastrear todos os eventos relacionados ao email, como envio,\r\n\
+        entrega, falhas e outros eventos relevantes.\r\n\r\nCom este endpoint, é possí\
+        vel ter uma visão completa do ciclo de vida\r\nde um email enviado, permitindo\
+        \ que os usuários acompanhem e analisem\r\no status e o histórico de eventos\
+        \ do email. Isso é particularmente\r\nútil para identificar problemas de entrega\
+        \ e entender o comportamento\r\ndo email ao longo do tempo."
+      operationId: ConsultarEmail
+      parameters:
+      - description: "ID único do e-mail.\r\n\r\nEsse parâmetro é obtido após o envio\
+          \ do email por qualquer endpoint da\r\nAPI da Nuvem Fiscal que realize disparos\
+          \ de email.\r\n\r\nExemplos:\r\n* <a href=\"#tag/Nfe/operation/EnviarEmailNfe\"\
+          >Envio de XML e PDF de NF-e</a>.\r\n* <a href=\"#tag/Nfce/operation/EnviarEmailNfce\"\
+          >Envio de XML e PDF de NFC-e</a>."
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Email'
+          description: Successful response
+      summary: Consultar e-mail
+      tags:
+      - Email
   /empresas:
     get:
       description: "Retorna a lista das empresas associadas à sua conta. As empresas\
@@ -1692,6 +1914,8 @@ paths:
       tags:
       - Mdfe
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EmitirMdfe
       requestBody:
         content:
@@ -1830,6 +2054,8 @@ paths:
       tags:
       - Mdfe
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por MDF-e."
       operationId: EmitirLoteMdfe
       requestBody:
         content:
@@ -1968,6 +2194,8 @@ paths:
       tags:
       - Mdfe
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: CancelarMdfe
       parameters:
       - description: ID único do MDF-e gerado pela Nuvem Fiscal.
@@ -2057,6 +2285,8 @@ paths:
       tags:
       - Mdfe
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EncerrarMdfe
       parameters:
       - description: ID único do MDF-e gerado pela Nuvem Fiscal.
@@ -2126,6 +2356,8 @@ paths:
       - Mdfe
   /mdfe/{id}/inclusao-condutor:
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: IncluirCondutorMdfe
       parameters:
       - description: ID único do MDF-e gerado pela Nuvem Fiscal.
@@ -2153,6 +2385,8 @@ paths:
       x-codegen-request-body-name: body
   /mdfe/{id}/inclusao-dfe:
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: IncluirDfeMdfe
       parameters:
       - description: ID único do MDF-e gerado pela Nuvem Fiscal.
@@ -2217,7 +2451,9 @@ paths:
         \ Fiscal, mas está cancelado ou encerrado na SEFAZ.\r\n* Sincronizar todos\
         \ os eventos de Cancelamento, Encerramento, Inclusão de condutor e Inclusã\
         o de DF-e de um manifesto que porventura não tenham sido feitos a partir da\
-        \ Nuvem Fiscal."
+        \ Nuvem Fiscal.\r\n\r\n**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por evento sincronizado ou requisiç\
+        ão."
       operationId: SincronizarMdfe
       parameters:
       - description: ID único do MDF-e gerado pela Nuvem Fiscal.
@@ -2376,6 +2612,8 @@ paths:
       tags:
       - Nfce
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EmitirNfce
       requestBody:
         content:
@@ -2503,6 +2741,8 @@ paths:
       - Nfce
   /nfce/inutilizacoes:
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: InutilizarNumeracaoNfce
       requestBody:
         content:
@@ -2641,6 +2881,8 @@ paths:
       tags:
       - Nfce
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por NFC-e."
       operationId: EmitirLoteNfce
       requestBody:
         content:
@@ -2689,7 +2931,9 @@ paths:
         \ endpoint de emissão de NFC-e (`POST /nfce`).\r\n\r\n**Atenção**: O DANFE\
         \ gerado por este endpoint é apenas para fins de visualização e não possui\
         \ valor fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo\
-        \ de emissão padrão descrito na documentação."
+        \ de emissão padrão descrito na documentação.\r\n\r\n**Informações adicionais**:\r\
+        \n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo:\
+        \ 1 unidade por requisição."
       operationId: BaixarPreviaPdfNfce
       parameters:
       - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
@@ -2789,7 +3033,9 @@ paths:
         \ entrada são os mesmos do endpoint de emissão de NFC-e (`POST /nfce`).\r\n\
         \r\n**Atenção**: O XML gerado por este endpoint é apenas para fins de visualizaç\
         ão e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal,\
-        \ utilize o processo de emissão padrão descrito na documentação."
+        \ utilize o processo de emissão padrão descrito na documentação.\r\n\r\n**Informaç\
+        ões adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\
+        \n- Consumo: 1 unidade por requisição."
       operationId: BaixarPreviaXmlNfce
       requestBody:
         content:
@@ -2887,6 +3133,8 @@ paths:
       tags:
       - Nfce
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: CancelarNfce
       parameters:
       - description: ID único da NFC-e gerado pela Nuvem Fiscal.
@@ -2954,6 +3202,36 @@ paths:
       summary: Baixar XML do cancelamento
       tags:
       - Nfce
+  /nfce/{id}/email:
+    post:
+      description: "Envia o XML e PDF da nota via email.\r\n\r\n**Informações adicionais**:\r\
+        \n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo:\
+        \ 1 unidade por requisição."
+      operationId: EnviarEmailNfce
+      parameters:
+      - description: ID único da NFC-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DfePedidoEnvioEmail'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailStatusResponse'
+          description: Successful response
+      summary: Enviar e-mail
+      tags:
+      - Nfce
+      x-codegen-request-body-name: body
   /nfce/{id}/escpos:
     get:
       description: "ESC/POS é um sistema de comando criado pela Epson usado em diversos\
@@ -3108,7 +3386,9 @@ paths:
         * Sincronizar uma nota que se encontra com o status `autorizado`na Nuvem Fiscal,\
         \ mas está cancelada na SEFAZ.\r\n* Sincronizar todos os eventos de Cancelamento,\
         \ Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos\
-        \ a partir da Nuvem Fiscal."
+        \ a partir da Nuvem Fiscal.\r\n\r\n**Informações adicionais**:\r\n- Cota:\
+        \ <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo: 1 unidade\
+        \ por evento sincronizado ou requisição."
       operationId: SincronizarNfce
       parameters:
       - description: ID único da NFC-e gerado pela Nuvem Fiscal.
@@ -3267,6 +3547,8 @@ paths:
       tags:
       - Nfcom
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EmitirNfcom
       requestBody:
         content:
@@ -3360,6 +3642,8 @@ paths:
       tags:
       - Nfcom
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: CancelarNfcom
       parameters:
       - description: ID único da NFCom gerada pela Nuvem Fiscal.
@@ -3404,6 +3688,34 @@ paths:
                 type: string
           description: Successful response
       summary: Baixar XML do cancelamento
+      tags:
+      - Nfcom
+  /nfcom/{id}/pdf:
+    get:
+      operationId: BaixarPdfNfcom
+      parameters:
+      - description: ID único da NFCom gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
+          \ na empresa."
+        in: query
+        name: logotipo
+        schema:
+          default: false
+          type: boolean
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar PDF do DANFE-COM
       tags:
       - Nfcom
   /nfcom/{id}/xml:
@@ -3546,6 +3858,23 @@ paths:
       tags:
       - Nfe
     post:
+      description: "Este endpoint permite a emissão de Notas Fiscais Eletrônicas (NF-e).\r\
+        \nA solicitação deve ser feita enviando os dados necessários para a\r\nemissã\
+        o de uma NF-e. \r\n\r\nA estrutura do JSON utilizado na solicitação segue\
+        \ a hierarquia e\r\nnomenclatura de campos definidos no <a href=\"https://www.nfe.fazenda.gov.br/portal/principal.aspx\"\
+        \ target=\"_blank\">\r\nManual de Orientação ao Contribuinte (MOC)</a>.\r\n\
+        Esta conformidade visa facilitar a integração de novos usuários que já\r\n\
+        possuem familiaridade com o padrão, além de permitir a resolução de\r\ndú\
+        vidas diretamente no MOC, com um profissional de contabilidade\r\nhabilitado\
+        \ ou em outras fontes confiáveis que tratam do mesmo assunto.\r\n\r\n**Comportamento\
+        \ Assíncrono**\r\n\r\nA resposta desse endpoint inclui a propriedade *status*\
+        \ no JSON.\r\nCaso o valor retornado seja *pendente*, significa que a solicitaç\
+        ão está\r\nsendo realizada de forma assíncrona pela API. Nesse caso, o usuá\
+        rio deverá\r\nadotar um fluxo que consiste em requisitar periodicamente o\
+        \ endpoint\r\n<a href=\"#tag/Nfe/operation/ConsultarNfe\">Consultar NF-e</a>\
+        \ até que\r\nseja retornado um status indicando o fim da emissão.\r\n\r\n\
+        **Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EmitirNfe
       requestBody:
         content:
@@ -3566,8 +3895,10 @@ paths:
       x-codegen-request-body-name: body
   /nfe/cadastro-contribuinte:
     get:
-      description: Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS
-        da unidade federada.
+      description: "Consulta o Cadastro Centralizado de Contribuintes (CCC) do ICMS\
+        \ da unidade federada.\r\n\r\n**Informações adicionais**:\r\n- Cota: <a href=\"\
+        /docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo: 1 unidade por requisiç\
+        ão."
       operationId: ConsultarContribuinteNfe
       parameters:
       - description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
@@ -3714,6 +4045,8 @@ paths:
       - Nfe
   /nfe/inutilizacoes:
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: InutilizarNumeracaoNfe
       requestBody:
         content:
@@ -3852,6 +4185,8 @@ paths:
       tags:
       - Nfe
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por NF-e."
       operationId: EmitirLoteNfe
       requestBody:
         content:
@@ -3900,7 +4235,9 @@ paths:
         \ endpoint de emissão de NF-e (`POST /nfe`).\r\n\r\n**Atenção**: O DANFE gerado\
         \ por este endpoint é apenas para fins de visualização e não possui valor\
         \ fiscal. Para a emissão de uma NF-e com valor fiscal, utilize o processo\
-        \ de emissão padrão descrito na documentação."
+        \ de emissão padrão descrito na documentação.\r\n\r\n**Informações adicionais**:\r\
+        \n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo:\
+        \ 1 unidade por requisição."
       operationId: BaixarPreviaPdfNfe
       parameters:
       - description: "Imprime o documento com logotipo, desde que esteja cadastrado\
@@ -3971,7 +4308,9 @@ paths:
         \ entrada são os mesmos do endpoint de emissão de NF-e (`POST /nfe`).\r\n\r\
         \n**Atenção**: O XML gerado por este endpoint é apenas para fins de visualizaç\
         ão e não possui valor fiscal. Para a emissão de uma NF-e com valor fiscal,\
-        \ utilize o processo de emissão padrão descrito na documentação."
+        \ utilize o processo de emissão padrão descrito na documentação.\r\n\r\n**Informaç\
+        ões adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\
+        \n- Consumo: 1 unidade por requisição."
       operationId: BaixarPreviaXmlNfe
       requestBody:
         content:
@@ -4069,6 +4408,8 @@ paths:
       tags:
       - Nfe
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: CancelarNfe
       parameters:
       - description: ID único da NF-e gerado pela Nuvem Fiscal.
@@ -4158,7 +4499,9 @@ paths:
       - Nfe
     post:
       description: "É possível enviar até 20 correções diferentes, sendo que será\
-        \ válido sempre a última correção enviada."
+        \ válido sempre a última correção enviada.\r\n\r\n**Informações adicionais**:\r\
+        \n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo:\
+        \ 1 unidade por requisição."
       operationId: CriarCartaCorrecaoNfe
       parameters:
       - description: ID único da NF-e gerado pela Nuvem Fiscal.
@@ -4227,6 +4570,36 @@ paths:
       summary: Baixar XML da carta de correção
       tags:
       - Nfe
+  /nfe/{id}/email:
+    post:
+      description: "Envia o XML e PDF da nota via email.\r\n\r\n**Informações adicionais**:\r\
+        \n- Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo:\
+        \ 1 unidade por requisição."
+      operationId: EnviarEmailNfe
+      parameters:
+      - description: ID único da NF-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DfePedidoEnvioEmail'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailStatusResponse'
+          description: Successful response
+      summary: Enviar e-mail
+      tags:
+      - Nfe
+      x-codegen-request-body-name: body
   /nfe/{id}/pdf:
     get:
       operationId: BaixarPdfNfe
@@ -4301,7 +4674,9 @@ paths:
         * Sincronizar uma nota que se encontra com o status `autorizado`na Nuvem Fiscal,\
         \ mas está cancelada na SEFAZ.\r\n* Sincronizar todos os eventos de Cancelamento,\
         \ Carta de Correção e EPEC de uma nota que porventura não tenham sido feitos\
-        \ a partir da Nuvem Fiscal."
+        \ a partir da Nuvem Fiscal.\r\n\r\n**Informações adicionais**:\r\n- Cota:\
+        \ <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo: 1 unidade\
+        \ por evento sincronizado ou requisição."
       operationId: SincronizarNfe
       parameters:
       - description: ID único da NF-e gerado pela Nuvem Fiscal.
@@ -4461,6 +4836,8 @@ paths:
       - Nfse
     post:
       deprecated: true
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EmitirNfse
       requestBody:
         content:
@@ -4518,6 +4895,8 @@ paths:
       - Nfse
   /nfse/dps:
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: EmitirNfseDps
       requestBody:
         content:
@@ -4538,6 +4917,8 @@ paths:
       x-codegen-request-body-name: body
   /nfse/dps/lotes:
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por NFS-e."
       operationId: EmitirLoteNfseDps
       requestBody:
         content:
@@ -4615,6 +4996,8 @@ paths:
       - Nfse
     post:
       deprecated: true
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por NFS-e."
       operationId: EmitirLoteNfse
       requestBody:
         content:
@@ -4721,6 +5104,8 @@ paths:
       tags:
       - Nfse
     post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
       operationId: CancelarNfse
       parameters:
       - description: ID único da NFS-e gerado pela Nuvem Fiscal.
@@ -4794,7 +5179,9 @@ paths:
         \ com o status `erro` na Nuvem Fiscal, mas está autorizada na prefeitura (ú\
         til em casos de erros de transmissão, como instabilidades e timeouts);\r\n\
         * Sincronizar uma nota que se encontra com o status `autorizada`na Nuvem Fiscal,\
-        \ mas está cancelada na prefeitura."
+        \ mas está cancelada na prefeitura.\r\n\r\n**Informações adicionais**:\r\n\
+        - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>\r\n- Consumo:\
+        \ 1 unidade por evento sincronizado ou requisição."
       operationId: SincronizarNfse
       parameters:
       - description: ID único da NFS-e gerado pela Nuvem Fiscal.
@@ -4864,789 +5251,6 @@ paths:
       - Nfse
 components:
   schemas:
-    DistribuicaoNfeListagem:
-      example:
-        '@count': 0
-        data:
-        - max_nsu: 2
-          ambiente: homologacao
-          dist_nsu: 6
-          codigo_status: 5
-          created_at: 2000-01-23T04:56:07.000+00:00
-          tipo_consulta: dist-nsu
-          ultimo_nsu: 5
-          documentos:
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          data_hora_resposta: 2000-01-23T04:56:07.000+00:00
-          uf_autor: uf_autor
-          id: id
-          cons_nsu: 1
-          cons_chave: cons_chave
-          motivo_status: motivo_status
-          status: processando
-        - max_nsu: 2
-          ambiente: homologacao
-          dist_nsu: 6
-          codigo_status: 5
-          created_at: 2000-01-23T04:56:07.000+00:00
-          tipo_consulta: dist-nsu
-          ultimo_nsu: 5
-          documentos:
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          - schema: schema
-            created_at: 2000-01-23T04:56:07.000+00:00
-            valor_nfe: 2.027123023002322
-            chave_acesso: chave_acesso
-            emitente_nome_razao_social: emitente_nome_razao_social
-            tipo_evento: tipo_evento
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            nsu: 7
-            tipo_documento: nota
-            numero_protocolo: numero_protocolo
-            numero_sequencial: 9
-            digest_value: digest_value
-            emitente_cpf_cnpj: emitente_cpf_cnpj
-            emitente_inscricao_estadual: emitente_inscricao_estadual
-            resumo: true
-            id: id
-            tipo_nfe: 3
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          data_hora_resposta: 2000-01-23T04:56:07.000+00:00
-          uf_autor: uf_autor
-          id: id
-          cons_nsu: 1
-          cons_chave: cons_chave
-          motivo_status: motivo_status
-          status: processando
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/DistribuicaoNfe'
-          type: array
-      type: object
-    DistribuicaoNfe:
-      example:
-        max_nsu: 2
-        ambiente: homologacao
-        dist_nsu: 6
-        codigo_status: 5
-        created_at: 2000-01-23T04:56:07.000+00:00
-        tipo_consulta: dist-nsu
-        ultimo_nsu: 5
-        documentos:
-        - schema: schema
-          created_at: 2000-01-23T04:56:07.000+00:00
-          valor_nfe: 2.027123023002322
-          chave_acesso: chave_acesso
-          emitente_nome_razao_social: emitente_nome_razao_social
-          tipo_evento: tipo_evento
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          nsu: 7
-          tipo_documento: nota
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 9
-          digest_value: digest_value
-          emitente_cpf_cnpj: emitente_cpf_cnpj
-          emitente_inscricao_estadual: emitente_inscricao_estadual
-          resumo: true
-          id: id
-          tipo_nfe: 3
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        - schema: schema
-          created_at: 2000-01-23T04:56:07.000+00:00
-          valor_nfe: 2.027123023002322
-          chave_acesso: chave_acesso
-          emitente_nome_razao_social: emitente_nome_razao_social
-          tipo_evento: tipo_evento
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          nsu: 7
-          tipo_documento: nota
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 9
-          digest_value: digest_value
-          emitente_cpf_cnpj: emitente_cpf_cnpj
-          emitente_inscricao_estadual: emitente_inscricao_estadual
-          resumo: true
-          id: id
-          tipo_nfe: 3
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        - schema: schema
-          created_at: 2000-01-23T04:56:07.000+00:00
-          valor_nfe: 2.027123023002322
-          chave_acesso: chave_acesso
-          emitente_nome_razao_social: emitente_nome_razao_social
-          tipo_evento: tipo_evento
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          nsu: 7
-          tipo_documento: nota
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 9
-          digest_value: digest_value
-          emitente_cpf_cnpj: emitente_cpf_cnpj
-          emitente_inscricao_estadual: emitente_inscricao_estadual
-          resumo: true
-          id: id
-          tipo_nfe: 3
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        - schema: schema
-          created_at: 2000-01-23T04:56:07.000+00:00
-          valor_nfe: 2.027123023002322
-          chave_acesso: chave_acesso
-          emitente_nome_razao_social: emitente_nome_razao_social
-          tipo_evento: tipo_evento
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          nsu: 7
-          tipo_documento: nota
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 9
-          digest_value: digest_value
-          emitente_cpf_cnpj: emitente_cpf_cnpj
-          emitente_inscricao_estadual: emitente_inscricao_estadual
-          resumo: true
-          id: id
-          tipo_nfe: 3
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        - schema: schema
-          created_at: 2000-01-23T04:56:07.000+00:00
-          valor_nfe: 2.027123023002322
-          chave_acesso: chave_acesso
-          emitente_nome_razao_social: emitente_nome_razao_social
-          tipo_evento: tipo_evento
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          nsu: 7
-          tipo_documento: nota
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 9
-          digest_value: digest_value
-          emitente_cpf_cnpj: emitente_cpf_cnpj
-          emitente_inscricao_estadual: emitente_inscricao_estadual
-          resumo: true
-          id: id
-          tipo_nfe: 3
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        data_hora_resposta: 2000-01-23T04:56:07.000+00:00
-        uf_autor: uf_autor
-        id: id
-        cons_nsu: 1
-        cons_chave: cons_chave
-        motivo_status: motivo_status
-        status: processando
-      properties:
-        id:
-          description: ID único gerado pela Nuvem Fiscal para o pedido de distribuição.
-          type: string
-        created_at:
-          description: Data/hora em que o pedido foi criado na Nuvem Fiscal. Representado
-            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
-            8601`</a>.
-          format: date-time
-          type: string
-        status:
-          description: Indica o status da distribuição.
-          enum:
-          - processando
-          - concluido
-          - erro
-          type: string
-        ambiente:
-          description: Identificação do Ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        uf_autor:
-          description: Sigla da UF do autor.
-          nullable: true
-          type: string
-        tipo_consulta:
-          enum:
-          - dist-nsu
-          - cons-nsu
-          - cons-chave
-          type: string
-        dist_nsu:
-          description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
-            \n\r\n*Obrigatório quando `tipo_consulta` for `distNSU`.*"
-          nullable: true
-          type: integer
-        cons_nsu:
-          description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
-            rio quando `tipo_consulta` for `consNSU`.*"
-          nullable: true
-          type: integer
-        cons_chave:
-          description: "Consulta de NF-e por chave de acesso informada.\r\n\r\n*Obrigató\
-            rio quando `tipo_consulta` for `consChNFe`.*"
-          nullable: true
-          type: string
-        codigo_status:
-          description: Código do status de processamento da requisição.
-          nullable: true
-          type: integer
-        motivo_status:
-          description: Descrição do status de processamento da requisição.
-          nullable: true
-          type: string
-        data_hora_resposta:
-          description: Data e Hora de processamento da requisição.
-          format: date-time
-          nullable: true
-          type: string
-        ultimo_nsu:
-          description: "Último NSU pesquisado no Ambiente Nacional. Se for o caso,\
-            \ o solicitante pode continuar a consulta a partir deste NSU para obter\
-            \ novos resultados."
-          nullable: true
-          type: integer
-        max_nsu:
-          description: Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado.
-          nullable: true
-          type: integer
-        documentos:
-          description: Conjunto de informações resumidas e documentos fiscais eletrônicos
-            de interesse da pessoa ou empresa.
-          items:
-            $ref: '#/components/schemas/DistribuicaoNfeDocumento'
-          maxItems: 50
-          type: array
-      required:
-      - ambiente
-      - codigo_status
-      - data_hora_resposta
-      - id
-      - max_nsu
-      - status
-      - tipo_consulta
-      - ultimo_nsu
-      type: object
-    DistribuicaoNfeDocumento:
-      example:
-        schema: schema
-        created_at: 2000-01-23T04:56:07.000+00:00
-        valor_nfe: 2.027123023002322
-        chave_acesso: chave_acesso
-        emitente_nome_razao_social: emitente_nome_razao_social
-        tipo_evento: tipo_evento
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-        nsu: 7
-        tipo_documento: nota
-        numero_protocolo: numero_protocolo
-        numero_sequencial: 9
-        digest_value: digest_value
-        emitente_cpf_cnpj: emitente_cpf_cnpj
-        emitente_inscricao_estadual: emitente_inscricao_estadual
-        resumo: true
-        id: id
-        tipo_nfe: 3
-        data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          description: ID único gerado pela Nuvem Fiscal para identificar o documento.
-          type: string
-        created_at:
-          description: Data/hora em que o documento foi criado na Nuvem Fiscal. Representado
-            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
-            8601`</a>.
-          format: date-time
-          type: string
-        nsu:
-          description: NSU do documento fiscal.
-          nullable: true
-          type: integer
-        schema:
-          description: "Identificação do Schema XML que será utilizado para validar\
-            \ o XML existente no conteúdo da tag docZip. Vai identificar o tipo do\
-            \ documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd,\
-            \ resEvento_1.00.xsd, procEventoNFe_v1.00.xsd."
-          type: string
-        tipo_documento:
-          description: Tipo do documento de interesse da pessoa ou empresa.
-          enum:
-          - nota
-          - evento
-          nullable: true
-          type: string
-        chave_acesso:
-          description: Chave de Acesso da NF-e.
-          nullable: true
-          type: string
-        resumo:
-          description: Indica se o documento distribuído está em sua forma resumida.
-          nullable: true
-          type: boolean
-        tipo_evento:
-          description: Tipo do evento.
-          nullable: true
-          type: string
-        numero_sequencial:
-          description: Número sequencial do evento para o mesmo tipo de evento.
-          nullable: true
-          type: integer
-        data_evento:
-          description: Data e hora do evento.
-          format: date-time
-          nullable: true
-          type: string
-        data_recebimento:
-          description: Data e hora de autorização do evento.
-          format: date-time
-          nullable: true
-          type: string
-        numero_protocolo:
-          description: Número do protocolo de autorização.
-          nullable: true
-          type: string
-        tipo_nfe:
-          description: Tipo da NF-e (0 - entrada; 1 - saída).
-          nullable: true
-          type: integer
-        valor_nfe:
-          description: Valor total da NF-e.
-          nullable: true
-          type: number
-        digest_value:
-          description: Digest Value da NF-e processada. Utilizado para conferir a
-            integridade da NF-e original.
-          nullable: true
-          type: string
-        emitente_cpf_cnpj:
-          description: CPF/CNPJ do emitente.
-          nullable: true
-          type: string
-        emitente_nome_razao_social:
-          description: Nome ou Razão Social do emitente.
-          nullable: true
-          type: string
-        emitente_inscricao_estadual:
-          description: Inscrição Estadual do emitente.
-          nullable: true
-          type: string
-      required:
-      - id
-      - schema
-      type: object
-    DistribuicaoNfePedido:
-      example:
-        ambiente: homologacao
-        dist_nsu: 0
-        uf_autor: uf_autor
-        cons_nsu: 6
-        cons_chave: cons_chave
-        cpf_cnpj: cpf_cnpj
-        tipo_consulta: dist-nsu
-      properties:
-        cpf_cnpj:
-          description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
-          type: string
-        ambiente:
-          description: Identificação do Ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        uf_autor:
-          description: Sigla da UF do autor.
-          nullable: true
-          type: string
-        tipo_consulta:
-          description: "Tipo de consulta.\n\r\nValores possíveis:\n* `dist-nsu` -\
-            \ Consulta pelo último NSU recebido.\n* `cons-nsu` - Consulta por um NSU\
-            \ específico.\n* `cons-chave` - Consulta pela chave de acesso da NF-e."
-          enum:
-          - dist-nsu
-          - cons-nsu
-          - cons-chave
-          type: string
-        dist_nsu:
-          description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
-            \n\r\n*Obrigatório quando \"tipo_consulta\" for \"dist-nsu\".*"
-          nullable: true
-          type: integer
-        cons_nsu:
-          description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
-            rio quando \"tipo_consulta\" for \"cons-nsu\".*"
-          nullable: true
-          type: integer
-        cons_chave:
-          description: "Consulta de NF-e por chave de acesso informada.\r\n\r\n*Obrigató\
-            rio quando \"tipo_consulta\" for \"cons-chave\".*"
-          nullable: true
-          type: string
-      required:
-      - ambiente
-      - cpf_cnpj
-      - tipo_consulta
-      type: object
-    DistribuicaoNfeDocumentoListagem:
-      example:
-        '@count': 0
-        data:
-        - schema: schema
-          created_at: 2000-01-23T04:56:07.000+00:00
-          valor_nfe: 2.027123023002322
-          chave_acesso: chave_acesso
-          emitente_nome_razao_social: emitente_nome_razao_social
-          tipo_evento: tipo_evento
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          nsu: 7
-          tipo_documento: nota
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 9
-          digest_value: digest_value
-          emitente_cpf_cnpj: emitente_cpf_cnpj
-          emitente_inscricao_estadual: emitente_inscricao_estadual
-          resumo: true
-          id: id
-          tipo_nfe: 3
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        - schema: schema
-          created_at: 2000-01-23T04:56:07.000+00:00
-          valor_nfe: 2.027123023002322
-          chave_acesso: chave_acesso
-          emitente_nome_razao_social: emitente_nome_razao_social
-          tipo_evento: tipo_evento
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          nsu: 7
-          tipo_documento: nota
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 9
-          digest_value: digest_value
-          emitente_cpf_cnpj: emitente_cpf_cnpj
-          emitente_inscricao_estadual: emitente_inscricao_estadual
-          resumo: true
-          id: id
-          tipo_nfe: 3
-          data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/DistribuicaoNfeDocumento'
-          type: array
-      type: object
-    ManifestacaoNfeListagem:
-      example:
-        '@count': 0
-        data:
-        - cpf_cnpj_autor: cpf_cnpj_autor
-          ambiente: homologacao
-          codigo_status: 1
-          created_at: 2000-01-23T04:56:07.000+00:00
-          chave_acesso: chave_acesso
-          tipo_evento: tipo_evento
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 6
-          justificativa: justificativa
-          id: id
-          data_registro: 2000-01-23T04:56:07.000+00:00
-          motivo_status: motivo_status
-          status: pendente
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        - cpf_cnpj_autor: cpf_cnpj_autor
-          ambiente: homologacao
-          codigo_status: 1
-          created_at: 2000-01-23T04:56:07.000+00:00
-          chave_acesso: chave_acesso
-          tipo_evento: tipo_evento
-          numero_protocolo: numero_protocolo
-          numero_sequencial: 6
-          justificativa: justificativa
-          id: id
-          data_registro: 2000-01-23T04:56:07.000+00:00
-          motivo_status: motivo_status
-          status: pendente
-          data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/DistribuicaoNfeEvento'
-          type: array
-      type: object
-    DistribuicaoNfeEvento:
-      example:
-        cpf_cnpj_autor: cpf_cnpj_autor
-        ambiente: homologacao
-        codigo_status: 1
-        created_at: 2000-01-23T04:56:07.000+00:00
-        chave_acesso: chave_acesso
-        tipo_evento: tipo_evento
-        numero_protocolo: numero_protocolo
-        numero_sequencial: 6
-        justificativa: justificativa
-        id: id
-        data_registro: 2000-01-23T04:56:07.000+00:00
-        motivo_status: motivo_status
-        status: pendente
-        data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este evento.
-          type: string
-        created_at:
-          description: Data/hora em que o evento foi criado na Nuvem Fiscal. Representado
-            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
-            8601`</a>.
-          format: date-time
-          type: string
-        ambiente:
-          description: Identificação do ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        status:
-          description: Status do Evento.
-          enum:
-          - pendente
-          - registrado
-          - rejeitado
-          - erro
-          type: string
-        cpf_cnpj_autor:
-          description: CPF/CNPJ do autor do evento.
-          type: string
-        chave_acesso:
-          description: Chave de Acesso do documento vinculado ao evento.
-          type: string
-        tipo_evento:
-          description: Tipo do evento vinculado.
-          type: string
-        data_evento:
-          description: Data e hora do Evento.
-          format: date-time
-          type: string
-        numero_sequencial:
-          description: Sequencial do evento para o mesmo tipo de evento.
-          nullable: true
-          type: integer
-        justificativa:
-          description: Justificativa para o desconhecimento ou não-realização da operação.
-          nullable: true
-          type: string
-        data_registro:
-          description: Data e hora do registro do evento pela SEFAZ.
-          format: date-time
-          nullable: true
-          type: string
-        codigo_status:
-          description: Código do status de registro do evento.
-          nullable: true
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do registro do evento.
-          nullable: true
-          type: string
-        numero_protocolo:
-          description: Número do Protocolo de registro do evento.
-          nullable: true
-          type: string
-      type: object
-    DistribuicaoNfePedidoManifestacao:
-      example:
-        ambiente: homologacao
-        justificativa: justificativa
-        chave_acesso: chave_acesso
-        tipo_evento: tipo_evento
-        cpf_cnpj: cpf_cnpj
-      properties:
-        cpf_cnpj:
-          description: "CPF ou CNPJ do autor do evento.\r\n\r\n*Utilize o valor sem\
-            \ máscara*."
-          type: string
-        ambiente:
-          description: Identificação do Ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        chave_acesso:
-          description: Chave de Acesso da NF-e.
-          type: string
-        tipo_evento:
-          description: "Tipo do evento de manifestação do destinatário.\r\n\r\nValores\
-            \ disponíveis:\r\n* `210200` - Confirmação da operação;\r\n* `210210`\
-            \ - Ciência da operação;\r\n* `210220` - Desconhecimento da operação;\r\
-            \n* `210240` - Operação não realizada."
-          type: string
-        justificativa:
-          description: "Justificativa para o desconhecimento ou não-realização da\
-            \ operação.\r\n\r\n**Nota**: Campo obrigatório para o evento `210240`\
-            \ (operação não realizada)."
-          maxLength: 255
-          minLength: 15
-          nullable: true
-          type: string
-      required:
-      - ambiente
-      - chave_acesso
-      - cpf_cnpj
-      - tipo_evento
-      type: object
     Empresa:
       example:
         fone: fone
@@ -6051,14 +5655,17 @@ components:
         login:
           description: "Login de autenticação com a prefeitura, caso não utilize certificado\
             \ digital."
+          maxLength: 255
           type: string
         senha:
           description: "Senha de autenticação com a prefeitura, caso não utilize certificado\
             \ digital."
+          maxLength: 255
           type: string
         token:
           description: "Token de autenticação com a prefeitura, caso não utilize certificado\
             \ digital."
+          maxLength: 255
           type: string
       type: object
     EmpresaConfigMdfe:
@@ -6115,8 +5722,25 @@ components:
       type: object
     EmpresaConfigDistribuicaoNfe:
       example:
+        distribuicao_automatica: false
+        ciencia_automatica: false
         ambiente: homologacao
       properties:
+        distribuicao_automatica:
+          default: false
+          description: "Indica se a distribuição automática está habilitada.\r\n\r\
+            \nNesse modo, a API da Nuvem Fiscal irá realizar pedidos de distribuiç\
+            ão\r\npelo último NSU de forma automática a cada 1 hora."
+          nullable: true
+          type: boolean
+        ciencia_automatica:
+          default: false
+          description: "Indica se a manifestação de Ciência da Operação (210210) deve\
+            \ ser feita\r\nautomaticamente pela API.\r\n\r\nCaso habilitada, a manifestaç\
+            ão de ciência será realizada para notas\r\nrecebidas por qualquer forma\
+            \ de consulta ou modo de distribuição (manual ou automático)."
+          nullable: true
+          type: boolean
         ambiente:
           description: Indica se a empresa irá emitir em produção ou homologação.
           enum:
@@ -6537,6 +6161,7 @@ components:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
             \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
           type: string
         lista_rps:
           items:
@@ -7579,6 +7204,7 @@ components:
           type: string
       type: object
     Rps:
+      description: '*Propriedade obsoleta. Não é mais retornada pela API.*'
       example:
         servicos:
         - codigo_cnae: codigo_cnae
@@ -7919,6 +7545,7 @@ components:
               xNome: xNome
               CAEPF: CAEPF
               IM: IM
+              orgaoPublico: false
               CPF: CPF
               CNPJ: CNPJ
               NIF: NIF
@@ -8302,6 +7929,7 @@ components:
               xNome: xNome
               CAEPF: CAEPF
               IM: IM
+              orgaoPublico: false
               CPF: CPF
               CNPJ: CNPJ
               NIF: NIF
@@ -8685,6 +8313,7 @@ components:
               xNome: xNome
               CAEPF: CAEPF
               IM: IM
+              orgaoPublico: false
               CPF: CPF
               CNPJ: CNPJ
               NIF: NIF
@@ -9068,6 +8697,7 @@ components:
               xNome: xNome
               CAEPF: CAEPF
               IM: IM
+              orgaoPublico: false
               CPF: CPF
               CNPJ: CNPJ
               NIF: NIF
@@ -9451,6 +9081,7 @@ components:
               xNome: xNome
               CAEPF: CAEPF
               IM: IM
+              orgaoPublico: false
               CPF: CPF
               CNPJ: CNPJ
               NIF: NIF
@@ -9756,6 +9387,7 @@ components:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
             \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
           type: string
         documentos:
           description: Lista com as informações das DPS relativas aos serviços prestados.
@@ -9869,6 +9501,7 @@ components:
             xNome: xNome
             CAEPF: CAEPF
             IM: IM
+            orgaoPublico: false
             CPF: CPF
             CNPJ: CNPJ
             NIF: NIF
@@ -10170,6 +9803,7 @@ components:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
             \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
           nullable: true
           type: string
         infDPS:
@@ -10279,6 +9913,7 @@ components:
           xNome: xNome
           CAEPF: CAEPF
           IM: IM
+          orgaoPublico: false
           CPF: CPF
           CNPJ: CNPJ
           NIF: NIF
@@ -10580,7 +10215,8 @@ components:
           type: string
         dCompet:
           description: "Data em que se iniciou a prestação do serviço: Dia, mês e\
-            \ ano (AAAAMMDD)."
+            \ ano (AAAAMMDD). (AAAA-MM-DDThh:mm:ssTZD).\r\n\r\n\r\n*Geramos automaticamente\
+            \ quando nenhum valor é informado.*"
           format: date
           nullable: true
           type: string
@@ -10597,7 +10233,6 @@ components:
         valores:
           $ref: '#/components/schemas/InfoValores'
       required:
-      - dCompet
       - dhEmi
       - prest
       - serv
@@ -10660,6 +10295,7 @@ components:
         xNome: xNome
         CAEPF: CAEPF
         IM: IM
+        orgaoPublico: false
         CPF: CPF
         CNPJ: CNPJ
         NIF: NIF
@@ -10679,6 +10315,12 @@ components:
         email: email
         cNaoNIF: 6
       properties:
+        orgaoPublico:
+          default: false
+          description: "Indica se o tomador do serviço é um orgão público.\r\n\r\n\
+            **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado."
+          nullable: true
+          type: boolean
         CNPJ:
           description: Número do CNPJ.
           maxLength: 14
@@ -13988,6 +13630,1047 @@ components:
             $ref: '#/components/schemas/NfseMensagemRetorno'
           type: array
       type: object
+    EmailListagem:
+      example:
+        '@count': 0
+        data:
+        - sent_at: 2000-01-23T04:56:07.000+00:00
+          recipients:
+          - recipients
+          - recipients
+          subject: subject
+          id: id
+          status: pending
+        - sent_at: 2000-01-23T04:56:07.000+00:00
+          recipients:
+          - recipients
+          - recipients
+          subject: subject
+          id: id
+          status: pending
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/EmailResumo'
+          type: array
+      type: object
+    EmailResumo:
+      example:
+        sent_at: 2000-01-23T04:56:07.000+00:00
+        recipients:
+        - recipients
+        - recipients
+        subject: subject
+        id: id
+        status: pending
+      properties:
+        id:
+          description: "ID único gerado pela Nuvem Fiscal para este email.\r\n\r\n\
+            Utilize-o no endpoint de <a href=\"#tag/Email/operation/ConsultarEmail\"\
+            >consulta de email</a>\r\npara obter informações detalhadas sobre o envio\
+            \ do email e\r\nrastrear todos os eventos relacionados, como envio, entrega,\
+            \ falhas e outros\r\neventos relevantes."
+          type: string
+        status:
+          enum:
+          - pending
+          - sending
+          - sent
+          - delivered
+          - delivery_delayed
+          - bounced
+          - complained
+          - rejected
+          - cancelled
+          - failed
+          type: string
+        sent_at:
+          format: date-time
+          nullable: true
+          type: string
+        recipients:
+          items:
+            type: string
+          type: array
+        subject:
+          type: string
+      required:
+      - id
+      type: object
+    Email:
+      example:
+        sent_at: 2000-01-23T04:56:07.000+00:00
+        cc:
+        - cc
+        - cc
+        attachments:
+        - filename: filename
+          content_type: content_type
+        - filename: filename
+          content_type: content_type
+        reply_to: reply_to
+        subject: subject
+        id: id
+        to:
+        - to
+        - to
+        events:
+        - event_type: event_type
+          id: id
+          message: message
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - event_type: event_type
+          id: id
+          message: message
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        status: pending
+      properties:
+        id:
+          description: "ID único gerado pela Nuvem Fiscal para este email.\r\n\r\n\
+            Utilize-o no endpoint de <a href=\"#tag/Email/operation/ConsultarEmail\"\
+            >consulta de email</a>\r\npara obter informações detalhadas sobre o envio\
+            \ do email e\r\nrastrear todos os eventos relacionados, como envio, entrega,\
+            \ falhas e outros\r\neventos relevantes."
+          type: string
+        status:
+          enum:
+          - pending
+          - sending
+          - sent
+          - delivered
+          - delivery_delayed
+          - bounced
+          - complained
+          - rejected
+          - cancelled
+          - failed
+          type: string
+        sent_at:
+          format: date-time
+          nullable: true
+          type: string
+        to:
+          items:
+            type: string
+          type: array
+        cc:
+          items:
+            type: string
+          type: array
+        reply_to:
+          type: string
+        subject:
+          type: string
+        attachments:
+          items:
+            $ref: '#/components/schemas/EmailAttachment'
+          type: array
+        events:
+          items:
+            $ref: '#/components/schemas/EmailEvent'
+          type: array
+      required:
+      - id
+      type: object
+    EmailAttachment:
+      example:
+        filename: filename
+        content_type: content_type
+      properties:
+        content_type:
+          maxLength: 100
+          type: string
+        filename:
+          type: string
+      type: object
+    EmailEvent:
+      example:
+        event_type: event_type
+        id: id
+        message: message
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        event_type:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        message:
+          nullable: true
+          type: string
+      type: object
+    DistribuicaoNfeListagem:
+      example:
+        '@count': 0
+        data:
+        - max_nsu: 2
+          ambiente: homologacao
+          dist_nsu: 6
+          codigo_status: 5
+          created_at: 2000-01-23T04:56:07.000+00:00
+          tipo_consulta: dist-nsu
+          ultimo_nsu: 5
+          documentos:
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          data_hora_resposta: 2000-01-23T04:56:07.000+00:00
+          uf_autor: uf_autor
+          id: id
+          cons_nsu: 1
+          cons_chave: cons_chave
+          motivo_status: motivo_status
+          status: processando
+        - max_nsu: 2
+          ambiente: homologacao
+          dist_nsu: 6
+          codigo_status: 5
+          created_at: 2000-01-23T04:56:07.000+00:00
+          tipo_consulta: dist-nsu
+          ultimo_nsu: 5
+          documentos:
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          - schema: schema
+            created_at: 2000-01-23T04:56:07.000+00:00
+            valor_nfe: 2.027123023002322
+            chave_acesso: chave_acesso
+            emitente_nome_razao_social: emitente_nome_razao_social
+            tipo_evento: tipo_evento
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            nsu: 7
+            tipo_documento: nota
+            numero_protocolo: numero_protocolo
+            numero_sequencial: 9
+            digest_value: digest_value
+            emitente_cpf_cnpj: emitente_cpf_cnpj
+            emitente_inscricao_estadual: emitente_inscricao_estadual
+            resumo: true
+            id: id
+            tipo_nfe: 3
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          data_hora_resposta: 2000-01-23T04:56:07.000+00:00
+          uf_autor: uf_autor
+          id: id
+          cons_nsu: 1
+          cons_chave: cons_chave
+          motivo_status: motivo_status
+          status: processando
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfe'
+          type: array
+      type: object
+    DistribuicaoNfe:
+      example:
+        max_nsu: 2
+        ambiente: homologacao
+        dist_nsu: 6
+        codigo_status: 5
+        created_at: 2000-01-23T04:56:07.000+00:00
+        tipo_consulta: dist-nsu
+        ultimo_nsu: 5
+        documentos:
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        data_hora_resposta: 2000-01-23T04:56:07.000+00:00
+        uf_autor: uf_autor
+        id: id
+        cons_nsu: 1
+        cons_chave: cons_chave
+        motivo_status: motivo_status
+        status: processando
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para o pedido de distribuição.
+          type: string
+        created_at:
+          description: Data/hora em que o pedido foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        status:
+          description: Indica o status da distribuição.
+          enum:
+          - processando
+          - concluido
+          - erro
+          type: string
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        uf_autor:
+          description: Sigla da UF do autor.
+          nullable: true
+          type: string
+        tipo_consulta:
+          enum:
+          - dist-nsu
+          - cons-nsu
+          - cons-chave
+          type: string
+        dist_nsu:
+          description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
+            \n\r\n*Obrigatório quando `tipo_consulta` for `distNSU`.*"
+          nullable: true
+          type: integer
+        cons_nsu:
+          description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
+            rio quando `tipo_consulta` for `consNSU`.*"
+          nullable: true
+          type: integer
+        cons_chave:
+          description: "Consulta de NF-e por chave de acesso informada.\r\n\r\n*Obrigató\
+            rio quando `tipo_consulta` for `consChNFe`.*"
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de processamento da requisição.
+          nullable: true
+          type: integer
+        motivo_status:
+          description: Descrição do status de processamento da requisição.
+          nullable: true
+          type: string
+        data_hora_resposta:
+          description: Data e Hora de processamento da requisição.
+          format: date-time
+          nullable: true
+          type: string
+        ultimo_nsu:
+          description: "Último NSU pesquisado no Ambiente Nacional. Se for o caso,\
+            \ o solicitante pode continuar a consulta a partir deste NSU para obter\
+            \ novos resultados."
+          nullable: true
+          type: integer
+        max_nsu:
+          description: Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado.
+          nullable: true
+          type: integer
+        documentos:
+          description: Conjunto de informações resumidas e documentos fiscais eletrônicos
+            de interesse da pessoa ou empresa.
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfeDocumento'
+          maxItems: 50
+          type: array
+      required:
+      - ambiente
+      - codigo_status
+      - data_hora_resposta
+      - id
+      - max_nsu
+      - status
+      - tipo_consulta
+      - ultimo_nsu
+      type: object
+    DistribuicaoNfeDocumento:
+      example:
+        schema: schema
+        created_at: 2000-01-23T04:56:07.000+00:00
+        valor_nfe: 2.027123023002322
+        chave_acesso: chave_acesso
+        emitente_nome_razao_social: emitente_nome_razao_social
+        tipo_evento: tipo_evento
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        nsu: 7
+        tipo_documento: nota
+        numero_protocolo: numero_protocolo
+        numero_sequencial: 9
+        digest_value: digest_value
+        emitente_cpf_cnpj: emitente_cpf_cnpj
+        emitente_inscricao_estadual: emitente_inscricao_estadual
+        resumo: true
+        id: id
+        tipo_nfe: 3
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para identificar o documento.
+          type: string
+        created_at:
+          description: Data/hora em que o documento foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        nsu:
+          description: NSU do documento fiscal.
+          nullable: true
+          type: integer
+        schema:
+          description: "Identificação do Schema XML que será utilizado para validar\
+            \ o XML existente no conteúdo da tag docZip. Vai identificar o tipo do\
+            \ documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd,\
+            \ resEvento_1.00.xsd, procEventoNFe_v1.00.xsd."
+          type: string
+        tipo_documento:
+          description: Tipo do documento de interesse da pessoa ou empresa.
+          enum:
+          - nota
+          - evento
+          nullable: true
+          type: string
+        chave_acesso:
+          description: Chave de Acesso da NF-e.
+          nullable: true
+          type: string
+        resumo:
+          description: Indica se o documento distribuído está em sua forma resumida.
+          nullable: true
+          type: boolean
+        tipo_evento:
+          description: Tipo do evento.
+          nullable: true
+          type: string
+        numero_sequencial:
+          description: Número sequencial do evento para o mesmo tipo de evento.
+          nullable: true
+          type: integer
+        data_evento:
+          description: Data e hora do evento.
+          format: date-time
+          nullable: true
+          type: string
+        data_recebimento:
+          description: Data e hora de autorização do evento.
+          format: date-time
+          nullable: true
+          type: string
+        numero_protocolo:
+          description: Número do protocolo de autorização.
+          nullable: true
+          type: string
+        tipo_nfe:
+          description: Tipo da NF-e (0 - entrada; 1 - saída).
+          nullable: true
+          type: integer
+        valor_nfe:
+          description: Valor total da NF-e.
+          nullable: true
+          type: number
+        digest_value:
+          description: Digest Value da NF-e processada. Utilizado para conferir a
+            integridade da NF-e original.
+          nullable: true
+          type: string
+        emitente_cpf_cnpj:
+          description: CPF/CNPJ do emitente.
+          nullable: true
+          type: string
+        emitente_nome_razao_social:
+          description: Nome ou Razão Social do emitente.
+          nullable: true
+          type: string
+        emitente_inscricao_estadual:
+          description: Inscrição Estadual do emitente.
+          nullable: true
+          type: string
+      required:
+      - id
+      - schema
+      type: object
+    DistribuicaoNfePedido:
+      example:
+        ignorar_tempo_espera: false
+        ambiente: homologacao
+        dist_nsu: 0
+        uf_autor: uf_autor
+        cons_nsu: 6
+        cons_chave: cons_chave
+        cpf_cnpj: cpf_cnpj
+        tipo_consulta: dist-nsu
+      properties:
+        cpf_cnpj:
+          description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
+          type: string
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        uf_autor:
+          description: Sigla da UF do autor.
+          nullable: true
+          type: string
+        tipo_consulta:
+          description: "Tipo de consulta.\n\r\nValores possíveis:\n* `dist-nsu` -\
+            \ Consulta pelo último NSU recebido.\n* `cons-nsu` - Consulta por um NSU\
+            \ específico.\n* `cons-chave` - Consulta pela chave de acesso da NF-e."
+          enum:
+          - dist-nsu
+          - cons-nsu
+          - cons-chave
+          type: string
+        dist_nsu:
+          description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
+            \n\r\n*Obrigatório quando \"tipo_consulta\" for \"dist-nsu\".*"
+          nullable: true
+          type: integer
+        cons_nsu:
+          description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
+            rio quando \"tipo_consulta\" for \"cons-nsu\".*"
+          nullable: true
+          type: integer
+        cons_chave:
+          description: "Consulta de NF-e por chave de acesso informada.\r\n\r\n*Obrigató\
+            rio quando \"tipo_consulta\" for \"cons-chave\".*"
+          nullable: true
+          type: string
+        ignorar_tempo_espera:
+          default: false
+          description: "Deve ser utilizado em situações em que o cliente\r\ndeseja\
+            \ ignorar o intervalo mínimo de 1 hora entre pedidos de distribuição\r\
+            \nde NF-e. Quando habilitado, o cliente reconhece os riscos associados,\r\
+            \nincluindo o bloqueio do CNPJ no Ambiente Nacional da SEFAZ, caso seja\r\
+            \ncaracterizado consumo indevido.\r\n\r\nValores:\r\n* `false`: Respeita\
+            \ a regra de intervalo mínimo de 1 hora entre consultas\r\n  quando nã\
+            o há mais documentos disponíveis.\r\n\r\n* `true`: Ignora o tempo de espera\
+            \ e força a requisição."
+          type: boolean
+      required:
+      - ambiente
+      - cpf_cnpj
+      - tipo_consulta
+      type: object
+    DistribuicaoNfeDocumentoListagem:
+      example:
+        '@count': 0
+        data:
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - schema: schema
+          created_at: 2000-01-23T04:56:07.000+00:00
+          valor_nfe: 2.027123023002322
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_evento: tipo_evento
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          nsu: 7
+          tipo_documento: nota
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 9
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          resumo: true
+          id: id
+          tipo_nfe: 3
+          data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfeDocumento'
+          type: array
+      type: object
+    DistribuicaoNfeNotaListagem:
+      example:
+        '@count': 0
+        data:
+        - numero_protocolo: numero_protocolo
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          valor_nfe: 1.4658129805029452
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_nfe: 6
+        - numero_protocolo: numero_protocolo
+          digest_value: digest_value
+          emitente_cpf_cnpj: emitente_cpf_cnpj
+          emitente_inscricao_estadual: emitente_inscricao_estadual
+          valor_nfe: 1.4658129805029452
+          chave_acesso: chave_acesso
+          emitente_nome_razao_social: emitente_nome_razao_social
+          tipo_nfe: 6
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfeNota'
+          type: array
+      type: object
+    DistribuicaoNfeNota:
+      example:
+        numero_protocolo: numero_protocolo
+        digest_value: digest_value
+        emitente_cpf_cnpj: emitente_cpf_cnpj
+        emitente_inscricao_estadual: emitente_inscricao_estadual
+        valor_nfe: 1.4658129805029452
+        chave_acesso: chave_acesso
+        emitente_nome_razao_social: emitente_nome_razao_social
+        tipo_nfe: 6
+      properties:
+        chave_acesso:
+          description: Chave de Acesso da NF-e.
+          nullable: true
+          type: string
+        numero_protocolo:
+          description: Número do protocolo de autorização.
+          nullable: true
+          type: string
+        tipo_nfe:
+          description: Tipo da NF-e (0 - entrada; 1 - saída).
+          nullable: true
+          type: integer
+        valor_nfe:
+          description: Valor total da NF-e.
+          nullable: true
+          type: number
+        digest_value:
+          description: Digest Value da NF-e processada. Utilizado para conferir a
+            integridade da NF-e original.
+          nullable: true
+          type: string
+        emitente_cpf_cnpj:
+          description: CPF/CNPJ do emitente.
+          nullable: true
+          type: string
+        emitente_nome_razao_social:
+          description: Nome ou Razão Social do emitente.
+          nullable: true
+          type: string
+        emitente_inscricao_estadual:
+          description: Inscrição Estadual do emitente.
+          nullable: true
+          type: string
+      type: object
+    ManifestacaoNfeListagem:
+      example:
+        '@count': 0
+        data:
+        - cpf_cnpj_autor: cpf_cnpj_autor
+          ambiente: homologacao
+          codigo_status: 1
+          created_at: 2000-01-23T04:56:07.000+00:00
+          chave_acesso: chave_acesso
+          tipo_evento: tipo_evento
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 6
+          justificativa: justificativa
+          id: id
+          data_registro: 2000-01-23T04:56:07.000+00:00
+          motivo_status: motivo_status
+          status: pendente
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        - cpf_cnpj_autor: cpf_cnpj_autor
+          ambiente: homologacao
+          codigo_status: 1
+          created_at: 2000-01-23T04:56:07.000+00:00
+          chave_acesso: chave_acesso
+          tipo_evento: tipo_evento
+          numero_protocolo: numero_protocolo
+          numero_sequencial: 6
+          justificativa: justificativa
+          id: id
+          data_registro: 2000-01-23T04:56:07.000+00:00
+          motivo_status: motivo_status
+          status: pendente
+          data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/DistribuicaoNfeEvento'
+          type: array
+      type: object
+    DistribuicaoNfeEvento:
+      example:
+        cpf_cnpj_autor: cpf_cnpj_autor
+        ambiente: homologacao
+        codigo_status: 1
+        created_at: 2000-01-23T04:56:07.000+00:00
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        numero_protocolo: numero_protocolo
+        numero_sequencial: 6
+        justificativa: justificativa
+        id: id
+        data_registro: 2000-01-23T04:56:07.000+00:00
+        motivo_status: motivo_status
+        status: pendente
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este evento.
+          type: string
+        created_at:
+          description: Data/hora em que o evento foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        ambiente:
+          description: Identificação do ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        status:
+          description: Status do Evento.
+          enum:
+          - pendente
+          - registrado
+          - rejeitado
+          - erro
+          type: string
+        cpf_cnpj_autor:
+          description: CPF/CNPJ do autor do evento.
+          type: string
+        chave_acesso:
+          description: Chave de Acesso do documento vinculado ao evento.
+          type: string
+        tipo_evento:
+          description: Tipo do evento vinculado.
+          type: string
+        data_evento:
+          description: Data e hora do Evento.
+          format: date-time
+          type: string
+        numero_sequencial:
+          description: Sequencial do evento para o mesmo tipo de evento.
+          nullable: true
+          type: integer
+        justificativa:
+          description: Justificativa para o desconhecimento ou não-realização da operação.
+          nullable: true
+          type: string
+        data_registro:
+          description: Data e hora do registro do evento pela SEFAZ.
+          format: date-time
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de registro do evento.
+          nullable: true
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do registro do evento.
+          nullable: true
+          type: string
+        numero_protocolo:
+          description: Número do Protocolo de registro do evento.
+          nullable: true
+          type: string
+      type: object
+    DistribuicaoNfePedidoManifestacao:
+      example:
+        ambiente: homologacao
+        justificativa: justificativa
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        cpf_cnpj: cpf_cnpj
+      properties:
+        cpf_cnpj:
+          description: "CPF ou CNPJ do autor do evento.\r\n\r\n*Utilize o valor sem\
+            \ máscara*."
+          type: string
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        chave_acesso:
+          description: Chave de Acesso da NF-e.
+          type: string
+        tipo_evento:
+          description: "Tipo do evento de manifestação do destinatário.\r\n\r\nValores\
+            \ disponíveis:\r\n* `210200` - Confirmação da operação;\r\n* `210210`\
+            \ - Ciência da operação;\r\n* `210220` - Desconhecimento da operação;\r\
+            \n* `210240` - Operação não realizada."
+          type: string
+        justificativa:
+          description: "Justificativa para o desconhecimento ou não-realização da\
+            \ operação.\r\n\r\n**Nota**: Campo obrigatório para o evento `210240`\
+            \ (operação não realizada)."
+          maxLength: 255
+          minLength: 15
+          nullable: true
+          type: string
+      required:
+      - ambiente
+      - chave_acesso
+      - cpf_cnpj
+      - tipo_evento
+      type: object
     DfeSefazStatus:
       example:
         data_hora_retorno: 2000-01-23T04:56:07.000+00:00
@@ -14876,6 +15559,7 @@ components:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
             \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
           nullable: true
           type: string
       required:
@@ -19183,6 +19867,7 @@ components:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
             \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
           nullable: true
           type: string
       required:
@@ -30185,6 +30870,7 @@ components:
         referencia:
           description: "Seu identificador para este documento. Opcional, ajuda a evitar\
             \ o envio duplicado de um mesmo documento."
+          maxLength: 50
           type: string
         id_lote:
           type: string
@@ -34806,6 +35492,7 @@ components:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
             \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
           nullable: true
           type: string
       required:
@@ -48606,6 +49293,7 @@ components:
               fone: fone
               idCSRT: 12
               CNPJ: CNPJ
+              CSRT: CSRT
               hashCSRT: hashCSRT
               xContato: xContato
               email: email
@@ -52970,6 +53658,15 @@ components:
               CNPJ: CNPJ
               IE: IE
               email: email
+            agropecuario:
+              defensivo:
+                nReceituario: nReceituario
+                CPFRespTec: CPFRespTec
+              guiaTransito:
+                nGuia: nGuia
+                serieGuia: serieGuia
+                tpGuia: 9
+                UFGuia: UFGuia
             Id: Id
             autXML:
             - CPF: CPF
@@ -53120,6 +53817,7 @@ components:
               fone: fone
               idCSRT: 12
               CNPJ: CNPJ
+              CSRT: CSRT
               hashCSRT: hashCSRT
               xContato: xContato
               email: email
@@ -57484,6 +58182,15 @@ components:
               CNPJ: CNPJ
               IE: IE
               email: email
+            agropecuario:
+              defensivo:
+                nReceituario: nReceituario
+                CPFRespTec: CPFRespTec
+              guiaTransito:
+                nGuia: nGuia
+                serieGuia: serieGuia
+                tpGuia: 9
+                UFGuia: UFGuia
             Id: Id
             autXML:
             - CPF: CPF
@@ -57634,6 +58341,7 @@ components:
               fone: fone
               idCSRT: 12
               CNPJ: CNPJ
+              CSRT: CSRT
               hashCSRT: hashCSRT
               xContato: xContato
               email: email
@@ -61998,6 +62706,15 @@ components:
               CNPJ: CNPJ
               IE: IE
               email: email
+            agropecuario:
+              defensivo:
+                nReceituario: nReceituario
+                CPFRespTec: CPFRespTec
+              guiaTransito:
+                nGuia: nGuia
+                serieGuia: serieGuia
+                tpGuia: 9
+                UFGuia: UFGuia
             Id: Id
             autXML:
             - CPF: CPF
@@ -62148,6 +62865,7 @@ components:
               fone: fone
               idCSRT: 12
               CNPJ: CNPJ
+              CSRT: CSRT
               hashCSRT: hashCSRT
               xContato: xContato
               email: email
@@ -66512,6 +67230,15 @@ components:
               CNPJ: CNPJ
               IE: IE
               email: email
+            agropecuario:
+              defensivo:
+                nReceituario: nReceituario
+                CPFRespTec: CPFRespTec
+              guiaTransito:
+                nGuia: nGuia
+                serieGuia: serieGuia
+                tpGuia: 9
+                UFGuia: UFGuia
             Id: Id
             autXML:
             - CPF: CPF
@@ -66662,6 +67389,7 @@ components:
               fone: fone
               idCSRT: 12
               CNPJ: CNPJ
+              CSRT: CSRT
               hashCSRT: hashCSRT
               xContato: xContato
               email: email
@@ -71026,6 +71754,15 @@ components:
               CNPJ: CNPJ
               IE: IE
               email: email
+            agropecuario:
+              defensivo:
+                nReceituario: nReceituario
+                CPFRespTec: CPFRespTec
+              guiaTransito:
+                nGuia: nGuia
+                serieGuia: serieGuia
+                tpGuia: 9
+                UFGuia: UFGuia
             Id: Id
             autXML:
             - CPF: CPF
@@ -71130,6 +71867,7 @@ components:
         referencia:
           description: "Seu identificador para este documento. Opcional, ajuda a evitar\
             \ o envio duplicado de um mesmo documento."
+          maxLength: 50
           type: string
         id_lote:
           type: string
@@ -71205,6 +71943,7 @@ components:
             fone: fone
             idCSRT: 12
             CNPJ: CNPJ
+            CSRT: CSRT
             hashCSRT: hashCSRT
             xContato: xContato
             email: email
@@ -75569,6 +76308,15 @@ components:
             CNPJ: CNPJ
             IE: IE
             email: email
+          agropecuario:
+            defensivo:
+              nReceituario: nReceituario
+              CPFRespTec: CPFRespTec
+            guiaTransito:
+              nGuia: nGuia
+              serieGuia: serieGuia
+              tpGuia: 9
+              UFGuia: UFGuia
           Id: Id
           autXML:
           - CPF: CPF
@@ -75668,6 +76416,7 @@ components:
         referencia:
           description: "Seu identificador único para este documento. Opcional, ajuda\
             \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
           nullable: true
           type: string
       required:
@@ -75738,6 +76487,7 @@ components:
           fone: fone
           idCSRT: 12
           CNPJ: CNPJ
+          CSRT: CSRT
           hashCSRT: hashCSRT
           xContato: xContato
           email: email
@@ -80102,6 +80852,15 @@ components:
           CNPJ: CNPJ
           IE: IE
           email: email
+        agropecuario:
+          defensivo:
+            nReceituario: nReceituario
+            CPFRespTec: CPFRespTec
+          guiaTransito:
+            nGuia: nGuia
+            serieGuia: serieGuia
+            tpGuia: 9
+            UFGuia: UFGuia
         Id: Id
         autXML:
         - CPF: CPF
@@ -80240,6 +80999,8 @@ components:
           $ref: '#/components/schemas/NfeSefazInfRespTec'
         infSolicNFF:
           $ref: '#/components/schemas/NfeSefazInfSolicNFF'
+        agropecuario:
+          $ref: '#/components/schemas/NfeSefazAgropecuario'
       required:
       - det
       - emit
@@ -88681,6 +89442,7 @@ components:
         fone: fone
         idCSRT: 12
         CNPJ: CNPJ
+        CSRT: CSRT
         hashCSRT: hashCSRT
         xContato: xContato
         email: email
@@ -88715,9 +89477,16 @@ components:
           minimum: 0
           nullable: true
           type: integer
+        CSRT:
+          description: Código de Segurança do Responsável Técnico utilizado para montar
+            o hash do CSRT.
+          nullable: true
+          type: string
         hashCSRT:
-          description: O hashCSRT é o resultado da função hash (SHA-1 - Base64) do
-            CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.
+          description: "O hashCSRT é o resultado da função hash (SHA-1 - Base64) do\
+            \ CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.\r\n\r\n*Se\
+            \ não informado, será calculado automaticamente, desde que os campos `idCSRT`\
+            \ e `CSRT` sejam fornecidos.*"
           maxLength: 28
           nullable: true
           type: string
@@ -88740,6 +89509,75 @@ components:
           type: string
       required:
       - xSolic
+      type: object
+    NfeSefazAgropecuario:
+      description: "Produtos Agropecurários Animais, Vegetais e Florestais."
+      example:
+        defensivo:
+          nReceituario: nReceituario
+          CPFRespTec: CPFRespTec
+        guiaTransito:
+          nGuia: nGuia
+          serieGuia: serieGuia
+          tpGuia: 9
+          UFGuia: UFGuia
+      properties:
+        defensivo:
+          $ref: '#/components/schemas/NfeSefazDefensivo'
+        guiaTransito:
+          $ref: '#/components/schemas/NfeSefazGuiaTransito'
+      type: object
+    NfeSefazDefensivo:
+      description: Defensivo Agrícola / Agrotóxico.
+      example:
+        nReceituario: nReceituario
+        CPFRespTec: CPFRespTec
+      properties:
+        nReceituario:
+          description: Número do Receituário ou Receita do Defensivo / Agrotóxico.
+          maxLength: 20
+          minLength: 1
+          nullable: true
+          type: string
+        CPFRespTec:
+          description: CPF do Responsável Técnico pelo receituário.
+          maxLength: 11
+          nullable: true
+          type: string
+      required:
+      - CPFRespTec
+      - nReceituario
+      type: object
+    NfeSefazGuiaTransito:
+      description: "Guias De Trânsito de produtos agropecurários animais, vegetais\
+        \ e de origem florestal."
+      example:
+        nGuia: nGuia
+        serieGuia: serieGuia
+        tpGuia: 9
+        UFGuia: UFGuia
+      properties:
+        tpGuia:
+          description: "Tipo da Guia: 1 - GTA; 2 - TTA; 3 - DTA; 4 - ATV; 5 - PTV;\
+            \ 6 - GTV; 7 - Guia Florestal (DOF, SisFlora - PA e MT, SIAM - MG)."
+          nullable: true
+          type: integer
+        UFGuia:
+          nullable: true
+          type: string
+        serieGuia:
+          description: Série da Guia.
+          maxLength: 9
+          minLength: 1
+          nullable: true
+          type: string
+        nGuia:
+          description: Número da Guia.
+          nullable: true
+          type: string
+      required:
+      - nGuia
+      - tpGuia
       type: object
     NfeSefazInfNFeSupl:
       description: Informações suplementares Nota Fiscal.
@@ -88764,6 +89602,66 @@ components:
           nullable: true
           type: string
       type: object
+    DfePedidoEnvioEmail:
+      example:
+        destinatarios:
+        - email: email
+        - email: email
+        - email: email
+        - email: email
+        - email: email
+      properties:
+        destinatarios:
+          description: "Lista de endereços de email para envio dos arquivos.\r\n\r\
+            \n*Caso nenhum email seja informado, será utilizado o email do destinatá\
+            rio do documento fiscal.*"
+          items:
+            $ref: '#/components/schemas/EnderecoEmail'
+          maxItems: 10
+          type: array
+      type: object
+    EnderecoEmail:
+      example:
+        email: email
+      properties:
+        email:
+          description: Email do destinatário.
+          type: string
+      required:
+      - email
+      type: object
+    EmailStatusResponse:
+      example:
+        status_message: status_message
+        id: id
+        status: pending
+      properties:
+        id:
+          description: "ID único gerado pela Nuvem Fiscal para este email.\r\n\r\n\
+            Utilize-o no endpoint de <a href=\"#tag/Email/operation/ConsultarEmail\"\
+            >consulta de email</a>\r\npara obter informações detalhadas sobre o envio\
+            \ do email e\r\nrastrear todos os eventos relacionados, como envio, entrega,\
+            \ falhas e outros\r\neventos relevantes."
+          type: string
+        status:
+          enum:
+          - pending
+          - sending
+          - sent
+          - delivered
+          - delivery_delayed
+          - bounced
+          - complained
+          - rejected
+          - cancelled
+          - failed
+          type: string
+        status_message:
+          nullable: true
+          type: string
+      required:
+      - id
+      type: object
     NfePedidoCancelamento:
       example:
         justificativa: justificativa
@@ -88779,6 +89677,7 @@ components:
       properties:
         correcao:
           description: Correção a ser considerada.
+          maxLength: 1000
           type: string
       type: object
     DfeCartaCorrecao:
@@ -89846,6 +90745,7 @@ x-tagGroups:
   - Distribuição NF-e
 - name: Auxiliares
   tags:
+  - Email
   - Cnpj
   - Cep
 x-original-swagger-version: "2.0"

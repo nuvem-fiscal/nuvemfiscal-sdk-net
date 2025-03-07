@@ -241,36 +241,36 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vBCPisCofins (decimal?) minimum
             if (this.vBCPisCofins < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCPisCofins, must be a value greater than or equal to 0.", new [] { "vBCPisCofins" });
+                yield return new ValidationResult("Invalid value for vBCPisCofins, must be a value greater than or equal to 0.", new [] { "vBCPisCofins" });
             }
 
             // pAliqPis (decimal?) minimum
             if (this.pAliqPis < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pAliqPis, must be a value greater than or equal to 0.", new [] { "pAliqPis" });
+                yield return new ValidationResult("Invalid value for pAliqPis, must be a value greater than or equal to 0.", new [] { "pAliqPis" });
             }
 
             // pAliqCofins (decimal?) minimum
             if (this.pAliqCofins < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pAliqCofins, must be a value greater than or equal to 0.", new [] { "pAliqCofins" });
+                yield return new ValidationResult("Invalid value for pAliqCofins, must be a value greater than or equal to 0.", new [] { "pAliqCofins" });
             }
 
             // vPis (decimal?) minimum
             if (this.vPis < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vPis, must be a value greater than or equal to 0.", new [] { "vPis" });
+                yield return new ValidationResult("Invalid value for vPis, must be a value greater than or equal to 0.", new [] { "vPis" });
             }
 
             // vCofins (decimal?) minimum
             if (this.vCofins < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCofins, must be a value greater than or equal to 0.", new [] { "vCofins" });
+                yield return new ValidationResult("Invalid value for vCofins, must be a value greater than or equal to 0.", new [] { "vCofins" });
             }
 
             yield break;

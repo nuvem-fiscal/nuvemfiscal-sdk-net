@@ -23,7 +23,7 @@ using OpenAPIDateConverter = NuvemFiscal.Sdk.Client.OpenAPIDateConverter;
 namespace NuvemFiscal.Sdk.Model
 {
     /// <summary>
-    /// Rps
+    /// *Propriedade obsoleta. Não é mais retornada pela API.*
     /// </summary>
     [DataContract(Name = "Rps")]
     public partial class Rps : IEquatable<Rps>, IValidatableObject
@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Rps" /> class.
         /// </summary>
-        /// <param name="varRps">varRps.</param>
+        /// <param name="rps">rps.</param>
         /// <param name="competencia">competencia.</param>
         /// <param name="naturezaTributacao">Natureza da tributação  1 - Simples Nacional;  2 - Fixo;  3 - Depósito em juízo;  4 - Exigibilidade suspensa por decisão judicial;  5 - Exigibilidade suspensa por procedimento administrativo;  6 - Isenção parcial..</param>
         /// <param name="prestador">prestador.</param>
@@ -45,7 +45,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="construcaoCivil">construcaoCivil.</param>
         /// <param name="servicos">servicos (required).</param>
         /// <param name="outrasInformacoes">Informações adicionais ao documento..</param>
-        public Rps(RpsDados varRps = default(RpsDados), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsDadosPrestador prestador = default(RpsDadosPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>), string outrasInformacoes = default(string))
+        public Rps(RpsDados rps = default(RpsDados), DateTime competencia = default(DateTime), int naturezaTributacao = default(int), RpsDadosPrestador prestador = default(RpsDadosPrestador), RpsDadosTomador tomador = default(RpsDadosTomador), RpsDadosIntermediario intermediario = default(RpsDadosIntermediario), RpsDadosConstrucaoCivil construcaoCivil = default(RpsDadosConstrucaoCivil), List<RpsDadosServico> servicos = default(List<RpsDadosServico>), string outrasInformacoes = default(string))
         {
             // to ensure "servicos" is required (not null)
             if (servicos == null)
@@ -53,7 +53,7 @@ namespace NuvemFiscal.Sdk.Model
                 throw new ArgumentNullException("servicos is a required property for Rps and cannot be null");
             }
             this.servicos = servicos;
-            this.VarRps = varRps;
+            this.rps = rps;
             this.competencia = competencia;
             this.natureza_tributacao = naturezaTributacao;
             this.prestador = prestador;
@@ -64,10 +64,10 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets VarRps
+        /// Gets or Sets rps
         /// </summary>
         [DataMember(Name = "rps", EmitDefaultValue = false)]
-        public RpsDados VarRps { get; set; }
+        public RpsDados rps { get; set; }
 
         /// <summary>
         /// Gets or Sets competencia
@@ -127,7 +127,7 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Rps {\n");
-            sb.Append("  VarRps: ").Append(VarRps).Append("\n");
+            sb.Append("  rps: ").Append(rps).Append("\n");
             sb.Append("  competencia: ").Append(competencia).Append("\n");
             sb.Append("  natureza_tributacao: ").Append(natureza_tributacao).Append("\n");
             sb.Append("  prestador: ").Append(prestador).Append("\n");
@@ -172,9 +172,9 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
-                    this.VarRps == input.VarRps ||
-                    (this.VarRps != null &&
-                    this.VarRps.Equals(input.VarRps))
+                    this.rps == input.rps ||
+                    (this.rps != null &&
+                    this.rps.Equals(input.rps))
                 ) && 
                 (
                     this.competencia == input.competencia ||
@@ -227,9 +227,9 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.VarRps != null)
+                if (this.rps != null)
                 {
-                    hashCode = (hashCode * 59) + this.VarRps.GetHashCode();
+                    hashCode = (hashCode * 59) + this.rps.GetHashCode();
                 }
                 if (this.competencia != null)
                 {
@@ -269,7 +269,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

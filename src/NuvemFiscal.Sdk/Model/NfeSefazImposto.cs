@@ -279,12 +279,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vTotTrib (decimal?) minimum
             if (this.vTotTrib < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vTotTrib, must be a value greater than or equal to 0.", new [] { "vTotTrib" });
+                yield return new ValidationResult("Invalid value for vTotTrib, must be a value greater than or equal to 0.", new [] { "vTotTrib" });
             }
 
             yield break;

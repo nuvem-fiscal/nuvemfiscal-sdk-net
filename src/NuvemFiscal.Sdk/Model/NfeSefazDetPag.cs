@@ -265,30 +265,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xPag (string) maxLength
             if (this.xPag != null && this.xPag.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPag, length must be less than 60.", new [] { "xPag" });
+                yield return new ValidationResult("Invalid value for xPag, length must be less than 60.", new [] { "xPag" });
             }
 
             // xPag (string) minLength
             if (this.xPag != null && this.xPag.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPag, length must be greater than 2.", new [] { "xPag" });
+                yield return new ValidationResult("Invalid value for xPag, length must be greater than 2.", new [] { "xPag" });
             }
 
             // vPag (decimal?) minimum
             if (this.vPag < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vPag, must be a value greater than or equal to 0.", new [] { "vPag" });
+                yield return new ValidationResult("Invalid value for vPag, must be a value greater than or equal to 0.", new [] { "vPag" });
             }
 
             // CNPJPag (string) maxLength
             if (this.CNPJPag != null && this.CNPJPag.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJPag, length must be less than 14.", new [] { "CNPJPag" });
+                yield return new ValidationResult("Invalid value for CNPJPag, length must be less than 14.", new [] { "CNPJPag" });
             }
 
             yield break;

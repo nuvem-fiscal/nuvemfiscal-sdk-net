@@ -4,6 +4,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 
 | Método | Endpoint | Descrição |
 |--------|--------------|-------------|
+| [**BaixarPdfNfcom**](NfcomApi.md#baixarpdfnfcom) | **GET** /nfcom/{id}/pdf | Baixar PDF do DANFE-COM |
 | [**BaixarXmlCancelamentoNfcom**](NfcomApi.md#baixarxmlcancelamentonfcom) | **GET** /nfcom/{id}/cancelamento/xml | Baixar XML do cancelamento |
 | [**BaixarXmlNfcom**](NfcomApi.md#baixarxmlnfcom) | **GET** /nfcom/{id}/xml | Baixar XML da NFCom processada |
 | [**BaixarXmlNfcomNota**](NfcomApi.md#baixarxmlnfcomnota) | **GET** /nfcom/{id}/xml/nota | Baixar XML da NFCom |
@@ -14,6 +15,108 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**ConsultarStatusSefazNfcom**](NfcomApi.md#consultarstatussefaznfcom) | **GET** /nfcom/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora |
 | [**EmitirNfcom**](NfcomApi.md#emitirnfcom) | **POST** /nfcom | Emitir NFCom |
 | [**ListarNfcom**](NfcomApi.md#listarnfcom) | **GET** /nfcom | Listar NFCom |
+
+<a name="baixarpdfnfcom"></a>
+# **BaixarPdfNfcom**
+> FileParameter BaixarPdfNfcom (string id, bool? logotipo = null)
+
+Baixar PDF do DANFE-COM
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class BaixarPdfNfcomExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new NfcomApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | ID único da NFCom gerado pela Nuvem Fiscal.
+            var logotipo = false;  // bool? | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. (optional)  (default to false)
+
+            try
+            {
+                // Baixar PDF do DANFE-COM
+                FileParameter result = apiInstance.BaixarPdfNfcom(id, logotipo);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling NfcomApi.BaixarPdfNfcom: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante BaixarPdfNfcomWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Baixar PDF do DANFE-COM
+    ApiResponse<FileParameter> response = apiInstance.BaixarPdfNfcomWithHttpInfo(id, logotipo);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar NfcomApi.BaixarPdfNfcomWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **id** | **string** | ID único da NFCom gerado pela Nuvem Fiscal. |  |
+| **logotipo** | **bool?** | Imprime o documento com logotipo, desde que esteja cadastrado na empresa. | [optional] [default to false] |
+
+### Tipo de retorno
+
+[**FileParameter**](FileParameter.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: */*
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
 
 <a name="baixarxmlcancelamentonfcom"></a>
 # **BaixarXmlCancelamentoNfcom**
@@ -425,6 +528,8 @@ catch (ApiException e)
 
 Cancelar uma NFCom autorizada
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -832,6 +937,8 @@ catch (ApiException e)
 > Dfe EmitirNfcom (NfcomPedidoEmissao body)
 
 Emitir NFCom
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp

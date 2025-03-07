@@ -209,42 +209,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nProcesso (string) maxLength
             if (this.nProcesso != null && this.nProcesso.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProcesso, length must be less than 60.", new [] { "nProcesso" });
+                yield return new ValidationResult("Invalid value for nProcesso, length must be less than 60.", new [] { "nProcesso" });
             }
 
             // nProcesso (string) minLength
             if (this.nProcesso != null && this.nProcesso.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProcesso, length must be greater than 1.", new [] { "nProcesso" });
+                yield return new ValidationResult("Invalid value for nProcesso, length must be greater than 1.", new [] { "nProcesso" });
             }
 
             // nProtReclama (string) maxLength
             if (this.nProtReclama != null && this.nProtReclama.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProtReclama, length must be less than 60.", new [] { "nProtReclama" });
+                yield return new ValidationResult("Invalid value for nProtReclama, length must be less than 60.", new [] { "nProtReclama" });
             }
 
             // nProtReclama (string) minLength
             if (this.nProtReclama != null && this.nProtReclama.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nProtReclama, length must be greater than 1.", new [] { "nProtReclama" });
+                yield return new ValidationResult("Invalid value for nProtReclama, length must be greater than 1.", new [] { "nProtReclama" });
             }
 
             // xObs (string) maxLength
             if (this.xObs != null && this.xObs.Length > 100)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xObs, length must be less than 100.", new [] { "xObs" });
+                yield return new ValidationResult("Invalid value for xObs, length must be less than 100.", new [] { "xObs" });
             }
 
             // xObs (string) minLength
             if (this.xObs != null && this.xObs.Length < 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xObs, length must be greater than 15.", new [] { "xObs" });
+                yield return new ValidationResult("Invalid value for xObs, length must be greater than 15.", new [] { "xObs" });
             }
 
             yield break;

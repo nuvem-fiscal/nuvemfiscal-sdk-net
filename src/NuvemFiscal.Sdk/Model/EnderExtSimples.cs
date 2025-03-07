@@ -175,42 +175,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // cEndPost (string) maxLength
             if (this.cEndPost != null && this.cEndPost.Length > 11)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEndPost, length must be less than 11.", new [] { "cEndPost" });
+                yield return new ValidationResult("Invalid value for cEndPost, length must be less than 11.", new [] { "cEndPost" });
             }
 
             // cEndPost (string) minLength
             if (this.cEndPost != null && this.cEndPost.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEndPost, length must be greater than 1.", new [] { "cEndPost" });
+                yield return new ValidationResult("Invalid value for cEndPost, length must be greater than 1.", new [] { "cEndPost" });
             }
 
             // xCidade (string) maxLength
             if (this.xCidade != null && this.xCidade.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCidade, length must be less than 60.", new [] { "xCidade" });
+                yield return new ValidationResult("Invalid value for xCidade, length must be less than 60.", new [] { "xCidade" });
             }
 
             // xCidade (string) minLength
             if (this.xCidade != null && this.xCidade.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCidade, length must be greater than 1.", new [] { "xCidade" });
+                yield return new ValidationResult("Invalid value for xCidade, length must be greater than 1.", new [] { "xCidade" });
             }
 
             // xEstProvReg (string) maxLength
             if (this.xEstProvReg != null && this.xEstProvReg.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEstProvReg, length must be less than 60.", new [] { "xEstProvReg" });
+                yield return new ValidationResult("Invalid value for xEstProvReg, length must be less than 60.", new [] { "xEstProvReg" });
             }
 
             // xEstProvReg (string) minLength
             if (this.xEstProvReg != null && this.xEstProvReg.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEstProvReg, length must be greater than 1.", new [] { "xEstProvReg" });
+                yield return new ValidationResult("Invalid value for xEstProvReg, length must be greater than 1.", new [] { "xEstProvReg" });
             }
 
             yield break;

@@ -151,18 +151,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // idUnidTranspVazia (string) maxLength
             if (this.idUnidTranspVazia != null && this.idUnidTranspVazia.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idUnidTranspVazia, length must be less than 20.", new [] { "idUnidTranspVazia" });
+                yield return new ValidationResult("Invalid value for idUnidTranspVazia, length must be less than 20.", new [] { "idUnidTranspVazia" });
             }
 
             // idUnidTranspVazia (string) minLength
             if (this.idUnidTranspVazia != null && this.idUnidTranspVazia.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idUnidTranspVazia, length must be greater than 1.", new [] { "idUnidTranspVazia" });
+                yield return new ValidationResult("Invalid value for idUnidTranspVazia, length must be greater than 1.", new [] { "idUnidTranspVazia" });
             }
 
             yield break;

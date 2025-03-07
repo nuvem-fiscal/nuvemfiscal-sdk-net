@@ -199,30 +199,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // extensao (string) maxLength
             if (this.extensao != null && this.extensao.Length > 5)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for extensao, length must be less than 5.", new [] { "extensao" });
+                yield return new ValidationResult("Invalid value for extensao, length must be less than 5.", new [] { "extensao" });
             }
 
             // extensao (string) minLength
             if (this.extensao != null && this.extensao.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for extensao, length must be greater than 1.", new [] { "extensao" });
+                yield return new ValidationResult("Invalid value for extensao, length must be greater than 1.", new [] { "extensao" });
             }
 
             // nPostes (string) maxLength
             if (this.nPostes != null && this.nPostes.Length > 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPostes, length must be less than 6.", new [] { "nPostes" });
+                yield return new ValidationResult("Invalid value for nPostes, length must be less than 6.", new [] { "nPostes" });
             }
 
             // nPostes (string) minLength
             if (this.nPostes != null && this.nPostes.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nPostes, length must be greater than 1.", new [] { "nPostes" });
+                yield return new ValidationResult("Invalid value for nPostes, length must be greater than 1.", new [] { "nPostes" });
             }
 
             yield break;

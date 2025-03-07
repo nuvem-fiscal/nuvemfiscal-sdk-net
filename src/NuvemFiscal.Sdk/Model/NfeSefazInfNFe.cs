@@ -57,7 +57,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cana">cana.</param>
         /// <param name="infRespTec">infRespTec.</param>
         /// <param name="infSolicNFF">infSolicNFF.</param>
-        public NfeSefazInfNFe(string versao = default(string), string id = default(string), NfeSefazIde ide = default(NfeSefazIde), NfeSefazEmit emit = default(NfeSefazEmit), NfeSefazAvulsa avulsa = default(NfeSefazAvulsa), NfeSefazDest dest = default(NfeSefazDest), NfeSefazLocal retirada = default(NfeSefazLocal), NfeSefazLocal entrega = default(NfeSefazLocal), List<NfeSefazAutXML> autXML = default(List<NfeSefazAutXML>), List<NfeSefazDet> det = default(List<NfeSefazDet>), NfeSefazTotal total = default(NfeSefazTotal), NfeSefazTransp transp = default(NfeSefazTransp), NfeSefazCobr cobr = default(NfeSefazCobr), NfeSefazPag pag = default(NfeSefazPag), NfeSefazInfIntermed infIntermed = default(NfeSefazInfIntermed), NfeSefazInfAdic infAdic = default(NfeSefazInfAdic), NfeSefazExporta exporta = default(NfeSefazExporta), NfeSefazCompra compra = default(NfeSefazCompra), NfeSefazCana cana = default(NfeSefazCana), NfeSefazInfRespTec infRespTec = default(NfeSefazInfRespTec), NfeSefazInfSolicNFF infSolicNFF = default(NfeSefazInfSolicNFF))
+        /// <param name="agropecuario">agropecuario.</param>
+        public NfeSefazInfNFe(string versao = default(string), string id = default(string), NfeSefazIde ide = default(NfeSefazIde), NfeSefazEmit emit = default(NfeSefazEmit), NfeSefazAvulsa avulsa = default(NfeSefazAvulsa), NfeSefazDest dest = default(NfeSefazDest), NfeSefazLocal retirada = default(NfeSefazLocal), NfeSefazLocal entrega = default(NfeSefazLocal), List<NfeSefazAutXML> autXML = default(List<NfeSefazAutXML>), List<NfeSefazDet> det = default(List<NfeSefazDet>), NfeSefazTotal total = default(NfeSefazTotal), NfeSefazTransp transp = default(NfeSefazTransp), NfeSefazCobr cobr = default(NfeSefazCobr), NfeSefazPag pag = default(NfeSefazPag), NfeSefazInfIntermed infIntermed = default(NfeSefazInfIntermed), NfeSefazInfAdic infAdic = default(NfeSefazInfAdic), NfeSefazExporta exporta = default(NfeSefazExporta), NfeSefazCompra compra = default(NfeSefazCompra), NfeSefazCana cana = default(NfeSefazCana), NfeSefazInfRespTec infRespTec = default(NfeSefazInfRespTec), NfeSefazInfSolicNFF infSolicNFF = default(NfeSefazInfSolicNFF), NfeSefazAgropecuario agropecuario = default(NfeSefazAgropecuario))
         {
             // to ensure "versao" is required (not null)
             if (versao == null)
@@ -115,6 +116,7 @@ namespace NuvemFiscal.Sdk.Model
             this.cana = cana;
             this.infRespTec = infRespTec;
             this.infSolicNFF = infSolicNFF;
+            this.agropecuario = agropecuario;
         }
 
         /// <summary>
@@ -246,6 +248,12 @@ namespace NuvemFiscal.Sdk.Model
         public NfeSefazInfSolicNFF infSolicNFF { get; set; }
 
         /// <summary>
+        /// Gets or Sets agropecuario
+        /// </summary>
+        [DataMember(Name = "agropecuario", EmitDefaultValue = false)]
+        public NfeSefazAgropecuario agropecuario { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -274,6 +282,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  cana: ").Append(cana).Append("\n");
             sb.Append("  infRespTec: ").Append(infRespTec).Append("\n");
             sb.Append("  infSolicNFF: ").Append(infSolicNFF).Append("\n");
+            sb.Append("  agropecuario: ").Append(agropecuario).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -415,6 +424,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.infSolicNFF == input.infSolicNFF ||
                     (this.infSolicNFF != null &&
                     this.infSolicNFF.Equals(input.infSolicNFF))
+                ) && 
+                (
+                    this.agropecuario == input.agropecuario ||
+                    (this.agropecuario != null &&
+                    this.agropecuario.Equals(input.agropecuario))
                 );
         }
 
@@ -511,6 +525,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.infSolicNFF.GetHashCode();
                 }
+                if (this.agropecuario != null)
+                {
+                    hashCode = (hashCode * 59) + this.agropecuario.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -520,7 +538,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

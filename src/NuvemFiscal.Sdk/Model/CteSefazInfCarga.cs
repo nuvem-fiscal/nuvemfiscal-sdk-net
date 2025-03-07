@@ -208,42 +208,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vCarga (decimal?) minimum
             if (this.vCarga < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCarga, must be a value greater than or equal to 0.", new [] { "vCarga" });
+                yield return new ValidationResult("Invalid value for vCarga, must be a value greater than or equal to 0.", new [] { "vCarga" });
             }
 
             // proPred (string) maxLength
             if (this.proPred != null && this.proPred.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for proPred, length must be less than 60.", new [] { "proPred" });
+                yield return new ValidationResult("Invalid value for proPred, length must be less than 60.", new [] { "proPred" });
             }
 
             // proPred (string) minLength
             if (this.proPred != null && this.proPred.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for proPred, length must be greater than 1.", new [] { "proPred" });
+                yield return new ValidationResult("Invalid value for proPred, length must be greater than 1.", new [] { "proPred" });
             }
 
             // xOutCat (string) maxLength
             if (this.xOutCat != null && this.xOutCat.Length > 30)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOutCat, length must be less than 30.", new [] { "xOutCat" });
+                yield return new ValidationResult("Invalid value for xOutCat, length must be less than 30.", new [] { "xOutCat" });
             }
 
             // xOutCat (string) minLength
             if (this.xOutCat != null && this.xOutCat.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xOutCat, length must be greater than 1.", new [] { "xOutCat" });
+                yield return new ValidationResult("Invalid value for xOutCat, length must be greater than 1.", new [] { "xOutCat" });
             }
 
             // vCargaAverb (decimal?) minimum
             if (this.vCargaAverb < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCargaAverb, must be a value greater than or equal to 0.", new [] { "vCargaAverb" });
+                yield return new ValidationResult("Invalid value for vCargaAverb, must be a value greater than or equal to 0.", new [] { "vCargaAverb" });
             }
 
             yield break;

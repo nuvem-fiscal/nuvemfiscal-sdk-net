@@ -151,18 +151,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // qtdTotal (decimal?) minimum
             if (this.qtdTotal < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdTotal, must be a value greater than or equal to 0.", new [] { "qtdTotal" });
+                yield return new ValidationResult("Invalid value for qtdTotal, must be a value greater than or equal to 0.", new [] { "qtdTotal" });
             }
 
             // qtdParcial (decimal?) minimum
             if (this.qtdParcial < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qtdParcial, must be a value greater than or equal to 0.", new [] { "qtdParcial" });
+                yield return new ValidationResult("Invalid value for qtdParcial, must be a value greater than or equal to 0.", new [] { "qtdParcial" });
             }
 
             yield break;

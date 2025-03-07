@@ -337,66 +337,66 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vServ (decimal?) minimum
             if (this.vServ < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vServ, must be a value greater than or equal to 0.", new [] { "vServ" });
+                yield return new ValidationResult("Invalid value for vServ, must be a value greater than or equal to 0.", new [] { "vServ" });
             }
 
             // vBC (decimal?) minimum
             if (this.vBC < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+                yield return new ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
             }
 
             // vISS (decimal?) minimum
             if (this.vISS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vISS, must be a value greater than or equal to 0.", new [] { "vISS" });
+                yield return new ValidationResult("Invalid value for vISS, must be a value greater than or equal to 0.", new [] { "vISS" });
             }
 
             // vPIS (decimal?) minimum
             if (this.vPIS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vPIS, must be a value greater than or equal to 0.", new [] { "vPIS" });
+                yield return new ValidationResult("Invalid value for vPIS, must be a value greater than or equal to 0.", new [] { "vPIS" });
             }
 
             // vCOFINS (decimal?) minimum
             if (this.vCOFINS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vCOFINS, must be a value greater than or equal to 0.", new [] { "vCOFINS" });
+                yield return new ValidationResult("Invalid value for vCOFINS, must be a value greater than or equal to 0.", new [] { "vCOFINS" });
             }
 
             // vDeducao (decimal?) minimum
             if (this.vDeducao < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDeducao, must be a value greater than or equal to 0.", new [] { "vDeducao" });
+                yield return new ValidationResult("Invalid value for vDeducao, must be a value greater than or equal to 0.", new [] { "vDeducao" });
             }
 
             // vOutro (decimal?) minimum
             if (this.vOutro < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
+                yield return new ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
             }
 
             // vDescIncond (decimal?) minimum
             if (this.vDescIncond < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDescIncond, must be a value greater than or equal to 0.", new [] { "vDescIncond" });
+                yield return new ValidationResult("Invalid value for vDescIncond, must be a value greater than or equal to 0.", new [] { "vDescIncond" });
             }
 
             // vDescCond (decimal?) minimum
             if (this.vDescCond < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDescCond, must be a value greater than or equal to 0.", new [] { "vDescCond" });
+                yield return new ValidationResult("Invalid value for vDescCond, must be a value greater than or equal to 0.", new [] { "vDescCond" });
             }
 
             // vISSRet (decimal?) minimum
             if (this.vISSRet < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vISSRet, must be a value greater than or equal to 0.", new [] { "vISSRet" });
+                yield return new ValidationResult("Invalid value for vISSRet, must be a value greater than or equal to 0.", new [] { "vISSRet" });
             }
 
             yield break;

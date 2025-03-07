@@ -227,36 +227,36 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vBC (decimal?) minimum
             if (this.vBC < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+                yield return new ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
             }
 
             // pIPI (decimal?) minimum
             if (this.pIPI < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pIPI, must be a value greater than or equal to 0.", new [] { "pIPI" });
+                yield return new ValidationResult("Invalid value for pIPI, must be a value greater than or equal to 0.", new [] { "pIPI" });
             }
 
             // qUnid (decimal?) minimum
             if (this.qUnid < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qUnid, must be a value greater than or equal to 0.", new [] { "qUnid" });
+                yield return new ValidationResult("Invalid value for qUnid, must be a value greater than or equal to 0.", new [] { "qUnid" });
             }
 
             // vUnid (decimal?) minimum
             if (this.vUnid < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vUnid, must be a value greater than or equal to 0.", new [] { "vUnid" });
+                yield return new ValidationResult("Invalid value for vUnid, must be a value greater than or equal to 0.", new [] { "vUnid" });
             }
 
             // vIPI (decimal?) minimum
             if (this.vIPI < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vIPI, must be a value greater than or equal to 0.", new [] { "vIPI" });
+                yield return new ValidationResult("Invalid value for vIPI, must be a value greater than or equal to 0.", new [] { "vIPI" });
             }
 
             yield break;

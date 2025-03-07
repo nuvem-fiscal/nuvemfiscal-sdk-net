@@ -310,30 +310,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // iCodAssinante (string) maxLength
             if (this.iCodAssinante != null && this.iCodAssinante.Length > 30)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for iCodAssinante, length must be less than 30.", new [] { "iCodAssinante" });
+                yield return new ValidationResult("Invalid value for iCodAssinante, length must be less than 30.", new [] { "iCodAssinante" });
             }
 
             // iCodAssinante (string) minLength
             if (this.iCodAssinante != null && this.iCodAssinante.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for iCodAssinante, length must be greater than 1.", new [] { "iCodAssinante" });
+                yield return new ValidationResult("Invalid value for iCodAssinante, length must be greater than 1.", new [] { "iCodAssinante" });
             }
 
             // nContrato (string) maxLength
             if (this.nContrato != null && this.nContrato.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nContrato, length must be less than 20.", new [] { "nContrato" });
+                yield return new ValidationResult("Invalid value for nContrato, length must be less than 20.", new [] { "nContrato" });
             }
 
             // nContrato (string) minLength
             if (this.nContrato != null && this.nContrato.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nContrato, length must be greater than 1.", new [] { "nContrato" });
+                yield return new ValidationResult("Invalid value for nContrato, length must be greater than 1.", new [] { "nContrato" });
             }
 
             yield break;

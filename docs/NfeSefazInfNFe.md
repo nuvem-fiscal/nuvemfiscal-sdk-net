@@ -26,6 +26,7 @@ Nome | Tipo | Descrição | Comentários
 **cana** | [**NfeSefazCana**](NfeSefazCana.md) |  | [optional] 
 **infRespTec** | [**NfeSefazInfRespTec**](NfeSefazInfRespTec.md) |  | [optional] 
 **infSolicNFF** | [**NfeSefazInfSolicNFF**](NfeSefazInfSolicNFF.md) |  | [optional] 
+**agropecuario** | [**NfeSefazAgropecuario**](NfeSefazAgropecuario.md) |  | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)
 

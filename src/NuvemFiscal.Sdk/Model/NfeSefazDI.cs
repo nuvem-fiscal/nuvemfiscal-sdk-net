@@ -397,60 +397,60 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nDI (string) maxLength
             if (this.nDI != null && this.nDI.Length > 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be less than 15.", new [] { "nDI" });
+                yield return new ValidationResult("Invalid value for nDI, length must be less than 15.", new [] { "nDI" });
             }
 
             // nDI (string) minLength
             if (this.nDI != null && this.nDI.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nDI, length must be greater than 1.", new [] { "nDI" });
+                yield return new ValidationResult("Invalid value for nDI, length must be greater than 1.", new [] { "nDI" });
             }
 
             // xLocDesemb (string) maxLength
             if (this.xLocDesemb != null && this.xLocDesemb.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLocDesemb, length must be less than 60.", new [] { "xLocDesemb" });
+                yield return new ValidationResult("Invalid value for xLocDesemb, length must be less than 60.", new [] { "xLocDesemb" });
             }
 
             // xLocDesemb (string) minLength
             if (this.xLocDesemb != null && this.xLocDesemb.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLocDesemb, length must be greater than 1.", new [] { "xLocDesemb" });
+                yield return new ValidationResult("Invalid value for xLocDesemb, length must be greater than 1.", new [] { "xLocDesemb" });
             }
 
             // vAFRMM (decimal?) minimum
             if (this.vAFRMM < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vAFRMM, must be a value greater than or equal to 0.", new [] { "vAFRMM" });
+                yield return new ValidationResult("Invalid value for vAFRMM, must be a value greater than or equal to 0.", new [] { "vAFRMM" });
             }
 
             // CNPJ (string) maxLength
             if (this.CNPJ != null && this.CNPJ.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+                yield return new ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
             }
 
             // CPF (string) maxLength
             if (this.CPF != null && this.CPF.Length > 11)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CPF, length must be less than 11.", new [] { "CPF" });
+                yield return new ValidationResult("Invalid value for CPF, length must be less than 11.", new [] { "CPF" });
             }
 
             // cExportador (string) maxLength
             if (this.cExportador != null && this.cExportador.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cExportador, length must be less than 60.", new [] { "cExportador" });
+                yield return new ValidationResult("Invalid value for cExportador, length must be less than 60.", new [] { "cExportador" });
             }
 
             // cExportador (string) minLength
             if (this.cExportador != null && this.cExportador.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cExportador, length must be greater than 1.", new [] { "cExportador" });
+                yield return new ValidationResult("Invalid value for cExportador, length must be greater than 1.", new [] { "cExportador" });
             }
 
             yield break;

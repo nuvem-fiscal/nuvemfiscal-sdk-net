@@ -175,24 +175,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vBC (decimal?) minimum
             if (this.vBC < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+                yield return new ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
             }
 
             // pFUST (decimal?) minimum
             if (this.pFUST < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pFUST, must be a value greater than or equal to 0.", new [] { "pFUST" });
+                yield return new ValidationResult("Invalid value for pFUST, must be a value greater than or equal to 0.", new [] { "pFUST" });
             }
 
             // vFUST (decimal?) minimum
             if (this.vFUST < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFUST, must be a value greater than or equal to 0.", new [] { "vFUST" });
+                yield return new ValidationResult("Invalid value for vFUST, must be a value greater than or equal to 0.", new [] { "vFUST" });
             }
 
             yield break;

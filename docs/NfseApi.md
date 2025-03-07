@@ -432,6 +432,8 @@ catch (ApiException e)
 
 Cancelar uma NFS-e autorizada
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -1037,6 +1039,8 @@ catch (ApiException e)
 
 Emitir lote de NFS-e
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por NFS-e.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -1136,6 +1140,8 @@ catch (ApiException e)
 > RpsLote EmitirLoteNfseDps (NfseLoteDpsPedidoEmissao body)
 
 Emitir lote de NFS-e
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por NFS-e.
 
 ### Exemplo
 ```csharp
@@ -1237,6 +1243,8 @@ catch (ApiException e)
 
 Emitir NFS-e
 
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
 ### Exemplo
 ```csharp
 using System.Collections.Generic;
@@ -1336,6 +1344,8 @@ catch (ApiException e)
 > Nfse EmitirNfseDps (NfseDpsPedidoEmissao body)
 
 Emitir NFS-e
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
 
 ### Exemplo
 ```csharp
@@ -1665,7 +1675,7 @@ catch (ApiException e)
 
 Sincroniza dados na NFS-e a partir da Prefeitura
 
-Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status `processando` na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status `autorizada`na Nuvem Fiscal, mas está cancelada na prefeitura.
+Realiza a sincronização dos dados a partir da consulta da situação atual da NFS-e na prefeitura.    **Cenários de uso**:  * Sincronizar uma nota que se encontra com o status `processando` na Nuvem Fiscal, mas está autorizada na prefeitura;  * Sincronizar uma nota que se encontra com o status `erro` na Nuvem Fiscal, mas está autorizada na prefeitura (útil em casos de erros de transmissão, como instabilidades e timeouts);  * Sincronizar uma nota que se encontra com o status `autorizada`na Nuvem Fiscal, mas está cancelada na prefeitura.    **Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por evento sincronizado ou requisição.
 
 ### Exemplo
 ```csharp

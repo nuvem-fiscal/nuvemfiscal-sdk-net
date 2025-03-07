@@ -41,8 +41,9 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="email">Informar o e-mail da pessoa a ser contatada na empresa desenvolvedora do sistema. (required).</param>
         /// <param name="fone">Informar o telefone da pessoa a ser contatada na empresa desenvolvedora do sistema. Preencher com o Código DDD + número do telefone. (required).</param>
         /// <param name="idCSRT">Identificador do CSRT utilizado para montar o hash do CSRT..</param>
-        /// <param name="hashCSRT">O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe..</param>
-        public NfeSefazInfRespTec(string cNPJ = default(string), string xContato = default(string), string email = default(string), string fone = default(string), int? idCSRT = default(int?), string hashCSRT = default(string))
+        /// <param name="cSRT">Código de Segurança do Responsável Técnico utilizado para montar o hash do CSRT..</param>
+        /// <param name="hashCSRT">O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.    *Se não informado, será calculado automaticamente, desde que os campos &#x60;idCSRT&#x60; e &#x60;CSRT&#x60; sejam fornecidos.*.</param>
+        public NfeSefazInfRespTec(string cNPJ = default(string), string xContato = default(string), string email = default(string), string fone = default(string), int? idCSRT = default(int?), string cSRT = default(string), string hashCSRT = default(string))
         {
             // to ensure "cNPJ" is required (not null)
             if (cNPJ == null)
@@ -69,6 +70,7 @@ namespace NuvemFiscal.Sdk.Model
             }
             this.fone = fone;
             this.idCSRT = idCSRT;
+            this.CSRT = cSRT;
             this.hashCSRT = hashCSRT;
         }
 
@@ -108,9 +110,16 @@ namespace NuvemFiscal.Sdk.Model
         public int? idCSRT { get; set; }
 
         /// <summary>
-        /// O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.
+        /// Código de Segurança do Responsável Técnico utilizado para montar o hash do CSRT.
         /// </summary>
-        /// <value>O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.</value>
+        /// <value>Código de Segurança do Responsável Técnico utilizado para montar o hash do CSRT.</value>
+        [DataMember(Name = "CSRT", EmitDefaultValue = true)]
+        public string CSRT { get; set; }
+
+        /// <summary>
+        /// O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.    *Se não informado, será calculado automaticamente, desde que os campos &#x60;idCSRT&#x60; e &#x60;CSRT&#x60; sejam fornecidos.*
+        /// </summary>
+        /// <value>O hashCSRT é o resultado da função hash (SHA-1 - Base64) do CSRT fornecido pelo fisco mais a Chave de Acesso da NFe.    *Se não informado, será calculado automaticamente, desde que os campos &#x60;idCSRT&#x60; e &#x60;CSRT&#x60; sejam fornecidos.*</value>
         [DataMember(Name = "hashCSRT", EmitDefaultValue = true)]
         public string hashCSRT { get; set; }
 
@@ -127,6 +136,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  email: ").Append(email).Append("\n");
             sb.Append("  fone: ").Append(fone).Append("\n");
             sb.Append("  idCSRT: ").Append(idCSRT).Append("\n");
+            sb.Append("  CSRT: ").Append(CSRT).Append("\n");
             sb.Append("  hashCSRT: ").Append(hashCSRT).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -189,6 +199,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.idCSRT.Equals(input.idCSRT))
                 ) && 
                 (
+                    this.CSRT == input.CSRT ||
+                    (this.CSRT != null &&
+                    this.CSRT.Equals(input.CSRT))
+                ) && 
+                (
                     this.hashCSRT == input.hashCSRT ||
                     (this.hashCSRT != null &&
                     this.hashCSRT.Equals(input.hashCSRT))
@@ -224,6 +239,10 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.idCSRT.GetHashCode();
                 }
+                if (this.CSRT != null)
+                {
+                    hashCode = (hashCode * 59) + this.CSRT.GetHashCode();
+                }
                 if (this.hashCSRT != null)
                 {
                     hashCode = (hashCode * 59) + this.hashCSRT.GetHashCode();
@@ -237,54 +256,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CNPJ (string) maxLength
             if (this.CNPJ != null && this.CNPJ.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+                yield return new ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
             }
 
             // xContato (string) maxLength
             if (this.xContato != null && this.xContato.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xContato, length must be less than 60.", new [] { "xContato" });
+                yield return new ValidationResult("Invalid value for xContato, length must be less than 60.", new [] { "xContato" });
             }
 
             // xContato (string) minLength
             if (this.xContato != null && this.xContato.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xContato, length must be greater than 2.", new [] { "xContato" });
+                yield return new ValidationResult("Invalid value for xContato, length must be greater than 2.", new [] { "xContato" });
             }
 
             // email (string) maxLength
             if (this.email != null && this.email.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be less than 60.", new [] { "email" });
+                yield return new ValidationResult("Invalid value for email, length must be less than 60.", new [] { "email" });
             }
 
             // email (string) minLength
             if (this.email != null && this.email.Length < 6)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for email, length must be greater than 6.", new [] { "email" });
+                yield return new ValidationResult("Invalid value for email, length must be greater than 6.", new [] { "email" });
             }
 
             // idCSRT (int?) maximum
             if (this.idCSRT > (int?)99)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idCSRT, must be a value less than or equal to 99.", new [] { "idCSRT" });
+                yield return new ValidationResult("Invalid value for idCSRT, must be a value less than or equal to 99.", new [] { "idCSRT" });
             }
 
             // idCSRT (int?) minimum
             if (this.idCSRT < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idCSRT, must be a value greater than or equal to 0.", new [] { "idCSRT" });
+                yield return new ValidationResult("Invalid value for idCSRT, must be a value greater than or equal to 0.", new [] { "idCSRT" });
             }
 
             // hashCSRT (string) maxLength
             if (this.hashCSRT != null && this.hashCSRT.Length > 28)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for hashCSRT, length must be less than 28.", new [] { "hashCSRT" });
+                yield return new ValidationResult("Invalid value for hashCSRT, length must be less than 28.", new [] { "hashCSRT" });
             }
 
             yield break;

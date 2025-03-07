@@ -213,18 +213,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vFrete (decimal?) minimum
             if (this.vFrete < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vFrete, must be a value greater than or equal to 0.", new [] { "vFrete" });
+                yield return new ValidationResult("Invalid value for vFrete, must be a value greater than or equal to 0.", new [] { "vFrete" });
             }
 
             // chCTeFerroOrigem (string) maxLength
             if (this.chCTeFerroOrigem != null && this.chCTeFerroOrigem.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for chCTeFerroOrigem, length must be less than 44.", new [] { "chCTeFerroOrigem" });
+                yield return new ValidationResult("Invalid value for chCTeFerroOrigem, length must be less than 44.", new [] { "chCTeFerroOrigem" });
             }
 
             yield break;

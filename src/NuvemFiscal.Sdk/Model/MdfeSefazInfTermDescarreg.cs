@@ -151,30 +151,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // cTermDescarreg (string) maxLength
             if (this.cTermDescarreg != null && this.cTermDescarreg.Length > 8)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cTermDescarreg, length must be less than 8.", new [] { "cTermDescarreg" });
+                yield return new ValidationResult("Invalid value for cTermDescarreg, length must be less than 8.", new [] { "cTermDescarreg" });
             }
 
             // cTermDescarreg (string) minLength
             if (this.cTermDescarreg != null && this.cTermDescarreg.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cTermDescarreg, length must be greater than 1.", new [] { "cTermDescarreg" });
+                yield return new ValidationResult("Invalid value for cTermDescarreg, length must be greater than 1.", new [] { "cTermDescarreg" });
             }
 
             // xTermDescarreg (string) maxLength
             if (this.xTermDescarreg != null && this.xTermDescarreg.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xTermDescarreg, length must be less than 60.", new [] { "xTermDescarreg" });
+                yield return new ValidationResult("Invalid value for xTermDescarreg, length must be less than 60.", new [] { "xTermDescarreg" });
             }
 
             // xTermDescarreg (string) minLength
             if (this.xTermDescarreg != null && this.xTermDescarreg.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xTermDescarreg, length must be greater than 1.", new [] { "xTermDescarreg" });
+                yield return new ValidationResult("Invalid value for xTermDescarreg, length must be greater than 1.", new [] { "xTermDescarreg" });
             }
 
             yield break;

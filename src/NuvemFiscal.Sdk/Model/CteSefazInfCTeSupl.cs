@@ -117,18 +117,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // qrCodCTe (string) maxLength
             if (this.qrCodCTe != null && this.qrCodCTe.Length > 1000)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qrCodCTe, length must be less than 1000.", new [] { "qrCodCTe" });
+                yield return new ValidationResult("Invalid value for qrCodCTe, length must be less than 1000.", new [] { "qrCodCTe" });
             }
 
             // qrCodCTe (string) minLength
             if (this.qrCodCTe != null && this.qrCodCTe.Length < 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qrCodCTe, length must be greater than 50.", new [] { "qrCodCTe" });
+                yield return new ValidationResult("Invalid value for qrCodCTe, length must be greater than 50.", new [] { "qrCodCTe" });
             }
 
             yield break;

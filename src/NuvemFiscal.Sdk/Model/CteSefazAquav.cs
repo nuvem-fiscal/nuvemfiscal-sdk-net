@@ -299,42 +299,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vPrest (decimal?) minimum
             if (this.vPrest < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vPrest, must be a value greater than or equal to 0.", new [] { "vPrest" });
+                yield return new ValidationResult("Invalid value for vPrest, must be a value greater than or equal to 0.", new [] { "vPrest" });
             }
 
             // vAFRMM (decimal?) minimum
             if (this.vAFRMM < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vAFRMM, must be a value greater than or equal to 0.", new [] { "vAFRMM" });
+                yield return new ValidationResult("Invalid value for vAFRMM, must be a value greater than or equal to 0.", new [] { "vAFRMM" });
             }
 
             // xNavio (string) maxLength
             if (this.xNavio != null && this.xNavio.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNavio, length must be less than 60.", new [] { "xNavio" });
+                yield return new ValidationResult("Invalid value for xNavio, length must be less than 60.", new [] { "xNavio" });
             }
 
             // xNavio (string) minLength
             if (this.xNavio != null && this.xNavio.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNavio, length must be greater than 1.", new [] { "xNavio" });
+                yield return new ValidationResult("Invalid value for xNavio, length must be greater than 1.", new [] { "xNavio" });
             }
 
             // irin (string) maxLength
             if (this.irin != null && this.irin.Length > 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for irin, length must be less than 10.", new [] { "irin" });
+                yield return new ValidationResult("Invalid value for irin, length must be less than 10.", new [] { "irin" });
             }
 
             // irin (string) minLength
             if (this.irin != null && this.irin.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for irin, length must be greater than 1.", new [] { "irin" });
+                yield return new ValidationResult("Invalid value for irin, length must be greater than 1.", new [] { "irin" });
             }
 
             yield break;

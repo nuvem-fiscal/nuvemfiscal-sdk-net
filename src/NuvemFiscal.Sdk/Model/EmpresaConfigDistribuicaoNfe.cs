@@ -63,11 +63,31 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmpresaConfigDistribuicaoNfe" /> class.
         /// </summary>
+        /// <param name="distribuicaoAutomatica">Indica se a distribuição automática está habilitada.    Nesse modo, a API da Nuvem Fiscal irá realizar pedidos de distribuição  pelo último NSU de forma automática a cada 1 hora. (default to false).</param>
+        /// <param name="cienciaAutomatica">Indica se a manifestação de Ciência da Operação (210210) deve ser feita  automaticamente pela API.    Caso habilitada, a manifestação de ciência será realizada para notas  recebidas por qualquer forma de consulta ou modo de distribuição (manual ou automático). (default to false).</param>
         /// <param name="ambiente">Indica se a empresa irá emitir em produção ou homologação. (required).</param>
-        public EmpresaConfigDistribuicaoNfe(AmbienteEnum ambiente = default(AmbienteEnum))
+        public EmpresaConfigDistribuicaoNfe(bool? distribuicaoAutomatica = false, bool? cienciaAutomatica = false, AmbienteEnum ambiente = default(AmbienteEnum))
         {
             this.ambiente = ambiente;
+            // use default value if no "distribuicaoAutomatica" provided
+            this.distribuicao_automatica = distribuicaoAutomatica ?? false;
+            // use default value if no "cienciaAutomatica" provided
+            this.ciencia_automatica = cienciaAutomatica ?? false;
         }
+
+        /// <summary>
+        /// Indica se a distribuição automática está habilitada.    Nesse modo, a API da Nuvem Fiscal irá realizar pedidos de distribuição  pelo último NSU de forma automática a cada 1 hora.
+        /// </summary>
+        /// <value>Indica se a distribuição automática está habilitada.    Nesse modo, a API da Nuvem Fiscal irá realizar pedidos de distribuição  pelo último NSU de forma automática a cada 1 hora.</value>
+        [DataMember(Name = "distribuicao_automatica", EmitDefaultValue = true)]
+        public bool? distribuicao_automatica { get; set; }
+
+        /// <summary>
+        /// Indica se a manifestação de Ciência da Operação (210210) deve ser feita  automaticamente pela API.    Caso habilitada, a manifestação de ciência será realizada para notas  recebidas por qualquer forma de consulta ou modo de distribuição (manual ou automático).
+        /// </summary>
+        /// <value>Indica se a manifestação de Ciência da Operação (210210) deve ser feita  automaticamente pela API.    Caso habilitada, a manifestação de ciência será realizada para notas  recebidas por qualquer forma de consulta ou modo de distribuição (manual ou automático).</value>
+        [DataMember(Name = "ciencia_automatica", EmitDefaultValue = true)]
+        public bool? ciencia_automatica { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,6 +97,8 @@ namespace NuvemFiscal.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class EmpresaConfigDistribuicaoNfe {\n");
+            sb.Append("  distribuicao_automatica: ").Append(distribuicao_automatica).Append("\n");
+            sb.Append("  ciencia_automatica: ").Append(ciencia_automatica).Append("\n");
             sb.Append("  ambiente: ").Append(ambiente).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -114,6 +136,16 @@ namespace NuvemFiscal.Sdk.Model
             }
             return 
                 (
+                    this.distribuicao_automatica == input.distribuicao_automatica ||
+                    (this.distribuicao_automatica != null &&
+                    this.distribuicao_automatica.Equals(input.distribuicao_automatica))
+                ) && 
+                (
+                    this.ciencia_automatica == input.ciencia_automatica ||
+                    (this.ciencia_automatica != null &&
+                    this.ciencia_automatica.Equals(input.ciencia_automatica))
+                ) && 
+                (
                     this.ambiente == input.ambiente ||
                     this.ambiente.Equals(input.ambiente)
                 );
@@ -128,6 +160,14 @@ namespace NuvemFiscal.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.distribuicao_automatica != null)
+                {
+                    hashCode = (hashCode * 59) + this.distribuicao_automatica.GetHashCode();
+                }
+                if (this.ciencia_automatica != null)
+                {
+                    hashCode = (hashCode * 59) + this.ciencia_automatica.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.ambiente.GetHashCode();
                 return hashCode;
             }
@@ -138,7 +178,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

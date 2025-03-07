@@ -231,54 +231,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // esp (string) maxLength
             if (this.esp != null && this.esp.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for esp, length must be less than 60.", new [] { "esp" });
+                yield return new ValidationResult("Invalid value for esp, length must be less than 60.", new [] { "esp" });
             }
 
             // esp (string) minLength
             if (this.esp != null && this.esp.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for esp, length must be greater than 1.", new [] { "esp" });
+                yield return new ValidationResult("Invalid value for esp, length must be greater than 1.", new [] { "esp" });
             }
 
             // marca (string) maxLength
             if (this.marca != null && this.marca.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for marca, length must be less than 60.", new [] { "marca" });
+                yield return new ValidationResult("Invalid value for marca, length must be less than 60.", new [] { "marca" });
             }
 
             // marca (string) minLength
             if (this.marca != null && this.marca.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for marca, length must be greater than 1.", new [] { "marca" });
+                yield return new ValidationResult("Invalid value for marca, length must be greater than 1.", new [] { "marca" });
             }
 
             // nVol (string) maxLength
             if (this.nVol != null && this.nVol.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nVol, length must be less than 60.", new [] { "nVol" });
+                yield return new ValidationResult("Invalid value for nVol, length must be less than 60.", new [] { "nVol" });
             }
 
             // nVol (string) minLength
             if (this.nVol != null && this.nVol.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nVol, length must be greater than 1.", new [] { "nVol" });
+                yield return new ValidationResult("Invalid value for nVol, length must be greater than 1.", new [] { "nVol" });
             }
 
             // pesoL (decimal?) minimum
             if (this.pesoL < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoL, must be a value greater than or equal to 0.", new [] { "pesoL" });
+                yield return new ValidationResult("Invalid value for pesoL, must be a value greater than or equal to 0.", new [] { "pesoL" });
             }
 
             // pesoB (decimal?) minimum
             if (this.pesoB < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pesoB, must be a value greater than or equal to 0.", new [] { "pesoB" });
+                yield return new ValidationResult("Invalid value for pesoB, must be a value greater than or equal to 0.", new [] { "pesoB" });
             }
 
             yield break;

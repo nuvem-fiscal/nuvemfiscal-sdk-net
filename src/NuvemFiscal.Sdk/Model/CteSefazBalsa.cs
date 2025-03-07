@@ -127,18 +127,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xBalsa (string) maxLength
             if (this.xBalsa != null && this.xBalsa.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xBalsa, length must be less than 60.", new [] { "xBalsa" });
+                yield return new ValidationResult("Invalid value for xBalsa, length must be less than 60.", new [] { "xBalsa" });
             }
 
             // xBalsa (string) minLength
             if (this.xBalsa != null && this.xBalsa.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xBalsa, length must be greater than 1.", new [] { "xBalsa" });
+                yield return new ValidationResult("Invalid value for xBalsa, length must be greater than 1.", new [] { "xBalsa" });
             }
 
             yield break;

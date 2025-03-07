@@ -269,42 +269,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xNome (string) maxLength
             if (this.xNome != null && this.xNome.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be less than 60.", new [] { "xNome" });
+                yield return new ValidationResult("Invalid value for xNome, length must be less than 60.", new [] { "xNome" });
             }
 
             // xNome (string) minLength
             if (this.xNome != null && this.xNome.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNome, length must be greater than 2.", new [] { "xNome" });
+                yield return new ValidationResult("Invalid value for xNome, length must be greater than 2.", new [] { "xNome" });
             }
 
             // idOutros (string) maxLength
             if (this.idOutros != null && this.idOutros.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idOutros, length must be less than 20.", new [] { "idOutros" });
+                yield return new ValidationResult("Invalid value for idOutros, length must be less than 20.", new [] { "idOutros" });
             }
 
             // idOutros (string) minLength
             if (this.idOutros != null && this.idOutros.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idOutros, length must be greater than 2.", new [] { "idOutros" });
+                yield return new ValidationResult("Invalid value for idOutros, length must be greater than 2.", new [] { "idOutros" });
             }
 
             // IM (string) maxLength
             if (this.IM != null && this.IM.Length > 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IM, length must be less than 15.", new [] { "IM" });
+                yield return new ValidationResult("Invalid value for IM, length must be less than 15.", new [] { "IM" });
             }
 
             // IM (string) minLength
             if (this.IM != null && this.IM.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IM, length must be greater than 1.", new [] { "IM" });
+                yield return new ValidationResult("Invalid value for IM, length must be greater than 1.", new [] { "IM" });
             }
 
             yield break;

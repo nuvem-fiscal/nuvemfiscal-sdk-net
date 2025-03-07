@@ -155,42 +155,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xNEmp (string) maxLength
             if (this.xNEmp != null && this.xNEmp.Length > 22)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNEmp, length must be less than 22.", new [] { "xNEmp" });
+                yield return new ValidationResult("Invalid value for xNEmp, length must be less than 22.", new [] { "xNEmp" });
             }
 
             // xNEmp (string) minLength
             if (this.xNEmp != null && this.xNEmp.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xNEmp, length must be greater than 1.", new [] { "xNEmp" });
+                yield return new ValidationResult("Invalid value for xNEmp, length must be greater than 1.", new [] { "xNEmp" });
             }
 
             // xPed (string) maxLength
             if (this.xPed != null && this.xPed.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPed, length must be less than 60.", new [] { "xPed" });
+                yield return new ValidationResult("Invalid value for xPed, length must be less than 60.", new [] { "xPed" });
             }
 
             // xPed (string) minLength
             if (this.xPed != null && this.xPed.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xPed, length must be greater than 1.", new [] { "xPed" });
+                yield return new ValidationResult("Invalid value for xPed, length must be greater than 1.", new [] { "xPed" });
             }
 
             // xCont (string) maxLength
             if (this.xCont != null && this.xCont.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCont, length must be less than 60.", new [] { "xCont" });
+                yield return new ValidationResult("Invalid value for xCont, length must be less than 60.", new [] { "xCont" });
             }
 
             // xCont (string) minLength
             if (this.xCont != null && this.xCont.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCont, length must be greater than 1.", new [] { "xCont" });
+                yield return new ValidationResult("Invalid value for xCont, length must be greater than 1.", new [] { "xCont" });
             }
 
             yield break;

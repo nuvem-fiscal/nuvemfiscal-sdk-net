@@ -315,30 +315,30 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vBC (decimal?) minimum
             if (this.vBC < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
+                yield return new ValidationResult("Invalid value for vBC, must be a value greater than or equal to 0.", new [] { "vBC" });
             }
 
             // pAliq (decimal?) minimum
             if (this.pAliq < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pAliq, must be a value greater than or equal to 0.", new [] { "pAliq" });
+                yield return new ValidationResult("Invalid value for pAliq, must be a value greater than or equal to 0.", new [] { "pAliq" });
             }
 
             // vISSQN (decimal?) minimum
             if (this.vISSQN < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vISSQN, must be a value greater than or equal to 0.", new [] { "vISSQN" });
+                yield return new ValidationResult("Invalid value for vISSQN, must be a value greater than or equal to 0.", new [] { "vISSQN" });
             }
 
             // vLiq (decimal?) minimum
             if (this.vLiq < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vLiq, must be a value greater than or equal to 0.", new [] { "vLiq" });
+                yield return new ValidationResult("Invalid value for vLiq, must be a value greater than or equal to 0.", new [] { "vLiq" });
             }
 
             yield break;

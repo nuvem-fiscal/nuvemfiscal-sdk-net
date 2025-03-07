@@ -307,66 +307,66 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // xLgr (string) maxLength
             if (this.xLgr != null && this.xLgr.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLgr, length must be less than 60.", new [] { "xLgr" });
+                yield return new ValidationResult("Invalid value for xLgr, length must be less than 60.", new [] { "xLgr" });
             }
 
             // xLgr (string) minLength
             if (this.xLgr != null && this.xLgr.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xLgr, length must be greater than 2.", new [] { "xLgr" });
+                yield return new ValidationResult("Invalid value for xLgr, length must be greater than 2.", new [] { "xLgr" });
             }
 
             // nro (string) maxLength
             if (this.nro != null && this.nro.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nro, length must be less than 60.", new [] { "nro" });
+                yield return new ValidationResult("Invalid value for nro, length must be less than 60.", new [] { "nro" });
             }
 
             // nro (string) minLength
             if (this.nro != null && this.nro.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nro, length must be greater than 1.", new [] { "nro" });
+                yield return new ValidationResult("Invalid value for nro, length must be greater than 1.", new [] { "nro" });
             }
 
             // xCpl (string) maxLength
             if (this.xCpl != null && this.xCpl.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCpl, length must be less than 60.", new [] { "xCpl" });
+                yield return new ValidationResult("Invalid value for xCpl, length must be less than 60.", new [] { "xCpl" });
             }
 
             // xCpl (string) minLength
             if (this.xCpl != null && this.xCpl.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xCpl, length must be greater than 1.", new [] { "xCpl" });
+                yield return new ValidationResult("Invalid value for xCpl, length must be greater than 1.", new [] { "xCpl" });
             }
 
             // xBairro (string) maxLength
             if (this.xBairro != null && this.xBairro.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xBairro, length must be less than 60.", new [] { "xBairro" });
+                yield return new ValidationResult("Invalid value for xBairro, length must be less than 60.", new [] { "xBairro" });
             }
 
             // xBairro (string) minLength
             if (this.xBairro != null && this.xBairro.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xBairro, length must be greater than 2.", new [] { "xBairro" });
+                yield return new ValidationResult("Invalid value for xBairro, length must be greater than 2.", new [] { "xBairro" });
             }
 
             // xMun (string) maxLength
             if (this.xMun != null && this.xMun.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xMun, length must be less than 60.", new [] { "xMun" });
+                yield return new ValidationResult("Invalid value for xMun, length must be less than 60.", new [] { "xMun" });
             }
 
             // xMun (string) minLength
             if (this.xMun != null && this.xMun.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xMun, length must be greater than 2.", new [] { "xMun" });
+                yield return new ValidationResult("Invalid value for xMun, length must be greater than 2.", new [] { "xMun" });
             }
 
             yield break;

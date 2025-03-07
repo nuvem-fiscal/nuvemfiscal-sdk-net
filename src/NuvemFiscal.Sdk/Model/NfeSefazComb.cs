@@ -363,90 +363,90 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // cProdANP (int?) maximum
             if (this.cProdANP > (int?)999999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProdANP, must be a value less than or equal to 999999999.", new [] { "cProdANP" });
+                yield return new ValidationResult("Invalid value for cProdANP, must be a value less than or equal to 999999999.", new [] { "cProdANP" });
             }
 
             // cProdANP (int?) minimum
             if (this.cProdANP < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProdANP, must be a value greater than or equal to 0.", new [] { "cProdANP" });
+                yield return new ValidationResult("Invalid value for cProdANP, must be a value greater than or equal to 0.", new [] { "cProdANP" });
             }
 
             // descANP (string) maxLength
             if (this.descANP != null && this.descANP.Length > 95)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for descANP, length must be less than 95.", new [] { "descANP" });
+                yield return new ValidationResult("Invalid value for descANP, length must be less than 95.", new [] { "descANP" });
             }
 
             // descANP (string) minLength
             if (this.descANP != null && this.descANP.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for descANP, length must be greater than 2.", new [] { "descANP" });
+                yield return new ValidationResult("Invalid value for descANP, length must be greater than 2.", new [] { "descANP" });
             }
 
             // pGLP (decimal?) maximum
             if (this.pGLP > (decimal?)1E+2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pGLP, must be a value less than or equal to 1E+2.", new [] { "pGLP" });
+                yield return new ValidationResult("Invalid value for pGLP, must be a value less than or equal to 1E+2.", new [] { "pGLP" });
             }
 
             // pGLP (decimal?) minimum
             if (this.pGLP < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pGLP, must be a value greater than or equal to 0.", new [] { "pGLP" });
+                yield return new ValidationResult("Invalid value for pGLP, must be a value greater than or equal to 0.", new [] { "pGLP" });
             }
 
             // pGNn (decimal?) maximum
             if (this.pGNn > (decimal?)1E+2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pGNn, must be a value less than or equal to 1E+2.", new [] { "pGNn" });
+                yield return new ValidationResult("Invalid value for pGNn, must be a value less than or equal to 1E+2.", new [] { "pGNn" });
             }
 
             // pGNn (decimal?) minimum
             if (this.pGNn < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pGNn, must be a value greater than or equal to 0.", new [] { "pGNn" });
+                yield return new ValidationResult("Invalid value for pGNn, must be a value greater than or equal to 0.", new [] { "pGNn" });
             }
 
             // pGNi (decimal?) maximum
             if (this.pGNi > (decimal?)1E+2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pGNi, must be a value less than or equal to 1E+2.", new [] { "pGNi" });
+                yield return new ValidationResult("Invalid value for pGNi, must be a value less than or equal to 1E+2.", new [] { "pGNi" });
             }
 
             // pGNi (decimal?) minimum
             if (this.pGNi < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pGNi, must be a value greater than or equal to 0.", new [] { "pGNi" });
+                yield return new ValidationResult("Invalid value for pGNi, must be a value greater than or equal to 0.", new [] { "pGNi" });
             }
 
             // vPart (decimal?) minimum
             if (this.vPart < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vPart, must be a value greater than or equal to 0.", new [] { "vPart" });
+                yield return new ValidationResult("Invalid value for vPart, must be a value greater than or equal to 0.", new [] { "vPart" });
             }
 
             // qTemp (decimal?) minimum
             if (this.qTemp < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qTemp, must be a value greater than or equal to 0.", new [] { "qTemp" });
+                yield return new ValidationResult("Invalid value for qTemp, must be a value greater than or equal to 0.", new [] { "qTemp" });
             }
 
             // pBio (decimal?) maximum
             if (this.pBio > (decimal?)1E+2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pBio, must be a value less than or equal to 1E+2.", new [] { "pBio" });
+                yield return new ValidationResult("Invalid value for pBio, must be a value less than or equal to 1E+2.", new [] { "pBio" });
             }
 
             // pBio (decimal?) minimum
             if (this.pBio < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for pBio, must be a value greater than or equal to 0.", new [] { "pBio" });
+                yield return new ValidationResult("Invalid value for pBio, must be a value greater than or equal to 0.", new [] { "pBio" });
             }
 
             yield break;

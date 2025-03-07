@@ -127,12 +127,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vIPIDevol (decimal?) minimum
             if (this.vIPIDevol < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vIPIDevol, must be a value greater than or equal to 0.", new [] { "vIPIDevol" });
+                yield return new ValidationResult("Invalid value for vIPIDevol, must be a value greater than or equal to 0.", new [] { "vIPIDevol" });
             }
 
             yield break;

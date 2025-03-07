@@ -386,60 +386,60 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // cProd (string) maxLength
             if (this.cProd != null && this.cProd.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProd, length must be less than 60.", new [] { "cProd" });
+                yield return new ValidationResult("Invalid value for cProd, length must be less than 60.", new [] { "cProd" });
             }
 
             // cProd (string) minLength
             if (this.cProd != null && this.cProd.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cProd, length must be greater than 1.", new [] { "cProd" });
+                yield return new ValidationResult("Invalid value for cProd, length must be greater than 1.", new [] { "cProd" });
             }
 
             // xProd (string) maxLength
             if (this.xProd != null && this.xProd.Length > 120)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xProd, length must be less than 120.", new [] { "xProd" });
+                yield return new ValidationResult("Invalid value for xProd, length must be less than 120.", new [] { "xProd" });
             }
 
             // xProd (string) minLength
             if (this.xProd != null && this.xProd.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xProd, length must be greater than 1.", new [] { "xProd" });
+                yield return new ValidationResult("Invalid value for xProd, length must be greater than 1.", new [] { "xProd" });
             }
 
             // cClass (string) maxLength
             if (this.cClass != null && this.cClass.Length > 7)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cClass, length must be less than 7.", new [] { "cClass" });
+                yield return new ValidationResult("Invalid value for cClass, length must be less than 7.", new [] { "cClass" });
             }
 
             // cClass (string) minLength
             if (this.cClass != null && this.cClass.Length < 7)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cClass, length must be greater than 7.", new [] { "cClass" });
+                yield return new ValidationResult("Invalid value for cClass, length must be greater than 7.", new [] { "cClass" });
             }
 
             // qFaturada (decimal?) minimum
             if (this.qFaturada < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for qFaturada, must be a value greater than or equal to 0.", new [] { "qFaturada" });
+                yield return new ValidationResult("Invalid value for qFaturada, must be a value greater than or equal to 0.", new [] { "qFaturada" });
             }
 
             // vDesc (decimal?) minimum
             if (this.vDesc < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
+                yield return new ValidationResult("Invalid value for vDesc, must be a value greater than or equal to 0.", new [] { "vDesc" });
             }
 
             // vOutro (decimal?) minimum
             if (this.vOutro < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
+                yield return new ValidationResult("Invalid value for vOutro, must be a value greater than or equal to 0.", new [] { "vOutro" });
             }
 
             yield break;

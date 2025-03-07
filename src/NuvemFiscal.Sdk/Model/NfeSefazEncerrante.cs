@@ -218,54 +218,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nBico (int?) maximum
             if (this.nBico > (int?)999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBico, must be a value less than or equal to 999.", new [] { "nBico" });
+                yield return new ValidationResult("Invalid value for nBico, must be a value less than or equal to 999.", new [] { "nBico" });
             }
 
             // nBico (int?) minimum
             if (this.nBico < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBico, must be a value greater than or equal to 0.", new [] { "nBico" });
+                yield return new ValidationResult("Invalid value for nBico, must be a value greater than or equal to 0.", new [] { "nBico" });
             }
 
             // nBomba (int?) maximum
             if (this.nBomba > (int?)999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBomba, must be a value less than or equal to 999.", new [] { "nBomba" });
+                yield return new ValidationResult("Invalid value for nBomba, must be a value less than or equal to 999.", new [] { "nBomba" });
             }
 
             // nBomba (int?) minimum
             if (this.nBomba < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nBomba, must be a value greater than or equal to 0.", new [] { "nBomba" });
+                yield return new ValidationResult("Invalid value for nBomba, must be a value greater than or equal to 0.", new [] { "nBomba" });
             }
 
             // nTanque (int?) maximum
             if (this.nTanque > (int?)999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nTanque, must be a value less than or equal to 999.", new [] { "nTanque" });
+                yield return new ValidationResult("Invalid value for nTanque, must be a value less than or equal to 999.", new [] { "nTanque" });
             }
 
             // nTanque (int?) minimum
             if (this.nTanque < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nTanque, must be a value greater than or equal to 0.", new [] { "nTanque" });
+                yield return new ValidationResult("Invalid value for nTanque, must be a value greater than or equal to 0.", new [] { "nTanque" });
             }
 
             // vEncIni (decimal?) minimum
             if (this.vEncIni < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vEncIni, must be a value greater than or equal to 0.", new [] { "vEncIni" });
+                yield return new ValidationResult("Invalid value for vEncIni, must be a value greater than or equal to 0.", new [] { "vEncIni" });
             }
 
             // vEncFin (decimal?) minimum
             if (this.vEncFin < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vEncFin, must be a value greater than or equal to 0.", new [] { "vEncFin" });
+                yield return new ValidationResult("Invalid value for vEncFin, must be a value greater than or equal to 0.", new [] { "vEncFin" });
             }
 
             yield break;

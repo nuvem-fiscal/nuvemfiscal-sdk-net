@@ -404,78 +404,78 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // irin (string) maxLength
             if (this.irin != null && this.irin.Length > 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for irin, length must be less than 10.", new [] { "irin" });
+                yield return new ValidationResult("Invalid value for irin, length must be less than 10.", new [] { "irin" });
             }
 
             // irin (string) minLength
             if (this.irin != null && this.irin.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for irin, length must be greater than 1.", new [] { "irin" });
+                yield return new ValidationResult("Invalid value for irin, length must be greater than 1.", new [] { "irin" });
             }
 
             // cEmbar (string) maxLength
             if (this.cEmbar != null && this.cEmbar.Length > 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEmbar, length must be less than 10.", new [] { "cEmbar" });
+                yield return new ValidationResult("Invalid value for cEmbar, length must be less than 10.", new [] { "cEmbar" });
             }
 
             // cEmbar (string) minLength
             if (this.cEmbar != null && this.cEmbar.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEmbar, length must be greater than 1.", new [] { "cEmbar" });
+                yield return new ValidationResult("Invalid value for cEmbar, length must be greater than 1.", new [] { "cEmbar" });
             }
 
             // xEmbar (string) maxLength
             if (this.xEmbar != null && this.xEmbar.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEmbar, length must be less than 60.", new [] { "xEmbar" });
+                yield return new ValidationResult("Invalid value for xEmbar, length must be less than 60.", new [] { "xEmbar" });
             }
 
             // xEmbar (string) minLength
             if (this.xEmbar != null && this.xEmbar.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for xEmbar, length must be greater than 1.", new [] { "xEmbar" });
+                yield return new ValidationResult("Invalid value for xEmbar, length must be greater than 1.", new [] { "xEmbar" });
             }
 
             // cPrtEmb (string) maxLength
             if (this.cPrtEmb != null && this.cPrtEmb.Length > 5)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cPrtEmb, length must be less than 5.", new [] { "cPrtEmb" });
+                yield return new ValidationResult("Invalid value for cPrtEmb, length must be less than 5.", new [] { "cPrtEmb" });
             }
 
             // cPrtEmb (string) minLength
             if (this.cPrtEmb != null && this.cPrtEmb.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cPrtEmb, length must be greater than 1.", new [] { "cPrtEmb" });
+                yield return new ValidationResult("Invalid value for cPrtEmb, length must be greater than 1.", new [] { "cPrtEmb" });
             }
 
             // cPrtDest (string) maxLength
             if (this.cPrtDest != null && this.cPrtDest.Length > 5)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cPrtDest, length must be less than 5.", new [] { "cPrtDest" });
+                yield return new ValidationResult("Invalid value for cPrtDest, length must be less than 5.", new [] { "cPrtDest" });
             }
 
             // cPrtDest (string) minLength
             if (this.cPrtDest != null && this.cPrtDest.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cPrtDest, length must be greater than 1.", new [] { "cPrtDest" });
+                yield return new ValidationResult("Invalid value for cPrtDest, length must be greater than 1.", new [] { "cPrtDest" });
             }
 
             // prtTrans (string) maxLength
             if (this.prtTrans != null && this.prtTrans.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for prtTrans, length must be less than 60.", new [] { "prtTrans" });
+                yield return new ValidationResult("Invalid value for prtTrans, length must be less than 60.", new [] { "prtTrans" });
             }
 
             // prtTrans (string) minLength
             if (this.prtTrans != null && this.prtTrans.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for prtTrans, length must be greater than 1.", new [] { "prtTrans" });
+                yield return new ValidationResult("Invalid value for prtTrans, length must be greater than 1.", new [] { "prtTrans" });
             }
 
             yield break;

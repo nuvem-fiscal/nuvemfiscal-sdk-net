@@ -103,7 +103,8 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="distNsu">Distribuição de conjunto de DF-e a partir do NSU informado.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;dist-nsu\&quot;.*.</param>
         /// <param name="consNsu">Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;cons-nsu\&quot;.*.</param>
         /// <param name="consChave">Consulta de NF-e por chave de acesso informada.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;cons-chave\&quot;.*.</param>
-        public DistribuicaoNfePedido(string cpfCnpj = default(string), AmbienteEnum ambiente = default(AmbienteEnum), string ufAutor = default(string), TipoConsultaEnum tipoConsulta = default(TipoConsultaEnum), int? distNsu = default(int?), int? consNsu = default(int?), string consChave = default(string))
+        /// <param name="ignorarTempoEspera">Deve ser utilizado em situações em que o cliente  deseja ignorar o intervalo mínimo de 1 hora entre pedidos de distribuição  de NF-e. Quando habilitado, o cliente reconhece os riscos associados,  incluindo o bloqueio do CNPJ no Ambiente Nacional da SEFAZ, caso seja  caracterizado consumo indevido.    Valores:  * &#x60;false&#x60;: Respeita a regra de intervalo mínimo de 1 hora entre consultas    quando não há mais documentos disponíveis.    * &#x60;true&#x60;: Ignora o tempo de espera e força a requisição. (default to false).</param>
+        public DistribuicaoNfePedido(string cpfCnpj = default(string), AmbienteEnum ambiente = default(AmbienteEnum), string ufAutor = default(string), TipoConsultaEnum tipoConsulta = default(TipoConsultaEnum), int? distNsu = default(int?), int? consNsu = default(int?), string consChave = default(string), bool ignorarTempoEspera = false)
         {
             // to ensure "cpfCnpj" is required (not null)
             if (cpfCnpj == null)
@@ -117,6 +118,7 @@ namespace NuvemFiscal.Sdk.Model
             this.dist_nsu = distNsu;
             this.cons_nsu = consNsu;
             this.cons_chave = consChave;
+            this.ignorar_tempo_espera = ignorarTempoEspera;
         }
 
         /// <summary>
@@ -155,6 +157,13 @@ namespace NuvemFiscal.Sdk.Model
         public string cons_chave { get; set; }
 
         /// <summary>
+        /// Deve ser utilizado em situações em que o cliente  deseja ignorar o intervalo mínimo de 1 hora entre pedidos de distribuição  de NF-e. Quando habilitado, o cliente reconhece os riscos associados,  incluindo o bloqueio do CNPJ no Ambiente Nacional da SEFAZ, caso seja  caracterizado consumo indevido.    Valores:  * &#x60;false&#x60;: Respeita a regra de intervalo mínimo de 1 hora entre consultas    quando não há mais documentos disponíveis.    * &#x60;true&#x60;: Ignora o tempo de espera e força a requisição.
+        /// </summary>
+        /// <value>Deve ser utilizado em situações em que o cliente  deseja ignorar o intervalo mínimo de 1 hora entre pedidos de distribuição  de NF-e. Quando habilitado, o cliente reconhece os riscos associados,  incluindo o bloqueio do CNPJ no Ambiente Nacional da SEFAZ, caso seja  caracterizado consumo indevido.    Valores:  * &#x60;false&#x60;: Respeita a regra de intervalo mínimo de 1 hora entre consultas    quando não há mais documentos disponíveis.    * &#x60;true&#x60;: Ignora o tempo de espera e força a requisição.</value>
+        [DataMember(Name = "ignorar_tempo_espera", EmitDefaultValue = true)]
+        public bool ignorar_tempo_espera { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -169,6 +178,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  dist_nsu: ").Append(dist_nsu).Append("\n");
             sb.Append("  cons_nsu: ").Append(cons_nsu).Append("\n");
             sb.Append("  cons_chave: ").Append(cons_chave).Append("\n");
+            sb.Append("  ignorar_tempo_espera: ").Append(ignorar_tempo_espera).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -236,6 +246,10 @@ namespace NuvemFiscal.Sdk.Model
                     this.cons_chave == input.cons_chave ||
                     (this.cons_chave != null &&
                     this.cons_chave.Equals(input.cons_chave))
+                ) && 
+                (
+                    this.ignorar_tempo_espera == input.ignorar_tempo_espera ||
+                    this.ignorar_tempo_espera.Equals(input.ignorar_tempo_espera)
                 );
         }
 
@@ -270,6 +284,7 @@ namespace NuvemFiscal.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.cons_chave.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.ignorar_tempo_espera.GetHashCode();
                 return hashCode;
             }
         }
@@ -279,7 +294,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

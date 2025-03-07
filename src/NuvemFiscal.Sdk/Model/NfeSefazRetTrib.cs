@@ -231,48 +231,48 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vRetPIS (decimal?) minimum
             if (this.vRetPIS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRetPIS, must be a value greater than or equal to 0.", new [] { "vRetPIS" });
+                yield return new ValidationResult("Invalid value for vRetPIS, must be a value greater than or equal to 0.", new [] { "vRetPIS" });
             }
 
             // vRetCOFINS (decimal?) minimum
             if (this.vRetCOFINS < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRetCOFINS, must be a value greater than or equal to 0.", new [] { "vRetCOFINS" });
+                yield return new ValidationResult("Invalid value for vRetCOFINS, must be a value greater than or equal to 0.", new [] { "vRetCOFINS" });
             }
 
             // vRetCSLL (decimal?) minimum
             if (this.vRetCSLL < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRetCSLL, must be a value greater than or equal to 0.", new [] { "vRetCSLL" });
+                yield return new ValidationResult("Invalid value for vRetCSLL, must be a value greater than or equal to 0.", new [] { "vRetCSLL" });
             }
 
             // vBCIRRF (decimal?) minimum
             if (this.vBCIRRF < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCIRRF, must be a value greater than or equal to 0.", new [] { "vBCIRRF" });
+                yield return new ValidationResult("Invalid value for vBCIRRF, must be a value greater than or equal to 0.", new [] { "vBCIRRF" });
             }
 
             // vIRRF (decimal?) minimum
             if (this.vIRRF < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vIRRF, must be a value greater than or equal to 0.", new [] { "vIRRF" });
+                yield return new ValidationResult("Invalid value for vIRRF, must be a value greater than or equal to 0.", new [] { "vIRRF" });
             }
 
             // vBCRetPrev (decimal?) minimum
             if (this.vBCRetPrev < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vBCRetPrev, must be a value greater than or equal to 0.", new [] { "vBCRetPrev" });
+                yield return new ValidationResult("Invalid value for vBCRetPrev, must be a value greater than or equal to 0.", new [] { "vBCRetPrev" });
             }
 
             // vRetPrev (decimal?) minimum
             if (this.vRetPrev < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vRetPrev, must be a value greater than or equal to 0.", new [] { "vRetPrev" });
+                yield return new ValidationResult("Invalid value for vRetPrev, must be a value greater than or equal to 0.", new [] { "vRetPrev" });
             }
 
             yield break;

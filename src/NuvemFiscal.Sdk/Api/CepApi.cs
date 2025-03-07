@@ -26,6 +26,9 @@ namespace NuvemFiscal.Sdk.Api
         /// <summary>
         /// Consultar endereço através do CEP
         /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
+        /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>
         /// <returns>CepEndereco</returns>
@@ -35,7 +38,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar endereço através do CEP
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>
@@ -54,7 +57,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar endereço através do CEP
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>
@@ -66,7 +69,7 @@ namespace NuvemFiscal.Sdk.Api
         /// Consultar endereço através do CEP
         /// </summary>
         /// <remarks>
-        /// 
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
         /// </remarks>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>
@@ -287,7 +290,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar endereço através do CEP 
+        /// Consultar endereço através do CEP **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>
@@ -299,7 +302,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar endereço através do CEP 
+        /// Consultar endereço através do CEP **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>
@@ -353,7 +356,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar endereço através do CEP 
+        /// Consultar endereço através do CEP **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>
@@ -366,7 +369,7 @@ namespace NuvemFiscal.Sdk.Api
         }
 
         /// <summary>
-        /// Consultar endereço através do CEP 
+        /// Consultar endereço através do CEP **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#cep-consultas\&quot;&gt;cep-consultas&lt;/a&gt;  - Consumo: 1 unidade requisição.
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cep">CEP sem máscara.</param>

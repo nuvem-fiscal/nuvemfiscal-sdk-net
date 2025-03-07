@@ -220,36 +220,36 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CNPJProd (string) maxLength
             if (this.CNPJProd != null && this.CNPJProd.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJProd, length must be less than 14.", new [] { "CNPJProd" });
+                yield return new ValidationResult("Invalid value for CNPJProd, length must be less than 14.", new [] { "CNPJProd" });
             }
 
             // cSelo (string) maxLength
             if (this.cSelo != null && this.cSelo.Length > 60)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cSelo, length must be less than 60.", new [] { "cSelo" });
+                yield return new ValidationResult("Invalid value for cSelo, length must be less than 60.", new [] { "cSelo" });
             }
 
             // cSelo (string) minLength
             if (this.cSelo != null && this.cSelo.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cSelo, length must be greater than 1.", new [] { "cSelo" });
+                yield return new ValidationResult("Invalid value for cSelo, length must be greater than 1.", new [] { "cSelo" });
             }
 
             // cEnq (string) maxLength
             if (this.cEnq != null && this.cEnq.Length > 3)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEnq, length must be less than 3.", new [] { "cEnq" });
+                yield return new ValidationResult("Invalid value for cEnq, length must be less than 3.", new [] { "cEnq" });
             }
 
             // cEnq (string) minLength
             if (this.cEnq != null && this.cEnq.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cEnq, length must be greater than 1.", new [] { "cEnq" });
+                yield return new ValidationResult("Invalid value for cEnq, length must be greater than 1.", new [] { "cEnq" });
             }
 
             yield break;

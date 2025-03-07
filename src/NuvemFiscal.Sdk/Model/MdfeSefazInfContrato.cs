@@ -151,24 +151,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // NroContrato (string) maxLength
             if (this.NroContrato != null && this.NroContrato.Length > 20)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NroContrato, length must be less than 20.", new [] { "NroContrato" });
+                yield return new ValidationResult("Invalid value for NroContrato, length must be less than 20.", new [] { "NroContrato" });
             }
 
             // NroContrato (string) minLength
             if (this.NroContrato != null && this.NroContrato.Length < 2)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NroContrato, length must be greater than 2.", new [] { "NroContrato" });
+                yield return new ValidationResult("Invalid value for NroContrato, length must be greater than 2.", new [] { "NroContrato" });
             }
 
             // vContratoGlobal (decimal?) minimum
             if (this.vContratoGlobal < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vContratoGlobal, must be a value greater than or equal to 0.", new [] { "vContratoGlobal" });
+                yield return new ValidationResult("Invalid value for vContratoGlobal, must be a value greater than or equal to 0.", new [] { "vContratoGlobal" });
             }
 
             yield break;

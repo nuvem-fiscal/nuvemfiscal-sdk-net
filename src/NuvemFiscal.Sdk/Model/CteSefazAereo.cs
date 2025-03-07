@@ -231,18 +231,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // nMinu (int?) maximum
             if (this.nMinu > (int?)999999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nMinu, must be a value less than or equal to 999999999.", new [] { "nMinu" });
+                yield return new ValidationResult("Invalid value for nMinu, must be a value less than or equal to 999999999.", new [] { "nMinu" });
             }
 
             // nMinu (int?) minimum
             if (this.nMinu < (int?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for nMinu, must be a value greater than or equal to 0.", new [] { "nMinu" });
+                yield return new ValidationResult("Invalid value for nMinu, must be a value greater than or equal to 0.", new [] { "nMinu" });
             }
 
             yield break;

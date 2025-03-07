@@ -222,42 +222,42 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CNPJ (string) maxLength
             if (this.CNPJ != null && this.CNPJ.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
+                yield return new ValidationResult("Invalid value for CNPJ, length must be less than 14.", new [] { "CNPJ" });
             }
 
             // cAut (string) maxLength
             if (this.cAut != null && this.cAut.Length > 128)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAut, length must be less than 128.", new [] { "cAut" });
+                yield return new ValidationResult("Invalid value for cAut, length must be less than 128.", new [] { "cAut" });
             }
 
             // cAut (string) minLength
             if (this.cAut != null && this.cAut.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cAut, length must be greater than 1.", new [] { "cAut" });
+                yield return new ValidationResult("Invalid value for cAut, length must be greater than 1.", new [] { "cAut" });
             }
 
             // CNPJReceb (string) maxLength
             if (this.CNPJReceb != null && this.CNPJReceb.Length > 14)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CNPJReceb, length must be less than 14.", new [] { "CNPJReceb" });
+                yield return new ValidationResult("Invalid value for CNPJReceb, length must be less than 14.", new [] { "CNPJReceb" });
             }
 
             // idTermPag (string) maxLength
             if (this.idTermPag != null && this.idTermPag.Length > 40)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idTermPag, length must be less than 40.", new [] { "idTermPag" });
+                yield return new ValidationResult("Invalid value for idTermPag, length must be less than 40.", new [] { "idTermPag" });
             }
 
             // idTermPag (string) minLength
             if (this.idTermPag != null && this.idTermPag.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for idTermPag, length must be greater than 1.", new [] { "idTermPag" });
+                yield return new ValidationResult("Invalid value for idTermPag, length must be greater than 1.", new [] { "idTermPag" });
             }
 
             yield break;

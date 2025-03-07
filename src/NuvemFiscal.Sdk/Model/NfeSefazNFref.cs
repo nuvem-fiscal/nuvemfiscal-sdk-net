@@ -209,24 +209,24 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // refNFe (string) maxLength
             if (this.refNFe != null && this.refNFe.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for refNFe, length must be less than 44.", new [] { "refNFe" });
+                yield return new ValidationResult("Invalid value for refNFe, length must be less than 44.", new [] { "refNFe" });
             }
 
             // refNFeSig (string) maxLength
             if (this.refNFeSig != null && this.refNFeSig.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for refNFeSig, length must be less than 44.", new [] { "refNFeSig" });
+                yield return new ValidationResult("Invalid value for refNFeSig, length must be less than 44.", new [] { "refNFeSig" });
             }
 
             // refCTe (string) maxLength
             if (this.refCTe != null && this.refCTe.Length > 44)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for refCTe, length must be less than 44.", new [] { "refCTe" });
+                yield return new ValidationResult("Invalid value for refCTe, length must be less than 44.", new [] { "refCTe" });
             }
 
             yield break;

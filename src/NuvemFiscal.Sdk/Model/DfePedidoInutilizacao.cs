@@ -246,54 +246,54 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // serie (int) maximum
             if (this.serie > (int)999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value less than or equal to 999.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, must be a value less than or equal to 999.", new [] { "serie" });
             }
 
             // serie (int) minimum
             if (this.serie < (int)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for serie, must be a value greater than or equal to 0.", new [] { "serie" });
+                yield return new ValidationResult("Invalid value for serie, must be a value greater than or equal to 0.", new [] { "serie" });
             }
 
             // numero_inicial (int) maximum
             if (this.numero_inicial > (int)999999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_inicial, must be a value less than or equal to 999999999.", new [] { "numero_inicial" });
+                yield return new ValidationResult("Invalid value for numero_inicial, must be a value less than or equal to 999999999.", new [] { "numero_inicial" });
             }
 
             // numero_inicial (int) minimum
             if (this.numero_inicial < (int)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_inicial, must be a value greater than or equal to 1.", new [] { "numero_inicial" });
+                yield return new ValidationResult("Invalid value for numero_inicial, must be a value greater than or equal to 1.", new [] { "numero_inicial" });
             }
 
             // numero_final (int) maximum
             if (this.numero_final > (int)999999999)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_final, must be a value less than or equal to 999999999.", new [] { "numero_final" });
+                yield return new ValidationResult("Invalid value for numero_final, must be a value less than or equal to 999999999.", new [] { "numero_final" });
             }
 
             // numero_final (int) minimum
             if (this.numero_final < (int)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for numero_final, must be a value greater than or equal to 1.", new [] { "numero_final" });
+                yield return new ValidationResult("Invalid value for numero_final, must be a value greater than or equal to 1.", new [] { "numero_final" });
             }
 
             // justificativa (string) maxLength
             if (this.justificativa != null && this.justificativa.Length > 255)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for justificativa, length must be less than 255.", new [] { "justificativa" });
+                yield return new ValidationResult("Invalid value for justificativa, length must be less than 255.", new [] { "justificativa" });
             }
 
             // justificativa (string) minLength
             if (this.justificativa != null && this.justificativa.Length < 15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for justificativa, length must be greater than 15.", new [] { "justificativa" });
+                yield return new ValidationResult("Invalid value for justificativa, length must be greater than 15.", new [] { "justificativa" });
             }
 
             yield break;

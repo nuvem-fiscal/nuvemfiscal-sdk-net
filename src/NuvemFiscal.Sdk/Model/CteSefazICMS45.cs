@@ -165,18 +165,18 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // vICMSDeson (decimal?) minimum
             if (this.vICMSDeson < (decimal?)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for vICMSDeson, must be a value greater than or equal to 0.", new [] { "vICMSDeson" });
+                yield return new ValidationResult("Invalid value for vICMSDeson, must be a value greater than or equal to 0.", new [] { "vICMSDeson" });
             }
 
             // cBenef (string) maxLength
             if (this.cBenef != null && this.cBenef.Length > 10)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for cBenef, length must be less than 10.", new [] { "cBenef" });
+                yield return new ValidationResult("Invalid value for cBenef, length must be less than 10.", new [] { "cBenef" });
             }
 
             yield break;
