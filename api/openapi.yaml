@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.46.0
+  version: 2.50.0
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -14,6 +14,8 @@ tags:
 - name: Conta
 - description: Conhecimento de Transporte Eletrônico.
   name: Cte
+- description: Declaração de Conteúdo Eletrônica.
+  name: Dce
 - description: "O processo de distribuição de DFe envolve a disponibilização dos\r\
     \ndocumentos fiscais eletrônicos para os envolvidos na transação (emitentes,\r\
     \ndestinatários e terceiros autorizados). Ele permite que os destinatários\r\n\
@@ -692,6 +694,310 @@ paths:
       summary: Baixar XML do Protocolo da SEFAZ
       tags:
       - Cte
+  /dce:
+    get:
+      description: "Retorna a lista de DC-e de acordo com os critérios de busca utilizados.\
+        \ As DC-e são retornadas ordenadas pela data da criação, com as mais recentes\
+        \ aparecendo primeiro."
+      operationId: ListarDce
+      parameters:
+      - description: "Limite no número de objetos a serem retornados pela API, entre\
+          \ 1 e 100."
+        in: query
+        name: $top
+        schema:
+          default: 10
+          type: integer
+      - description: Quantidade de objetos que serão ignorados antes da lista começar
+          a ser retornada.
+        in: query
+        name: $skip
+        schema:
+          default: 0
+          type: integer
+      - description: "Inclui no JSON de resposta, na propriedade `@count`, o número\
+          \ total de registros que o filtro retornaria, independente dos filtros de\
+          \ paginação."
+        in: query
+        name: $inlinecount
+        schema:
+          default: false
+          type: boolean
+      - description: "Filtrar pelo CPF ou CNPJ do emitente.\r\n\r\nUtilize o valor\
+          \ sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: Seu identificador único para o documento.
+        in: query
+        name: referencia
+        schema:
+          type: string
+      - description: "Identificação do Ambiente.\r\n\r\nValores aceitos: homologacao,\
+          \ producao"
+        in: query
+        name: ambiente
+        required: true
+        schema:
+          type: string
+      - description: Chave de acesso do DF-e.
+        in: query
+        name: chave
+        schema:
+          type: string
+      - description: Série do DF-e.
+        in: query
+        name: serie
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeListagem'
+          description: Successful response
+      summary: Listar DC-e
+      tags:
+      - Dce
+    post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
+      operationId: EmitirDce
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DcePedidoEmissao'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dfe'
+          description: Successful response
+      summary: Emitir DC-e
+      tags:
+      - Dce
+      x-codegen-request-body-name: body
+  /dce/sefaz/status:
+    get:
+      description: "Consulta do status do serviço prestado pelo Portal da Secretaria\
+        \ de Fazenda Estadual.\r\n\r\nA Nuvem Fiscal mantém a última consulta em cache\
+        \ por 5 minutos, evitando sobrecarregar desnecessariamente os servidores da\
+        \ SEFAZ."
+      operationId: ConsultarStatusSefazDce
+      parameters:
+      - description: "CPF/CNPJ do emitente.\r\nUtilize o valor sem máscara."
+        in: query
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      - description: "Ambiente Autorizador.\r\n\r\nAutorizadores disponíveis: `AN`.\r\
+          \n\r\n*Caso não seja informado, será utilizado o ambiente autorizador da\
+          \ UF do emitente.*"
+        in: query
+        name: autorizador
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeSefazStatus'
+          description: Successful response
+      summary: Consulta do Status do Serviço na SEFAZ Autorizadora
+      tags:
+      - Dce
+  /dce/{id}:
+    get:
+      description: Consulta os detalhes de uma DC-e já existente. Forneça o ID único
+        obtido de uma requisição de emissão ou de listagem de DC-e e a Nuvem Fiscal
+        irá retornar as informações da DC-e correspondente.
+      operationId: ConsultarDce
+      parameters:
+      - description: ID único da DC-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dfe'
+          description: Successful response
+      summary: Consultar DC-e
+      tags:
+      - Dce
+  /dce/{id}/cancelamento:
+    get:
+      operationId: ConsultarCancelamentoDce
+      parameters:
+      - description: ID único da DC-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeCancelamento'
+          description: Successful response
+      summary: Consultar o cancelamento da DC-e
+      tags:
+      - Dce
+    post:
+      description: "**Informações adicionais**:\r\n- Cota: <a href=\"/docs/limites#dfe-eventos\"\
+        >dfe-eventos</a>\r\n- Consumo: 1 unidade por requisição."
+      operationId: CancelarDce
+      parameters:
+      - description: ID único da DC-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DcePedidoCancelamento'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeCancelamento'
+          description: Successful response
+      summary: Cancelar uma DC-e autorizada
+      tags:
+      - Dce
+      x-codegen-request-body-name: body
+  /dce/{id}/cancelamento/xml:
+    get:
+      operationId: BaixarXmlCancelamentoDce
+      parameters:
+      - description: ID único da DC-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do cancelamento
+      tags:
+      - Dce
+  /dce/{id}/pdf:
+    get:
+      operationId: BaixarPdfDce
+      parameters:
+      - description: ID único da DC-e gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar PDF do DACE
+      tags:
+      - Dce
+  /dce/{id}/xml:
+    get:
+      description: "Utilize esse endpoint para obter o XML da DC-e enviada para a\
+        \ SEFAZ, complementado com a informação do protocolo de autorização de uso\
+        \ (TAG raiz `dceProc`).\r\n\r\nO XML só estará disponível nesse endpoint caso\
+        \ a DC-e tenha sido autorizada pela SEFAZ. Para obter o XML nos demais casos,\
+        \ utilize o endpoint `GET /dce/{id}/xml/declaracao`."
+      operationId: BaixarXmlDce
+      parameters:
+      - description: ID único da DC-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML da DC-e processada
+      tags:
+      - Dce
+  /dce/{id}/xml/declaracao:
+    get:
+      description: "Utilize esse endpoint para obter o XML da DC-e enviada para a\
+        \ SEFAZ.\r\n\r\nO XML estará disponível nesse endpoint mesmo em casos que\
+        \ a declaração tenha sido rejeitada."
+      operationId: BaixarXmlDceDeclaracao
+      parameters:
+      - description: ID único da DC-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML da DC-e
+      tags:
+      - Dce
+  /dce/{id}/xml/protocolo:
+    get:
+      operationId: BaixarXmlDceProtocolo
+      parameters:
+      - description: ID único da DC-e gerada pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Baixar XML do Protocolo da SEFAZ
+      tags:
+      - Dce
   /distribuicao/nfe:
     get:
       description: "Retorna a lista de distribuições de NF-e de acordo com os crité\
@@ -1503,6 +1809,52 @@ paths:
                 $ref: '#/components/schemas/EmpresaConfigCte'
           description: Successful response
       summary: Alterar configuração de CT-e
+      tags:
+      - Empresa
+      x-codegen-request-body-name: body
+  /empresas/{cpf_cnpj}/dce:
+    get:
+      operationId: ConsultarConfigDce
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmpresaConfigDce'
+          description: Successful response
+      summary: Consultar configuração de DC-e
+      tags:
+      - Empresa
+    put:
+      operationId: AlterarConfigDce
+      parameters:
+      - description: "CPF ou CNPJ da empresa.\r\nUtilize o valor sem máscara."
+        in: path
+        name: cpf_cnpj
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmpresaConfigDce'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmpresaConfigDce'
+          description: Successful response
+      summary: Alterar configuração de DC-e
       tags:
       - Empresa
       x-codegen-request-body-name: body
@@ -5251,505 +5603,6 @@ paths:
       - Nfse
 components:
   schemas:
-    Empresa:
-      example:
-        fone: fone
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        endereco:
-          uf: uf
-          cidade: cidade
-          complemento: complemento
-          numero: numero
-          logradouro: logradouro
-          bairro: bairro
-          codigo_pais: "1058"
-          codigo_municipio: codigo_municipio
-          pais: Brasil
-          cep: cep
-        created_at: 2000-01-23T04:56:07.000+00:00
-        inscricao_estadual: inscricao_estadual
-        nome_razao_social: nome_razao_social
-        nome_fantasia: nome_fantasia
-        cpf_cnpj: cpf_cnpj
-        email: email
-        inscricao_municipal: inscricao_municipal
-      properties:
-        cpf_cnpj:
-          description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
-          type: string
-        created_at:
-          description: "Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado\
-            \ no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"\
-            blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse campo automaticamente.\
-            \ Caso algum valor seja enviado, ele será ignorado*."
-          format: date-time
-          type: string
-        updated_at:
-          description: "Data e hora que o objeto foi alterado pela última vez na Nuvem\
-            \ Fiscal. Representado no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\"\
-            \ target=\"blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse\
-            \ campo automaticamente. Caso algum valor seja enviado, ele será ignorado*."
-          format: date-time
-          type: string
-        inscricao_estadual:
-          description: Inscrição estadual da empresa.
-          maxLength: 50
-          type: string
-        inscricao_municipal:
-          description: Inscrição municipal da empresa.
-          maxLength: 50
-          type: string
-        nome_razao_social:
-          description: Razão social da empresa.
-          maxLength: 500
-          type: string
-        nome_fantasia:
-          description: Nome fantasia da empresa.
-          maxLength: 500
-          type: string
-        fone:
-          description: Telefone da empresa.
-          type: string
-        email:
-          description: Email da empresa.
-          type: string
-        endereco:
-          $ref: '#/components/schemas/EmpresaEndereco'
-      required:
-      - cpf_cnpj
-      - email
-      - endereco
-      - nome_razao_social
-      type: object
-    EmpresaEndereco:
-      description: Endereço da empresa.
-      example:
-        uf: uf
-        cidade: cidade
-        complemento: complemento
-        numero: numero
-        logradouro: logradouro
-        bairro: bairro
-        codigo_pais: "1058"
-        codigo_municipio: codigo_municipio
-        pais: Brasil
-        cep: cep
-      properties:
-        logradouro:
-          description: Logradouro.
-          maxLength: 255
-          type: string
-        numero:
-          description: Número.
-          maxLength: 255
-          type: string
-        complemento:
-          description: Complemento.
-          maxLength: 500
-          type: string
-        bairro:
-          description: Bairro.
-          maxLength: 255
-          type: string
-        codigo_municipio:
-          description: Código IBGE do município.
-          type: string
-        cidade:
-          description: Cidade.
-          maxLength: 255
-          type: string
-        uf:
-          description: Sigla do estado.
-          type: string
-        codigo_pais:
-          default: "1058"
-          description: Código do país.
-          type: string
-        pais:
-          default: Brasil
-          description: Nome do país.
-          maxLength: 255
-          type: string
-        cep:
-          description: "CEP.\r\n\r\n*Utilize o valor sem máscara*."
-          type: string
-      required:
-      - bairro
-      - cep
-      - codigo_municipio
-      - logradouro
-      - numero
-      - uf
-      type: object
-    EmpresaListagem:
-      example:
-        '@count': 0
-        data:
-        - fone: fone
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          endereco:
-            uf: uf
-            cidade: cidade
-            complemento: complemento
-            numero: numero
-            logradouro: logradouro
-            bairro: bairro
-            codigo_pais: "1058"
-            codigo_municipio: codigo_municipio
-            pais: Brasil
-            cep: cep
-          created_at: 2000-01-23T04:56:07.000+00:00
-          inscricao_estadual: inscricao_estadual
-          nome_razao_social: nome_razao_social
-          nome_fantasia: nome_fantasia
-          cpf_cnpj: cpf_cnpj
-          email: email
-          inscricao_municipal: inscricao_municipal
-        - fone: fone
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          endereco:
-            uf: uf
-            cidade: cidade
-            complemento: complemento
-            numero: numero
-            logradouro: logradouro
-            bairro: bairro
-            codigo_pais: "1058"
-            codigo_municipio: codigo_municipio
-            pais: Brasil
-            cep: cep
-          created_at: 2000-01-23T04:56:07.000+00:00
-          inscricao_estadual: inscricao_estadual
-          nome_razao_social: nome_razao_social
-          nome_fantasia: nome_fantasia
-          cpf_cnpj: cpf_cnpj
-          email: email
-          inscricao_municipal: inscricao_municipal
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/Empresa'
-          type: array
-      type: object
-    EmpresaPedidoCadastroCertificado:
-      example:
-        password: password
-        certificado: certificado
-      properties:
-        certificado:
-          description: Binário do certificado digital (.pfx ou .p12) codificado em
-            base64.
-          format: byte
-          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
-          type: string
-        password:
-          description: Senha do certificado.
-          type: string
-      required:
-      - certificado
-      - password
-      type: object
-    EmpresaCertificado:
-      example:
-        not_valid_after: 2000-01-23T04:56:07.000+00:00
-        not_valid_before: 2000-01-23T04:56:07.000+00:00
-        thumbprint: thumbprint
-        subject_name: subject_name
-        serial_number: serial_number
-        nome_razao_social: nome_razao_social
-        cpf_cnpj: cpf_cnpj
-        issuer_name: issuer_name
-      properties:
-        serial_number:
-          type: string
-        issuer_name:
-          type: string
-        not_valid_before:
-          format: date-time
-          type: string
-        not_valid_after:
-          format: date-time
-          type: string
-        thumbprint:
-          type: string
-        subject_name:
-          type: string
-        cpf_cnpj:
-          type: string
-        nome_razao_social:
-          type: string
-      type: object
-    EmpresaConfigNfe:
-      example:
-        CRT: 0
-        ambiente: homologacao
-      properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
-            \ Nacional - Microempreendedor individual (MEI)."
-          type: integer
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigNfce:
-      example:
-        CRT: 0
-        ambiente: homologacao
-        sefaz:
-          csc: csc
-          id_csc: 6
-      properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
-            \ Nacional - Microempreendedor individual (MEI)."
-          type: integer
-        sefaz:
-          $ref: '#/components/schemas/EmpresaConfigNfceSefaz'
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      - sefaz
-      type: object
-    EmpresaConfigNfceSefaz:
-      example:
-        csc: csc
-        id_csc: 6
-      properties:
-        id_csc:
-          description: Número de identificação do CSC.
-          type: integer
-        csc:
-          description: Código do CSC.
-          maxLength: 50
-          type: string
-      required:
-      - csc
-      - id_csc
-      type: object
-    EmpresaConfigNfse:
-      example:
-        prefeitura:
-          senha: senha
-          login: login
-          token: token
-        rps:
-          numero: 5
-          lote: 5
-          serie: serie
-        ambiente: homologacao
-        regTrib:
-          opSimpNac: 0
-          regApTribSN: 6
-          regEspTrib: 1
-        incentivo_fiscal: false
-      properties:
-        regTrib:
-          $ref: '#/components/schemas/EmpresaConfigNfseRegTrib'
-        rps:
-          $ref: '#/components/schemas/EmpresaConfigRps'
-        prefeitura:
-          $ref: '#/components/schemas/EmpresaConfigPrefeitura'
-        incentivo_fiscal:
-          default: false
-          description: Indicador se a empresa possui algum tipo de incentivo fiscal.
-          type: boolean
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      - rps
-      type: object
-    EmpresaConfigNfseRegTrib:
-      description: Grupo de informações relativas aos regimes de tributação do prestador
-        de serviços.
-      example:
-        opSimpNac: 0
-        regApTribSN: 6
-        regEspTrib: 1
-      properties:
-        opSimpNac:
-          description: "Situação perante o Simples Nacional:\r\n* 1 - Não Optante;\r\
-            \n* 2 - Optante - Microempreendedor Individual (MEI);\r\n* 3 - Optante\
-            \ - Microempresa ou Empresa de Pequeno Porte (ME/EPP)."
-          nullable: true
-          type: integer
-        regApTribSN:
-          description: "Opção para que o contribuinte optante pelo Simples Nacional\
-            \ ME/EPP (opSimpNac = 3) possa indicar, ao emitir o documento fiscal,\
-            \ em qual regime de apuração os tributos federais e municipal estão inseridos,\
-            \ caso tenha ultrapassado algum sublimite ou limite definido para o Simples\
-            \ Nacional.\r\n* 1 – Regime de apuração dos tributos federais e municipal\
-            \ pelo SN;\r\n* 2 – Regime de apuração dos tributos federais pelo SN e\
-            \ ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;\r\
-            \n* 3 – Regime de apuração dos tributos federais e municipal por fora\
-            \ do SN conforme respectivas legilações federal e municipal de cada tributo."
-          nullable: true
-          type: integer
-        regEspTrib:
-          description: "Tipos de Regimes Especiais de Tributação:\r\n* 0 - Nenhum;\r\
-            \n* 1 - Ato Cooperado (Cooperativa);\r\n* 2 - Estimativa;\r\n* 3 - Microempresa\
-            \ Municipal;\r\n* 4 - Notário ou Registrador;\r\n* 5 - Profissional Autô\
-            nomo;\r\n* 6 - Sociedade de Profissionais."
-          nullable: true
-          type: integer
-      type: object
-    EmpresaConfigRps:
-      description: "Configuração de numeração de lote, série e RPS."
-      example:
-        numero: 5
-        lote: 5
-        serie: serie
-      properties:
-        lote:
-          description: "Número do Lote de RPS.\r\nInforme o próximo número do lote\
-            \ RPS a ser utilizado. Após isso, a Nuvem\r\nFiscal gerenciará esse campo\
-            \ (a cada novo envio de lote o número é\r\nincrementado em + 1). Portanto,\
-            \ basta informá-lo no cadastro da empresa\r\numa única vez."
-          type: integer
-        serie:
-          description: "Série do RPS.\r\nA série dos RPS varia de acordo com cada\
-            \ prefeitura, podendo ser\r\nnúmero (1, 2 ou 3, por exemplo) ou letras\
-            \ (A, S, NFS, por exemplo).\r\nPortanto, consulte-a com o município da\
-            \ empresa antes de iniciar a\r\nemissão das notas."
-          type: string
-        numero:
-          description: "Número do RPS.\r\nInforme o próximo número de RPS a ser utilizado.\
-            \ Após isso, a Nuvem\r\nFiscal gerenciará esse campo (a cada novo envio\
-            \ de RPS o número é\r\nincrementado em + 1). Portanto, basta informá-lo\
-            \ no cadastro da empresa\r\numa única vez."
-          type: integer
-      required:
-      - lote
-      - numero
-      - serie
-      type: object
-    EmpresaConfigPrefeitura:
-      description: "Dados adicionais para comunicação com a prefeitura. Essa validaç\
-        ão é\r\ndinâmica, de acordo com a necessidade de cada município."
-      example:
-        senha: senha
-        login: login
-        token: token
-      properties:
-        login:
-          description: "Login de autenticação com a prefeitura, caso não utilize certificado\
-            \ digital."
-          maxLength: 255
-          type: string
-        senha:
-          description: "Senha de autenticação com a prefeitura, caso não utilize certificado\
-            \ digital."
-          maxLength: 255
-          type: string
-        token:
-          description: "Token de autenticação com a prefeitura, caso não utilize certificado\
-            \ digital."
-          maxLength: 255
-          type: string
-      type: object
-    EmpresaConfigMdfe:
-      example:
-        ambiente: homologacao
-      properties:
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigCte:
-      example:
-        CRT: 0
-        ambiente: homologacao
-      properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
-            \ Nacional - Microempreendedor Individual (MEI)."
-          type: integer
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigNfcom:
-      example:
-        CRT: 0
-        ambiente: homologacao
-      properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
-          type: integer
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigDistribuicaoNfe:
-      example:
-        distribuicao_automatica: false
-        ciencia_automatica: false
-        ambiente: homologacao
-      properties:
-        distribuicao_automatica:
-          default: false
-          description: "Indica se a distribuição automática está habilitada.\r\n\r\
-            \nNesse modo, a API da Nuvem Fiscal irá realizar pedidos de distribuiç\
-            ão\r\npelo último NSU de forma automática a cada 1 hora."
-          nullable: true
-          type: boolean
-        ciencia_automatica:
-          default: false
-          description: "Indica se a manifestação de Ciência da Operação (210210) deve\
-            \ ser feita\r\nautomaticamente pela API.\r\n\r\nCaso habilitada, a manifestaç\
-            ão de ciência será realizada para notas\r\nrecebidas por qualquer forma\
-            \ de consulta ou modo de distribuição (manual ou automático)."
-          nullable: true
-          type: boolean
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
     NfseCidadesAtendidas:
       example:
         '@count': 0
@@ -7441,6 +7294,66 @@ components:
         incentivador_cultural:
           type: boolean
       type: object
+    EmpresaEndereco:
+      description: Endereço da empresa.
+      example:
+        uf: uf
+        cidade: cidade
+        complemento: complemento
+        numero: numero
+        logradouro: logradouro
+        bairro: bairro
+        codigo_pais: "1058"
+        codigo_municipio: codigo_municipio
+        pais: Brasil
+        cep: cep
+      properties:
+        logradouro:
+          description: Logradouro.
+          maxLength: 255
+          type: string
+        numero:
+          description: Número.
+          maxLength: 255
+          type: string
+        complemento:
+          description: Complemento.
+          maxLength: 500
+          type: string
+        bairro:
+          description: Bairro.
+          maxLength: 255
+          type: string
+        codigo_municipio:
+          description: Código IBGE do município.
+          type: string
+        cidade:
+          description: Cidade.
+          maxLength: 255
+          type: string
+        uf:
+          description: Sigla do estado.
+          type: string
+        codigo_pais:
+          default: "1058"
+          description: Código do país.
+          type: string
+        pais:
+          default: Brasil
+          description: Nome do país.
+          maxLength: 255
+          type: string
+        cep:
+          description: "CEP.\r\n\r\n*Utilize o valor sem máscara*."
+          type: string
+      required:
+      - bairro
+      - cep
+      - codigo_municipio
+      - logradouro
+      - numero
+      - uf
+      type: object
     NfseLoteDpsPedidoEmissao:
       example:
         documentos:
@@ -7468,6 +7381,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 1
             dCompet: 2000-01-23
@@ -7562,6 +7476,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 6
             valores:
@@ -7647,6 +7562,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -7687,6 +7603,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -7727,6 +7644,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -7767,6 +7685,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -7807,6 +7726,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -7852,6 +7772,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 1
             dCompet: 2000-01-23
@@ -7946,6 +7867,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 6
             valores:
@@ -8031,6 +7953,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8071,6 +7994,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8111,6 +8035,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8151,6 +8076,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8191,6 +8117,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8236,6 +8163,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 1
             dCompet: 2000-01-23
@@ -8330,6 +8258,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 6
             valores:
@@ -8415,6 +8344,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8455,6 +8385,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8495,6 +8426,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8535,6 +8467,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8575,6 +8508,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8620,6 +8554,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 1
             dCompet: 2000-01-23
@@ -8714,6 +8649,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 6
             valores:
@@ -8799,6 +8735,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8839,6 +8776,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8879,6 +8817,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8919,6 +8858,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -8959,6 +8899,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -9004,6 +8945,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 1
             dCompet: 2000-01-23
@@ -9098,6 +9040,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 6
             valores:
@@ -9183,6 +9126,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -9223,6 +9167,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -9263,6 +9208,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -9303,6 +9249,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -9343,6 +9290,7 @@ components:
                         xLgr: xLgr
                         nro: nro
                         xBairro: xBairro
+                      IE: IE
                       email: email
                       cNaoNIF: 8
                     NFNFS:
@@ -9424,6 +9372,7 @@ components:
               xLgr: xLgr
               nro: nro
               xBairro: xBairro
+            IE: IE
             email: email
             cNaoNIF: 1
           dCompet: 2000-01-23
@@ -9518,6 +9467,7 @@ components:
               xLgr: xLgr
               nro: nro
               xBairro: xBairro
+            IE: IE
             email: email
             cNaoNIF: 6
           valores:
@@ -9603,6 +9553,7 @@ components:
                       xLgr: xLgr
                       nro: nro
                       xBairro: xBairro
+                    IE: IE
                     email: email
                     cNaoNIF: 8
                   NFNFS:
@@ -9643,6 +9594,7 @@ components:
                       xLgr: xLgr
                       nro: nro
                       xBairro: xBairro
+                    IE: IE
                     email: email
                     cNaoNIF: 8
                   NFNFS:
@@ -9683,6 +9635,7 @@ components:
                       xLgr: xLgr
                       nro: nro
                       xBairro: xBairro
+                    IE: IE
                     email: email
                     cNaoNIF: 8
                   NFNFS:
@@ -9723,6 +9676,7 @@ components:
                       xLgr: xLgr
                       nro: nro
                       xBairro: xBairro
+                    IE: IE
                     email: email
                     cNaoNIF: 8
                   NFNFS:
@@ -9763,6 +9717,7 @@ components:
                       xLgr: xLgr
                       nro: nro
                       xBairro: xBairro
+                    IE: IE
                     email: email
                     cNaoNIF: 8
                   NFNFS:
@@ -9836,6 +9791,7 @@ components:
             xLgr: xLgr
             nro: nro
             xBairro: xBairro
+          IE: IE
           email: email
           cNaoNIF: 1
         dCompet: 2000-01-23
@@ -9930,6 +9886,7 @@ components:
             xLgr: xLgr
             nro: nro
             xBairro: xBairro
+          IE: IE
           email: email
           cNaoNIF: 6
         valores:
@@ -10015,6 +9972,7 @@ components:
                     xLgr: xLgr
                     nro: nro
                     xBairro: xBairro
+                  IE: IE
                   email: email
                   cNaoNIF: 8
                 NFNFS:
@@ -10055,6 +10013,7 @@ components:
                     xLgr: xLgr
                     nro: nro
                     xBairro: xBairro
+                  IE: IE
                   email: email
                   cNaoNIF: 8
                 NFNFS:
@@ -10095,6 +10054,7 @@ components:
                     xLgr: xLgr
                     nro: nro
                     xBairro: xBairro
+                  IE: IE
                   email: email
                   cNaoNIF: 8
                 NFNFS:
@@ -10135,6 +10095,7 @@ components:
                     xLgr: xLgr
                     nro: nro
                     xBairro: xBairro
+                  IE: IE
                   email: email
                   cNaoNIF: 8
                 NFNFS:
@@ -10175,6 +10136,7 @@ components:
                     xLgr: xLgr
                     nro: nro
                     xBairro: xBairro
+                  IE: IE
                   email: email
                   cNaoNIF: 8
                 NFNFS:
@@ -10312,6 +10274,7 @@ components:
           xLgr: xLgr
           nro: nro
           xBairro: xBairro
+        IE: IE
         email: email
         cNaoNIF: 6
       properties:
@@ -10354,6 +10317,11 @@ components:
           description: Número da inscrição municipal.
           maxLength: 15
           minLength: 1
+          nullable: true
+          type: string
+        IE:
+          description: "Número da inscrição estadual.\r\n\r\n**Atenção**: Para emissõ\
+            es pelo Sistema Nacional NFS-e, esse campo é ignorado."
           nullable: true
           type: string
         xNome:
@@ -10500,6 +10468,7 @@ components:
           xLgr: xLgr
           nro: nro
           xBairro: xBairro
+        IE: IE
         email: email
         cNaoNIF: 1
       properties:
@@ -10536,6 +10505,11 @@ components:
           description: Número da inscrição municipal.
           maxLength: 15
           minLength: 1
+          nullable: true
+          type: string
+        IE:
+          description: "Número da inscrição estadual.\r\n\r\n**Atenção**: Para emissõ\
+            es pelo Sistema Nacional NFS-e, esse campo é ignorado."
           nullable: true
           type: string
         xNome:
@@ -11204,6 +11178,7 @@ components:
                   xLgr: xLgr
                   nro: nro
                   xBairro: xBairro
+                IE: IE
                 email: email
                 cNaoNIF: 8
               NFNFS:
@@ -11244,6 +11219,7 @@ components:
                   xLgr: xLgr
                   nro: nro
                   xBairro: xBairro
+                IE: IE
                 email: email
                 cNaoNIF: 8
               NFNFS:
@@ -11284,6 +11260,7 @@ components:
                   xLgr: xLgr
                   nro: nro
                   xBairro: xBairro
+                IE: IE
                 email: email
                 cNaoNIF: 8
               NFNFS:
@@ -11324,6 +11301,7 @@ components:
                   xLgr: xLgr
                   nro: nro
                   xBairro: xBairro
+                IE: IE
                 email: email
                 cNaoNIF: 8
               NFNFS:
@@ -11364,6 +11342,7 @@ components:
                   xLgr: xLgr
                   nro: nro
                   xBairro: xBairro
+                IE: IE
                 email: email
                 cNaoNIF: 8
               NFNFS:
@@ -11464,6 +11443,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 8
             NFNFS:
@@ -11504,6 +11484,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 8
             NFNFS:
@@ -11544,6 +11525,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 8
             NFNFS:
@@ -11584,6 +11566,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 8
             NFNFS:
@@ -11624,6 +11607,7 @@ components:
                 xLgr: xLgr
                 nro: nro
                 xBairro: xBairro
+              IE: IE
               email: email
               cNaoNIF: 8
             NFNFS:
@@ -11685,6 +11669,7 @@ components:
               xLgr: xLgr
               nro: nro
               xBairro: xBairro
+            IE: IE
             email: email
             cNaoNIF: 8
           NFNFS:
@@ -11725,6 +11710,7 @@ components:
               xLgr: xLgr
               nro: nro
               xBairro: xBairro
+            IE: IE
             email: email
             cNaoNIF: 8
           NFNFS:
@@ -11765,6 +11751,7 @@ components:
               xLgr: xLgr
               nro: nro
               xBairro: xBairro
+            IE: IE
             email: email
             cNaoNIF: 8
           NFNFS:
@@ -11805,6 +11792,7 @@ components:
               xLgr: xLgr
               nro: nro
               xBairro: xBairro
+            IE: IE
             email: email
             cNaoNIF: 8
           NFNFS:
@@ -11845,6 +11833,7 @@ components:
               xLgr: xLgr
               nro: nro
               xBairro: xBairro
+            IE: IE
             email: email
             cNaoNIF: 8
           NFNFS:
@@ -11899,6 +11888,7 @@ components:
             xLgr: xLgr
             nro: nro
             xBairro: xBairro
+          IE: IE
           email: email
           cNaoNIF: 8
         NFNFS:
@@ -12051,6 +12041,7 @@ components:
           xLgr: xLgr
           nro: nro
           xBairro: xBairro
+        IE: IE
         email: email
         cNaoNIF: 8
       properties:
@@ -12087,6 +12078,11 @@ components:
           description: Número da inscrição municipal.
           maxLength: 15
           minLength: 1
+          nullable: true
+          type: string
+        IE:
+          description: "Número da inscrição estadual.\r\n\r\n**Atenção**: Para emissõ\
+            es pelo Sistema Nacional NFS-e, esse campo é ignorado."
           nullable: true
           type: string
         xNome:
@@ -13630,6 +13626,2072 @@ components:
             $ref: '#/components/schemas/NfseMensagemRetorno'
           type: array
       type: object
+    Empresa:
+      example:
+        fone: fone
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        endereco:
+          uf: uf
+          cidade: cidade
+          complemento: complemento
+          numero: numero
+          logradouro: logradouro
+          bairro: bairro
+          codigo_pais: "1058"
+          codigo_municipio: codigo_municipio
+          pais: Brasil
+          cep: cep
+        created_at: 2000-01-23T04:56:07.000+00:00
+        inscricao_estadual: inscricao_estadual
+        nome_razao_social: nome_razao_social
+        nome_fantasia: nome_fantasia
+        cpf_cnpj: cpf_cnpj
+        email: email
+        inscricao_municipal: inscricao_municipal
+      properties:
+        cpf_cnpj:
+          description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
+          type: string
+        created_at:
+          description: "Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado\
+            \ no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"\
+            blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse campo automaticamente.\
+            \ Caso algum valor seja enviado, ele será ignorado*."
+          format: date-time
+          type: string
+        updated_at:
+          description: "Data e hora que o objeto foi alterado pela última vez na Nuvem\
+            \ Fiscal. Representado no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\"\
+            \ target=\"blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse\
+            \ campo automaticamente. Caso algum valor seja enviado, ele será ignorado*."
+          format: date-time
+          type: string
+        inscricao_estadual:
+          description: Inscrição estadual da empresa.
+          maxLength: 50
+          type: string
+        inscricao_municipal:
+          description: Inscrição municipal da empresa.
+          maxLength: 50
+          type: string
+        nome_razao_social:
+          description: Razão social da empresa.
+          maxLength: 500
+          type: string
+        nome_fantasia:
+          description: Nome fantasia da empresa.
+          maxLength: 500
+          type: string
+        fone:
+          description: Telefone da empresa.
+          type: string
+        email:
+          description: Email da empresa.
+          type: string
+        endereco:
+          $ref: '#/components/schemas/EmpresaEndereco'
+      required:
+      - cpf_cnpj
+      - email
+      - endereco
+      - nome_razao_social
+      type: object
+    EmpresaListagem:
+      example:
+        '@count': 0
+        data:
+        - fone: fone
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          endereco:
+            uf: uf
+            cidade: cidade
+            complemento: complemento
+            numero: numero
+            logradouro: logradouro
+            bairro: bairro
+            codigo_pais: "1058"
+            codigo_municipio: codigo_municipio
+            pais: Brasil
+            cep: cep
+          created_at: 2000-01-23T04:56:07.000+00:00
+          inscricao_estadual: inscricao_estadual
+          nome_razao_social: nome_razao_social
+          nome_fantasia: nome_fantasia
+          cpf_cnpj: cpf_cnpj
+          email: email
+          inscricao_municipal: inscricao_municipal
+        - fone: fone
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          endereco:
+            uf: uf
+            cidade: cidade
+            complemento: complemento
+            numero: numero
+            logradouro: logradouro
+            bairro: bairro
+            codigo_pais: "1058"
+            codigo_municipio: codigo_municipio
+            pais: Brasil
+            cep: cep
+          created_at: 2000-01-23T04:56:07.000+00:00
+          inscricao_estadual: inscricao_estadual
+          nome_razao_social: nome_razao_social
+          nome_fantasia: nome_fantasia
+          cpf_cnpj: cpf_cnpj
+          email: email
+          inscricao_municipal: inscricao_municipal
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/Empresa'
+          type: array
+      type: object
+    EmpresaPedidoCadastroCertificado:
+      example:
+        password: password
+        certificado: certificado
+      properties:
+        certificado:
+          description: Binário do certificado digital (.pfx ou .p12) codificado em
+            base64.
+          format: byte
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          type: string
+        password:
+          description: Senha do certificado.
+          type: string
+      required:
+      - certificado
+      - password
+      type: object
+    EmpresaCertificado:
+      example:
+        not_valid_after: 2000-01-23T04:56:07.000+00:00
+        not_valid_before: 2000-01-23T04:56:07.000+00:00
+        thumbprint: thumbprint
+        subject_name: subject_name
+        serial_number: serial_number
+        nome_razao_social: nome_razao_social
+        cpf_cnpj: cpf_cnpj
+        issuer_name: issuer_name
+      properties:
+        serial_number:
+          type: string
+        issuer_name:
+          type: string
+        not_valid_before:
+          format: date-time
+          type: string
+        not_valid_after:
+          format: date-time
+          type: string
+        thumbprint:
+          type: string
+        subject_name:
+          type: string
+        cpf_cnpj:
+          type: string
+        nome_razao_social:
+          type: string
+      type: object
+    EmpresaConfigNfe:
+      example:
+        CRT: 0
+        ambiente: homologacao
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor individual (MEI)."
+          type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigNfce:
+      example:
+        CRT: 0
+        ambiente: homologacao
+        sefaz:
+          csc: csc
+          id_csc: 6
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor individual (MEI)."
+          type: integer
+        sefaz:
+          $ref: '#/components/schemas/EmpresaConfigNfceSefaz'
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      - sefaz
+      type: object
+    EmpresaConfigNfceSefaz:
+      example:
+        csc: csc
+        id_csc: 6
+      properties:
+        id_csc:
+          description: Número de identificação do CSC.
+          type: integer
+        csc:
+          description: Código do CSC.
+          maxLength: 50
+          type: string
+      required:
+      - csc
+      - id_csc
+      type: object
+    EmpresaConfigNfse:
+      example:
+        prefeitura:
+          senha: senha
+          login: login
+          token: token
+        rps:
+          numero: 5
+          lote: 5
+          serie: serie
+        ambiente: homologacao
+        regTrib:
+          opSimpNac: 0
+          regApTribSN: 6
+          regEspTrib: 1
+        incentivo_fiscal: false
+      properties:
+        regTrib:
+          $ref: '#/components/schemas/EmpresaConfigNfseRegTrib'
+        rps:
+          $ref: '#/components/schemas/EmpresaConfigRps'
+        prefeitura:
+          $ref: '#/components/schemas/EmpresaConfigPrefeitura'
+        incentivo_fiscal:
+          default: false
+          description: Indicador se a empresa possui algum tipo de incentivo fiscal.
+          type: boolean
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      - rps
+      type: object
+    EmpresaConfigNfseRegTrib:
+      description: Grupo de informações relativas aos regimes de tributação do prestador
+        de serviços.
+      example:
+        opSimpNac: 0
+        regApTribSN: 6
+        regEspTrib: 1
+      properties:
+        opSimpNac:
+          description: "Situação perante o Simples Nacional:\r\n* 1 - Não Optante;\r\
+            \n* 2 - Optante - Microempreendedor Individual (MEI);\r\n* 3 - Optante\
+            \ - Microempresa ou Empresa de Pequeno Porte (ME/EPP)."
+          nullable: true
+          type: integer
+        regApTribSN:
+          description: "Opção para que o contribuinte optante pelo Simples Nacional\
+            \ ME/EPP (opSimpNac = 3) possa indicar, ao emitir o documento fiscal,\
+            \ em qual regime de apuração os tributos federais e municipal estão inseridos,\
+            \ caso tenha ultrapassado algum sublimite ou limite definido para o Simples\
+            \ Nacional.\r\n* 1 – Regime de apuração dos tributos federais e municipal\
+            \ pelo SN;\r\n* 2 – Regime de apuração dos tributos federais pelo SN e\
+            \ ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;\r\
+            \n* 3 – Regime de apuração dos tributos federais e municipal por fora\
+            \ do SN conforme respectivas legilações federal e municipal de cada tributo."
+          nullable: true
+          type: integer
+        regEspTrib:
+          description: "Tipos de Regimes Especiais de Tributação:\r\n* 0 - Nenhum;\r\
+            \n* 1 - Ato Cooperado (Cooperativa);\r\n* 2 - Estimativa;\r\n* 3 - Microempresa\
+            \ Municipal;\r\n* 4 - Notário ou Registrador;\r\n* 5 - Profissional Autô\
+            nomo;\r\n* 6 - Sociedade de Profissionais."
+          nullable: true
+          type: integer
+      type: object
+    EmpresaConfigRps:
+      description: "Configuração de numeração de lote, série e RPS."
+      example:
+        numero: 5
+        lote: 5
+        serie: serie
+      properties:
+        lote:
+          description: "Número do Lote de RPS.\r\nInforme o próximo número do lote\
+            \ RPS a ser utilizado. Após isso, a Nuvem\r\nFiscal gerenciará esse campo\
+            \ (a cada novo envio de lote o número é\r\nincrementado em + 1). Portanto,\
+            \ basta informá-lo no cadastro da empresa\r\numa única vez."
+          type: integer
+        serie:
+          description: "Série do RPS.\r\nA série dos RPS varia de acordo com cada\
+            \ prefeitura, podendo ser\r\nnúmero (1, 2 ou 3, por exemplo) ou letras\
+            \ (A, S, NFS, por exemplo).\r\nPortanto, consulte-a com o município da\
+            \ empresa antes de iniciar a\r\nemissão das notas."
+          type: string
+        numero:
+          description: "Número do RPS.\r\nInforme o próximo número de RPS a ser utilizado.\
+            \ Após isso, a Nuvem\r\nFiscal gerenciará esse campo (a cada novo envio\
+            \ de RPS o número é\r\nincrementado em + 1). Portanto, basta informá-lo\
+            \ no cadastro da empresa\r\numa única vez."
+          type: integer
+      required:
+      - lote
+      - numero
+      - serie
+      type: object
+    EmpresaConfigPrefeitura:
+      description: "Dados adicionais para comunicação com a prefeitura. Essa validaç\
+        ão é\r\ndinâmica, de acordo com a necessidade de cada município."
+      example:
+        senha: senha
+        login: login
+        token: token
+      properties:
+        login:
+          description: "Login de autenticação com a prefeitura, caso não utilize certificado\
+            \ digital."
+          maxLength: 255
+          type: string
+        senha:
+          description: "Senha de autenticação com a prefeitura, caso não utilize certificado\
+            \ digital."
+          maxLength: 255
+          type: string
+        token:
+          description: "Token de autenticação com a prefeitura, caso não utilize certificado\
+            \ digital."
+          maxLength: 255
+          type: string
+      type: object
+    EmpresaConfigMdfe:
+      example:
+        ambiente: homologacao
+      properties:
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigCte:
+      example:
+        CRT: 0
+        ambiente: homologacao
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor Individual (MEI)."
+          type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigNfcom:
+      example:
+        CRT: 0
+        ambiente: homologacao
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
+          type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigDce:
+      example:
+        ambiente: homologacao
+      properties:
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigDistribuicaoNfe:
+      example:
+        distribuicao_automatica: false
+        ciencia_automatica: false
+        ambiente: homologacao
+      properties:
+        distribuicao_automatica:
+          default: false
+          description: "Indica se a distribuição automática está habilitada.\r\n\r\
+            \nNesse modo, a API da Nuvem Fiscal irá realizar pedidos de distribuiç\
+            ão\r\npelo último NSU de forma automática a cada 1 hora."
+          nullable: true
+          type: boolean
+        ciencia_automatica:
+          default: false
+          description: "Indica se a manifestação de Ciência da Operação (210210) deve\
+            \ ser feita\r\nautomaticamente pela API.\r\n\r\nCaso habilitada, a manifestaç\
+            ão de ciência será realizada para notas\r\nrecebidas por qualquer forma\
+            \ de consulta ou modo de distribuição (manual ou automático)."
+          nullable: true
+          type: boolean
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    DfeSefazStatus:
+      example:
+        data_hora_retorno: 2000-01-23T04:56:07.000+00:00
+        data_hora_consulta: 2000-01-23T04:56:07.000+00:00
+        ambiente: homologacao
+        codigo_status: 0
+        tempo_medio_resposta: 6
+        motivo_status: motivo_status
+        autorizador: AM
+      properties:
+        autorizador:
+          description: SEFAZ autorizadora responsável.
+          enum:
+          - AM
+          - BA
+          - CE
+          - GO
+          - MG
+          - MS
+          - MT
+          - PE
+          - PR
+          - RS
+          - SP
+          - SVAN
+          - SVRS
+          - SVCAN
+          - SVCRS
+          - AN
+          - SVSP
+          - SVCSP
+          type: string
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        data_hora_consulta:
+          description: Data e hora da consulta.
+          format: date-time
+          type: string
+        codigo_status:
+          description: Código do status da mensagem enviada.
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do serviço solicitado.
+          type: string
+        tempo_medio_resposta:
+          description: Tempo médio de resposta do serviço (em segundos) dos últimos
+            5 minutos.
+          nullable: true
+          type: integer
+        data_hora_retorno:
+          description: Data e hora prevista para o retorno dos serviços prestados.
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    DcePedidoEmissao:
+      example:
+        ambiente: homologacao
+        infSolicDCe:
+          xSolic: xSolic
+        referencia: referencia
+        infDCe:
+          infAdic:
+            obsFisco:
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            obsMarketplace:
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            obsECT:
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            infCpl: infCpl
+            obsEmit:
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            - xCampo: xCampo
+              xTexto: xTexto
+            infAdMarketplace: infAdMarketplace
+            infAdECT: infAdECT
+            infAdFisco: infAdFisco
+          ide:
+            tpEmit: 0
+            cDC: cDC
+            mod: 6
+            tpEmis: 5
+            cDV: 8
+            cUF: 0
+            serie: 146
+            nSiteAutoriz: 6
+            nDC: 596213391
+            dhEmi: 2000-01-23T04:56:07.000+00:00
+            tpAmb: 3
+            verProc: verProc
+          infDec:
+            xObs1: xObs1
+            xObs2: xObs2
+          dest:
+            xNome: xNome
+            idOutros: idOutros
+            CPF: CPF
+            CNPJ: CNPJ
+            enderDest:
+              xCpl: xCpl
+              fone: fone
+              UF: UF
+              xPais: xPais
+              cPais: cPais
+              xLgr: xLgr
+              xMun: xMun
+              nro: nro
+              cMun: cMun
+              xBairro: xBairro
+              email: email
+              CEP: CEP
+          transp:
+            CNPJTransp: CNPJTransp
+            modTrans: 1
+          Transportadora:
+            xNome: xNome
+            CNPJ: CNPJ
+          Marketplace:
+            Site: Site
+            xNome: xNome
+            CNPJ: CNPJ
+          det:
+          - nItem: 2027
+            prod:
+              qCom: 0.4145608029883936
+              NCM: NCM
+              vProd: 1.2315135367772556
+              xProd: xProd
+              vUnCom: 7.386281948385884
+            infAdProd: infAdProd
+          - nItem: 2027
+            prod:
+              qCom: 0.4145608029883936
+              NCM: NCM
+              vProd: 1.2315135367772556
+              xProd: xProd
+              vUnCom: 7.386281948385884
+            infAdProd: infAdProd
+          - nItem: 2027
+            prod:
+              qCom: 0.4145608029883936
+              NCM: NCM
+              vProd: 1.2315135367772556
+              xProd: xProd
+              vUnCom: 7.386281948385884
+            infAdProd: infAdProd
+          - nItem: 2027
+            prod:
+              qCom: 0.4145608029883936
+              NCM: NCM
+              vProd: 1.2315135367772556
+              xProd: xProd
+              vUnCom: 7.386281948385884
+            infAdProd: infAdProd
+          - nItem: 2027
+            prod:
+              qCom: 0.4145608029883936
+              NCM: NCM
+              vProd: 1.2315135367772556
+              xProd: xProd
+              vUnCom: 7.386281948385884
+            infAdProd: infAdProd
+          total:
+            vDC: 0.10246457001441578
+          Fisco:
+            UF: UF
+            CNPJ: CNPJ
+            xOrgao: xOrgao
+          ECT:
+            xNome: xNome
+            CNPJ: CNPJ
+          Id: Id
+          autXML:
+          - CPF: CPF
+            CNPJ: CNPJ
+          - CPF: CPF
+            CNPJ: CNPJ
+          - CPF: CPF
+            CNPJ: CNPJ
+          - CPF: CPF
+            CNPJ: CNPJ
+          - CPF: CPF
+            CNPJ: CNPJ
+          emit:
+            xNome: xNome
+            CPF: CPF
+            CNPJ: CNPJ
+            enderEmit:
+              xCpl: xCpl
+              fone: fone
+              UF: UF
+              xPais: xPais
+              cPais: cPais
+              xLgr: xLgr
+              xMun: xMun
+              nro: nro
+              cMun: cMun
+              xBairro: xBairro
+              CEP: CEP
+          versao: versao
+      properties:
+        infDCe:
+          $ref: '#/components/schemas/DceSefazInfDCe'
+        infSolicDCe:
+          $ref: '#/components/schemas/DceSefazInfSolicDCe'
+        ambiente:
+          description: Identificação do Ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        referencia:
+          description: "Seu identificador único para este documento. Opcional, ajuda\
+            \ a evitar o envio duplicado de um mesmo documento."
+          maxLength: 50
+          nullable: true
+          type: string
+      required:
+      - ambiente
+      - infDCe
+      - infSolicDCe
+      type: object
+    DceSefazInfDCe:
+      description: Informações da DCe.
+      example:
+        infAdic:
+          obsFisco:
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          obsMarketplace:
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          obsECT:
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          infCpl: infCpl
+          obsEmit:
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          - xCampo: xCampo
+            xTexto: xTexto
+          infAdMarketplace: infAdMarketplace
+          infAdECT: infAdECT
+          infAdFisco: infAdFisco
+        ide:
+          tpEmit: 0
+          cDC: cDC
+          mod: 6
+          tpEmis: 5
+          cDV: 8
+          cUF: 0
+          serie: 146
+          nSiteAutoriz: 6
+          nDC: 596213391
+          dhEmi: 2000-01-23T04:56:07.000+00:00
+          tpAmb: 3
+          verProc: verProc
+        infDec:
+          xObs1: xObs1
+          xObs2: xObs2
+        dest:
+          xNome: xNome
+          idOutros: idOutros
+          CPF: CPF
+          CNPJ: CNPJ
+          enderDest:
+            xCpl: xCpl
+            fone: fone
+            UF: UF
+            xPais: xPais
+            cPais: cPais
+            xLgr: xLgr
+            xMun: xMun
+            nro: nro
+            cMun: cMun
+            xBairro: xBairro
+            email: email
+            CEP: CEP
+        transp:
+          CNPJTransp: CNPJTransp
+          modTrans: 1
+        Transportadora:
+          xNome: xNome
+          CNPJ: CNPJ
+        Marketplace:
+          Site: Site
+          xNome: xNome
+          CNPJ: CNPJ
+        det:
+        - nItem: 2027
+          prod:
+            qCom: 0.4145608029883936
+            NCM: NCM
+            vProd: 1.2315135367772556
+            xProd: xProd
+            vUnCom: 7.386281948385884
+          infAdProd: infAdProd
+        - nItem: 2027
+          prod:
+            qCom: 0.4145608029883936
+            NCM: NCM
+            vProd: 1.2315135367772556
+            xProd: xProd
+            vUnCom: 7.386281948385884
+          infAdProd: infAdProd
+        - nItem: 2027
+          prod:
+            qCom: 0.4145608029883936
+            NCM: NCM
+            vProd: 1.2315135367772556
+            xProd: xProd
+            vUnCom: 7.386281948385884
+          infAdProd: infAdProd
+        - nItem: 2027
+          prod:
+            qCom: 0.4145608029883936
+            NCM: NCM
+            vProd: 1.2315135367772556
+            xProd: xProd
+            vUnCom: 7.386281948385884
+          infAdProd: infAdProd
+        - nItem: 2027
+          prod:
+            qCom: 0.4145608029883936
+            NCM: NCM
+            vProd: 1.2315135367772556
+            xProd: xProd
+            vUnCom: 7.386281948385884
+          infAdProd: infAdProd
+        total:
+          vDC: 0.10246457001441578
+        Fisco:
+          UF: UF
+          CNPJ: CNPJ
+          xOrgao: xOrgao
+        ECT:
+          xNome: xNome
+          CNPJ: CNPJ
+        Id: Id
+        autXML:
+        - CPF: CPF
+          CNPJ: CNPJ
+        - CPF: CPF
+          CNPJ: CNPJ
+        - CPF: CPF
+          CNPJ: CNPJ
+        - CPF: CPF
+          CNPJ: CNPJ
+        - CPF: CPF
+          CNPJ: CNPJ
+        emit:
+          xNome: xNome
+          CPF: CPF
+          CNPJ: CNPJ
+          enderEmit:
+            xCpl: xCpl
+            fone: fone
+            UF: UF
+            xPais: xPais
+            cPais: cPais
+            xLgr: xLgr
+            xMun: xMun
+            nro: nro
+            cMun: cMun
+            xBairro: xBairro
+            CEP: CEP
+        versao: versao
+      properties:
+        versao:
+          description: Versão do leiaute.
+          nullable: true
+          type: string
+        Id:
+          description: "Identificador da tag a ser assinada.\r\nInformar a chave de\
+            \ acesso precedida do literal \"DCe\".\r\n\r\n*Geramos automaticamente\
+            \ quando nenhum valor é informado.*"
+          nullable: true
+          type: string
+        ide:
+          $ref: '#/components/schemas/DceSefazIde'
+        emit:
+          $ref: '#/components/schemas/DceSefazEmit'
+        Fisco:
+          $ref: '#/components/schemas/DceSefazFisco'
+        Marketplace:
+          $ref: '#/components/schemas/DceSefazMarketplace'
+        Transportadora:
+          $ref: '#/components/schemas/DceSefazTransportadora'
+        ECT:
+          $ref: '#/components/schemas/DceSefazECT'
+        dest:
+          $ref: '#/components/schemas/DceSefazDest'
+        autXML:
+          items:
+            $ref: '#/components/schemas/DceSefazAutXML'
+          maxItems: 10
+          type: array
+        det:
+          items:
+            $ref: '#/components/schemas/DceSefazDet'
+          maxItems: 999
+          minItems: 1
+          type: array
+        total:
+          $ref: '#/components/schemas/DceSefazTotal'
+        transp:
+          $ref: '#/components/schemas/DceSefazTransp'
+        infAdic:
+          $ref: '#/components/schemas/DceSefazInfAdic'
+        infDec:
+          $ref: '#/components/schemas/DceSefazInfDec'
+      required:
+      - dest
+      - det
+      - emit
+      - ide
+      - total
+      - transp
+      - versao
+      type: object
+    DceSefazIde:
+      description: Identificação da DCe.
+      example:
+        tpEmit: 0
+        cDC: cDC
+        mod: 6
+        tpEmis: 5
+        cDV: 8
+        cUF: 0
+        serie: 146
+        nSiteAutoriz: 6
+        nDC: 596213391
+        dhEmi: 2000-01-23T04:56:07.000+00:00
+        tpAmb: 3
+        verProc: verProc
+      properties:
+        cUF:
+          description: "Código da UF de emissão e autorização da DCe.\r\nCódigo da\
+            \ UF de emissão e autorização do Documento Fiscal. Utilizar a\r\nTabela\
+            \ do IBGE de código de unidades da federação."
+          nullable: true
+          type: integer
+        cDC:
+          description: "Código numérico que compõe a Chave de Acesso.\r\nCódigo aleató\
+            rio gerado pelo emitente, com o objetivo de evitar acessos indevidos ao\
+            \ documento.\r\n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
+          nullable: true
+          type: string
+        mod:
+          description: "Modelo da DCe.\r\nUtilizar o código 99 para identificação\
+            \ da DCe."
+          nullable: true
+          type: integer
+        serie:
+          description: "Série do documento fiscal.\r\nInformar a série do documento\
+            \ fiscal (informar zero para série única)."
+          maximum: 999
+          minimum: 0
+          nullable: true
+          type: integer
+        nDC:
+          description: "Número do documento fiscal.\r\nNúmero que identifica o documento\
+            \ fiscal 1 a 999999999."
+          maximum: 999999999
+          minimum: 1
+          nullable: true
+          type: integer
+        dhEmi:
+          description: "Data e hora de emissão do documento fiscal.\r\nFormato UTC\
+            \ (AAAA-MM-DDThh:mm:ssTZD, onde TZD = +hh:mm ou -hh:mm)."
+          format: date-time
+          nullable: true
+          type: string
+        tpEmis:
+          description: "Forma de emissão do Documento Fiscal.\r\n* 1 - Normal (nã\
+            o contingência)\r\n* 9 - Contingência off-line da DCe"
+          nullable: true
+          type: integer
+        tpEmit:
+          description: "Tipo do Emitente da DCe.\r\n* 0 - App Fisco\r\n* 1 - Marketplace\r\
+            \n* 2 - Emissor próprio\r\n* 3 - Transportadora\r\n* 4 - ECT"
+          maximum: 4
+          minimum: 0
+          nullable: true
+          type: integer
+        nSiteAutoriz:
+          description: "Identificação do número do Site do Autorizador de recepçã\
+            o da DCe.\r\nSe o autorizador da DCe possuir apenas um site deverá ser\
+            \ informado com Zero (0), em caso de Autorizador trabalhar com múltiplos\
+            \ sites indicar o número do site para qual foi endereçada a DCE (1 a 9).\r\
+            \nObservação: o ambiente autorizador que trabalhar com mais de um Site\
+            \ deverá divulgar para cada endereço de site qual número correspondente\
+            \ de nSiteAutoriz o contribuinte pode usar."
+          maximum: 9
+          minimum: 0
+          nullable: true
+          type: integer
+        cDV:
+          description: "Digito verificador da chave de acesso.\r\nInformar o dígito\
+            \ de controle da chave de acesso documento fiscal, que deve ser calculado\
+            \ com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.\r\
+            \n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
+          maximum: 9
+          minimum: 0
+          nullable: true
+          type: integer
+        tpAmb:
+          description: "Tipo do Ambiente:\r\n* 1 - Produção\r\n* 2 - Homologação"
+          nullable: true
+          type: integer
+        verProc:
+          description: "Versão do processo de emissão.\r\nInformar a versão do aplicativo\
+            \ emissor de DCe."
+          maxLength: 20
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - cUF
+      - dhEmi
+      - nDC
+      - nSiteAutoriz
+      - serie
+      - tpEmis
+      - tpEmit
+      - verProc
+      type: object
+    DceSefazEmit:
+      description: Identificação da DCe.
+      example:
+        xNome: xNome
+        CPF: CPF
+        CNPJ: CNPJ
+        enderEmit:
+          xCpl: xCpl
+          fone: fone
+          UF: UF
+          xPais: xPais
+          cPais: cPais
+          xLgr: xLgr
+          xMun: xMun
+          nro: nro
+          cMun: cMun
+          xBairro: xBairro
+          CEP: CEP
+      properties:
+        CNPJ:
+          description: Número do CNPJ do emitente.
+          nullable: true
+          type: string
+        CPF:
+          description: "Número do CPF do emitente.\r\nInformar os zeros não significativos."
+          nullable: true
+          type: string
+        xNome:
+          description: "Razão social ou Nome do emitente.\r\n\r\n*Caso não seja informado,\
+            \ será utilizado o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        enderEmit:
+          $ref: '#/components/schemas/DceSefazEndeEmi'
+      type: object
+    DceSefazEndeEmi:
+      description: "Endereço do emitente.\r\n\r\n*Caso não seja informado, será utilizado\
+        \ o do cadastro da empresa.*"
+      example:
+        xCpl: xCpl
+        fone: fone
+        UF: UF
+        xPais: xPais
+        cPais: cPais
+        xLgr: xLgr
+        xMun: xMun
+        nro: nro
+        cMun: cMun
+        xBairro: xBairro
+        CEP: CEP
+      properties:
+        xLgr:
+          description: "Logradouro.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        nro:
+          description: "Número.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xCpl:
+          description: "Complemento.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xBairro:
+          description: "Bairro.\r\n\r\n*Caso não seja informado, será utilizado o\
+            \ do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        cMun:
+          description: "Código do município (utilizar a tabela do IBGE).\r\n\r\n*Caso\
+            \ não seja informado, será utilizado o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        xMun:
+          description: "Nome do município.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        UF:
+          description: "Sigla da UF.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        CEP:
+          description: "CEP.\r\nInformar zeros não significativos.\r\n\r\n*Caso nã\
+            o seja informado, será utilizado o do cadastro da empresa.*"
+          nullable: true
+          type: string
+        cPais:
+          description: "Código do País.\r\n* 1058=Brasil"
+          nullable: true
+          type: string
+        xPais:
+          description: "Nome do País exemplo: Brasil ou BRASIL."
+          nullable: true
+          type: string
+        fone:
+          description: "Telefone.\r\n\r\n*Caso não seja informado, será utilizado\
+            \ o do cadastro da empresa.*"
+          nullable: true
+          type: string
+      required:
+      - cPais
+      - xPais
+      type: object
+    DceSefazFisco:
+      description: Identificação do Fisco (uso exclusivo fisco).
+      example:
+        UF: UF
+        CNPJ: CNPJ
+        xOrgao: xOrgao
+      properties:
+        CNPJ:
+          description: Número do CNPJ do órgão.
+          nullable: true
+          type: string
+        xOrgao:
+          description: Nome do órgão.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        UF:
+          description: Sigla da UF.
+          nullable: true
+          type: string
+      required:
+      - CNPJ
+      - UF
+      - xOrgao
+      type: object
+    DceSefazMarketplace:
+      description: Identificação do Marketplace (uso exclusivo Marketplace).
+      example:
+        Site: Site
+        xNome: xNome
+        CNPJ: CNPJ
+      properties:
+        CNPJ:
+          description: Número do CNPJ do Marketplace.
+          nullable: true
+          type: string
+        xNome:
+          description: Razão Social ou Nome do Marketplace.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        Site:
+          description: Endereço ou site do Marketplace.
+          maxLength: 120
+          minLength: 2
+          nullable: true
+          type: string
+      required:
+      - CNPJ
+      - Site
+      - xNome
+      type: object
+    DceSefazTransportadora:
+      description: Identificação da Transportadora (uso exclusivo Transportadora).
+      example:
+        xNome: xNome
+        CNPJ: CNPJ
+      properties:
+        CNPJ:
+          description: Número do CNPJ da Transportadora.
+          nullable: true
+          type: string
+        xNome:
+          description: Razão Social ou Nome da Transportadora.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+      required:
+      - CNPJ
+      - xNome
+      type: object
+    DceSefazECT:
+      description: Identificação dos correios.
+      example:
+        xNome: xNome
+        CNPJ: CNPJ
+      properties:
+        CNPJ:
+          description: Número do CNPJ dos correios.
+          nullable: true
+          type: string
+        xNome:
+          description: Razão Social ou Nome dos correios.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+      required:
+      - CNPJ
+      - xNome
+      type: object
+    DceSefazDest:
+      description: Identificação do destinatário da DCe.
+      example:
+        xNome: xNome
+        idOutros: idOutros
+        CPF: CPF
+        CNPJ: CNPJ
+        enderDest:
+          xCpl: xCpl
+          fone: fone
+          UF: UF
+          xPais: xPais
+          cPais: cPais
+          xLgr: xLgr
+          xMun: xMun
+          nro: nro
+          cMun: cMun
+          xBairro: xBairro
+          email: email
+          CEP: CEP
+      properties:
+        CNPJ:
+          description: "Número do CNPJ.\r\nEm caso de empresa não estabelecida no\
+            \ Brasil, será informado o CNPJ com zeros.\r\nInformar os zeros não significativos."
+          nullable: true
+          type: string
+        CPF:
+          description: "Número do CPF.\r\nInformar os zeros não significativos."
+          nullable: true
+          type: string
+        idOutros:
+          description: "Identificação do destinatário outros.\r\nIdentificação do\
+            \ destinatário não obrigado a inscrição do CPF tais como estrangeiro,\
+            \ indígena e quilombola\r\nEm caso de não contar CPF do assinante, informar\
+            \ o RG."
+          maxLength: 20
+          minLength: 2
+          nullable: true
+          type: string
+        xNome:
+          description: Razão social ou Nome do destinatário.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        enderDest:
+          $ref: '#/components/schemas/DceSefazEndeDest'
+      required:
+      - enderDest
+      - xNome
+      type: object
+    DceSefazEndeDest:
+      description: Endereço do destinatário / assinante.
+      example:
+        xCpl: xCpl
+        fone: fone
+        UF: UF
+        xPais: xPais
+        cPais: cPais
+        xLgr: xLgr
+        xMun: xMun
+        nro: nro
+        cMun: cMun
+        xBairro: xBairro
+        email: email
+        CEP: CEP
+      properties:
+        xLgr:
+          description: Logradouro.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        nro:
+          description: Número.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xCpl:
+          description: Complemento.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+        xBairro:
+          description: Bairro.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        cMun:
+          description: Código do município (utilizar a tabela do IBGE).
+          nullable: true
+          type: string
+        xMun:
+          description: Nome do município.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        UF:
+          description: Sigla da UF.
+          nullable: true
+          type: string
+        CEP:
+          description: "CEP.\r\nInformar zeros não significativos."
+          nullable: true
+          type: string
+        cPais:
+          description: "Código do país.\r\nUtilizar a tabela do BACEN."
+          nullable: true
+          type: string
+        xPais:
+          description: Nome do país.
+          maxLength: 60
+          minLength: 2
+          nullable: true
+          type: string
+        fone:
+          description: Telefone.
+          nullable: true
+          type: string
+        email:
+          description: Endereço de E-mail.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - CEP
+      - UF
+      - cMun
+      - cPais
+      - nro
+      - xBairro
+      - xLgr
+      - xMun
+      - xPais
+      type: object
+    DceSefazAutXML:
+      description: "Autorizados para acessar o XML da DCe.\r\nInformar CNPJ ou CPF.\
+        \ Preencher os zeros não significativos."
+      example:
+        CPF: CPF
+        CNPJ: CNPJ
+      properties:
+        CNPJ:
+          description: "CNPJ do autorizado.\r\nInformar zeros não significativos."
+          nullable: true
+          type: string
+        CPF:
+          description: "CPF do autorizado.\r\nInformar zeros não significativos."
+          nullable: true
+          type: string
+      type: object
+    DceSefazDet:
+      description: Detalhamento de itens da DCe.
+      example:
+        nItem: 2027
+        prod:
+          qCom: 0.4145608029883936
+          NCM: NCM
+          vProd: 1.2315135367772556
+          xProd: xProd
+          vUnCom: 7.386281948385884
+        infAdProd: infAdProd
+      properties:
+        nItem:
+          description: Número do item da DCe.
+          maximum: 9999
+          minimum: 1
+          nullable: true
+          type: integer
+        prod:
+          $ref: '#/components/schemas/DceSefazProd'
+        infAdProd:
+          description: Informações adicionais do item.
+          maxLength: 500
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - nItem
+      - prod
+      type: object
+    DceSefazProd:
+      description: Dados do Produto ou Serviço.
+      example:
+        qCom: 0.4145608029883936
+        NCM: NCM
+        vProd: 1.2315135367772556
+        xProd: xProd
+        vUnCom: 7.386281948385884
+      properties:
+        xProd:
+          description: "Descrição do produto, bem ou mercadoria."
+          maxLength: 120
+          minLength: 1
+          nullable: true
+          type: string
+        NCM:
+          description: "Código NCM.\r\nCapítulo do Código NCM com 2 dígitos ou NCM\
+            \ completo."
+          nullable: true
+          type: string
+        qCom:
+          description: Quantidade.
+          minimum: 0
+          nullable: true
+          type: number
+        vUnCom:
+          description: Valor unitário do item.
+          nullable: true
+          type: number
+        vProd:
+          description: Valor total brutp do item.
+          nullable: true
+          type: number
+      required:
+      - NCM
+      - qCom
+      - vProd
+      - vUnCom
+      - xProd
+      type: object
+    DceSefazTotal:
+      description: Dados dos totais da DCe.
+      example:
+        vDC: 0.10246457001441578
+      properties:
+        vDC:
+          description: Valor Total da DCe.
+          minimum: 0
+          nullable: true
+          type: number
+      required:
+      - vDC
+      type: object
+    DceSefazTransp:
+      description: Dados dos transportes da DCe.
+      example:
+        CNPJTransp: CNPJTransp
+        modTrans: 1
+      properties:
+        modTrans:
+          description: "Modalidade do transporte.\r\n* 0 - Transporte pelos correios\r\
+            \n* 1 - Transporte por contra própria\r\n* 2 - Transporte por empresa\
+            \ transportadora"
+          nullable: true
+          type: integer
+        CNPJTransp:
+          description: Número do CNPJ da Transportadora.
+          nullable: true
+          type: string
+      required:
+      - CNPJTransp
+      - modTrans
+      type: object
+    DceSefazInfAdic:
+      description: Informações Adicionais.
+      example:
+        obsFisco:
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        obsMarketplace:
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        obsECT:
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        infCpl: infCpl
+        obsEmit:
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        - xCampo: xCampo
+          xTexto: xTexto
+        infAdMarketplace: infAdMarketplace
+        infAdECT: infAdECT
+        infAdFisco: infAdFisco
+      properties:
+        infAdFisco:
+          description: "Informações adicionais de interesse do Fisco.\r\nNorma referenciada,\
+            \ informações complementares, etc."
+          maxLength: 2000
+          minLength: 1
+          nullable: true
+          type: string
+        infCpl:
+          description: Informações complementares de interesse do Emitente.
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
+        infAdMarketplace:
+          description: Informações Adicionais do MarketPlace.
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
+        infAdECT:
+          description: Informações Adicionais do Correio.
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
+        obsEmit:
+          items:
+            $ref: '#/components/schemas/DceSefazObsEmit'
+          maxItems: 10
+          type: array
+        obsFisco:
+          items:
+            $ref: '#/components/schemas/DceSefazObsFisco'
+          maxItems: 10
+          type: array
+        obsMarketplace:
+          items:
+            $ref: '#/components/schemas/DceSefazObsMarketplace'
+          maxItems: 10
+          type: array
+        obsECT:
+          items:
+            $ref: '#/components/schemas/DceSefazObsECT'
+          maxItems: 10
+          type: array
+      type: object
+    DceSefazObsEmit:
+      description: "Grupo Campo de uso livre do Emitente.\r\nInformar o nome do campo\
+        \ no atributo xCampo e o conteúdo do campo no xTexto."
+      example:
+        xCampo: xCampo
+        xTexto: xTexto
+      properties:
+        xCampo:
+          nullable: true
+          type: string
+        xTexto:
+          description: Conteúdo do Campo.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - xTexto
+      type: object
+    DceSefazObsFisco:
+      description: "Grupo Campo de uso livre do Fisco.\r\nInformar o nome do campo\
+        \ no atributo xCampo e o conteúdo do campo no xTexto."
+      example:
+        xCampo: xCampo
+        xTexto: xTexto
+      properties:
+        xCampo:
+          nullable: true
+          type: string
+        xTexto:
+          description: Conteúdo do Campo.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - xTexto
+      type: object
+    DceSefazObsMarketplace:
+      description: "Grupo Campo de uso livre do MarketPlace.\r\nInformar o nome do\
+        \ campo no atributo xCampo e o conteúdo do campo no xTexto."
+      example:
+        xCampo: xCampo
+        xTexto: xTexto
+      properties:
+        xCampo:
+          nullable: true
+          type: string
+        xTexto:
+          description: Conteúdo do Campo.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - xTexto
+      type: object
+    DceSefazObsECT:
+      description: "Grupo Campo de uso livre dos Correios.\r\nInformar o nome do campo\
+        \ no atributo xCampo e o conteúdo do campo no xTexto."
+      example:
+        xCampo: xCampo
+        xTexto: xTexto
+      properties:
+        xCampo:
+          nullable: true
+          type: string
+        xTexto:
+          description: Conteúdo do Campo.
+          maxLength: 60
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - xTexto
+      type: object
+    DceSefazInfDec:
+      description: Grupo para Declaraçao do usuário emitente.
+      example:
+        xObs1: xObs1
+        xObs2: xObs2
+      properties:
+        xObs1:
+          description: "Observação 1 ao usuário emitente.\r\nDeverá conter o texto\
+            \ fixo “É contribuinte de ICMS qualquer pessoa física ou jurídica, que\
+            \ realize, com habitualidade ou em volume que caracterize intuito comercial,\
+            \ operações de circulação de mercadoria ou prestações de serviços de transportes\
+            \ interestadual e intermunicipal e de comunicação, ainda que as operaç\
+            ões e prestações de iniciem no exterior (Lei Complementar nº 87/96, Art.\
+            \ 4º)”.\r\n\r\n*Geramos automaticamente quando nenhum valor é informado.*"
+          maxLength: 2000
+          minLength: 1
+          nullable: true
+          type: string
+        xObs2:
+          description: "Observação 2 ao usuário emitente.\r\nDeverá conter o texto\
+            \ fixo “Constitui crime contra a ordem tributária suprimir ou reduzir\
+            \ tributo, ou contribuição social e qualquer acessório: quando negar ou\
+            \ deixar de fornecer, quando obrigatório, nota fiscal ou documento equivalente,\
+            \ relativa a venda de mercadoria ou prestação de serviço, efetivamente\
+            \ realizada ou fornece-la em desacordo com a legislação. Sob pena de reclusã\
+            o de 2 (dois) e 5 (cinco) anos, e multa (Lei 8.137/90, Art 1ª, V)”.\r\n\
+            \r\n*Geramos automaticamente quando nenhum valor é informado.*"
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+    DceSefazInfSolicDCe:
+      description: Informações de solicitação da DCe pelo Fisco.
+      example:
+        xSolic: xSolic
+      properties:
+        xSolic:
+          description: Solicitação do pedido de emissão da DCe.
+          maxLength: 2000
+          minLength: 0
+          nullable: true
+          type: string
+      required:
+      - xSolic
+      type: object
+    Dfe:
+      example:
+        numero: 5
+        ambiente: homologacao
+        chave: chave
+        created_at: 2000-01-23T04:56:07.000+00:00
+        modelo: 6
+        valor_total: 2.3021358869347655
+        autorizacao:
+          ambiente: homologacao
+          mensagem: mensagem
+          codigo_status: 9
+          chave_acesso: chave_acesso
+          tipo_evento: tipo_evento
+          codigo_mensagem: 3
+          data_recebimento: 2000-01-23T04:56:07.000+00:00
+          autor:
+            cpf_cnpj: cpf_cnpj
+          numero_protocolo: numero_protocolo
+          digest_value: digest_value
+          numero_sequencial: 7
+          id: id
+          motivo_status: motivo_status
+          status: pendente
+          data_evento: 2000-01-23T04:56:07.000+00:00
+        serie: 1
+        tipo_emissao: 5
+        id: id
+        referencia: referencia
+        data_emissao: 2000-01-23T04:56:07.000+00:00
+        status: pendente
+      properties:
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este documento.
+          type: string
+        ambiente:
+          enum:
+          - homologacao
+          - producao
+          type: string
+        created_at:
+          description: Data/hora em que o documento foi criado na Nuvem Fiscal. Representado
+            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
+            8601`</a>.
+          format: date-time
+          type: string
+        status:
+          description: "* `pendente`: o pedido de emissão do documento foi recebido\
+            \ pela Nuvem Fiscal e está na fila de processamento.\r\n* `autorizado`,\
+            \ `rejeitado` ou `denegado`: o documento foi transmitido para a SEFAZ,\
+            \ que retornou um desses status.\r\n* `cancelado`: um evento de cancelamento\
+            \ foi homologado pela SEFAZ e associado ao documento.\r\n* `encerrado`:\
+            \ um evento de encerramento foi homologado pela SEFAZ e associado a um\
+            \ MDF-e.\r\n* `erro`: status próprio da Nuvem Fiscal que significa, na\
+            \ maioria das vezes, que houve algum erro que impediu a transmissão do\
+            \ documento para a SEFAZ (erros de validação, erros interno do servidor,\
+            \ timeouts, etc)."
+          enum:
+          - pendente
+          - autorizado
+          - rejeitado
+          - denegado
+          - encerrado
+          - cancelado
+          - erro
+          type: string
+        referencia:
+          description: "Seu identificador único para este documento. Opcional, ajuda\
+            \ a evitar o envio duplicado de um mesmo documento."
+          nullable: true
+          type: string
+        data_emissao:
+          format: date-time
+          type: string
+        modelo:
+          type: integer
+        serie:
+          type: integer
+        numero:
+          type: integer
+        tipo_emissao:
+          type: integer
+        valor_total:
+          type: number
+        chave:
+          description: Chave de acesso do DF-e.
+          type: string
+        autorizacao:
+          $ref: '#/components/schemas/DfeAutorizacao'
+      type: object
+    DfeAutorizacao:
+      example:
+        ambiente: homologacao
+        mensagem: mensagem
+        codigo_status: 9
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        codigo_mensagem: 3
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        autor:
+          cpf_cnpj: cpf_cnpj
+        numero_protocolo: numero_protocolo
+        digest_value: digest_value
+        numero_sequencial: 7
+        id: id
+        motivo_status: motivo_status
+        status: pendente
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        digest_value:
+          description: Digest Value do DF-e processado. Utilizado para conferir a
+            integridade do DF-e original.
+          type: string
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este evento.
+          type: string
+        ambiente:
+          description: Identificação do ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        status:
+          description: Status do Evento.
+          enum:
+          - pendente
+          - registrado
+          - rejeitado
+          - erro
+          type: string
+        autor:
+          $ref: '#/components/schemas/DfeAutorEvento'
+        chave_acesso:
+          description: Chave de Acesso do documento vinculado ao evento.
+          type: string
+        data_evento:
+          description: Data e hora do Evento.
+          format: date-time
+          type: string
+        numero_sequencial:
+          description: Sequencial do evento para o mesmo tipo de evento.
+          type: integer
+        data_recebimento:
+          description: Data e hora do recebimento do Evento pela SEFAZ.
+          format: date-time
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de registro do Evento.
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do registro do Evento.
+          type: string
+        numero_protocolo:
+          description: Número do Protocolo de registro do Evento.
+          type: string
+        codigo_mensagem:
+          description: Código da Mensagem.
+          type: integer
+        mensagem:
+          description: Mensagem da SEFAZ para o emissor.
+          type: string
+        tipo_evento:
+          type: string
+      type: object
+    DfeAutorEvento:
+      example:
+        cpf_cnpj: cpf_cnpj
+      properties:
+        cpf_cnpj:
+          description: CPF/CNPJ do Autor.
+          type: string
+      type: object
+    DfeListagem:
+      example:
+        '@count': 0
+        data:
+        - numero: 5
+          ambiente: homologacao
+          chave: chave
+          created_at: 2000-01-23T04:56:07.000+00:00
+          modelo: 6
+          valor_total: 2.3021358869347655
+          autorizacao:
+            ambiente: homologacao
+            mensagem: mensagem
+            codigo_status: 9
+            chave_acesso: chave_acesso
+            tipo_evento: tipo_evento
+            codigo_mensagem: 3
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            autor:
+              cpf_cnpj: cpf_cnpj
+            numero_protocolo: numero_protocolo
+            digest_value: digest_value
+            numero_sequencial: 7
+            id: id
+            motivo_status: motivo_status
+            status: pendente
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          serie: 1
+          tipo_emissao: 5
+          id: id
+          referencia: referencia
+          data_emissao: 2000-01-23T04:56:07.000+00:00
+          status: pendente
+        - numero: 5
+          ambiente: homologacao
+          chave: chave
+          created_at: 2000-01-23T04:56:07.000+00:00
+          modelo: 6
+          valor_total: 2.3021358869347655
+          autorizacao:
+            ambiente: homologacao
+            mensagem: mensagem
+            codigo_status: 9
+            chave_acesso: chave_acesso
+            tipo_evento: tipo_evento
+            codigo_mensagem: 3
+            data_recebimento: 2000-01-23T04:56:07.000+00:00
+            autor:
+              cpf_cnpj: cpf_cnpj
+            numero_protocolo: numero_protocolo
+            digest_value: digest_value
+            numero_sequencial: 7
+            id: id
+            motivo_status: motivo_status
+            status: pendente
+            data_evento: 2000-01-23T04:56:07.000+00:00
+          serie: 1
+          tipo_emissao: 5
+          id: id
+          referencia: referencia
+          data_emissao: 2000-01-23T04:56:07.000+00:00
+          status: pendente
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/Dfe'
+          type: array
+      type: object
+    DcePedidoCancelamento:
+      example:
+        justificativa: justificativa
+      properties:
+        justificativa:
+          description: "Justificativa para o cancelamento. Preencheremos automaticamente,\
+            \ caso esteja em branco."
+          type: string
+      type: object
+    DfeCancelamento:
+      example:
+        ambiente: homologacao
+        mensagem: mensagem
+        codigo_status: 6
+        chave_acesso: chave_acesso
+        tipo_evento: tipo_evento
+        codigo_mensagem: 1
+        data_recebimento: 2000-01-23T04:56:07.000+00:00
+        autor:
+          cpf_cnpj: cpf_cnpj
+        numero_protocolo: numero_protocolo
+        justificativa: justificativa
+        numero_sequencial: 0
+        id: id
+        motivo_status: motivo_status
+        status: pendente
+        data_evento: 2000-01-23T04:56:07.000+00:00
+      properties:
+        justificativa:
+          description: Justificativa do cancelamento.
+          type: string
+        id:
+          description: ID único gerado pela Nuvem Fiscal para este evento.
+          type: string
+        ambiente:
+          description: Identificação do ambiente.
+          enum:
+          - homologacao
+          - producao
+          type: string
+        status:
+          description: Status do Evento.
+          enum:
+          - pendente
+          - registrado
+          - rejeitado
+          - erro
+          type: string
+        autor:
+          $ref: '#/components/schemas/DfeAutorEvento'
+        chave_acesso:
+          description: Chave de Acesso do documento vinculado ao evento.
+          type: string
+        data_evento:
+          description: Data e hora do Evento.
+          format: date-time
+          type: string
+        numero_sequencial:
+          description: Sequencial do evento para o mesmo tipo de evento.
+          type: integer
+        data_recebimento:
+          description: Data e hora do recebimento do Evento pela SEFAZ.
+          format: date-time
+          nullable: true
+          type: string
+        codigo_status:
+          description: Código do status de registro do Evento.
+          type: integer
+        motivo_status:
+          description: Descrição literal do status do registro do Evento.
+          type: string
+        numero_protocolo:
+          description: Número do Protocolo de registro do Evento.
+          type: string
+        codigo_mensagem:
+          description: Código da Mensagem.
+          type: integer
+        mensagem:
+          description: Mensagem da SEFAZ para o emissor.
+          type: string
+        tipo_evento:
+          type: string
+      type: object
     EmailListagem:
       example:
         '@count': 0
@@ -14671,65 +16733,6 @@ components:
       - cpf_cnpj
       - tipo_evento
       type: object
-    DfeSefazStatus:
-      example:
-        data_hora_retorno: 2000-01-23T04:56:07.000+00:00
-        data_hora_consulta: 2000-01-23T04:56:07.000+00:00
-        ambiente: homologacao
-        codigo_status: 0
-        tempo_medio_resposta: 6
-        motivo_status: motivo_status
-        autorizador: AM
-      properties:
-        autorizador:
-          description: SEFAZ autorizadora responsável.
-          enum:
-          - AM
-          - BA
-          - CE
-          - GO
-          - MG
-          - MS
-          - MT
-          - PE
-          - PR
-          - RS
-          - SP
-          - SVAN
-          - SVRS
-          - SVCAN
-          - SVCRS
-          - AN
-          - SVSP
-          - SVCSP
-          type: string
-        ambiente:
-          description: Identificação do Ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        data_hora_consulta:
-          description: Data e hora da consulta.
-          format: date-time
-          type: string
-        codigo_status:
-          description: Código do status da mensagem enviada.
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do serviço solicitado.
-          type: string
-        tempo_medio_resposta:
-          description: Tempo médio de resposta do serviço (em segundos) dos últimos
-            5 minutos.
-          nullable: true
-          type: integer
-        data_hora_retorno:
-          description: Data e hora prevista para o retorno dos serviços prestados.
-          format: date-time
-          nullable: true
-          type: string
-      type: object
     NfcomPedidoEmissao:
       example:
         ambiente: homologacao
@@ -14755,6 +16758,7 @@ components:
             fone: fone
             idCSRT: 380
             CNPJ: CNPJ
+            CSRT: CSRT
             hashCSRT: hashCSRT
             xContato: xContato
             email: email
@@ -14836,9 +16840,9 @@ components:
               qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 6.965117697638846
+              vItem: 0.6965117697638845
               indDevolucao: 6
-              vProd: 6.778324963048013
+              vProd: 0.6778324963048014
               xProd: xProd
               CNPJLD: CNPJLD
               vDesc: 0.1284659006116532
@@ -14935,9 +16939,9 @@ components:
             gProcRef:
               qFaturada: 0.04182561061793122
               vCOFINS: 0.7835035282970783
-              vItem: 8.761432466225475
+              vItem: 0.8761432466225476
               indDevolucao: 7
-              vProd: 5.299143560275359
+              vProd: 0.5299143560275359
               vFCP: 0.04768402382624515
               gProc:
               - tpProc: 3
@@ -14965,9 +16969,9 @@ components:
               qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 6.965117697638846
+              vItem: 0.6965117697638845
               indDevolucao: 6
-              vProd: 6.778324963048013
+              vProd: 0.6778324963048014
               xProd: xProd
               CNPJLD: CNPJLD
               vDesc: 0.1284659006116532
@@ -15064,9 +17068,9 @@ components:
             gProcRef:
               qFaturada: 0.04182561061793122
               vCOFINS: 0.7835035282970783
-              vItem: 8.761432466225475
+              vItem: 0.8761432466225476
               indDevolucao: 7
-              vProd: 5.299143560275359
+              vProd: 0.5299143560275359
               vFCP: 0.04768402382624515
               gProc:
               - tpProc: 3
@@ -15094,9 +17098,9 @@ components:
               qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 6.965117697638846
+              vItem: 0.6965117697638845
               indDevolucao: 6
-              vProd: 6.778324963048013
+              vProd: 0.6778324963048014
               xProd: xProd
               CNPJLD: CNPJLD
               vDesc: 0.1284659006116532
@@ -15193,9 +17197,9 @@ components:
             gProcRef:
               qFaturada: 0.04182561061793122
               vCOFINS: 0.7835035282970783
-              vItem: 8.761432466225475
+              vItem: 0.8761432466225476
               indDevolucao: 7
-              vProd: 5.299143560275359
+              vProd: 0.5299143560275359
               vFCP: 0.04768402382624515
               gProc:
               - tpProc: 3
@@ -15223,9 +17227,9 @@ components:
               qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 6.965117697638846
+              vItem: 0.6965117697638845
               indDevolucao: 6
-              vProd: 6.778324963048013
+              vProd: 0.6778324963048014
               xProd: xProd
               CNPJLD: CNPJLD
               vDesc: 0.1284659006116532
@@ -15322,9 +17326,9 @@ components:
             gProcRef:
               qFaturada: 0.04182561061793122
               vCOFINS: 0.7835035282970783
-              vItem: 8.761432466225475
+              vItem: 0.8761432466225476
               indDevolucao: 7
-              vProd: 5.299143560275359
+              vProd: 0.5299143560275359
               vFCP: 0.04768402382624515
               gProc:
               - tpProc: 3
@@ -15352,9 +17356,9 @@ components:
               qFaturada: 0.35571952270680973
               cProd: cProd
               cClass: cClass
-              vItem: 6.965117697638846
+              vItem: 0.6965117697638845
               indDevolucao: 6
-              vProd: 6.778324963048013
+              vProd: 0.6778324963048014
               xProd: xProd
               CNPJLD: CNPJLD
               vDesc: 0.1284659006116532
@@ -15451,9 +17455,9 @@ components:
             gProcRef:
               qFaturada: 0.04182561061793122
               vCOFINS: 0.7835035282970783
-              vItem: 8.761432466225475
+              vItem: 0.8761432466225476
               indDevolucao: 7
-              vProd: 5.299143560275359
+              vProd: 0.5299143560275359
               vFCP: 0.04768402382624515
               gProc:
               - tpProc: 3
@@ -15590,6 +17594,7 @@ components:
           fone: fone
           idCSRT: 380
           CNPJ: CNPJ
+          CSRT: CSRT
           hashCSRT: hashCSRT
           xContato: xContato
           email: email
@@ -15671,9 +17676,9 @@ components:
             qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 6.965117697638846
+            vItem: 0.6965117697638845
             indDevolucao: 6
-            vProd: 6.778324963048013
+            vProd: 0.6778324963048014
             xProd: xProd
             CNPJLD: CNPJLD
             vDesc: 0.1284659006116532
@@ -15770,9 +17775,9 @@ components:
           gProcRef:
             qFaturada: 0.04182561061793122
             vCOFINS: 0.7835035282970783
-            vItem: 8.761432466225475
+            vItem: 0.8761432466225476
             indDevolucao: 7
-            vProd: 5.299143560275359
+            vProd: 0.5299143560275359
             vFCP: 0.04768402382624515
             gProc:
             - tpProc: 3
@@ -15800,9 +17805,9 @@ components:
             qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 6.965117697638846
+            vItem: 0.6965117697638845
             indDevolucao: 6
-            vProd: 6.778324963048013
+            vProd: 0.6778324963048014
             xProd: xProd
             CNPJLD: CNPJLD
             vDesc: 0.1284659006116532
@@ -15899,9 +17904,9 @@ components:
           gProcRef:
             qFaturada: 0.04182561061793122
             vCOFINS: 0.7835035282970783
-            vItem: 8.761432466225475
+            vItem: 0.8761432466225476
             indDevolucao: 7
-            vProd: 5.299143560275359
+            vProd: 0.5299143560275359
             vFCP: 0.04768402382624515
             gProc:
             - tpProc: 3
@@ -15929,9 +17934,9 @@ components:
             qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 6.965117697638846
+            vItem: 0.6965117697638845
             indDevolucao: 6
-            vProd: 6.778324963048013
+            vProd: 0.6778324963048014
             xProd: xProd
             CNPJLD: CNPJLD
             vDesc: 0.1284659006116532
@@ -16028,9 +18033,9 @@ components:
           gProcRef:
             qFaturada: 0.04182561061793122
             vCOFINS: 0.7835035282970783
-            vItem: 8.761432466225475
+            vItem: 0.8761432466225476
             indDevolucao: 7
-            vProd: 5.299143560275359
+            vProd: 0.5299143560275359
             vFCP: 0.04768402382624515
             gProc:
             - tpProc: 3
@@ -16058,9 +18063,9 @@ components:
             qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 6.965117697638846
+            vItem: 0.6965117697638845
             indDevolucao: 6
-            vProd: 6.778324963048013
+            vProd: 0.6778324963048014
             xProd: xProd
             CNPJLD: CNPJLD
             vDesc: 0.1284659006116532
@@ -16157,9 +18162,9 @@ components:
           gProcRef:
             qFaturada: 0.04182561061793122
             vCOFINS: 0.7835035282970783
-            vItem: 8.761432466225475
+            vItem: 0.8761432466225476
             indDevolucao: 7
-            vProd: 5.299143560275359
+            vProd: 0.5299143560275359
             vFCP: 0.04768402382624515
             gProc:
             - tpProc: 3
@@ -16187,9 +18192,9 @@ components:
             qFaturada: 0.35571952270680973
             cProd: cProd
             cClass: cClass
-            vItem: 6.965117697638846
+            vItem: 0.6965117697638845
             indDevolucao: 6
-            vProd: 6.778324963048013
+            vProd: 0.6778324963048014
             xProd: xProd
             CNPJLD: CNPJLD
             vDesc: 0.1284659006116532
@@ -16286,9 +18291,9 @@ components:
           gProcRef:
             qFaturada: 0.04182561061793122
             vCOFINS: 0.7835035282970783
-            vItem: 8.761432466225475
+            vItem: 0.8761432466225476
             indDevolucao: 7
-            vProd: 5.299143560275359
+            vProd: 0.5299143560275359
             vFCP: 0.04768402382624515
             gProc:
             - tpProc: 3
@@ -17132,9 +19137,9 @@ components:
           qFaturada: 0.35571952270680973
           cProd: cProd
           cClass: cClass
-          vItem: 6.965117697638846
+          vItem: 0.6965117697638845
           indDevolucao: 6
-          vProd: 6.778324963048013
+          vProd: 0.6778324963048014
           xProd: xProd
           CNPJLD: CNPJLD
           vDesc: 0.1284659006116532
@@ -17231,9 +19236,9 @@ components:
         gProcRef:
           qFaturada: 0.04182561061793122
           vCOFINS: 0.7835035282970783
-          vItem: 8.761432466225475
+          vItem: 0.8761432466225476
           indDevolucao: 7
-          vProd: 5.299143560275359
+          vProd: 0.5299143560275359
           vFCP: 0.04768402382624515
           gProc:
           - tpProc: 3
@@ -17307,9 +19312,9 @@ components:
         qFaturada: 0.35571952270680973
         cProd: cProd
         cClass: cClass
-        vItem: 6.965117697638846
+        vItem: 0.6965117697638845
         indDevolucao: 6
-        vProd: 6.778324963048013
+        vProd: 0.6778324963048014
         xProd: xProd
         CNPJLD: CNPJLD
         vDesc: 0.1284659006116532
@@ -17358,6 +19363,7 @@ components:
           type: number
         vItem:
           description: Valor unitário do item.
+          minimum: 0
           nullable: true
           type: number
         vDesc:
@@ -17372,6 +19378,7 @@ components:
           type: number
         vProd:
           description: Valor total do item.
+          minimum: 0
           nullable: true
           type: number
         dExpiracao:
@@ -17987,9 +19994,9 @@ components:
       example:
         qFaturada: 0.04182561061793122
         vCOFINS: 0.7835035282970783
-        vItem: 8.761432466225475
+        vItem: 0.8761432466225476
         indDevolucao: 7
-        vProd: 5.299143560275359
+        vProd: 0.5299143560275359
         vFCP: 0.04768402382624515
         gProc:
         - tpProc: 3
@@ -18012,6 +20019,7 @@ components:
         vItem:
           description: "Valor unitário do item.\r\nInformar o valor sem a influência\
             \ da decisão judicial/administrativa."
+          minimum: 0
           nullable: true
           type: number
         qFaturada:
@@ -18022,6 +20030,7 @@ components:
           type: number
         vProd:
           description: Valor total do item.
+          minimum: 0
           nullable: true
           type: number
         vDesc:
@@ -18486,6 +20495,7 @@ components:
         fone: fone
         idCSRT: 380
         CNPJ: CNPJ
+        CSRT: CSRT
         hashCSRT: hashCSRT
         xContato: xContato
         email: email
@@ -18524,12 +20534,18 @@ components:
           minimum: 0
           nullable: true
           type: integer
+        CSRT:
+          description: Código de Segurança do Responsável Técnico utilizado para montar
+            o hash do CSRT.
+          nullable: true
+          type: string
         hashCSRT:
           description: "Hash do token do código de segurança do responsável técnico.\r\
             \nO hashCSRT é o resultado das funções SHA-1 e base64 do token CSRT fornecido\
             \ pelo fisco + chave de acesso do DF-e. (Implementação em futura NT)\r\
             \nObservação: 28 caracteres são representados no schema como 20 bytes\
-            \ do tipo base64Binary."
+            \ do tipo base64Binary.\r\n\r\n*Se não informado, será calculado automaticamente,\
+            \ desde que os campos `idCSRT` e `CSRT` sejam fornecidos.*"
           maxLength: 28
           nullable: true
           type: string
@@ -18539,249 +20555,6 @@ components:
       - fone
       - xContato
       type: object
-    Dfe:
-      example:
-        numero: 5
-        ambiente: homologacao
-        chave: chave
-        created_at: 2000-01-23T04:56:07.000+00:00
-        modelo: 6
-        valor_total: 2.3021358869347655
-        autorizacao:
-          ambiente: homologacao
-          mensagem: mensagem
-          codigo_status: 9
-          chave_acesso: chave_acesso
-          tipo_evento: tipo_evento
-          codigo_mensagem: 3
-          data_recebimento: 2000-01-23T04:56:07.000+00:00
-          autor:
-            cpf_cnpj: cpf_cnpj
-          numero_protocolo: numero_protocolo
-          digest_value: digest_value
-          numero_sequencial: 7
-          id: id
-          motivo_status: motivo_status
-          status: pendente
-          data_evento: 2000-01-23T04:56:07.000+00:00
-        serie: 1
-        tipo_emissao: 5
-        id: id
-        referencia: referencia
-        data_emissao: 2000-01-23T04:56:07.000+00:00
-        status: pendente
-      properties:
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este documento.
-          type: string
-        ambiente:
-          enum:
-          - homologacao
-          - producao
-          type: string
-        created_at:
-          description: Data/hora em que o documento foi criado na Nuvem Fiscal. Representado
-            no formato <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">`ISO
-            8601`</a>.
-          format: date-time
-          type: string
-        status:
-          description: "* `pendente`: o pedido de emissão do documento foi recebido\
-            \ pela Nuvem Fiscal e está na fila de processamento.\r\n* `autorizado`,\
-            \ `rejeitado` ou `denegado`: o documento foi transmitido para a SEFAZ,\
-            \ que retornou um desses status.\r\n* `cancelado`: um evento de cancelamento\
-            \ foi homologado pela SEFAZ e associado ao documento.\r\n* `encerrado`:\
-            \ um evento de encerramento foi homologado pela SEFAZ e associado a um\
-            \ MDF-e.\r\n* `erro`: status próprio da Nuvem Fiscal que significa, na\
-            \ maioria das vezes, que houve algum erro que impediu a transmissão do\
-            \ documento para a SEFAZ (erros de validação, erros interno do servidor,\
-            \ timeouts, etc)."
-          enum:
-          - pendente
-          - autorizado
-          - rejeitado
-          - denegado
-          - encerrado
-          - cancelado
-          - erro
-          type: string
-        referencia:
-          description: "Seu identificador único para este documento. Opcional, ajuda\
-            \ a evitar o envio duplicado de um mesmo documento."
-          nullable: true
-          type: string
-        data_emissao:
-          format: date-time
-          type: string
-        modelo:
-          type: integer
-        serie:
-          type: integer
-        numero:
-          type: integer
-        tipo_emissao:
-          type: integer
-        valor_total:
-          type: number
-        chave:
-          description: Chave de acesso do DF-e.
-          type: string
-        autorizacao:
-          $ref: '#/components/schemas/DfeAutorizacao'
-      type: object
-    DfeAutorizacao:
-      example:
-        ambiente: homologacao
-        mensagem: mensagem
-        codigo_status: 9
-        chave_acesso: chave_acesso
-        tipo_evento: tipo_evento
-        codigo_mensagem: 3
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-        autor:
-          cpf_cnpj: cpf_cnpj
-        numero_protocolo: numero_protocolo
-        digest_value: digest_value
-        numero_sequencial: 7
-        id: id
-        motivo_status: motivo_status
-        status: pendente
-        data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        digest_value:
-          description: Digest Value do DF-e processado. Utilizado para conferir a
-            integridade do DF-e original.
-          type: string
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este evento.
-          type: string
-        ambiente:
-          description: Identificação do ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        status:
-          description: Status do Evento.
-          enum:
-          - pendente
-          - registrado
-          - rejeitado
-          - erro
-          type: string
-        autor:
-          $ref: '#/components/schemas/DfeAutorEvento'
-        chave_acesso:
-          description: Chave de Acesso do documento vinculado ao evento.
-          type: string
-        data_evento:
-          description: Data e hora do Evento.
-          format: date-time
-          type: string
-        numero_sequencial:
-          description: Sequencial do evento para o mesmo tipo de evento.
-          type: integer
-        data_recebimento:
-          description: Data e hora do recebimento do Evento pela SEFAZ.
-          format: date-time
-          nullable: true
-          type: string
-        codigo_status:
-          description: Código do status de registro do Evento.
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do registro do Evento.
-          type: string
-        numero_protocolo:
-          description: Número do Protocolo de registro do Evento.
-          type: string
-        codigo_mensagem:
-          description: Código da Mensagem.
-          type: integer
-        mensagem:
-          description: Mensagem da SEFAZ para o emissor.
-          type: string
-        tipo_evento:
-          type: string
-      type: object
-    DfeAutorEvento:
-      example:
-        cpf_cnpj: cpf_cnpj
-      properties:
-        cpf_cnpj:
-          description: CPF/CNPJ do Autor.
-          type: string
-      type: object
-    DfeListagem:
-      example:
-        '@count': 0
-        data:
-        - numero: 5
-          ambiente: homologacao
-          chave: chave
-          created_at: 2000-01-23T04:56:07.000+00:00
-          modelo: 6
-          valor_total: 2.3021358869347655
-          autorizacao:
-            ambiente: homologacao
-            mensagem: mensagem
-            codigo_status: 9
-            chave_acesso: chave_acesso
-            tipo_evento: tipo_evento
-            codigo_mensagem: 3
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            autor:
-              cpf_cnpj: cpf_cnpj
-            numero_protocolo: numero_protocolo
-            digest_value: digest_value
-            numero_sequencial: 7
-            id: id
-            motivo_status: motivo_status
-            status: pendente
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          serie: 1
-          tipo_emissao: 5
-          id: id
-          referencia: referencia
-          data_emissao: 2000-01-23T04:56:07.000+00:00
-          status: pendente
-        - numero: 5
-          ambiente: homologacao
-          chave: chave
-          created_at: 2000-01-23T04:56:07.000+00:00
-          modelo: 6
-          valor_total: 2.3021358869347655
-          autorizacao:
-            ambiente: homologacao
-            mensagem: mensagem
-            codigo_status: 9
-            chave_acesso: chave_acesso
-            tipo_evento: tipo_evento
-            codigo_mensagem: 3
-            data_recebimento: 2000-01-23T04:56:07.000+00:00
-            autor:
-              cpf_cnpj: cpf_cnpj
-            numero_protocolo: numero_protocolo
-            digest_value: digest_value
-            numero_sequencial: 7
-            id: id
-            motivo_status: motivo_status
-            status: pendente
-            data_evento: 2000-01-23T04:56:07.000+00:00
-          serie: 1
-          tipo_emissao: 5
-          id: id
-          referencia: referencia
-          data_emissao: 2000-01-23T04:56:07.000+00:00
-          status: pendente
-      properties:
-        '@count':
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/Dfe'
-          type: array
-      type: object
     NfcomPedidoCancelamento:
       example:
         justificativa: justificativa
@@ -18789,80 +20562,6 @@ components:
         justificativa:
           description: "Justificativa para o cancelamento. Preencheremos automaticamente,\
             \ caso esteja em branco."
-          type: string
-      type: object
-    DfeCancelamento:
-      example:
-        ambiente: homologacao
-        mensagem: mensagem
-        codigo_status: 6
-        chave_acesso: chave_acesso
-        tipo_evento: tipo_evento
-        codigo_mensagem: 1
-        data_recebimento: 2000-01-23T04:56:07.000+00:00
-        autor:
-          cpf_cnpj: cpf_cnpj
-        numero_protocolo: numero_protocolo
-        justificativa: justificativa
-        numero_sequencial: 0
-        id: id
-        motivo_status: motivo_status
-        status: pendente
-        data_evento: 2000-01-23T04:56:07.000+00:00
-      properties:
-        justificativa:
-          description: Justificativa do cancelamento.
-          type: string
-        id:
-          description: ID único gerado pela Nuvem Fiscal para este evento.
-          type: string
-        ambiente:
-          description: Identificação do ambiente.
-          enum:
-          - homologacao
-          - producao
-          type: string
-        status:
-          description: Status do Evento.
-          enum:
-          - pendente
-          - registrado
-          - rejeitado
-          - erro
-          type: string
-        autor:
-          $ref: '#/components/schemas/DfeAutorEvento'
-        chave_acesso:
-          description: Chave de Acesso do documento vinculado ao evento.
-          type: string
-        data_evento:
-          description: Data e hora do Evento.
-          format: date-time
-          type: string
-        numero_sequencial:
-          description: Sequencial do evento para o mesmo tipo de evento.
-          type: integer
-        data_recebimento:
-          description: Data e hora do recebimento do Evento pela SEFAZ.
-          format: date-time
-          nullable: true
-          type: string
-        codigo_status:
-          description: Código do status de registro do Evento.
-          type: integer
-        motivo_status:
-          description: Descrição literal do status do registro do Evento.
-          type: string
-        numero_protocolo:
-          description: Número do Protocolo de registro do Evento.
-          type: string
-        codigo_mensagem:
-          description: Código da Mensagem.
-          type: integer
-        mensagem:
-          description: Mensagem da SEFAZ para o emissor.
-          type: string
-        tipo_evento:
           type: string
       type: object
     ContaCota:
@@ -18910,6 +20609,7 @@ components:
             fone: fone
             idCSRT: 432
             CNPJ: CNPJ
+            CSRT: CSRT
             hashCSRT: hashCSRT
             xContato: xContato
             email: email
@@ -19887,6 +21587,7 @@ components:
           fone: fone
           idCSRT: 432
           CNPJ: CNPJ
+          CSRT: CSRT
           hashCSRT: hashCSRT
           xContato: xContato
           email: email
@@ -25862,6 +27563,7 @@ components:
         fone: fone
         idCSRT: 432
         CNPJ: CNPJ
+        CSRT: CSRT
         hashCSRT: hashCSRT
         xContato: xContato
         email: email
@@ -25900,12 +27602,18 @@ components:
           minimum: 0
           nullable: true
           type: integer
+        CSRT:
+          description: Código de Segurança do Responsável Técnico utilizado para montar
+            o hash do CSRT.
+          nullable: true
+          type: string
         hashCSRT:
           description: "Hash do token do código de segurança do responsável técnico.\r\
             \nO hashCSRT é o resultado das funções SHA-1 e base64 do token CSRT fornecido\
             \ pelo fisco + chave de acesso do DF-e. (Implementação em futura NT)\r\
             \nObservação: 28 caracteres são representados no schema como 20 bytes\
-            \ do tipo base64Binary."
+            \ do tipo base64Binary.\r\n\r\n*Se não informado, será calculado automaticamente,\
+            \ desde que os campos `idCSRT` e `CSRT` sejam fornecidos.*"
           maxLength: 28
           nullable: true
           type: string
@@ -26261,6 +27969,7 @@ components:
               fone: fone
               idCSRT: 725
               CNPJ: CNPJ
+              CSRT: CSRT
               hashCSRT: hashCSRT
               xContato: xContato
               email: email
@@ -30888,6 +32597,7 @@ components:
             fone: fone
             idCSRT: 725
             CNPJ: CNPJ
+            CSRT: CSRT
             hashCSRT: hashCSRT
             xContato: xContato
             email: email
@@ -35509,6 +37219,7 @@ components:
           fone: fone
           idCSRT: 725
           CNPJ: CNPJ
+          CSRT: CSRT
           hashCSRT: hashCSRT
           xContato: xContato
           email: email
@@ -48180,6 +49891,7 @@ components:
         fone: fone
         idCSRT: 725
         CNPJ: CNPJ
+        CSRT: CSRT
         hashCSRT: hashCSRT
         xContato: xContato
         email: email
@@ -48218,12 +49930,18 @@ components:
           minimum: 0
           nullable: true
           type: integer
+        CSRT:
+          description: Código de Segurança do Responsável Técnico utilizado para montar
+            o hash do CSRT.
+          nullable: true
+          type: string
         hashCSRT:
           description: "Hash do token do código de segurança do responsável técnico.\r\
             \nO hashCSRT é o resultado das funções SHA-1 e base64 do token CSRT fornecido\
             \ pelo fisco + chave de acesso do DF-e. (Implementação em futura NT)\r\
             \nObservação: 28 caracteres são representados no schema como 20 bytes\
-            \ do tipo base64Binary."
+            \ do tipo base64Binary.\r\n\r\n*Se não informado, será calculado automaticamente,\
+            \ desde que os campos `idCSRT` e `CSRT` sejam fornecidos.*"
           maxLength: 28
           nullable: true
           type: string
@@ -90735,6 +92453,7 @@ x-tagGroups:
 - name: Documentos Fiscais
   tags:
   - Nfse
+  - Dce
   - Nfcom
   - Cte
   - Mdfe

@@ -44,6 +44,26 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>ApiResponse of EmpresaConfigCte</returns>
         ApiResponse<EmpresaConfigCte> AlterarConfigCteWithHttpInfo(string cpfCnpj, EmpresaConfigCte body);
         /// <summary>
+        /// Alterar configuração de DC-e
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <returns>EmpresaConfigDce</returns>
+        EmpresaConfigDce AlterarConfigDce(string cpfCnpj, EmpresaConfigDce body);
+
+        /// <summary>
+        /// Alterar configuração de DC-e
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of EmpresaConfigDce</returns>
+        ApiResponse<EmpresaConfigDce> AlterarConfigDceWithHttpInfo(string cpfCnpj, EmpresaConfigDce body);
+        /// <summary>
         /// Alterar configuração de Distribuição de NF-e
         /// </summary>
         /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
@@ -263,6 +283,24 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
         /// <returns>ApiResponse of EmpresaConfigCte</returns>
         ApiResponse<EmpresaConfigCte> ConsultarConfigCteWithHttpInfo(string cpfCnpj);
+        /// <summary>
+        /// Consultar configuração de DC-e
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>EmpresaConfigDce</returns>
+        EmpresaConfigDce ConsultarConfigDce(string cpfCnpj);
+
+        /// <summary>
+        /// Consultar configuração de DC-e
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>ApiResponse of EmpresaConfigDce</returns>
+        ApiResponse<EmpresaConfigDce> ConsultarConfigDceWithHttpInfo(string cpfCnpj);
         /// <summary>
         /// Consultar configuração de Distribuição de NF-e
         /// </summary>
@@ -572,6 +610,31 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>Task of ApiResponse (EmpresaConfigCte)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaConfigCte>> AlterarConfigCteWithHttpInfoAsync(string cpfCnpj, EmpresaConfigCte body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Alterar configuração de DC-e
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EmpresaConfigDce</returns>
+        System.Threading.Tasks.Task<EmpresaConfigDce> AlterarConfigDceAsync(string cpfCnpj, EmpresaConfigDce body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Alterar configuração de DC-e
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EmpresaConfigDce)</returns>
+        System.Threading.Tasks.Task<ApiResponse<EmpresaConfigDce>> AlterarConfigDceWithHttpInfoAsync(string cpfCnpj, EmpresaConfigDce body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Alterar configuração de Distribuição de NF-e
         /// </summary>
         /// <remarks>
@@ -840,6 +903,29 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EmpresaConfigCte)</returns>
         System.Threading.Tasks.Task<ApiResponse<EmpresaConfigCte>> ConsultarConfigCteWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Consultar configuração de DC-e
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EmpresaConfigDce</returns>
+        System.Threading.Tasks.Task<EmpresaConfigDce> ConsultarConfigDceAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Consultar configuração de DC-e
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EmpresaConfigDce)</returns>
+        System.Threading.Tasks.Task<ApiResponse<EmpresaConfigDce>> ConsultarConfigDceWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Consultar configuração de Distribuição de NF-e
         /// </summary>
@@ -1532,6 +1618,159 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("AlterarConfigCte", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Alterar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <returns>EmpresaConfigDce</returns>
+        public EmpresaConfigDce AlterarConfigDce(string cpfCnpj, EmpresaConfigDce body)
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce> localVarResponse = AlterarConfigDceWithHttpInfo(cpfCnpj, body);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Alterar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of EmpresaConfigDce</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce> AlterarConfigDceWithHttpInfo(string cpfCnpj, EmpresaConfigDce body)
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->AlterarConfigDce");
+
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling EmpresaApi->AlterarConfigDce");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<EmpresaConfigDce>("/empresas/{cpf_cnpj}/dce", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AlterarConfigDce", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Alterar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EmpresaConfigDce</returns>
+        public async System.Threading.Tasks.Task<EmpresaConfigDce> AlterarConfigDceAsync(string cpfCnpj, EmpresaConfigDce body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce> localVarResponse = await AlterarConfigDceWithHttpInfoAsync(cpfCnpj, body, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Alterar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EmpresaConfigDce)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce>> AlterarConfigDceWithHttpInfoAsync(string cpfCnpj, EmpresaConfigDce body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->AlterarConfigDce");
+
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling EmpresaApi->AlterarConfigDce");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<EmpresaConfigDce>("/empresas/{cpf_cnpj}/dce", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AlterarConfigDce", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -3167,6 +3406,143 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConsultarConfigCte", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Consultar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>EmpresaConfigDce</returns>
+        public EmpresaConfigDce ConsultarConfigDce(string cpfCnpj)
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce> localVarResponse = ConsultarConfigDceWithHttpInfo(cpfCnpj);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Consultar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <returns>ApiResponse of EmpresaConfigDce</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce> ConsultarConfigDceWithHttpInfo(string cpfCnpj)
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->ConsultarConfigDce");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<EmpresaConfigDce>("/empresas/{cpf_cnpj}/dce", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConsultarConfigDce", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Consultar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EmpresaConfigDce</returns>
+        public async System.Threading.Tasks.Task<EmpresaConfigDce> ConsultarConfigDceAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce> localVarResponse = await ConsultarConfigDceWithHttpInfoAsync(cpfCnpj, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Consultar configuração de DC-e 
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cpfCnpj">CPF ou CNPJ da empresa.  Utilize o valor sem máscara.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EmpresaConfigDce)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<EmpresaConfigDce>> ConsultarConfigDceWithHttpInfoAsync(string cpfCnpj, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'cpfCnpj' is set
+            if (cpfCnpj == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'cpfCnpj' when calling EmpresaApi->ConsultarConfigDce");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("cpf_cnpj", NuvemFiscal.Sdk.Client.ClientUtils.ParameterToString(cpfCnpj)); // path parameter
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<EmpresaConfigDce>("/empresas/{cpf_cnpj}/dce", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConsultarConfigDce", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

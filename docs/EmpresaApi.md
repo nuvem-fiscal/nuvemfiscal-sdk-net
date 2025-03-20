@@ -5,6 +5,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | Método | Endpoint | Descrição |
 |--------|--------------|-------------|
 | [**AlterarConfigCte**](EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e |
+| [**AlterarConfigDce**](EmpresaApi.md#alterarconfigdce) | **PUT** /empresas/{cpf_cnpj}/dce | Alterar configuração de DC-e |
 | [**AlterarConfigDistribuicaoNfe**](EmpresaApi.md#alterarconfigdistribuicaonfe) | **PUT** /empresas/{cpf_cnpj}/distnfe | Alterar configuração de Distribuição de NF-e |
 | [**AlterarConfigMdfe**](EmpresaApi.md#alterarconfigmdfe) | **PUT** /empresas/{cpf_cnpj}/mdfe | Alterar configuração de MDF-e |
 | [**AlterarConfigNfce**](EmpresaApi.md#alterarconfignfce) | **PUT** /empresas/{cpf_cnpj}/nfce | Alterar configuração de NFC-e |
@@ -16,6 +17,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**CadastrarCertificadoEmpresa**](EmpresaApi.md#cadastrarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado | Cadastrar certificado |
 | [**ConsultarCertificadoEmpresa**](EmpresaApi.md#consultarcertificadoempresa) | **GET** /empresas/{cpf_cnpj}/certificado | Consultar certificado |
 | [**ConsultarConfigCte**](EmpresaApi.md#consultarconfigcte) | **GET** /empresas/{cpf_cnpj}/cte | Consultar configuração de CT-e |
+| [**ConsultarConfigDce**](EmpresaApi.md#consultarconfigdce) | **GET** /empresas/{cpf_cnpj}/dce | Consultar configuração de DC-e |
 | [**ConsultarConfigDistribuicaoNfe**](EmpresaApi.md#consultarconfigdistribuicaonfe) | **GET** /empresas/{cpf_cnpj}/distnfe | Consultar configuração de Distribuição de NF-e |
 | [**ConsultarConfigMdfe**](EmpresaApi.md#consultarconfigmdfe) | **GET** /empresas/{cpf_cnpj}/mdfe | Consultar configuração de MDF-e |
 | [**ConsultarConfigNfce**](EmpresaApi.md#consultarconfignfce) | **GET** /empresas/{cpf_cnpj}/nfce | Consultar configuração de NFC-e |
@@ -115,6 +117,108 @@ catch (ApiException e)
 ### Tipo de retorno
 
 [**EmpresaConfigCte**](EmpresaConfigCte.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="alterarconfigdce"></a>
+# **AlterarConfigDce**
+> EmpresaConfigDce AlterarConfigDce (string cpfCnpj, EmpresaConfigDce body)
+
+Alterar configuração de DC-e
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class AlterarConfigDceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
+            var body = new EmpresaConfigDce(); // EmpresaConfigDce | 
+
+            try
+            {
+                // Alterar configuração de DC-e
+                EmpresaConfigDce result = apiInstance.AlterarConfigDce(cpfCnpj, body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmpresaApi.AlterarConfigDce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante AlterarConfigDceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Alterar configuração de DC-e
+    ApiResponse<EmpresaConfigDce> response = apiInstance.AlterarConfigDceWithHttpInfo(cpfCnpj, body);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar EmpresaApi.AlterarConfigDceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
+| **body** | [**EmpresaConfigDce**](EmpresaConfigDce.md) |  |  |
+
+### Tipo de retorno
+
+[**EmpresaConfigDce**](EmpresaConfigDce.md)
 
 ### Autorização
 
@@ -1235,6 +1339,106 @@ catch (ApiException e)
 ### Tipo de retorno
 
 [**EmpresaConfigCte**](EmpresaConfigCte.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: Não especificado
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="consultarconfigdce"></a>
+# **ConsultarConfigDce**
+> EmpresaConfigDce ConsultarConfigDce (string cpfCnpj)
+
+Consultar configuração de DC-e
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class ConsultarConfigDceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmpresaApi(httpClient, config, httpClientHandler);
+            var cpfCnpj = "cpfCnpj_example";  // string | CPF ou CNPJ da empresa.  Utilize o valor sem máscara.
+
+            try
+            {
+                // Consultar configuração de DC-e
+                EmpresaConfigDce result = apiInstance.ConsultarConfigDce(cpfCnpj);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmpresaApi.ConsultarConfigDce: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante ConsultarConfigDceWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Consultar configuração de DC-e
+    ApiResponse<EmpresaConfigDce> response = apiInstance.ConsultarConfigDceWithHttpInfo(cpfCnpj);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar EmpresaApi.ConsultarConfigDceWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **cpfCnpj** | **string** | CPF ou CNPJ da empresa.  Utilize o valor sem máscara. |  |
+
+### Tipo de retorno
+
+[**EmpresaConfigDce**](EmpresaConfigDce.md)
 
 ### Autorização
 

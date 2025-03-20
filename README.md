@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.46.0
-- Versão do SDK: 2.30.0
+- Versão da API: 2.50.0
+- Versão do SDK: 2.31.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -166,6 +166,17 @@ Classe | Método | Endpoint | Descrição
 *CteApi* | [**EmitirCte**](docs/CteApi.md#emitircte) | **POST** /cte | Emitir CT-e
 *CteApi* | [**ListarCte**](docs/CteApi.md#listarcte) | **GET** /cte | Listar CT-e
 *CteApi* | [**SincronizarCte**](docs/CteApi.md#sincronizarcte) | **POST** /cte/{id}/sincronizar | Sincroniza dados no CT-e a partir da SEFAZ
+*DceApi* | [**BaixarPdfDce**](docs/DceApi.md#baixarpdfdce) | **GET** /dce/{id}/pdf | Baixar PDF do DACE
+*DceApi* | [**BaixarXmlCancelamentoDce**](docs/DceApi.md#baixarxmlcancelamentodce) | **GET** /dce/{id}/cancelamento/xml | Baixar XML do cancelamento
+*DceApi* | [**BaixarXmlDce**](docs/DceApi.md#baixarxmldce) | **GET** /dce/{id}/xml | Baixar XML da DC-e processada
+*DceApi* | [**BaixarXmlDceDeclaracao**](docs/DceApi.md#baixarxmldcedeclaracao) | **GET** /dce/{id}/xml/declaracao | Baixar XML da DC-e
+*DceApi* | [**BaixarXmlDceProtocolo**](docs/DceApi.md#baixarxmldceprotocolo) | **GET** /dce/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ
+*DceApi* | [**CancelarDce**](docs/DceApi.md#cancelardce) | **POST** /dce/{id}/cancelamento | Cancelar uma DC-e autorizada
+*DceApi* | [**ConsultarCancelamentoDce**](docs/DceApi.md#consultarcancelamentodce) | **GET** /dce/{id}/cancelamento | Consultar o cancelamento da DC-e
+*DceApi* | [**ConsultarDce**](docs/DceApi.md#consultardce) | **GET** /dce/{id} | Consultar DC-e
+*DceApi* | [**ConsultarStatusSefazDce**](docs/DceApi.md#consultarstatussefazdce) | **GET** /dce/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
+*DceApi* | [**EmitirDce**](docs/DceApi.md#emitirdce) | **POST** /dce | Emitir DC-e
+*DceApi* | [**ListarDce**](docs/DceApi.md#listardce) | **GET** /dce | Listar DC-e
 *DistribuioNFEApi* | [**BaixarPdfDocumentoDistribuicaoNfe**](docs/DistribuioNFEApi.md#baixarpdfdocumentodistribuicaonfe) | **GET** /distribuicao/nfe/documentos/{id}/pdf | Baixar PDF do documento
 *DistribuioNFEApi* | [**BaixarXmlDocumentoDistribuicaoNfe**](docs/DistribuioNFEApi.md#baixarxmldocumentodistribuicaonfe) | **GET** /distribuicao/nfe/documentos/{id}/xml | Baixar XML do documento
 *DistribuioNFEApi* | [**ConsultarDistribuicaoNfe**](docs/DistribuioNFEApi.md#consultardistribuicaonfe) | **GET** /distribuicao/nfe/{id} | Consultar distribuição
@@ -180,6 +191,7 @@ Classe | Método | Endpoint | Descrição
 *EmailApi* | [**ConsultarEmail**](docs/EmailApi.md#consultaremail) | **GET** /emails/{id} | Consultar e-mail
 *EmailApi* | [**ListarEmails**](docs/EmailApi.md#listaremails) | **GET** /emails | Listar e-mails
 *EmpresaApi* | [**AlterarConfigCte**](docs/EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e
+*EmpresaApi* | [**AlterarConfigDce**](docs/EmpresaApi.md#alterarconfigdce) | **PUT** /empresas/{cpf_cnpj}/dce | Alterar configuração de DC-e
 *EmpresaApi* | [**AlterarConfigDistribuicaoNfe**](docs/EmpresaApi.md#alterarconfigdistribuicaonfe) | **PUT** /empresas/{cpf_cnpj}/distnfe | Alterar configuração de Distribuição de NF-e
 *EmpresaApi* | [**AlterarConfigMdfe**](docs/EmpresaApi.md#alterarconfigmdfe) | **PUT** /empresas/{cpf_cnpj}/mdfe | Alterar configuração de MDF-e
 *EmpresaApi* | [**AlterarConfigNfce**](docs/EmpresaApi.md#alterarconfignfce) | **PUT** /empresas/{cpf_cnpj}/nfce | Alterar configuração de NFC-e
@@ -191,6 +203,7 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**CadastrarCertificadoEmpresa**](docs/EmpresaApi.md#cadastrarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado | Cadastrar certificado
 *EmpresaApi* | [**ConsultarCertificadoEmpresa**](docs/EmpresaApi.md#consultarcertificadoempresa) | **GET** /empresas/{cpf_cnpj}/certificado | Consultar certificado
 *EmpresaApi* | [**ConsultarConfigCte**](docs/EmpresaApi.md#consultarconfigcte) | **GET** /empresas/{cpf_cnpj}/cte | Consultar configuração de CT-e
+*EmpresaApi* | [**ConsultarConfigDce**](docs/EmpresaApi.md#consultarconfigdce) | **GET** /empresas/{cpf_cnpj}/dce | Consultar configuração de DC-e
 *EmpresaApi* | [**ConsultarConfigDistribuicaoNfe**](docs/EmpresaApi.md#consultarconfigdistribuicaonfe) | **GET** /empresas/{cpf_cnpj}/distnfe | Consultar configuração de Distribuição de NF-e
 *EmpresaApi* | [**ConsultarConfigMdfe**](docs/EmpresaApi.md#consultarconfigmdfe) | **GET** /empresas/{cpf_cnpj}/mdfe | Consultar configuração de MDF-e
 *EmpresaApi* | [**ConsultarConfigNfce**](docs/EmpresaApi.md#consultarconfignfce) | **GET** /empresas/{cpf_cnpj}/nfce | Consultar configuração de NFC-e
@@ -445,6 +458,30 @@ Classe | Método | Endpoint | Descrição
  - [Model.CteSefazVPrest](docs/CteSefazVPrest.md)
  - [Model.CteSefazVeicNovos](docs/CteSefazVeicNovos.md)
  - [Model.DPS](docs/DPS.md)
+ - [Model.DcePedidoCancelamento](docs/DcePedidoCancelamento.md)
+ - [Model.DcePedidoEmissao](docs/DcePedidoEmissao.md)
+ - [Model.DceSefazAutXML](docs/DceSefazAutXML.md)
+ - [Model.DceSefazDest](docs/DceSefazDest.md)
+ - [Model.DceSefazDet](docs/DceSefazDet.md)
+ - [Model.DceSefazECT](docs/DceSefazECT.md)
+ - [Model.DceSefazEmit](docs/DceSefazEmit.md)
+ - [Model.DceSefazEndeDest](docs/DceSefazEndeDest.md)
+ - [Model.DceSefazEndeEmi](docs/DceSefazEndeEmi.md)
+ - [Model.DceSefazFisco](docs/DceSefazFisco.md)
+ - [Model.DceSefazIde](docs/DceSefazIde.md)
+ - [Model.DceSefazInfAdic](docs/DceSefazInfAdic.md)
+ - [Model.DceSefazInfDCe](docs/DceSefazInfDCe.md)
+ - [Model.DceSefazInfDec](docs/DceSefazInfDec.md)
+ - [Model.DceSefazInfSolicDCe](docs/DceSefazInfSolicDCe.md)
+ - [Model.DceSefazMarketplace](docs/DceSefazMarketplace.md)
+ - [Model.DceSefazObsECT](docs/DceSefazObsECT.md)
+ - [Model.DceSefazObsEmit](docs/DceSefazObsEmit.md)
+ - [Model.DceSefazObsFisco](docs/DceSefazObsFisco.md)
+ - [Model.DceSefazObsMarketplace](docs/DceSefazObsMarketplace.md)
+ - [Model.DceSefazProd](docs/DceSefazProd.md)
+ - [Model.DceSefazTotal](docs/DceSefazTotal.md)
+ - [Model.DceSefazTransp](docs/DceSefazTransp.md)
+ - [Model.DceSefazTransportadora](docs/DceSefazTransportadora.md)
  - [Model.Dfe](docs/Dfe.md)
  - [Model.DfeAutorEvento](docs/DfeAutorEvento.md)
  - [Model.DfeAutorizacao](docs/DfeAutorizacao.md)
@@ -485,6 +522,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.Empresa](docs/Empresa.md)
  - [Model.EmpresaCertificado](docs/EmpresaCertificado.md)
  - [Model.EmpresaConfigCte](docs/EmpresaConfigCte.md)
+ - [Model.EmpresaConfigDce](docs/EmpresaConfigDce.md)
  - [Model.EmpresaConfigDistribuicaoNfe](docs/EmpresaConfigDistribuicaoNfe.md)
  - [Model.EmpresaConfigMdfe](docs/EmpresaConfigMdfe.md)
  - [Model.EmpresaConfigNfce](docs/EmpresaConfigNfce.md)

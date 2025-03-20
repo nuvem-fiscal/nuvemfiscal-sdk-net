@@ -372,10 +372,22 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // vItem (decimal?) minimum
+            if (this.vItem < (decimal?)0)
+            {
+                yield return new ValidationResult("Invalid value for vItem, must be a value greater than or equal to 0.", new [] { "vItem" });
+            }
+
             // qFaturada (decimal?) minimum
             if (this.qFaturada < (decimal?)0)
             {
                 yield return new ValidationResult("Invalid value for qFaturada, must be a value greater than or equal to 0.", new [] { "qFaturada" });
+            }
+
+            // vProd (decimal?) minimum
+            if (this.vProd < (decimal?)0)
+            {
+                yield return new ValidationResult("Invalid value for vProd, must be a value greater than or equal to 0.", new [] { "vProd" });
             }
 
             // vDesc (decimal?) minimum

@@ -12,6 +12,7 @@ Nome | Tipo | Descrição | Comentários
 **cNaoNIF** | **int?** | Motivo para não informação do NIF:  * 0 - Não informado na nota de origem  * 1 - Dispensado do NIF  * 2 - Não exigência do NIF | [optional] 
 **CAEPF** | **string** | Número do Cadastro de Atividade Econômica da Pessoa Física (CAEPF). | [optional] 
 **IM** | **string** | Número da inscrição municipal. | [optional] 
+**IE** | **string** | Número da inscrição estadual.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado. | [optional] 
 **xNome** | **string** | Nome/Nome Empresarial. | 
 **end** | [**Endereco**](Endereco.md) |  | [optional] 
 **fone** | **string** | Número do telefone do prestador:  Preencher com o Código DDD + número do telefone.  Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone). | [optional] 
