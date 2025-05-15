@@ -6,7 +6,7 @@ Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | ID único gerado pela Nuvem Fiscal para identificar o documento. | 
 **created_at** | **DateTime** | Data/hora em que o documento foi criado na Nuvem Fiscal. Representado no formato &lt;a href&#x3D;\&quot;https://en.wikipedia.org/wiki/ISO_8601\&quot; target&#x3D;\&quot;blank\&quot;&gt;&#x60;ISO 8601&#x60;&lt;/a&gt;. | [optional] 
-**nsu** | **int?** | NSU do documento fiscal. | [optional] 
+**nsu** | **long?** | NSU do documento fiscal. | [optional] 
 **schema** | **string** | Identificação do Schema XML que será utilizado para validar o XML existente no conteúdo da tag docZip. Vai identificar o tipo do documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd, resEvento_1.00.xsd, procEventoNFe_v1.00.xsd. | 
 **tipo_documento** | **string** | Tipo do documento de interesse da pessoa ou empresa. | [optional] 
 **chave_acesso** | **string** | Chave de Acesso da NF-e. | [optional] 

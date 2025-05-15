@@ -192,7 +192,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="formaDistribuicao">Filtrar por documentos que foram distribuídos em sua forma resumida ou completa.    Valores aceitos: &#x60;resumida&#x60;, &#x60;completa&#x60; (optional)</param>
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <returns>DistribuicaoNfeDocumentoListagem</returns>
-        DistribuicaoNfeDocumentoListagem ListarDocumentoDistribuicaoNfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string));
+        DistribuicaoNfeDocumentoListagem ListarDocumentoDistribuicaoNfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string));
 
         /// <summary>
         /// Listar documentos
@@ -211,7 +211,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="formaDistribuicao">Filtrar por documentos que foram distribuídos em sua forma resumida ou completa.    Valores aceitos: &#x60;resumida&#x60;, &#x60;completa&#x60; (optional)</param>
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <returns>ApiResponse of DistribuicaoNfeDocumentoListagem</returns>
-        ApiResponse<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string));
+        ApiResponse<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string));
         /// <summary>
         /// Listar Manifestações
         /// </summary>
@@ -489,7 +489,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DistribuicaoNfeDocumentoListagem</returns>
-        System.Threading.Tasks.Task<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Listar documentos
@@ -509,7 +509,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DistribuicaoNfeDocumentoListagem)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DistribuicaoNfeDocumentoListagem>> ListarDocumentoDistribuicaoNfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DistribuicaoNfeDocumentoListagem>> ListarDocumentoDistribuicaoNfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Listar Manifestações
         /// </summary>
@@ -1835,7 +1835,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="formaDistribuicao">Filtrar por documentos que foram distribuídos em sua forma resumida ou completa.    Valores aceitos: &#x60;resumida&#x60;, &#x60;completa&#x60; (optional)</param>
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <returns>DistribuicaoNfeDocumentoListagem</returns>
-        public DistribuicaoNfeDocumentoListagem ListarDocumentoDistribuicaoNfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string))
+        public DistribuicaoNfeDocumentoListagem ListarDocumentoDistribuicaoNfe(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DistribuicaoNfeDocumentoListagem> localVarResponse = ListarDocumentoDistribuicaoNfeWithHttpInfo(cpfCnpj, ambiente, top, skip, inlinecount, distNsu, tipoDocumento, formaDistribuicao, chaveAcesso);
             return localVarResponse.Data;
@@ -1855,7 +1855,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="formaDistribuicao">Filtrar por documentos que foram distribuídos em sua forma resumida ou completa.    Valores aceitos: &#x60;resumida&#x60;, &#x60;completa&#x60; (optional)</param>
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <returns>ApiResponse of DistribuicaoNfeDocumentoListagem</returns>
-        public NuvemFiscal.Sdk.Client.ApiResponse<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string))
+        public NuvemFiscal.Sdk.Client.ApiResponse<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeWithHttpInfo(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)
@@ -1951,7 +1951,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DistribuicaoNfeDocumentoListagem</returns>
-        public async System.Threading.Tasks.Task<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DistribuicaoNfeDocumentoListagem> ListarDocumentoDistribuicaoNfeAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             NuvemFiscal.Sdk.Client.ApiResponse<DistribuicaoNfeDocumentoListagem> localVarResponse = await ListarDocumentoDistribuicaoNfeWithHttpInfoAsync(cpfCnpj, ambiente, top, skip, inlinecount, distNsu, tipoDocumento, formaDistribuicao, chaveAcesso, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1972,7 +1972,7 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="chaveAcesso">Filtrar pela chave de acesso da NF-e. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DistribuicaoNfeDocumentoListagem)</returns>
-        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DistribuicaoNfeDocumentoListagem>> ListarDocumentoDistribuicaoNfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), int? distNsu = default(int?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<DistribuicaoNfeDocumentoListagem>> ListarDocumentoDistribuicaoNfeWithHttpInfoAsync(string cpfCnpj, string ambiente, int? top = default(int?), int? skip = default(int?), bool? inlinecount = default(bool?), long? distNsu = default(long?), string tipoDocumento = default(string), string formaDistribuicao = default(string), string chaveAcesso = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'cpfCnpj' is set
             if (cpfCnpj == null)

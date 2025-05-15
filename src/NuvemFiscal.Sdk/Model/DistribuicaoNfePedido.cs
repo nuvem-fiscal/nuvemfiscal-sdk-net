@@ -104,7 +104,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="consNsu">Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;cons-nsu\&quot;.*.</param>
         /// <param name="consChave">Consulta de NF-e por chave de acesso informada.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;cons-chave\&quot;.*.</param>
         /// <param name="ignorarTempoEspera">Deve ser utilizado em situações em que o cliente  deseja ignorar o intervalo mínimo de 1 hora entre pedidos de distribuição  de NF-e. Quando habilitado, o cliente reconhece os riscos associados,  incluindo o bloqueio do CNPJ no Ambiente Nacional da SEFAZ, caso seja  caracterizado consumo indevido.    Valores:  * &#x60;false&#x60;: Respeita a regra de intervalo mínimo de 1 hora entre consultas    quando não há mais documentos disponíveis.    * &#x60;true&#x60;: Ignora o tempo de espera e força a requisição. (default to false).</param>
-        public DistribuicaoNfePedido(string cpfCnpj = default(string), AmbienteEnum ambiente = default(AmbienteEnum), string ufAutor = default(string), TipoConsultaEnum tipoConsulta = default(TipoConsultaEnum), int? distNsu = default(int?), int? consNsu = default(int?), string consChave = default(string), bool ignorarTempoEspera = false)
+        public DistribuicaoNfePedido(string cpfCnpj = default(string), AmbienteEnum ambiente = default(AmbienteEnum), string ufAutor = default(string), TipoConsultaEnum tipoConsulta = default(TipoConsultaEnum), long? distNsu = default(long?), long? consNsu = default(long?), string consChave = default(string), bool ignorarTempoEspera = false)
         {
             // to ensure "cpfCnpj" is required (not null)
             if (cpfCnpj == null)
@@ -140,14 +140,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Distribuição de conjunto de DF-e a partir do NSU informado.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;dist-nsu\&quot;.*</value>
         [DataMember(Name = "dist_nsu", EmitDefaultValue = true)]
-        public int? dist_nsu { get; set; }
+        public long? dist_nsu { get; set; }
 
         /// <summary>
         /// Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;cons-nsu\&quot;.*
         /// </summary>
         /// <value>Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;cons-nsu\&quot;.*</value>
         [DataMember(Name = "cons_nsu", EmitDefaultValue = true)]
-        public int? cons_nsu { get; set; }
+        public long? cons_nsu { get; set; }
 
         /// <summary>
         /// Consulta de NF-e por chave de acesso informada.    *Obrigatório quando \&quot;tipo_consulta\&quot; for \&quot;cons-chave\&quot;.*

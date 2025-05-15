@@ -5,7 +5,7 @@ Dados dos volumes.
 
 Nome | Tipo | Descrição | Comentários
 ------------ | ------------- | ------------- | -------------
-**qVol** | **int?** | Quantidade de volumes transportados. | [optional] 
+**qVol** | **long?** | Quantidade de volumes transportados. | [optional] 
 **esp** | **string** | Espécie dos volumes transportados. | [optional] 
 **marca** | **string** | Marca dos volumes transportados. | [optional] 
 **nVol** | **string** | Numeração dos volumes transportados. | [optional] 

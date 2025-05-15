@@ -81,7 +81,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="emitenteCpfCnpj">CPF/CNPJ do emitente..</param>
         /// <param name="emitenteNomeRazaoSocial">Nome ou Razão Social do emitente..</param>
         /// <param name="emitenteInscricaoEstadual">Inscrição Estadual do emitente..</param>
-        public DistribuicaoNfeDocumento(string id = default(string), DateTime createdAt = default(DateTime), int? nsu = default(int?), string schema = default(string), TipoDocumentoEnum? tipoDocumento = default(TipoDocumentoEnum?), string chaveAcesso = default(string), bool? resumo = default(bool?), string tipoEvento = default(string), int? numeroSequencial = default(int?), DateTime? dataEvento = default(DateTime?), DateTime? dataRecebimento = default(DateTime?), string numeroProtocolo = default(string), int? tipoNfe = default(int?), decimal? valorNfe = default(decimal?), string digestValue = default(string), string emitenteCpfCnpj = default(string), string emitenteNomeRazaoSocial = default(string), string emitenteInscricaoEstadual = default(string))
+        public DistribuicaoNfeDocumento(string id = default(string), DateTime createdAt = default(DateTime), long? nsu = default(long?), string schema = default(string), TipoDocumentoEnum? tipoDocumento = default(TipoDocumentoEnum?), string chaveAcesso = default(string), bool? resumo = default(bool?), string tipoEvento = default(string), int? numeroSequencial = default(int?), DateTime? dataEvento = default(DateTime?), DateTime? dataRecebimento = default(DateTime?), string numeroProtocolo = default(string), int? tipoNfe = default(int?), decimal? valorNfe = default(decimal?), string digestValue = default(string), string emitenteCpfCnpj = default(string), string emitenteNomeRazaoSocial = default(string), string emitenteInscricaoEstadual = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -132,7 +132,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>NSU do documento fiscal.</value>
         [DataMember(Name = "nsu", EmitDefaultValue = true)]
-        public int? nsu { get; set; }
+        public long? nsu { get; set; }
 
         /// <summary>
         /// Identificação do Schema XML que será utilizado para validar o XML existente no conteúdo da tag docZip. Vai identificar o tipo do documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd, resEvento_1.00.xsd, procEventoNFe_v1.00.xsd.

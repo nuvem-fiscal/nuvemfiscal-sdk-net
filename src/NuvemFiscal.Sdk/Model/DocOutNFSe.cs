@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cMunNFSeMun">Código Município emissor da nota eletrônica municipal (Tabela do IBGE). (required).</param>
         /// <param name="nNFSeMun">Número da nota eletrônica municipal. (required).</param>
         /// <param name="cVerifNFSeMun">Código de Verificação da nota eletrônica municipal. (required).</param>
-        public DocOutNFSe(string cMunNFSeMun = default(string), int? nNFSeMun = default(int?), string cVerifNFSeMun = default(string))
+        public DocOutNFSe(string cMunNFSeMun = default(string), long? nNFSeMun = default(long?), string cVerifNFSeMun = default(string))
         {
             // to ensure "cMunNFSeMun" is required (not null)
             if (cMunNFSeMun == null)
@@ -73,7 +73,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número da nota eletrônica municipal.</value>
         [DataMember(Name = "nNFSeMun", IsRequired = true, EmitDefaultValue = true)]
-        public int? nNFSeMun { get; set; }
+        public long? nNFSeMun { get; set; }
 
         /// <summary>
         /// Código de Verificação da nota eletrônica municipal.

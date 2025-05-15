@@ -8,6 +8,7 @@ Nome | Tipo | Descrição | Comentários
 **CEP** | **string** | Número do CEP. | [optional] 
 **endExt** | [**EnderExtSimples**](EnderExtSimples.md) |  | [optional] 
 **xLgr** | **string** | Tipo e nome do logradouro da localização do imóvel. | 
+**tpLgr** | **string** | Tipo do Logradouro.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado. | [optional] 
 **nro** | **string** | Número do imóvel. | 
 **xCpl** | **string** | Complemento do endereço. | [optional] 
 **xBairro** | **string** | Bairro. | 

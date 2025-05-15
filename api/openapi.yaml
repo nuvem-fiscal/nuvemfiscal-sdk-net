@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.50.0
+  version: 2.55.1
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -16,6 +16,11 @@ tags:
   name: Cte
 - description: Declaração de Conteúdo Eletrônica.
   name: Dce
+- description: "Endpoints auxiliares voltados à análise técnica e depuração de documentos\
+    \ fiscais.\r\nPermitem rastrear o processamento de DF-es na Nuvem Fiscal, incluindo\
+    \ o conteúdo\r\noriginal recebido e as requisições realizadas aos serviços autorizadores\
+    \ (SEFAZ, prefeituras, etc)."
+  name: Debug
 - description: "O processo de distribuição de DFe envolve a disponibilização dos\r\
     \ndocumentos fiscais eletrônicos para os envolvidos na transação (emitentes,\r\
     \ndestinatários e terceiros autorizados). Ele permite que os destinatários\r\n\
@@ -998,6 +1003,119 @@ paths:
       summary: Baixar XML do Protocolo da SEFAZ
       tags:
       - Dce
+  /debug/http-requests/{id}/request-content:
+    get:
+      description: "Este endpoint retorna apenas o corpo da requisição HTTP enviada\
+        \ ao autorizador,\r\npreservando o conteúdo exatamente como foi armazenado\
+        \ pela Nuvem Fiscal.\r\n\r\n**Informações retornadas**:\r\n- Envelope SOAP\
+        \ da requisição, possivelmente compactado.\r\n\r\n**Cenários de uso**:\r\n\
+        - Verificação do XML ou SOAP efetivamente enviado.\r\n- Encaminhamento ao\
+        \ suporte da SEFAZ ou prefeitura para análise.\r\n- Diagnóstico técnico do\
+        \ conteúdo de envio."
+      operationId: DebugHttpRequestContent
+      parameters:
+      - description: ID da requisição HTTP.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Corpo da requisição HTTP
+      tags:
+      - Debug
+  /debug/http-requests/{id}/response-content:
+    get:
+      description: "Este endpoint retorna apenas o corpo da resposta HTTP recebida\
+        \ do autorizador,\r\npermitindo análise técnica da mensagem retornada pela\
+        \ SEFAZ ou prefeitura.\r\n\r\n**Informações retornadas**:\r\n- Envelope SOAP\
+        \ da resposta, ou mensagem de erro (ex: HTML, XML), no formato original.\r\
+        \n\r\n**Cenários de uso**:\r\n- Inspeção da resposta real retornada pelo autorizador.\r\
+        \n- Encaminhamento do conteúdo ao suporte técnico.\r\n- Diagnóstico de rejeiç\
+        ões, falhas de processamento ou erros de infraestrutura."
+      operationId: DebugHttpResponseContent
+      parameters:
+      - description: ID da requisição HTTP.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Corpo da resposta HTTP
+      tags:
+      - Debug
+  /debug/{id}:
+    get:
+      description: "Este endpoint retorna informações detalhadas de debug sobre o\
+        \ processamento de um documento fiscal eletrônico (DFe),\r\ncomo NF-e, NFC-e,\
+        \ MDF-e, CT-e, NFS-e, dentre outros. Ele permite inspecionar o conteúdo original\
+        \ enviado à Nuvem Fiscal e analisar\r\ntodas as interações realizadas com\
+        \ os serviços autorizadores (SEFAZ ou prefeituras) durante o fluxo de emissã\
+        o.\r\n\r\n**Informações retornadas**:\r\n- JSON original recebido no momento\
+        \ da criação do documento.\r\n- Histórico das etapas de envio e consulta.\r\
+        \n- Status e mensagens retornadas pelo autorizador.\r\n\r\n**Cenários de uso**:\r\
+        \n- Diagnóstico de falhas no processamento do documento.\r\n- Verificação\
+        \ da resposta da SEFAZ ou prefeitura.\r\n- Apoio ao suporte técnico e aná\
+        lise de integração."
+      operationId: DebugDfe
+      parameters:
+      - description: ID único do documento fiscal gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DfeDebug'
+          description: Successful response
+      summary: Debug de DF-e
+      tags:
+      - Debug
+  /debug/{id}/original-payload:
+    get:
+      description: "Este endpoint retorna o conteúdo original recebido pela Nuvem\
+        \ Fiscal no momento da criação do documento fiscal.\r\n\r\n**Cenários de uso**:\r\
+        \n- Inspeção detalhada dos dados enviados à API.\r\n- Verificação de divergê\
+        ncias entre o payload fornecido e o processado.\r\n- Encaminhamento do conteú\
+        do original ao suporte da Nuvem Fiscal."
+      operationId: DebugDfeOriginalPayload
+      parameters:
+      - description: ID do documento fiscal gerado pela Nuvem Fiscal.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: Successful response
+      summary: Payload original recebido
+      tags:
+      - Debug
   /distribuicao/nfe:
     get:
       description: "Retorna a lista de distribuições de NF-e de acordo com os crité\
@@ -1137,6 +1255,7 @@ paths:
         in: query
         name: dist_nsu
         schema:
+          format: int64
           type: integer
       - description: "Filtrar pelo tipo do documento de interesse da pessoa ou empresa.\r\
           \n\r\nValores aceitos: `nota`, `evento`"
@@ -5603,6 +5722,548 @@ paths:
       - Nfse
 components:
   schemas:
+    Empresa:
+      example:
+        fone: fone
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        endereco:
+          uf: uf
+          cidade: cidade
+          complemento: complemento
+          numero: numero
+          logradouro: logradouro
+          bairro: bairro
+          codigo_pais: "1058"
+          codigo_municipio: codigo_municipio
+          pais: Brasil
+          cep: cep
+        created_at: 2000-01-23T04:56:07.000+00:00
+        inscricao_estadual: inscricao_estadual
+        nome_razao_social: nome_razao_social
+        nome_fantasia: nome_fantasia
+        cpf_cnpj: cpf_cnpj
+        email: email
+        inscricao_municipal: inscricao_municipal
+      properties:
+        cpf_cnpj:
+          description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
+          type: string
+        created_at:
+          description: "Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado\
+            \ no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"\
+            blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse campo automaticamente.\
+            \ Caso algum valor seja enviado, ele será ignorado*."
+          format: date-time
+          type: string
+        updated_at:
+          description: "Data e hora que o objeto foi alterado pela última vez na Nuvem\
+            \ Fiscal. Representado no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\"\
+            \ target=\"blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse\
+            \ campo automaticamente. Caso algum valor seja enviado, ele será ignorado*."
+          format: date-time
+          type: string
+        inscricao_estadual:
+          description: Inscrição estadual da empresa.
+          maxLength: 50
+          type: string
+        inscricao_municipal:
+          description: Inscrição municipal da empresa.
+          maxLength: 50
+          type: string
+        nome_razao_social:
+          description: Razão social da empresa.
+          maxLength: 500
+          type: string
+        nome_fantasia:
+          description: Nome fantasia da empresa.
+          maxLength: 500
+          type: string
+        fone:
+          description: Telefone da empresa.
+          type: string
+        email:
+          description: Email da empresa.
+          type: string
+        endereco:
+          $ref: '#/components/schemas/EmpresaEndereco'
+      required:
+      - cpf_cnpj
+      - email
+      - endereco
+      - nome_razao_social
+      type: object
+    EmpresaEndereco:
+      description: Endereço da empresa.
+      example:
+        uf: uf
+        cidade: cidade
+        complemento: complemento
+        numero: numero
+        logradouro: logradouro
+        bairro: bairro
+        codigo_pais: "1058"
+        codigo_municipio: codigo_municipio
+        pais: Brasil
+        cep: cep
+      properties:
+        logradouro:
+          description: Logradouro.
+          maxLength: 255
+          type: string
+        numero:
+          description: Número.
+          maxLength: 255
+          type: string
+        complemento:
+          description: Complemento.
+          maxLength: 500
+          type: string
+        bairro:
+          description: Bairro.
+          maxLength: 255
+          type: string
+        codigo_municipio:
+          description: Código IBGE do município.
+          type: string
+        cidade:
+          description: Cidade.
+          maxLength: 255
+          type: string
+        uf:
+          description: Sigla do estado.
+          type: string
+        codigo_pais:
+          default: "1058"
+          description: Código do país.
+          type: string
+        pais:
+          default: Brasil
+          description: Nome do país.
+          maxLength: 255
+          type: string
+        cep:
+          description: "CEP.\r\n\r\n*Utilize o valor sem máscara*."
+          type: string
+      required:
+      - bairro
+      - cep
+      - codigo_municipio
+      - logradouro
+      - numero
+      - uf
+      type: object
+    EmpresaListagem:
+      example:
+        '@count': 0
+        data:
+        - fone: fone
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          endereco:
+            uf: uf
+            cidade: cidade
+            complemento: complemento
+            numero: numero
+            logradouro: logradouro
+            bairro: bairro
+            codigo_pais: "1058"
+            codigo_municipio: codigo_municipio
+            pais: Brasil
+            cep: cep
+          created_at: 2000-01-23T04:56:07.000+00:00
+          inscricao_estadual: inscricao_estadual
+          nome_razao_social: nome_razao_social
+          nome_fantasia: nome_fantasia
+          cpf_cnpj: cpf_cnpj
+          email: email
+          inscricao_municipal: inscricao_municipal
+        - fone: fone
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          endereco:
+            uf: uf
+            cidade: cidade
+            complemento: complemento
+            numero: numero
+            logradouro: logradouro
+            bairro: bairro
+            codigo_pais: "1058"
+            codigo_municipio: codigo_municipio
+            pais: Brasil
+            cep: cep
+          created_at: 2000-01-23T04:56:07.000+00:00
+          inscricao_estadual: inscricao_estadual
+          nome_razao_social: nome_razao_social
+          nome_fantasia: nome_fantasia
+          cpf_cnpj: cpf_cnpj
+          email: email
+          inscricao_municipal: inscricao_municipal
+      properties:
+        '@count':
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/Empresa'
+          type: array
+      type: object
+    EmpresaPedidoCadastroCertificado:
+      example:
+        password: password
+        certificado: certificado
+      properties:
+        certificado:
+          description: Binário do certificado digital (.pfx ou .p12) codificado em
+            base64.
+          format: byte
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          type: string
+        password:
+          description: Senha do certificado.
+          type: string
+      required:
+      - certificado
+      - password
+      type: object
+    EmpresaCertificado:
+      example:
+        not_valid_after: 2000-01-23T04:56:07.000+00:00
+        not_valid_before: 2000-01-23T04:56:07.000+00:00
+        thumbprint: thumbprint
+        subject_name: subject_name
+        serial_number: serial_number
+        nome_razao_social: nome_razao_social
+        cpf_cnpj: cpf_cnpj
+        issuer_name: issuer_name
+      properties:
+        serial_number:
+          type: string
+        issuer_name:
+          type: string
+        not_valid_before:
+          format: date-time
+          type: string
+        not_valid_after:
+          format: date-time
+          type: string
+        thumbprint:
+          type: string
+        subject_name:
+          type: string
+        cpf_cnpj:
+          type: string
+        nome_razao_social:
+          type: string
+      type: object
+    EmpresaConfigNfe:
+      example:
+        CRT: 0
+        ambiente: homologacao
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor individual (MEI)."
+          type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigNfce:
+      example:
+        CRT: 0
+        ambiente: homologacao
+        sefaz:
+          csc: csc
+          id_csc: 6
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor individual (MEI)."
+          type: integer
+        sefaz:
+          $ref: '#/components/schemas/EmpresaConfigNfceSefaz'
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      - sefaz
+      type: object
+    EmpresaConfigNfceSefaz:
+      example:
+        csc: csc
+        id_csc: 6
+      properties:
+        id_csc:
+          description: Número de identificação do CSC.
+          type: integer
+        csc:
+          description: Código do CSC.
+          maxLength: 50
+          type: string
+      required:
+      - csc
+      - id_csc
+      type: object
+    EmpresaConfigNfse:
+      example:
+        prefeitura:
+          senha: senha
+          login: login
+          token: token
+        rps:
+          numero: 5
+          lote: 5
+          serie: serie
+        ambiente: homologacao
+        regTrib:
+          opSimpNac: 0
+          regApTribSN: 6
+          regEspTrib: 1
+        incentivo_fiscal: false
+      properties:
+        regTrib:
+          $ref: '#/components/schemas/EmpresaConfigNfseRegTrib'
+        rps:
+          $ref: '#/components/schemas/EmpresaConfigRps'
+        prefeitura:
+          $ref: '#/components/schemas/EmpresaConfigPrefeitura'
+        incentivo_fiscal:
+          default: false
+          description: Indicador se a empresa possui algum tipo de incentivo fiscal.
+          type: boolean
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      - rps
+      type: object
+    EmpresaConfigNfseRegTrib:
+      description: Grupo de informações relativas aos regimes de tributação do prestador
+        de serviços.
+      example:
+        opSimpNac: 0
+        regApTribSN: 6
+        regEspTrib: 1
+      properties:
+        opSimpNac:
+          description: "Situação perante o Simples Nacional:\r\n* 1 - Não Optante;\r\
+            \n* 2 - Optante - Microempreendedor Individual (MEI);\r\n* 3 - Optante\
+            \ - Microempresa ou Empresa de Pequeno Porte (ME/EPP)."
+          nullable: true
+          type: integer
+        regApTribSN:
+          description: "Opção para que o contribuinte optante pelo Simples Nacional\
+            \ ME/EPP (opSimpNac = 3) possa indicar, ao emitir o documento fiscal,\
+            \ em qual regime de apuração os tributos federais e municipal estão inseridos,\
+            \ caso tenha ultrapassado algum sublimite ou limite definido para o Simples\
+            \ Nacional.\r\n* 1 – Regime de apuração dos tributos federais e municipal\
+            \ pelo SN;\r\n* 2 – Regime de apuração dos tributos federais pelo SN e\
+            \ ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;\r\
+            \n* 3 – Regime de apuração dos tributos federais e municipal por fora\
+            \ do SN conforme respectivas legilações federal e municipal de cada tributo."
+          nullable: true
+          type: integer
+        regEspTrib:
+          description: "Regime Especial de Tributação (Padrão Nacional):\r\n* 0 -\
+            \ Nenhum;\r\n* 1 - Ato Cooperado (Cooperativa);\r\n* 2 - Estimativa;\r\
+            \n* 3 - Microempresa Municipal;\r\n* 4 - Notário ou Registrador;\r\n*\
+            \ 5 - Profissional Autônomo;\r\n* 6 - Sociedade de Profissionais.\r\n\r\
+            \n**Comportamento:**\r\n - Quando o envio for feito para o Ambiente Nacional,\
+            \ o valor é utilizado\r\n   exatamente como se apresenta, sem qualquer\
+            \ transformação ou mapeamento.\r\n - Quando o envio for feito diretamente\
+            \ para a prefeitura, o valor será\r\n   convertido internamente pela Nuvem\
+            \ Fiscal para o código correspondente\r\n   esperado pela prefeitura,\
+            \ **se essa conversão for possível**.\r\n\r\n **Observação:** Em algumas\
+            \ prefeituras, existem códigos específicos que não têm\r\n correspondê\
+            ncia direta no padrão nacional. Para lidar com esses casos, utilize\r\n\
+            \ o campo `prest.regTrib.regEspTrib` diretamente no endpoint de emissã\
+            o de NFS-e."
+          nullable: true
+          type: integer
+      type: object
+    EmpresaConfigRps:
+      description: "Configuração de numeração de lote, série e RPS."
+      example:
+        numero: 5
+        lote: 5
+        serie: serie
+      properties:
+        lote:
+          description: "Número do Lote de RPS.\r\nInforme o próximo número do lote\
+            \ RPS a ser utilizado. Após isso, a Nuvem\r\nFiscal gerenciará esse campo\
+            \ (a cada novo envio de lote o número é\r\nincrementado em + 1). Portanto,\
+            \ basta informá-lo no cadastro da empresa\r\numa única vez."
+          format: int64
+          type: integer
+        serie:
+          description: "Série do RPS.\r\nA série dos RPS varia de acordo com cada\
+            \ prefeitura, podendo ser\r\nnúmero (1, 2 ou 3, por exemplo) ou letras\
+            \ (A, S, NFS, por exemplo).\r\nPortanto, consulte-a com o município da\
+            \ empresa antes de iniciar a\r\nemissão das notas."
+          maxLength: 20
+          type: string
+        numero:
+          description: "Número do RPS.\r\nInforme o próximo número de RPS a ser utilizado.\
+            \ Após isso, a Nuvem\r\nFiscal gerenciará esse campo (a cada novo envio\
+            \ de RPS o número é\r\nincrementado em + 1). Portanto, basta informá-lo\
+            \ no cadastro da empresa\r\numa única vez."
+          format: int64
+          type: integer
+      required:
+      - lote
+      - numero
+      - serie
+      type: object
+    EmpresaConfigPrefeitura:
+      description: "Dados adicionais para comunicação com a prefeitura. Essa validaç\
+        ão é\r\ndinâmica, de acordo com a necessidade de cada município."
+      example:
+        senha: senha
+        login: login
+        token: token
+      properties:
+        login:
+          description: "Login de autenticação com a prefeitura, caso não utilize certificado\
+            \ digital."
+          maxLength: 255
+          type: string
+        senha:
+          description: "Senha de autenticação com a prefeitura, caso não utilize certificado\
+            \ digital."
+          maxLength: 255
+          type: string
+        token:
+          description: "Token de autenticação com a prefeitura, caso não utilize certificado\
+            \ digital."
+          maxLength: 255
+          type: string
+      type: object
+    EmpresaConfigMdfe:
+      example:
+        ambiente: homologacao
+      properties:
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigCte:
+      example:
+        CRT: 0
+        ambiente: homologacao
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
+            \ Nacional - Microempreendedor Individual (MEI)."
+          type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigNfcom:
+      example:
+        CRT: 0
+        ambiente: homologacao
+      properties:
+        CRT:
+          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
+            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
+            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
+          type: integer
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigDce:
+      example:
+        ambiente: homologacao
+      properties:
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
+    EmpresaConfigDistribuicaoNfe:
+      example:
+        distribuicao_automatica: false
+        ciencia_automatica: false
+        ambiente: homologacao
+        distribuicao_intervalo_horas: 2
+      properties:
+        distribuicao_automatica:
+          default: false
+          description: "Indica se a distribuição automática está habilitada.\r\n\r\
+            \nQuando ativada, a API da Nuvem Fiscal realizará automaticamente pedidos\
+            \ de\r\ndistribuição de notas fiscais eletrônicas (NF-e) utilizando o\
+            \ último NSU.\r\n\r\nA frequência dessas distribuições é controlada pelo\
+            \ campo `distribuicao_intervalo_horas`,\r\ncujo valor padrão é 24 horas\
+            \ (uma vez ao dia)."
+          nullable: true
+          type: boolean
+        distribuicao_intervalo_horas:
+          description: "Define o intervalo mínimo, em horas, entre distribuições automá\
+            ticas de documentos.\r\n\r\nEsse valor determina com que frequência a\
+            \ API da Nuvem Fiscal executará novas\r\nrequisições automáticas de distribuiç\
+            ão de notas fiscais eletrônicas (NF-e).\r\n\r\nDeve ser um valor entre\
+            \ 1 e 24. Por exemplo, se configurado como 4, uma nova\r\ntentativa de\
+            \ distribuição só será feita se pelo menos 4 horas tiverem se passado\r\
+            \ndesde a última requisição.\r\n\r\nEsse campo só é relevante quando `distribuicao_automatica`\
+            \ estiver habilitado."
+          maximum: 24
+          minimum: 1
+          nullable: true
+          type: integer
+        ciencia_automatica:
+          default: false
+          description: "Indica se a manifestação de Ciência da Operação (210210) deve\
+            \ ser feita\r\nautomaticamente pela API.\r\n\r\nCaso habilitada, a manifestaç\
+            ão de ciência será realizada para notas\r\nrecebidas por qualquer forma\
+            \ de consulta ou modo de distribuição (manual ou automático)."
+          nullable: true
+          type: boolean
+        ambiente:
+          description: Indica se a empresa irá emitir em produção ou homologação.
+          enum:
+          - homologacao
+          - producao
+          type: string
+      required:
+      - ambiente
+      type: object
     NfseCidadesAtendidas:
       example:
         '@count': 0
@@ -7025,7 +7686,6 @@ components:
         status:
           enum:
           - pendente
-          - fila_cancelamento
           - concluido
           - rejeitado
           - erro
@@ -7294,66 +7954,6 @@ components:
         incentivador_cultural:
           type: boolean
       type: object
-    EmpresaEndereco:
-      description: Endereço da empresa.
-      example:
-        uf: uf
-        cidade: cidade
-        complemento: complemento
-        numero: numero
-        logradouro: logradouro
-        bairro: bairro
-        codigo_pais: "1058"
-        codigo_municipio: codigo_municipio
-        pais: Brasil
-        cep: cep
-      properties:
-        logradouro:
-          description: Logradouro.
-          maxLength: 255
-          type: string
-        numero:
-          description: Número.
-          maxLength: 255
-          type: string
-        complemento:
-          description: Complemento.
-          maxLength: 500
-          type: string
-        bairro:
-          description: Bairro.
-          maxLength: 255
-          type: string
-        codigo_municipio:
-          description: Código IBGE do município.
-          type: string
-        cidade:
-          description: Cidade.
-          maxLength: 255
-          type: string
-        uf:
-          description: Sigla do estado.
-          type: string
-        codigo_pais:
-          default: "1058"
-          description: Código do país.
-          type: string
-        pais:
-          default: Brasil
-          description: Nome do país.
-          maxLength: 255
-          type: string
-        cep:
-          description: "CEP.\r\n\r\n*Utilize o valor sem máscara*."
-          type: string
-      required:
-      - bairro
-      - cep
-      - codigo_municipio
-      - logradouro
-      - numero
-      - uf
-      type: object
     NfseLoteDpsPedidoEmissao:
       example:
         documentos:
@@ -7380,10 +7980,11 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 1
+              cNaoNIF: 5
             dCompet: 2000-01-23
             serv:
               obra:
@@ -7395,6 +7996,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 inscImobFisc: inscImobFisc
@@ -7421,6 +8023,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 id: id
@@ -7430,20 +8033,20 @@ components:
                 cLocPrestacao: cLocPrestacao
                 cPaisPrestacao: cPaisPrestacao
               comExt:
-                vServMoeda: 0.23021358869347652
+                vServMoeda: 0.7061401241503109
                 nRE: nRE
                 nDI: nDI
-                mdic: 9
+                mdic: 3
                 mecAFComexT: mecAFComexT
-                movTempBens: 7
+                movTempBens: 9
                 mdPrestacao: 5
                 tpMoeda: tpMoeda
                 mecAFComexP: mecAFComexP
-                vincPrest: 5
+                vincPrest: 2
               lsadppu:
                 extensao: extensao
-                categ: 3
-                objeto: 2
+                categ: 2
+                objeto: 4
                 nPostes: nPostes
               explRod:
                 codContrato: codContrato
@@ -7451,7 +8054,7 @@ components:
                 codAcessoPed: codAcessoPed
                 categVeic: categVeic
                 nEixos: nEixos
-                rodagem: 4
+                rodagem: 7
                 placa: placa
             verAplic: verAplic
             toma:
@@ -7475,55 +8078,56 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 6
+              cNaoNIF: 1
             valores:
               vDescCondIncond:
-                vDescIncond: 0.10246457001441578
-                vDescCond: 0.14894159098541704
+                vDescIncond: 0.14894159098541704
+                vDescCond: 0.684685269835264
               trib:
                 totTrib:
                   vTotTrib:
-                    vTotTribFed: 0.30205796992916245
-                    vTotTribEst: 0.3057610024104934
-                    vTotTribMun: 0.704836565559697
-                  pTotTribSN: 0.6628464275087742
+                    vTotTribFed: 0.3057610024104934
+                    vTotTribEst: 0.704836565559697
+                    vTotTribMun: 0.5533258397034986
+                  pTotTribSN: 0.42587731081743563
                   pTotTrib:
-                    pTotTribFed: 0.5533258397034986
-                    pTotTribEst: 0.32588565619047605
-                    pTotTribMun: 0.40788458496667523
-                  indTotTrib: 0
+                    pTotTribFed: 0.32588565619047605
+                    pTotTribEst: 0.40788458496667523
+                    pTotTribMun: 0.02025324113236393
+                  indTotTrib: 6
                 tribFed:
-                  vRetIRRF: 0.8969578798196912
-                  vRetCP: 0.46523964329332457
+                  vRetIRRF: 0.7740351818741174
+                  vRetCP: 0.8969578798196912
                   piscofins:
-                    vPis: 0.7058770351582356
+                    vPis: 0.6519180951018382
                     CST: CST
-                    pAliqPis: 0.7143538047012307
-                    pAliqCofins: 0.08851374739011653
-                    vCofins: 0.6519180951018382
-                    vBCPisCofins: 0.30937452626664474
-                    tpRetPisCofins: 0
-                  vRetCSLL: 0.7740351818741174
+                    pAliqPis: 0.08851374739011653
+                    pAliqCofins: 0.7058770351582356
+                    vCofins: 0.010263654006109402
+                    vBCPisCofins: 0.7143538047012307
+                    tpRetPisCofins: 4
+                  vRetCSLL: 0.30205796992916245
                 tribMun:
-                  tribISSQN: 9
+                  tribISSQN: 6
                   exigSusp:
                     nProcesso: nProcesso
-                    tpSusp: 1
-                  tpImunidade: 2
+                    tpSusp: 2
+                  tpImunidade: 6
                   cPaisResult: cPaisResult
-                  vBC: 0.6778324963048014
+                  vBC: 0.6878052220127876
                   cLocIncid: cLocIncid
-                  vISSQN: 0.5944895607614016
-                  vLiq: 0.3353193347011243
-                  pAliq: 0.6878052220127876
-                  tpRetISSQN: 6
+                  vISSQN: 0.6704019297950036
+                  vLiq: 0.30937452626664474
+                  pAliq: 0.5944895607614016
+                  tpRetISSQN: 3
                   BM:
-                    tpBM: 6
-                    pRedBCBM: 0.6965117697638845
-                    vRedBCBM: 0.35571952270680973
+                    tpBM: 3
+                    pRedBCBM: 0.1284659006116532
+                    vRedBCBM: 0.6965117697638845
                     nBM: nBM
               vDedRed:
                 documentos:
@@ -7535,12 +8139,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -7561,14 +8165,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -7576,12 +8181,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -7602,14 +8207,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -7617,12 +8223,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -7643,14 +8249,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -7658,12 +8265,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -7684,14 +8291,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -7699,12 +8307,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -7725,25 +8333,28 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
-                vDR: 0.7457744773683765
-                pDR: 0.684685269835264
+                      nNFS: 5025004
+                vDR: 0.11730742509559433
+                pDR: 0.7457744773683765
               vServPrest:
-                vReceb: 0.7386281948385884
-                vServ: 0.12315135367772556
+                vReceb: 0.12315135367772556
+                vServ: 0.10246457001441578
             subst:
               chSubstda: chSubstda
               cMotivo: cMotivo
               xMotivo: xMotivo
             prest:
               CPF: CPF
+              regTrib:
+                regEspTrib: 6
               CNPJ: CNPJ
             tpAmb: 0
             dhEmi: 2000-01-23T04:56:07.000+00:00
@@ -7771,10 +8382,11 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 1
+              cNaoNIF: 5
             dCompet: 2000-01-23
             serv:
               obra:
@@ -7786,6 +8398,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 inscImobFisc: inscImobFisc
@@ -7812,6 +8425,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 id: id
@@ -7821,20 +8435,20 @@ components:
                 cLocPrestacao: cLocPrestacao
                 cPaisPrestacao: cPaisPrestacao
               comExt:
-                vServMoeda: 0.23021358869347652
+                vServMoeda: 0.7061401241503109
                 nRE: nRE
                 nDI: nDI
-                mdic: 9
+                mdic: 3
                 mecAFComexT: mecAFComexT
-                movTempBens: 7
+                movTempBens: 9
                 mdPrestacao: 5
                 tpMoeda: tpMoeda
                 mecAFComexP: mecAFComexP
-                vincPrest: 5
+                vincPrest: 2
               lsadppu:
                 extensao: extensao
-                categ: 3
-                objeto: 2
+                categ: 2
+                objeto: 4
                 nPostes: nPostes
               explRod:
                 codContrato: codContrato
@@ -7842,7 +8456,7 @@ components:
                 codAcessoPed: codAcessoPed
                 categVeic: categVeic
                 nEixos: nEixos
-                rodagem: 4
+                rodagem: 7
                 placa: placa
             verAplic: verAplic
             toma:
@@ -7866,55 +8480,56 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 6
+              cNaoNIF: 1
             valores:
               vDescCondIncond:
-                vDescIncond: 0.10246457001441578
-                vDescCond: 0.14894159098541704
+                vDescIncond: 0.14894159098541704
+                vDescCond: 0.684685269835264
               trib:
                 totTrib:
                   vTotTrib:
-                    vTotTribFed: 0.30205796992916245
-                    vTotTribEst: 0.3057610024104934
-                    vTotTribMun: 0.704836565559697
-                  pTotTribSN: 0.6628464275087742
+                    vTotTribFed: 0.3057610024104934
+                    vTotTribEst: 0.704836565559697
+                    vTotTribMun: 0.5533258397034986
+                  pTotTribSN: 0.42587731081743563
                   pTotTrib:
-                    pTotTribFed: 0.5533258397034986
-                    pTotTribEst: 0.32588565619047605
-                    pTotTribMun: 0.40788458496667523
-                  indTotTrib: 0
+                    pTotTribFed: 0.32588565619047605
+                    pTotTribEst: 0.40788458496667523
+                    pTotTribMun: 0.02025324113236393
+                  indTotTrib: 6
                 tribFed:
-                  vRetIRRF: 0.8969578798196912
-                  vRetCP: 0.46523964329332457
+                  vRetIRRF: 0.7740351818741174
+                  vRetCP: 0.8969578798196912
                   piscofins:
-                    vPis: 0.7058770351582356
+                    vPis: 0.6519180951018382
                     CST: CST
-                    pAliqPis: 0.7143538047012307
-                    pAliqCofins: 0.08851374739011653
-                    vCofins: 0.6519180951018382
-                    vBCPisCofins: 0.30937452626664474
-                    tpRetPisCofins: 0
-                  vRetCSLL: 0.7740351818741174
+                    pAliqPis: 0.08851374739011653
+                    pAliqCofins: 0.7058770351582356
+                    vCofins: 0.010263654006109402
+                    vBCPisCofins: 0.7143538047012307
+                    tpRetPisCofins: 4
+                  vRetCSLL: 0.30205796992916245
                 tribMun:
-                  tribISSQN: 9
+                  tribISSQN: 6
                   exigSusp:
                     nProcesso: nProcesso
-                    tpSusp: 1
-                  tpImunidade: 2
+                    tpSusp: 2
+                  tpImunidade: 6
                   cPaisResult: cPaisResult
-                  vBC: 0.6778324963048014
+                  vBC: 0.6878052220127876
                   cLocIncid: cLocIncid
-                  vISSQN: 0.5944895607614016
-                  vLiq: 0.3353193347011243
-                  pAliq: 0.6878052220127876
-                  tpRetISSQN: 6
+                  vISSQN: 0.6704019297950036
+                  vLiq: 0.30937452626664474
+                  pAliq: 0.5944895607614016
+                  tpRetISSQN: 3
                   BM:
-                    tpBM: 6
-                    pRedBCBM: 0.6965117697638845
-                    vRedBCBM: 0.35571952270680973
+                    tpBM: 3
+                    pRedBCBM: 0.1284659006116532
+                    vRedBCBM: 0.6965117697638845
                     nBM: nBM
               vDedRed:
                 documentos:
@@ -7926,12 +8541,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -7952,14 +8567,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -7967,12 +8583,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -7993,14 +8609,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8008,12 +8625,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8034,14 +8651,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8049,12 +8667,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8075,14 +8693,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8090,12 +8709,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8116,25 +8735,28 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
-                vDR: 0.7457744773683765
-                pDR: 0.684685269835264
+                      nNFS: 5025004
+                vDR: 0.11730742509559433
+                pDR: 0.7457744773683765
               vServPrest:
-                vReceb: 0.7386281948385884
-                vServ: 0.12315135367772556
+                vReceb: 0.12315135367772556
+                vServ: 0.10246457001441578
             subst:
               chSubstda: chSubstda
               cMotivo: cMotivo
               xMotivo: xMotivo
             prest:
               CPF: CPF
+              regTrib:
+                regEspTrib: 6
               CNPJ: CNPJ
             tpAmb: 0
             dhEmi: 2000-01-23T04:56:07.000+00:00
@@ -8162,10 +8784,11 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 1
+              cNaoNIF: 5
             dCompet: 2000-01-23
             serv:
               obra:
@@ -8177,6 +8800,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 inscImobFisc: inscImobFisc
@@ -8203,6 +8827,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 id: id
@@ -8212,20 +8837,20 @@ components:
                 cLocPrestacao: cLocPrestacao
                 cPaisPrestacao: cPaisPrestacao
               comExt:
-                vServMoeda: 0.23021358869347652
+                vServMoeda: 0.7061401241503109
                 nRE: nRE
                 nDI: nDI
-                mdic: 9
+                mdic: 3
                 mecAFComexT: mecAFComexT
-                movTempBens: 7
+                movTempBens: 9
                 mdPrestacao: 5
                 tpMoeda: tpMoeda
                 mecAFComexP: mecAFComexP
-                vincPrest: 5
+                vincPrest: 2
               lsadppu:
                 extensao: extensao
-                categ: 3
-                objeto: 2
+                categ: 2
+                objeto: 4
                 nPostes: nPostes
               explRod:
                 codContrato: codContrato
@@ -8233,7 +8858,7 @@ components:
                 codAcessoPed: codAcessoPed
                 categVeic: categVeic
                 nEixos: nEixos
-                rodagem: 4
+                rodagem: 7
                 placa: placa
             verAplic: verAplic
             toma:
@@ -8257,55 +8882,56 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 6
+              cNaoNIF: 1
             valores:
               vDescCondIncond:
-                vDescIncond: 0.10246457001441578
-                vDescCond: 0.14894159098541704
+                vDescIncond: 0.14894159098541704
+                vDescCond: 0.684685269835264
               trib:
                 totTrib:
                   vTotTrib:
-                    vTotTribFed: 0.30205796992916245
-                    vTotTribEst: 0.3057610024104934
-                    vTotTribMun: 0.704836565559697
-                  pTotTribSN: 0.6628464275087742
+                    vTotTribFed: 0.3057610024104934
+                    vTotTribEst: 0.704836565559697
+                    vTotTribMun: 0.5533258397034986
+                  pTotTribSN: 0.42587731081743563
                   pTotTrib:
-                    pTotTribFed: 0.5533258397034986
-                    pTotTribEst: 0.32588565619047605
-                    pTotTribMun: 0.40788458496667523
-                  indTotTrib: 0
+                    pTotTribFed: 0.32588565619047605
+                    pTotTribEst: 0.40788458496667523
+                    pTotTribMun: 0.02025324113236393
+                  indTotTrib: 6
                 tribFed:
-                  vRetIRRF: 0.8969578798196912
-                  vRetCP: 0.46523964329332457
+                  vRetIRRF: 0.7740351818741174
+                  vRetCP: 0.8969578798196912
                   piscofins:
-                    vPis: 0.7058770351582356
+                    vPis: 0.6519180951018382
                     CST: CST
-                    pAliqPis: 0.7143538047012307
-                    pAliqCofins: 0.08851374739011653
-                    vCofins: 0.6519180951018382
-                    vBCPisCofins: 0.30937452626664474
-                    tpRetPisCofins: 0
-                  vRetCSLL: 0.7740351818741174
+                    pAliqPis: 0.08851374739011653
+                    pAliqCofins: 0.7058770351582356
+                    vCofins: 0.010263654006109402
+                    vBCPisCofins: 0.7143538047012307
+                    tpRetPisCofins: 4
+                  vRetCSLL: 0.30205796992916245
                 tribMun:
-                  tribISSQN: 9
+                  tribISSQN: 6
                   exigSusp:
                     nProcesso: nProcesso
-                    tpSusp: 1
-                  tpImunidade: 2
+                    tpSusp: 2
+                  tpImunidade: 6
                   cPaisResult: cPaisResult
-                  vBC: 0.6778324963048014
+                  vBC: 0.6878052220127876
                   cLocIncid: cLocIncid
-                  vISSQN: 0.5944895607614016
-                  vLiq: 0.3353193347011243
-                  pAliq: 0.6878052220127876
-                  tpRetISSQN: 6
+                  vISSQN: 0.6704019297950036
+                  vLiq: 0.30937452626664474
+                  pAliq: 0.5944895607614016
+                  tpRetISSQN: 3
                   BM:
-                    tpBM: 6
-                    pRedBCBM: 0.6965117697638845
-                    vRedBCBM: 0.35571952270680973
+                    tpBM: 3
+                    pRedBCBM: 0.1284659006116532
+                    vRedBCBM: 0.6965117697638845
                     nBM: nBM
               vDedRed:
                 documentos:
@@ -8317,12 +8943,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8343,14 +8969,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8358,12 +8985,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8384,14 +9011,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8399,12 +9027,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8425,14 +9053,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8440,12 +9069,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8466,14 +9095,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8481,12 +9111,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8507,25 +9137,28 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
-                vDR: 0.7457744773683765
-                pDR: 0.684685269835264
+                      nNFS: 5025004
+                vDR: 0.11730742509559433
+                pDR: 0.7457744773683765
               vServPrest:
-                vReceb: 0.7386281948385884
-                vServ: 0.12315135367772556
+                vReceb: 0.12315135367772556
+                vServ: 0.10246457001441578
             subst:
               chSubstda: chSubstda
               cMotivo: cMotivo
               xMotivo: xMotivo
             prest:
               CPF: CPF
+              regTrib:
+                regEspTrib: 6
               CNPJ: CNPJ
             tpAmb: 0
             dhEmi: 2000-01-23T04:56:07.000+00:00
@@ -8553,10 +9186,11 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 1
+              cNaoNIF: 5
             dCompet: 2000-01-23
             serv:
               obra:
@@ -8568,6 +9202,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 inscImobFisc: inscImobFisc
@@ -8594,6 +9229,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 id: id
@@ -8603,20 +9239,20 @@ components:
                 cLocPrestacao: cLocPrestacao
                 cPaisPrestacao: cPaisPrestacao
               comExt:
-                vServMoeda: 0.23021358869347652
+                vServMoeda: 0.7061401241503109
                 nRE: nRE
                 nDI: nDI
-                mdic: 9
+                mdic: 3
                 mecAFComexT: mecAFComexT
-                movTempBens: 7
+                movTempBens: 9
                 mdPrestacao: 5
                 tpMoeda: tpMoeda
                 mecAFComexP: mecAFComexP
-                vincPrest: 5
+                vincPrest: 2
               lsadppu:
                 extensao: extensao
-                categ: 3
-                objeto: 2
+                categ: 2
+                objeto: 4
                 nPostes: nPostes
               explRod:
                 codContrato: codContrato
@@ -8624,7 +9260,7 @@ components:
                 codAcessoPed: codAcessoPed
                 categVeic: categVeic
                 nEixos: nEixos
-                rodagem: 4
+                rodagem: 7
                 placa: placa
             verAplic: verAplic
             toma:
@@ -8648,55 +9284,56 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 6
+              cNaoNIF: 1
             valores:
               vDescCondIncond:
-                vDescIncond: 0.10246457001441578
-                vDescCond: 0.14894159098541704
+                vDescIncond: 0.14894159098541704
+                vDescCond: 0.684685269835264
               trib:
                 totTrib:
                   vTotTrib:
-                    vTotTribFed: 0.30205796992916245
-                    vTotTribEst: 0.3057610024104934
-                    vTotTribMun: 0.704836565559697
-                  pTotTribSN: 0.6628464275087742
+                    vTotTribFed: 0.3057610024104934
+                    vTotTribEst: 0.704836565559697
+                    vTotTribMun: 0.5533258397034986
+                  pTotTribSN: 0.42587731081743563
                   pTotTrib:
-                    pTotTribFed: 0.5533258397034986
-                    pTotTribEst: 0.32588565619047605
-                    pTotTribMun: 0.40788458496667523
-                  indTotTrib: 0
+                    pTotTribFed: 0.32588565619047605
+                    pTotTribEst: 0.40788458496667523
+                    pTotTribMun: 0.02025324113236393
+                  indTotTrib: 6
                 tribFed:
-                  vRetIRRF: 0.8969578798196912
-                  vRetCP: 0.46523964329332457
+                  vRetIRRF: 0.7740351818741174
+                  vRetCP: 0.8969578798196912
                   piscofins:
-                    vPis: 0.7058770351582356
+                    vPis: 0.6519180951018382
                     CST: CST
-                    pAliqPis: 0.7143538047012307
-                    pAliqCofins: 0.08851374739011653
-                    vCofins: 0.6519180951018382
-                    vBCPisCofins: 0.30937452626664474
-                    tpRetPisCofins: 0
-                  vRetCSLL: 0.7740351818741174
+                    pAliqPis: 0.08851374739011653
+                    pAliqCofins: 0.7058770351582356
+                    vCofins: 0.010263654006109402
+                    vBCPisCofins: 0.7143538047012307
+                    tpRetPisCofins: 4
+                  vRetCSLL: 0.30205796992916245
                 tribMun:
-                  tribISSQN: 9
+                  tribISSQN: 6
                   exigSusp:
                     nProcesso: nProcesso
-                    tpSusp: 1
-                  tpImunidade: 2
+                    tpSusp: 2
+                  tpImunidade: 6
                   cPaisResult: cPaisResult
-                  vBC: 0.6778324963048014
+                  vBC: 0.6878052220127876
                   cLocIncid: cLocIncid
-                  vISSQN: 0.5944895607614016
-                  vLiq: 0.3353193347011243
-                  pAliq: 0.6878052220127876
-                  tpRetISSQN: 6
+                  vISSQN: 0.6704019297950036
+                  vLiq: 0.30937452626664474
+                  pAliq: 0.5944895607614016
+                  tpRetISSQN: 3
                   BM:
-                    tpBM: 6
-                    pRedBCBM: 0.6965117697638845
-                    vRedBCBM: 0.35571952270680973
+                    tpBM: 3
+                    pRedBCBM: 0.1284659006116532
+                    vRedBCBM: 0.6965117697638845
                     nBM: nBM
               vDedRed:
                 documentos:
@@ -8708,12 +9345,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8734,14 +9371,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8749,12 +9387,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8775,14 +9413,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8790,12 +9429,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8816,14 +9455,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8831,12 +9471,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8857,14 +9497,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -8872,12 +9513,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -8898,25 +9539,28 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
-                vDR: 0.7457744773683765
-                pDR: 0.684685269835264
+                      nNFS: 5025004
+                vDR: 0.11730742509559433
+                pDR: 0.7457744773683765
               vServPrest:
-                vReceb: 0.7386281948385884
-                vServ: 0.12315135367772556
+                vReceb: 0.12315135367772556
+                vServ: 0.10246457001441578
             subst:
               chSubstda: chSubstda
               cMotivo: cMotivo
               xMotivo: xMotivo
             prest:
               CPF: CPF
+              regTrib:
+                regEspTrib: 6
               CNPJ: CNPJ
             tpAmb: 0
             dhEmi: 2000-01-23T04:56:07.000+00:00
@@ -8944,10 +9588,11 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 1
+              cNaoNIF: 5
             dCompet: 2000-01-23
             serv:
               obra:
@@ -8959,6 +9604,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 inscImobFisc: inscImobFisc
@@ -8985,6 +9631,7 @@ components:
                   xCpl: xCpl
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                   CEP: CEP
                 id: id
@@ -8994,20 +9641,20 @@ components:
                 cLocPrestacao: cLocPrestacao
                 cPaisPrestacao: cPaisPrestacao
               comExt:
-                vServMoeda: 0.23021358869347652
+                vServMoeda: 0.7061401241503109
                 nRE: nRE
                 nDI: nDI
-                mdic: 9
+                mdic: 3
                 mecAFComexT: mecAFComexT
-                movTempBens: 7
+                movTempBens: 9
                 mdPrestacao: 5
                 tpMoeda: tpMoeda
                 mecAFComexP: mecAFComexP
-                vincPrest: 5
+                vincPrest: 2
               lsadppu:
                 extensao: extensao
-                categ: 3
-                objeto: 2
+                categ: 2
+                objeto: 4
                 nPostes: nPostes
               explRod:
                 codContrato: codContrato
@@ -9015,7 +9662,7 @@ components:
                 codAcessoPed: codAcessoPed
                 categVeic: categVeic
                 nEixos: nEixos
-                rodagem: 4
+                rodagem: 7
                 placa: placa
             verAplic: verAplic
             toma:
@@ -9039,55 +9686,56 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 6
+              cNaoNIF: 1
             valores:
               vDescCondIncond:
-                vDescIncond: 0.10246457001441578
-                vDescCond: 0.14894159098541704
+                vDescIncond: 0.14894159098541704
+                vDescCond: 0.684685269835264
               trib:
                 totTrib:
                   vTotTrib:
-                    vTotTribFed: 0.30205796992916245
-                    vTotTribEst: 0.3057610024104934
-                    vTotTribMun: 0.704836565559697
-                  pTotTribSN: 0.6628464275087742
+                    vTotTribFed: 0.3057610024104934
+                    vTotTribEst: 0.704836565559697
+                    vTotTribMun: 0.5533258397034986
+                  pTotTribSN: 0.42587731081743563
                   pTotTrib:
-                    pTotTribFed: 0.5533258397034986
-                    pTotTribEst: 0.32588565619047605
-                    pTotTribMun: 0.40788458496667523
-                  indTotTrib: 0
+                    pTotTribFed: 0.32588565619047605
+                    pTotTribEst: 0.40788458496667523
+                    pTotTribMun: 0.02025324113236393
+                  indTotTrib: 6
                 tribFed:
-                  vRetIRRF: 0.8969578798196912
-                  vRetCP: 0.46523964329332457
+                  vRetIRRF: 0.7740351818741174
+                  vRetCP: 0.8969578798196912
                   piscofins:
-                    vPis: 0.7058770351582356
+                    vPis: 0.6519180951018382
                     CST: CST
-                    pAliqPis: 0.7143538047012307
-                    pAliqCofins: 0.08851374739011653
-                    vCofins: 0.6519180951018382
-                    vBCPisCofins: 0.30937452626664474
-                    tpRetPisCofins: 0
-                  vRetCSLL: 0.7740351818741174
+                    pAliqPis: 0.08851374739011653
+                    pAliqCofins: 0.7058770351582356
+                    vCofins: 0.010263654006109402
+                    vBCPisCofins: 0.7143538047012307
+                    tpRetPisCofins: 4
+                  vRetCSLL: 0.30205796992916245
                 tribMun:
-                  tribISSQN: 9
+                  tribISSQN: 6
                   exigSusp:
                     nProcesso: nProcesso
-                    tpSusp: 1
-                  tpImunidade: 2
+                    tpSusp: 2
+                  tpImunidade: 6
                   cPaisResult: cPaisResult
-                  vBC: 0.6778324963048014
+                  vBC: 0.6878052220127876
                   cLocIncid: cLocIncid
-                  vISSQN: 0.5944895607614016
-                  vLiq: 0.3353193347011243
-                  pAliq: 0.6878052220127876
-                  tpRetISSQN: 6
+                  vISSQN: 0.6704019297950036
+                  vLiq: 0.30937452626664474
+                  pAliq: 0.5944895607614016
+                  tpRetISSQN: 3
                   BM:
-                    tpBM: 6
-                    pRedBCBM: 0.6965117697638845
-                    vRedBCBM: 0.35571952270680973
+                    tpBM: 3
+                    pRedBCBM: 0.1284659006116532
+                    vRedBCBM: 0.6965117697638845
                     nBM: nBM
               vDedRed:
                 documentos:
@@ -9099,12 +9747,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -9125,14 +9773,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -9140,12 +9789,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -9166,14 +9815,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -9181,12 +9831,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -9207,14 +9857,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -9222,12 +9873,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -9248,14 +9899,15 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
+                      nNFS: 5025004
                   - dtEmiDoc: 2000-01-23
                     chNFSe: chNFSe
                     tpDedRed: 9
@@ -9263,12 +9915,12 @@ components:
                     NFSeMun:
                       cMunNFSeMun: cMunNFSeMun
                       cVerifNFSeMun: cVerifNFSeMun
-                      nNFSeMun: 1
-                    vDedutivelRedutivel: 0.9369310271410669
+                      nNFSeMun: 4
+                    vDedutivelRedutivel: 0.6683562403749608
                     nDoc: nDoc
                     nDocFisc: nDocFisc
                     chNFe: chNFe
-                    vDeducaoReducao: 0.6683562403749608
+                    vDeducaoReducao: 0.8762042012749002
                     fornec:
                       fone: fone
                       xNome: xNome
@@ -9289,25 +9941,28 @@ components:
                           CEP: CEP
                         xLgr: xLgr
                         nro: nro
+                        tpLgr: tpLgr
                         xBairro: xBairro
                       IE: IE
                       email: email
-                      cNaoNIF: 8
+                      cNaoNIF: 9
                     NFNFS:
-                      modNFS: 5
+                      modNFS: 9
                       serieNFS: serieNFS
-                      nNFS: 4965217
-                vDR: 0.7457744773683765
-                pDR: 0.684685269835264
+                      nNFS: 5025004
+                vDR: 0.11730742509559433
+                pDR: 0.7457744773683765
               vServPrest:
-                vReceb: 0.7386281948385884
-                vServ: 0.12315135367772556
+                vReceb: 0.12315135367772556
+                vServ: 0.10246457001441578
             subst:
               chSubstda: chSubstda
               cMotivo: cMotivo
               xMotivo: xMotivo
             prest:
               CPF: CPF
+              regTrib:
+                regEspTrib: 6
               CNPJ: CNPJ
             tpAmb: 0
             dhEmi: 2000-01-23T04:56:07.000+00:00
@@ -9371,10 +10026,11 @@ components:
                 CEP: CEP
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
             IE: IE
             email: email
-            cNaoNIF: 1
+            cNaoNIF: 5
           dCompet: 2000-01-23
           serv:
             obra:
@@ -9386,6 +10042,7 @@ components:
                 xCpl: xCpl
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
                 CEP: CEP
               inscImobFisc: inscImobFisc
@@ -9412,6 +10069,7 @@ components:
                 xCpl: xCpl
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
                 CEP: CEP
               id: id
@@ -9421,20 +10079,20 @@ components:
               cLocPrestacao: cLocPrestacao
               cPaisPrestacao: cPaisPrestacao
             comExt:
-              vServMoeda: 0.23021358869347652
+              vServMoeda: 0.7061401241503109
               nRE: nRE
               nDI: nDI
-              mdic: 9
+              mdic: 3
               mecAFComexT: mecAFComexT
-              movTempBens: 7
+              movTempBens: 9
               mdPrestacao: 5
               tpMoeda: tpMoeda
               mecAFComexP: mecAFComexP
-              vincPrest: 5
+              vincPrest: 2
             lsadppu:
               extensao: extensao
-              categ: 3
-              objeto: 2
+              categ: 2
+              objeto: 4
               nPostes: nPostes
             explRod:
               codContrato: codContrato
@@ -9442,7 +10100,7 @@ components:
               codAcessoPed: codAcessoPed
               categVeic: categVeic
               nEixos: nEixos
-              rodagem: 4
+              rodagem: 7
               placa: placa
           verAplic: verAplic
           toma:
@@ -9466,55 +10124,56 @@ components:
                 CEP: CEP
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
             IE: IE
             email: email
-            cNaoNIF: 6
+            cNaoNIF: 1
           valores:
             vDescCondIncond:
-              vDescIncond: 0.10246457001441578
-              vDescCond: 0.14894159098541704
+              vDescIncond: 0.14894159098541704
+              vDescCond: 0.684685269835264
             trib:
               totTrib:
                 vTotTrib:
-                  vTotTribFed: 0.30205796992916245
-                  vTotTribEst: 0.3057610024104934
-                  vTotTribMun: 0.704836565559697
-                pTotTribSN: 0.6628464275087742
+                  vTotTribFed: 0.3057610024104934
+                  vTotTribEst: 0.704836565559697
+                  vTotTribMun: 0.5533258397034986
+                pTotTribSN: 0.42587731081743563
                 pTotTrib:
-                  pTotTribFed: 0.5533258397034986
-                  pTotTribEst: 0.32588565619047605
-                  pTotTribMun: 0.40788458496667523
-                indTotTrib: 0
+                  pTotTribFed: 0.32588565619047605
+                  pTotTribEst: 0.40788458496667523
+                  pTotTribMun: 0.02025324113236393
+                indTotTrib: 6
               tribFed:
-                vRetIRRF: 0.8969578798196912
-                vRetCP: 0.46523964329332457
+                vRetIRRF: 0.7740351818741174
+                vRetCP: 0.8969578798196912
                 piscofins:
-                  vPis: 0.7058770351582356
+                  vPis: 0.6519180951018382
                   CST: CST
-                  pAliqPis: 0.7143538047012307
-                  pAliqCofins: 0.08851374739011653
-                  vCofins: 0.6519180951018382
-                  vBCPisCofins: 0.30937452626664474
-                  tpRetPisCofins: 0
-                vRetCSLL: 0.7740351818741174
+                  pAliqPis: 0.08851374739011653
+                  pAliqCofins: 0.7058770351582356
+                  vCofins: 0.010263654006109402
+                  vBCPisCofins: 0.7143538047012307
+                  tpRetPisCofins: 4
+                vRetCSLL: 0.30205796992916245
               tribMun:
-                tribISSQN: 9
+                tribISSQN: 6
                 exigSusp:
                   nProcesso: nProcesso
-                  tpSusp: 1
-                tpImunidade: 2
+                  tpSusp: 2
+                tpImunidade: 6
                 cPaisResult: cPaisResult
-                vBC: 0.6778324963048014
+                vBC: 0.6878052220127876
                 cLocIncid: cLocIncid
-                vISSQN: 0.5944895607614016
-                vLiq: 0.3353193347011243
-                pAliq: 0.6878052220127876
-                tpRetISSQN: 6
+                vISSQN: 0.6704019297950036
+                vLiq: 0.30937452626664474
+                pAliq: 0.5944895607614016
+                tpRetISSQN: 3
                 BM:
-                  tpBM: 6
-                  pRedBCBM: 0.6965117697638845
-                  vRedBCBM: 0.35571952270680973
+                  tpBM: 3
+                  pRedBCBM: 0.1284659006116532
+                  vRedBCBM: 0.6965117697638845
                   nBM: nBM
             vDedRed:
               documentos:
@@ -9526,12 +10185,12 @@ components:
                   NFSeMun:
                     cMunNFSeMun: cMunNFSeMun
                     cVerifNFSeMun: cVerifNFSeMun
-                    nNFSeMun: 1
-                  vDedutivelRedutivel: 0.9369310271410669
+                    nNFSeMun: 4
+                  vDedutivelRedutivel: 0.6683562403749608
                   nDoc: nDoc
                   nDocFisc: nDocFisc
                   chNFe: chNFe
-                  vDeducaoReducao: 0.6683562403749608
+                  vDeducaoReducao: 0.8762042012749002
                   fornec:
                     fone: fone
                     xNome: xNome
@@ -9552,14 +10211,15 @@ components:
                         CEP: CEP
                       xLgr: xLgr
                       nro: nro
+                      tpLgr: tpLgr
                       xBairro: xBairro
                     IE: IE
                     email: email
-                    cNaoNIF: 8
+                    cNaoNIF: 9
                   NFNFS:
-                    modNFS: 5
+                    modNFS: 9
                     serieNFS: serieNFS
-                    nNFS: 4965217
+                    nNFS: 5025004
                 - dtEmiDoc: 2000-01-23
                   chNFSe: chNFSe
                   tpDedRed: 9
@@ -9567,12 +10227,12 @@ components:
                   NFSeMun:
                     cMunNFSeMun: cMunNFSeMun
                     cVerifNFSeMun: cVerifNFSeMun
-                    nNFSeMun: 1
-                  vDedutivelRedutivel: 0.9369310271410669
+                    nNFSeMun: 4
+                  vDedutivelRedutivel: 0.6683562403749608
                   nDoc: nDoc
                   nDocFisc: nDocFisc
                   chNFe: chNFe
-                  vDeducaoReducao: 0.6683562403749608
+                  vDeducaoReducao: 0.8762042012749002
                   fornec:
                     fone: fone
                     xNome: xNome
@@ -9593,14 +10253,15 @@ components:
                         CEP: CEP
                       xLgr: xLgr
                       nro: nro
+                      tpLgr: tpLgr
                       xBairro: xBairro
                     IE: IE
                     email: email
-                    cNaoNIF: 8
+                    cNaoNIF: 9
                   NFNFS:
-                    modNFS: 5
+                    modNFS: 9
                     serieNFS: serieNFS
-                    nNFS: 4965217
+                    nNFS: 5025004
                 - dtEmiDoc: 2000-01-23
                   chNFSe: chNFSe
                   tpDedRed: 9
@@ -9608,12 +10269,12 @@ components:
                   NFSeMun:
                     cMunNFSeMun: cMunNFSeMun
                     cVerifNFSeMun: cVerifNFSeMun
-                    nNFSeMun: 1
-                  vDedutivelRedutivel: 0.9369310271410669
+                    nNFSeMun: 4
+                  vDedutivelRedutivel: 0.6683562403749608
                   nDoc: nDoc
                   nDocFisc: nDocFisc
                   chNFe: chNFe
-                  vDeducaoReducao: 0.6683562403749608
+                  vDeducaoReducao: 0.8762042012749002
                   fornec:
                     fone: fone
                     xNome: xNome
@@ -9634,14 +10295,15 @@ components:
                         CEP: CEP
                       xLgr: xLgr
                       nro: nro
+                      tpLgr: tpLgr
                       xBairro: xBairro
                     IE: IE
                     email: email
-                    cNaoNIF: 8
+                    cNaoNIF: 9
                   NFNFS:
-                    modNFS: 5
+                    modNFS: 9
                     serieNFS: serieNFS
-                    nNFS: 4965217
+                    nNFS: 5025004
                 - dtEmiDoc: 2000-01-23
                   chNFSe: chNFSe
                   tpDedRed: 9
@@ -9649,12 +10311,12 @@ components:
                   NFSeMun:
                     cMunNFSeMun: cMunNFSeMun
                     cVerifNFSeMun: cVerifNFSeMun
-                    nNFSeMun: 1
-                  vDedutivelRedutivel: 0.9369310271410669
+                    nNFSeMun: 4
+                  vDedutivelRedutivel: 0.6683562403749608
                   nDoc: nDoc
                   nDocFisc: nDocFisc
                   chNFe: chNFe
-                  vDeducaoReducao: 0.6683562403749608
+                  vDeducaoReducao: 0.8762042012749002
                   fornec:
                     fone: fone
                     xNome: xNome
@@ -9675,14 +10337,15 @@ components:
                         CEP: CEP
                       xLgr: xLgr
                       nro: nro
+                      tpLgr: tpLgr
                       xBairro: xBairro
                     IE: IE
                     email: email
-                    cNaoNIF: 8
+                    cNaoNIF: 9
                   NFNFS:
-                    modNFS: 5
+                    modNFS: 9
                     serieNFS: serieNFS
-                    nNFS: 4965217
+                    nNFS: 5025004
                 - dtEmiDoc: 2000-01-23
                   chNFSe: chNFSe
                   tpDedRed: 9
@@ -9690,12 +10353,12 @@ components:
                   NFSeMun:
                     cMunNFSeMun: cMunNFSeMun
                     cVerifNFSeMun: cVerifNFSeMun
-                    nNFSeMun: 1
-                  vDedutivelRedutivel: 0.9369310271410669
+                    nNFSeMun: 4
+                  vDedutivelRedutivel: 0.6683562403749608
                   nDoc: nDoc
                   nDocFisc: nDocFisc
                   chNFe: chNFe
-                  vDeducaoReducao: 0.6683562403749608
+                  vDeducaoReducao: 0.8762042012749002
                   fornec:
                     fone: fone
                     xNome: xNome
@@ -9716,25 +10379,28 @@ components:
                         CEP: CEP
                       xLgr: xLgr
                       nro: nro
+                      tpLgr: tpLgr
                       xBairro: xBairro
                     IE: IE
                     email: email
-                    cNaoNIF: 8
+                    cNaoNIF: 9
                   NFNFS:
-                    modNFS: 5
+                    modNFS: 9
                     serieNFS: serieNFS
-                    nNFS: 4965217
-              vDR: 0.7457744773683765
-              pDR: 0.684685269835264
+                    nNFS: 5025004
+              vDR: 0.11730742509559433
+              pDR: 0.7457744773683765
             vServPrest:
-              vReceb: 0.7386281948385884
-              vServ: 0.12315135367772556
+              vReceb: 0.12315135367772556
+              vServ: 0.10246457001441578
           subst:
             chSubstda: chSubstda
             cMotivo: cMotivo
             xMotivo: xMotivo
           prest:
             CPF: CPF
+            regTrib:
+              regEspTrib: 6
             CNPJ: CNPJ
           tpAmb: 0
           dhEmi: 2000-01-23T04:56:07.000+00:00
@@ -9790,10 +10456,11 @@ components:
               CEP: CEP
             xLgr: xLgr
             nro: nro
+            tpLgr: tpLgr
             xBairro: xBairro
           IE: IE
           email: email
-          cNaoNIF: 1
+          cNaoNIF: 5
         dCompet: 2000-01-23
         serv:
           obra:
@@ -9805,6 +10472,7 @@ components:
               xCpl: xCpl
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
               CEP: CEP
             inscImobFisc: inscImobFisc
@@ -9831,6 +10499,7 @@ components:
               xCpl: xCpl
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
               CEP: CEP
             id: id
@@ -9840,20 +10509,20 @@ components:
             cLocPrestacao: cLocPrestacao
             cPaisPrestacao: cPaisPrestacao
           comExt:
-            vServMoeda: 0.23021358869347652
+            vServMoeda: 0.7061401241503109
             nRE: nRE
             nDI: nDI
-            mdic: 9
+            mdic: 3
             mecAFComexT: mecAFComexT
-            movTempBens: 7
+            movTempBens: 9
             mdPrestacao: 5
             tpMoeda: tpMoeda
             mecAFComexP: mecAFComexP
-            vincPrest: 5
+            vincPrest: 2
           lsadppu:
             extensao: extensao
-            categ: 3
-            objeto: 2
+            categ: 2
+            objeto: 4
             nPostes: nPostes
           explRod:
             codContrato: codContrato
@@ -9861,7 +10530,7 @@ components:
             codAcessoPed: codAcessoPed
             categVeic: categVeic
             nEixos: nEixos
-            rodagem: 4
+            rodagem: 7
             placa: placa
         verAplic: verAplic
         toma:
@@ -9885,55 +10554,56 @@ components:
               CEP: CEP
             xLgr: xLgr
             nro: nro
+            tpLgr: tpLgr
             xBairro: xBairro
           IE: IE
           email: email
-          cNaoNIF: 6
+          cNaoNIF: 1
         valores:
           vDescCondIncond:
-            vDescIncond: 0.10246457001441578
-            vDescCond: 0.14894159098541704
+            vDescIncond: 0.14894159098541704
+            vDescCond: 0.684685269835264
           trib:
             totTrib:
               vTotTrib:
-                vTotTribFed: 0.30205796992916245
-                vTotTribEst: 0.3057610024104934
-                vTotTribMun: 0.704836565559697
-              pTotTribSN: 0.6628464275087742
+                vTotTribFed: 0.3057610024104934
+                vTotTribEst: 0.704836565559697
+                vTotTribMun: 0.5533258397034986
+              pTotTribSN: 0.42587731081743563
               pTotTrib:
-                pTotTribFed: 0.5533258397034986
-                pTotTribEst: 0.32588565619047605
-                pTotTribMun: 0.40788458496667523
-              indTotTrib: 0
+                pTotTribFed: 0.32588565619047605
+                pTotTribEst: 0.40788458496667523
+                pTotTribMun: 0.02025324113236393
+              indTotTrib: 6
             tribFed:
-              vRetIRRF: 0.8969578798196912
-              vRetCP: 0.46523964329332457
+              vRetIRRF: 0.7740351818741174
+              vRetCP: 0.8969578798196912
               piscofins:
-                vPis: 0.7058770351582356
+                vPis: 0.6519180951018382
                 CST: CST
-                pAliqPis: 0.7143538047012307
-                pAliqCofins: 0.08851374739011653
-                vCofins: 0.6519180951018382
-                vBCPisCofins: 0.30937452626664474
-                tpRetPisCofins: 0
-              vRetCSLL: 0.7740351818741174
+                pAliqPis: 0.08851374739011653
+                pAliqCofins: 0.7058770351582356
+                vCofins: 0.010263654006109402
+                vBCPisCofins: 0.7143538047012307
+                tpRetPisCofins: 4
+              vRetCSLL: 0.30205796992916245
             tribMun:
-              tribISSQN: 9
+              tribISSQN: 6
               exigSusp:
                 nProcesso: nProcesso
-                tpSusp: 1
-              tpImunidade: 2
+                tpSusp: 2
+              tpImunidade: 6
               cPaisResult: cPaisResult
-              vBC: 0.6778324963048014
+              vBC: 0.6878052220127876
               cLocIncid: cLocIncid
-              vISSQN: 0.5944895607614016
-              vLiq: 0.3353193347011243
-              pAliq: 0.6878052220127876
-              tpRetISSQN: 6
+              vISSQN: 0.6704019297950036
+              vLiq: 0.30937452626664474
+              pAliq: 0.5944895607614016
+              tpRetISSQN: 3
               BM:
-                tpBM: 6
-                pRedBCBM: 0.6965117697638845
-                vRedBCBM: 0.35571952270680973
+                tpBM: 3
+                pRedBCBM: 0.1284659006116532
+                vRedBCBM: 0.6965117697638845
                 nBM: nBM
           vDedRed:
             documentos:
@@ -9945,12 +10615,12 @@ components:
                 NFSeMun:
                   cMunNFSeMun: cMunNFSeMun
                   cVerifNFSeMun: cVerifNFSeMun
-                  nNFSeMun: 1
-                vDedutivelRedutivel: 0.9369310271410669
+                  nNFSeMun: 4
+                vDedutivelRedutivel: 0.6683562403749608
                 nDoc: nDoc
                 nDocFisc: nDocFisc
                 chNFe: chNFe
-                vDeducaoReducao: 0.6683562403749608
+                vDeducaoReducao: 0.8762042012749002
                 fornec:
                   fone: fone
                   xNome: xNome
@@ -9971,14 +10641,15 @@ components:
                       CEP: CEP
                     xLgr: xLgr
                     nro: nro
+                    tpLgr: tpLgr
                     xBairro: xBairro
                   IE: IE
                   email: email
-                  cNaoNIF: 8
+                  cNaoNIF: 9
                 NFNFS:
-                  modNFS: 5
+                  modNFS: 9
                   serieNFS: serieNFS
-                  nNFS: 4965217
+                  nNFS: 5025004
               - dtEmiDoc: 2000-01-23
                 chNFSe: chNFSe
                 tpDedRed: 9
@@ -9986,12 +10657,12 @@ components:
                 NFSeMun:
                   cMunNFSeMun: cMunNFSeMun
                   cVerifNFSeMun: cVerifNFSeMun
-                  nNFSeMun: 1
-                vDedutivelRedutivel: 0.9369310271410669
+                  nNFSeMun: 4
+                vDedutivelRedutivel: 0.6683562403749608
                 nDoc: nDoc
                 nDocFisc: nDocFisc
                 chNFe: chNFe
-                vDeducaoReducao: 0.6683562403749608
+                vDeducaoReducao: 0.8762042012749002
                 fornec:
                   fone: fone
                   xNome: xNome
@@ -10012,14 +10683,15 @@ components:
                       CEP: CEP
                     xLgr: xLgr
                     nro: nro
+                    tpLgr: tpLgr
                     xBairro: xBairro
                   IE: IE
                   email: email
-                  cNaoNIF: 8
+                  cNaoNIF: 9
                 NFNFS:
-                  modNFS: 5
+                  modNFS: 9
                   serieNFS: serieNFS
-                  nNFS: 4965217
+                  nNFS: 5025004
               - dtEmiDoc: 2000-01-23
                 chNFSe: chNFSe
                 tpDedRed: 9
@@ -10027,12 +10699,12 @@ components:
                 NFSeMun:
                   cMunNFSeMun: cMunNFSeMun
                   cVerifNFSeMun: cVerifNFSeMun
-                  nNFSeMun: 1
-                vDedutivelRedutivel: 0.9369310271410669
+                  nNFSeMun: 4
+                vDedutivelRedutivel: 0.6683562403749608
                 nDoc: nDoc
                 nDocFisc: nDocFisc
                 chNFe: chNFe
-                vDeducaoReducao: 0.6683562403749608
+                vDeducaoReducao: 0.8762042012749002
                 fornec:
                   fone: fone
                   xNome: xNome
@@ -10053,14 +10725,15 @@ components:
                       CEP: CEP
                     xLgr: xLgr
                     nro: nro
+                    tpLgr: tpLgr
                     xBairro: xBairro
                   IE: IE
                   email: email
-                  cNaoNIF: 8
+                  cNaoNIF: 9
                 NFNFS:
-                  modNFS: 5
+                  modNFS: 9
                   serieNFS: serieNFS
-                  nNFS: 4965217
+                  nNFS: 5025004
               - dtEmiDoc: 2000-01-23
                 chNFSe: chNFSe
                 tpDedRed: 9
@@ -10068,12 +10741,12 @@ components:
                 NFSeMun:
                   cMunNFSeMun: cMunNFSeMun
                   cVerifNFSeMun: cVerifNFSeMun
-                  nNFSeMun: 1
-                vDedutivelRedutivel: 0.9369310271410669
+                  nNFSeMun: 4
+                vDedutivelRedutivel: 0.6683562403749608
                 nDoc: nDoc
                 nDocFisc: nDocFisc
                 chNFe: chNFe
-                vDeducaoReducao: 0.6683562403749608
+                vDeducaoReducao: 0.8762042012749002
                 fornec:
                   fone: fone
                   xNome: xNome
@@ -10094,14 +10767,15 @@ components:
                       CEP: CEP
                     xLgr: xLgr
                     nro: nro
+                    tpLgr: tpLgr
                     xBairro: xBairro
                   IE: IE
                   email: email
-                  cNaoNIF: 8
+                  cNaoNIF: 9
                 NFNFS:
-                  modNFS: 5
+                  modNFS: 9
                   serieNFS: serieNFS
-                  nNFS: 4965217
+                  nNFS: 5025004
               - dtEmiDoc: 2000-01-23
                 chNFSe: chNFSe
                 tpDedRed: 9
@@ -10109,12 +10783,12 @@ components:
                 NFSeMun:
                   cMunNFSeMun: cMunNFSeMun
                   cVerifNFSeMun: cVerifNFSeMun
-                  nNFSeMun: 1
-                vDedutivelRedutivel: 0.9369310271410669
+                  nNFSeMun: 4
+                vDedutivelRedutivel: 0.6683562403749608
                 nDoc: nDoc
                 nDocFisc: nDocFisc
                 chNFe: chNFe
-                vDeducaoReducao: 0.6683562403749608
+                vDeducaoReducao: 0.8762042012749002
                 fornec:
                   fone: fone
                   xNome: xNome
@@ -10135,25 +10809,28 @@ components:
                       CEP: CEP
                     xLgr: xLgr
                     nro: nro
+                    tpLgr: tpLgr
                     xBairro: xBairro
                   IE: IE
                   email: email
-                  cNaoNIF: 8
+                  cNaoNIF: 9
                 NFNFS:
-                  modNFS: 5
+                  modNFS: 9
                   serieNFS: serieNFS
-                  nNFS: 4965217
-            vDR: 0.7457744773683765
-            pDR: 0.684685269835264
+                  nNFS: 5025004
+            vDR: 0.11730742509559433
+            pDR: 0.7457744773683765
           vServPrest:
-            vReceb: 0.7386281948385884
-            vServ: 0.12315135367772556
+            vReceb: 0.12315135367772556
+            vServ: 0.10246457001441578
         subst:
           chSubstda: chSubstda
           cMotivo: cMotivo
           xMotivo: xMotivo
         prest:
           CPF: CPF
+          regTrib:
+            regEspTrib: 6
           CNPJ: CNPJ
         tpAmb: 0
         dhEmi: 2000-01-23T04:56:07.000+00:00
@@ -10235,6 +10912,8 @@ components:
       description: Grupo de informações do DPS relativas ao Prestador de Serviços.
       example:
         CPF: CPF
+        regTrib:
+          regEspTrib: 6
         CNPJ: CNPJ
       properties:
         CNPJ:
@@ -10249,6 +10928,33 @@ components:
           maxLength: 11
           nullable: true
           type: string
+        regTrib:
+          $ref: '#/components/schemas/RegTrib'
+      type: object
+    RegTrib:
+      description: Grupo de informações relativas aos regimes de tributação do prestador
+        de serviços.
+      example:
+        regEspTrib: 6
+      properties:
+        regEspTrib:
+          description: "Regime Especial de Tributação da Prefeitura.\r\n\r\nCampo\
+            \ opcional utilizado no momento da emissão da NFS-e para informar\r\n\
+            diretamente o código de regime especial de tributação esperado pela\r\n\
+            prefeitura.\r\n\r\n**Comportamento:**\r\n- Ao preencher este campo, o\
+            \ valor será inserido diretamente no XML\r\n  da NFS-e, sem qualquer conversã\
+            o pela Nuvem Fiscal.\r\n- Esse campo sobrescreve o valor configurado previamente\
+            \ nas\r\n  configurações de NFS-e da empresa.\r\n- É especialmente útil\
+            \ quando a prefeitura utiliza códigos próprios que\r\n  não existem no\
+            \ padrão nacional (como valores diferentes dos listados\r\n  de 0 a 6).\r\
+            \n\r\n**Cenários de uso:**\r\n- Quando a prefeitura exige um código que\
+            \ não pode ser representado\r\n  pelos valores do padrão nacional.\r\n\
+            - Quando houver necessidade de enviar o código exato esperado pela\r\n\
+            \  prefeitura, sem depender da lógica de conversão automática da Nuvem\
+            \ Fiscal.\r\n\r\n**Atenção**: Para emissões pelo Sistema Nacional NFS-e,\
+            \ esse campo é ignorado."
+          nullable: true
+          type: integer
       type: object
     InfoTomador:
       description: Grupo de informações do DPS relativas ao Tomador de Serviços.
@@ -10273,10 +10979,11 @@ components:
             CEP: CEP
           xLgr: xLgr
           nro: nro
+          tpLgr: tpLgr
           xBairro: xBairro
         IE: IE
         email: email
-        cNaoNIF: 6
+        cNaoNIF: 1
       properties:
         orgaoPublico:
           default: false
@@ -10361,6 +11068,7 @@ components:
           CEP: CEP
         xLgr: xLgr
         nro: nro
+        tpLgr: tpLgr
         xBairro: xBairro
       properties:
         endNac:
@@ -10371,6 +11079,11 @@ components:
           description: Tipo e nome do logradouro da localização do imóvel.
           maxLength: 255
           minLength: 1
+          nullable: true
+          type: string
+        tpLgr:
+          description: "Tipo do Logradouro.\r\n\r\n**Atenção**: Para emissões pelo\
+            \ Sistema Nacional NFS-e, esse campo é ignorado."
           nullable: true
           type: string
         nro:
@@ -10467,10 +11180,11 @@ components:
             CEP: CEP
           xLgr: xLgr
           nro: nro
+          tpLgr: tpLgr
           xBairro: xBairro
         IE: IE
         email: email
-        cNaoNIF: 1
+        cNaoNIF: 5
       properties:
         CNPJ:
           description: Número do CNPJ.
@@ -10547,6 +11261,7 @@ components:
             xCpl: xCpl
             xLgr: xLgr
             nro: nro
+            tpLgr: tpLgr
             xBairro: xBairro
             CEP: CEP
           inscImobFisc: inscImobFisc
@@ -10573,6 +11288,7 @@ components:
             xCpl: xCpl
             xLgr: xLgr
             nro: nro
+            tpLgr: tpLgr
             xBairro: xBairro
             CEP: CEP
           id: id
@@ -10582,20 +11298,20 @@ components:
           cLocPrestacao: cLocPrestacao
           cPaisPrestacao: cPaisPrestacao
         comExt:
-          vServMoeda: 0.23021358869347652
+          vServMoeda: 0.7061401241503109
           nRE: nRE
           nDI: nDI
-          mdic: 9
+          mdic: 3
           mecAFComexT: mecAFComexT
-          movTempBens: 7
+          movTempBens: 9
           mdPrestacao: 5
           tpMoeda: tpMoeda
           mecAFComexP: mecAFComexP
-          vincPrest: 5
+          vincPrest: 2
         lsadppu:
           extensao: extensao
-          categ: 3
-          objeto: 2
+          categ: 2
+          objeto: 4
           nPostes: nPostes
         explRod:
           codContrato: codContrato
@@ -10603,7 +11319,7 @@ components:
           codAcessoPed: codAcessoPed
           categVeic: categVeic
           nEixos: nEixos
-          rodagem: 4
+          rodagem: 7
           placa: placa
       properties:
         locPrest:
@@ -10687,16 +11403,16 @@ components:
       description: Grupo de informações relativas à exportação/importação de serviço
         prestado.
       example:
-        vServMoeda: 0.23021358869347652
+        vServMoeda: 0.7061401241503109
         nRE: nRE
         nDI: nDI
-        mdic: 9
+        mdic: 3
         mecAFComexT: mecAFComexT
-        movTempBens: 7
+        movTempBens: 9
         mdPrestacao: 5
         tpMoeda: tpMoeda
         mecAFComexP: mecAFComexP
-        vincPrest: 5
+        vincPrest: 2
       properties:
         mdPrestacao:
           description: "Modo de Prestação:\r\n* 0 - Desconhecido (tipo não informado\
@@ -10795,8 +11511,8 @@ components:
         \ não, de ferrovia, rodovia, postes, cabos, dutos e condutos de qualquer natureza."
       example:
         extensao: extensao
-        categ: 3
-        objeto: 2
+        categ: 2
+        objeto: 4
         nPostes: nPostes
       properties:
         categ:
@@ -10837,6 +11553,7 @@ components:
           xCpl: xCpl
           xLgr: xLgr
           nro: nro
+          tpLgr: tpLgr
           xBairro: xBairro
           CEP: CEP
         inscImobFisc: inscImobFisc
@@ -10870,6 +11587,7 @@ components:
         xCpl: xCpl
         xLgr: xLgr
         nro: nro
+        tpLgr: tpLgr
         xBairro: xBairro
         CEP: CEP
       properties:
@@ -10883,6 +11601,11 @@ components:
           description: Tipo e nome do logradouro da localização do imóvel.
           maxLength: 255
           minLength: 1
+          nullable: true
+          type: string
+        tpLgr:
+          description: "Tipo do Logradouro.\r\n\r\n**Atenção**: Para emissões pelo\
+            \ Sistema Nacional NFS-e, esse campo é ignorado."
           nullable: true
           type: string
         nro:
@@ -10954,6 +11677,7 @@ components:
           xCpl: xCpl
           xLgr: xLgr
           nro: nro
+          tpLgr: tpLgr
           xBairro: xBairro
           CEP: CEP
         id: id
@@ -11011,7 +11735,7 @@ components:
         codAcessoPed: codAcessoPed
         categVeic: categVeic
         nEixos: nEixos
-        rodagem: 4
+        rodagem: 7
         placa: placa
       properties:
         categVeic:
@@ -11097,49 +11821,49 @@ components:
       description: Grupo de informações relativas à valores do serviço prestado.
       example:
         vDescCondIncond:
-          vDescIncond: 0.10246457001441578
-          vDescCond: 0.14894159098541704
+          vDescIncond: 0.14894159098541704
+          vDescCond: 0.684685269835264
         trib:
           totTrib:
             vTotTrib:
-              vTotTribFed: 0.30205796992916245
-              vTotTribEst: 0.3057610024104934
-              vTotTribMun: 0.704836565559697
-            pTotTribSN: 0.6628464275087742
+              vTotTribFed: 0.3057610024104934
+              vTotTribEst: 0.704836565559697
+              vTotTribMun: 0.5533258397034986
+            pTotTribSN: 0.42587731081743563
             pTotTrib:
-              pTotTribFed: 0.5533258397034986
-              pTotTribEst: 0.32588565619047605
-              pTotTribMun: 0.40788458496667523
-            indTotTrib: 0
+              pTotTribFed: 0.32588565619047605
+              pTotTribEst: 0.40788458496667523
+              pTotTribMun: 0.02025324113236393
+            indTotTrib: 6
           tribFed:
-            vRetIRRF: 0.8969578798196912
-            vRetCP: 0.46523964329332457
+            vRetIRRF: 0.7740351818741174
+            vRetCP: 0.8969578798196912
             piscofins:
-              vPis: 0.7058770351582356
+              vPis: 0.6519180951018382
               CST: CST
-              pAliqPis: 0.7143538047012307
-              pAliqCofins: 0.08851374739011653
-              vCofins: 0.6519180951018382
-              vBCPisCofins: 0.30937452626664474
-              tpRetPisCofins: 0
-            vRetCSLL: 0.7740351818741174
+              pAliqPis: 0.08851374739011653
+              pAliqCofins: 0.7058770351582356
+              vCofins: 0.010263654006109402
+              vBCPisCofins: 0.7143538047012307
+              tpRetPisCofins: 4
+            vRetCSLL: 0.30205796992916245
           tribMun:
-            tribISSQN: 9
+            tribISSQN: 6
             exigSusp:
               nProcesso: nProcesso
-              tpSusp: 1
-            tpImunidade: 2
+              tpSusp: 2
+            tpImunidade: 6
             cPaisResult: cPaisResult
-            vBC: 0.6778324963048014
+            vBC: 0.6878052220127876
             cLocIncid: cLocIncid
-            vISSQN: 0.5944895607614016
-            vLiq: 0.3353193347011243
-            pAliq: 0.6878052220127876
-            tpRetISSQN: 6
+            vISSQN: 0.6704019297950036
+            vLiq: 0.30937452626664474
+            pAliq: 0.5944895607614016
+            tpRetISSQN: 3
             BM:
-              tpBM: 6
-              pRedBCBM: 0.6965117697638845
-              vRedBCBM: 0.35571952270680973
+              tpBM: 3
+              pRedBCBM: 0.1284659006116532
+              vRedBCBM: 0.6965117697638845
               nBM: nBM
         vDedRed:
           documentos:
@@ -11151,12 +11875,12 @@ components:
               NFSeMun:
                 cMunNFSeMun: cMunNFSeMun
                 cVerifNFSeMun: cVerifNFSeMun
-                nNFSeMun: 1
-              vDedutivelRedutivel: 0.9369310271410669
+                nNFSeMun: 4
+              vDedutivelRedutivel: 0.6683562403749608
               nDoc: nDoc
               nDocFisc: nDocFisc
               chNFe: chNFe
-              vDeducaoReducao: 0.6683562403749608
+              vDeducaoReducao: 0.8762042012749002
               fornec:
                 fone: fone
                 xNome: xNome
@@ -11177,14 +11901,15 @@ components:
                     CEP: CEP
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                 IE: IE
                 email: email
-                cNaoNIF: 8
+                cNaoNIF: 9
               NFNFS:
-                modNFS: 5
+                modNFS: 9
                 serieNFS: serieNFS
-                nNFS: 4965217
+                nNFS: 5025004
             - dtEmiDoc: 2000-01-23
               chNFSe: chNFSe
               tpDedRed: 9
@@ -11192,12 +11917,12 @@ components:
               NFSeMun:
                 cMunNFSeMun: cMunNFSeMun
                 cVerifNFSeMun: cVerifNFSeMun
-                nNFSeMun: 1
-              vDedutivelRedutivel: 0.9369310271410669
+                nNFSeMun: 4
+              vDedutivelRedutivel: 0.6683562403749608
               nDoc: nDoc
               nDocFisc: nDocFisc
               chNFe: chNFe
-              vDeducaoReducao: 0.6683562403749608
+              vDeducaoReducao: 0.8762042012749002
               fornec:
                 fone: fone
                 xNome: xNome
@@ -11218,14 +11943,15 @@ components:
                     CEP: CEP
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                 IE: IE
                 email: email
-                cNaoNIF: 8
+                cNaoNIF: 9
               NFNFS:
-                modNFS: 5
+                modNFS: 9
                 serieNFS: serieNFS
-                nNFS: 4965217
+                nNFS: 5025004
             - dtEmiDoc: 2000-01-23
               chNFSe: chNFSe
               tpDedRed: 9
@@ -11233,12 +11959,12 @@ components:
               NFSeMun:
                 cMunNFSeMun: cMunNFSeMun
                 cVerifNFSeMun: cVerifNFSeMun
-                nNFSeMun: 1
-              vDedutivelRedutivel: 0.9369310271410669
+                nNFSeMun: 4
+              vDedutivelRedutivel: 0.6683562403749608
               nDoc: nDoc
               nDocFisc: nDocFisc
               chNFe: chNFe
-              vDeducaoReducao: 0.6683562403749608
+              vDeducaoReducao: 0.8762042012749002
               fornec:
                 fone: fone
                 xNome: xNome
@@ -11259,14 +11985,15 @@ components:
                     CEP: CEP
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                 IE: IE
                 email: email
-                cNaoNIF: 8
+                cNaoNIF: 9
               NFNFS:
-                modNFS: 5
+                modNFS: 9
                 serieNFS: serieNFS
-                nNFS: 4965217
+                nNFS: 5025004
             - dtEmiDoc: 2000-01-23
               chNFSe: chNFSe
               tpDedRed: 9
@@ -11274,12 +12001,12 @@ components:
               NFSeMun:
                 cMunNFSeMun: cMunNFSeMun
                 cVerifNFSeMun: cVerifNFSeMun
-                nNFSeMun: 1
-              vDedutivelRedutivel: 0.9369310271410669
+                nNFSeMun: 4
+              vDedutivelRedutivel: 0.6683562403749608
               nDoc: nDoc
               nDocFisc: nDocFisc
               chNFe: chNFe
-              vDeducaoReducao: 0.6683562403749608
+              vDeducaoReducao: 0.8762042012749002
               fornec:
                 fone: fone
                 xNome: xNome
@@ -11300,14 +12027,15 @@ components:
                     CEP: CEP
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                 IE: IE
                 email: email
-                cNaoNIF: 8
+                cNaoNIF: 9
               NFNFS:
-                modNFS: 5
+                modNFS: 9
                 serieNFS: serieNFS
-                nNFS: 4965217
+                nNFS: 5025004
             - dtEmiDoc: 2000-01-23
               chNFSe: chNFSe
               tpDedRed: 9
@@ -11315,12 +12043,12 @@ components:
               NFSeMun:
                 cMunNFSeMun: cMunNFSeMun
                 cVerifNFSeMun: cVerifNFSeMun
-                nNFSeMun: 1
-              vDedutivelRedutivel: 0.9369310271410669
+                nNFSeMun: 4
+              vDedutivelRedutivel: 0.6683562403749608
               nDoc: nDoc
               nDocFisc: nDocFisc
               chNFe: chNFe
-              vDeducaoReducao: 0.6683562403749608
+              vDeducaoReducao: 0.8762042012749002
               fornec:
                 fone: fone
                 xNome: xNome
@@ -11341,19 +12069,20 @@ components:
                     CEP: CEP
                   xLgr: xLgr
                   nro: nro
+                  tpLgr: tpLgr
                   xBairro: xBairro
                 IE: IE
                 email: email
-                cNaoNIF: 8
+                cNaoNIF: 9
               NFNFS:
-                modNFS: 5
+                modNFS: 9
                 serieNFS: serieNFS
-                nNFS: 4965217
-          vDR: 0.7457744773683765
-          pDR: 0.684685269835264
+                nNFS: 5025004
+          vDR: 0.11730742509559433
+          pDR: 0.7457744773683765
         vServPrest:
-          vReceb: 0.7386281948385884
-          vServ: 0.12315135367772556
+          vReceb: 0.12315135367772556
+          vServ: 0.10246457001441578
       properties:
         vServPrest:
           $ref: '#/components/schemas/VServPrest'
@@ -11370,8 +12099,8 @@ components:
     VServPrest:
       description: Grupo de informações relativas aos valores do serviço prestado.
       example:
-        vReceb: 0.7386281948385884
-        vServ: 0.12315135367772556
+        vReceb: 0.12315135367772556
+        vServ: 0.10246457001441578
       properties:
         vReceb:
           description: Valor monetário recebido pelo intermediário do serviço (R$).
@@ -11389,8 +12118,8 @@ components:
     VDescCondIncond:
       description: Grupo de informações relativas aos descontos condicionados e incondicionados.
       example:
-        vDescIncond: 0.10246457001441578
-        vDescCond: 0.14894159098541704
+        vDescIncond: 0.14894159098541704
+        vDescCond: 0.684685269835264
       properties:
         vDescIncond:
           description: Valor monetário do desconto incondicionado (R$).
@@ -11416,12 +12145,12 @@ components:
             NFSeMun:
               cMunNFSeMun: cMunNFSeMun
               cVerifNFSeMun: cVerifNFSeMun
-              nNFSeMun: 1
-            vDedutivelRedutivel: 0.9369310271410669
+              nNFSeMun: 4
+            vDedutivelRedutivel: 0.6683562403749608
             nDoc: nDoc
             nDocFisc: nDocFisc
             chNFe: chNFe
-            vDeducaoReducao: 0.6683562403749608
+            vDeducaoReducao: 0.8762042012749002
             fornec:
               fone: fone
               xNome: xNome
@@ -11442,14 +12171,15 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 8
+              cNaoNIF: 9
             NFNFS:
-              modNFS: 5
+              modNFS: 9
               serieNFS: serieNFS
-              nNFS: 4965217
+              nNFS: 5025004
           - dtEmiDoc: 2000-01-23
             chNFSe: chNFSe
             tpDedRed: 9
@@ -11457,12 +12187,12 @@ components:
             NFSeMun:
               cMunNFSeMun: cMunNFSeMun
               cVerifNFSeMun: cVerifNFSeMun
-              nNFSeMun: 1
-            vDedutivelRedutivel: 0.9369310271410669
+              nNFSeMun: 4
+            vDedutivelRedutivel: 0.6683562403749608
             nDoc: nDoc
             nDocFisc: nDocFisc
             chNFe: chNFe
-            vDeducaoReducao: 0.6683562403749608
+            vDeducaoReducao: 0.8762042012749002
             fornec:
               fone: fone
               xNome: xNome
@@ -11483,14 +12213,15 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 8
+              cNaoNIF: 9
             NFNFS:
-              modNFS: 5
+              modNFS: 9
               serieNFS: serieNFS
-              nNFS: 4965217
+              nNFS: 5025004
           - dtEmiDoc: 2000-01-23
             chNFSe: chNFSe
             tpDedRed: 9
@@ -11498,12 +12229,12 @@ components:
             NFSeMun:
               cMunNFSeMun: cMunNFSeMun
               cVerifNFSeMun: cVerifNFSeMun
-              nNFSeMun: 1
-            vDedutivelRedutivel: 0.9369310271410669
+              nNFSeMun: 4
+            vDedutivelRedutivel: 0.6683562403749608
             nDoc: nDoc
             nDocFisc: nDocFisc
             chNFe: chNFe
-            vDeducaoReducao: 0.6683562403749608
+            vDeducaoReducao: 0.8762042012749002
             fornec:
               fone: fone
               xNome: xNome
@@ -11524,14 +12255,15 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 8
+              cNaoNIF: 9
             NFNFS:
-              modNFS: 5
+              modNFS: 9
               serieNFS: serieNFS
-              nNFS: 4965217
+              nNFS: 5025004
           - dtEmiDoc: 2000-01-23
             chNFSe: chNFSe
             tpDedRed: 9
@@ -11539,12 +12271,12 @@ components:
             NFSeMun:
               cMunNFSeMun: cMunNFSeMun
               cVerifNFSeMun: cVerifNFSeMun
-              nNFSeMun: 1
-            vDedutivelRedutivel: 0.9369310271410669
+              nNFSeMun: 4
+            vDedutivelRedutivel: 0.6683562403749608
             nDoc: nDoc
             nDocFisc: nDocFisc
             chNFe: chNFe
-            vDeducaoReducao: 0.6683562403749608
+            vDeducaoReducao: 0.8762042012749002
             fornec:
               fone: fone
               xNome: xNome
@@ -11565,14 +12297,15 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 8
+              cNaoNIF: 9
             NFNFS:
-              modNFS: 5
+              modNFS: 9
               serieNFS: serieNFS
-              nNFS: 4965217
+              nNFS: 5025004
           - dtEmiDoc: 2000-01-23
             chNFSe: chNFSe
             tpDedRed: 9
@@ -11580,12 +12313,12 @@ components:
             NFSeMun:
               cMunNFSeMun: cMunNFSeMun
               cVerifNFSeMun: cVerifNFSeMun
-              nNFSeMun: 1
-            vDedutivelRedutivel: 0.9369310271410669
+              nNFSeMun: 4
+            vDedutivelRedutivel: 0.6683562403749608
             nDoc: nDoc
             nDocFisc: nDocFisc
             chNFe: chNFe
-            vDeducaoReducao: 0.6683562403749608
+            vDeducaoReducao: 0.8762042012749002
             fornec:
               fone: fone
               xNome: xNome
@@ -11606,16 +12339,17 @@ components:
                   CEP: CEP
                 xLgr: xLgr
                 nro: nro
+                tpLgr: tpLgr
                 xBairro: xBairro
               IE: IE
               email: email
-              cNaoNIF: 8
+              cNaoNIF: 9
             NFNFS:
-              modNFS: 5
+              modNFS: 9
               serieNFS: serieNFS
-              nNFS: 4965217
-        vDR: 0.7457744773683765
-        pDR: 0.684685269835264
+              nNFS: 5025004
+        vDR: 0.11730742509559433
+        pDR: 0.7457744773683765
       properties:
         pDR:
           description: Valor percentual padrão para dedução/redução do valor do serviço.
@@ -11642,12 +12376,12 @@ components:
           NFSeMun:
             cMunNFSeMun: cMunNFSeMun
             cVerifNFSeMun: cVerifNFSeMun
-            nNFSeMun: 1
-          vDedutivelRedutivel: 0.9369310271410669
+            nNFSeMun: 4
+          vDedutivelRedutivel: 0.6683562403749608
           nDoc: nDoc
           nDocFisc: nDocFisc
           chNFe: chNFe
-          vDeducaoReducao: 0.6683562403749608
+          vDeducaoReducao: 0.8762042012749002
           fornec:
             fone: fone
             xNome: xNome
@@ -11668,14 +12402,15 @@ components:
                 CEP: CEP
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
             IE: IE
             email: email
-            cNaoNIF: 8
+            cNaoNIF: 9
           NFNFS:
-            modNFS: 5
+            modNFS: 9
             serieNFS: serieNFS
-            nNFS: 4965217
+            nNFS: 5025004
         - dtEmiDoc: 2000-01-23
           chNFSe: chNFSe
           tpDedRed: 9
@@ -11683,12 +12418,12 @@ components:
           NFSeMun:
             cMunNFSeMun: cMunNFSeMun
             cVerifNFSeMun: cVerifNFSeMun
-            nNFSeMun: 1
-          vDedutivelRedutivel: 0.9369310271410669
+            nNFSeMun: 4
+          vDedutivelRedutivel: 0.6683562403749608
           nDoc: nDoc
           nDocFisc: nDocFisc
           chNFe: chNFe
-          vDeducaoReducao: 0.6683562403749608
+          vDeducaoReducao: 0.8762042012749002
           fornec:
             fone: fone
             xNome: xNome
@@ -11709,14 +12444,15 @@ components:
                 CEP: CEP
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
             IE: IE
             email: email
-            cNaoNIF: 8
+            cNaoNIF: 9
           NFNFS:
-            modNFS: 5
+            modNFS: 9
             serieNFS: serieNFS
-            nNFS: 4965217
+            nNFS: 5025004
         - dtEmiDoc: 2000-01-23
           chNFSe: chNFSe
           tpDedRed: 9
@@ -11724,12 +12460,12 @@ components:
           NFSeMun:
             cMunNFSeMun: cMunNFSeMun
             cVerifNFSeMun: cVerifNFSeMun
-            nNFSeMun: 1
-          vDedutivelRedutivel: 0.9369310271410669
+            nNFSeMun: 4
+          vDedutivelRedutivel: 0.6683562403749608
           nDoc: nDoc
           nDocFisc: nDocFisc
           chNFe: chNFe
-          vDeducaoReducao: 0.6683562403749608
+          vDeducaoReducao: 0.8762042012749002
           fornec:
             fone: fone
             xNome: xNome
@@ -11750,14 +12486,15 @@ components:
                 CEP: CEP
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
             IE: IE
             email: email
-            cNaoNIF: 8
+            cNaoNIF: 9
           NFNFS:
-            modNFS: 5
+            modNFS: 9
             serieNFS: serieNFS
-            nNFS: 4965217
+            nNFS: 5025004
         - dtEmiDoc: 2000-01-23
           chNFSe: chNFSe
           tpDedRed: 9
@@ -11765,12 +12502,12 @@ components:
           NFSeMun:
             cMunNFSeMun: cMunNFSeMun
             cVerifNFSeMun: cVerifNFSeMun
-            nNFSeMun: 1
-          vDedutivelRedutivel: 0.9369310271410669
+            nNFSeMun: 4
+          vDedutivelRedutivel: 0.6683562403749608
           nDoc: nDoc
           nDocFisc: nDocFisc
           chNFe: chNFe
-          vDeducaoReducao: 0.6683562403749608
+          vDeducaoReducao: 0.8762042012749002
           fornec:
             fone: fone
             xNome: xNome
@@ -11791,14 +12528,15 @@ components:
                 CEP: CEP
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
             IE: IE
             email: email
-            cNaoNIF: 8
+            cNaoNIF: 9
           NFNFS:
-            modNFS: 5
+            modNFS: 9
             serieNFS: serieNFS
-            nNFS: 4965217
+            nNFS: 5025004
         - dtEmiDoc: 2000-01-23
           chNFSe: chNFSe
           tpDedRed: 9
@@ -11806,12 +12544,12 @@ components:
           NFSeMun:
             cMunNFSeMun: cMunNFSeMun
             cVerifNFSeMun: cVerifNFSeMun
-            nNFSeMun: 1
-          vDedutivelRedutivel: 0.9369310271410669
+            nNFSeMun: 4
+          vDedutivelRedutivel: 0.6683562403749608
           nDoc: nDoc
           nDocFisc: nDocFisc
           chNFe: chNFe
-          vDeducaoReducao: 0.6683562403749608
+          vDeducaoReducao: 0.8762042012749002
           fornec:
             fone: fone
             xNome: xNome
@@ -11832,14 +12570,15 @@ components:
                 CEP: CEP
               xLgr: xLgr
               nro: nro
+              tpLgr: tpLgr
               xBairro: xBairro
             IE: IE
             email: email
-            cNaoNIF: 8
+            cNaoNIF: 9
           NFNFS:
-            modNFS: 5
+            modNFS: 9
             serieNFS: serieNFS
-            nNFS: 4965217
+            nNFS: 5025004
       properties:
         docDedRed:
           items:
@@ -11861,12 +12600,12 @@ components:
         NFSeMun:
           cMunNFSeMun: cMunNFSeMun
           cVerifNFSeMun: cVerifNFSeMun
-          nNFSeMun: 1
-        vDedutivelRedutivel: 0.9369310271410669
+          nNFSeMun: 4
+        vDedutivelRedutivel: 0.6683562403749608
         nDoc: nDoc
         nDocFisc: nDocFisc
         chNFe: chNFe
-        vDeducaoReducao: 0.6683562403749608
+        vDeducaoReducao: 0.8762042012749002
         fornec:
           fone: fone
           xNome: xNome
@@ -11887,14 +12626,15 @@ components:
               CEP: CEP
             xLgr: xLgr
             nro: nro
+            tpLgr: tpLgr
             xBairro: xBairro
           IE: IE
           email: email
-          cNaoNIF: 8
+          cNaoNIF: 9
         NFNFS:
-          modNFS: 5
+          modNFS: 9
           serieNFS: serieNFS
-          nNFS: 4965217
+          nNFS: 5025004
       properties:
         chNFSe:
           description: Chave de Acesso da NFS-e (Padrão Nacional).
@@ -11968,7 +12708,7 @@ components:
       example:
         cMunNFSeMun: cMunNFSeMun
         cVerifNFSeMun: cVerifNFSeMun
-        nNFSeMun: 1
+        nNFSeMun: 4
       properties:
         cMunNFSeMun:
           description: Código Município emissor da nota eletrônica municipal (Tabela
@@ -11977,6 +12717,7 @@ components:
           type: string
         nNFSeMun:
           description: Número da nota eletrônica municipal.
+          format: int64
           nullable: true
           type: integer
         cVerifNFSeMun:
@@ -11993,9 +12734,9 @@ components:
     DocNFNFS:
       description: Grupo de informações de NF ou NFS (Modelo não eletrônico).
       example:
-        modNFS: 5
+        modNFS: 9
         serieNFS: serieNFS
-        nNFS: 4965217
+        nNFS: 5025004
       properties:
         nNFS:
           description: Número da Nota Fiscal NF ou NFS.
@@ -12005,6 +12746,7 @@ components:
           type: integer
         modNFS:
           description: Modelo da Nota Fiscal NF ou NFS.
+          format: int64
           nullable: true
           type: integer
         serieNFS:
@@ -12040,10 +12782,11 @@ components:
             CEP: CEP
           xLgr: xLgr
           nro: nro
+          tpLgr: tpLgr
           xBairro: xBairro
         IE: IE
         email: email
-        cNaoNIF: 8
+        cNaoNIF: 9
       properties:
         CNPJ:
           description: Número do CNPJ.
@@ -12114,44 +12857,44 @@ components:
       example:
         totTrib:
           vTotTrib:
-            vTotTribFed: 0.30205796992916245
-            vTotTribEst: 0.3057610024104934
-            vTotTribMun: 0.704836565559697
-          pTotTribSN: 0.6628464275087742
+            vTotTribFed: 0.3057610024104934
+            vTotTribEst: 0.704836565559697
+            vTotTribMun: 0.5533258397034986
+          pTotTribSN: 0.42587731081743563
           pTotTrib:
-            pTotTribFed: 0.5533258397034986
-            pTotTribEst: 0.32588565619047605
-            pTotTribMun: 0.40788458496667523
-          indTotTrib: 0
+            pTotTribFed: 0.32588565619047605
+            pTotTribEst: 0.40788458496667523
+            pTotTribMun: 0.02025324113236393
+          indTotTrib: 6
         tribFed:
-          vRetIRRF: 0.8969578798196912
-          vRetCP: 0.46523964329332457
+          vRetIRRF: 0.7740351818741174
+          vRetCP: 0.8969578798196912
           piscofins:
-            vPis: 0.7058770351582356
+            vPis: 0.6519180951018382
             CST: CST
-            pAliqPis: 0.7143538047012307
-            pAliqCofins: 0.08851374739011653
-            vCofins: 0.6519180951018382
-            vBCPisCofins: 0.30937452626664474
-            tpRetPisCofins: 0
-          vRetCSLL: 0.7740351818741174
+            pAliqPis: 0.08851374739011653
+            pAliqCofins: 0.7058770351582356
+            vCofins: 0.010263654006109402
+            vBCPisCofins: 0.7143538047012307
+            tpRetPisCofins: 4
+          vRetCSLL: 0.30205796992916245
         tribMun:
-          tribISSQN: 9
+          tribISSQN: 6
           exigSusp:
             nProcesso: nProcesso
-            tpSusp: 1
-          tpImunidade: 2
+            tpSusp: 2
+          tpImunidade: 6
           cPaisResult: cPaisResult
-          vBC: 0.6778324963048014
+          vBC: 0.6878052220127876
           cLocIncid: cLocIncid
-          vISSQN: 0.5944895607614016
-          vLiq: 0.3353193347011243
-          pAliq: 0.6878052220127876
-          tpRetISSQN: 6
+          vISSQN: 0.6704019297950036
+          vLiq: 0.30937452626664474
+          pAliq: 0.5944895607614016
+          tpRetISSQN: 3
           BM:
-            tpBM: 6
-            pRedBCBM: 0.6965117697638845
-            vRedBCBM: 0.35571952270680973
+            tpBM: 3
+            pRedBCBM: 0.1284659006116532
+            vRedBCBM: 0.6965117697638845
             nBM: nBM
       properties:
         tribMun:
@@ -12167,22 +12910,22 @@ components:
       description: Grupo de informações relacionados ao Imposto Sobre Serviços de
         Qualquer Natureza - ISSQN.
       example:
-        tribISSQN: 9
+        tribISSQN: 6
         exigSusp:
           nProcesso: nProcesso
-          tpSusp: 1
-        tpImunidade: 2
+          tpSusp: 2
+        tpImunidade: 6
         cPaisResult: cPaisResult
-        vBC: 0.6778324963048014
+        vBC: 0.6878052220127876
         cLocIncid: cLocIncid
-        vISSQN: 0.5944895607614016
-        vLiq: 0.3353193347011243
-        pAliq: 0.6878052220127876
-        tpRetISSQN: 6
+        vISSQN: 0.6704019297950036
+        vLiq: 0.30937452626664474
+        pAliq: 0.5944895607614016
+        tpRetISSQN: 3
         BM:
-          tpBM: 6
-          pRedBCBM: 0.6965117697638845
-          vRedBCBM: 0.35571952270680973
+          tpBM: 3
+          pRedBCBM: 0.1284659006116532
+          vRedBCBM: 0.6965117697638845
           nBM: nBM
       properties:
         tribISSQN:
@@ -12266,9 +13009,9 @@ components:
     BeneficioMunicipal:
       description: Benefício Municipal
       example:
-        tpBM: 6
-        pRedBCBM: 0.6965117697638845
-        vRedBCBM: 0.35571952270680973
+        tpBM: 3
+        pRedBCBM: 0.1284659006116532
+        vRedBCBM: 0.6965117697638845
         nBM: nBM
       properties:
         tpBM:
@@ -12300,7 +13043,7 @@ components:
       description: Informações para a suspensão da Exigibilidade do ISSQN.
       example:
         nProcesso: nProcesso
-        tpSusp: 1
+        tpSusp: 2
       properties:
         tpSusp:
           description: "Opção para Exigibilidade Suspensa:\r\n* 1 - Exigibilidade\
@@ -12321,17 +13064,17 @@ components:
       description: Grupo de informações de outros tributos relacionados ao serviço
         prestado.
       example:
-        vRetIRRF: 0.8969578798196912
-        vRetCP: 0.46523964329332457
+        vRetIRRF: 0.7740351818741174
+        vRetCP: 0.8969578798196912
         piscofins:
-          vPis: 0.7058770351582356
+          vPis: 0.6519180951018382
           CST: CST
-          pAliqPis: 0.7143538047012307
-          pAliqCofins: 0.08851374739011653
-          vCofins: 0.6519180951018382
-          vBCPisCofins: 0.30937452626664474
-          tpRetPisCofins: 0
-        vRetCSLL: 0.7740351818741174
+          pAliqPis: 0.08851374739011653
+          pAliqCofins: 0.7058770351582356
+          vCofins: 0.010263654006109402
+          vBCPisCofins: 0.7143538047012307
+          tpRetPisCofins: 4
+        vRetCSLL: 0.30205796992916245
       properties:
         piscofins:
           $ref: '#/components/schemas/TribOutrosPisCofins'
@@ -12354,13 +13097,13 @@ components:
     TribOutrosPisCofins:
       description: Grupo de informações dos tributos PIS/COFINS.
       example:
-        vPis: 0.7058770351582356
+        vPis: 0.6519180951018382
         CST: CST
-        pAliqPis: 0.7143538047012307
-        pAliqCofins: 0.08851374739011653
-        vCofins: 0.6519180951018382
-        vBCPisCofins: 0.30937452626664474
-        tpRetPisCofins: 0
+        pAliqPis: 0.08851374739011653
+        pAliqCofins: 0.7058770351582356
+        vCofins: 0.010263654006109402
+        vBCPisCofins: 0.7143538047012307
+        tpRetPisCofins: 4
       properties:
         CST:
           description: "Código de Situação Tributária do PIS/COFINS (CST):\r\n* 00\
@@ -12412,15 +13155,15 @@ components:
         ao serviço prestado.
       example:
         vTotTrib:
-          vTotTribFed: 0.30205796992916245
-          vTotTribEst: 0.3057610024104934
-          vTotTribMun: 0.704836565559697
-        pTotTribSN: 0.6628464275087742
+          vTotTribFed: 0.3057610024104934
+          vTotTribEst: 0.704836565559697
+          vTotTribMun: 0.5533258397034986
+        pTotTribSN: 0.42587731081743563
         pTotTrib:
-          pTotTribFed: 0.5533258397034986
-          pTotTribEst: 0.32588565619047605
-          pTotTribMun: 0.40788458496667523
-        indTotTrib: 0
+          pTotTribFed: 0.32588565619047605
+          pTotTribEst: 0.40788458496667523
+          pTotTribMun: 0.02025324113236393
+        indTotTrib: 6
       properties:
         vTotTrib:
           $ref: '#/components/schemas/TribTotalMonet'
@@ -12443,9 +13186,9 @@ components:
       description: "Valor monetário total aproximado dos tributos, em conformidade\
         \ com o artigo 1o da Lei no 12.741/2012."
       example:
-        vTotTribFed: 0.30205796992916245
-        vTotTribEst: 0.3057610024104934
-        vTotTribMun: 0.704836565559697
+        vTotTribFed: 0.3057610024104934
+        vTotTribEst: 0.704836565559697
+        vTotTribMun: 0.5533258397034986
       properties:
         vTotTribFed:
           description: Valor monetário total aproximado dos tributos federais (R$).
@@ -12471,9 +13214,9 @@ components:
       description: "Valor percentual total aproximado dos tributos, em conformidade\
         \ com o artigo 1o da Lei no 12.741/2012."
       example:
-        pTotTribFed: 0.5533258397034986
-        pTotTribEst: 0.32588565619047605
-        pTotTribMun: 0.40788458496667523
+        pTotTribFed: 0.32588565619047605
+        pTotTribEst: 0.40788458496667523
+        pTotTribMun: 0.02025324113236393
       properties:
         pTotTribFed:
           description: Valor percentual total aproximado dos tributos federais (%%).
@@ -13626,457 +14369,145 @@ components:
             $ref: '#/components/schemas/NfseMensagemRetorno'
           type: array
       type: object
-    Empresa:
+    DfeDebug:
       example:
-        fone: fone
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        endereco:
-          uf: uf
-          cidade: cidade
-          complemento: complemento
-          numero: numero
-          logradouro: logradouro
-          bairro: bairro
-          codigo_pais: "1058"
-          codigo_municipio: codigo_municipio
-          pais: Brasil
-          cep: cep
+        tipo: tipo
+        requisicoes:
+        - tipo: tipo
+          codigo_status: 0
+          created_at: 2000-01-23T04:56:07.000+00:00
+          lote_id: lote_id
+          http_request:
+            headers: headers
+            response_headers: response_headers
+            method: method
+            response_status_reason: response_status_reason
+            response_time: 1
+            id: id
+            uri: uri
+            response_status_code: 6
+          motivo_status: motivo_status
+        - tipo: tipo
+          codigo_status: 0
+          created_at: 2000-01-23T04:56:07.000+00:00
+          lote_id: lote_id
+          http_request:
+            headers: headers
+            response_headers: response_headers
+            method: method
+            response_status_reason: response_status_reason
+            response_time: 1
+            id: id
+            uri: uri
+            response_status_code: 6
+          motivo_status: motivo_status
         created_at: 2000-01-23T04:56:07.000+00:00
-        inscricao_estadual: inscricao_estadual
-        nome_razao_social: nome_razao_social
-        nome_fantasia: nome_fantasia
-        cpf_cnpj: cpf_cnpj
-        email: email
-        inscricao_municipal: inscricao_municipal
+        id: id
       properties:
-        cpf_cnpj:
-          description: "CPF ou CNPJ da empresa.\r\n\r\n*Utilize o valor sem máscara*."
+        id:
+          description: Identificador do documento fiscal.
+          type: string
+        tipo:
+          description: "Tipo do documento: nfe, nfce, mdfe, nfse, etc."
           type: string
         created_at:
-          description: "Data/hora em que o objeto foi criado na Nuvem Fiscal. Representado\
-            \ no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"\
-            blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse campo automaticamente.\
-            \ Caso algum valor seja enviado, ele será ignorado*."
+          description: "Data e hora da criação do documento, representada no formato\
+            \ UTC (Tempo Universal Coordenado).\r\nO valor é retornado no padrão ISO\
+            \ 8601, incluindo o deslocamento de fuso horário 'Z' no final.\r\n\r\n\
+            Exemplo: \"2025-04-15T14:16:47.775Z\""
           format: date-time
           type: string
-        updated_at:
-          description: "Data e hora que o objeto foi alterado pela última vez na Nuvem\
-            \ Fiscal. Representado no formato <a href=\"https://en.wikipedia.org/wiki/ISO_8601\"\
-            \ target=\"blank\">`ISO 8601`</a>.\r\n\r\n*A Nuvem Fiscal gerencia esse\
-            \ campo automaticamente. Caso algum valor seja enviado, ele será ignorado*."
-          format: date-time
-          type: string
-        inscricao_estadual:
-          description: Inscrição estadual da empresa.
-          maxLength: 50
-          type: string
-        inscricao_municipal:
-          description: Inscrição municipal da empresa.
-          maxLength: 50
-          type: string
-        nome_razao_social:
-          description: Razão social da empresa.
-          maxLength: 500
-          type: string
-        nome_fantasia:
-          description: Nome fantasia da empresa.
-          maxLength: 500
-          type: string
-        fone:
-          description: Telefone da empresa.
-          type: string
-        email:
-          description: Email da empresa.
-          type: string
-        endereco:
-          $ref: '#/components/schemas/EmpresaEndereco'
-      required:
-      - cpf_cnpj
-      - email
-      - endereco
-      - nome_razao_social
-      type: object
-    EmpresaListagem:
-      example:
-        '@count': 0
-        data:
-        - fone: fone
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          endereco:
-            uf: uf
-            cidade: cidade
-            complemento: complemento
-            numero: numero
-            logradouro: logradouro
-            bairro: bairro
-            codigo_pais: "1058"
-            codigo_municipio: codigo_municipio
-            pais: Brasil
-            cep: cep
-          created_at: 2000-01-23T04:56:07.000+00:00
-          inscricao_estadual: inscricao_estadual
-          nome_razao_social: nome_razao_social
-          nome_fantasia: nome_fantasia
-          cpf_cnpj: cpf_cnpj
-          email: email
-          inscricao_municipal: inscricao_municipal
-        - fone: fone
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          endereco:
-            uf: uf
-            cidade: cidade
-            complemento: complemento
-            numero: numero
-            logradouro: logradouro
-            bairro: bairro
-            codigo_pais: "1058"
-            codigo_municipio: codigo_municipio
-            pais: Brasil
-            cep: cep
-          created_at: 2000-01-23T04:56:07.000+00:00
-          inscricao_estadual: inscricao_estadual
-          nome_razao_social: nome_razao_social
-          nome_fantasia: nome_fantasia
-          cpf_cnpj: cpf_cnpj
-          email: email
-          inscricao_municipal: inscricao_municipal
-      properties:
-        '@count':
-          type: integer
-        data:
+        requisicoes:
+          description: Lista de requisições feitas ao autorizador durante o processamento.
           items:
-            $ref: '#/components/schemas/Empresa'
+            $ref: '#/components/schemas/DfeRequisicaoDebug'
           type: array
       type: object
-    EmpresaPedidoCadastroCertificado:
+    DfeRequisicaoDebug:
       example:
-        password: password
-        certificado: certificado
+        tipo: tipo
+        codigo_status: 0
+        created_at: 2000-01-23T04:56:07.000+00:00
+        lote_id: lote_id
+        http_request:
+          headers: headers
+          response_headers: response_headers
+          method: method
+          response_status_reason: response_status_reason
+          response_time: 1
+          id: id
+          uri: uri
+          response_status_code: 6
+        motivo_status: motivo_status
       properties:
-        certificado:
-          description: Binário do certificado digital (.pfx ou .p12) codificado em
-            base64.
-          format: byte
-          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
-          type: string
-        password:
-          description: Senha do certificado.
-          type: string
-      required:
-      - certificado
-      - password
-      type: object
-    EmpresaCertificado:
-      example:
-        not_valid_after: 2000-01-23T04:56:07.000+00:00
-        not_valid_before: 2000-01-23T04:56:07.000+00:00
-        thumbprint: thumbprint
-        subject_name: subject_name
-        serial_number: serial_number
-        nome_razao_social: nome_razao_social
-        cpf_cnpj: cpf_cnpj
-        issuer_name: issuer_name
-      properties:
-        serial_number:
-          type: string
-        issuer_name:
-          type: string
-        not_valid_before:
+        created_at:
+          description: "Data e hora da criação da requisição, representada no formato\
+            \ UTC (Tempo Universal Coordenado).\r\nO valor é retornado no padrão ISO\
+            \ 8601, incluindo o deslocamento de fuso horário 'Z' no final.\r\n\r\n\
+            Exemplo: \"2025-04-15T14:16:47.775Z\""
           format: date-time
           type: string
-        not_valid_after:
-          format: date-time
+        tipo:
+          description: "Tipo da operação realizada na requisição para o autorizador.\r\
+            \nPode assumir um dos seguintes valores:\r\n- 'envio_lote'      : envio\
+            \ do lote de documentos fiscais para autorização;\r\n- 'consulta_lote'\
+            \   : consulta do processamento do lote;\r\n- 'cons_sit_dfe'    : consulta\
+            \ de situação individual de um DFe.\r\n\r\nEsse campo indica a natureza\
+            \ da interação com a SEFAZ ou prefeitura,\r\ne é útil para fins de rastreamento\
+            \ e diagnóstico do fluxo."
           type: string
-        thumbprint:
+        lote_id:
+          description: Identificador do lote vinculado à requisição.
           type: string
-        subject_name:
-          type: string
-        cpf_cnpj:
-          type: string
-        nome_razao_social:
-          type: string
-      type: object
-    EmpresaConfigNfe:
-      example:
-        CRT: 0
-        ambiente: homologacao
-      properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
-            \ Nacional - Microempreendedor individual (MEI)."
+        codigo_status:
+          description: Código de status retornado pela SEFAZ/prefeitura.
           type: integer
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
+        motivo_status:
+          description: Motivo associado ao status retornado.
           type: string
-      required:
-      - ambiente
+        http_request:
+          $ref: '#/components/schemas/HttpRequestDebug'
       type: object
-    EmpresaConfigNfce:
+    HttpRequestDebug:
+      description: Detalhes técnicos da requisição HTTP realizada ao autorizador.
       example:
-        CRT: 0
-        ambiente: homologacao
-        sefaz:
-          csc: csc
-          id_csc: 6
+        headers: headers
+        response_headers: response_headers
+        method: method
+        response_status_reason: response_status_reason
+        response_time: 1
+        id: id
+        uri: uri
+        response_status_code: 6
       properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
-            \ Nacional - Microempreendedor individual (MEI)."
+        id:
+          description: "Identificador interno da requisição HTTP.\r\n\r\nEsse identificador\
+            \ pode ser utilizado no endpoint\r\n<a href=\"#tag/Debug/operation/DebugHttpRequestContent\"\
+            >Corpo da Requisição HTTP</a> ou <a href=\"#tag/Debug/operation/DebugHttpResponseContent\"\
+            >Corpo da Resposta HTTP</a>\r\npara obter o conteúdo enviado ou recebido\
+            \ na comunicação com o autorizador."
+          type: string
+        method:
+          description: "Método HTTP utilizado (ex: 'POST')."
+          type: string
+        uri:
+          description: "URI do serviço externo (SEFAZ, prefeitura, etc.)."
+          type: string
+        headers:
+          description: "Cabeçalhos HTTP enviados na requisição, no formato bruto."
+          type: string
+        response_status_code:
+          description: "Código de status HTTP retornado (ex: 200, 403)."
           type: integer
-        sefaz:
-          $ref: '#/components/schemas/EmpresaConfigNfceSefaz'
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
+        response_status_reason:
+          description: Motivo ou descrição do status HTTP retornado.
           type: string
-      required:
-      - ambiente
-      - sefaz
-      type: object
-    EmpresaConfigNfceSefaz:
-      example:
-        csc: csc
-        id_csc: 6
-      properties:
-        id_csc:
-          description: Número de identificação do CSC.
+        response_headers:
+          description: "Cabeçalhos retornados na resposta, no formato bruto."
+          type: string
+        response_time:
+          description: "Tempo de resposta do serviço externo, em milissegundos."
           type: integer
-        csc:
-          description: Código do CSC.
-          maxLength: 50
-          type: string
-      required:
-      - csc
-      - id_csc
-      type: object
-    EmpresaConfigNfse:
-      example:
-        prefeitura:
-          senha: senha
-          login: login
-          token: token
-        rps:
-          numero: 5
-          lote: 5
-          serie: serie
-        ambiente: homologacao
-        regTrib:
-          opSimpNac: 0
-          regApTribSN: 6
-          regEspTrib: 1
-        incentivo_fiscal: false
-      properties:
-        regTrib:
-          $ref: '#/components/schemas/EmpresaConfigNfseRegTrib'
-        rps:
-          $ref: '#/components/schemas/EmpresaConfigRps'
-        prefeitura:
-          $ref: '#/components/schemas/EmpresaConfigPrefeitura'
-        incentivo_fiscal:
-          default: false
-          description: Indicador se a empresa possui algum tipo de incentivo fiscal.
-          type: boolean
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      - rps
-      type: object
-    EmpresaConfigNfseRegTrib:
-      description: Grupo de informações relativas aos regimes de tributação do prestador
-        de serviços.
-      example:
-        opSimpNac: 0
-        regApTribSN: 6
-        regEspTrib: 1
-      properties:
-        opSimpNac:
-          description: "Situação perante o Simples Nacional:\r\n* 1 - Não Optante;\r\
-            \n* 2 - Optante - Microempreendedor Individual (MEI);\r\n* 3 - Optante\
-            \ - Microempresa ou Empresa de Pequeno Porte (ME/EPP)."
-          nullable: true
-          type: integer
-        regApTribSN:
-          description: "Opção para que o contribuinte optante pelo Simples Nacional\
-            \ ME/EPP (opSimpNac = 3) possa indicar, ao emitir o documento fiscal,\
-            \ em qual regime de apuração os tributos federais e municipal estão inseridos,\
-            \ caso tenha ultrapassado algum sublimite ou limite definido para o Simples\
-            \ Nacional.\r\n* 1 – Regime de apuração dos tributos federais e municipal\
-            \ pelo SN;\r\n* 2 – Regime de apuração dos tributos federais pelo SN e\
-            \ ISSQN  por fora do SN conforme respectiva legislação municipal do tributo;\r\
-            \n* 3 – Regime de apuração dos tributos federais e municipal por fora\
-            \ do SN conforme respectivas legilações federal e municipal de cada tributo."
-          nullable: true
-          type: integer
-        regEspTrib:
-          description: "Tipos de Regimes Especiais de Tributação:\r\n* 0 - Nenhum;\r\
-            \n* 1 - Ato Cooperado (Cooperativa);\r\n* 2 - Estimativa;\r\n* 3 - Microempresa\
-            \ Municipal;\r\n* 4 - Notário ou Registrador;\r\n* 5 - Profissional Autô\
-            nomo;\r\n* 6 - Sociedade de Profissionais."
-          nullable: true
-          type: integer
-      type: object
-    EmpresaConfigRps:
-      description: "Configuração de numeração de lote, série e RPS."
-      example:
-        numero: 5
-        lote: 5
-        serie: serie
-      properties:
-        lote:
-          description: "Número do Lote de RPS.\r\nInforme o próximo número do lote\
-            \ RPS a ser utilizado. Após isso, a Nuvem\r\nFiscal gerenciará esse campo\
-            \ (a cada novo envio de lote o número é\r\nincrementado em + 1). Portanto,\
-            \ basta informá-lo no cadastro da empresa\r\numa única vez."
-          type: integer
-        serie:
-          description: "Série do RPS.\r\nA série dos RPS varia de acordo com cada\
-            \ prefeitura, podendo ser\r\nnúmero (1, 2 ou 3, por exemplo) ou letras\
-            \ (A, S, NFS, por exemplo).\r\nPortanto, consulte-a com o município da\
-            \ empresa antes de iniciar a\r\nemissão das notas."
-          type: string
-        numero:
-          description: "Número do RPS.\r\nInforme o próximo número de RPS a ser utilizado.\
-            \ Após isso, a Nuvem\r\nFiscal gerenciará esse campo (a cada novo envio\
-            \ de RPS o número é\r\nincrementado em + 1). Portanto, basta informá-lo\
-            \ no cadastro da empresa\r\numa única vez."
-          type: integer
-      required:
-      - lote
-      - numero
-      - serie
-      type: object
-    EmpresaConfigPrefeitura:
-      description: "Dados adicionais para comunicação com a prefeitura. Essa validaç\
-        ão é\r\ndinâmica, de acordo com a necessidade de cada município."
-      example:
-        senha: senha
-        login: login
-        token: token
-      properties:
-        login:
-          description: "Login de autenticação com a prefeitura, caso não utilize certificado\
-            \ digital."
-          maxLength: 255
-          type: string
-        senha:
-          description: "Senha de autenticação com a prefeitura, caso não utilize certificado\
-            \ digital."
-          maxLength: 255
-          type: string
-        token:
-          description: "Token de autenticação com a prefeitura, caso não utilize certificado\
-            \ digital."
-          maxLength: 255
-          type: string
-      type: object
-    EmpresaConfigMdfe:
-      example:
-        ambiente: homologacao
-      properties:
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigCte:
-      example:
-        CRT: 0
-        ambiente: homologacao
-      properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal;\r\n* 4 - Simples\
-            \ Nacional - Microempreendedor Individual (MEI)."
-          type: integer
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigNfcom:
-      example:
-        CRT: 0
-        ambiente: homologacao
-      properties:
-        CRT:
-          description: "Código de Regime Tributário.\r\nEste campo será preenchido\
-            \ com:\r\n* 1 – Simples Nacional;\r\n* 2 – Simples Nacional – excesso\
-            \ de sublimite de receita bruta;\r\n* 3 – Regime Normal."
-          type: integer
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigDce:
-      example:
-        ambiente: homologacao
-      properties:
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
-      type: object
-    EmpresaConfigDistribuicaoNfe:
-      example:
-        distribuicao_automatica: false
-        ciencia_automatica: false
-        ambiente: homologacao
-      properties:
-        distribuicao_automatica:
-          default: false
-          description: "Indica se a distribuição automática está habilitada.\r\n\r\
-            \nNesse modo, a API da Nuvem Fiscal irá realizar pedidos de distribuiç\
-            ão\r\npelo último NSU de forma automática a cada 1 hora."
-          nullable: true
-          type: boolean
-        ciencia_automatica:
-          default: false
-          description: "Indica se a manifestação de Ciência da Operação (210210) deve\
-            \ ser feita\r\nautomaticamente pela API.\r\n\r\nCaso habilitada, a manifestaç\
-            ão de ciência será realizada para notas\r\nrecebidas por qualquer forma\
-            \ de consulta ou modo de distribuição (manual ou automático)."
-          nullable: true
-          type: boolean
-        ambiente:
-          description: Indica se a empresa irá emitir em produção ou homologação.
-          enum:
-          - homologacao
-          - producao
-          type: string
-      required:
-      - ambiente
       type: object
     DfeSefazStatus:
       example:
@@ -16230,11 +16661,13 @@ components:
         dist_nsu:
           description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
             \n\r\n*Obrigatório quando `tipo_consulta` for `distNSU`.*"
+          format: int64
           nullable: true
           type: integer
         cons_nsu:
           description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
             rio quando `tipo_consulta` for `consNSU`.*"
+          format: int64
           nullable: true
           type: integer
         cons_chave:
@@ -16259,10 +16692,12 @@ components:
           description: "Último NSU pesquisado no Ambiente Nacional. Se for o caso,\
             \ o solicitante pode continuar a consulta a partir deste NSU para obter\
             \ novos resultados."
+          format: int64
           nullable: true
           type: integer
         max_nsu:
           description: Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado.
+          format: int64
           nullable: true
           type: integer
         documentos:
@@ -16314,6 +16749,7 @@ components:
           type: string
         nsu:
           description: NSU do documento fiscal.
+          format: int64
           nullable: true
           type: integer
         schema:
@@ -16424,11 +16860,13 @@ components:
         dist_nsu:
           description: "Distribuição de conjunto de DF-e a partir do NSU informado.\r\
             \n\r\n*Obrigatório quando \"tipo_consulta\" for \"dist-nsu\".*"
+          format: int64
           nullable: true
           type: integer
         cons_nsu:
           description: "Consulta DF-e vinculado ao NSU informado.\r\n\r\n*Obrigató\
             rio quando \"tipo_consulta\" for \"cons-nsu\".*"
+          format: int64
           nullable: true
           type: integer
         cons_chave:
@@ -16512,6 +16950,7 @@ components:
           chave_acesso: chave_acesso
           emitente_nome_razao_social: emitente_nome_razao_social
           tipo_nfe: 6
+          data_emissao: 2000-01-23T04:56:07.000+00:00
         - numero_protocolo: numero_protocolo
           digest_value: digest_value
           emitente_cpf_cnpj: emitente_cpf_cnpj
@@ -16520,6 +16959,7 @@ components:
           chave_acesso: chave_acesso
           emitente_nome_razao_social: emitente_nome_razao_social
           tipo_nfe: 6
+          data_emissao: 2000-01-23T04:56:07.000+00:00
       properties:
         '@count':
           type: integer
@@ -16538,6 +16978,7 @@ components:
         chave_acesso: chave_acesso
         emitente_nome_razao_social: emitente_nome_razao_social
         tipo_nfe: 6
+        data_emissao: 2000-01-23T04:56:07.000+00:00
       properties:
         chave_acesso:
           description: Chave de Acesso da NF-e.
@@ -16551,6 +16992,11 @@ components:
           description: Tipo da NF-e (0 - entrada; 1 - saída).
           nullable: true
           type: integer
+        data_emissao:
+          description: Data e hora da emissão do documento fiscal.
+          format: date-time
+          nullable: true
+          type: string
         valor_nfe:
           description: Valor total da NF-e.
           nullable: true
@@ -88908,6 +89354,7 @@ components:
           type: string
         qSelo:
           description: Quantidade de selo de controle do IPI.
+          format: int64
           nullable: true
           type: integer
         cEnq:
@@ -90465,6 +90912,7 @@ components:
       properties:
         qVol:
           description: Quantidade de volumes transportados.
+          format: int64
           nullable: true
           type: integer
         esp:
@@ -92464,6 +92912,7 @@ x-tagGroups:
   - Distribuição NF-e
 - name: Auxiliares
   tags:
+  - Debug
   - Email
   - Cnpj
   - Cep

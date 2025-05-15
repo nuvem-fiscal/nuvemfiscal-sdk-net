@@ -10,14 +10,14 @@ Nome | Tipo | Descrição | Comentários
 **ambiente** | **string** | Identificação do Ambiente. | 
 **uf_autor** | **string** | Sigla da UF do autor. | [optional] 
 **tipo_consulta** | **string** |  | 
-**dist_nsu** | **int?** | Distribuição de conjunto de DF-e a partir do NSU informado.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;distNSU&#x60;.* | [optional] 
-**cons_nsu** | **int?** | Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;consNSU&#x60;.* | [optional] 
+**dist_nsu** | **long?** | Distribuição de conjunto de DF-e a partir do NSU informado.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;distNSU&#x60;.* | [optional] 
+**cons_nsu** | **long?** | Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;consNSU&#x60;.* | [optional] 
 **cons_chave** | **string** | Consulta de NF-e por chave de acesso informada.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;consChNFe&#x60;.* | [optional] 
 **codigo_status** | **int?** | Código do status de processamento da requisição. | 
 **motivo_status** | **string** | Descrição do status de processamento da requisição. | [optional] 
 **data_hora_resposta** | **DateTime?** | Data e Hora de processamento da requisição. | 
-**ultimo_nsu** | **int?** | Último NSU pesquisado no Ambiente Nacional. Se for o caso, o solicitante pode continuar a consulta a partir deste NSU para obter novos resultados. | 
-**max_nsu** | **int?** | Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado. | 
+**ultimo_nsu** | **long?** | Último NSU pesquisado no Ambiente Nacional. Se for o caso, o solicitante pode continuar a consulta a partir deste NSU para obter novos resultados. | 
+**max_nsu** | **long?** | Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado. | 
 **documentos** | [**List&lt;DistribuicaoNfeDocumento&gt;**](DistribuicaoNfeDocumento.md) | Conjunto de informações resumidas e documentos fiscais eletrônicos de interesse da pessoa ou empresa. | [optional] 
 
 [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar à lista de API]](../README.md#documentation-for-api-endpoints) [[Voltar ao README]](../README.md)

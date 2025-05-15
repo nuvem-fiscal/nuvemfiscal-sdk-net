@@ -738,7 +738,7 @@ catch (ApiException e)
 
 <a name="listardocumentodistribuicaonfe"></a>
 # **ListarDocumentoDistribuicaoNfe**
-> DistribuicaoNfeDocumentoListagem ListarDocumentoDistribuicaoNfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, int? distNsu = null, string tipoDocumento = null, string formaDistribuicao = null, string chaveAcesso = null)
+> DistribuicaoNfeDocumentoListagem ListarDocumentoDistribuicaoNfe (string cpfCnpj, string ambiente, int? top = null, int? skip = null, bool? inlinecount = null, long? distNsu = null, string tipoDocumento = null, string formaDistribuicao = null, string chaveAcesso = null)
 
 Listar documentos
 
@@ -777,7 +777,7 @@ namespace Example
             var top = 10;  // int? | Limite no número de objetos a serem retornados pela API, entre 1 e 100. (optional)  (default to 10)
             var skip = 0;  // int? | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. (optional)  (default to 0)
             var inlinecount = false;  // bool? | Inclui no JSON de resposta, na propriedade `@count`, o número total de registros que o filtro retornaria, independente dos filtros de paginação. (optional)  (default to false)
-            var distNsu = 56;  // int? | Filtrar por documentos a partir do NSU informado. (optional) 
+            var distNsu = 789L;  // long? | Filtrar por documentos a partir do NSU informado. (optional) 
             var tipoDocumento = "tipoDocumento_example";  // string | Filtrar pelo tipo do documento de interesse da pessoa ou empresa.    Valores aceitos: `nota`, `evento` (optional) 
             var formaDistribuicao = "formaDistribuicao_example";  // string | Filtrar por documentos que foram distribuídos em sua forma resumida ou completa.    Valores aceitos: `resumida`, `completa` (optional) 
             var chaveAcesso = "chaveAcesso_example";  // string | Filtrar pela chave de acesso da NF-e. (optional) 
@@ -828,7 +828,7 @@ catch (ApiException e)
 | **top** | **int?** | Limite no número de objetos a serem retornados pela API, entre 1 e 100. | [optional] [default to 10] |
 | **skip** | **int?** | Quantidade de objetos que serão ignorados antes da lista começar a ser retornada. | [optional] [default to 0] |
 | **inlinecount** | **bool?** | Inclui no JSON de resposta, na propriedade &#x60;@count&#x60;, o número total de registros que o filtro retornaria, independente dos filtros de paginação. | [optional] [default to false] |
-| **distNsu** | **int?** | Filtrar por documentos a partir do NSU informado. | [optional]  |
+| **distNsu** | **long?** | Filtrar por documentos a partir do NSU informado. | [optional]  |
 | **tipoDocumento** | **string** | Filtrar pelo tipo do documento de interesse da pessoa ou empresa.    Valores aceitos: &#x60;nota&#x60;, &#x60;evento&#x60; | [optional]  |
 | **formaDistribuicao** | **string** | Filtrar por documentos que foram distribuídos em sua forma resumida ou completa.    Valores aceitos: &#x60;resumida&#x60;, &#x60;completa&#x60; | [optional]  |
 | **chaveAcesso** | **string** | Filtrar pela chave de acesso da NF-e. | [optional]  |

@@ -34,16 +34,18 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="chaveAcesso">Chave de Acesso da NF-e..</param>
         /// <param name="numeroProtocolo">Número do protocolo de autorização..</param>
         /// <param name="tipoNfe">Tipo da NF-e (0 - entrada; 1 - saída)..</param>
+        /// <param name="dataEmissao">Data e hora da emissão do documento fiscal..</param>
         /// <param name="valorNfe">Valor total da NF-e..</param>
         /// <param name="digestValue">Digest Value da NF-e processada. Utilizado para conferir a integridade da NF-e original..</param>
         /// <param name="emitenteCpfCnpj">CPF/CNPJ do emitente..</param>
         /// <param name="emitenteNomeRazaoSocial">Nome ou Razão Social do emitente..</param>
         /// <param name="emitenteInscricaoEstadual">Inscrição Estadual do emitente..</param>
-        public DistribuicaoNfeNota(string chaveAcesso = default(string), string numeroProtocolo = default(string), int? tipoNfe = default(int?), decimal? valorNfe = default(decimal?), string digestValue = default(string), string emitenteCpfCnpj = default(string), string emitenteNomeRazaoSocial = default(string), string emitenteInscricaoEstadual = default(string))
+        public DistribuicaoNfeNota(string chaveAcesso = default(string), string numeroProtocolo = default(string), int? tipoNfe = default(int?), DateTime? dataEmissao = default(DateTime?), decimal? valorNfe = default(decimal?), string digestValue = default(string), string emitenteCpfCnpj = default(string), string emitenteNomeRazaoSocial = default(string), string emitenteInscricaoEstadual = default(string))
         {
             this.chave_acesso = chaveAcesso;
             this.numero_protocolo = numeroProtocolo;
             this.tipo_nfe = tipoNfe;
+            this.data_emissao = dataEmissao;
             this.valor_nfe = valorNfe;
             this.digest_value = digestValue;
             this.emitente_cpf_cnpj = emitenteCpfCnpj;
@@ -71,6 +73,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Tipo da NF-e (0 - entrada; 1 - saída).</value>
         [DataMember(Name = "tipo_nfe", EmitDefaultValue = true)]
         public int? tipo_nfe { get; set; }
+
+        /// <summary>
+        /// Data e hora da emissão do documento fiscal.
+        /// </summary>
+        /// <value>Data e hora da emissão do documento fiscal.</value>
+        [DataMember(Name = "data_emissao", EmitDefaultValue = true)]
+        public DateTime? data_emissao { get; set; }
 
         /// <summary>
         /// Valor total da NF-e.
@@ -118,6 +127,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  chave_acesso: ").Append(chave_acesso).Append("\n");
             sb.Append("  numero_protocolo: ").Append(numero_protocolo).Append("\n");
             sb.Append("  tipo_nfe: ").Append(tipo_nfe).Append("\n");
+            sb.Append("  data_emissao: ").Append(data_emissao).Append("\n");
             sb.Append("  valor_nfe: ").Append(valor_nfe).Append("\n");
             sb.Append("  digest_value: ").Append(digest_value).Append("\n");
             sb.Append("  emitente_cpf_cnpj: ").Append(emitente_cpf_cnpj).Append("\n");
@@ -174,6 +184,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.tipo_nfe.Equals(input.tipo_nfe))
                 ) && 
                 (
+                    this.data_emissao == input.data_emissao ||
+                    (this.data_emissao != null &&
+                    this.data_emissao.Equals(input.data_emissao))
+                ) && 
+                (
                     this.valor_nfe == input.valor_nfe ||
                     (this.valor_nfe != null &&
                     this.valor_nfe.Equals(input.valor_nfe))
@@ -220,6 +235,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.tipo_nfe != null)
                 {
                     hashCode = (hashCode * 59) + this.tipo_nfe.GetHashCode();
+                }
+                if (this.data_emissao != null)
+                {
+                    hashCode = (hashCode * 59) + this.data_emissao.GetHashCode();
                 }
                 if (this.valor_nfe != null)
                 {

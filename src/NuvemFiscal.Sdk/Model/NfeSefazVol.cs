@@ -38,7 +38,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="pesoL">Peso líquido (em kg)..</param>
         /// <param name="pesoB">Peso bruto (em kg)..</param>
         /// <param name="lacres">lacres.</param>
-        public NfeSefazVol(int? qVol = default(int?), string esp = default(string), string marca = default(string), string nVol = default(string), decimal? pesoL = default(decimal?), decimal? pesoB = default(decimal?), List<NfeSefazLacres> lacres = default(List<NfeSefazLacres>))
+        public NfeSefazVol(long? qVol = default(long?), string esp = default(string), string marca = default(string), string nVol = default(string), decimal? pesoL = default(decimal?), decimal? pesoB = default(decimal?), List<NfeSefazLacres> lacres = default(List<NfeSefazLacres>))
         {
             this.qVol = qVol;
             this.esp = esp;
@@ -54,7 +54,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade de volumes transportados.</value>
         [DataMember(Name = "qVol", EmitDefaultValue = true)]
-        public int? qVol { get; set; }
+        public long? qVol { get; set; }
 
         /// <summary>
         /// Espécie dos volumes transportados.

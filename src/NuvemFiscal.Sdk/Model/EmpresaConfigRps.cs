@@ -39,7 +39,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="lote">Número do Lote de RPS.  Informe o próximo número do lote RPS a ser utilizado. Após isso, a Nuvem  Fiscal gerenciará esse campo (a cada novo envio de lote o número é  incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa  uma única vez. (required).</param>
         /// <param name="serie">Série do RPS.  A série dos RPS varia de acordo com cada prefeitura, podendo ser  número (1, 2 ou 3, por exemplo) ou letras (A, S, NFS, por exemplo).  Portanto, consulte-a com o município da empresa antes de iniciar a  emissão das notas. (required).</param>
         /// <param name="numero">Número do RPS.  Informe o próximo número de RPS a ser utilizado. Após isso, a Nuvem  Fiscal gerenciará esse campo (a cada novo envio de RPS o número é  incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa  uma única vez. (required).</param>
-        public EmpresaConfigRps(int lote = default(int), string serie = default(string), int numero = default(int))
+        public EmpresaConfigRps(long lote = default(long), string serie = default(string), long numero = default(long))
         {
             this.lote = lote;
             // to ensure "serie" is required (not null)
@@ -56,7 +56,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número do Lote de RPS.  Informe o próximo número do lote RPS a ser utilizado. Após isso, a Nuvem  Fiscal gerenciará esse campo (a cada novo envio de lote o número é  incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa  uma única vez.</value>
         [DataMember(Name = "lote", IsRequired = true, EmitDefaultValue = true)]
-        public int lote { get; set; }
+        public long lote { get; set; }
 
         /// <summary>
         /// Série do RPS.  A série dos RPS varia de acordo com cada prefeitura, podendo ser  número (1, 2 ou 3, por exemplo) ou letras (A, S, NFS, por exemplo).  Portanto, consulte-a com o município da empresa antes de iniciar a  emissão das notas.
@@ -70,7 +70,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Número do RPS.  Informe o próximo número de RPS a ser utilizado. Após isso, a Nuvem  Fiscal gerenciará esse campo (a cada novo envio de RPS o número é  incrementado em + 1). Portanto, basta informá-lo no cadastro da empresa  uma única vez.</value>
         [DataMember(Name = "numero", IsRequired = true, EmitDefaultValue = true)]
-        public int numero { get; set; }
+        public long numero { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -159,6 +159,12 @@ namespace NuvemFiscal.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // serie (string) maxLength
+            if (this.serie != null && this.serie.Length > 20)
+            {
+                yield return new ValidationResult("Invalid value for serie, length must be less than 20.", new [] { "serie" });
+            }
+
             yield break;
         }
     }

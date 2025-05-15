@@ -33,10 +33,12 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <param name="cNPJ">Número do CNPJ.  Obrigatório caso o emitente seja pessoa jurídica..</param>
         /// <param name="cPF">Número do CPF.  Obrigatorio caso o emitente seja pessoa física..</param>
-        public InfoPrestador(string cNPJ = default(string), string cPF = default(string))
+        /// <param name="regTrib">regTrib.</param>
+        public InfoPrestador(string cNPJ = default(string), string cPF = default(string), RegTrib regTrib = default(RegTrib))
         {
             this.CNPJ = cNPJ;
             this.CPF = cPF;
+            this.regTrib = regTrib;
         }
 
         /// <summary>
@@ -54,6 +56,12 @@ namespace NuvemFiscal.Sdk.Model
         public string CPF { get; set; }
 
         /// <summary>
+        /// Gets or Sets regTrib
+        /// </summary>
+        [DataMember(Name = "regTrib", EmitDefaultValue = false)]
+        public RegTrib regTrib { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -63,6 +71,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("class InfoPrestador {\n");
             sb.Append("  CNPJ: ").Append(CNPJ).Append("\n");
             sb.Append("  CPF: ").Append(CPF).Append("\n");
+            sb.Append("  regTrib: ").Append(regTrib).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,6 +116,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.CPF == input.CPF ||
                     (this.CPF != null &&
                     this.CPF.Equals(input.CPF))
+                ) && 
+                (
+                    this.regTrib == input.regTrib ||
+                    (this.regTrib != null &&
+                    this.regTrib.Equals(input.regTrib))
                 );
         }
 
@@ -126,6 +140,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.CPF != null)
                 {
                     hashCode = (hashCode * 59) + this.CPF.GetHashCode();
+                }
+                if (this.regTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.regTrib.GetHashCode();
                 }
                 return hashCode;
             }

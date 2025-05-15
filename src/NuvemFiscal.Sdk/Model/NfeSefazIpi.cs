@@ -42,7 +42,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cEnq">Código de Enquadramento Legal do IPI (tabela a ser criada pela RFB). (required).</param>
         /// <param name="iPITrib">iPITrib.</param>
         /// <param name="iPINT">iPINT.</param>
-        public NfeSefazIpi(string cNPJProd = default(string), string cSelo = default(string), int? qSelo = default(int?), string cEnq = default(string), NfeSefazIPITrib iPITrib = default(NfeSefazIPITrib), NfeSefazIPINT iPINT = default(NfeSefazIPINT))
+        public NfeSefazIpi(string cNPJProd = default(string), string cSelo = default(string), long? qSelo = default(long?), string cEnq = default(string), NfeSefazIPITrib iPITrib = default(NfeSefazIPITrib), NfeSefazIPINT iPINT = default(NfeSefazIPINT))
         {
             // to ensure "cEnq" is required (not null)
             if (cEnq == null)
@@ -76,7 +76,7 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Quantidade de selo de controle do IPI.</value>
         [DataMember(Name = "qSelo", EmitDefaultValue = true)]
-        public int? qSelo { get; set; }
+        public long? qSelo { get; set; }
 
         /// <summary>
         /// Código de Enquadramento Legal do IPI (tabela a ser criada pela RFB).

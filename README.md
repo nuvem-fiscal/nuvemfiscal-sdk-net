@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.50.0
-- Versão do SDK: 2.31.0
+- Versão da API: 2.55.1
+- Versão do SDK: 2.32.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -177,6 +177,10 @@ Classe | Método | Endpoint | Descrição
 *DceApi* | [**ConsultarStatusSefazDce**](docs/DceApi.md#consultarstatussefazdce) | **GET** /dce/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
 *DceApi* | [**EmitirDce**](docs/DceApi.md#emitirdce) | **POST** /dce | Emitir DC-e
 *DceApi* | [**ListarDce**](docs/DceApi.md#listardce) | **GET** /dce | Listar DC-e
+*DebugApi* | [**DebugDfe**](docs/DebugApi.md#debugdfe) | **GET** /debug/{id} | Debug de DF-e
+*DebugApi* | [**DebugDfeOriginalPayload**](docs/DebugApi.md#debugdfeoriginalpayload) | **GET** /debug/{id}/original-payload | Payload original recebido
+*DebugApi* | [**DebugHttpRequestContent**](docs/DebugApi.md#debughttprequestcontent) | **GET** /debug/http-requests/{id}/request-content | Corpo da requisição HTTP
+*DebugApi* | [**DebugHttpResponseContent**](docs/DebugApi.md#debughttpresponsecontent) | **GET** /debug/http-requests/{id}/response-content | Corpo da resposta HTTP
 *DistribuioNFEApi* | [**BaixarPdfDocumentoDistribuicaoNfe**](docs/DistribuioNFEApi.md#baixarpdfdocumentodistribuicaonfe) | **GET** /distribuicao/nfe/documentos/{id}/pdf | Baixar PDF do documento
 *DistribuioNFEApi* | [**BaixarXmlDocumentoDistribuicaoNfe**](docs/DistribuioNFEApi.md#baixarxmldocumentodistribuicaonfe) | **GET** /distribuicao/nfe/documentos/{id}/xml | Baixar XML do documento
 *DistribuioNFEApi* | [**ConsultarDistribuicaoNfe**](docs/DistribuioNFEApi.md#consultardistribuicaonfe) | **GET** /distribuicao/nfe/{id} | Consultar distribuição
@@ -490,6 +494,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfeContribuinteEndereco](docs/DfeContribuinteEndereco.md)
  - [Model.DfeContribuinteInfCad](docs/DfeContribuinteInfCad.md)
  - [Model.DfeContribuinteInfCons](docs/DfeContribuinteInfCons.md)
+ - [Model.DfeDebug](docs/DfeDebug.md)
  - [Model.DfeEvento](docs/DfeEvento.md)
  - [Model.DfeEventoListagem](docs/DfeEventoListagem.md)
  - [Model.DfeInutilizacao](docs/DfeInutilizacao.md)
@@ -499,6 +504,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.DfePedidoEnvioEmail](docs/DfePedidoEnvioEmail.md)
  - [Model.DfePedidoInutilizacao](docs/DfePedidoInutilizacao.md)
  - [Model.DfeRecibo](docs/DfeRecibo.md)
+ - [Model.DfeRequisicaoDebug](docs/DfeRequisicaoDebug.md)
  - [Model.DfeSefazStatus](docs/DfeSefazStatus.md)
  - [Model.DfeSincronizacao](docs/DfeSincronizacao.md)
  - [Model.DistribuicaoNfe](docs/DistribuicaoNfe.md)
@@ -544,6 +550,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.EnderecoSimples](docs/EnderecoSimples.md)
  - [Model.ExigSuspensa](docs/ExigSuspensa.md)
  - [Model.ExploracaoRodoviaria](docs/ExploracaoRodoviaria.md)
+ - [Model.HttpRequestDebug](docs/HttpRequestDebug.md)
  - [Model.InfDPS](docs/InfDPS.md)
  - [Model.InfoCompl](docs/InfoCompl.md)
  - [Model.InfoDedRed](docs/InfoDedRed.md)
@@ -796,6 +803,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.NfsePedidoEmissao](docs/NfsePedidoEmissao.md)
  - [Model.NfsePedidoSincronizacao](docs/NfsePedidoSincronizacao.md)
  - [Model.NfseSincronizacao](docs/NfseSincronizacao.md)
+ - [Model.RegTrib](docs/RegTrib.md)
  - [Model.Rps](docs/Rps.md)
  - [Model.RpsDados](docs/RpsDados.md)
  - [Model.RpsDadosConstrucaoCivil](docs/RpsDadosConstrucaoCivil.md)

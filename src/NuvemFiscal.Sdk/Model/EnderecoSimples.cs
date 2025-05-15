@@ -39,10 +39,11 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="cEP">Número do CEP..</param>
         /// <param name="endExt">endExt.</param>
         /// <param name="xLgr">Tipo e nome do logradouro da localização do imóvel. (required).</param>
+        /// <param name="tpLgr">Tipo do Logradouro.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado..</param>
         /// <param name="nro">Número do imóvel. (required).</param>
         /// <param name="xCpl">Complemento do endereço..</param>
         /// <param name="xBairro">Bairro. (required).</param>
-        public EnderecoSimples(string cEP = default(string), EnderExtSimples endExt = default(EnderExtSimples), string xLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string))
+        public EnderecoSimples(string cEP = default(string), EnderExtSimples endExt = default(EnderExtSimples), string xLgr = default(string), string tpLgr = default(string), string nro = default(string), string xCpl = default(string), string xBairro = default(string))
         {
             // to ensure "xLgr" is required (not null)
             if (xLgr == null)
@@ -64,6 +65,7 @@ namespace NuvemFiscal.Sdk.Model
             this.xBairro = xBairro;
             this.CEP = cEP;
             this.endExt = endExt;
+            this.tpLgr = tpLgr;
             this.xCpl = xCpl;
         }
 
@@ -86,6 +88,13 @@ namespace NuvemFiscal.Sdk.Model
         /// <value>Tipo e nome do logradouro da localização do imóvel.</value>
         [DataMember(Name = "xLgr", IsRequired = true, EmitDefaultValue = true)]
         public string xLgr { get; set; }
+
+        /// <summary>
+        /// Tipo do Logradouro.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+        /// </summary>
+        /// <value>Tipo do Logradouro.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.</value>
+        [DataMember(Name = "tpLgr", EmitDefaultValue = true)]
+        public string tpLgr { get; set; }
 
         /// <summary>
         /// Número do imóvel.
@@ -119,6 +128,7 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  CEP: ").Append(CEP).Append("\n");
             sb.Append("  endExt: ").Append(endExt).Append("\n");
             sb.Append("  xLgr: ").Append(xLgr).Append("\n");
+            sb.Append("  tpLgr: ").Append(tpLgr).Append("\n");
             sb.Append("  nro: ").Append(nro).Append("\n");
             sb.Append("  xCpl: ").Append(xCpl).Append("\n");
             sb.Append("  xBairro: ").Append(xBairro).Append("\n");
@@ -173,6 +183,11 @@ namespace NuvemFiscal.Sdk.Model
                     this.xLgr.Equals(input.xLgr))
                 ) && 
                 (
+                    this.tpLgr == input.tpLgr ||
+                    (this.tpLgr != null &&
+                    this.tpLgr.Equals(input.tpLgr))
+                ) && 
+                (
                     this.nro == input.nro ||
                     (this.nro != null &&
                     this.nro.Equals(input.nro))
@@ -209,6 +224,10 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.xLgr != null)
                 {
                     hashCode = (hashCode * 59) + this.xLgr.GetHashCode();
+                }
+                if (this.tpLgr != null)
+                {
+                    hashCode = (hashCode * 59) + this.tpLgr.GetHashCode();
                 }
                 if (this.nro != null)
                 {

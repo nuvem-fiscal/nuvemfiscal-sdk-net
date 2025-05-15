@@ -41,28 +41,22 @@ namespace NuvemFiscal.Sdk.Model
             Pendente = 1,
 
             /// <summary>
-            /// Enum FilaCancelamento for value: fila_cancelamento
-            /// </summary>
-            [EnumMember(Value = "fila_cancelamento")]
-            FilaCancelamento = 2,
-
-            /// <summary>
             /// Enum Concluido for value: concluido
             /// </summary>
             [EnumMember(Value = "concluido")]
-            Concluido = 3,
+            Concluido = 2,
 
             /// <summary>
             /// Enum Rejeitado for value: rejeitado
             /// </summary>
             [EnumMember(Value = "rejeitado")]
-            Rejeitado = 4,
+            Rejeitado = 3,
 
             /// <summary>
             /// Enum Erro for value: erro
             /// </summary>
             [EnumMember(Value = "erro")]
-            Erro = 5
+            Erro = 4
         }
 
 

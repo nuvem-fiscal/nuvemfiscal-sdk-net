@@ -142,7 +142,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <param name="ultimoNsu">Último NSU pesquisado no Ambiente Nacional. Se for o caso, o solicitante pode continuar a consulta a partir deste NSU para obter novos resultados. (required).</param>
         /// <param name="maxNsu">Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado. (required).</param>
         /// <param name="documentos">Conjunto de informações resumidas e documentos fiscais eletrônicos de interesse da pessoa ou empresa..</param>
-        public DistribuicaoNfe(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum status = default(StatusEnum), AmbienteEnum ambiente = default(AmbienteEnum), string ufAutor = default(string), TipoConsultaEnum tipoConsulta = default(TipoConsultaEnum), int? distNsu = default(int?), int? consNsu = default(int?), string consChave = default(string), int? codigoStatus = default(int?), string motivoStatus = default(string), DateTime? dataHoraResposta = default(DateTime?), int? ultimoNsu = default(int?), int? maxNsu = default(int?), List<DistribuicaoNfeDocumento> documentos = default(List<DistribuicaoNfeDocumento>))
+        public DistribuicaoNfe(string id = default(string), DateTime createdAt = default(DateTime), StatusEnum status = default(StatusEnum), AmbienteEnum ambiente = default(AmbienteEnum), string ufAutor = default(string), TipoConsultaEnum tipoConsulta = default(TipoConsultaEnum), long? distNsu = default(long?), long? consNsu = default(long?), string consChave = default(string), int? codigoStatus = default(int?), string motivoStatus = default(string), DateTime? dataHoraResposta = default(DateTime?), long? ultimoNsu = default(long?), long? maxNsu = default(long?), List<DistribuicaoNfeDocumento> documentos = default(List<DistribuicaoNfeDocumento>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -212,14 +212,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Distribuição de conjunto de DF-e a partir do NSU informado.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;distNSU&#x60;.*</value>
         [DataMember(Name = "dist_nsu", EmitDefaultValue = true)]
-        public int? dist_nsu { get; set; }
+        public long? dist_nsu { get; set; }
 
         /// <summary>
         /// Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;consNSU&#x60;.*
         /// </summary>
         /// <value>Consulta DF-e vinculado ao NSU informado.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;consNSU&#x60;.*</value>
         [DataMember(Name = "cons_nsu", EmitDefaultValue = true)]
-        public int? cons_nsu { get; set; }
+        public long? cons_nsu { get; set; }
 
         /// <summary>
         /// Consulta de NF-e por chave de acesso informada.    *Obrigatório quando &#x60;tipo_consulta&#x60; for &#x60;consChNFe&#x60;.*
@@ -254,14 +254,14 @@ namespace NuvemFiscal.Sdk.Model
         /// </summary>
         /// <value>Último NSU pesquisado no Ambiente Nacional. Se for o caso, o solicitante pode continuar a consulta a partir deste NSU para obter novos resultados.</value>
         [DataMember(Name = "ultimo_nsu", IsRequired = true, EmitDefaultValue = true)]
-        public int? ultimo_nsu { get; set; }
+        public long? ultimo_nsu { get; set; }
 
         /// <summary>
         /// Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado.
         /// </summary>
         /// <value>Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado.</value>
         [DataMember(Name = "max_nsu", IsRequired = true, EmitDefaultValue = true)]
-        public int? max_nsu { get; set; }
+        public long? max_nsu { get; set; }
 
         /// <summary>
         /// Conjunto de informações resumidas e documentos fiscais eletrônicos de interesse da pessoa ou empresa.
