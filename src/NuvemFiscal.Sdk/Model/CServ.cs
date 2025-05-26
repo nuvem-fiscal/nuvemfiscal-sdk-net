@@ -36,7 +36,7 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CServ" /> class.
         /// </summary>
-        /// <param name="cTribNac">Código de tributação nacional do ISSQN:  Regra de formação - 6 dígitos numéricos sendo: 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. (required).</param>
+        /// <param name="cTribNac">Código de tributação nacional do ISSQN.  - **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  - **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;. (required).</param>
         /// <param name="cTribMun">Código de tributação municipal do ISSQN..</param>
         /// <param name="cNAE">Código CNAE (Classificação Nacional de Atividades Econômicas)..</param>
         /// <param name="xDescServ">Descrição completa do serviço prestado.    Os caracteres acentuados poderão ser alterados para caracteres sem acentuação. (required).</param>
@@ -61,9 +61,9 @@ namespace NuvemFiscal.Sdk.Model
         }
 
         /// <summary>
-        /// Código de tributação nacional do ISSQN:  Regra de formação - 6 dígitos numéricos sendo: 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional.
+        /// Código de tributação nacional do ISSQN.  - **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  - **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;.
         /// </summary>
-        /// <value>Código de tributação nacional do ISSQN:  Regra de formação - 6 dígitos numéricos sendo: 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional.</value>
+        /// <value>Código de tributação nacional do ISSQN.  - **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  - **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;.</value>
         [DataMember(Name = "cTribNac", IsRequired = true, EmitDefaultValue = true)]
         public string cTribNac { get; set; }
 

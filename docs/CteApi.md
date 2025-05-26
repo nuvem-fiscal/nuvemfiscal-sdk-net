@@ -22,6 +22,7 @@ Todas as URIs relativas a *https://api.nuvemfiscal.com.br*
 | [**ConsultarStatusSefazCte**](CteApi.md#consultarstatussefazcte) | **GET** /cte/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora |
 | [**CriarCartaCorrecaoCte**](CteApi.md#criarcartacorrecaocte) | **POST** /cte/{id}/carta-correcao | Solicitar correção do CT-e |
 | [**EmitirCte**](CteApi.md#emitircte) | **POST** /cte | Emitir CT-e |
+| [**EmitirCteSimp**](CteApi.md#emitirctesimp) | **POST** /cte/simp | Emitir CT-e Simplificado |
 | [**ListarCte**](CteApi.md#listarcte) | **GET** /cte | Listar CT-e |
 | [**SincronizarCte**](CteApi.md#sincronizarcte) | **POST** /cte/{id}/sincronizar | Sincroniza dados no CT-e a partir da SEFAZ |
 
@@ -1825,6 +1826,108 @@ catch (ApiException e)
 | Nome | Tipo | Descrição | Comentários |
 |------|------|-------------|-------|
 | **body** | [**CtePedidoEmissao**](CtePedidoEmissao.md) |  |  |
+
+### Tipo de retorno
+
+[**Dfe**](Dfe.md)
+
+### Autorização
+
+[jwt](../README.md#jwt), [oauth2](../README.md#oauth2)
+
+### Headers da requisição HTTP
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### Detalhes da resposta HTTP
+| Código status | Descrição | Headers da resposta |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+
+[[Voltar ao topo]](#) [[Voltar à listagem da API]](../README.md#documentation-for-api-endpoints) [[Voltar à lista de DTOs]](../README.md#documentation-for-models) [[Voltar ao README]](../README.md)
+
+<a name="emitirctesimp"></a>
+# **EmitirCteSimp**
+> Dfe EmitirCteSimp (CteSimpPedidoEmissao body)
+
+Emitir CT-e Simplificado
+
+**Informações adicionais**:  - Cota: <a href=\"/docs/limites#dfe-eventos\">dfe-eventos</a>  - Consumo: 1 unidade por requisição.
+
+### Exemplo
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using NuvemFiscal.Sdk.Api;
+using NuvemFiscal.Sdk.Client;
+using NuvemFiscal.Sdk.Model;
+
+namespace Example
+{
+    public class EmitirCteSimpExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.nuvemfiscal.com.br";
+            // Configure API key authorization: jwt
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CteApi(httpClient, config, httpClientHandler);
+            var body = new CteSimpPedidoEmissao(); // CteSimpPedidoEmissao | 
+
+            try
+            {
+                // Emitir CT-e Simplificado
+                Dfe result = apiInstance.EmitirCteSimp(body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CteApi.EmitirCteSimp: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Usando a variante EmitirCteSimpWithHttpInfo
+Esses métodos retornam um objeto ApiResponse que contêm os dados da resposta, o código de status e os headers HTTP.
+
+```csharp
+try
+{
+    // Emitir CT-e Simplificado
+    ApiResponse<Dfe> response = apiInstance.EmitirCteSimpWithHttpInfo(body);
+    Debug.Write("Código de status: " + response.StatusCode);
+    Debug.Write("Headers da resposta: " + response.Headers);
+    Debug.Write("Conteúdo da resposta: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exceção ao chamar CteApi.EmitirCteSimpWithHttpInfo: " + e.Message);
+    Debug.Print("Código de status: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Comentários |
+|------|------|-------------|-------|
+| **body** | [**CteSimpPedidoEmissao**](CteSimpPedidoEmissao.md) |  |  |
 
 ### Tipo de retorno
 

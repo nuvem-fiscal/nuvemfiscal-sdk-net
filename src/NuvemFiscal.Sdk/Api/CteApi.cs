@@ -377,6 +377,27 @@ namespace NuvemFiscal.Sdk.Api
         /// <returns>ApiResponse of Dfe</returns>
         ApiResponse<Dfe> EmitirCteWithHttpInfo(CtePedidoEmissao body);
         /// <summary>
+        /// Emitir CT-e Simplificado
+        /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>Dfe</returns>
+        Dfe EmitirCteSimp(CteSimpPedidoEmissao body);
+
+        /// <summary>
+        /// Emitir CT-e Simplificado
+        /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of Dfe</returns>
+        ApiResponse<Dfe> EmitirCteSimpWithHttpInfo(CteSimpPedidoEmissao body);
+        /// <summary>
         /// Listar CT-e
         /// </summary>
         /// <remarks>
@@ -863,6 +884,29 @@ namespace NuvemFiscal.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Dfe)</returns>
         System.Threading.Tasks.Task<ApiResponse<Dfe>> EmitirCteWithHttpInfoAsync(CtePedidoEmissao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Emitir CT-e Simplificado
+        /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Dfe</returns>
+        System.Threading.Tasks.Task<Dfe> EmitirCteSimpAsync(CteSimpPedidoEmissao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Emitir CT-e Simplificado
+        /// </summary>
+        /// <remarks>
+        /// **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </remarks>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Dfe)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Dfe>> EmitirCteSimpWithHttpInfoAsync(CteSimpPedidoEmissao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Listar CT-e
         /// </summary>
@@ -3646,6 +3690,145 @@ namespace NuvemFiscal.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EmitirCte", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Emitir CT-e Simplificado **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>Dfe</returns>
+        public Dfe EmitirCteSimp(CteSimpPedidoEmissao body)
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<Dfe> localVarResponse = EmitirCteSimpWithHttpInfo(body);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Emitir CT-e Simplificado **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of Dfe</returns>
+        public NuvemFiscal.Sdk.Client.ApiResponse<Dfe> EmitirCteSimpWithHttpInfo(CteSimpPedidoEmissao body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling CteApi->EmitirCteSimp");
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = body;
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Dfe>("/cte/simp", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EmitirCteSimp", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Emitir CT-e Simplificado **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Dfe</returns>
+        public async System.Threading.Tasks.Task<Dfe> EmitirCteSimpAsync(CteSimpPedidoEmissao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            NuvemFiscal.Sdk.Client.ApiResponse<Dfe> localVarResponse = await EmitirCteSimpWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Emitir CT-e Simplificado **Informações adicionais**:  - Cota: &lt;a href&#x3D;\&quot;/docs/limites#dfe-eventos\&quot;&gt;dfe-eventos&lt;/a&gt;  - Consumo: 1 unidade por requisição.
+        /// </summary>
+        /// <exception cref="NuvemFiscal.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Dfe)</returns>
+        public async System.Threading.Tasks.Task<NuvemFiscal.Sdk.Client.ApiResponse<Dfe>> EmitirCteSimpWithHttpInfoAsync(CteSimpPedidoEmissao body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new NuvemFiscal.Sdk.Client.ApiException(400, "Missing required parameter 'body' when calling CteApi->EmitirCteSimp");
+
+
+            NuvemFiscal.Sdk.Client.RequestOptions localVarRequestOptions = new NuvemFiscal.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = NuvemFiscal.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = body;
+
+            // authentication (jwt) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Dfe>("/cte/simp", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EmitirCteSimp", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

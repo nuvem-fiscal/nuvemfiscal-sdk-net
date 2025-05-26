@@ -3,8 +3,8 @@
 Biblioteca para uso da API da [Nuvem Fiscal](https://www.nuvemfiscal.com.br) com Microsoft .NET. 
 Consultar também a [documentação oficial da Nuvem Fiscal](https://dev.nuvemfiscal.com.br/docs).
 
-- Versão da API: 2.55.1
-- Versão do SDK: 2.32.0
+- Versão da API: 2.57.0
+- Versão do SDK: 2.57.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks suportadas
@@ -164,8 +164,29 @@ Classe | Método | Endpoint | Descrição
 *CteApi* | [**ConsultarStatusSefazCte**](docs/CteApi.md#consultarstatussefazcte) | **GET** /cte/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
 *CteApi* | [**CriarCartaCorrecaoCte**](docs/CteApi.md#criarcartacorrecaocte) | **POST** /cte/{id}/carta-correcao | Solicitar correção do CT-e
 *CteApi* | [**EmitirCte**](docs/CteApi.md#emitircte) | **POST** /cte | Emitir CT-e
+*CteApi* | [**EmitirCteSimp**](docs/CteApi.md#emitirctesimp) | **POST** /cte/simp | Emitir CT-e Simplificado
 *CteApi* | [**ListarCte**](docs/CteApi.md#listarcte) | **GET** /cte | Listar CT-e
 *CteApi* | [**SincronizarCte**](docs/CteApi.md#sincronizarcte) | **POST** /cte/{id}/sincronizar | Sincroniza dados no CT-e a partir da SEFAZ
+*CteOsApi* | [**BaixarPdfCancelamentoCteOs**](docs/CteOsApi.md#baixarpdfcancelamentocteos) | **GET** /cteos/{id}/cancelamento/pdf | Baixar PDF do cancelamento
+*CteOsApi* | [**BaixarPdfCartaCorrecaoCteOs**](docs/CteOsApi.md#baixarpdfcartacorrecaocteos) | **GET** /cteos/{id}/carta-correcao/pdf | Baixar PDF da carta de correção
+*CteOsApi* | [**BaixarPdfCteOs**](docs/CteOsApi.md#baixarpdfcteos) | **GET** /cteos/{id}/pdf | Baixar PDF do DACTE
+*CteOsApi* | [**BaixarPdfEventoCteOs**](docs/CteOsApi.md#baixarpdfeventocteos) | **GET** /cteos/eventos/{id}/pdf | Baixar PDF do evento
+*CteOsApi* | [**BaixarXmlCancelamentoCteOs**](docs/CteOsApi.md#baixarxmlcancelamentocteos) | **GET** /cteos/{id}/cancelamento/xml | Baixar XML do cancelamento
+*CteOsApi* | [**BaixarXmlCartaCorrecaoCteOs**](docs/CteOsApi.md#baixarxmlcartacorrecaocteos) | **GET** /cteos/{id}/carta-correcao/xml | Baixar XML da carta de correção
+*CteOsApi* | [**BaixarXmlCteOs**](docs/CteOsApi.md#baixarxmlcteos) | **GET** /cteos/{id}/xml | Baixar XML do CT-e OS processado
+*CteOsApi* | [**BaixarXmlCteOsConhecimento**](docs/CteOsApi.md#baixarxmlcteosconhecimento) | **GET** /cteos/{id}/xml/conhecimento | Baixar XML do CT-e OS
+*CteOsApi* | [**BaixarXmlCteOsProtocolo**](docs/CteOsApi.md#baixarxmlcteosprotocolo) | **GET** /cteos/{id}/xml/protocolo | Baixar XML do Protocolo da SEFAZ
+*CteOsApi* | [**BaixarXmlEventoCteOs**](docs/CteOsApi.md#baixarxmleventocteos) | **GET** /cteos/eventos/{id}/xml | Baixar XML do evento
+*CteOsApi* | [**CancelarCteOs**](docs/CteOsApi.md#cancelarcteos) | **POST** /cteos/{id}/cancelamento | Cancelar um CT-e OS autorizado
+*CteOsApi* | [**ConsultarCancelamentoCteOs**](docs/CteOsApi.md#consultarcancelamentocteos) | **GET** /cteos/{id}/cancelamento | Consultar o cancelamento do CT-e OS
+*CteOsApi* | [**ConsultarCartaCorrecaoCteOs**](docs/CteOsApi.md#consultarcartacorrecaocteos) | **GET** /cteos/{id}/carta-correcao | Consultar a solicitação de correção do CT-e OS
+*CteOsApi* | [**ConsultarCteOs**](docs/CteOsApi.md#consultarcteos) | **GET** /cteos/{id} | Consultar CT-e OS
+*CteOsApi* | [**ConsultarEventoCteOs**](docs/CteOsApi.md#consultareventocteos) | **GET** /cteos/eventos/{id} | Consultar evento
+*CteOsApi* | [**ConsultarStatusSefazCteOs**](docs/CteOsApi.md#consultarstatussefazcteos) | **GET** /cteos/sefaz/status | Consulta do Status do Serviço na SEFAZ Autorizadora
+*CteOsApi* | [**CriarCartaCorrecaoCteOs**](docs/CteOsApi.md#criarcartacorrecaocteos) | **POST** /cteos/{id}/carta-correcao | Solicitar correção do CT-e OS
+*CteOsApi* | [**EmitirCteOs**](docs/CteOsApi.md#emitircteos) | **POST** /cteos | Emitir CT-e OS
+*CteOsApi* | [**ListarCteOs**](docs/CteOsApi.md#listarcteos) | **GET** /cteos | Listar CT-e OS
+*CteOsApi* | [**SincronizarCteOs**](docs/CteOsApi.md#sincronizarcteos) | **POST** /cteos/{id}/sincronizar | Sincroniza dados no CT-e OS a partir da SEFAZ
 *DceApi* | [**BaixarPdfDce**](docs/DceApi.md#baixarpdfdce) | **GET** /dce/{id}/pdf | Baixar PDF do DACE
 *DceApi* | [**BaixarXmlCancelamentoDce**](docs/DceApi.md#baixarxmlcancelamentodce) | **GET** /dce/{id}/cancelamento/xml | Baixar XML do cancelamento
 *DceApi* | [**BaixarXmlDce**](docs/DceApi.md#baixarxmldce) | **GET** /dce/{id}/xml | Baixar XML da DC-e processada
@@ -195,6 +216,7 @@ Classe | Método | Endpoint | Descrição
 *EmailApi* | [**ConsultarEmail**](docs/EmailApi.md#consultaremail) | **GET** /emails/{id} | Consultar e-mail
 *EmailApi* | [**ListarEmails**](docs/EmailApi.md#listaremails) | **GET** /emails | Listar e-mails
 *EmpresaApi* | [**AlterarConfigCte**](docs/EmpresaApi.md#alterarconfigcte) | **PUT** /empresas/{cpf_cnpj}/cte | Alterar configuração de CT-e
+*EmpresaApi* | [**AlterarConfigCteOs**](docs/EmpresaApi.md#alterarconfigcteos) | **PUT** /empresas/{cpf_cnpj}/cteos | Alterar configuração de CT-e OS
 *EmpresaApi* | [**AlterarConfigDce**](docs/EmpresaApi.md#alterarconfigdce) | **PUT** /empresas/{cpf_cnpj}/dce | Alterar configuração de DC-e
 *EmpresaApi* | [**AlterarConfigDistribuicaoNfe**](docs/EmpresaApi.md#alterarconfigdistribuicaonfe) | **PUT** /empresas/{cpf_cnpj}/distnfe | Alterar configuração de Distribuição de NF-e
 *EmpresaApi* | [**AlterarConfigMdfe**](docs/EmpresaApi.md#alterarconfigmdfe) | **PUT** /empresas/{cpf_cnpj}/mdfe | Alterar configuração de MDF-e
@@ -207,6 +229,7 @@ Classe | Método | Endpoint | Descrição
 *EmpresaApi* | [**CadastrarCertificadoEmpresa**](docs/EmpresaApi.md#cadastrarcertificadoempresa) | **PUT** /empresas/{cpf_cnpj}/certificado | Cadastrar certificado
 *EmpresaApi* | [**ConsultarCertificadoEmpresa**](docs/EmpresaApi.md#consultarcertificadoempresa) | **GET** /empresas/{cpf_cnpj}/certificado | Consultar certificado
 *EmpresaApi* | [**ConsultarConfigCte**](docs/EmpresaApi.md#consultarconfigcte) | **GET** /empresas/{cpf_cnpj}/cte | Consultar configuração de CT-e
+*EmpresaApi* | [**ConsultarConfigCteOs**](docs/EmpresaApi.md#consultarconfigcteos) | **GET** /empresas/{cpf_cnpj}/cteos | Consultar configuração de CT-e OS
 *EmpresaApi* | [**ConsultarConfigDce**](docs/EmpresaApi.md#consultarconfigdce) | **GET** /empresas/{cpf_cnpj}/dce | Consultar configuração de DC-e
 *EmpresaApi* | [**ConsultarConfigDistribuicaoNfe**](docs/EmpresaApi.md#consultarconfigdistribuicaonfe) | **GET** /empresas/{cpf_cnpj}/distnfe | Consultar configuração de Distribuição de NF-e
 *EmpresaApi* | [**ConsultarConfigMdfe**](docs/EmpresaApi.md#consultarconfigmdfe) | **GET** /empresas/{cpf_cnpj}/mdfe | Consultar configuração de MDF-e
@@ -370,6 +393,53 @@ Classe | Método | Endpoint | Descrição
  - [Model.ContaCotaListagem](docs/ContaCotaListagem.md)
  - [Model.CteCartaCorrecao](docs/CteCartaCorrecao.md)
  - [Model.CteInfCorrecao](docs/CteInfCorrecao.md)
+ - [Model.CteOsCartaCorrecao](docs/CteOsCartaCorrecao.md)
+ - [Model.CteOsInfCorrecao](docs/CteOsInfCorrecao.md)
+ - [Model.CteOsPedidoCancelamento](docs/CteOsPedidoCancelamento.md)
+ - [Model.CteOsPedidoCartaCorrecao](docs/CteOsPedidoCartaCorrecao.md)
+ - [Model.CteOsPedidoEmissao](docs/CteOsPedidoEmissao.md)
+ - [Model.CteOsSefazAutXMLOS](docs/CteOsSefazAutXMLOS.md)
+ - [Model.CteOsSefazCobrOS](docs/CteOsSefazCobrOS.md)
+ - [Model.CteOsSefazCompOS](docs/CteOsSefazCompOS.md)
+ - [Model.CteOsSefazComplOS](docs/CteOsSefazComplOS.md)
+ - [Model.CteOsSefazDupOS](docs/CteOsSefazDupOS.md)
+ - [Model.CteOsSefazEmitOS](docs/CteOsSefazEmitOS.md)
+ - [Model.CteOsSefazEndeEmiOS](docs/CteOsSefazEndeEmiOS.md)
+ - [Model.CteOsSefazEnderecoOS](docs/CteOsSefazEnderecoOS.md)
+ - [Model.CteOsSefazFatOS](docs/CteOsSefazFatOS.md)
+ - [Model.CteOsSefazICMS00OS](docs/CteOsSefazICMS00OS.md)
+ - [Model.CteOsSefazICMS20OS](docs/CteOsSefazICMS20OS.md)
+ - [Model.CteOsSefazICMS45OS](docs/CteOsSefazICMS45OS.md)
+ - [Model.CteOsSefazICMS90OS](docs/CteOsSefazICMS90OS.md)
+ - [Model.CteOsSefazICMSOutraUFOS](docs/CteOsSefazICMSOutraUFOS.md)
+ - [Model.CteOsSefazICMSSNOS](docs/CteOsSefazICMSSNOS.md)
+ - [Model.CteOsSefazICMSUFFimOS](docs/CteOsSefazICMSUFFimOS.md)
+ - [Model.CteOsSefazIdeOS](docs/CteOsSefazIdeOS.md)
+ - [Model.CteOsSefazImpOS](docs/CteOsSefazImpOS.md)
+ - [Model.CteOsSefazInfCTeNormOS](docs/CteOsSefazInfCTeNormOS.md)
+ - [Model.CteOsSefazInfCTeSuplOS](docs/CteOsSefazInfCTeSuplOS.md)
+ - [Model.CteOsSefazInfCteCompOS](docs/CteOsSefazInfCteCompOS.md)
+ - [Model.CteOsSefazInfCteImpOS](docs/CteOsSefazInfCteImpOS.md)
+ - [Model.CteOsSefazInfCteOS](docs/CteOsSefazInfCteOS.md)
+ - [Model.CteOsSefazInfCteSubOS](docs/CteOsSefazInfCteSubOS.md)
+ - [Model.CteOsSefazInfDocRefOS](docs/CteOsSefazInfDocRefOS.md)
+ - [Model.CteOsSefazInfFretamentoOS](docs/CteOsSefazInfFretamentoOS.md)
+ - [Model.CteOsSefazInfGTVeCompOS](docs/CteOsSefazInfGTVeCompOS.md)
+ - [Model.CteOsSefazInfGTVeOS](docs/CteOsSefazInfGTVeOS.md)
+ - [Model.CteOsSefazInfModalOS](docs/CteOsSefazInfModalOS.md)
+ - [Model.CteOsSefazInfPercursoOS](docs/CteOsSefazInfPercursoOS.md)
+ - [Model.CteOsSefazInfQOS](docs/CteOsSefazInfQOS.md)
+ - [Model.CteOsSefazInfServicoOS](docs/CteOsSefazInfServicoOS.md)
+ - [Model.CteOsSefazInfTribFedOS](docs/CteOsSefazInfTribFedOS.md)
+ - [Model.CteOsSefazObsContOS](docs/CteOsSefazObsContOS.md)
+ - [Model.CteOsSefazObsFiscoOS](docs/CteOsSefazObsFiscoOS.md)
+ - [Model.CteOsSefazPropOS](docs/CteOsSefazPropOS.md)
+ - [Model.CteOsSefazRespTecOS](docs/CteOsSefazRespTecOS.md)
+ - [Model.CteOsSefazRodoOS](docs/CteOsSefazRodoOS.md)
+ - [Model.CteOsSefazSegOS](docs/CteOsSefazSegOS.md)
+ - [Model.CteOsSefazTomaOS](docs/CteOsSefazTomaOS.md)
+ - [Model.CteOsSefazVPrestOS](docs/CteOsSefazVPrestOS.md)
+ - [Model.CteOsSefazVeicOS](docs/CteOsSefazVeicOS.md)
  - [Model.CtePedidoCancelamento](docs/CtePedidoCancelamento.md)
  - [Model.CtePedidoCartaCorrecao](docs/CtePedidoCartaCorrecao.md)
  - [Model.CtePedidoEmissao](docs/CtePedidoEmissao.md)
@@ -461,6 +531,72 @@ Classe | Método | Endpoint | Descrição
  - [Model.CteSefazUnidadeTransp](docs/CteSefazUnidadeTransp.md)
  - [Model.CteSefazVPrest](docs/CteSefazVPrest.md)
  - [Model.CteSefazVeicNovos](docs/CteSefazVeicNovos.md)
+ - [Model.CteSimpPedidoEmissao](docs/CteSimpPedidoEmissao.md)
+ - [Model.CteSimpSefazAereoSimp](docs/CteSimpSefazAereoSimp.md)
+ - [Model.CteSimpSefazAquavSimp](docs/CteSimpSefazAquavSimp.md)
+ - [Model.CteSimpSefazAutXMLSimp](docs/CteSimpSefazAutXMLSimp.md)
+ - [Model.CteSimpSefazBalsaSimp](docs/CteSimpSefazBalsaSimp.md)
+ - [Model.CteSimpSefazCobrSimp](docs/CteSimpSefazCobrSimp.md)
+ - [Model.CteSimpSefazCompSimp](docs/CteSimpSefazCompSimp.md)
+ - [Model.CteSimpSefazComplSimp](docs/CteSimpSefazComplSimp.md)
+ - [Model.CteSimpSefazDetContSimp](docs/CteSimpSefazDetContSimp.md)
+ - [Model.CteSimpSefazDetSimp](docs/CteSimpSefazDetSimp.md)
+ - [Model.CteSimpSefazDupSimp](docs/CteSimpSefazDupSimp.md)
+ - [Model.CteSimpSefazDutoSimp](docs/CteSimpSefazDutoSimp.md)
+ - [Model.CteSimpSefazEmiOccSimp](docs/CteSimpSefazEmiOccSimp.md)
+ - [Model.CteSimpSefazEmitSimp](docs/CteSimpSefazEmitSimp.md)
+ - [Model.CteSimpSefazEndeEmiSimp](docs/CteSimpSefazEndeEmiSimp.md)
+ - [Model.CteSimpSefazEnderFerSimp](docs/CteSimpSefazEnderFerSimp.md)
+ - [Model.CteSimpSefazEnderecoSimp](docs/CteSimpSefazEnderecoSimp.md)
+ - [Model.CteSimpSefazFatSimp](docs/CteSimpSefazFatSimp.md)
+ - [Model.CteSimpSefazFerroEnvSimp](docs/CteSimpSefazFerroEnvSimp.md)
+ - [Model.CteSimpSefazFerrovSimp](docs/CteSimpSefazFerrovSimp.md)
+ - [Model.CteSimpSefazFluxoSimp](docs/CteSimpSefazFluxoSimp.md)
+ - [Model.CteSimpSefazICMS00Simp](docs/CteSimpSefazICMS00Simp.md)
+ - [Model.CteSimpSefazICMS20Simp](docs/CteSimpSefazICMS20Simp.md)
+ - [Model.CteSimpSefazICMS45Simp](docs/CteSimpSefazICMS45Simp.md)
+ - [Model.CteSimpSefazICMS60Simp](docs/CteSimpSefazICMS60Simp.md)
+ - [Model.CteSimpSefazICMS90Simp](docs/CteSimpSefazICMS90Simp.md)
+ - [Model.CteSimpSefazICMSOutraUFSimp](docs/CteSimpSefazICMSOutraUFSimp.md)
+ - [Model.CteSimpSefazICMSSNSimp](docs/CteSimpSefazICMSSNSimp.md)
+ - [Model.CteSimpSefazICMSUFFimSimp](docs/CteSimpSefazICMSUFFimSimp.md)
+ - [Model.CteSimpSefazIdeSimp](docs/CteSimpSefazIdeSimp.md)
+ - [Model.CteSimpSefazImpSimp](docs/CteSimpSefazImpSimp.md)
+ - [Model.CteSimpSefazInfCTeSuplSimp](docs/CteSimpSefazInfCTeSuplSimp.md)
+ - [Model.CteSimpSefazInfCargaSimp](docs/CteSimpSefazInfCargaSimp.md)
+ - [Model.CteSimpSefazInfCteImpSimp](docs/CteSimpSefazInfCteImpSimp.md)
+ - [Model.CteSimpSefazInfCteSimp](docs/CteSimpSefazInfCteSimp.md)
+ - [Model.CteSimpSefazInfCteSubSimp](docs/CteSimpSefazInfCteSubSimp.md)
+ - [Model.CteSimpSefazInfDocAntSimp](docs/CteSimpSefazInfDocAntSimp.md)
+ - [Model.CteSimpSefazInfDocInfNFeSimp](docs/CteSimpSefazInfDocInfNFeSimp.md)
+ - [Model.CteSimpSefazInfDocSimp](docs/CteSimpSefazInfDocSimp.md)
+ - [Model.CteSimpSefazInfModalSimp](docs/CteSimpSefazInfModalSimp.md)
+ - [Model.CteSimpSefazInfNFSimp](docs/CteSimpSefazInfNFSimp.md)
+ - [Model.CteSimpSefazInfNFeSimp](docs/CteSimpSefazInfNFeSimp.md)
+ - [Model.CteSimpSefazInfNFeTranspParcialSimp](docs/CteSimpSefazInfNFeTranspParcialSimp.md)
+ - [Model.CteSimpSefazInfQSimp](docs/CteSimpSefazInfQSimp.md)
+ - [Model.CteSimpSefazInfSegSimp](docs/CteSimpSefazInfSegSimp.md)
+ - [Model.CteSimpSefazInfSolicNFFSimp](docs/CteSimpSefazInfSolicNFFSimp.md)
+ - [Model.CteSimpSefazInfTotAPSimp](docs/CteSimpSefazInfTotAPSimp.md)
+ - [Model.CteSimpSefazLacUnidCargaSimp](docs/CteSimpSefazLacUnidCargaSimp.md)
+ - [Model.CteSimpSefazLacUnidTranspSimp](docs/CteSimpSefazLacUnidTranspSimp.md)
+ - [Model.CteSimpSefazLacreSimp](docs/CteSimpSefazLacreSimp.md)
+ - [Model.CteSimpSefazMultimodalSimp](docs/CteSimpSefazMultimodalSimp.md)
+ - [Model.CteSimpSefazNatCargaSimp](docs/CteSimpSefazNatCargaSimp.md)
+ - [Model.CteSimpSefazObsContSimp](docs/CteSimpSefazObsContSimp.md)
+ - [Model.CteSimpSefazObsFiscoSimp](docs/CteSimpSefazObsFiscoSimp.md)
+ - [Model.CteSimpSefazOccSimp](docs/CteSimpSefazOccSimp.md)
+ - [Model.CteSimpSefazPassSimp](docs/CteSimpSefazPassSimp.md)
+ - [Model.CteSimpSefazPeriSimp](docs/CteSimpSefazPeriSimp.md)
+ - [Model.CteSimpSefazRespTecSimp](docs/CteSimpSefazRespTecSimp.md)
+ - [Model.CteSimpSefazRodoSimp](docs/CteSimpSefazRodoSimp.md)
+ - [Model.CteSimpSefazSegSimp](docs/CteSimpSefazSegSimp.md)
+ - [Model.CteSimpSefazTarifaSimp](docs/CteSimpSefazTarifaSimp.md)
+ - [Model.CteSimpSefazTomaSimp](docs/CteSimpSefazTomaSimp.md)
+ - [Model.CteSimpSefazTotalSimp](docs/CteSimpSefazTotalSimp.md)
+ - [Model.CteSimpSefazTrafMutSimp](docs/CteSimpSefazTrafMutSimp.md)
+ - [Model.CteSimpSefazUnidCargaSimp](docs/CteSimpSefazUnidCargaSimp.md)
+ - [Model.CteSimpSefazUnidadeTranspSimp](docs/CteSimpSefazUnidadeTranspSimp.md)
  - [Model.DPS](docs/DPS.md)
  - [Model.DcePedidoCancelamento](docs/DcePedidoCancelamento.md)
  - [Model.DcePedidoEmissao](docs/DcePedidoEmissao.md)
@@ -528,6 +664,7 @@ Classe | Método | Endpoint | Descrição
  - [Model.Empresa](docs/Empresa.md)
  - [Model.EmpresaCertificado](docs/EmpresaCertificado.md)
  - [Model.EmpresaConfigCte](docs/EmpresaConfigCte.md)
+ - [Model.EmpresaConfigCteOs](docs/EmpresaConfigCteOs.md)
  - [Model.EmpresaConfigDce](docs/EmpresaConfigDce.md)
  - [Model.EmpresaConfigDistribuicaoNfe](docs/EmpresaConfigDistribuicaoNfe.md)
  - [Model.EmpresaConfigMdfe](docs/EmpresaConfigMdfe.md)
