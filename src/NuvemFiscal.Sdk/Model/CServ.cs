@@ -36,12 +36,14 @@ namespace NuvemFiscal.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CServ" /> class.
         /// </summary>
-        /// <param name="cTribNac">Código de tributação nacional do ISSQN.  - **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  - **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;. (required).</param>
+        /// <param name="cTribNac">Código de tributação nacional do ISSQN.  **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;. (required).</param>
         /// <param name="cTribMun">Código de tributação municipal do ISSQN..</param>
         /// <param name="cNAE">Código CNAE (Classificação Nacional de Atividades Econômicas)..</param>
         /// <param name="xDescServ">Descrição completa do serviço prestado.    Os caracteres acentuados poderão ser alterados para caracteres sem acentuação. (required).</param>
         /// <param name="cNBS">Código NBS (Nomenclatura Brasileira de Serviços, Intangíveis e outras Operações que produzam Variações no Patrimônio) correspondente ao serviço prestado..</param>
-        public CServ(string cTribNac = default(string), string cTribMun = default(string), string cNAE = default(string), string xDescServ = default(string), string cNBS = default(string))
+        /// <param name="cNatOp">Código de natureza da operação.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado..</param>
+        /// <param name="cSitTrib">Código de situação tributária.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado..</param>
+        public CServ(string cTribNac = default(string), string cTribMun = default(string), string cNAE = default(string), string xDescServ = default(string), string cNBS = default(string), string cNatOp = default(string), string cSitTrib = default(string))
         {
             // to ensure "cTribNac" is required (not null)
             if (cTribNac == null)
@@ -58,12 +60,14 @@ namespace NuvemFiscal.Sdk.Model
             this.cTribMun = cTribMun;
             this.CNAE = cNAE;
             this.cNBS = cNBS;
+            this.cNatOp = cNatOp;
+            this.cSitTrib = cSitTrib;
         }
 
         /// <summary>
-        /// Código de tributação nacional do ISSQN.  - **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  - **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;.
+        /// Código de tributação nacional do ISSQN.  **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;.
         /// </summary>
-        /// <value>Código de tributação nacional do ISSQN.  - **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  - **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;.</value>
+        /// <value>Código de tributação nacional do ISSQN.  **Ambiente Nacional**: O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional. Exemplo: &#x60;010701&#x60;.  **Envio direto para a Prefeitura**: Em muitos municípios, continua sendo exigido apenas o código conforme a LC 116/2003, totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo: &#x60;0107&#x60;.</value>
         [DataMember(Name = "cTribNac", IsRequired = true, EmitDefaultValue = true)]
         public string cTribNac { get; set; }
 
@@ -96,6 +100,20 @@ namespace NuvemFiscal.Sdk.Model
         public string cNBS { get; set; }
 
         /// <summary>
+        /// Código de natureza da operação.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+        /// </summary>
+        /// <value>Código de natureza da operação.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.</value>
+        [DataMember(Name = "cNatOp", EmitDefaultValue = true)]
+        public string cNatOp { get; set; }
+
+        /// <summary>
+        /// Código de situação tributária.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.
+        /// </summary>
+        /// <value>Código de situação tributária.    **Atenção**: Para emissões pelo Sistema Nacional NFS-e, esse campo é ignorado.</value>
+        [DataMember(Name = "cSitTrib", EmitDefaultValue = true)]
+        public string cSitTrib { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -108,6 +126,8 @@ namespace NuvemFiscal.Sdk.Model
             sb.Append("  CNAE: ").Append(CNAE).Append("\n");
             sb.Append("  xDescServ: ").Append(xDescServ).Append("\n");
             sb.Append("  cNBS: ").Append(cNBS).Append("\n");
+            sb.Append("  cNatOp: ").Append(cNatOp).Append("\n");
+            sb.Append("  cSitTrib: ").Append(cSitTrib).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -167,6 +187,16 @@ namespace NuvemFiscal.Sdk.Model
                     this.cNBS == input.cNBS ||
                     (this.cNBS != null &&
                     this.cNBS.Equals(input.cNBS))
+                ) && 
+                (
+                    this.cNatOp == input.cNatOp ||
+                    (this.cNatOp != null &&
+                    this.cNatOp.Equals(input.cNatOp))
+                ) && 
+                (
+                    this.cSitTrib == input.cSitTrib ||
+                    (this.cSitTrib != null &&
+                    this.cSitTrib.Equals(input.cSitTrib))
                 );
         }
 
@@ -198,6 +228,14 @@ namespace NuvemFiscal.Sdk.Model
                 if (this.cNBS != null)
                 {
                     hashCode = (hashCode * 59) + this.cNBS.GetHashCode();
+                }
+                if (this.cNatOp != null)
+                {
+                    hashCode = (hashCode * 59) + this.cNatOp.GetHashCode();
+                }
+                if (this.cSitTrib != null)
+                {
+                    hashCode = (hashCode * 59) + this.cSitTrib.GetHashCode();
                 }
                 return hashCode;
             }

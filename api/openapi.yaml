@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: API para automação comercial e documentos fiscais.
   title: API Nuvem Fiscal
-  version: 2.57.0
+  version: 2.58.0
 servers:
 - url: https://api.nuvemfiscal.com.br/
 security:
@@ -11663,6 +11663,8 @@ components:
                 CNAE: CNAE
                 cTribMun: cTribMun
                 cNBS: cNBS
+                cSitTrib: cSitTrib
+                cNatOp: cNatOp
                 cTribNac: cTribNac
                 xDescServ: xDescServ
               infoCompl:
@@ -12065,6 +12067,8 @@ components:
                 CNAE: CNAE
                 cTribMun: cTribMun
                 cNBS: cNBS
+                cSitTrib: cSitTrib
+                cNatOp: cNatOp
                 cTribNac: cTribNac
                 xDescServ: xDescServ
               infoCompl:
@@ -12467,6 +12471,8 @@ components:
                 CNAE: CNAE
                 cTribMun: cTribMun
                 cNBS: cNBS
+                cSitTrib: cSitTrib
+                cNatOp: cNatOp
                 cTribNac: cTribNac
                 xDescServ: xDescServ
               infoCompl:
@@ -12869,6 +12875,8 @@ components:
                 CNAE: CNAE
                 cTribMun: cTribMun
                 cNBS: cNBS
+                cSitTrib: cSitTrib
+                cNatOp: cNatOp
                 cTribNac: cTribNac
                 xDescServ: xDescServ
               infoCompl:
@@ -13271,6 +13279,8 @@ components:
                 CNAE: CNAE
                 cTribMun: cTribMun
                 cNBS: cNBS
+                cSitTrib: cSitTrib
+                cNatOp: cNatOp
                 cTribNac: cTribNac
                 xDescServ: xDescServ
               infoCompl:
@@ -13709,6 +13719,8 @@ components:
               CNAE: CNAE
               cTribMun: cTribMun
               cNBS: cNBS
+              cSitTrib: cSitTrib
+              cNatOp: cNatOp
               cTribNac: cTribNac
               xDescServ: xDescServ
             infoCompl:
@@ -14139,6 +14151,8 @@ components:
             CNAE: CNAE
             cTribMun: cTribMun
             cNBS: cNBS
+            cSitTrib: cSitTrib
+            cNatOp: cNatOp
             cTribNac: cTribNac
             xDescServ: xDescServ
           infoCompl:
@@ -14928,6 +14942,8 @@ components:
           CNAE: CNAE
           cTribMun: cTribMun
           cNBS: cNBS
+          cSitTrib: cSitTrib
+          cNatOp: cNatOp
           cTribNac: cTribNac
           xDescServ: xDescServ
         infoCompl:
@@ -15023,14 +15039,16 @@ components:
         CNAE: CNAE
         cTribMun: cTribMun
         cNBS: cNBS
+        cSitTrib: cSitTrib
+        cNatOp: cNatOp
         cTribNac: cTribNac
         xDescServ: xDescServ
       properties:
         cTribNac:
-          description: "Código de tributação nacional do ISSQN.\r\n- **Ambiente Nacional**:\
+          description: "Código de tributação nacional do ISSQN.\r\n**Ambiente Nacional**:\
             \ O código deve conter exatamente 6 dígitos numéricos, sendo 2 para Item\
             \ (LC 116/2003), 2 para Subitem (LC 116/2003) e 2 para Desdobro Nacional.\
-            \ Exemplo: `010701`.\r\n- **Envio direto para a Prefeitura**: Em muitos\
+            \ Exemplo: `010701`.\r\n**Envio direto para a Prefeitura**: Em muitos\
             \ municípios, continua sendo exigido apenas o código conforme a LC 116/2003,\
             \ totalizando 4 dígitos numéricos (2 para Item e 2 para Subitem). Exemplo:\
             \ `0107`."
@@ -15055,6 +15073,16 @@ components:
           description: "Código NBS (Nomenclatura Brasileira de Serviços, Intangíveis\
             \ e outras Operações que produzam Variações no Patrimônio) correspondente\
             \ ao serviço prestado."
+          nullable: true
+          type: string
+        cNatOp:
+          description: "Código de natureza da operação.\r\n\r\n**Atenção**: Para emissõ\
+            es pelo Sistema Nacional NFS-e, esse campo é ignorado."
+          nullable: true
+          type: string
+        cSitTrib:
+          description: "Código de situação tributária.\r\n\r\n**Atenção**: Para emissõ\
+            es pelo Sistema Nacional NFS-e, esse campo é ignorado."
           nullable: true
           type: string
       required:
